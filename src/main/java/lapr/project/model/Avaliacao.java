@@ -1,5 +1,8 @@
 package lapr.project.model;
 
+import lapr.project.model.states.AvaliacaoState;
+import lapr.project.model.states.AvaliacaoStateIniciada;
+import lapr.project.model.states.AvaliacaoStateConcluida;
 import java.util.List;
 
 /**

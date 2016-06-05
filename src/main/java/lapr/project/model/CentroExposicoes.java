@@ -1,5 +1,14 @@
 package lapr.project.model;
 
+import lapr.project.model.mechanisms.Atribuicao;
+import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
+import lapr.project.model.mechanisms.MecanismoAtribuicao;
+import lapr.project.model.mechanisms.RegistoTipoConflitos;
+import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.lists.RegistoExposicoes;
+import lapr.project.model.lists.RegistoDemonstracoes;
+import lapr.project.model.lists.RegistoCandidaturas;
+import lapr.project.model.lists.RegistoRecursos;
 import java.util.*;
 
 /**
@@ -199,9 +208,10 @@ public class CentroExposicoes {
         return this.m_regDemonstracoes;
     }
 
-    public boolean hasUtilizador(String username, String password) {
-        return this.m_regUtilizadores.hasUtilizador(username, password);
-    }
+    //tem de estar no Controller ou Registo Utilizadores
+//    public boolean hasUtilizador(String username, String password) {
+//        return this.m_regUtilizadores.hasUtilizador(username, password);
+//    }
 
     public Utilizador getUtilizador(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {

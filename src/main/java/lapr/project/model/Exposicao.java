@@ -1,5 +1,16 @@
 package lapr.project.model;
 
+import lapr.project.model.mechanisms.ProcessoAtribuicaoExposicao;
+import lapr.project.model.mechanisms.Atribuivel;
+import lapr.project.model.states.ExposicaoCriadaEstado;
+import lapr.project.model.states.ExposicaoStateEmRevisao;
+import lapr.project.model.states.ExposicaoEstado;
+import lapr.project.model.mechanisms.ProcessoAtribuicao;
+import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.model.lists.ListaSubmissoes;
+import lapr.project.model.lists.ListaFAE;
+import lapr.project.model.lists.ListaFAEs;
+import lapr.project.model.lists.RegistoCandidaturas;
 import java.util.*;
 
 /**

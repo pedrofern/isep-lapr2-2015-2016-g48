@@ -1,5 +1,7 @@
 package lapr.project.controller;
 
+import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
+import lapr.project.model.mechanisms.TipoConflito;
 import lapr.project.model.*;
 
 /**

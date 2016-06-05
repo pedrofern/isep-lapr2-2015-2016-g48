@@ -1,5 +1,7 @@
 package lapr.project.controller;
 
+import lapr.project.model.lists.ListaFAE;
+import lapr.project.model.lists.RegistoUtilizadores;
 import java.util.*;
 import lapr.project.model.*;
 

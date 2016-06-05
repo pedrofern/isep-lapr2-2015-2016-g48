@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.model.mechanisms.ProcessoAtribuicao;
+import lapr.project.model.lists.ListaSubmissoes;
 import java.util.*;
 
 /**

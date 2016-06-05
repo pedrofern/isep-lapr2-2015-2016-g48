@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.*;
 
 /**
