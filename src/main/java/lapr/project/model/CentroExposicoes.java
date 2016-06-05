@@ -27,9 +27,9 @@ public class CentroExposicoes {
     public CentroExposicoes() {
         m_listaUtilizadores = new ArrayList<Utilizador>();
         m_listaExposicoes = new ArrayList<Exposicao>();
-        m_listaFAE = new ArrayList<FAE>();
+//        m_listaFAE = new ArrayList<FAE>();
         m_listaRecursos = new ArrayList<Recurso>();
-        m_listaDemonstracoes = new ArrayList<Demonstracao>();
+//        m_listaDemonstracoes = new ArrayList<Demonstracao>();
         m_regUtilizadores = new RegistoUtilizadores();
         m_regExposicoes = new RegistoExposicoes();
         this.timer = new Timer();
@@ -93,40 +93,40 @@ public class CentroExposicoes {
     public RegistoRecursos getRegistoRecursos() {
         return this.m_regRecursos;
     }
-
-    public FAE novoDefinirFAE() {
-        return new FAE();
-    }
-
-    public void schedule(TimerTask task, Date date) {
-        timer.schedule(task, date);
-    }
-
-    public boolean registaDefinirFAE(FAE f) {
-        if (validaDefinirFAE(f)) {
-            return addDefinirFAE(f);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean addDefinirFAE(FAE f) {
-        return m_listaFAE.add(f);
-    }
-
-    public List<FAE> getListaFAE() {
-        List<FAE> lF = new ArrayList<FAE>();
-
-        for (ListIterator<FAE> it = m_listaFAE.listIterator(); it.hasNext();) {
-            lF.add(it.next());
-        }
-
-        return lF;
-    }
-
-    public boolean validaDefinirFAE(FAE f) {
-        return f.valida();
-    }
+//
+//    public FAE novoDefinirFAE() {
+//        return new FAE();
+//    }
+//
+//    public void schedule(TimerTask task, Date date) {
+//        timer.schedule(task, date);
+//    }
+//
+//    public boolean registaDefinirFAE(FAE f) {
+//        if (validaDefinirFAE(f)) {
+//            return addDefinirFAE(f);
+//        } else {
+//            return false;
+//        }
+//    }
+//
+//    private boolean addDefinirFAE(FAE f) {
+//        return m_listaFAE.add(f);
+//    }
+//
+//    public List<FAE> getListaFAE() {
+//        List<FAE> lF = new ArrayList<FAE>();
+//
+//        for (ListIterator<FAE> it = m_listaFAE.listIterator(); it.hasNext();) {
+//            lF.add(it.next());
+//        }
+//
+//        return lF;
+//    }
+//
+//    public boolean validaDefinirFAE(FAE f) {
+//        return f.valida();
+//    }
 
     public List<Utilizador> getUtilizadores() {
         return m_listaUtilizadores;

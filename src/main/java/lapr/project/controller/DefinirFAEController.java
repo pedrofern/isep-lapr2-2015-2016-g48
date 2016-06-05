@@ -18,10 +18,11 @@ public class DefinirFAEController {
     public DefinirFAEController(CentroExposicoes centro_exposicoes) {
         m_centro_exposicoes = centro_exposicoes;
     }
-
-    public void novoDefinirFAE() {
-        m_FAE = m_centro_exposicoes.novoDefinirFAE();
-    }
+    
+    //TEM DE SER NA EXPOSICAO
+//    public void novoDefinirFAE() {
+//        m_FAE = m_centro_exposicoes.novoDefinirFAE();
+//    }
 
     public void selectExposicao(Exposicao e) {
         this.m_exposicao = e;
@@ -45,22 +46,25 @@ public class DefinirFAEController {
         }
     }
 
-    public FAE setUtilizador(List<Utilizador> lstUtz) {
-        for (Utilizador u : lstUtz) {
-            m_lstFaes.addFAE(u);
-        }
-
-        if (m_centro_exposicoes.validaDefinirFAE(m_FAE)) {
-            return m_FAE;
-        } else {
-            return null;
-        }
-    }
-
-    public boolean registaMembroFAE(FAE m_FAE) {
-
-        return m_centro_exposicoes.registaDefinirFAE(m_FAE);
-
-    }
+    //tem de ser na exposição
+    
+    
+//    public FAE setUtilizador(List<Utilizador> lstUtz) {
+//        for (Utilizador u : lstUtz) {
+//            m_lstFaes.addFAE(u);
+//        }
+//
+//        if (m_centro_exposicoes.validaDefinirFAE(m_FAE)) {
+//            return m_FAE;
+//        } else {
+//            return null;
+//        }
+//    }
+//
+//    public boolean registaMembroFAE(FAE m_FAE) {
+//
+//        return m_centro_exposicoes.registaDefinirFAE(m_FAE);
+//
+//    }
 
 }

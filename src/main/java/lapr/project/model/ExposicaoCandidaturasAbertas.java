@@ -4,6 +4,6 @@ package lapr.project.model;
  *
  * @author Pedro Fernandes
  */
-public class ExposicaoProntaAReceberCandidaturas {
+public class ExposicaoCandidaturasAbertas {
     
 }

@@ -46,7 +46,10 @@ public class DefinirFAEUI implements UI{
 
                     boolean conf = Utils.confirma("Confirma o FAE:" + fae.toString() + "(S/N)?");
                     if (conf) {
-                        m_controllerFAE.registaMembroFAE(fae);
+                        
+                        //TEM DE SER NA EXPOSIÇAO
+                        
+//                        m_controllerFAE.registaMembroFAE(fae);
 
                         // Não apresenta o utilizador que já foi convertido em FAE
                         lu.remove(u);

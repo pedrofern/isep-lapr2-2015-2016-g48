@@ -14,7 +14,8 @@ public class Avaliacao {
     private Candidatura m_candidatura;
     private Organizador organizador;
     private List<Avaliacao> m_listaAvaliacoes;
-        private FAE fae;
+    private FAE fae;
+    private Criterio criterio;
 
     public Avaliacao(String resposta, String justificacao) {
         this.resposta = resposta;

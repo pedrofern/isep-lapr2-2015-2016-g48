@@ -6,10 +6,10 @@ import java.util.*;
  *
  * @author Pedro Fernandes
  */
-public class RegistoFAEs {
+public class ListaFAEs {
     private List<FAE> listaFaes;
 
-    public RegistoFAEs() {
+    public ListaFAEs() {
         listaFaes = new ArrayList<>();
     }
 

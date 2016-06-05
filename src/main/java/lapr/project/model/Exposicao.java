@@ -18,7 +18,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     private Date dataInicioAtribuicao;
     private Date dataFimAtribuicao;
     private RegistoCandidaturas m_regCandidaturas;
-    private RegistoFAEs m_regFAEs;
+    private ListaFAEs m_regFAEs;
     private final List<Organizador> e_listaOrganizadores;
     private ListaSubmissoes listaSubmissoes;
     private ProcessoAtribuicao processoAtribuicao;
@@ -154,7 +154,7 @@ public class Exposicao implements Submissivel, Atribuivel {
         return this.m_regCandidaturas;
     }
 
-    public RegistoFAEs getRegistoFAEs() {
+    public ListaFAEs getRegistoFAEs() {
         return this.m_regFAEs;
     }
 
