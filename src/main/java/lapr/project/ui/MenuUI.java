@@ -50,10 +50,10 @@ public class MenuUI {
                 uiRU.run();
             }
 
-            if (opcao.equals("2")) {
-                DefinirFAEUI uiRU = new DefinirFAEUI(m_centroDeExposicoes);
-                uiRU.run();
-            }
+//            if (opcao.equals("2")) {
+//                DefinirFAEUI uiRU = new DefinirFAEUI(m_centroDeExposicoes);
+//                uiRU.run();
+//            }
 
             if (opcao.equals("3")) {
                 AtribuirCandidaturaUI uiRU = new AtribuirCandidaturaUI(m_centroDeExposicoes);
