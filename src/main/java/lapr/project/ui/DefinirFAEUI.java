@@ -6,6 +6,7 @@ import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ import javax.swing.border.TitledBorder;
 public class DefinirFAEUI extends JFrame {
 
     private JFrame framePai;
+    private JComboBox comboboxExposicao, comboboxUtilizador;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
     private static final int JANELA_LARGURA = 820;
     private static final int JANELA_ALTURA = 320;
@@ -37,6 +39,7 @@ public class DefinirFAEUI extends JFrame {
         JPanel painel = new JPanel(new FlowLayout());
 
         painel.add(criarPainelExposicao());
+        painel.add(criarPainelUtilizador());
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
@@ -56,11 +59,46 @@ public class DefinirFAEUI extends JFrame {
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-        
+
         painel.add(label);
-        
+        painel.add(getListaExposicao());
         return painel;
 
+    }
+
+    private JComboBox getListaExposicao() {
+
+        comboboxExposicao = new JComboBox();
+        comboboxExposicao.setEditable(false);
+        comboboxExposicao.setSelectedIndex(-1);
+        comboboxExposicao.setPreferredSize(new Dimension(200, 20));
+
+        return comboboxExposicao;
+    }
+
+    private JPanel criarPainelUtilizador() {
+
+        JPanel painel = new JPanel(new FlowLayout());
+        JLabel label = new JLabel("Utilizador", SwingConstants.RIGHT);
+        label.setPreferredSize(LABEL_TAMANHO);
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        painel.add(label);
+        painel.add(getListaUtilizador());
+        return painel;
+    }
+
+    private JComboBox getListaUtilizador() {
+
+        comboboxUtilizador = new JComboBox();
+        comboboxUtilizador.setEditable(false);
+        comboboxUtilizador.setSelectedIndex(-1);
+        comboboxUtilizador.setPreferredSize(new Dimension(200, 20));
+
+        return comboboxUtilizador;
     }
 
 //    private final CentroExposicoes m_centro_exposicoes;
