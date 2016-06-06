@@ -1,7 +1,10 @@
 package lapr.project.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
@@ -10,17 +13,19 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Eduangelo Ferreira Nº aluno: 1151094
  */
 public class DefinirFAEUI extends JFrame {
 
     private JFrame framePai;
+    private JTextField txtNome, txtEmail, txtUsername;
     private JComboBox comboboxExposicao, comboboxUtilizador;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
     private static final int JANELA_LARGURA = 820;
@@ -33,6 +38,12 @@ public class DefinirFAEUI extends JFrame {
         setSize(JANELA_LARGURA, JANELA_LARGURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
+    }
+    
+    public void criarComponente() {
+       
+        add(criarPainelNorte(),BorderLayout.NORTH);
+        add(criarPainelOeste(),BorderLayout.WEST);
     }
 
     private JPanel criarPainelNorte() {
@@ -65,6 +76,8 @@ public class DefinirFAEUI extends JFrame {
         return painel;
 
     }
+
+    
 
     private JComboBox getListaExposicao() {
 
@@ -99,6 +112,37 @@ public class DefinirFAEUI extends JFrame {
         comboboxUtilizador.setPreferredSize(new Dimension(200, 20));
 
         return comboboxUtilizador;
+    }
+
+    private JPanel criarPainelOeste() {
+
+        JPanel painel = new JPanel();
+        painel.setBorder(new TitledBorder("Dados UTilizadores"));
+        painel.setPreferredSize(new Dimension(370, 100));
+        painel.setLayout(new FlowLayout());
+        painel.add(criarPainelDadosUTilizadores(), BorderLayout.EAST);
+
+        return painel;
+    }
+
+    private JPanel criarPainelDadosUTilizadores() {
+
+        JPanel painel = new JPanel(new GridLayout(0, 2, 0, 4));
+        txtNome = new JTextField(15);
+        txtNome.setEditable(false);
+        txtEmail = new JTextField(15);
+        txtEmail.setEditable(false);
+        txtUsername = new JTextField(15);
+        txtUsername.setEditable(false);
+
+        painel.add(new JLabel("Nome"));
+        painel.add(txtNome);
+        painel.add(new JLabel("Email"));
+        painel.add(txtEmail);
+        painel.add(new JLabel("Username"));
+        painel.add(txtUsername);
+
+        return painel;
     }
 
 //    private final CentroExposicoes m_centro_exposicoes;
