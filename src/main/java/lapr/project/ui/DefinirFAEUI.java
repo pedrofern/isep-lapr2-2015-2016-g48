@@ -1,31 +1,68 @@
 package lapr.project.ui;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.util.*;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class DefinirFAEUI extends JFrame  {
+public class DefinirFAEUI extends JFrame {
 
     private JFrame framePai;
-    private static final int JANELA_LARGURA = 900;
+    private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
+    private static final int JANELA_LARGURA = 820;
     private static final int JANELA_ALTURA = 320;
 
     public DefinirFAEUI() {
-    
+
         super("Definir FAE");
-        
+
         setSize(JANELA_LARGURA, JANELA_LARGURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
     }
-    
-    
+
+    private JPanel criarPainelNorte() {
+        JPanel painel = new JPanel(new FlowLayout());
+
+        painel.add(criarPainelExposicao());
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        painel.setBorder(new TitledBorder("Dados"));
+
+        return painel;
+
+    }
+
+    private JPanel criarPainelExposicao() {
+
+        JPanel painel = new JPanel(new FlowLayout());
+        JLabel label = new JLabel("Exposição", SwingConstants.RIGHT);
+        label.setPreferredSize(LABEL_TAMANHO);
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
+        
+        painel.add(label);
+        
+        return painel;
+
+    }
+
 //    private final CentroExposicoes m_centro_exposicoes;
 //    private final DefinirFAEController m_controllerFAE;
 //
@@ -137,5 +174,4 @@ public class DefinirFAEUI extends JFrame  {
 //
 //        }
 //    }
-
 }
