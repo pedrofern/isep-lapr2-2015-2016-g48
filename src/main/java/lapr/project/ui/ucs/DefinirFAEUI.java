@@ -179,14 +179,12 @@ public class DefinirFAEUI extends JFrame {
         getRootPane().setDefaultButton(btnOK);
 
         JButton btnFechar = criarBotaoCancelar();
-        JButton btnInserir = criarBotaoInseririNovoUtilizador();
 
         JPanel p = new JPanel();
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.add(btnOK);
         p.add(btnFechar);
-        p.add(btnInserir);
 
         return p;
 
@@ -219,11 +217,7 @@ public class DefinirFAEUI extends JFrame {
         return btnCancelar;
     }
 
-    private JButton criarBotaoInseririNovoUtilizador() {
-        btnInserirNovoUtilizador = new JButton("Inserir novo utilizador");
-
-        return btnInserirNovoUtilizador;
-    }
+    
 
     private JButton criarBotaoAdicionarFAE() {
 
