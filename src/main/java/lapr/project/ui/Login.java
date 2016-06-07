@@ -41,7 +41,7 @@ public class Login extends JDialog /**implements Serializable**/ {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                id_utilizador="Organizador";
+                id_utilizador="admin";
                 
                 new Janela(m_ce, id_utilizador);  
 

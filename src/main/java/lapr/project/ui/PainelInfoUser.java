@@ -42,10 +42,8 @@ public class PainelInfoUser extends JPanel {
             case "Organizador":
                 
                  try{
-    
-                    ImageIcon org=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/org.jpg"));
-  
-                    org=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/org.jpg"));
+
+                    ImageIcon org=new ImageIcon("src/main/resources/images/org.jpg");
                     Image imgOrg=org.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
                     label.setIcon(new ImageIcon(imgOrg));
                     
@@ -59,9 +57,8 @@ public class PainelInfoUser extends JPanel {
 
                  try{
            
-                    ImageIcon fae=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/fae.jpg"));
+                    ImageIcon fae=new ImageIcon("src/main/resources/images/fae.jpg");
    
-                    fae=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/fae.jpg"));
                     Image imgFae=fae.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
                     label.setIcon(new ImageIcon(imgFae));
                    
@@ -71,13 +68,10 @@ public class PainelInfoUser extends JPanel {
 
                 break;
                 
-            case "Representante":
-                
-                
+            case "Representante":      
                  try{
-                    ImageIcon rep=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/rep.jpg"));
-        
-                    rep=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/rep.jpg"));
+                    ImageIcon rep=new ImageIcon("src/main/resources/images/rep.jpg");
+   
                     Image imgRep=rep.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
                     label.setIcon(new ImageIcon(imgRep));
                  }catch(Exception ex){
@@ -88,22 +82,34 @@ public class PainelInfoUser extends JPanel {
                  
             case "Organizador+Fae":
                 
-                 try{
+                try{
                      
-                     ImageIcon fae_org=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/fae+org.jpg"));
+                     ImageIcon fae_org=new ImageIcon("src/main/resources/images/fae+org.jpg");
     
-                     fae_org=new ImageIcon(PainelInfoUser.class.getResource("/main/java/lapr/project/ui/imagens/fae+org.jpg"));
                      Image img=fae_org.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
                      label.setIcon(new ImageIcon(img));
                      
                 }catch(Exception ex){
-                    label.setText("ImagemNãoEncontrada");} 
+                    label.setText("ImagemNãoEncontrada");
+                } 
      
                 break;
+            case "Gestor":
+                
+                try{
+                    ImageIcon gestor=new ImageIcon("src/main/resources/images/gestor.jpg");
+    
+                    Image img=gestor.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+                    label.setIcon(new ImageIcon(img));
+                }catch(Exception ex){
+                    label.setText("ImagemNãoEncontrada");
+                }
             default:
-                //gestor
-//                Image imgGestor=org.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
-//                label.setIcon(new ImageIcon(imgGestor));       
+                //Admin
+                  
+                  ImageIcon admin=new ImageIcon("src/main/resources/images/admin.jpg");
+                  Image img=admin.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+                  label.setIcon(new ImageIcon(img));       
         }
          
         p.add(label);
@@ -141,12 +147,23 @@ public class PainelInfoUser extends JPanel {
         
         labelLogo.setBounds(80,80,80,80);
         
-        //Image img=logo.getImage().getScaledInstance(labelLogo.getWidth(), labelLogo.getHeight(), Image.SCALE_SMOOTH);
         
-        //labelLogo.setSize(6,8);
-        //labelLogo.setIcon(logo);
+        try{
+            ImageIcon logo=new ImageIcon("src/main/resources/images/logo.jpeg");
+            
+            Image img=logo.getImage().getScaledInstance(labelLogo.getWidth(), labelLogo.getHeight(), Image.SCALE_SMOOTH);
         
-//        labelLogo.setIcon(new ImageIcon(img));
+            labelLogo.setSize(6,8);
+            labelLogo.setIcon(logo);
+        
+            labelLogo.setIcon(new ImageIcon(img));    
+            
+                     
+        }catch(Exception ex){
+            labelLogo.setText("ImagemNãoEncontrada");
+        } 
+     
+        
         
         p.add(labelLogo,BorderLayout.EAST);
         

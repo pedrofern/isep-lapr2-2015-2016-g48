@@ -224,15 +224,16 @@ public class Janela extends JFrame /** implements Serializable**/{
            tabPane.addTab("MenuGestor", new PainelGestor(m_ce, m_ut));
           
       }
-      
-       tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
-        
-       tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+      if("admin".equals(m_ut)){
+          
+        tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
 
-       tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
-        
-       tabPane.addTab("Alterar Utilizador", new PainelAlterarUtilizador());
-        
+        tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+
+        tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
+
+        tabPane.addTab("Alterar Utilizador", new PainelAlterarUtilizador());
+      }  
        return tabPane; 
     }
 
