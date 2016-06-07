@@ -1,4 +1,4 @@
-package lapr.project.ui;
+package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

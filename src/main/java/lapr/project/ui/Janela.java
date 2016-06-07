@@ -1,20 +1,240 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import lapr.project.model.CentroExposicoes;
 
 /**
  *
- * @author Worten
+ * @author Diana
  */
-public class Janela {
+public class Janela extends JFrame /** implements Serializable**/{
+    private final CentroExposicoes m_ce;
+    public String m_ut;
+    
+    private JTabbedPane tabPane;
+    private static PainelInfoUser pUser;
+ 
+    private static int WIDTH=550, HEIGHT=500, MINWIDTH=200, MINHEIGHT=250;
+ 
+    public Janela(CentroExposicoes ce, String id_utilizador) {
+        
+        super("Centro de Exposições");
+        this.m_ce=ce;
+        this.m_ut=id_utilizador;
+        
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+               
+        criarComponentes();
 
-    Janela(CentroExposicoes m_ce, String id_utilizador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setMinimumSize(new Dimension(MINWIDTH, MINHEIGHT));
+        setLocationRelativeTo(null);
+        
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setVisible(true); 
+    }   
+ 
+    private void criarComponentes(){
+        JMenuBar menuBar= criarBarraMenus();
+        setJMenuBar(menuBar);
+
+       pUser=new PainelInfoUser(m_ut);
+       pUser.criarPainel();
+        
+        tabPane=criarSeparadores();
+        
+        add(pUser,BorderLayout.NORTH);
+        add(tabPane,BorderLayout.CENTER);
     }
+        
+    private JMenuBar criarBarraMenus(){
+        JMenuBar menuBar=new JMenuBar();
+        
+        menuBar.add(criarMenuFicheiro());
+        menuBar.add(criarMenuOpcoes());
+        
+        return menuBar;
+    }
+       
+    private JMenu criarMenuFicheiro(){
+        JMenu menu=new JMenu("Ficheiro");
+        menu.setMnemonic(KeyEvent.VK_F);
+        
+        menu.addMouseListener(new MouseAdapter() {
+           
+            
+            //criarItemNovo.setEnabled(registoExposicoes.tamanho()!=0);
+  
+        });
+        
+        menu.add(criarItemNovo());
+        menu.addSeparator();
+        menu.add(criarItemImportar());
+        menu.addSeparator();
+        menu.add(criarItemExportar());
+        menu.addSeparator();
+        menu.add(criarItemSair());
+        
+        return menu;
+        
+    }
+
+    private JMenu criarMenuOpcoes(){
+        JMenu menu=new JMenu("Opções");
+        menu.setMnemonic(KeyEvent.VK_O);
+        
+        menu.add(criarSubMenuEstilo());
+        menu.addSeparator();
+        menu.add(criarItemAcerca());
+        
+        return menu;
+    }
+    
+    private JMenuItem criarItemNovo(){
+        JMenuItem item=new JMenuItem("Novo CE", KeyEvent.VK_N);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
+
+        //item.setEnabled(registoExposicoes.tamanho() != 0);
+        return item; 
+    }
+    
+    private JMenuItem criarItemImportar(){
+          JMenuItem item= new JMenuItem("Importar", KeyEvent.VK_I);
+          item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
+        
+          return item; 
+    }
+    
+    private JMenuItem criarItemExportar(){
+        JMenuItem item = new JMenuItem("Exportar", KeyEvent.VK_X);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
+        item.setEnabled(false);
+
+        return item;
+    }
+    
+    private JMenuItem criarItemAcerca(){
+        JMenuItem item = new JMenuItem("Acerca", KeyEvent.VK_A);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Janela.this,
+                        "@Copyright\nAna, Diana, Eduângelo, Pedro, Tomás - LAPR2 2015/2016",
+                        "Acerca",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        return item;
+    }
+  
+    private JMenuItem criarItemSair(){
+        JMenuItem item = new JMenuItem("Sair", KeyEvent.VK_S);
+        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK));
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+        return item;
+    }
+    
+    private JMenu criarSubMenuEstilo(){
+         JMenu menu = new JMenu("Estilo");
+        menu.setMnemonic(KeyEvent.VK_E);
+
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            menu.add(criarItemEstilo(info));
+        }
+
+        return menu;
+    }
+    
+    private JMenuItem criarItemEstilo(UIManager.LookAndFeelInfo info) {
+        JMenuItem item = new JMenuItem(info.getName());
+
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JMenuItem menuItem = (JMenuItem) e.getSource();
+                try {
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if (menuItem.getActionCommand().equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                    SwingUtilities.updateComponentTreeUI(Janela.this);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(Janela.this,
+                            ex.getMessage(),
+                            "Estilo " + menuItem.getActionCommand(),
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        return item;
+    }
+    
+    private JTabbedPane criarSeparadores() {
+  
+        JTabbedPane tabPane = new JTabbedPane(); 
+
+        if("Fae".equals(m_ut)){
+            tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+       }
+        
+       if("Organizador".equals(m_ut)){
+           tabPane.addTab("Home", new PainelInicio());
+           tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+
+       }
+       if("Representante".equals(m_ut)){
+
+            tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
+       }
+       
+      if("Organizador+Fae".equals(m_ut)){
+
+            tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+            tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce,m_ut));
+       }
+      
+      if("Gestor".equals(m_ut)){
+ 
+           tabPane.addTab("MenuGestor", new PainelGestor(m_ce, m_ut));
+          
+      }
+      
+       tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+        
+       tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+
+       tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
+        
+       tabPane.addTab("Alterar Utilizador", new PainelAlterarUtilizador());
+        
+       return tabPane; 
+    }
+
     
 }

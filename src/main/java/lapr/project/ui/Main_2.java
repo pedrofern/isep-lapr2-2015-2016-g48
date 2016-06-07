@@ -6,7 +6,7 @@ import lapr.project.model.CentroExposicoes;
 
 /**
  *
- * @author Worten
+ * @author Diana
  */
 public class Main_2 {
     

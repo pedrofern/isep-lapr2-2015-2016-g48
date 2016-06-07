@@ -1,5 +1,12 @@
 package lapr.project.ui;
 
+import lapr.project.ui.ucs.DecidirCandidaturaUI;
+import lapr.project.ui.ucs.CriarExposicaoUI;
+import lapr.project.ui.ucs.CriarCandidaturaUI;
+import lapr.project.ui.ucs.DefinirRecursoUI;
+import lapr.project.ui.ucs.AtribuirCandidaturaUI;
+import lapr.project.ui.ucs.ConfirmarRegistoUtilizadorUI;
+import lapr.project.ui.ucs.DefinirDemonstracaoUI;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.io.*;

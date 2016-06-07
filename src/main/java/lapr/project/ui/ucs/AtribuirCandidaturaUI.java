@@ -1,8 +1,9 @@
-package lapr.project.ui;
+package lapr.project.ui.ucs;
 
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.model.*;
+import lapr.project.ui.UI;
 import lapr.project.utils.*;
 
 /**
@@ -17,6 +18,10 @@ public class AtribuirCandidaturaUI implements UI{
     public AtribuirCandidaturaUI(CentroExposicoes centroDeExposicoes) {
         m_centroDeExposicoes = centroDeExposicoes;
         m_controllerAC = new AtribuirCandidaturaController(m_centroDeExposicoes);
+    }
+
+    public AtribuirCandidaturaUI() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

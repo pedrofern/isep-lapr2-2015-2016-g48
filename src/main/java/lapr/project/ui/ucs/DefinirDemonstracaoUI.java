@@ -1,9 +1,10 @@
-package lapr.project.ui;
+package lapr.project.ui.ucs;
 
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.utils.*;
 import lapr.project.model.*;
+import lapr.project.ui.UI;
 
 /**
  *
