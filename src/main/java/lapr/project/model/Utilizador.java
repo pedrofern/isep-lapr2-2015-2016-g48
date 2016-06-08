@@ -6,7 +6,7 @@ import lapr.project.utils.*;
  *
  * @author Pedro Fernandes
  */
-public class Utilizador {
+public class Utilizador implements Comparable<Utilizador>{
 
     private String nome;
     private String email;
@@ -134,14 +134,20 @@ public class Utilizador {
         return str;
     }
 
-    public boolean equals(Utilizador u) {
-        if (this == u) {
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
             return true;
         }
-        if (u != null) {
-            return hasID(u.username);
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
         }
-        return false;
+        Utilizador outroUtilizador = (Utilizador) outroObjeto;
+
+        return nome.equalsIgnoreCase(outroUtilizador.nome);
+    }
+
+    public int compareTo(Utilizador outroUtilizador) {
+        return email.compareTo(outroUtilizador.email);
     }
 
 }

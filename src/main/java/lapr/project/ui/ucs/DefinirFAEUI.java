@@ -35,10 +35,10 @@ public class DefinirFAEUI extends JFrame {
      private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;
-//    private ModeloListaUtilizadores modeloListaUtilizadores;
-//    private ModeloListaUtilizadores modeloListaFAE;
-//    private ListaUtilizadores listaCompletaUtilizadores;
-//    private ListaUtilizadores listaUtilizadoresFAE;
+    private ModeloListaUtilizadores modeloListaUtilizadores;
+    private ModeloListaUtilizadores modeloListaFAE;
+    private ListaUtilizadores listaCompletaUtilizadores;
+    private ListaUtilizadores listaUtilizadoresFAE;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
     public DefinirFAEUI() throws FileNotFoundException {
