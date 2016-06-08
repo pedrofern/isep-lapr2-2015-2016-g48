@@ -34,7 +34,7 @@ public class Main_2 {
 //        if (ce == null) {
              ce = new CentroExposicoes();        
 //        }
-        new Login(ce);       
+        new Login(ce,"");       
 
     }
 }
