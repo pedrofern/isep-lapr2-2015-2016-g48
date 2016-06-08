@@ -220,7 +220,6 @@ public class Login extends JFrame /**implements Serializable**/ {
                 
                 if(username.getText().equals("Admin")){
                     new Janela(m_ce,"Admin");
-                    framePai.setVisible(false);
                 }
                     if(username.equals("FAE")){
                        new Janela(m_ce, m_ut); 
