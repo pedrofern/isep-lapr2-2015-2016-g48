@@ -203,15 +203,17 @@ public class RegistarUtilizadorUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
-                    guardar();
-                }
-                catch (NumberFormatException ex){
-                    JOptionPane.showMessageDialog(
+                if(txtNome.getText().isEmpty()==true||
+                    txtEmail.getText().isEmpty()==true||
+                    txtPassword.getText().isEmpty()==true||
+                    txtUsername.getText().isEmpty()==true){
+                        JOptionPane.showMessageDialog(
                             null,
                             "Tem de preencher todos os campos!",
                             "Registar Utilizador",
                             JOptionPane.ERROR_MESSAGE);                        
+                }else{
+                    guardar();
                 }
             }
         });
@@ -266,14 +268,15 @@ public class RegistarUtilizadorUI extends JFrame{
             email = txtEmail.getText();
             pass = txtPassword.getText();
             user = txtUsername.getText();
-//            m_controllerRU.criaUtilizador(nome, email, user, pass);
-//            System.out.println(m_controllerRU);
+            m_controllerRU.novoUtilizador();
+            m_controllerRU.setDados(nome, email, user, pass);
+            System.out.println(m_controllerRU);
                 JOptionPane.showMessageDialog(
                             null,
                             "Dados novo utilizador registado: \n"
                                     +"\nUsername: "+user
                                     +"\nPassword: "+pass
-                                    +"Nome: "+nome
+                                    +"\nNome: "+nome
                                     +"\nEmail: "+email,
                             "Registar Utilizador",
                             JOptionPane.INFORMATION_MESSAGE);    

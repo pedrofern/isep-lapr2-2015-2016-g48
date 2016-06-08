@@ -6,7 +6,7 @@ import lapr.project.model.CentroExposicoes;
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
  */
-class Main {
+public class Main {
 
 	/**
 	 * Private constructor to hide implicit public one.

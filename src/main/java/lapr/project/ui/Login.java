@@ -18,47 +18,17 @@ public class Login extends JFrame /**implements Serializable**/ {
     private CentroExposicoes m_ce;
     private String id_utilizador;
     // private FicheiroCentroExposicoes fce;
-    private static final int WIDTH=300, HEIGHT=300;
-    private static final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 10, MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-    
-    
+    private static final int WIDTH=300, HEIGHT=250;
+    private static final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0, MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+
     private JTextField username;
     private JPasswordField password;
     private Login framePai;
     private String m_ut;
     //private FicheiroCentroExposicoes ficheiroCentroExposicoes;
     private CentroExposicoes centroExposicoes;
-    
-    
-    
-  
-    private static final Dimension LABEL_TAMANHO = new JLabel("Username").getPreferredSize();
-    
-    
-  
-//    public Login(){
-//        
-//        super("Menu Login");
-////        this.m_ce=ce;
-////        this.m_ut=u;
-//        framePai = Login.this;
-//        
-//        criarComponentes();
-//        criarPainelBotoes();
-//        
-//         
-//        addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosing(WindowEvent e) {
-//                fecharJanela();
-//            }
-//        });
-//        
-//        setSize(WIDTH,HEIGHT);
-//        setLocationRelativeTo(null);
-//        setVisible(true);
-//    }    
-        
+
+    private static final Dimension LABEL_TAMANHO = new JLabel("Username").getPreferredSize();        
     
     public Login(CentroExposicoes ce,String u){
         
@@ -87,7 +57,7 @@ public class Login extends JFrame /**implements Serializable**/ {
         
     private void criarComponentes(){
         
-        add(criarPainelNorte(), BorderLayout.NORTH);
+        add(criarPainelNorte(), BorderLayout.CENTER);
         add(criarPainelSul(),BorderLayout.SOUTH);
        
 
@@ -108,7 +78,7 @@ public class Login extends JFrame /**implements Serializable**/ {
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
         
-        p.setBorder(new TitledBorder("LOGIN"));
+        p.setBorder(new TitledBorder("Login"));
         return p;
     }
     
@@ -119,12 +89,12 @@ public class Login extends JFrame /**implements Serializable**/ {
         p.add(criarBotaoRegistar());
         
          
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_SUPERIOR = 5, MARGEM_INFERIOR = 5;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
         
-        p.setBorder(new TitledBorder("REGISTO"));
+        p.setBorder(new TitledBorder("Registar Novo Utilizador"));
         return p;
     }
         

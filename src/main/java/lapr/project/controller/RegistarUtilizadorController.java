@@ -21,13 +21,14 @@ public class RegistarUtilizadorController {
         m_utilizador = m_registoUtilizadores.novoUtilizador();
     }
 
-    public Utilizador criaUtilizador(String nome, String email, String user, String pass) {
-        novoUtilizador();
+    public Utilizador setDados(String nome, String email, String user, String pass) {        
         m_utilizador.setUsername(user);
         m_utilizador.setPassword(pass);
         m_utilizador.setNome(nome);
         m_utilizador.setEmail(email);
 
+        System.out.println(m_utilizador);
+        
         if (m_registoUtilizadores.registaUtilizador(m_utilizador)) {
             return m_utilizador;
         } else {

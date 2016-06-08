@@ -12,10 +12,17 @@ public class Utilizador implements Comparable<Utilizador>{
     private String email;
     private String password;
     private String username;
+    private String NOME_POR_OMISSAO = "Utilizador não registado";
+    private String EMAIL_POR_OMISSAO = "Email do utilizador não registado";
+    private String PASS_POR_OMISSAO = "Password do utilizador não registado";
+    private String USER_POR_OMISSAO = "Username do utilizador não registado";
     private Boolean m_bRegistado;
 
     public Utilizador() {
-
+        nome = NOME_POR_OMISSAO;
+        email = EMAIL_POR_OMISSAO;
+        username = USER_POR_OMISSAO;
+        password = PASS_POR_OMISSAO;
     }
 
     public Utilizador(String email, String username, Boolean bRegistado) {
