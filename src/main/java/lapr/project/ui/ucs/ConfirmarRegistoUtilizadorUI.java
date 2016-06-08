@@ -3,13 +3,13 @@ package lapr.project.ui.ucs;
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class ConfirmarRegistoUtilizadorUI implements UI{
+public class ConfirmarRegistoUtilizadorUI {
 
     private final ConfirmarRegistoUtilizadorController controller;
     private Utilizador m_oUu;
@@ -21,7 +21,7 @@ public class ConfirmarRegistoUtilizadorUI implements UI{
         ler = new Scanner(System.in);
     }
 
-    @Override
+    
     public void run() {
         System.out.println("Confirmar Registo Utilizador:");
 

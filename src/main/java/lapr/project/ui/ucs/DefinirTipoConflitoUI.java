@@ -3,14 +3,14 @@ package lapr.project.ui.ucs;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import java.util.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 import lapr.project.utils.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class DefinirTipoConflitoUI implements UI{
+public class DefinirTipoConflitoUI {
     
     private CentroExposicoes m_centroDeExposicoes;
     private DefinirTipoConflitoController m_controller;
@@ -20,7 +20,7 @@ public class DefinirTipoConflitoUI implements UI{
         m_controller = new DefinirTipoConflitoController(m_centroDeExposicoes);
     }
 
-    @Override
+    
     public void run() {
 //        String strDesc = Utils.readLineFromConsole("Introduza Descrição Tipo Conflito: ");
 //        List<MecanismoDetecaoConflito> lsObjs = m_centroDeExposicoes.getMecanismosDetecaoConflito();

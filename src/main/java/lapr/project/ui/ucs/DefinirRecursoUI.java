@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.utils.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 
 /**
  *

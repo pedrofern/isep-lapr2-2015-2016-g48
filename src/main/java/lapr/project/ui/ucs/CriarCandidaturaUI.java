@@ -2,14 +2,14 @@ package lapr.project.ui.ucs;
 
 import lapr.project.model.*;
 import lapr.project.controller.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 import lapr.project.utils.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class CriarCandidaturaUI implements UI{
+public class CriarCandidaturaUI {
 
     private Representante e_representante;
     private CriarCandidaturaController m_controllerCCC;
@@ -19,7 +19,7 @@ public class CriarCandidaturaUI implements UI{
         m_controllerCCC = new CriarCandidaturaController(e_representante);
     }
 
-    @Override
+    
     public void run() {
         novaCandidatura();
 

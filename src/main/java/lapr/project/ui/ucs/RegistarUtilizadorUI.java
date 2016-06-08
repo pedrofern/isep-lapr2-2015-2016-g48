@@ -6,7 +6,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.Login;
 import lapr.project.utils.*;
 
 /**
@@ -25,7 +25,7 @@ public class RegistarUtilizadorUI extends JFrame{
     /**
      * Guarda a janela anteiror
      */
-    private JFrame framePai;
+    private Login framePai;
     /**
      * Guarda a dimensão de uma label por omissão
      */
@@ -51,7 +51,7 @@ public class RegistarUtilizadorUI extends JFrame{
     private CentroExposicoes centroDeExposicoes;
     private RegistarUtilizadorController m_controllerRU;
 
-    public RegistarUtilizadorUI(CentroExposicoes ce, JFrame framepai) {
+    public RegistarUtilizadorUI(CentroExposicoes ce, Login framepai) {
         
         super("Registar Utilizador");
 

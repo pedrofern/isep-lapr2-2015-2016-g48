@@ -3,14 +3,14 @@ package lapr.project.ui.ucs;
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 import lapr.project.utils.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class DecidirCandidaturaUI implements UI{
+public class DecidirCandidaturaUI {
 
     private CentroExposicoes m_centroDeExposicoes;
     private AvaliarCandidaturaController m_controllerDC;
@@ -20,7 +20,7 @@ public class DecidirCandidaturaUI implements UI{
         m_controllerDC = new AvaliarCandidaturaController(m_centroDeExposicoes);
     }
 
-    @Override
+    
     public void run() {
 
         List<Exposicao> le = m_controllerDC.iniciarAvaliacao();

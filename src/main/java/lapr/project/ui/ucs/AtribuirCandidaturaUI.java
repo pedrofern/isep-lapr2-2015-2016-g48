@@ -3,14 +3,14 @@ package lapr.project.ui.ucs;
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 import lapr.project.utils.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class AtribuirCandidaturaUI implements UI{
+public class AtribuirCandidaturaUI {
 
     private CentroExposicoes m_centroDeExposicoes;
     private AtribuirCandidaturaController m_controllerAC;
@@ -24,7 +24,7 @@ public class AtribuirCandidaturaUI implements UI{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    
     public void run() {
 
         novaAtribuicaoCandidatura();

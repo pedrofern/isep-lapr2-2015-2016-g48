@@ -36,28 +36,28 @@ public class Login extends JFrame /**implements Serializable**/ {
     
     
   
-    public Login(){
-        
-        super("Menu Login");
-//        this.m_ce=ce;
-//        this.m_ut=u;
-        framePai = Login.this;
-        
-        criarComponentes();
-        criarPainelBotoes();
-        
-         
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                fecharJanela();
-            }
-        });
-        
-        setSize(WIDTH,HEIGHT);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }    
+//    public Login(){
+//        
+//        super("Menu Login");
+////        this.m_ce=ce;
+////        this.m_ut=u;
+//        framePai = Login.this;
+//        
+//        criarComponentes();
+//        criarPainelBotoes();
+//        
+//         
+//        addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+//                fecharJanela();
+//            }
+//        });
+//        
+//        setSize(WIDTH,HEIGHT);
+//        setLocationRelativeTo(null);
+//        setVisible(true);
+//    }    
         
     
     public Login(CentroExposicoes ce,String u){
@@ -78,20 +78,21 @@ public class Login extends JFrame /**implements Serializable**/ {
             }
         });
         
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
 
     }
     
-     private void fecharJanela() {
+    private void fecharJanela() {
         String[] opcoes = {"Sim", "Não"};
         String pergunta = "Pretende fechar a aplicação?";
         int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
                 "Confirma?", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
         if (opcao == JOptionPane.YES_OPTION) {
-            dispose();
+            terminar();
         } else {
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         }
@@ -193,7 +194,7 @@ public class Login extends JFrame /**implements Serializable**/ {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              
+                
                 new RegistarUtilizadorUI(m_ce, framePai);  
                 framePai.setVisible(false);
             }
@@ -238,10 +239,7 @@ public class Login extends JFrame /**implements Serializable**/ {
         return btn;
     }
     
-    private void terminar() {
-//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
-        dispose();
-    }
+    
     
     private JButton criarBotaoSair() {
         JButton btn = new JButton("Sair");
@@ -289,4 +287,8 @@ public class Login extends JFrame /**implements Serializable**/ {
         return btn;
     }
     
+    private void terminar() {
+//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
+        dispose();
+    }
 }

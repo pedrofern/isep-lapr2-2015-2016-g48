@@ -2,14 +2,14 @@ package lapr.project.ui.ucs;
 
 import lapr.project.controller.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 import lapr.project.utils.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class AlterarCandidaturaUI implements UI {
+public class AlterarCandidaturaUI {
     
     private CentroExposicoes m_centroDeExposicoes;
     private AlterarCandidaturaController m_controller;
@@ -19,7 +19,7 @@ public class AlterarCandidaturaUI implements UI {
         m_controller = new AlterarCandidaturaController(m_centroDeExposicoes);
     }
 
-    @Override
+    
     public void run() {
         String strNomeEmpresa = Utils.readLineFromConsole("Introduza o nome da empresa: ");
         Candidatura c = m_controller.getCandidatura(strNomeEmpresa);

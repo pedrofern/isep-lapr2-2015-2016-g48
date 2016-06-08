@@ -3,13 +3,13 @@ package lapr.project.ui.ucs;
 import lapr.project.utils.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class AlterarUtilizadorUI implements UI {
+public class AlterarUtilizadorUI {
     private CentroExposicoes m_centroDeExposicoes;
     private AlterarUtilizadorController m_controller;
 
@@ -18,7 +18,7 @@ public class AlterarUtilizadorUI implements UI {
         m_controller = new AlterarUtilizadorController(m_centroDeExposicoes);
     }
 
-    @Override
+    
     public void run() {
         String strUser = Utils.readLineFromConsole("Introduza ID Utilizador: ");
         Utilizador u = m_controller.getUtilizador(strUser);

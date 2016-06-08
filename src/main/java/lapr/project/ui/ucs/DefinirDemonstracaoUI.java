@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import lapr.project.utils.*;
 import lapr.project.model.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 
 /**
  *

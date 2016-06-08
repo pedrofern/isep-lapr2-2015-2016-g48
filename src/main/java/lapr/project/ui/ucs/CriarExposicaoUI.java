@@ -4,13 +4,13 @@ import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.util.*;
-import lapr.project.ui.UI;
+import lapr.project.ui.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class CriarExposicaoUI implements UI{
+public class CriarExposicaoUI {
 
     private CentroExposicoes m_centroDeExposicoes;
     private CriarExposicaoController m_controller;
@@ -20,7 +20,7 @@ public class CriarExposicaoUI implements UI{
         m_controller = new CriarExposicaoController(m_centroDeExposicoes);
     }
 
-    @Override
+    
     public void run() {
         novaExposicao();
 
