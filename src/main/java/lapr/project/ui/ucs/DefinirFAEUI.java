@@ -7,10 +7,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.util.*;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -29,175 +32,203 @@ import javax.swing.border.TitledBorder;
  */
 public class DefinirFAEUI extends JFrame {
 
-    private JButton btnConfirmar, btnCancelar, btnInserirNovoUtilizador;
-    private JPanel painelFAE;
-    private JList listaFAE = new JList();
-    private JScrollPane scrollListaFAE = new JScrollPane(listaFAE);
-    private JFrame framePai;
-    private JTextField txtNome, txtEmail, txtUsername;
-    private JComboBox comboboxExposicao, comboboxUtilizador;
+     private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
+    private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
+    private JComboBox comboBoxExposicao;
+//    private ModeloListaUtilizadores modeloListaUtilizadores;
+//    private ModeloListaUtilizadores modeloListaFAE;
+//    private ListaUtilizadores listaCompletaUtilizadores;
+//    private ListaUtilizadores listaUtilizadoresFAE;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
-    private static final int JANELA_LARGURA = 788;
-    private static final int JANELA_ALTURA = 320;
 
-    public DefinirFAEUI() {
+    public DefinirFAEUI() throws FileNotFoundException {
 
         super("Definir FAE");
-        criarComponentes();
-        setSize(JANELA_LARGURA, JANELA_ALTURA);
-        setLocationRelativeTo(framePai);
+
+       // criarComponentes();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setMinimumSize(new Dimension(getWidth(), getHeight()));
+        setLocationRelativeTo(null);
         setVisible(true);
     }
-
-    public void criarComponentes() {
+    
+    public void criarComponentes() throws FileNotFoundException {
 
         add(criarPainelNorte(), BorderLayout.NORTH);
-        add(criarPainelSul(), BorderLayout.SOUTH);
-        add(criarPainelOeste(), BorderLayout.WEST);
-        add(criarPainelCentro(), BorderLayout.CENTER);
+        //add(criarPainelListas(), BorderLayout.CENTER);
+       // add(criarPainelSul(),BorderLayout.SOUTH);
+
     }
 
     private JPanel criarPainelNorte() {
-        JPanel painel = new JPanel(new FlowLayout());
-
-        painel.add(criarPainelExposicao());
-        painel.add(criarPainelUtilizador());
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        painel.setBorder(new TitledBorder("Dados"));
-
-        return painel;
-
-    }
-
-    private JPanel criarPainelExposicao() {
-
-        JPanel painel = new JPanel(new FlowLayout());
-        JLabel label = new JLabel("Exposição", SwingConstants.RIGHT);
-        label.setPreferredSize(LABEL_TAMANHO);
-
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        painel.add(label);
-        painel.add(getListaExposicao());
-        return painel;
-
-    }
-
-    private JComboBox getListaExposicao() {
-
-        comboboxExposicao = new JComboBox();
-        comboboxExposicao.setEditable(false);
-        comboboxExposicao.setSelectedIndex(-1);
-        comboboxExposicao.setPreferredSize(new Dimension(200, 20));
-
-        return comboboxExposicao;
-    }
-
-    private JPanel criarPainelUtilizador() {
-
-        JPanel painel = new JPanel(new FlowLayout());
-        JLabel label = new JLabel("Utilizador", SwingConstants.RIGHT);
-        label.setPreferredSize(LABEL_TAMANHO);
-
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        painel.add(label);
-        painel.add(getListaUtilizador());
-        painel.add(criarBotaoAdicionarFAE());
-        return painel;
-    }
-
-    private JComboBox getListaUtilizador() {
-
-        comboboxUtilizador = new JComboBox();
-        comboboxUtilizador.setEditable(false);
-        comboboxUtilizador.setSelectedIndex(-1);
-        comboboxUtilizador.setPreferredSize(new Dimension(200, 20));
-
-        return comboboxUtilizador;
-    }
-
-    private JPanel criarPainelOeste() {
-
-        JPanel painel = new JPanel();
-        painel.setBorder(new TitledBorder("Dados Utilizadores"));
-        painel.setPreferredSize(new Dimension(370, 100));
-        painel.setLayout(new FlowLayout());
-        painel.add(criarPainelDadosUTilizadores(), BorderLayout.EAST);
-
-        return painel;
-    }
-
-    private JPanel criarPainelDadosUTilizadores() {
-
-        JPanel painel = new JPanel(new GridLayout(0, 2, 0, 4));
-        txtNome = new JTextField(15);
-        txtNome.setEditable(false);
-        txtEmail = new JTextField(15);
-        txtEmail.setEditable(false);
-        txtUsername = new JTextField(15);
-        txtUsername.setEditable(false);
-
-        painel.add(new JLabel("Nome"));
-        painel.add(txtNome);
-        painel.add(new JLabel("Email"));
-        painel.add(txtEmail);
-        painel.add(new JLabel("Username"));
-        painel.add(txtUsername);
-
-        return painel;
-    }
-
-    private JPanel criarPainelCentro() {
-
-        painelFAE = new JPanel(new BorderLayout());
-        scrollListaFAE.setBorder(new TitledBorder("Lista FAE"));
-        scrollListaFAE.setPreferredSize(new Dimension(500, 120));
-        painelFAE.add(scrollListaFAE, BorderLayout.NORTH);
-        painelFAE.add(criarBotaoRemoverFAE(), BorderLayout.SOUTH);
-
-        return painelFAE;
-
-    }
-
-    private JPanel criarPainelRemover() {
-
-        JPanel painel = new JPanel(new BorderLayout());
-
-        return painel;
-    }
-
-    private JPanel criarPainelBotoes() {
-        JButton btnOK = criarBotaoConfirmar();
-        getRootPane().setDefaultButton(btnOK);
-
-        JButton btnFechar = criarBotaoCancelar();
-
-        JPanel p = new JPanel();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.add(btnOK);
-        p.add(btnFechar);
-
-        return p;
-
-    }
-
-    private JPanel criarPainelSul() {
-
         JPanel p = new JPanel(new FlowLayout());
 
-        p.setBorder(new TitledBorder("Opção"));
-        p.add(criarPainelBotoes());
+        p.add(criarPainelExposicao());
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        p.setBorder(new TitledBorder("Dados "));
+        return p;
+    }
+    
+    private JPanel criarPainelExposicao() {
+        JPanel p = new JPanel(new FlowLayout());
+        JLabel lbl = new JLabel("Exposição", SwingConstants.RIGHT);
+
+        lbl.setPreferredSize(LABEL_TAMANHO);
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        p.add(lbl);
+        p.add(getListaExposicao());
 
         return p;
+    }
+    
+     private JComboBox getListaExposicao() {
+
+        comboBoxExposicao = new JComboBox();
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(250, 20));
+        return comboBoxExposicao;
+    }
+    
+      private JPanel criarPainelListas() {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        lstCompletaUtilizadores = new JList();
+        listaCompletaUtilizadores = new ListaUtilizadores();
+        modeloListaUtilizadores = new ModeloListaUtilizadores(listaCompletaUtilizadores);
+        btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
+        p.add(criarPainelLista("Lista de Utilizadores",
+                lstCompletaUtilizadores,
+                modeloListaUtilizadores));
+
+        lstUtilizadoresFAE = new JList();
+        listaUtilizadoresFAE = new ListaUtilizadores();
+        modeloListaFAE = new ModeloListaUtilizadores(listaUtilizadoresFAE);
+        btnEliminarFAE = criarBotaoEliminarJogador(lstUtilizadoresFAE);
+
+        p.add(criarPainelListaFAE("Lista de FAE:",
+                lstUtilizadoresFAE,
+                modeloListaFAE,
+                btnAdicionarUtilizador, btnEliminarFAE));
+        return p;
+    }
+
+    private JPanel criarPainelLista(
+            String tituloLista,
+            JList lstLista,
+            ModeloListaUtilizadores modeloLista) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
+        lstLista.setModel(modeloLista);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
+        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+        p.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        return p;
+    }
+
+    private JPanel criarPainelListaFAE(
+            String tituloLista,
+            JList lstLista,
+            ModeloListaUtilizadores modeloLista,
+            JButton btnSuperior,
+            JButton btnInferior) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
+        lstLista.setModel(modeloLista);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
+        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+        p.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        JPanel pBotoes = criarPainelBotoes(btnSuperior, btnInferior);
+        p.add(pBotoes, BorderLayout.SOUTH);
+        return p;
+    }
+
+    private JPanel criarPainelBotoes(JButton btn1, JButton btn2) {
+
+        final int NUMERO_LINHAS = 2, NUMERO_COLUNAS = 1;
+        final int INTERVALO_HORIZONTAL = 0, INTERVALO_VERTICAL = 10;
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
+
+        p.add(btn1);
+        p.add(btn2);
+
+        return p;
+    }
+
+    private JButton criarBotaoEliminarJogador(JList lstLista) {
+        JButton btn = new JButton("Eliminar FAE");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModeloListaUtilizadores modelo = (ModeloListaUtilizadores) lstLista.getModel();
+                modelo.removeElement((Utilizador) lstLista.getSelectedValue());
+
+            }
+        });
+        return btn;
+    }
+
+    private JButton criarBotaoAdicionarUtilizador() {
+        btnAdicionarUtilizador = new JButton("Adicionar Utilizador");
+        btnAdicionarUtilizador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloListaFAE.addElement((Utilizador) lstCompletaUtilizadores.getSelectedValue());
+                lstCompletaUtilizadores.clearSelection();
+
+            }
+        });
+        return btnAdicionarUtilizador;
     }
 
     private JButton criarBotaoConfirmar() {
@@ -217,36 +248,6 @@ public class DefinirFAEUI extends JFrame {
         return btnCancelar;
     }
 
-    
-
-    private JButton criarBotaoAdicionarFAE() {
-
-        JButton btn = new JButton("+");
-        btn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        return btn;
-    }
-
-    private JButton criarBotaoRemoverFAE() {
-
-        JButton btn = new JButton("Remover");
-        btn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        btn.setPreferredSize(new Dimension(20, 20));
-        return btn;
-    }
 
 //    private final CentroExposicoes m_centro_exposicoes;
 //    private final DefinirFAEController m_controllerFAE;

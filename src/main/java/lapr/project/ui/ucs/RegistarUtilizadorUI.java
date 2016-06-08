@@ -17,11 +17,11 @@ public class RegistarUtilizadorUI extends JFrame{
     /**
      * Guarda a largura mínima da janela em píxeis.
      */
-    private static final int JANELA_LARGURA_MINIMO = 800;
+    private static final int JANELA_LARGURA_MINIMO = 600;
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
-    private static final int JANELA_ALTURA_MINIMO = 650;
+    private static final int JANELA_ALTURA_MINIMO = 275;
     /**
      * Guarda a janela anteiror
      */
@@ -76,8 +76,8 @@ public class RegistarUtilizadorUI extends JFrame{
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
+        setSize(new Dimension(JANELA_LARGURA_MINIMO, JANELA_ALTURA_MINIMO));
         setMinimumSize(new Dimension(JANELA_LARGURA_MINIMO, JANELA_ALTURA_MINIMO));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(framePai);
         setVisible(true);          
     }
@@ -91,7 +91,7 @@ public class RegistarUtilizadorUI extends JFrame{
                 new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA)));
         
-        txtNome = new JTextField(50);
+        txtNome = new JTextField(40);
         txtNome.requestFocusInWindow();
         txtNome.addKeyListener(new KeyAdapter() {
             @Override
@@ -102,49 +102,49 @@ public class RegistarUtilizadorUI extends JFrame{
         txtNome.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtNome.getText().length() > 50) {
+                if (txtNome.getText().length() > 40) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtUsername = new JTextField(30);
+        txtUsername = new JTextField(20);
         txtUsername.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtUsername.getText().length() > 30) {
+                if (txtUsername.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         });
         
-        txtEmail = new JTextField(50);
+        txtEmail = new JTextField(40);
         txtEmail.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtEmail.setText(txtEmail.getText().replaceAll("[^0-9^@^.^-^_]", ""));
+                txtEmail.setText(txtEmail.getText().replaceAll("[^a-z||^A-Z||^@||^.||^-||^_]", ""));
             }
         });
         txtEmail.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtEmail.getText().length() > 50) {
+                if (txtEmail.getText().length() > 40) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtPassword = new JPasswordField(30);
+        txtPassword = new JPasswordField(20);
         txtPassword.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtPassword.getText().length() > 30) {
+                if (txtPassword.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         });
 
-        painelNorte.add(criarPainelLabels("Username: ", txtNome, strErro));
+        painelNorte.add(criarPainelLabels("Username: ", txtUsername, strErro));
         painelNorte.add(criarPainelLabels("Password: ", txtPassword,""));
         painelNorte.add(criarPainelLabels("Nome:", txtNome,""));
         painelNorte.add(criarPainelLabels("Email:", txtEmail,""));

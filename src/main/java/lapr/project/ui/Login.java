@@ -1,22 +1,11 @@
 package lapr.project.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.ui.ucs.RegistarUtilizadorUI;
 
 
 
@@ -24,7 +13,7 @@ import lapr.project.model.CentroExposicoes;
  *
  * @author Diana
  */
-public class Login extends JDialog /**implements Serializable**/ {
+public class Login extends JFrame /**implements Serializable**/ {
     
     private CentroExposicoes m_ce;
     private String id_utilizador;
@@ -36,7 +25,7 @@ public class Login extends JDialog /**implements Serializable**/ {
     private JTextField username;
     private JPasswordField password;
     private Login framePai;
-    String m_ut;
+    private String m_ut;
     //private FicheiroCentroExposicoes ficheiroCentroExposicoes;
     private CentroExposicoes centroExposicoes;
     
@@ -49,42 +38,63 @@ public class Login extends JDialog /**implements Serializable**/ {
   
     public Login(){
         
-        this.setTitle("Menu Login");
+        super("Menu Login");
+//        this.m_ce=ce;
+//        this.m_ut=u;
+        framePai = Login.this;
         
         criarComponentes();
         criarPainelBotoes();
+        
          
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                fecharJanela();
+            }
+        });
         
-        this.setSize(WIDTH,HEIGHT);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        
-        
-       
+        setSize(WIDTH,HEIGHT);
+        setLocationRelativeTo(null);
+        setVisible(true);
     }    
         
     
     public Login(CentroExposicoes ce,String u){
         
-        this.setTitle("Menu Login");
+        super("Menu Login");
         this.m_ce=ce;
         this.m_ut=u;
-        
+        framePai = Login.this;
         
         criarComponentes();
         criarPainelBotoes();
         
          
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                fecharJanela();
+            }
+        });
         
-        this.setSize(WIDTH,HEIGHT);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        
-       
-        
-        
+        setSize(WIDTH,HEIGHT);
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+    }
+    
+     private void fecharJanela() {
+        String[] opcoes = {"Sim", "Não"};
+        String pergunta = "Pretende fechar a aplicação?";
+        int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                "Confirma?", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+        if (opcao == JOptionPane.YES_OPTION) {
+            dispose();
+        } else {
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
     }
         
     private void criarComponentes(){
@@ -184,8 +194,8 @@ public class Login extends JDialog /**implements Serializable**/ {
             @Override
             public void actionPerformed(ActionEvent e) {
               
-                new Janela(m_ce, id_utilizador);  
-
+                new RegistarUtilizadorUI(m_ce, framePai);  
+                framePai.setVisible(false);
             }
         });
         return btn;
@@ -228,18 +238,17 @@ public class Login extends JDialog /**implements Serializable**/ {
         return btn;
     }
     
-//    private void terminar() {
+    private void terminar() {
 //        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
-//        dispose();
-//    }
+        dispose();
+    }
     
     private JButton criarBotaoSair() {
         JButton btn = new JButton("Sair");
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                terminar();
-                dispose();
+                terminar();
             }
         });
         return btn;
