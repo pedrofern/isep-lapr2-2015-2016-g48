@@ -6,6 +6,7 @@
 package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -26,6 +29,9 @@ public class CriarStandUI extends JFrame {
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 320;
     private JFrame framePai;
+    private static final Dimension LABEL_TAMANHO = new JLabel("").getPreferredSize();
+    private JTextField txtID,txtDescricao,txtArea;
+
     
     public CriarStandUI() {
 
@@ -42,11 +48,75 @@ public class CriarStandUI extends JFrame {
     
     private JPanel criarPainelOeste() {
         JPanel p = new JPanel(new FlowLayout());
+        p.add(criarPainelID());
+        p.add(criarPainelDescricao());
+        p.add(criarPainelArea());
         
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        
+        return p;
+    }
+    
+    private JPanel criarPainelID(){
+        JPanel p = new JPanel(new FlowLayout());
+        JLabel lbl = new JLabel("ID:", SwingConstants.LEFT);
+        lbl.setPreferredSize(LABEL_TAMANHO);
+        final int CAMPO_LARGURA = 30;
+        txtID = new JTextField(CAMPO_LARGURA);
+        txtID.requestFocus();
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.add(lbl);
+        p.add(txtID);
+
+        return p;
+
+    }
+    
+    private JPanel criarPainelDescricao(){
+        JPanel p = new JPanel(new FlowLayout());
+        JLabel lbl = new JLabel("Descrição:", SwingConstants.LEFT);
+        lbl.setPreferredSize(LABEL_TAMANHO);
+        final int CAMPO_LARGURA = 30;
+        txtDescricao = new JTextField(CAMPO_LARGURA);
+        txtDescricao.requestFocus();
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.add(lbl);
+        p.add(txtDescricao);
+
+        return p;
+
+    }
+    
+    private JPanel criarPainelArea(){
+        JLabel lbl = new JLabel("Área:", SwingConstants.LEFT);
+        lbl.setPreferredSize(LABEL_TAMANHO);
+        
+        final int CAMPO_LARGURA = 30;
+        txtArea = new JTextField(CAMPO_LARGURA);
+        txtArea.requestFocus();
+        JPanel p = new JPanel(new FlowLayout());
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+            MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.add(lbl);
+        p.add(txtArea);
+
+        return p;
     }
     
     private JPanel criarPainelDados() {
         JPanel p = new JPanel(new FlowLayout());
+        return p;
     }
     
     private JPanel criarPainelSul() {
