@@ -1,77 +1,144 @@
 package lapr.project.model;
 
-import java.util.*;
+import lapr.project.model.lists.RegistoRecursos;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class Demonstracao {
+public class Demonstracao implements Serializable {
 
-    private String descricao;
-    private String codigoUnico;
-    private List<Recurso> lst_recursos;
-
-    public Demonstracao(String codigoUnico, String descricao, List<Recurso> lst_recursos) {
-        this.codigoUnico = codigoUnico;
-        this.descricao = descricao;
-        this.lst_recursos = new ArrayList<>(lst_recursos);
+    private int cod;
+    private CentroExposicoes m_centroExposicoes;
+    private RegistoRecursos m_listaRecursos;
+    private String desc;
+    /**
+     * Metodo que constroi objetos demonstração
+     * @param cod codigo 
+     * @param desc descrição
+     * @param listaRecursos lista de recursos
+     * @param m_centroExposicoes centro de exposições
+     */
+    public Demonstracao(int cod, String desc, RegistoRecursos listaRecursos, CentroExposicoes m_centroExposicoes) {
+        this.cod = cod;
+        this.desc = desc;
+        this.m_listaRecursos = listaRecursos;
+        this.m_centroExposicoes = m_centroExposicoes;
     }
-
-    public Demonstracao() {
-
+    /**
+     * Metodo que constroi objetos demonstração por omissão
+     * @param m_centroExposicoes centro de exposições
+     */
+    public Demonstracao(CentroExposicoes m_centroExposicoes) {
+        m_listaRecursos = new RegistoRecursos();
+        this.m_centroExposicoes = m_centroExposicoes;
     }
-
-    public String getCodigoUnico() {
-        return codigoUnico;
+    /**
+     * Metodo que retorna a lista de recursos
+     * @return lista de recursos
+     */
+    public RegistoRecursos getListaRecursos() {
+        return m_listaRecursos;
     }
-
-    public void setCodigoUnico(String codigoUnico) {
-        this.codigoUnico = codigoUnico;
+    /**
+     * Metodo que modifica o codigo
+     * @param cod codigo
+     */
+    public void setCod(int cod) {
+        this.cod = cod;
     }
-
-    public List<Recurso> getListaRecursos() {
-        return lst_recursos;
+    /**
+     * Metodo que modifica a descricao
+     * @param desc descricao
+     */
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
-    
-    public boolean addRecurso(Recurso r) {
-        if (r == null) {
-            return false;
+    /**
+     * Metodo que modifica o recurso
+     * @param r recurso
+     * @return recurso
+     */
+    public Recurso setRecurso(Recurso r) {
+        if (getListaRecursos().contem(r)) {
+            return r;
+        } else {
+            return null;
         }
-        System.out.println("ListaRecursos: addRecurso: " + r.toString());
-        Recurso rec = new Recurso(r.toString());
-
-        if (rec.valida() && validaRecurso(r)) {
-            return addRecurso(r);
+    }
+    /**
+     * Metodo que modifica e adiciona o recurso a lista
+     * @param recurso recurso
+     * @return true se adicionou a lista false em caso contrario
+     */
+//    public boolean setRecurso(String recurso) {
+//        
+//        Recurso r = this.m_centroExposicoes.getRegistoRecursos().indiceDeRecurso(recurso);
+//        
+//        if (r != null && validaRecurso(r)) {
+//            m_listaRecursos.adicionarRecurso(r);
+//            
+//            return true;
+//        } else {
+//            return false;
+//        }
+//
+//    }
+    /**
+     * metodo que valida o recurso r
+     * @param r recurso
+     * @return true se valida false caso contrario
+     */
+    public boolean validaRecurso(Recurso r) {
+        if (!m_listaRecursos.contem(r)) {
+            //validar
+            return true;
         } else {
             return false;
         }
     }
-    
-    private boolean validaRecurso(Recurso r) {
-        System.out.println("ListaRecursos: validaRecurso:" + r.toString());
-        return true;
+    /**
+     * Metodo que retorna o codigo
+     * @return o codigo
+     */
+    public int getCod() {
+        return cod;
     }
-
-    public void setListaRecursos(List<Recurso> novaListaRecursos) {
-        this.lst_recursos = novaListaRecursos;
+    /**
+     * Metodo que retorna a descrição
+     * @return descrição
+     */
+    public String getDesc() {
+        return desc;
     }
-
-    public void setDescricao(String novaDescricao) {
-        this.descricao = novaDescricao;
+    /**
+     * Metodo que adiciona o recurso a lista
+     * @param r recurso
+     * @return true caso adicone false em caso contrario
+     */
+    public boolean addRecurso(Recurso r) {
+        return m_listaRecursos.adicionarRecurso(r);
     }
-
-    public String getDescricao() {
-        return descricao;
+    /**
+     * Metodo que regista o recurso
+     * @param r recurso
+     * @return  true caso adicione false em caso contrario
+     */
+    public boolean registaRecurso(Recurso r) {
+        if (!validaRecurso(r)) {
+            return false;
+        }
+        return addRecurso(r);
     }
-
-    public boolean valida() {
-        return true;
-    }
-
+    /**
+     * Metodo que faz representação grafica do objeto demonstração
+     * @return representação grafica do objeto demonstração
+     */
     @Override
     public String toString() {
-        return "Descricao = " + this.getDescricao() + "\nCodigo Unico = " + this.getCodigoUnico() + "Lista Recursos = " + this.getListaRecursos();
+        return String.format("%s",desc);
     }
-
 }

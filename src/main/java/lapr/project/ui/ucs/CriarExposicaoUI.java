@@ -20,18 +20,9 @@ public class CriarExposicaoUI {
         m_controller = new CriarExposicaoController(m_centroDeExposicoes);
     }
 
-    
-    public void run() {
-        novaExposicao();
-
-        Exposicao exposicao = introduzDadosExposicao();
-
-        apresentaExposicao(exposicao);
-    }
-
-    private void novaExposicao() {
-        m_controller.novaExposicao();
-    }
+//    private void novaExposicao() {
+//        m_controller.novaExposicao();
+//    }
 
     private Exposicao introduzDadosExposicao() {
         String strTitulo = Utils.readLineFromConsole("Introduza Titulo: ");

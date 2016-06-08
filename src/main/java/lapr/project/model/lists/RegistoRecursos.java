@@ -9,41 +9,75 @@ import lapr.project.model.Recurso;
  */
 public class RegistoRecursos {
 
-    private List<Recurso> m_lstRecurso;
-
+    private ArrayList<Recurso> listaRecursos;
+    /**
+     * Construtor relativo a lista de Recursos
+     */
     public RegistoRecursos() {
-        m_lstRecurso = new ArrayList<Recurso>();
+        listaRecursos = new ArrayList<>();
     }
-
-    public Recurso novoRecurso(String strDescricao) {
-        return new Recurso(strDescricao);
+    /**
+     * Metodo que retorna o recurso no indice passado por parametro
+     * @param indice indice
+     * @return o recurso no indice passado por parametro
+     */
+    public Recurso obterRecurso(int indice) {
+        return listaRecursos.get(indice);
     }
-
-    public boolean registaRecurso(Recurso recurso) {
-        if (recurso.valida() && validaRecurso(recurso)) {
-            return m_lstRecurso.add(recurso);
+    /**
+     * Metodo que retorna o array de Recurso
+     * @return o array de Recurso
+     */
+    public Recurso[] getArray() {
+        return listaRecursos.toArray( new Recurso[listaRecursos.size()] );
+    }
+    /**
+     * Metodo que retorna a lista de Recursos
+     * @return lista recursos
+     */
+    public ArrayList<Recurso> getListaRecursos(){
+        return listaRecursos;
+    }
+    /**
+     * Metodo para adicionar o recurso passado por parametro a lista de recursos
+     * @param recurso recurso
+     * @return true se o recurso for adicionado false em caso contrario
+     */
+    public boolean adicionarRecurso(Recurso recurso) {
+        if (!listaRecursos.contains(recurso)) {
+            return listaRecursos.add(recurso);
         }
         return false;
     }
-
-    private boolean validaRecurso(Recurso recurso) {
-        System.out.println("RegistoRecursos: validaRecurso: " + recurso.valida());
-        if(recurso.getDescricao()!=null){
-            return true;
-        } else
-            return false;
+     /**
+     * Metodo para remover o recurso passado por parametro a lista de recursos
+     * @param recurso recurso
+     * @return true se o recurso for removido false em caso contrario
+     */
+    public boolean removerRecurso(Recurso recurso) {
+        return listaRecursos.remove(recurso);
     }
-
-    public void addRecurso(Recurso r){
-        m_lstRecurso.add(r);
+    /**
+     * Metodo para retornar o tamanho da lista de recursos
+     * @return o tamanho da lista de recursos
+     */
+    public int tamanho() {
+        return this.listaRecursos.size();
     }
-    
-    public List<Recurso> getListaRecursos() {
-        return m_lstRecurso;
+    /**
+     * Metodo que retorna o indice do recurso passado por parametro
+     * @param recurso recurso
+     * @return o indice do recurso passado por parametro
+     */
+    public int indiceDeRecurso(Recurso recurso) {
+        return listaRecursos.indexOf(recurso);
     }
-
-    @Override
-    public String toString() {
-        return "RegistoRecursos{" + "m_lstRecursos=" + m_lstRecurso + '}';
+    /**
+     * Metodo que verifica se o recurso passado por  parametro existe na lista 
+     * @param recurso recurso
+     * @return true se existir false em caso contrario
+     */
+    public boolean contem(Recurso recurso){
+        return listaRecursos.contains(recurso);
     }
 }

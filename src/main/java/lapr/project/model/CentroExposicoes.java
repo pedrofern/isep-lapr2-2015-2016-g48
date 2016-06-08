@@ -200,10 +200,6 @@ public class CentroExposicoes {
         return new Atribuicao();
     }
 
-    public RegistoRecursos getRegistoRecurso() {
-        return this.m_regRecursos;
-    }
-
     public RegistoDemonstracoes getRegistoDemonstracao() {
         return this.m_regDemonstracoes;
     }
@@ -227,4 +223,189 @@ public class CentroExposicoes {
         return "Empresa:" + "m_regUtilizadores=" + m_regUtilizadores
                 + ", m_regExposicoes=" + m_regExposicoes + "m_regCandidaturas=" + m_regCandidaturas;
     }
+    
+    /**
+     * Metodo responsavel por criar um novo utilizador
+     * @return um novo utilizador
+     */
+    public Utilizador novoUtilizador() {
+        return new Utilizador();
+    }
+    /**
+     * Metodo responsavel por registar utilizador
+     * @param u utilizador
+     * @return true se for registado false caso contrario
+     */
+    public boolean registaUtilizador(Utilizador u) {
+        if (validaUtilizador(u)) {
+            addUtilizador(u);
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Metodo que retorna um recurso
+     * @param recurso recurso
+     * @return recurso
+     */
+    public Recurso getRecurso(String recurso) {
+        for (Recurso r : m_listaRecursos) {
+            if (r.getDescricao().equalsIgnoreCase(recurso)) {
+                return r;
+            }
+        }
+
+        return null;
+
+    }
+    /**
+     * Metodo que retorna uma exposicao atraves do titulo passado por parametro
+     * @param titulo titulo
+     * @return uma exposicao atraves do titulo passado por parametro
+     */
+//    public Exposicao getExposicao(String titulo){
+//        for(Exposicao e : m_regExposicoes){
+//            if(e.getTitulo().equalsIgnoreCase(titulo)){
+//                return e;
+//            }
+//        }
+//        return null;
+//    }
+    /**
+     * Metodo que regista um recurso
+     * @param r recurso
+     * @return true se registar ou false caso contrario
+     */
+    public boolean registaRecurso(Recurso r) {
+        if (validaRecurso(r)) {
+            addRecurso(r);
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Metodo que valida recurso
+     * @param r recurso
+     * @return true se validar false caso contrario
+     */
+    public boolean validaRecurso(Recurso r) {
+        return !m_regRecursos.contem(r);
+    }
+    /**
+     * Metodo que adiciona o recurso passado por parametro a lista
+     * @param r reucrso
+     * @return true se adicionar false caso contrario
+     */
+    public boolean addRecurso(Recurso r) {
+        return m_regRecursos.adicionarRecurso(r);
+    }
+    /**
+     * Metodo responsavel por validar utilizador
+     * @param u utilizador 
+     * @return true se validar false caso contrario
+     */
+    private boolean validaUtilizador(Utilizador u) {
+        return !m_listaUtilizadores.contains(u);
+    }
+    /**
+     * Metodo responsavel por adicionar o utilizador passado por parametro a lista
+     * @param u utilizador
+     */
+    private void addUtilizador(Utilizador u) {
+        this.m_listaUtilizadores.add(u);
+    }
+    /**
+     * Metodo que cria uma nova exposicao
+     * @return nova exposicao
+     */
+    public Exposicao novaExposicao() {
+        return new Exposicao(this);
+    }
+    /**
+     * Metodo que valida uma exposicao
+     * @param e exposicao
+     * @return true se validar false caso contrario
+     */
+    public boolean validaExposicao(Exposicao e) {
+        if (e.valida()) {
+            // Introduzir as validações aqui
+            return true;
+        }
+        return false;
+    }
+//    /**
+//     * Metodo que regista uma exposicao
+//     * @param e exposicao
+//     * @return true se resgistar false em caso contrario
+//     */
+//    public boolean registaExposicao(Exposicao e) {
+//        return this.addExposicao(e);
+//    }
+//    /**
+//     * Metodo que adiciona uma exposicao a lista
+//     * @param e exposicao
+//     * @return true se adicionar false em caso contrario
+//     */
+//    private boolean addExposicao(Exposicao e) {
+//        return this.m_lExposicoes.add(e);
+//    }
+//    /**
+//     * Metodo responsavel por retornar lista de recursos
+//     * @return lista de recursos
+//     */
+//    public ArrayList<Recurso> getRecursos() {
+//        return this.m_listaRecurso;
+//    }
+//    /**
+//     * Metodo que retorna a exposicao passada por parametro
+//     * @param e2 exposicao
+//     * @return a exposicao passada por parametro
+//     */
+//    public Exposicao getExposicao(Exposicao e2) {
+//        for (Exposicao e1 : m_lExposicoes) {
+//            if (e1.getTitulo().equalsIgnoreCase(e2.getTitulo())) {
+//                return e2;
+//            }
+//        }
+//        return null;
+//    }
+//    /**
+//     * Metodo que retorna a lista de exposicoes do FAE com o id passado por parametro
+//     * @param id id 
+//     * @return lista de exposicoes do FAE com o id passado por parametro
+//     */
+//    public ArrayList<Exposicao> getListaExposicoesDoFAE(String id) {
+//        ArrayList<Exposicao> l_ExpDoFAE = new ArrayList();
+//
+//        for (Exposicao m : this.m_lExposicoes) {
+//            if (m.getListaFAE().getFAE(id) != null) {
+//                l_ExpDoFAE.add(m);
+//            }
+//
+//        }
+//        return l_ExpDoFAE;
+//    }
+//    /**
+//     * Retorna lista de exposicoes do organizador com o id passado por parametro
+//     * @param strId id 
+//     * @return lista de exposicoes do organizador com o id passado por parametro
+//     */
+//    public ArrayList<Exposicao> getExposicaoOrganizador(String strId) {
+//        ArrayList<Exposicao> leOrganizador = new ArrayList<Exposicao>();
+//
+//        Utilizador u = getUtilizadores().getUtilizador(strId);
+//        Organizador o = new Organizador(u);
+//
+//        if (u != null) {
+//            for (Iterator<Exposicao> it = this.m_lExposicoes.listIterator(); it.hasNext();) {
+//                Exposicao e = it.next();
+//
+//                if (e.getListaOrganizadores().hasOrganizador(o)) {
+//                    leOrganizador.add(e);
+//                }
+//            }
+//        }
+//        return leOrganizador;
+//    }
+
 }

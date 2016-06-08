@@ -32,4 +32,22 @@ public class Produto {
     public String toString() {
         return this.getNomeProduto();
     }
+    
+    /**
+     * Metodo que vai comprar objetos produto entre si
+     * @param outroObjeto outro produto
+     * @return se os objetos forem iguais retorna true caso contrario false
+     */
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Produto outroProduto = (Produto) outroObjeto;
+        
+        return nomeProduto.equalsIgnoreCase(outroProduto.nomeProduto);
+    }   
 }

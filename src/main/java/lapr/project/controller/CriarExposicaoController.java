@@ -24,9 +24,9 @@ public class CriarExposicaoController {
         m_regUtilizadores = ce.getRegistoUtilizadores();
     }
 
-    public void novaExposicao() {
-        this.m_exposicao = m_regExposicoes.novaExposicao();
-    }
+//    public void novaExposicao(CentroExposicoes m_oCE) {
+//        this.m_exposicao = m_regExposicoes.novaExposicao(m_oCE);
+//    }
 
     /**
      * Modifica o título do evento.

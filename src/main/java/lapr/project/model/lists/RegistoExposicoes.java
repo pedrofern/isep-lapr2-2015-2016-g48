@@ -20,9 +20,9 @@ public class RegistoExposicoes {
         m_listaUtilizadores = new ArrayList<Utilizador>();
     }
 
-    public Exposicao novaExposicao() {
-        return new Exposicao();
-    }
+//    public Exposicao novaExposicao() {
+//        return new Exposicao();
+//    }
 
     public boolean registaExposicao(Exposicao e) {
         if (e.valida() && validaExposicao(e)) {
