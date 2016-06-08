@@ -29,7 +29,7 @@ public class Login extends JDialog /**implements Serializable**/ {
     private CentroExposicoes m_ce;
     private String id_utilizador;
     // private FicheiroCentroExposicoes fce;
-    private static final int WIDTH=300, HEIGHT=200;
+    private static final int WIDTH=300, HEIGHT=300;
     private static final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 10, MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
     
     
@@ -90,6 +90,7 @@ public class Login extends JDialog /**implements Serializable**/ {
     private void criarComponentes(){
         
         add(criarPainelNorte(), BorderLayout.NORTH);
+        add(criarPainelSul(),BorderLayout.SOUTH);
        
 
         
@@ -101,8 +102,8 @@ public class Login extends JDialog /**implements Serializable**/ {
          
         p.add(criarPainelUsername());
         p.add(criarPainelPassword());
-        p.add(criarBotaoRegistar());
         p.add(criarPainelBotoes());
+        
          
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
@@ -110,6 +111,22 @@ public class Login extends JDialog /**implements Serializable**/ {
                 MARGEM_INFERIOR, MARGEM_DIREITA));
         
         p.setBorder(new TitledBorder("LOGIN"));
+        return p;
+    }
+    
+    private JPanel criarPainelSul(){
+        
+        JPanel p = new JPanel(new GridLayout(0, 1));
+         
+        p.add(criarBotaoRegistar());
+        
+         
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        
+        p.setBorder(new TitledBorder("REGISTO"));
         return p;
     }
         
