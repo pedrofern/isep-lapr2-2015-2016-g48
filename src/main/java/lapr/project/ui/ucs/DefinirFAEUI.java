@@ -12,6 +12,7 @@ import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.util.*;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -33,10 +35,10 @@ public class DefinirFAEUI extends JFrame {
      private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;
-    //private ModeloListaUtilizadores modeloListaUtilizadores;
-    //private ModeloListaUtilizadores modeloListaFAE;
-    //private ListaUtilizadores listaCompletaUtilizadores;
-    //private ListaUtilizadores listaUtilizadoresFAE;
+//    private ModeloListaUtilizadores modeloListaUtilizadores;
+//    private ModeloListaUtilizadores modeloListaFAE;
+//    private ListaUtilizadores listaCompletaUtilizadores;
+//    private ListaUtilizadores listaUtilizadoresFAE;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
     public DefinirFAEUI() throws FileNotFoundException {
@@ -99,6 +101,153 @@ public class DefinirFAEUI extends JFrame {
         return comboBoxExposicao;
     }
     
+      private JPanel criarPainelListas() {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        lstCompletaUtilizadores = new JList();
+        listaCompletaUtilizadores = new ListaUtilizadores();
+        modeloListaUtilizadores = new ModeloListaUtilizadores(listaCompletaUtilizadores);
+        btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
+        p.add(criarPainelLista("Lista de Utilizadores",
+                lstCompletaUtilizadores,
+                modeloListaUtilizadores));
+
+        lstUtilizadoresFAE = new JList();
+        listaUtilizadoresFAE = new ListaUtilizadores();
+        modeloListaFAE = new ModeloListaUtilizadores(listaUtilizadoresFAE);
+        btnEliminarFAE = criarBotaoEliminarJogador(lstUtilizadoresFAE);
+
+        p.add(criarPainelListaFAE("Lista de FAE:",
+                lstUtilizadoresFAE,
+                modeloListaFAE,
+                btnAdicionarUtilizador, btnEliminarFAE));
+        return p;
+    }
+
+    private JPanel criarPainelLista(
+            String tituloLista,
+            JList lstLista,
+            ModeloListaUtilizadores modeloLista) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
+        lstLista.setModel(modeloLista);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
+        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+        p.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        return p;
+    }
+
+    private JPanel criarPainelListaFAE(
+            String tituloLista,
+            JList lstLista,
+            ModeloListaUtilizadores modeloLista,
+            JButton btnSuperior,
+            JButton btnInferior) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
+        lstLista.setModel(modeloLista);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        final int MARGEM_SUPERIOR = 20, MARGEM_INFERIOR = 20;
+        final int MARGEM_ESQUERDA = 20, MARGEM_DIREITA = 20;
+        p.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        JPanel pBotoes = criarPainelBotoes(btnSuperior, btnInferior);
+        p.add(pBotoes, BorderLayout.SOUTH);
+        return p;
+    }
+
+    private JPanel criarPainelBotoes(JButton btn1, JButton btn2) {
+
+        final int NUMERO_LINHAS = 2, NUMERO_COLUNAS = 1;
+        final int INTERVALO_HORIZONTAL = 0, INTERVALO_VERTICAL = 10;
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(BorderFactory.createEmptyBorder(MARGEM_SUPERIOR,
+                MARGEM_ESQUERDA,
+                MARGEM_INFERIOR,
+                MARGEM_DIREITA));
+
+        p.add(btn1);
+        p.add(btn2);
+
+        return p;
+    }
+
+    private JButton criarBotaoEliminarJogador(JList lstLista) {
+        JButton btn = new JButton("Eliminar FAE");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModeloListaUtilizadores modelo = (ModeloListaUtilizadores) lstLista.getModel();
+                modelo.removeElement((Utilizador) lstLista.getSelectedValue());
+
+            }
+        });
+        return btn;
+    }
+
+    private JButton criarBotaoAdicionarUtilizador() {
+        btnAdicionarUtilizador = new JButton("Adicionar Utilizador");
+        btnAdicionarUtilizador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloListaFAE.addElement((Utilizador) lstCompletaUtilizadores.getSelectedValue());
+                lstCompletaUtilizadores.clearSelection();
+
+            }
+        });
+        return btnAdicionarUtilizador;
+    }
+
+    private JButton criarBotaoConfirmar() {
+        btnConfirmar = new JButton("Confirmar");
+
+        return btnConfirmar;
+    }
+
+    private JButton criarBotaoCancelar() {
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        return btnCancelar;
+    }
+
 
 //    private final CentroExposicoes m_centro_exposicoes;
 //    private final DefinirFAEController m_controllerFAE;
