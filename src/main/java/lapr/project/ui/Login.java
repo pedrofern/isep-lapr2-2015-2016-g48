@@ -195,8 +195,8 @@ public class Login extends JFrame /**implements Serializable**/ {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                new RegistarUtilizadorUI(m_ce, framePai);  
-                framePai.setVisible(false);
+                new RegistarUtilizadorUI(m_ce);  
+                
             }
         });
         return btn;
@@ -289,6 +289,6 @@ public class Login extends JFrame /**implements Serializable**/ {
     
     private void terminar() {
 //        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
-        dispose();
+        System.exit(0);
     }
 }

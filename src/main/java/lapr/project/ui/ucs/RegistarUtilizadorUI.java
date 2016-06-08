@@ -3,6 +3,7 @@ package lapr.project.ui.ucs;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
@@ -22,10 +23,6 @@ public class RegistarUtilizadorUI extends JFrame{
      * Guarda a altura mínima da janela em píxeis.
      */
     private static final int JANELA_ALTURA_MINIMO = 275;
-    /**
-     * Guarda a janela anteiror
-     */
-    private Login framePai;
     /**
      * Guarda a dimensão de uma label por omissão
      */
@@ -51,11 +48,10 @@ public class RegistarUtilizadorUI extends JFrame{
     private CentroExposicoes centroDeExposicoes;
     private RegistarUtilizadorController m_controllerRU;
 
-    public RegistarUtilizadorUI(CentroExposicoes ce, Login framepai) {
+    public RegistarUtilizadorUI(CentroExposicoes ce) {
         
         super("Registar Utilizador");
 
-        this.framePai=framePai;
     
         centroDeExposicoes = ce;
         m_controllerRU = new RegistarUtilizadorController(centroDeExposicoes);
@@ -63,8 +59,7 @@ public class RegistarUtilizadorUI extends JFrame{
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                dispose();
-                framePai.setVisible(true);
+                fecharJanelaRegistoUtilizador();
             }
         });
         
@@ -78,7 +73,7 @@ public class RegistarUtilizadorUI extends JFrame{
         pack();
         setSize(new Dimension(JANELA_LARGURA_MINIMO, JANELA_ALTURA_MINIMO));
         setMinimumSize(new Dimension(JANELA_LARGURA_MINIMO, JANELA_ALTURA_MINIMO));
-        setLocationRelativeTo(framePai);
+
         setVisible(true);          
     }
     
@@ -208,12 +203,12 @@ public class RegistarUtilizadorUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(
-                                framePai,
+                    JOptionPane.showMessageDialog(null,
                                 "Em construção",
                                 "Registar Utilizador",
                                 JOptionPane.ERROR_MESSAGE);
                 }
+            //guardar();
         });
 
         return botao;
@@ -249,11 +244,33 @@ public class RegistarUtilizadorUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                framePai.setVisible(true);
+                fecharJanelaRegistoUtilizador();
             }
         });
 
         return botao;
+    }
+    
+    private void guardar() {
+//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
+        dispose();
+    }
+    
+    private void fecharJanelaRegistoUtilizador(){
+        if (txtNome.getText()!=""||
+                        txtEmail.getText()!=""||
+                        txtPassword.getText()!=""||
+                        txtUsername.getText()!=""){
+                    String[] opcoes = {"Sim", "Não"};
+                    String pergunta = "Pretende cancelar o registo do utilizador?";
+                    int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                            "Registar utilizador", JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+                    if (opcao == JOptionPane.YES_OPTION) {                        
+                        dispose();
+                    } else {
+                         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
+                    }
+                }
     }
 }
