@@ -8,6 +8,7 @@ package lapr.project.ui.ucs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -29,7 +30,7 @@ public class CriarStandUI extends JFrame {
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 320;
     private JFrame framePai;
-    private static final Dimension LABEL_TAMANHO = new JLabel("").getPreferredSize();
+    private static final Dimension LABEL_TAMANHO = new JLabel("Area de Stand").getPreferredSize();
     private JTextField txtID,txtDescricao,txtArea;
 
     
@@ -43,11 +44,12 @@ public class CriarStandUI extends JFrame {
     }
     
     public void criarComponentes() {
-
+        add(criarPainelCentro(), BorderLayout.CENTER);
+        add(criarPainelSul(), BorderLayout.SOUTH);
     }
     
-    private JPanel criarPainelOeste() {
-        JPanel p = new JPanel(new FlowLayout());
+    private JPanel criarPainelCentro() {
+        JPanel p = new JPanel(new GridLayout(0, 1));
         p.add(criarPainelID());
         p.add(criarPainelDescricao());
         p.add(criarPainelArea());
@@ -56,7 +58,7 @@ public class CriarStandUI extends JFrame {
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
-        
+        p.setBorder(new TitledBorder("Dados do Stand"));
         return p;
     }
     
@@ -129,13 +131,14 @@ public class CriarStandUI extends JFrame {
     private JPanel criarPainelBotoes() {
         JButton btnOK = criarBotaoConfirmar();
         getRootPane().setDefaultButton(btnOK);
-        
+        JButton btnClear = criarBotaoLimpar();
         JButton btnClose = criarBotaoFechar();
         JPanel p = new JPanel();
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.add(btnOK);
         p.add(btnClose);
+        p.add(btnClear);
         return p;
 
     }
@@ -154,6 +157,28 @@ public class CriarStandUI extends JFrame {
             }
         });
         return btnFechar;
+    }
+    
+    private JButton criarBotaoLimpar() {
+       btnLimpar = new JButton("Limpar");
+        btnLimpar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                txtID.setText(null);
+                txtDescricao.setText(null);
+                txtArea.setText(null);
+                
+                
+//                ModeloListaCandidatura modelo = (ModeloListaCandidatura) listProduto.getModel();
+//                for (int i = Produtos.size(); i > 0; i--) {
+//                    modelo.removeElement((Produto) listProduto.getSelectedValue());
+//                }
+
+            }
+        });
+        return btnLimpar;
+    
     }
 
 }
