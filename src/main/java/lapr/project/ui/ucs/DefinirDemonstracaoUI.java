@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -36,16 +37,20 @@ public class DefinirDemonstracaoUI extends JFrame {
     private JComboBox comboBoxExposicao;
     private JTextField txtCodigo;
     private JTextArea txtDescricao;
-    private JScrollPane scrollPaneListaRecurso;
+    private JFrame framepai;
+    private JList listProduto = new JList();
+    private JScrollPane scroListaRecurso = new JScrollPane(listProduto);
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
+    private static final int JANELA_LARGURA = 900;
+    private static final int JANELA_ALTURA = 400;
 
     public DefinirDemonstracaoUI() throws FileNotFoundException {
 
         super("Criar Demonstração");
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
-        setMinimumSize(new Dimension(getWidth(), getHeight()));
+
+        setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -53,8 +58,9 @@ public class DefinirDemonstracaoUI extends JFrame {
     public void criarComponentes() throws FileNotFoundException {
 
         add(criarPainelNorte(), BorderLayout.NORTH);
+        add(criarPainelSul(), BorderLayout.SOUTH);
         add(criarPainelOeste(), BorderLayout.WEST);
-        add(criarPainelRecurso(), BorderLayout.CENTER);
+        add(criarPainelCentro(), BorderLayout.CENTER);
     }
 
     private JPanel criarPainelNorte() throws FileNotFoundException {
@@ -79,47 +85,37 @@ public class DefinirDemonstracaoUI extends JFrame {
     private JPanel criarPainelOeste() {
         JPanel painel = new JPanel(new GridLayout(0, 1));
 
-        painel.add(criarPainelID());
-        painel.add(criarPainelDescricao());
-        return painel;
-    }
-
-    private JPanel criarPainelID() {
-
-        JPanel painel = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Código/ID", SwingConstants.RIGHT);
-
-        lbl.setPreferredSize(LABEL_TAMANHO);
-
         final int CAMPO_LARGURA = 30;
-        txtCodigo = new JTextField(CAMPO_LARGURA);
+        txtCodigo = new JTextField();
+        txtCodigo.setPreferredSize(new Dimension(500, 100));
+        txtCodigo.setBorder(new TitledBorder("Código/ID"));
         txtCodigo.requestFocus();
 
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 1000;
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        painel.add(lbl);
+        painel.setBorder(new TitledBorder("Dados Demonstração"));
         painel.add(txtCodigo);
+        painel.add(criarPainelRecurso());
 
         return painel;
+
     }
 
     private JScrollPane criarPainelRecurso() {
         JPanel painel = new JPanel(new GridLayout(0, 1, 0, 0));
-        scrollPaneListaRecurso = new JScrollPane(painel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPaneListaRecurso.setPreferredSize(new Dimension(140, 305));
-        scrollPaneListaRecurso.setBorder(new TitledBorder("Lista Recurso"));
+        scroListaRecurso.setBorder(new TitledBorder("Lista Produto"));
+        scroListaRecurso.setPreferredSize(new Dimension(140, 205));
+        painel.add(scroListaRecurso, BorderLayout.NORTH);
 
-        return scrollPaneListaRecurso;
+        return scroListaRecurso;
     }
 
     private JPanel criarPainelDescricao() {
         JPanel painel = new JPanel(new FlowLayout());
 
         txtDescricao = new JTextArea();
-        txtDescricao.setPreferredSize(new Dimension(300, 100));
+        txtDescricao.setPreferredSize(new Dimension(359, 250));
         txtDescricao.setBorder(new TitledBorder("Descrição"));
         txtDescricao.requestFocus();
 
@@ -131,8 +127,37 @@ public class DefinirDemonstracaoUI extends JFrame {
         return painel;
     }
 
+    private JPanel criarPainelCentro() {
+
+        JPanel painel = new JPanel(new FlowLayout());
+
+        painel.add(criarPainelDescricao());
+
+        return painel;
+    }
+
+    private JPanel criarPainelSul() {
+
+        JPanel p = new JPanel(new FlowLayout());
+
+        p.setBorder(new TitledBorder("Opção"));
+        p.add(criarBotaoConfirmar());
+        p.add(criarBotaoCancelar());
+        p.add(criarBotaoLimpar());
+
+        return p;
+    }
+
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
+
+        btnConfirmar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+            }
+        });
 
         return btnConfirmar;
     }
@@ -146,6 +171,21 @@ public class DefinirDemonstracaoUI extends JFrame {
             }
         });
         return btnCancelar;
+    }
+
+    private JButton criarBotaoLimpar() {
+
+        JButton btn = new JButton("Limpar");
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                txtCodigo.setText(null);
+                txtDescricao.setText(null);
+
+            }
+        });
+        return btn;
     }
 
 //    private CentroExposicoes m_centroDeExposicoes;
