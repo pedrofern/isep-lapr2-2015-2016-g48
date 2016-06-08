@@ -51,6 +51,54 @@ public class DefinirFAEUI extends JFrame {
         setVisible(true);
     }
     
+    public void criarComponentes() throws FileNotFoundException {
+
+        add(criarPainelNorte(), BorderLayout.NORTH);
+        //add(criarPainelListas(), BorderLayout.CENTER);
+       // add(criarPainelSul(),BorderLayout.SOUTH);
+
+    }
+
+    private JPanel criarPainelNorte() {
+        JPanel p = new JPanel(new FlowLayout());
+
+        p.add(criarPainelExposicao());
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        p.setBorder(new TitledBorder("Dados "));
+        return p;
+    }
+    
+    private JPanel criarPainelExposicao() {
+        JPanel p = new JPanel(new FlowLayout());
+        JLabel lbl = new JLabel("Exposição", SwingConstants.RIGHT);
+
+        lbl.setPreferredSize(LABEL_TAMANHO);
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        p.add(lbl);
+        p.add(getListaExposicao());
+
+        return p;
+    }
+    
+     private JComboBox getListaExposicao() {
+
+        comboBoxExposicao = new JComboBox();
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(250, 20));
+        return comboBoxExposicao;
+    }
+    
 
 //    private final CentroExposicoes m_centro_exposicoes;
 //    private final DefinirFAEController m_controllerFAE;
