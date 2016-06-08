@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import java.io.FileNotFoundException;
 import lapr.project.ui.ucs.DefinirFAEUI;
 import lapr.project.model.*;
 import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
@@ -15,7 +16,7 @@ public class Main_1 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 //        try {
 //            CentroExposicoes centroDeExposicoes = new CentroExposicoes();
 //
@@ -29,6 +30,8 @@ public class Main_1 {
         //new AtribuirStandCandidaturaUI();
         
         new DefinirDemonstracaoUI();
+        
+        //new DefinirFAEUI();
     }
     
 }

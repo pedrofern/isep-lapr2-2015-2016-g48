@@ -45,7 +45,7 @@ public class DefinirFAEUI extends JFrame {
 
         super("Definir FAE");
 
-       // criarComponentes();
+        criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
@@ -56,8 +56,8 @@ public class DefinirFAEUI extends JFrame {
     public void criarComponentes() throws FileNotFoundException {
 
         add(criarPainelNorte(), BorderLayout.NORTH);
-        //add(criarPainelListas(), BorderLayout.CENTER);
-       // add(criarPainelSul(),BorderLayout.SOUTH);
+        add(criarPainelListas(), BorderLayout.CENTER);
+        add(criarPainelSul(),BorderLayout.SOUTH);
 
     }
 
@@ -72,6 +72,17 @@ public class DefinirFAEUI extends JFrame {
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
         p.setBorder(new TitledBorder("Dados "));
+        return p;
+    }
+    
+     private JPanel criarPainelSul() {
+
+        JPanel p = new JPanel(new FlowLayout());
+
+        p.setBorder(new TitledBorder("Opção"));
+        p.add(criarBotaoConfirmar());
+        p.add(criarBotaoCancelar());
+
         return p;
     }
     
