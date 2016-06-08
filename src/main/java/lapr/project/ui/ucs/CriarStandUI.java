@@ -168,12 +168,6 @@ public class CriarStandUI extends JFrame {
                 txtID.setText(null);
                 txtDescricao.setText(null);
                 txtArea.setText(null);
-                
-                
-//                ModeloListaCandidatura modelo = (ModeloListaCandidatura) listProduto.getModel();
-//                for (int i = Produtos.size(); i > 0; i--) {
-//                    modelo.removeElement((Produto) listProduto.getSelectedValue());
-//                }
 
             }
         });
