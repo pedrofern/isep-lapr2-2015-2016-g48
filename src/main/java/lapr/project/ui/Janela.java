@@ -2,11 +2,14 @@ package lapr.project.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,6 +19,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import lapr.project.model.CentroExposicoes;
 
 /**
@@ -40,13 +44,20 @@ public class Janela extends JFrame /** implements Serializable**/{
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
                
         criarComponentes();
-
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                fecharJanela();
+            }
+        });
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(MINWIDTH, MINHEIGHT));
         setLocationRelativeTo(null);
         
-        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true); 
     }   
  
@@ -150,7 +161,7 @@ public class Janela extends JFrame /** implements Serializable**/{
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                fecharJanela();
             }
         });
 
@@ -236,6 +247,22 @@ public class Janela extends JFrame /** implements Serializable**/{
       }  
        return tabPane; 
     }
-
     
+    private void fecharJanela() {
+        String[] opcoes = {"Sim", "Não"};
+        String pergunta = "Pretende fechar a aplicação?";
+        int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                "Confirma?", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+        if (opcao == JOptionPane.YES_OPTION) {
+            terminar();
+        } else {
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
+    }
+    
+    private void terminar() {
+//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
+        System.exit(0);
+    }
 }
