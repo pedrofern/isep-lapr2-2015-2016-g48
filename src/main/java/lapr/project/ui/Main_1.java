@@ -6,6 +6,7 @@ import lapr.project.model.*;
 import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
 import lapr.project.ui.ucs.CriarStandUI;
 import lapr.project.ui.ucs.DefinirDemonstracaoUI;
+import lapr.project.ui.ucs.RegistarUtilizadorUI;
 
 /**
  *
@@ -26,12 +27,35 @@ public class Main_1 {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        
+
         //new AtribuirStandCandidaturaUI();
-        
         new DefinirDemonstracaoUI();
-        
         //new DefinirFAEUI();
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
-    
+
 }
