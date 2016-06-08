@@ -84,19 +84,6 @@ public class Login extends JFrame /**implements Serializable**/ {
         setVisible(true);
 
     }
-    
-    private void fecharJanela() {
-        String[] opcoes = {"Sim", "Não"};
-        String pergunta = "Pretende fechar a aplicação?";
-        int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
-                "Confirma?", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-        if (opcao == JOptionPane.YES_OPTION) {
-            terminar();
-        } else {
-            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        }
-    }
         
     private void criarComponentes(){
         
@@ -246,7 +233,7 @@ public class Login extends JFrame /**implements Serializable**/ {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                terminar();
+                fecharJanela();
             }
         });
         return btn;
@@ -285,6 +272,19 @@ public class Login extends JFrame /**implements Serializable**/ {
             }
         });
         return btn;
+    }
+    
+    private void fecharJanela() {
+        String[] opcoes = {"Sim", "Não"};
+        String pergunta = "Pretende fechar a aplicação?";
+        int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                "Confirma?", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+        if (opcao == JOptionPane.YES_OPTION) {
+            terminar();
+        } else {
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
     }
     
     private void terminar() {

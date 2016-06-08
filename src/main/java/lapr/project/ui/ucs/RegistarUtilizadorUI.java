@@ -73,7 +73,7 @@ public class RegistarUtilizadorUI extends JFrame{
         pack();
         setSize(new Dimension(JANELA_LARGURA_MINIMO, JANELA_ALTURA_MINIMO));
         setMinimumSize(new Dimension(JANELA_LARGURA_MINIMO, JANELA_ALTURA_MINIMO));
-
+        setLocationRelativeTo(null);
         setVisible(true);          
     }
     
@@ -203,12 +203,17 @@ public class RegistarUtilizadorUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null,
-                                "Em construção",
-                                "Registar Utilizador",
-                                JOptionPane.ERROR_MESSAGE);
+                try{
+                    guardar();
                 }
-            //guardar();
+                catch (NumberFormatException ex){
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Tem de preencher todos os campos!",
+                            "Registar Utilizador",
+                            JOptionPane.ERROR_MESSAGE);                        
+                }
+            }
         });
 
         return botao;
@@ -252,25 +257,45 @@ public class RegistarUtilizadorUI extends JFrame{
     }
     
     private void guardar() {
-//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
-        dispose();
+        if (txtNome.getText()!=""&&
+                txtEmail.getText()!=""&&
+                txtPassword.getText()!=""&&
+                txtUsername.getText()!=""){
+            String nome,email,pass,user;
+            nome = txtNome.getText();
+            email = txtEmail.getText();
+            pass = txtPassword.getText();
+            user = txtUsername.getText();
+//            m_controllerRU.criaUtilizador(nome, email, user, pass);
+//            System.out.println(m_controllerRU);
+                JOptionPane.showMessageDialog(
+                            null,
+                            "Dados novo utilizador registado: \n"
+                                    +"\nUsername: "+user
+                                    +"\nPassword: "+pass
+                                    +"Nome: "+nome
+                                    +"\nEmail: "+email,
+                            "Registar Utilizador",
+                            JOptionPane.INFORMATION_MESSAGE);    
+            dispose();
+        }
     }
     
     private void fecharJanelaRegistoUtilizador(){
         if (txtNome.getText()!=""||
-                        txtEmail.getText()!=""||
-                        txtPassword.getText()!=""||
-                        txtUsername.getText()!=""){
-                    String[] opcoes = {"Sim", "Não"};
-                    String pergunta = "Pretende cancelar o registo do utilizador?";
-                    int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
-                            "Registar utilizador", JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-                    if (opcao == JOptionPane.YES_OPTION) {                        
-                        dispose();
-                    } else {
-                         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
-                    }
-                }
+                txtEmail.getText()!=""||
+                txtPassword.getText()!=""||
+                txtUsername.getText()!=""){
+            String[] opcoes = {"Sim", "Não"};
+            String pergunta = "Pretende cancelar o registo do utilizador?";
+            int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                    "Registar utilizador", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+            if (opcao == JOptionPane.YES_OPTION) {                        
+                dispose();
+            } else {
+                 setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
+            }
+        }
     }
 }
