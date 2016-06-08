@@ -4,6 +4,7 @@ import lapr.project.ui.ucs.DefinirFAEUI;
 import lapr.project.model.*;
 import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
 import lapr.project.ui.ucs.CriarStandUI;
+import lapr.project.ui.ucs.DefinirDemonstracaoUI;
 
 /**
  *
@@ -25,7 +26,9 @@ public class Main_1 {
 //            e.printStackTrace();
 //        }
         
-        new AtribuirStandCandidaturaUI();
+        //new AtribuirStandCandidaturaUI();
+        
+        new DefinirDemonstracaoUI();
     }
     
 }
