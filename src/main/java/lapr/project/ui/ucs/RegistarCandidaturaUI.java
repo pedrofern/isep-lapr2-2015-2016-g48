@@ -32,10 +32,6 @@ public class RegistarCandidaturaUI extends JFrame{
     private static final Dimension LABEL_TAMANHO = new JLabel("Nº Convites:").
                                                         getPreferredSize();
     /**
-     * Guarda janela anterior
-     */
-    private JFrame framePai;
-    /**
      * Guarda lista produtos em jlist
      */
     private JList lstProdutos;
@@ -107,11 +103,11 @@ public class RegistarCandidaturaUI extends JFrame{
     private Representante e_representante;
     private RegistarCandidaturaController m_controllerCCC;
 
-    public RegistarCandidaturaUI(JFrame framePai, CentroExposicoes ce) {
+    public RegistarCandidaturaUI(CentroExposicoes ce) {
         
         super("Registar Candidatura");
         
-        this.framePai=framePai;
+
         
         e_representante = new Representante();
         m_controllerCCC = new RegistarCandidaturaController(e_representante);
@@ -130,7 +126,7 @@ public class RegistarCandidaturaUI extends JFrame{
         pack();
         setMinimumSize(new Dimension(JANELA_LARGURA, JANELA_ALTURA));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setLocationRelativeTo(framePai);
+        setLocationRelativeTo(null);
         setVisible(true);  
         
         
@@ -453,7 +449,7 @@ public class RegistarCandidaturaUI extends JFrame{
 //                            opcoes[0]);
                 }catch (ArrayIndexOutOfBoundsException ex){
                     JOptionPane.showMessageDialog(
-                        framePai,
+                        null,
                         "Não selecionou demonstração!",
                         "Ver Recursos",
                         JOptionPane.INFORMATION_MESSAGE);                        
@@ -505,7 +501,7 @@ public class RegistarCandidaturaUI extends JFrame{
                 }
                 catch (NumberFormatException ex){
                     JOptionPane.showMessageDialog(
-                            framePai,
+                            null,
                             "Tem de preencher todos os campos!",
                             "Registar Candidatura",
                             JOptionPane.ERROR_MESSAGE);                        
@@ -548,7 +544,6 @@ public class RegistarCandidaturaUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                framePai.setVisible(true);
             }
         });
 

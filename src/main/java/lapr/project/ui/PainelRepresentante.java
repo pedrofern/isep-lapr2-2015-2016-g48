@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.ui.ucs.RegistarCandidaturaUI;
+import lapr.project.ui.ucs.*;
 
 /**
  *
@@ -94,8 +94,8 @@ public class PainelRepresentante extends JPanel{
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-           
+//                JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                new RegistarCandidaturaUI(m_ce);
             }     
         }
             

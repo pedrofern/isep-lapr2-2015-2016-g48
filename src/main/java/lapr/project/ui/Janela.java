@@ -245,7 +245,7 @@ public class Janela extends JFrame /** implements Serializable**/{
 
         tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
 
-        tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(m_ce, m_ut));
+//        tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(m_ce, m_ut));
       }  
        return tabPane; 
     }
