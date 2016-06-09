@@ -8,11 +8,11 @@ import lapr.project.model.Candidatura;
  *
  * @author Pedro Fernandes
  */
-public class RegistoCandidaturas {
+public class ListaCandidaturas {
     
     private final List<Candidatura> m_listaCandidaturas;
 
-    public RegistoCandidaturas() {
+    public ListaCandidaturas() {
         m_listaCandidaturas = new ArrayList<>();
     }
 
