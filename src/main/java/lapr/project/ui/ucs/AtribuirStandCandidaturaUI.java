@@ -50,20 +50,17 @@ public class AtribuirStandCandidaturaUI extends JFrame {
     
     private JPanel criarPainelCentro(){
         JPanel p = new JPanel(new FlowLayout());
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.setBorder(new TitledBorder("Stands"));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
+        p.setBorder(new TitledBorder("Candidaturas"));
 
         return p;
     }
     
     private JPanel criarPainelEste(){
         JPanel p = new JPanel(new FlowLayout());
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.setBorder(new TitledBorder("Candidaturas"));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
+        p.setBorder(new TitledBorder("Stands"));
+        p.setPreferredSize(new Dimension(250, 50));
 
         return p;
     }
@@ -71,9 +68,7 @@ public class AtribuirStandCandidaturaUI extends JFrame {
     private JPanel criarPainelOeste(){
     JPanel p = new JPanel(new FlowLayout());
         p.add(criarPainelExposicao());
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.setBorder(new TitledBorder("Exposição"));
 
         return p;
@@ -82,11 +77,7 @@ public class AtribuirStandCandidaturaUI extends JFrame {
     private JPanel criarPainelExposicao() {
 
         JPanel p = new JPanel(new FlowLayout());
-        
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(getListaExposicao());
         return p;
 
@@ -115,8 +106,6 @@ public class AtribuirStandCandidaturaUI extends JFrame {
         JButton btnClear = criarBotaoLimpar();
         JButton btnClose = criarBotaoFechar();
         JPanel p = new JPanel();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.add(btnOK);
         p.add(btnClose);
         p.add(btnClear);

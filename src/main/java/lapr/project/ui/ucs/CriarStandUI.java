@@ -53,11 +53,7 @@ public class CriarStandUI extends JFrame {
         p.add(criarPainelID());
         p.add(criarPainelDescricao());
         p.add(criarPainelArea());
-        
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.setBorder(new TitledBorder("Dados do Stand"));
         return p;
     }
@@ -69,10 +65,7 @@ public class CriarStandUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtID = new JTextField(CAMPO_LARGURA);
         txtID.requestFocus();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtID);
 
@@ -87,10 +80,7 @@ public class CriarStandUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtDescricao = new JTextField(CAMPO_LARGURA);
         txtDescricao.requestFocus();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtDescricao);
 
@@ -106,10 +96,7 @@ public class CriarStandUI extends JFrame {
         txtArea = new JTextField(CAMPO_LARGURA);
         txtArea.requestFocus();
         JPanel p = new JPanel(new FlowLayout());
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-            MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtArea);
 
@@ -134,8 +121,6 @@ public class CriarStandUI extends JFrame {
         JButton btnClear = criarBotaoLimpar();
         JButton btnClose = criarBotaoFechar();
         JPanel p = new JPanel();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.add(btnOK);
         p.add(btnClose);
         p.add(btnClear);
