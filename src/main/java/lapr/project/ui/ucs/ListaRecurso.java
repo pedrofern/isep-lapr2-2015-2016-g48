@@ -53,5 +53,9 @@ public class ListaRecurso {
         Collections.sort(listaRecurso);
     }
     
+      public Recurso[] getArray() {
+        return listaRecurso.toArray( new Recurso[listaRecurso.size()] );
+    }
+    
 }
     

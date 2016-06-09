@@ -13,20 +13,19 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import lapr.project.model.Recurso;
-import lapr.project.model.Utilizador;
+import lapr.project.model.*;
+import lapr.project.ui.PainelFae;
 
 public class DefinirDemonstracaoUI extends JFrame {
 
     private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso;
     private JComboBox comboBoxExposicao;
-    private JTextArea txtDescricao=new JTextArea();
+    private JTextArea txtDescricao = new JTextArea();
     private JFrame framepai;
     private ModeloListaRecursos modeloListaRecurso;
     private JList listaCompletaRecurso;
     private ListaRecurso listaRecurso;
-    private JList listProduto = new JList();
-    private JScrollPane scroListaRecurso = new JScrollPane(listProduto);
+    private JTable tableListaRecurso;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
@@ -107,11 +106,11 @@ public class DefinirDemonstracaoUI extends JFrame {
         listaCompletaRecurso = new JList();
         listaRecurso = new ListaRecurso();
         modeloListaRecurso = new ModeloListaRecursos(listaRecurso);
-        btnAdicionarRecurso = criarBotaoAdicionarRecurso();
+
         p.add(criarPainelListaRecurso("Lista de Recurso",
                 listaCompletaRecurso,
-                modeloListaRecurso, btnAdicionarRecurso));
-        
+                modeloListaRecurso, criarBotaoAdicionarRecurso()));
+
         p.add(criarPainelDescricao("Descrição ", txtDescricao));
 
         return p;
@@ -171,28 +170,57 @@ public class DefinirDemonstracaoUI extends JFrame {
 
     private JButton criarBotaoAdicionarRecurso() {
         btnAdicionarRecurso = new JButton("Adicionar Recurso");
+//        btnAdicionarRecurso.setVisible(true);
+
+        //btnAdicionarRecurso.setEnabled(listaRecurso.tamanho() != 0);
         btnAdicionarRecurso.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                modeloListaRecurso.addElement((Recurso) listaCompletaRecurso.getSelectedValue());
-                listaCompletaRecurso.clearSelection();
+
+                try {
+
+                    Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
+                    Recurso recurso = (Recurso) JOptionPane.showInputDialog(
+                            DefinirDemonstracaoUI.this,
+                            "Escolha um recurso", null,
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            opcoes,
+                            opcoes[0]);
+                    if (recurso != null) {
+                        String[] opcoes2 = {"Sim", "Não"};
+                        int resposta = JOptionPane.showOptionDialog(
+                                DefinirDemonstracaoUI.this,
+                                "Adicionar\n" + recurso.toString(),
+                                "Adicionar Recurso",
+                                0,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                opcoes2,
+                                opcoes2[1]);
+                        final int SIM = 0;
+                        if (resposta == SIM) {
+
+                            modeloListaRecurso.addElement((Recurso) listaCompletaRecurso.getSelectedValue());
+                            listaCompletaRecurso.clearSelection();
+
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException ex) {
+
+                    JOptionPane.showMessageDialog(DefinirDemonstracaoUI.this, "Lista de recurso vazia", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
 
             }
+
         });
+
         return btnAdicionarRecurso;
     }
 
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
-
-        btnConfirmar.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-
-            }
-        });
-
         return btnConfirmar;
     }
 
