@@ -216,28 +216,30 @@ public class Login extends JFrame /**implements Serializable**/ {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                //CentroExposicoes ce=new CentroExposicoes();   
+                //CentroExposicoes ce=new CentroExposicoes();
                 
-                if(username.getText().equals("Admin")){
-                    new Janela(m_ce,"Admin");
-                }
-                    if(username.equals("FAE")){
-                       new Janela(m_ce, m_ut); 
-                    }
-                        if(username.equals("Organizador")){
-                            new Janela(m_ce, m_ut); 
-                        }
-                else
-                            if(username.equals("Gestor")){
-                                 new Janela(m_ce, m_ut); 
-                            }
-                else
-                                if(username.equals("Representante")){
-                                     new Janela(m_ce, m_ut); 
-                                }
-                              
-                
-
+                new Janela (m_ce, username.getText());
+               
+//                if(username.getText().equals("Admin")){
+//                    new Janela(m_ce,username.getText());
+//                }
+//                    if(username.equals("FAE")){
+//                       new Janela(m_ce, username.getText()); 
+//                    }
+//                        if(username.equals("Organizador")){
+//                            new Janela(m_ce, username.getText()); 
+//                        }
+//                else
+//                            if(username.equals("Gestor")){
+//                                 new Janela(m_ce, username.getText()); 
+//                            }
+//                else
+//                                if(username.equals("Representante")){
+//                                     new Janela(m_ce, username.getText); 
+//                                }
+//                              
+//                
+//
             }
         });
         return btn;
