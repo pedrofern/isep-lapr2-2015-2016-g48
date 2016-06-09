@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import javax.swing.border.TitledBorder;
 import lapr.project.model.lists.RegistoRecursos;
 
 /**
@@ -18,7 +19,7 @@ import lapr.project.model.lists.RegistoRecursos;
 public class DefinirDemonstracaoUI extends JFrame {
 
     private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso;
-    private JComboBox comboBoxExposicao,comboBoxDemonstracao;
+    private JComboBox comboBoxExposicao, comboBoxDemonstracao;
     private JFrame framepai;
     private ModeloListaRecursos modeloListaRecurso;
     private JList listaCompletaRecurso;
@@ -30,7 +31,7 @@ public class DefinirDemonstracaoUI extends JFrame {
     public DefinirDemonstracaoUI() throws FileNotFoundException {
 
         super("Definir Demonstração");
-        //criarComponentes();
+        criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setSize(JANELA_LARGURA, JANELA_ALTURA);
@@ -40,43 +41,40 @@ public class DefinirDemonstracaoUI extends JFrame {
 
     public void criarComponentes() throws FileNotFoundException {
 
+        add(criarPainelNorte(), BorderLayout.NORTH);
     }
 
-//    private JPanel criarPainelListas() {
-//        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-//        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
-//        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
-//                NUMERO_COLUNAS,
-//                INTERVALO_HORIZONTAL,
-//                INTERVALO_VERTICAL));
-//
-//        listaCompletaRecurso = new JList();
-//        listaRecurso = new RegistoRecursos();
-//        modeloListaRecurso = new ModeloListaRecursos(listaRecurso);
-//
-//        p.add(criarPainelListaRecurso("Lista de Recurso",
-//                listaCompletaRecurso,
-//                modeloListaRecurso, criarBotaoAdicionarRecurso()));
-//
-//        p.add(criarPainelDescricao("Descrição ", txtDescricao));
-//
-//        return p;
-//    }
-
-    private JPanel criarPainelCombobox(
-            String titulo,
-            JComboBox combobox
-    ) {
-        JLabel lblTitulo = new JLabel(titulo, JLabel.LEFT);
-
-        JPanel p = new JPanel(new BorderLayout());
-
-        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        p.add(lblTitulo, BorderLayout.NORTH);
-        p.add(combobox, BorderLayout.CENTER);
-
+    private JPanel criarPainelNorte() throws FileNotFoundException {
+        JPanel p = new JPanel(new FlowLayout());
+        p.setBorder(new TitledBorder("Dados"));
+        JLabel lbl = new JLabel("Exposição", SwingConstants.RIGHT);
+        JLabel lbldemonstração = new JLabel("Demonstração", SwingConstants.RIGHT);
+        p.add(lbl);
+        p.add(getListaExposicao());
+        p.add(lbldemonstração);
+        p.add(getListaDemonstracao());
+        
         return p;
+    }
+
+    private JComboBox getListaExposicao() {
+
+        comboBoxExposicao = new JComboBox();
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+
+        return comboBoxExposicao;
+    }
+
+    private JComboBox getListaDemonstracao() {
+
+        comboBoxExposicao = new JComboBox();
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+
+        return comboBoxExposicao;
     }
 
 }

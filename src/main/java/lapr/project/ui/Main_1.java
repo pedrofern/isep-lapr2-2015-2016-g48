@@ -1,16 +1,9 @@
 package lapr.project.ui;
 
 import java.io.FileNotFoundException;
-//import lapr.project.ui.ucs.DefinirFAEUI;
+import lapr.project.ui.ucs.*;
 import lapr.project.model.*;
-import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
-import lapr.project.ui.ucs.CriarExposicaoUI;
-import lapr.project.ui.ucs.CriarStandUI;
-import lapr.project.ui.ucs.CriarDemonstracaoUI;
 
-import lapr.project.ui.ucs.DefinirFAEUI;
-//import lapr.project.ui.ucs.CriarDemonstracaoUI;
-import lapr.project.ui.ucs.RegistarUtilizadorUI;
 
 /**
  *
@@ -36,7 +29,9 @@ public class Main_1 {
         //new CriarExposicaoUI();
         //new DefinirFAEUI();
         
-        new CriarDemonstracaoUI();
+//        new CriarDemonstracaoUI();
+        
+        new DefinirDemonstracaoUI();
 
         
         
