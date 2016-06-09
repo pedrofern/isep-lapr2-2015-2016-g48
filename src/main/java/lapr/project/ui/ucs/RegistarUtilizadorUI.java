@@ -18,7 +18,7 @@ public class RegistarUtilizadorUI extends JFrame{
     /**
      * Guarda a largura mínima da janela em píxeis.
      */
-    private static final int JANELA_LARGURA_MINIMO = 600;
+    private static final int JANELA_LARGURA_MINIMO = 650;
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
