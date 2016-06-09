@@ -266,18 +266,13 @@ public class RegistarUtilizadorUI extends JFrame{
     }
     
     private void guardar() {
-        if (txtNome.getText()!=""&&
-                txtEmail.getText()!=""&&
-                txtPassword.getText()!=""&&
-                txtUsername.getText()!=""){
             String nome,email,pass,user;
             nome = txtNome.getText();
             email = txtEmail.getText();
             pass = txtPassword.getText();
             user = txtUsername.getText();
             m_controllerRU.novoUtilizador();
-            m_controllerRU.setDados(nome, email, user, pass);
-            System.out.println(m_controllerRU);
+            m_controllerRU.criaUtilizador(nome, email, user, pass);
                 JOptionPane.showMessageDialog(
                             null,
                             "Dados novo utilizador registado: \n"
@@ -288,7 +283,6 @@ public class RegistarUtilizadorUI extends JFrame{
                             "Registar Utilizador",
                             JOptionPane.INFORMATION_MESSAGE);    
             dispose();
-        }
     }
     
     private void fecharJanelaRegistoUtilizador(String pergunta){
