@@ -6,13 +6,13 @@ import lapr.project.model.*;
  *
  * @author Pedro Fernandes
  */
-public class CriarCandidaturaController {
+public class RegistarCandidaturaController {
 
     private Representante e_representante;
     private Utilizador m_user;
     private Candidatura m_candidatura;
 
-    public CriarCandidaturaController(Representante representante) {
+    public RegistarCandidaturaController(Representante representante) {
         e_representante = representante;
     }
 

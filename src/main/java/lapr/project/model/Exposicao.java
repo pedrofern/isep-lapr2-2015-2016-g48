@@ -32,9 +32,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     private final List<Organizador> e_listaOrganizadores;
     private ListaSubmissoes listaSubmissoes;
     private ProcessoAtribuicao processoAtribuicao;
-    private List<FAE> e_listaFAE;
     private ListaOrganizadores m_lstOrganizadores;
-    private ListaFAE m_lstFaes;
     private ExposicaoEstado state;
     private Exposicao d_conflitos;
 
@@ -295,7 +293,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     }
 
     public ListaFAE getListaFaes() {
-        return this.m_lstFaes;
+        return this.m_regFAEs;
     }
 
     /**
@@ -336,7 +334,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     }
 
     public void setListaFaes(ListaFAE lstFaes) {
-        this.m_lstFaes = lstFaes;
+        this.m_regFAEs = lstFaes;
     }
 
     public boolean valida() {
@@ -414,7 +412,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     }
 
     public boolean hasFAE(Utilizador u) {
-        for (Iterator<FAE> it = this.e_listaFAE.listIterator(); it.hasNext();) {
+        for (Iterator<FAE> it = this.m_regFAEs.getListaFAE().listIterator(); it.hasNext();) {
             FAE fae = it.next();
 
             if (fae.isUtilizador(u)) {

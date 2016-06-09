@@ -2,7 +2,7 @@ package lapr.project.controller;
 
 import java.util.*;
 import lapr.project.model.*;
-import lapr.project.model.lists.RegistoRecursos;
+import lapr.project.model.lists.*;
 
 /**
  *
@@ -11,21 +11,21 @@ import lapr.project.model.lists.RegistoRecursos;
 public class DefinirDemonstracaoController {
 
     private Demonstracao m_demonstracao;
-    private List<Exposicao> m_listaExposicoes;
-    private CentroExposicoes m_centroDeExposicoes;
+    private RegistoExposicoes m_listaExposicoes;
+    private Exposicao m_exposicao;
     private RegistoRecursos m_listaRecursos;
     
-    public DefinirDemonstracaoController(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
+    public DefinirDemonstracaoController(Exposicao expo) {
+        m_exposicao = expo;
     }
 
-    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos lst_recursos) {
-        return m_centroDeExposicoes.getRegistoDemonstracao().novaDemonstracao(codigoUnico, strDescricao, lst_recursos, m_centroDeExposicoes);
-    }
+//    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos lst_recursos) {
+//        return m_exposicao.getRegistoDemonstracao().novaDemonstracao(codigoUnico, strDescricao, lst_recursos, m_centroDeExposicoes);
+//    }
 
-    public boolean registaDemonstracao(Demonstracao demonstracao) {
-        return m_centroDeExposicoes.getRegistoDemonstracao().registaDemonstracao(demonstracao);
-    }
+//    public boolean registaDemonstracao(Demonstracao demonstracao) {
+//        return m_exposicao.getRegistoDemonstracao().registaDemonstracao(demonstracao);
+//    }
 
     public void setCodigoUnico(int codigoUnico) {
         m_demonstracao.setCod(codigoUnico);
@@ -47,34 +47,34 @@ public class DefinirDemonstracaoController {
         m_demonstracao.addRecurso(r);
     }
     
-    public List<Exposicao> getListaExposicoes() {
-        List<Exposicao> le = new ArrayList<Exposicao>();
+    public RegistoExposicoes getListaExposicoes() {
+        RegistoExposicoes le = new RegistoExposicoes();
 
-        for (Exposicao e : m_listaExposicoes) {
-            le.add(e);
+        for (Exposicao e : m_listaExposicoes.getExposicao()) {
+            le.adicionarExposicao(e);
         }
         return le;
     }
 
-    public Demonstracao registaDemonstracao() {
-        if (m_centroDeExposicoes.getRegistoDemonstracao().registaDemonstracao(m_demonstracao)) {
-            return m_demonstracao;
-        }
-        return null;
-    }
+//    public Demonstracao registaDemonstracao() {
+//        if (m_exposicao.getRegistoDemonstracao().registaDemonstracao(m_demonstracao)) {
+//            return m_demonstracao;
+//        }
+//        return null;
+//    }
     
     public Demonstracao getDemonstracao() {
         return m_demonstracao;
     }
     
-    public Demonstracao setDados(int cdgUnico, String strDescricao) {
-        m_demonstracao.setCod(cdgUnico);
-        m_demonstracao.setDesc(strDescricao);
-
-        if (m_centroDeExposicoes.getRegistoDemonstracao().validaDemonstracao(m_demonstracao)) {
-            return m_demonstracao;
-        } else {
-            return null;
-        }
-    }
+//    public Demonstracao setDados(int cdgUnico, String strDescricao) {
+//        m_demonstracao.setCod(cdgUnico);
+//        m_demonstracao.setDesc(strDescricao);
+//
+//        if (m_exposicao.getRegistoDemonstracao().validaDemonstracao(m_demonstracao)) {
+//            return m_demonstracao;
+//        } else {
+//            return null;
+//        }
+//    }
 }

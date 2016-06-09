@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.ui.ucs.CriarCandidaturaUI;
+import lapr.project.ui.ucs.RegistarCandidaturaUI;
 
 /**
  *

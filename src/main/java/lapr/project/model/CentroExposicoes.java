@@ -13,7 +13,6 @@ public class CentroExposicoes {
     private RegistoTipoConflitos registoTipoConflitos;
     private ListaFAE m_listaFAE;
     private RegistoRecursos m_regRecursos;
-    private ListaDemonstracoes m_listaDemonstracoes;
     private RegistoExposicoes m_regExposicoes;
     private RegistoUtilizadores m_regUtilizadores;
     private ListaCandidaturas m_regCandidaturas;
@@ -185,10 +184,6 @@ public class CentroExposicoes {
 
     public Atribuicao novaAtribuicaoCandidatura() {
         return new Atribuicao();
-    }
-
-    public ListaDemonstracoes getRegistoDemonstracao() {
-        return this.m_listaDemonstracoes;
     }
 
     public Utilizador getUtilizador(String strId) {
