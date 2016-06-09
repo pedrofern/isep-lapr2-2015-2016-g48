@@ -16,6 +16,7 @@ public class CentroExposicoes {
     private RegistoExposicoes m_regExposicoes;
     private RegistoUtilizadores m_regUtilizadores;
     private ListaCandidaturas m_regCandidaturas;
+    private RegistoDemonstracoes m_listaDemonstracoes;
     private Timer timer;
     private List<MecanismoAtribuicao> listaMecanismoAtribuicao;
     private List<MecanismoAvaliacao> listaMecanismoAvaliacao;
@@ -26,7 +27,7 @@ public class CentroExposicoes {
         m_regExposicoes = new RegistoExposicoes();
 //        m_listaFAE = new ArrayList<FAE>();
         m_regRecursos = new RegistoRecursos();
-//        m_listaDemonstracoes = new ArrayList<Demonstracao>();
+        m_listaDemonstracoes = new RegistoDemonstracoes();
         this.timer = new Timer();
         this.listaMecanismoAvaliacao = new ArrayList<>();
         this.listaMecanismoDetecao = new ArrayList<>();
@@ -88,7 +89,11 @@ public class CentroExposicoes {
     public RegistoRecursos getRegistoRecursos() {
         return this.m_regRecursos;
     }
-
+    
+    public RegistoDemonstracoes getRegistoDemonstracoes() {
+        return this.m_listaDemonstracoes;
+    }
+    
     public FAE novoDefinirFAE() {
         return new FAE();
     }

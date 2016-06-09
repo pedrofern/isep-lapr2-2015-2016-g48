@@ -3,6 +3,7 @@ package lapr.project.ui.ucs;
 import lapr.project.model.*;
 import lapr.project.controller.*;
 import lapr.project.ui.*;
+import lapr.project.ui.ucs.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.*;
 import java.awt.*;
@@ -82,7 +83,7 @@ public class RegistarCandidaturaUI extends JFrame{
     /**
      * Guarda a lista demonstrações da candidatura
      */
-    private ListaDemonstracoes listaDemonstracoes;
+    private RegistoDemonstracoes listaDemonstracoes;
     /**
      * Guarda a lista recursos da candidatura
      */
@@ -107,13 +108,16 @@ public class RegistarCandidaturaUI extends JFrame{
         
         super("Registar Candidatura");
         
-
-        
+        //inicio => USADO PRA TESTE
+        exposicao = new Exposicao();
+        exposicao.setTitulo("TESTE");
+        // fim
         e_representante = new Representante();
-        m_controllerCCC = new RegistarCandidaturaController(e_representante);
+        m_controllerCCC = new RegistarCandidaturaController(e_representante,exposicao);
         centroExposicoes = ce;
-//        listaDemonstracoes = ce.getRegistoExposicoes().getDe
+        m_controllerCCC.novaCandidatura();
         
+
         JPanel norte = criarPainelNorte();
         JPanel centro = criarPainelListas();
         JPanel botoes = criarPainelBotoes();        
@@ -145,15 +149,6 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     public JList getLstDemonstracoes() {
         return lstDemonstracoes;
-    }
-    private JPanel criarPainelExposicao(){
-        JPanel painelExp = new JPanel(new FlowLayout());
-        
-        comboExp = new JComboBox();
-        comboExp.addItem("teste");
-        
-        return painelExp;
-        
     }
     /**
      * cria painel para introdução dos dados gerais da candidatura
@@ -243,7 +238,6 @@ public class RegistarCandidaturaUI extends JFrame{
             }
         }); 
         
-        painelNorte.add(criarPainelExposicao());
         painelNorte.add(criarPainelNome("Nome:", txtNome,""));
         painelNorte.add(criarPainelNome("Morada:", txtMorada,""));
         painelNorte.add(criarPainelNome("Telemóvel:", txtTelemovel,""));
@@ -560,7 +554,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,
                                               INTERVALO_VERTICAL));
-//        listaProdutos = candidatura.getM_listaProdutos();
+        listaProdutos = m_controllerCCC.getCandidatura().getListaProdutos();
         ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(listaProdutos);
         lstProdutos = new JList(modeloListaProdutos);
         botaoAdicionarProduto = criarBotaoAdicionarProduto();
@@ -569,7 +563,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                 lstProdutos,
                                 botaoAdicionarProduto,
                                 botaoRemoverProduto));
-        
+//        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes().getListaDemonstracoes();
         ModeloListaDemonstracoes modeloListaDemo = new ModeloListaDemonstracoes(listaDemonstracoes);
         lstDemonstracoes = new JList(modeloListaDemo);
         botaoVerRecursoDemonstracao = criarBotaoRecursosDemonstracao();

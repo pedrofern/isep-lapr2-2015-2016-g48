@@ -13,8 +13,8 @@ public class RegistarUtilizadorController {
     private Utilizador m_utilizador;
     private RegistoUtilizadores m_registoUtilizadores;
 
-    public RegistarUtilizadorController(CentroExposicoes aCentroDeExposicoes) {
-        centroDeExposicoes = aCentroDeExposicoes;
+    public RegistarUtilizadorController(CentroExposicoes ce) {
+        centroDeExposicoes = ce;
         m_registoUtilizadores = centroDeExposicoes.getRegistoUtilizadores();
     }
 

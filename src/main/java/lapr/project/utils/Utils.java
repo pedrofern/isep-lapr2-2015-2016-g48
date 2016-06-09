@@ -18,7 +18,7 @@ import lapr.project.model.Exposicao;
 import lapr.project.model.Recurso;
 import lapr.project.model.Stand;
 import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.RegistoDemonstracoes;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.model.lists.RegistoRecursos;
 import lapr.project.model.lists.RegistoStands;
@@ -139,7 +139,7 @@ public class Utils {
         comboCands.setModel(combo);
     }
     
-     public void criarComboDemo(ListaDemonstracoes lista_demo){
+     public void criarComboDemo(RegistoDemonstracoes lista_demo){
         Demonstracao[] opcoes=lista_demo.getArray();
         JComboBox comboDemos=new JComboBox();
         

@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
+import lapr.project.model.lists.ListaCandidaturas;
 
 /**
  *
@@ -11,9 +12,14 @@ public class RegistarCandidaturaController {
     private Representante e_representante;
     private Utilizador m_user;
     private Candidatura m_candidatura;
+    private ListaCandidaturas m_listaCandidaturas;
+    private Exposicao m_exposicao;
 
-    public RegistarCandidaturaController(Representante representante) {
+    public RegistarCandidaturaController(Representante representante,Exposicao exp) {
         e_representante = representante;
+        m_exposicao = exp;
+        m_listaCandidaturas = m_exposicao.getRegistoCandidaturas();
+        
     }
 
     public void novaCandidatura() {

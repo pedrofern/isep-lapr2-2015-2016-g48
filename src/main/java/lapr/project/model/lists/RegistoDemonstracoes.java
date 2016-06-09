@@ -10,12 +10,12 @@ import lapr.project.model.Recurso;
  *
  * @author Pedro Fernandes
  */
-public class ListaDemonstracoes {
+public class RegistoDemonstracoes {
 
-    private List<Demonstracao> m_lstDemonstracao;
+    private ArrayList<Demonstracao> m_lstDemonstracao;
 
-    public ListaDemonstracoes() {
-        m_lstDemonstracao = new ArrayList<Demonstracao>();
+    public RegistoDemonstracoes() {
+        m_lstDemonstracao = new ArrayList<>();
     }
 
     public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos listaRecursos, CentroExposicoes m_centroExposicoes) {
@@ -23,9 +23,9 @@ public class ListaDemonstracoes {
     }
 
     public boolean registaDemonstracao(Demonstracao demonstracao) {
-//        if (demonstracao.valida() && validaDemonstracao(demonstracao)) {
-//            return m_lstDemonstracao.add(demonstracao);
-//        }
+        if (validaDemonstracao(demonstracao)) {
+            return m_lstDemonstracao.add(demonstracao);
+        }
         return false;
     }
 
@@ -34,7 +34,7 @@ public class ListaDemonstracoes {
         return true;
     }
 
-    public List<Demonstracao> getListaDemonstracoes() {
+    public ArrayList<Demonstracao> getListaDemonstracoes() {
         return m_lstDemonstracao;
     }
 
