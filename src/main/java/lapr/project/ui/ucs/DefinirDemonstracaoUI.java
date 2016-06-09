@@ -6,7 +6,6 @@
 package lapr.project.ui.ucs;
 
 import javax.swing.JFrame;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,6 +15,7 @@ import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
 import lapr.project.ui.*;
 import lapr.project.model.lists.*;
+import lapr.project.ui.ucs.ModeloListaRecursos;
 
 public class DefinirDemonstracaoUI extends JFrame {
 

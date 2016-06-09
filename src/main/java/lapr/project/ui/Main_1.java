@@ -7,6 +7,7 @@ import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
 import lapr.project.ui.ucs.CriarExposicaoUI;
 import lapr.project.ui.ucs.CriarStandUI;
 import lapr.project.ui.ucs.DefinirDemonstracaoUI;
+
 import lapr.project.ui.ucs.DefinirFAEUI;
 //import lapr.project.ui.ucs.DefinirDemonstracaoUI;
 import lapr.project.ui.ucs.RegistarUtilizadorUI;
