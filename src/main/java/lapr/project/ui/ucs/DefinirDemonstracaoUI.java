@@ -31,8 +31,8 @@ public class DefinirDemonstracaoUI extends JFrame {
     private ModeloListaDemonstracoes modeloListaDemonstracao;
     private ModeloListaExposicao modeloListaExposicao;
     private JTable tableListaRecurso;
-    private ListaDemonstracoes listaDemonstracao;
-    private ListaExposicao listaExposicao;
+    private RegistoDemonstracoes listaDemonstracao;
+    private RegistoExposicoes listaExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
@@ -80,7 +80,7 @@ public class DefinirDemonstracaoUI extends JFrame {
                 INTERVALO_VERTICAL));
 
         listaCompletaExposicao = new JList();
-        listaExposicao = new ListaExposicao();
+        listaExposicao = new RegistoExposicoes();
         modeloListaExposicao = new ModeloListaExposicao(listaExposicao);
 
         p.add(criarPainelListaExposicao("Lista Exposição",
@@ -88,7 +88,7 @@ public class DefinirDemonstracaoUI extends JFrame {
                 modeloListaExposicao));
 
         listaCompletaDemonstracao = new JList();
-        listaDemonstracao = new ListaDemonstracoes();
+        listaDemonstracao = new RegistoDemonstracoes();
         modeloListaDemonstracao = new ModeloListaDemonstracoes(listaDemonstracao);
         p.add(criarPainelListaDemonstracao("Lista Demonstração", listaCompletaDemonstracao, modeloListaDemonstracao));
 

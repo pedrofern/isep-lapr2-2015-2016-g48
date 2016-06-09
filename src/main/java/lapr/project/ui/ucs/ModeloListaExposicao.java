@@ -7,6 +7,7 @@ package lapr.project.ui.ucs;
 
 import javax.swing.AbstractListModel;
 import lapr.project.model.Exposicao;
+import lapr.project.model.lists.RegistoExposicoes;
 
 /**
  *
@@ -14,20 +15,20 @@ import lapr.project.model.Exposicao;
  */
 public class ModeloListaExposicao extends AbstractListModel {
 
-    private ListaExposicao listaExposicao;
+    private RegistoExposicoes listaExposicao;
 
-    public ModeloListaExposicao(ListaExposicao listaExposicao) {
+    public ModeloListaExposicao(RegistoExposicoes listaExposicao) {
         this.listaExposicao = listaExposicao;
     }
 
     @Override
     public int getSize() {
-        return listaExposicao.tamanho();
+        return listaExposicao.getExposicao().size();
     }
 
     @Override
     public Object getElementAt(int indice) {
-        return listaExposicao.obterExposicao(indice);
+        return listaExposicao.getExposicao().get(indice);
     }
 
     public boolean addElement(Exposicao exposicao) {
@@ -39,8 +40,8 @@ public class ModeloListaExposicao extends AbstractListModel {
     }
 
     public boolean removeElement(Exposicao exposicao) {
-        int indice = listaExposicao.indiceDe(exposicao);
-        boolean exposicaoRemovido = listaExposicao.removerExposicao(exposicao);
+        int indice = listaExposicao.getExposicao().indexOf(exposicao);
+        boolean exposicaoRemovido = listaExposicao.getExposicao().remove(exposicao);
         if (exposicaoRemovido) {
             fireIntervalRemoved(this, indice, indice);
         }
@@ -48,7 +49,7 @@ public class ModeloListaExposicao extends AbstractListModel {
     }
 
     public boolean contains(Exposicao exposicao) {
-        return listaExposicao.contem(exposicao);
+        return listaExposicao.getExposicao().contains(exposicao);
     }
 
     public void sort() {

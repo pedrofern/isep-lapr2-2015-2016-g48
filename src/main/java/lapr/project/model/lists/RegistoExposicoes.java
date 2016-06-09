@@ -1,6 +1,7 @@
 package lapr.project.model.lists;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import lapr.project.model.Exposicao;
@@ -107,6 +108,8 @@ public class RegistoExposicoes {
         return m_listaExposicoes.toArray( new Exposicao[m_listaExposicoes.size()] );
      }
      
-    
+    public void ordenarPorPosicao(){
+        Collections.sort(m_listaExposicoes);
+    }
     
 }

@@ -104,13 +104,13 @@ public class RegistarCandidaturaUI extends JFrame{
     private Representante e_representante;
     private RegistarCandidaturaController m_controllerCCC;
 
-    public RegistarCandidaturaUI(CentroExposicoes ce) {
+    public RegistarCandidaturaUI(CentroExposicoes ce, Exposicao exp) {
         
         super("Registar Candidatura");
         
         //inicio => USADO PRA TESTE
-        exposicao = new Exposicao();
-        exposicao.setTitulo("TESTE");
+        exposicao = exp;
+//        exposicao.setTitulo("TESTE");
         // fim
         e_representante = new Representante();
         m_controllerCCC = new RegistarCandidaturaController(e_representante,exposicao);
@@ -563,7 +563,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                 lstProdutos,
                                 botaoAdicionarProduto,
                                 botaoRemoverProduto));
-//        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes().getListaDemonstracoes();
+        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
         ModeloListaDemonstracoes modeloListaDemo = new ModeloListaDemonstracoes(listaDemonstracoes);
         lstDemonstracoes = new JList(modeloListaDemo);
         botaoVerRecursoDemonstracao = criarBotaoRecursosDemonstracao();

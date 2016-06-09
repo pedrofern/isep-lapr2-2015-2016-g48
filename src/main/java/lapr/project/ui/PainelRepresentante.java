@@ -95,7 +95,7 @@ public class PainelRepresentante extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
 //                JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                new RegistarCandidaturaUI(m_ce);
+                new DialogoSelecionarExposicao(m_ce);
             }     
         }
             
