@@ -96,4 +96,8 @@ public class ListaCandidaturas {
         return "RegistoCandidaturas:" + "m_listaCandidaturas=" + m_listaCandidaturas;
     }
     
+    public Candidatura[] getArray() {
+        return m_listaCandidaturas.toArray( new Candidatura[m_listaCandidaturas.size()] );
+     }
+    
 }

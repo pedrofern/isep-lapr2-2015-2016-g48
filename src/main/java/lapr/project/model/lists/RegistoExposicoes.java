@@ -92,5 +92,10 @@ public class RegistoExposicoes {
         return leFAE;
     }
     
+    public Exposicao[] getArray() {
+        return m_listaExposicoes.toArray( new Exposicao[m_listaExposicoes.size()] );
+     }
+     
+    
     
 }

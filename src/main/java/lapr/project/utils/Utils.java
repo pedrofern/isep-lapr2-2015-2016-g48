@@ -10,6 +10,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import lapr.project.model.Candidatura;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Recurso;
+import lapr.project.model.Stand;
+import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.RegistoExposicoes;
+import lapr.project.model.lists.RegistoRecursos;
+import lapr.project.model.lists.RegistoStands;
 
 /**
  *
@@ -106,5 +118,52 @@ public class Utils {
 
     public static boolean isEmailValido(String email) {
         return email != null && EMAIL_PATTERN.matcher(email).matches();
+    }
+    
+    
+    public void criarComboExpo(RegistoExposicoes lista_exposicao){
+        Exposicao[] opcoes=lista_exposicao.getArray();
+        JComboBox comboExpos=new JComboBox();
+        
+        DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
+        
+        comboExpos.setModel(combo);
+    }
+    
+    public void criarComboCand(ListaCandidaturas lista_candidaturas){
+        Candidatura[] opcoes=lista_candidaturas.getArray();
+        JComboBox comboCands=new JComboBox();
+        
+        DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
+        
+        comboCands.setModel(combo);
+    }
+    
+     public void criarComboDemo(ListaDemonstracoes lista_demo){
+        Demonstracao[] opcoes=lista_demo.getArray();
+        JComboBox comboDemos=new JComboBox();
+        
+        DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
+        
+        comboDemos.setModel(combo);
+    }
+     
+     
+      public void criarComboStand(RegistoStands lista_stands){
+        Stand[] opcoes=lista_stands.getArray();
+        JComboBox comboStands=new JComboBox();
+        
+        DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
+        
+        comboStands.setModel(combo);
+    }
+      
+        public void criarComboRecurso(RegistoRecursos lista_recursos){
+        Recurso[] opcoes=lista_recursos.getArray();
+        JComboBox comboRecursos=new JComboBox();
+        
+        DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
+        
+        comboRecursos.setModel(combo);
     }
 }

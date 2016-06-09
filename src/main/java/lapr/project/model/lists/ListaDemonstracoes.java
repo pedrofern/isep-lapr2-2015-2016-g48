@@ -43,4 +43,8 @@ public class ListaDemonstracoes {
         return "RegistoDemonstracoes{" + "m_lstDemonstracoes=" + m_lstDemonstracao + '}';
     }
 
+    
+    public Demonstracao[] getArray() {
+        return m_lstDemonstracao.toArray( new Demonstracao[m_lstDemonstracao.size()] );
+     }
 }
