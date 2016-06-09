@@ -38,7 +38,7 @@ public class RegistoUtilizadores {
     }
 
     public boolean addUtilizador(Utilizador u) {
-        return m_listaUtilizadores.add(u);
+        return this.m_listaUtilizadores.add(u);
     }
 
     public List<Utilizador> getListaUtilizadores() {

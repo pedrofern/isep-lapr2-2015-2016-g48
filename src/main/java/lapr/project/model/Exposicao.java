@@ -9,7 +9,7 @@ import lapr.project.model.mechanisms.ProcessoAtribuicao;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.lists.RegistoCandidaturas;
+import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
 
 /**
@@ -27,7 +27,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     private Date dataFimSubmissao;
     private Date dataInicioAtribuicao;
     private Date dataFimAtribuicao;
-    private RegistoCandidaturas m_regCandidaturas;
+    private ListaCandidaturas m_regCandidaturas;
     private ListaFAE m_regFAEs;
     private final List<Organizador> e_listaOrganizadores;
     private ListaSubmissoes listaSubmissoes;
@@ -37,6 +37,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     private ListaFAE m_lstFaes;
     private ExposicaoEstado state;
     private CentroExposicoes m_centroExposicoes;
+    private Exposicao d_conflitos;
 
     public Exposicao(CentroExposicoes m_centroExposicoes) {
         m_centroExposicoes=m_centroExposicoes;
@@ -133,6 +134,8 @@ public class Exposicao implements Submissivel, Atribuivel {
 
         return str;
     }
+    
+    
 
     public void setTitulo(String strTitulo) {
         titulo = strTitulo;
@@ -162,7 +165,7 @@ public class Exposicao implements Submissivel, Atribuivel {
         this.dataInicioSubmissao = strDataInicioSubmissao;
     }
 
-    public RegistoCandidaturas getRegistoCandidaturas() {
+    public ListaCandidaturas getRegistoCandidaturas() {
         return this.m_regCandidaturas;
     }
 
@@ -242,6 +245,10 @@ public class Exposicao implements Submissivel, Atribuivel {
             setState(new ExposicaoStateEmRevisao(this));
         }
 
+    }
+    
+    public void setDataLimiteAlterarConflitos(Exposicao d_conflitos){
+        this.d_conflitos=d_conflitos;
     }
 
     @Override

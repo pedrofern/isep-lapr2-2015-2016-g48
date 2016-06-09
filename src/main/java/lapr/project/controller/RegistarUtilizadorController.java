@@ -15,25 +15,25 @@ public class RegistarUtilizadorController {
 
     public RegistarUtilizadorController(CentroExposicoes aCentroDeExposicoes) {
         centroDeExposicoes = aCentroDeExposicoes;
+        m_registoUtilizadores = centroDeExposicoes.getRegistoUtilizadores();
     }
 
     public void novoUtilizador() {
-        m_utilizador = m_registoUtilizadores.novoUtilizador();
+        m_utilizador = new Utilizador();
     }
 
-    public Utilizador setDados(String nome, String email, String user, String pass) {        
+    public Utilizador criaUtilizador(String nome, String email, String user, String pass) {        
         m_utilizador.setUsername(user);
         m_utilizador.setPassword(pass);
         m_utilizador.setNome(nome);
         m_utilizador.setEmail(email);
 
-        System.out.println(m_utilizador);
-        
         if (m_registoUtilizadores.registaUtilizador(m_utilizador)) {
             return m_utilizador;
         } else {
             return null;
         }
+
     }
 
     public void setUtilizador(Utilizador m_utilizador) {
