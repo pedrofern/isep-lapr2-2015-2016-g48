@@ -30,7 +30,7 @@ public class Main_1 {
 //        }
 
         //new AtribuirStandCandidaturaUI();
-       // new ();
+        new CriarExposicaoUI();
         //new DefinirFAEUI();
 
         
