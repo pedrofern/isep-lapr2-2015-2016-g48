@@ -1,49 +1,32 @@
 package lapr.project.ui.ucs;
 
-import lapr.project.utils.*;
-import lapr.project.controller.*;
-import lapr.project.model.*;
-import lapr.project.ui.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JPanel;
+import lapr.project.controller.AlterarUtilizadorController;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
+import lapr.project.utils.Utils;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Diana
  */
-public class AlterarUtilizadorUI {
+public class AlterarUtilizadorUI extends RegistarUtilizadorUI{
     private CentroExposicoes m_centroDeExposicoes;
+    private String m_utilizador;
     private AlterarUtilizadorController m_controller;
 
-    public AlterarUtilizadorUI(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
-        m_controller = new AlterarUtilizadorController(m_centroDeExposicoes);
-    }
-
-    
-    public void run() {
-        String strUser = Utils.readLineFromConsole("Introduza ID Utilizador: ");
-        Utilizador u = m_controller.getUtilizador(strUser);
-
-        u.toString();
-
-        String strNome = Utils.readLineFromConsole("Novo Nome:").trim();
-        if (strNome.isEmpty()) {
-            strNome = u.getNome();
-        }
-        String strUsername = Utils.readLineFromConsole("Novo Username:").trim();
-        if (strUsername.isEmpty()) {
-            strUsername = u.getUsername();
-        }
-        String strPwd = Utils.readLineFromConsole("Nova Pwd:").trim();
-        if (strPwd.isEmpty()) {
-            strPwd = u.getPassword();
-        }
-        String strEmail = Utils.readLineFromConsole("Novo Email:").trim();
-        if (strEmail.isEmpty()) {
-            strPwd = u.getEmail();
-        }
-
-        if (m_controller.alteraDados(strNome, strUsername, strPwd, strEmail)) {
-            System.out.println("Utilizador alterado com sucesso");
-        }
+    public AlterarUtilizadorUI(CentroExposicoes centroDeExposicoes, String ut){
+        super(centroDeExposicoes);
+        
+        this.setTitle("Alterar Utilizador");
+        String pergunta="Pretende cancelar a alteração do registo de utilizador?";
+        
+        this.setPergunta(pergunta);
+ 
+        this.removerEmailPainelNorte();
+        
+        
     }
 }

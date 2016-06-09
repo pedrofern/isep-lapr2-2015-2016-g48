@@ -47,7 +47,11 @@ public class RegistarUtilizadorUI extends JFrame{
     private String strErro;
     private CentroExposicoes centroDeExposicoes;
     private RegistarUtilizadorController m_controllerRU;
-
+   
+    private JPanel painelNorte;
+    private JPanel painelEmail;
+    private String pergunta="Pretende cancelar o registo do utilizador?";
+    
     public RegistarUtilizadorUI(CentroExposicoes ce) {
         
         super("Registar Utilizador");
@@ -55,11 +59,11 @@ public class RegistarUtilizadorUI extends JFrame{
     
         centroDeExposicoes = ce;
         m_controllerRU = new RegistarUtilizadorController(centroDeExposicoes);
-        
+ 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                fecharJanelaRegistoUtilizador();
+                fecharJanelaRegistoUtilizador("Pretende voltar ao menu principal?");
             }
         });
         
@@ -78,7 +82,7 @@ public class RegistarUtilizadorUI extends JFrame{
     }
     
     private JPanel criarPainelDadosUtilizador(){
-        JPanel painelNorte = new JPanel( new GridLayout(4,1));
+        painelNorte = new JPanel( new GridLayout(4,1));
         final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 10;
         final int MARGEM_ESQUERDA = 25, MARGEM_DIREITA = 0;
         painelNorte.setBorder(BorderFactory.createCompoundBorder(
@@ -142,10 +146,13 @@ public class RegistarUtilizadorUI extends JFrame{
         painelNorte.add(criarPainelLabels("Username: ", txtUsername, strErro));
         painelNorte.add(criarPainelLabels("Password: ", txtPassword,""));
         painelNorte.add(criarPainelLabels("Nome:", txtNome,""));
-        painelNorte.add(criarPainelLabels("Email:", txtEmail,""));
         
+        painelEmail=criarPainelLabels("Email:", txtEmail,"");      
+        painelNorte.add(painelEmail);
+
         return painelNorte;
     }
+    
     /**
      * cria painel para introduzir label1, campo para introdução dados e label2
      * @param label1 introduzir label1
@@ -251,7 +258,7 @@ public class RegistarUtilizadorUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fecharJanelaRegistoUtilizador();
+                fecharJanelaRegistoUtilizador(pergunta);
             }
         });
 
@@ -284,13 +291,13 @@ public class RegistarUtilizadorUI extends JFrame{
         }
     }
     
-    private void fecharJanelaRegistoUtilizador(){
+    private void fecharJanelaRegistoUtilizador(String pergunta){
         if (txtNome.getText()!=""||
                 txtEmail.getText()!=""||
                 txtPassword.getText()!=""||
                 txtUsername.getText()!=""){
             String[] opcoes = {"Sim", "Não"};
-            String pergunta = "Pretende cancelar o registo do utilizador?";
+            
             int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
                     "Registar utilizador", JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
@@ -301,4 +308,13 @@ public class RegistarUtilizadorUI extends JFrame{
             }
         }
     }
+        
+    public void removerEmailPainelNorte(){
+        painelNorte.remove(painelEmail);
+    } 
+    
+    public void setPergunta(String novaPergunta){
+        pergunta=novaPergunta;
+    }
+ 
 }
