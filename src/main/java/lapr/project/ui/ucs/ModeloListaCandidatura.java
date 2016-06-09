@@ -6,7 +6,7 @@
 package lapr.project.ui.ucs;
 
 import javax.swing.AbstractListModel;
-import lapr.project.model.lists.RegistoCandidaturas;
+import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.Candidatura;
 
 
@@ -18,12 +18,12 @@ import lapr.project.model.Candidatura;
 //    /**
 //     * Guarda as listas candidaturas
 //     */
-//    private RegistoCandidaturas listaCandidaturas;
+//    private ListaCandidaturas listaCandidaturas;
 //    /**
 //     * Constrói uma instância de modelo lista candidaturas
 //     * @param listaCandidaturas lista candidaturas
 //     */
-//    public ModeloListaCandidatura(RegistoCandidaturas listaCandidaturas) {
+//    public ModeloListaCandidatura(ListaCandidaturas listaCandidaturas) {
 //        this.listaCandidaturas = listaCandidaturas;
 //    }
 //    /**

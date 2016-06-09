@@ -9,7 +9,7 @@ import lapr.project.model.mechanisms.ProcessoAtribuicao;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.lists.RegistoCandidaturas;
+import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
 
 /**
@@ -27,7 +27,7 @@ public class Exposicao implements Submissivel, Atribuivel {
     private Date dataFimSubmissao;
     private Date dataInicioAtribuicao;
     private Date dataFimAtribuicao;
-    private RegistoCandidaturas m_regCandidaturas;
+    private ListaCandidaturas m_regCandidaturas;
     private ListaFAE m_regFAEs;
     private final List<Organizador> e_listaOrganizadores;
     private ListaSubmissoes listaSubmissoes;
@@ -162,7 +162,7 @@ public class Exposicao implements Submissivel, Atribuivel {
         this.dataInicioSubmissao = strDataInicioSubmissao;
     }
 
-    public RegistoCandidaturas getRegistoCandidaturas() {
+    public ListaCandidaturas getRegistoCandidaturas() {
         return this.m_regCandidaturas;
     }
 

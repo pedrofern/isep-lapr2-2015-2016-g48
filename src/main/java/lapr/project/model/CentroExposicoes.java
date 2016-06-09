@@ -6,8 +6,8 @@ import lapr.project.model.mechanisms.MecanismoAtribuicao;
 import lapr.project.model.mechanisms.RegistoTipoConflitos;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.lists.RegistoExposicoes;
-import lapr.project.model.lists.RegistoDemonstracoes;
-import lapr.project.model.lists.RegistoCandidaturas;
+import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.RegistoRecursos;
 import java.util.*;
 
@@ -24,10 +24,10 @@ public class CentroExposicoes {
     private List<Recurso> m_listaRecursos;
     private RegistoRecursos m_regRecursos;
     private List<Demonstracao> m_listaDemonstracoes;
-    private RegistoDemonstracoes m_regDemonstracoes;
+    private ListaDemonstracoes m_regDemonstracoes;
     private RegistoExposicoes m_regExposicoes;
     private RegistoUtilizadores m_regUtilizadores;
-    private RegistoCandidaturas m_regCandidaturas;
+    private ListaCandidaturas m_regCandidaturas;
     private Timer timer;
     private List<MecanismoAtribuicao> listaMecanismoAtribuicao;
     private List<MecanismoAvaliacao> listaMecanismoAvaliacao;
@@ -45,7 +45,7 @@ public class CentroExposicoes {
         this.listaMecanismoAvaliacao = new ArrayList<>();
         this.listaMecanismoDetecao = new ArrayList<>();
         this.listaMecanismoAtribuicao = new ArrayList<>();
-        m_regCandidaturas = new RegistoCandidaturas();
+        m_regCandidaturas = new ListaCandidaturas();
         fillInData();
     }
 
@@ -91,7 +91,7 @@ public class CentroExposicoes {
         return this.m_regUtilizadores;
     }
 
-    public RegistoCandidaturas getRegistoCandidaturas() {
+    public ListaCandidaturas getRegistoCandidaturas() {
         return this.m_regCandidaturas;
     }
 
@@ -200,7 +200,7 @@ public class CentroExposicoes {
         return new Atribuicao();
     }
 
-    public RegistoDemonstracoes getRegistoDemonstracao() {
+    public ListaDemonstracoes getRegistoDemonstracao() {
         return this.m_regDemonstracoes;
     }
 

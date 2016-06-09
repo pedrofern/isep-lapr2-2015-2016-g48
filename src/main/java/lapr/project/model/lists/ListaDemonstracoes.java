@@ -10,11 +10,11 @@ import lapr.project.model.Recurso;
  *
  * @author Pedro Fernandes
  */
-public class RegistoDemonstracoes {
+public class ListaDemonstracoes {
 
     private List<Demonstracao> m_lstDemonstracao;
 
-    public RegistoDemonstracoes() {
+    public ListaDemonstracoes() {
         m_lstDemonstracao = new ArrayList<Demonstracao>();
     }
 
@@ -30,7 +30,7 @@ public class RegistoDemonstracoes {
     }
 
     public boolean validaDemonstracao(Demonstracao demonstracao) {
-//        System.out.println("RegistoDemonstracoes: validaDemonstracao: " + demonstracao.valida());
+//        System.out.println("ListaDemonstracoes: validaDemonstracao: " + demonstracao.valida());
         return true;
     }
 
