@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
@@ -78,6 +80,20 @@ public class CriarExposicaoUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtTitulo = new JTextField(CAMPO_LARGURA);
         txtTitulo.requestFocus();
+        txtTitulo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtTitulo.setText(txtTitulo.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtTitulo.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtTitulo.getText().length() > 40) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtTitulo);
@@ -91,6 +107,20 @@ public class CriarExposicaoUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtLocal = new JTextField(CAMPO_LARGURA);
         txtLocal.requestFocus();
+        txtLocal.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtLocal.setText(txtLocal.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtLocal.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtLocal.getText().length() > 40) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtLocal);
@@ -104,6 +134,20 @@ public class CriarExposicaoUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtDescricao = new JTextField(CAMPO_LARGURA);
         txtDescricao.requestFocus();
+        txtDescricao.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtDescricao.setText(txtDescricao.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtDescricao.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtDescricao.getText().length() > 40) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtDescricao);
@@ -119,6 +163,20 @@ public class CriarExposicaoUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtDataInicio = new JTextField(CAMPO_LARGURA);
         txtDataInicio.requestFocus();
+        txtDataInicio.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtDataInicio.setText(txtDataInicio.getText().replaceAll("[^0-9]", ""));
+            }
+        });
+        txtDataInicio.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtDataInicio.getText().length() > 8) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtDataInicio);        
@@ -132,6 +190,20 @@ public class CriarExposicaoUI extends JFrame {
         final int CAMPO_LARGURA = 30;
         txtDataFim = new JTextField(CAMPO_LARGURA);
         txtDataFim.requestFocus();
+        txtDataFim.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtDataFim.setText(txtDataFim.getText().replaceAll("[^0-9]", ""));
+            }
+        });
+        txtDataFim.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtDataFim.getText().length() > 8) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtDataFim);        
