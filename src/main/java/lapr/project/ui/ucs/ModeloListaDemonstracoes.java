@@ -17,12 +17,12 @@ import lapr.project.model.Demonstracao;
 //    /**
 //     * Guarda as listas demonstrações
 //     */
-//    private ListaDemonstracoes listaDemonstracoes;
+//    private RegistoDemonstracoes listaDemonstracoes;
 //    /**
 //     * Constrói uma instância de modelo lista demonstrações
 //     * @param listaDemonstracoes lista demonstrações
 //     */
-//    public ModeloListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
+//    public ModeloListaDemonstracoes(RegistoDemonstracoes listaDemonstracoes) {
 //        this.listaDemonstracoes = listaDemonstracoes;
 //    }
 //    /**
