@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.ui.ucs.AlterarUtilizadorUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -21,6 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.ui.ucs.AlterarUtilizadorUI;
 
 /**
  *
@@ -243,7 +245,7 @@ public class Janela extends JFrame /** implements Serializable**/{
 
         tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
 
-        tabPane.addTab("Alterar Utilizador", new PainelAlterarUtilizador());
+        tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(m_ce, m_ut));
       }  
        return tabPane; 
     }
