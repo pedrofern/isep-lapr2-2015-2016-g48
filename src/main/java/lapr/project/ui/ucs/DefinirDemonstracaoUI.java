@@ -14,7 +14,8 @@ import java.io.FileNotFoundException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
-import lapr.project.ui.PainelFae;
+import lapr.project.ui.*;
+import lapr.project.model.lists.*;
 
 public class DefinirDemonstracaoUI extends JFrame {
 
@@ -24,7 +25,7 @@ public class DefinirDemonstracaoUI extends JFrame {
     private JFrame framepai;
     private ModeloListaRecursos modeloListaRecurso;
     private JList listaCompletaRecurso;
-    private ListaRecurso listaRecurso;
+    private RegistoRecursos listaRecurso;
     private JTable tableListaRecurso;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
@@ -104,7 +105,7 @@ public class DefinirDemonstracaoUI extends JFrame {
                 INTERVALO_VERTICAL));
 
         listaCompletaRecurso = new JList();
-        listaRecurso = new ListaRecurso();
+        listaRecurso = new RegistoRecursos();
         modeloListaRecurso = new ModeloListaRecursos(listaRecurso);
 
         p.add(criarPainelListaRecurso("Lista de Recurso",

@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
+import lapr.project.model.lists.*;
 
 
 /**
@@ -25,7 +26,7 @@ public class DefinirFAEUI extends JFrame {
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;
     private ModeloListaUtilizadores modeloListaUtilizadores, modeloListaFAE;
-    private ListaUtilizadores listaCompletaUtilizadores,listaUtilizadoresFAE;
+    private RegistoUtilizadores listaCompletaUtilizadores,listaUtilizadoresFAE;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
     public DefinirFAEUI() throws FileNotFoundException {
@@ -104,7 +105,7 @@ public class DefinirFAEUI extends JFrame {
                 INTERVALO_VERTICAL));
 
         lstCompletaUtilizadores = new JList();
-        listaCompletaUtilizadores = new ListaUtilizadores();
+        listaCompletaUtilizadores = new RegistoUtilizadores();
         modeloListaUtilizadores = new ModeloListaUtilizadores(listaCompletaUtilizadores);
         btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
         p.add(criarPainelLista("Lista de Utilizadores",
@@ -112,7 +113,7 @@ public class DefinirFAEUI extends JFrame {
                 modeloListaUtilizadores));
 
         lstUtilizadoresFAE = new JList();
-        listaUtilizadoresFAE = new ListaUtilizadores();
+        listaUtilizadoresFAE = new RegistoUtilizadores();
         modeloListaFAE = new ModeloListaUtilizadores(listaUtilizadoresFAE);
         btnEliminarFAE = criarBotaoEliminarJogador(lstUtilizadoresFAE);
 

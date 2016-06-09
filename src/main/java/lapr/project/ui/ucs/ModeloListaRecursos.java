@@ -18,14 +18,14 @@ public class ModeloListaRecursos extends AbstractListModel {
     /**
      * Guarda lista recursos
      */
-    private ListaRecurso listaRecursos;
+    private RegistoRecursos listaRecursos;
 
     /**
      * Construtor de objetos modelo lista recursos
      *
      * @param listaRecursos lista recursos
      */
-    public ModeloListaRecursos(ListaRecurso listaRecursos) {
+    public ModeloListaRecursos(RegistoRecursos listaRecursos) {
         this.listaRecursos = listaRecursos;
     }
 
@@ -71,7 +71,7 @@ public class ModeloListaRecursos extends AbstractListModel {
      * @return true se remover false caso contrario
      */
     public boolean removeElement(Recurso recurso) {
-        int indice = listaRecursos.indiceDe(recurso);
+        int indice = listaRecursos.indiceDeRecurso(recurso);
         boolean recursoRemovido = listaRecursos.removerRecurso(recurso);
         if (recursoRemovido) {
             fireIntervalRemoved(this, indice, indice);

@@ -9,7 +9,7 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoUtilizadores {
 
-    private final List<Utilizador> m_listaUtilizadores;
+    private List<Utilizador> m_listaUtilizadores;
 
     public RegistoUtilizadores() {
         m_listaUtilizadores = new ArrayList<>();
@@ -119,6 +119,19 @@ public class RegistoUtilizadores {
         }
 
         return false;
+    }
+    
+    
+    public int tamanho() {
+        return this.m_listaUtilizadores.size();
+    }
+    
+    public boolean removerUtilizador(Utilizador utilizador) {
+        return m_listaUtilizadores.remove(utilizador);
+    }
+    
+    public void ordenarPorPosicao(){
+        Collections.sort(m_listaUtilizadores);
     }
 
     /**

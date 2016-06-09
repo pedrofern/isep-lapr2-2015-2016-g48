@@ -6,7 +6,8 @@
 package lapr.project.ui.ucs;
 
 import javax.swing.AbstractListModel;
-import lapr.project.model.Utilizador;
+import lapr.project.model.lists.*;
+import lapr.project.model.*;
 
 /**
  *
@@ -14,9 +15,9 @@ import lapr.project.model.Utilizador;
  */
 public class ModeloListaUtilizadores extends AbstractListModel {
 
-    private ListaUtilizadores listaUtilizadores;
+    private RegistoUtilizadores listaUtilizadores;
     
-    public ModeloListaUtilizadores(ListaUtilizadores listaUtilizadores) {
+    public ModeloListaUtilizadores(RegistoUtilizadores listaUtilizadores) {
         this.listaUtilizadores = listaUtilizadores;
     }
 
@@ -27,18 +28,18 @@ public class ModeloListaUtilizadores extends AbstractListModel {
 
     @Override
     public Object getElementAt(int indice) {
-        return listaUtilizadores.obterUtilizador(indice);
+        return listaUtilizadores.getListaUtilizadores().indexOf(indice);
     }
     
     public boolean addElement(Utilizador utilizador){
-        boolean utilizadorAdicionado = listaUtilizadores.adicionarUtilizador(utilizador);
+        boolean utilizadorAdicionado = listaUtilizadores.addUtilizador(utilizador);
         if(utilizadorAdicionado)
             fireIntervalAdded(this, getSize()-1, getSize()-1);
         return utilizadorAdicionado;
     } 
 
     public boolean removeElement(Utilizador utilizador){
-        int indice = listaUtilizadores.indiceDe(utilizador);
+        int indice = listaUtilizadores.getListaUtilizadores().indexOf(utilizador);
         boolean utilizadorRemovido = listaUtilizadores.removerUtilizador(utilizador);
         if(utilizadorRemovido)
             fireIntervalRemoved(this, indice, indice);
@@ -46,7 +47,7 @@ public class ModeloListaUtilizadores extends AbstractListModel {
     }
     
     public boolean contains(Utilizador utilizador){
-        return listaUtilizadores.contem(utilizador);
+        return listaUtilizadores.getListaUtilizadores().contains(utilizador);
     }
     
     public void sort(){
