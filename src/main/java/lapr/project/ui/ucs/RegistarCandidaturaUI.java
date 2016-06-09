@@ -113,8 +113,16 @@ public class RegistarCandidaturaUI extends JFrame{
         m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
         centroExposicoes = ce;
         m_controllerRCC.novaCandidatura();
-        
-
+        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
+    //testar demonstracoes
+        listaRecursos = new RegistoRecursos();
+        Demonstracao d1= new Demonstracao(1, "descricaoTeste", listaRecursos,centroExposicoes);
+        Demonstracao d2= new Demonstracao(2, "descricaoTeste2", listaRecursos,centroExposicoes);
+        Demonstracao d3= new Demonstracao(3, "descricaoTeste3", listaRecursos,centroExposicoes);
+        listaDemonstracoes.registaDemonstracao(d1);
+        listaDemonstracoes.registaDemonstracao(d2);
+        listaDemonstracoes.registaDemonstracao(d3);
+    //fim
         JPanel norte = criarPainelNorte();
         JPanel centro = criarPainelListas();
         JPanel botoes = criarPainelBotoes();        
@@ -555,13 +563,11 @@ public class RegistarCandidaturaUI extends JFrame{
                                 lstProdutos,
                                 botaoAdicionarProduto,
                                 botaoRemoverProduto));
-        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
-        ModeloListaDemonstracoes modeloListaDemo = new ModeloListaDemonstracoes(listaDemonstracoes);
-        lstDemonstracoes = new JList(modeloListaDemo);
-        botaoVerRecursoDemonstracao = criarBotaoRecursosDemonstracao();
-        p.add(criarPainelListaDemo("Demonstrações:",
-                                lstDemonstracoes,                            
-                                botaoVerRecursoDemonstracao));
+//        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
+//        ModeloListaDemonstracoes modeloListaDemo = new ModeloListaDemonstracoes(listaDemonstracoes);
+//        lstDemonstracoes = new JList(modeloListaDemo);
+//        botaoVerRecursoDemonstracao = criarBotaoRecursosDemonstracao();
+        p.add(criarPainelListaDemo());//("Demonstrações:",lstDemonstracoes,botaoVerRecursoDemonstracao));
         return p;
     }
     /**
@@ -603,29 +609,61 @@ public class RegistarCandidaturaUI extends JFrame{
      * @param btn botao
      * @return painel lista demonstrações recebendo titulo lista, lista demonstrações e um botao
      */
-    private JPanel criarPainelListaDemo(
-            String tituloLista,
-            JList lstLista,
-            JButton btn)
-    {
-        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrPane = new JScrollPane(lstLista);
-
+    private JPanel criarPainelListaDemo(){
         JPanel p = new JPanel(new BorderLayout());
         
         final int MARGEM_SUPERIOR = 5, MARGEM_INFERIOR = 5;
         final int MARGEM_ESQUERDA = 5, MARGEM_DIREITA = 5;
         p.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder(tituloLista),
+                BorderFactory.createTitledBorder("Demonstrações"),
                 new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA)));
         
-        p.add(scrPane, BorderLayout.CENTER);
+        p.add(criarPainelCheckBoxDemo(), BorderLayout.CENTER);
 
-        JPanel pBotoes = criarPainelBotaoListaDemo(btn);
-        p.add(pBotoes, BorderLayout.SOUTH);
         return p;
     }
+    private JPanel criarPainelCheckBoxDemo(){
+        JPanel pCheck=new JPanel();
+        
+        Demonstracao[] opcoes=centroExposicoes.getRegistoDemonstracoes().getArray();
+        int lenght=opcoes.length;
+        int LINHAS= lenght+1/2;
+        
+        setLayout(new GridLayout(LINHAS, 1));
+ 
+        for(Demonstracao d:opcoes){
+            String sDemo=d.toString();
+            JCheckBox cb=new JCheckBox(sDemo);
+            
+            cb.addItemListener(new ItemListener() {
+
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                   if(cb.isSelected()){
+                       //adicionar 
+//                       centroExposicoes.getRegistoDemos().addDemonstracao(d);
+        System.out.println("selecionou");
+                   }
+               }
+            });
+            pCheck.add(cb);
+        }
+        return pCheck;
+    }
+
+ private class CheckBoxHandler implements ItemListener{
+        private Demonstracao demo=null;
+         
+ 
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+    
+        }
+    }
+
+
 
     
 
