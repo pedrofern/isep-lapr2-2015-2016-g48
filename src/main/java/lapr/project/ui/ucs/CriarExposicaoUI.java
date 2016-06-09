@@ -227,9 +227,20 @@ public class CriarExposicaoUI extends JFrame {
         return p;
 
     }
+    
+    private void guardar() {
+        String titulo,descricao,local, dataInicio,dataFim;
+        titulo=txtTitulo.getText();
+        descricao=txtDescricao.getText();
+        local=txtLocal.getText();
+        dataInicio=txtDataInicio.getText();
+        dataFim=txtDataFim.getText();
+        
+    }
 
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
+        
         return btnConfirmar;
     }
 
