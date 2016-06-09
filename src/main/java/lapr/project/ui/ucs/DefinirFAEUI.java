@@ -223,5 +223,4 @@ public class DefinirFAEUI extends JFrame {
         });
         return btnCancelar;
     }
-    
 }
