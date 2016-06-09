@@ -27,8 +27,8 @@ public class CriarExposicaoUI extends JFrame {
 
     private CentroExposicoes m_centroDeExposicoes;
     private CriarExposicaoController m_controller;
-    private static final int JANELA_LARGURA = 1000;
-    private static final int JANELA_ALTURA = 500;
+    private static final int JANELA_LARGURA = 700;
+    private static final int JANELA_ALTURA = 300;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Criar Exposicao").getPreferredSize();
     private JButton btnConfirmar, btnFechar;
