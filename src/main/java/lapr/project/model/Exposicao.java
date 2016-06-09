@@ -14,9 +14,9 @@ import java.util.*;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Pedro Fernandes 
  */
-public class Exposicao implements Submissivel, Atribuivel {
+public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao> {
 
     private String titulo;
     private String textoDescritivo;
@@ -422,6 +422,11 @@ public class Exposicao implements Submissivel, Atribuivel {
         return false;
     }
 
+     
+
+    public int compareTo(Exposicao outraExposicao) {
+        return titulo.compareTo(outraExposicao.titulo);
+    }
     @Override
     public ListaSubmissoes getListaSubmissoes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
