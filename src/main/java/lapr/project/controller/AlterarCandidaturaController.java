@@ -19,7 +19,7 @@ public class AlterarCandidaturaController {
         return m_candidatura;
     }
 
-    public boolean alteraDados(String strNome, String strEmail, int strTelemovel, double strAreaExpo, int strQuantidadeConvites) {
+    public boolean alteraDados(String strNome, String strEmail, int strTelemovel, int strAreaExpo, int strQuantidadeConvites) {
         Candidatura cClone = m_candidatura.clone();
         cClone.setNomeEmpresa(strNome);
         cClone.setMorada(strEmail);

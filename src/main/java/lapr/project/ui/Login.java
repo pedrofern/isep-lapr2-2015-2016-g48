@@ -240,6 +240,7 @@ public class Login extends JFrame /**implements Serializable**/ {
 //                              
 //                
 //
+                dispose();
             }
         });
         return btn;

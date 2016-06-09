@@ -40,6 +40,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         state = new ExposicaoCriadaEstado(this);
         e_listaOrganizadores = new ArrayList<Organizador>();
         listaSubmissoes = new ListaSubmissoes(this);
+        m_regCandidaturas = new ListaCandidaturas();
     }
 
     public boolean setState(ExposicaoEstado state) {

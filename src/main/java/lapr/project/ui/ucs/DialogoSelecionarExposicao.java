@@ -25,6 +25,9 @@ public class DialogoSelecionarExposicao extends JDialog{
      */
     public DialogoSelecionarExposicao(CentroExposicoes ce){
         m_centroExposicoes = ce;
+        //RETIRAR
+        e = m_centroExposicoes.novaExposicao();
+        e.setTitulo("TESTE");
         
 // PARA QUANDO EXPOSICOES ESTIVEREM A FUNCIONAR
         //-------------------------------------------------------

@@ -102,20 +102,17 @@ public class RegistarCandidaturaUI extends JFrame{
     private CentroExposicoes centroExposicoes;
 
     private Representante e_representante;
-    private RegistarCandidaturaController m_controllerCCC;
+    private RegistarCandidaturaController m_controllerRCC;
 
     public RegistarCandidaturaUI(CentroExposicoes ce, Exposicao exp) {
         
         super("Registar Candidatura");
         
-        //inicio => USADO PRA TESTE
         exposicao = exp;
-//        exposicao.setTitulo("TESTE");
-        // fim
         e_representante = new Representante();
-        m_controllerCCC = new RegistarCandidaturaController(e_representante,exposicao);
+        m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
         centroExposicoes = ce;
-        m_controllerCCC.novaCandidatura();
+        m_controllerRCC.novaCandidatura();
         
 
         JPanel norte = criarPainelNorte();
@@ -465,33 +462,28 @@ public class RegistarCandidaturaUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{                       
-//                    int area = Integer.parseInt(txtArea.getText());
-//                    int convites = Integer.parseInt(txtConvites.getText());
-//                    String morada = txtMorada.getText();
-//                    String nome = txtNome.getText();
-//                    int telemovel = Integer.parseInt(txtTelemovel.getText());
-//                    candidatura = new Candidatura(nome, morada,
-//                            area, convites, telemovel, listaProdutos, 
-//                            listaDemonstracoes, centroExposicoes);
-//
-//                    boolean candidaturaAdicionada = exposicao.addCandidatura(candidatura);
-//                    if (candidaturaAdicionada) {                      
-//                        JOptionPane.showMessageDialog(
-//                                framePai,
-//                                "Candidatura adicionada.",
-//                                "Nova Candidatura",
-//                                JOptionPane.INFORMATION_MESSAGE);
-//                        dispose();
-//                        framePai.setVisible(true);
-//                    } else {
-//                        JOptionPane.showMessageDialog(
-//                                framePai,
-//                                "Candidatura já registada!",
-//                                "Nova Candidatura",
-//                                JOptionPane.ERROR_MESSAGE);
-//                    }
-//                    dispose();
-//                    framePai.setVisible(true);                        
+                    int area = Integer.parseInt(txtArea.getText());
+                    int convites = Integer.parseInt(txtConvites.getText());
+                    String morada = txtMorada.getText();
+                    String nome = txtNome.getText();
+                    int telemovel = Integer.parseInt(txtTelemovel.getText());
+                    
+                    candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
+                    if (candidatura != null) {                      
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Candidatura adicionada.",
+                                "Nova Candidatura",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Candidatura já registada!",
+                                "Nova Candidatura",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                    dispose();                      
                 }
                 catch (NumberFormatException ex){
                     JOptionPane.showMessageDialog(
@@ -554,7 +546,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,
                                               INTERVALO_VERTICAL));
-        listaProdutos = m_controllerCCC.getCandidatura().getListaProdutos();
+        listaProdutos = m_controllerRCC.getCandidatura().getListaProdutos();
         ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(listaProdutos);
         lstProdutos = new JList(modeloListaProdutos);
         botaoAdicionarProduto = criarBotaoAdicionarProduto();

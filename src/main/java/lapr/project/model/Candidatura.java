@@ -14,13 +14,13 @@ public class Candidatura {
     private String nomeEmpresa;
     private String morada;
     private int telemovel;
-    private double areaExposicao;
+    private int areaExposicao;
     private int quantidadeConvites;
     private ListaProduto e_listaProdutos;
     private ListaFAE e_listaFAE;
     private ListaCandidaturas c_listaCandidaturas;
 
-    public Candidatura(String nomeEmpresa, String morada, int telemovel, double areaExposicao, int quantidadeConvites) {
+    public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
         this.nomeEmpresa = nomeEmpresa;
         this.morada = morada;
         this.telemovel = telemovel;
@@ -52,7 +52,7 @@ public class Candidatura {
         return this.telemovel;
     }
     
-    public double getAreaExposicao(){
+    public int getAreaExposicao(){
         return this.areaExposicao;
     }
     
@@ -76,7 +76,7 @@ public class Candidatura {
         this.telemovel = novoTelemovel;
     }
 
-    public void setAreaExposicao(double novaAreaExposicao) {
+    public void setAreaExposicao(int novaAreaExposicao) {
         this.areaExposicao = novaAreaExposicao;
     }
 
@@ -119,7 +119,41 @@ public class Candidatura {
     }
 
     public boolean valida() {
-        System.out.println("Candidatura: valida: " + this.toString());
+        return validaNomeEmpresa() && validaMorada() && validaTelemovel() && 
+                validaArea() && validaContives();
+    }
+    public boolean validaNomeEmpresa() {
+        if (nomeEmpresa == null || nomeEmpresa.isEmpty() || nomeEmpresa.matches(".*\\d+.*")) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validaMorada() {
+        if (morada == null || morada.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validaTelemovel() {
+        if (telemovel<900000000 && telemovel>999999999){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validaArea() {
+        if (areaExposicao<1 && areaExposicao>999){
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean validaContives() {
+        if (areaExposicao<1 && areaExposicao>999){
+            return false;
+        }
         return true;
     }
 

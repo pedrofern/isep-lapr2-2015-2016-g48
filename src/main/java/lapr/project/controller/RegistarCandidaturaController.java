@@ -18,8 +18,7 @@ public class RegistarCandidaturaController {
     public RegistarCandidaturaController(Representante representante,Exposicao exp) {
         e_representante = representante;
         m_exposicao = exp;
-        m_listaCandidaturas = m_exposicao.getRegistoCandidaturas();
-        
+        m_listaCandidaturas = m_exposicao.getRegistoCandidaturas();        
     }
 
     public void novaCandidatura() {
@@ -42,12 +41,27 @@ public class RegistarCandidaturaController {
         m_candidatura.setTelemovel(telemovel);
     }
 
-    public void setAreaExposicao(double areaExposicao) {
+    public void setAreaExposicao(int areaExposicao) {
         m_candidatura.setAreaExposicao(areaExposicao);
     }
 
     public void setQuantidadeConvites(int quantidadeConvites) {
         m_candidatura.setQuantidadeConvites(quantidadeConvites);
+    }
+    
+    public Candidatura registaCandidatura(String nomeEmpresa,String morada,int telemovel,
+                    int areaExposicao,int quantidadeConvites){
+        m_candidatura.setNomeEmpresa(nomeEmpresa);
+        m_candidatura.setMorada(morada);
+        m_candidatura.setTelemovel(telemovel);
+        m_candidatura.setAreaExposicao(areaExposicao);
+        m_candidatura.setQuantidadeConvites(quantidadeConvites);
+        
+        if (m_listaCandidaturas.registaCandidaturas(m_candidatura)) {
+            return m_candidatura;
+        } else {
+            return null;
+        }
     }
 
     public boolean valida() {
