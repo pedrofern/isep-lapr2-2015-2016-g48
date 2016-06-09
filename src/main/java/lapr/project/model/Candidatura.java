@@ -3,6 +3,7 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import lapr.project.model.lists.*;
 
 /**
  *
@@ -15,9 +16,9 @@ public class Candidatura {
     private int telemovel;
     private double areaExposicao;
     private int quantidadeConvites;
-    private List<Produto> e_listaProdutos;
-    private List<FAE> e_listaFAE;
-    private List<Candidatura> c_listaCandidaturas;
+    private ListaProduto e_listaProdutos;
+    private ListaFAE e_listaFAE;
+    private ListaCandidaturas c_listaCandidaturas;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, double areaExposicao, int quantidadeConvites) {
         this.nomeEmpresa = nomeEmpresa;
@@ -25,10 +26,13 @@ public class Candidatura {
         this.telemovel = telemovel;
         this.areaExposicao = areaExposicao;
         this.quantidadeConvites = quantidadeConvites;
-        e_listaProdutos = new ArrayList<Produto>();
-        e_listaFAE = new ArrayList<FAE>();
-        c_listaCandidaturas = new ArrayList<Candidatura>();
-
+        e_listaProdutos = new ListaProduto();
+        e_listaFAE = new ListaFAE();
+        c_listaCandidaturas = new ListaCandidaturas();
+    }
+    
+    public Candidatura() {
+        e_listaProdutos = new ListaProduto();
     }
 
     @Override
@@ -55,10 +59,6 @@ public class Candidatura {
     public int getQuantidadeConvites(){
         return this.quantidadeConvites;
     }
-    
-    public Candidatura() {
-        e_listaProdutos = new ArrayList<Produto>();
-    }
 
     public String getInfo() {
         return this.toString();
@@ -84,18 +84,18 @@ public class Candidatura {
         this.quantidadeConvites = novaQuantidadeConvites;
     }
 
-    public List<Produto> getListaProdutos() {
-        List<Produto> lOrg = new ArrayList<Produto>();
-        for (ListIterator<Produto> it = e_listaProdutos.listIterator(); it.hasNext();) {
-            lOrg.add(it.next());
+    public ListaProduto getListaProdutos() {
+        ListaProduto lOrg = new ListaProduto();
+        for (ListIterator<Produto> it = e_listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
+            lOrg.adicionarProduto(it.next());
         }
         return lOrg;
     }
 
-    public List<Candidatura> getListaCandidaturas() {
-        List<Candidatura> lc = new ArrayList<Candidatura>();
-        for (ListIterator<Candidatura> it = c_listaCandidaturas.listIterator(); it.hasNext();) {
-            lc.add(it.next());
+    public ListaCandidaturas getListaCandidaturas() {
+        ListaCandidaturas lc = new ListaCandidaturas();
+        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
+            lc.addCandidatura(it.next());
         }
         return lc;
     }
@@ -107,7 +107,7 @@ public class Candidatura {
     }
 
     private boolean addProduto(Produto p) {
-        return e_listaProdutos.add(p);
+        return e_listaProdutos.adicionarProduto(p);
     }
 
     public boolean validaCandidatura(Candidatura c) {

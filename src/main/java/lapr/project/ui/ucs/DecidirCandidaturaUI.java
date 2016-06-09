@@ -21,42 +21,42 @@ public class DecidirCandidaturaUI {
     }
 
     
-    public void run() {
-
-        List<Exposicao> le = m_controllerDC.iniciarAvaliacao();
-
-        apresentaExposicoes(le);
-
-        Exposicao e = selecionaExposicao(le);
-
-        if (e != null) {
-            m_controllerDC.selectExposicao(e);
-
-            String strResposta = Utils.readLineFromConsole("Introduza a Resposta à Candidatura: ");
-            String strJustificacao = Utils.readLineFromConsole("Introduza a Justificação dessa Resposta: ");
-
-            m_controllerDC.setAvaliacao(strResposta, strJustificacao);
-
-            String strQuestao = "Confirma a decisao da candidatura com a seguinte informação: \n" + m_controllerDC.getInfoResumo() + "\n Opção (S/N):";
-            boolean bConfirma = confirma(strQuestao);
-
-            if (bConfirma) {
-                if (m_controllerDC.registarDecisao()) {
-                    System.out.println("Decisao concluida com sucesso.");
-                } else {
-                    System.out.println("Decisao cancelada devido a erros.");
-                }
-
-            } else {
-                System.out.println("Decisao de candidatura cancelada.");
-            }
-
-            System.out.println("Terminado.");
-        } else {
-            System.out.println("Decisao de candidatura cancelada.");
-        }
-
-    }
+//    public void run() {
+//
+//        List<Exposicao> le = m_controllerDC.iniciarAvaliacao();
+//
+//        apresentaExposicoes(le);
+//
+//        Exposicao e = selecionaExposicao(le);
+//
+//        if (e != null) {
+//            m_controllerDC.selectExposicao(e);
+//
+//            String strResposta = Utils.readLineFromConsole("Introduza a Resposta à Candidatura: ");
+//            String strJustificacao = Utils.readLineFromConsole("Introduza a Justificação dessa Resposta: ");
+//
+//            m_controllerDC.setAvaliacao(strResposta, strJustificacao);
+//
+//            String strQuestao = "Confirma a decisao da candidatura com a seguinte informação: \n" + m_controllerDC.getInfoResumo() + "\n Opção (S/N):";
+//            boolean bConfirma = confirma(strQuestao);
+//
+//            if (bConfirma) {
+//                if (m_controllerDC.registarDecisao()) {
+//                    System.out.println("Decisao concluida com sucesso.");
+//                } else {
+//                    System.out.println("Decisao cancelada devido a erros.");
+//                }
+//
+//            } else {
+//                System.out.println("Decisao de candidatura cancelada.");
+//            }
+//
+//            System.out.println("Terminado.");
+//        } else {
+//            System.out.println("Decisao de candidatura cancelada.");
+//        }
+//
+//    }
 
     private Exposicao selecionaExposicao(List<Exposicao> le) {
         String opcao;

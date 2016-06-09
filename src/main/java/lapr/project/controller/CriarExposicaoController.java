@@ -25,7 +25,7 @@ public class CriarExposicaoController {
     }
 
     public void novaExposicao() {
-//        this.m_exposicao = m_regExposicoes.novaExposicao();
+        this.m_exposicao = m_regExposicoes.novaExposicao();
     }
 
     /**
@@ -85,7 +85,7 @@ public class CriarExposicaoController {
         m_exposicao.setDataInicioAtribuicao(strDataInicioAtribuicao);
     }
 
-    public List<Utilizador> getListaUtilizadores() {
+    public RegistoUtilizadores getListaUtilizadores() {
         return this.m_oCE.getUtilizadores();
     }
 

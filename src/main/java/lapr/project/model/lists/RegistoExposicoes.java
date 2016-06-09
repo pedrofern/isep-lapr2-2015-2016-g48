@@ -20,9 +20,9 @@ public class RegistoExposicoes {
         m_listaUtilizadores = new ArrayList<Utilizador>();
     }
 
-//    public Exposicao novaExposicao() {
-//        return new Exposicao();
-//    }
+    public Exposicao novaExposicao() {
+        return new Exposicao();
+    }
 
     public boolean registaExposicao(Exposicao e) {
         if (e.valida() && validaExposicao(e)) {
@@ -35,6 +35,13 @@ public class RegistoExposicoes {
     private boolean addExposicao(Exposicao e) {
         return m_listaExposicoes.add(e);
     }
+    
+    public boolean adicionarExposicao(Exposicao expo) {
+        if (!m_listaExposicoes.contains(expo)) {
+            return m_listaExposicoes.add(expo);
+        }
+        return false;
+    }
 
     public boolean validaExposicao(Exposicao e) {
         System.out.println("RegistoExposicoes: validaExposicao:" + e.toString());
@@ -44,6 +51,10 @@ public class RegistoExposicoes {
     @Override
     public String toString() {
         return "RegistoExposicoes:" + "m_listaExposicoes=" + m_listaExposicoes;
+    }
+    
+    public List<Exposicao> getExposicao(){
+        return m_listaExposicoes;
     }
 
     public List<Exposicao> getExposicaoOrganizador(String strId) {

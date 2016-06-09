@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import java.util.*;
 import lapr.project.model.*;
+import lapr.project.model.lists.*;
 
 /**
  *
@@ -19,11 +20,11 @@ public class AvaliarCandidaturaController {
         m_centroDeExposicoes = centroDeExposicoes;
     }
 
-    public List<Candidatura> getListaCandidaturas() {
+    public ListaCandidaturas getListaCandidaturas() {
         return m_candidatura.getListaCandidaturas();
     }
 
-    public List<Exposicao> iniciarAvaliacao() {
+    public RegistoExposicoes iniciarAvaliacao() {
         return this.m_centroDeExposicoes.getListaExposicoes();
     }
 

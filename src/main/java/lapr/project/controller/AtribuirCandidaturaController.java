@@ -3,6 +3,7 @@ package lapr.project.controller;
 import lapr.project.model.mechanisms.Atribuicao;
 import java.util.*;
 import lapr.project.model.*;
+import lapr.project.model.lists.*;
 
 /**
  *
@@ -14,9 +15,9 @@ public class AtribuirCandidaturaController {
     private Exposicao m_exposicao;
     private Candidatura c_candidatura;
     private Organizador organizador;
-    private List<Exposicao> m_listaExposicoes;
-    private List<FAE> m_listaFAE;
-    private List<Candidatura> c_listaCandidaturas;
+    private RegistoExposicoes m_listaExposicoes;
+    private ListaFAE m_listaFAE;
+    private ListaCandidaturas c_listaCandidaturas;
     private Atribuicao ac_novaAtribuicaoCandidatura;
     private CentroExposicoes m_centroDeExposicoes;
 
@@ -24,7 +25,7 @@ public class AtribuirCandidaturaController {
         e_centroDeExposicoes = centroDeExposicoes;
     }
 
-    public List<Exposicao> iniciarAtribuicaoCandidatura() {
+    public RegistoExposicoes iniciarAtribuicaoCandidatura() {
         return this.m_centroDeExposicoes.getListaExposicoes();
     }
 
@@ -51,24 +52,24 @@ public class AtribuirCandidaturaController {
     public List<Candidatura> getListaCandidaturas() {
         List<Candidatura> lc = new ArrayList<Candidatura>();
 
-        for (ListIterator<Candidatura> it = c_listaCandidaturas.listIterator(); it.hasNext();) {
+        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
             lc.add(it.next());
         }
 
         return lc;
     }
 
-    public List<FAE> getListaFAE() {
-        List<FAE> lf = new ArrayList<FAE>();
+    public ListaFAE getListaFAE() {
+        ListaFAE lf = new ListaFAE();
 
-        for (FAE f : m_listaFAE) {
-            lf.add(f);
+        for (FAE f : m_listaFAE.getListaFAE()) {
+            lf.adicionarFAE(f);
         }
         return lf;
     }
 
     private void addFAE(FAE f) {
-        m_listaFAE.add(f);
+        m_listaFAE.adicionarFAE(f);
     }
 
     public boolean validaAtribuicaoCandidatura() {

@@ -9,6 +9,7 @@ import lapr.project.model.*;
 public class CriarCandidaturaController {
 
     private Representante e_representante;
+    private Utilizador m_user;
     private Candidatura m_candidatura;
 
     public CriarCandidaturaController(Representante representante) {

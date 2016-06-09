@@ -1,14 +1,7 @@
 package lapr.project.model;
 
-import lapr.project.model.mechanisms.Atribuicao;
-import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
-import lapr.project.model.mechanisms.MecanismoAtribuicao;
-import lapr.project.model.mechanisms.RegistoTipoConflitos;
-import lapr.project.model.lists.RegistoUtilizadores;
-import lapr.project.model.lists.RegistoExposicoes;
-import lapr.project.model.lists.ListaDemonstracoes;
-import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.RegistoRecursos;
+import lapr.project.model.mechanisms.*;
+import lapr.project.model.lists.*;
 import java.util.*;
 
 /**
@@ -18,13 +11,9 @@ import java.util.*;
 public class CentroExposicoes {
 
     private RegistoTipoConflitos registoTipoConflitos;
-    private List<Utilizador> m_listaUtilizadores;
-    private List<Exposicao> m_listaExposicoes;
-    private List<FAE> m_listaFAE;
-    private List<Recurso> m_listaRecursos;
+    private ListaFAE m_listaFAE;
     private RegistoRecursos m_regRecursos;
-    private List<Demonstracao> m_listaDemonstracoes;
-    private ListaDemonstracoes m_regDemonstracoes;
+    private ListaDemonstracoes m_listaDemonstracoes;
     private RegistoExposicoes m_regExposicoes;
     private RegistoUtilizadores m_regUtilizadores;
     private ListaCandidaturas m_regCandidaturas;
@@ -34,58 +23,56 @@ public class CentroExposicoes {
     private List<MecanismoDetecaoConflito> listaMecanismoDetecao;
 
     public CentroExposicoes() {
-        m_listaUtilizadores = new ArrayList<Utilizador>();
-        m_listaExposicoes = new ArrayList<Exposicao>();
-//        m_listaFAE = new ArrayList<FAE>();
-        m_listaRecursos = new ArrayList<Recurso>();
-//        m_listaDemonstracoes = new ArrayList<Demonstracao>();
         m_regUtilizadores = new RegistoUtilizadores();
         m_regExposicoes = new RegistoExposicoes();
+//        m_listaFAE = new ArrayList<FAE>();
+        m_regRecursos = new RegistoRecursos();
+//        m_listaDemonstracoes = new ArrayList<Demonstracao>();
         this.timer = new Timer();
         this.listaMecanismoAvaliacao = new ArrayList<>();
         this.listaMecanismoDetecao = new ArrayList<>();
         this.listaMecanismoAtribuicao = new ArrayList<>();
         m_regCandidaturas = new ListaCandidaturas();
-        fillInData();
+//        fillInData();
     }
 
-    public void fillInData() {
-
-        Utilizador u = new Utilizador();
-        u.setNome("João");
-        u.setEmail("joao@esoft.pt");
-        u.setUsername("joao");
-        u.setPassword("abc");
-        m_listaUtilizadores.add(u);
-
-        Utilizador u2 = new Utilizador();
-        u2.setNome("ricardo");
-        u2.setEmail("ricardo@esoft.pt");
-        u2.setUsername("ricardo");
-        u2.setPassword("def");
-        m_listaUtilizadores.add(u2);
-
-        Utilizador u3 = new Utilizador();
-        u3.setNome("pedro");
-        u3.setEmail("pedro@esoft.pt");
-        u3.setUsername("pedro");
-        u3.setPassword("ghi");
-        m_listaUtilizadores.add(u3);
-
-        Utilizador u4 = new Utilizador();
-        u4.setNome("joaquim");
-        u4.setEmail("joaquim@esoft.pt");
-        u4.setUsername("joaquim");
-        u4.setPassword("jkl");
-        m_listaUtilizadores.add(u4);
-
-        Utilizador u5 = new Utilizador();
-        u5.setNome("Bruno");
-        u5.setEmail("bruno@esoft.pt");
-        u5.setUsername("bruno");
-        u5.setPassword("mno");
-        m_listaUtilizadores.add(u5);
-    }
+//    public void fillInData() {
+//
+//        Utilizador u = new Utilizador();
+//        u.setNome("João");
+//        u.setEmail("joao@esoft.pt");
+//        u.setUsername("joao");
+//        u.setPassword("abc");
+//        m_listaUtilizadores.add(u);
+//
+//        Utilizador u2 = new Utilizador();
+//        u2.setNome("ricardo");
+//        u2.setEmail("ricardo@esoft.pt");
+//        u2.setUsername("ricardo");
+//        u2.setPassword("def");
+//        m_listaUtilizadores.add(u2);
+//
+//        Utilizador u3 = new Utilizador();
+//        u3.setNome("pedro");
+//        u3.setEmail("pedro@esoft.pt");
+//        u3.setUsername("pedro");
+//        u3.setPassword("ghi");
+//        m_listaUtilizadores.add(u3);
+//
+//        Utilizador u4 = new Utilizador();
+//        u4.setNome("joaquim");
+//        u4.setEmail("joaquim@esoft.pt");
+//        u4.setUsername("joaquim");
+//        u4.setPassword("jkl");
+//        m_listaUtilizadores.add(u4);
+//
+//        Utilizador u5 = new Utilizador();
+//        u5.setNome("Bruno");
+//        u5.setEmail("bruno@esoft.pt");
+//        u5.setUsername("bruno");
+//        u5.setPassword("mno");
+//        m_listaUtilizadores.add(u5);
+//    }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
         return this.m_regUtilizadores;
@@ -102,43 +89,43 @@ public class CentroExposicoes {
     public RegistoRecursos getRegistoRecursos() {
         return this.m_regRecursos;
     }
-//
-//    public FAE novoDefinirFAE() {
-//        return new FAE();
-//    }
-//
-//    public void schedule(TimerTask task, Date date) {
-//        timer.schedule(task, date);
-//    }
-//
-//    public boolean registaDefinirFAE(FAE f) {
-//        if (validaDefinirFAE(f)) {
-//            return addDefinirFAE(f);
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    private boolean addDefinirFAE(FAE f) {
-//        return m_listaFAE.add(f);
-//    }
-//
-//    public List<FAE> getListaFAE() {
-//        List<FAE> lF = new ArrayList<FAE>();
-//
-//        for (ListIterator<FAE> it = m_listaFAE.listIterator(); it.hasNext();) {
-//            lF.add(it.next());
-//        }
-//
-//        return lF;
-//    }
-//
-//    public boolean validaDefinirFAE(FAE f) {
-//        return f.valida();
-//    }
 
-    public List<Utilizador> getUtilizadores() {
-        return m_listaUtilizadores;
+    public FAE novoDefinirFAE() {
+        return new FAE();
+    }
+
+    public void schedule(TimerTask task, Date date) {
+        timer.schedule(task, date);
+    }
+
+    public boolean registaDefinirFAE(FAE f) {
+        if (validaDefinirFAE(f)) {
+            return addDefinirFAE(f);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean addDefinirFAE(FAE f) {
+        return m_listaFAE.adicionarFAE(f);
+    }
+
+    public ListaFAE getListaFAE() {
+        ListaFAE lF = new ListaFAE();
+
+        for (ListIterator<FAE> it = m_listaFAE.getListaFAE().listIterator(); it.hasNext();) {
+            lF.adicionarFAE(it.next());
+        }
+
+        return lF;
+    }
+
+    public boolean validaDefinirFAE(FAE f) {
+        return f.valida();
+    }
+
+    public RegistoUtilizadores getUtilizadores() {
+        return m_regUtilizadores;
     }
 
     public List<MecanismoAvaliacao> getMecanismosAvaliacao() {
@@ -187,11 +174,11 @@ public class CentroExposicoes {
                 && this.getRegistoExposicoes().equals(outroCentro.getRegistoExposicoes());
     }
 
-    public List<Exposicao> getListaExposicoes() {
-        List<Exposicao> le = new ArrayList<Exposicao>();
+    public RegistoExposicoes getListaExposicoes() {
+        RegistoExposicoes le = new RegistoExposicoes();
 
-        for (Exposicao e : m_listaExposicoes) {
-            le.add(e);
+        for (Exposicao e : m_regExposicoes.getExposicao()) {
+            le.adicionarExposicao(e);
         }
         return le;
     }
@@ -201,16 +188,11 @@ public class CentroExposicoes {
     }
 
     public ListaDemonstracoes getRegistoDemonstracao() {
-        return this.m_regDemonstracoes;
+        return this.m_listaDemonstracoes;
     }
 
-    //tem de estar no Controller ou Registo Utilizadores
-//    public boolean hasUtilizador(String username, String password) {
-//        return this.m_regUtilizadores.hasUtilizador(username, password);
-//    }
-
     public Utilizador getUtilizador(String strId) {
-        for (Utilizador u : this.m_listaUtilizadores) {
+        for (Utilizador u : this.m_regUtilizadores.getListaUtilizadores()) {
             if (u.hasID(strId)) {
                 return u;
             }
@@ -249,7 +231,7 @@ public class CentroExposicoes {
      * @return recurso
      */
     public Recurso getRecurso(String recurso) {
-        for (Recurso r : m_listaRecursos) {
+        for (Recurso r : m_regRecursos.getListaRecursos()) {
             if (r.getDescricao().equalsIgnoreCase(recurso)) {
                 return r;
             }
@@ -263,14 +245,14 @@ public class CentroExposicoes {
      * @param titulo titulo
      * @return uma exposicao atraves do titulo passado por parametro
      */
-//    public Exposicao getExposicao(String titulo){
-//        for(Exposicao e : m_regExposicoes){
-//            if(e.getTitulo().equalsIgnoreCase(titulo)){
-//                return e;
-//            }
-//        }
-//        return null;
-//    }
+    public Exposicao getExposicao(String titulo){
+        for(Exposicao e : m_regExposicoes.getExposicao()){
+            if(e.getTitulo().equalsIgnoreCase(titulo)){
+                return e;
+            }
+        }
+        return null;
+    }
     /**
      * Metodo que regista um recurso
      * @param r recurso
@@ -305,21 +287,21 @@ public class CentroExposicoes {
      * @return true se validar false caso contrario
      */
     private boolean validaUtilizador(Utilizador u) {
-        return !m_listaUtilizadores.contains(u);
+        return !m_regUtilizadores.getListaUtilizadores().contains(u);
     }
     /**
      * Metodo responsavel por adicionar o utilizador passado por parametro a lista
      * @param u utilizador
      */
     private void addUtilizador(Utilizador u) {
-        this.m_listaUtilizadores.add(u);
+        this.m_regUtilizadores.getListaUtilizadores().add(u);
     }
     /**
      * Metodo que cria uma nova exposicao
      * @return nova exposicao
      */
     public Exposicao novaExposicao() {
-        return new Exposicao(this);
+        return new Exposicao();
     }
     /**
      * Metodo que valida uma exposicao
@@ -333,79 +315,78 @@ public class CentroExposicoes {
         }
         return false;
     }
-//    /**
-//     * Metodo que regista uma exposicao
-//     * @param e exposicao
-//     * @return true se resgistar false em caso contrario
-//     */
-//    public boolean registaExposicao(Exposicao e) {
-//        return this.addExposicao(e);
-//    }
-//    /**
-//     * Metodo que adiciona uma exposicao a lista
-//     * @param e exposicao
-//     * @return true se adicionar false em caso contrario
-//     */
-//    private boolean addExposicao(Exposicao e) {
-//        return this.m_lExposicoes.add(e);
-//    }
-//    /**
-//     * Metodo responsavel por retornar lista de recursos
-//     * @return lista de recursos
-//     */
-//    public ArrayList<Recurso> getRecursos() {
-//        return this.m_listaRecurso;
-//    }
-//    /**
-//     * Metodo que retorna a exposicao passada por parametro
-//     * @param e2 exposicao
-//     * @return a exposicao passada por parametro
-//     */
-//    public Exposicao getExposicao(Exposicao e2) {
-//        for (Exposicao e1 : m_lExposicoes) {
-//            if (e1.getTitulo().equalsIgnoreCase(e2.getTitulo())) {
-//                return e2;
-//            }
-//        }
-//        return null;
-//    }
-//    /**
-//     * Metodo que retorna a lista de exposicoes do FAE com o id passado por parametro
-//     * @param id id 
-//     * @return lista de exposicoes do FAE com o id passado por parametro
-//     */
-//    public ArrayList<Exposicao> getListaExposicoesDoFAE(String id) {
-//        ArrayList<Exposicao> l_ExpDoFAE = new ArrayList();
-//
-//        for (Exposicao m : this.m_lExposicoes) {
-//            if (m.getListaFAE().getFAE(id) != null) {
-//                l_ExpDoFAE.add(m);
-//            }
-//
-//        }
-//        return l_ExpDoFAE;
-//    }
-//    /**
-//     * Retorna lista de exposicoes do organizador com o id passado por parametro
-//     * @param strId id 
-//     * @return lista de exposicoes do organizador com o id passado por parametro
-//     */
-//    public ArrayList<Exposicao> getExposicaoOrganizador(String strId) {
-//        ArrayList<Exposicao> leOrganizador = new ArrayList<Exposicao>();
-//
-//        Utilizador u = getUtilizadores().getUtilizador(strId);
-//        Organizador o = new Organizador(u);
-//
-//        if (u != null) {
-//            for (Iterator<Exposicao> it = this.m_lExposicoes.listIterator(); it.hasNext();) {
-//                Exposicao e = it.next();
-//
-//                if (e.getListaOrganizadores().hasOrganizador(o)) {
-//                    leOrganizador.add(e);
-//                }
-//            }
-//        }
-//        return leOrganizador;
-//    }
+    /**
+     * Metodo que regista uma exposicao
+     * @param e exposicao
+     * @return true se resgistar false em caso contrario
+     */
+    public boolean registaExposicao(Exposicao e) {
+        return this.addExposicao(e);
+    }
+    /**
+     * Metodo que adiciona uma exposicao a lista
+     * @param e exposicao
+     * @return true se adicionar false em caso contrario
+     */
+    private boolean addExposicao(Exposicao e) {
+        return this.m_regExposicoes.adicionarExposicao(e);
+    }
+    /**
+     * Metodo responsavel por retornar lista de recursos
+     * @return lista de recursos
+     */
+    public RegistoRecursos getRecursos() {
+        return this.m_regRecursos;
+    }
+    /**
+     * Metodo que retorna a exposicao passada por parametro
+     * @param e2 exposicao
+     * @return a exposicao passada por parametro
+     */
+    public Exposicao getExposicao(Exposicao e2) {
+        for (Exposicao e1 : m_regExposicoes.getExposicao()) {
+            if (e1.getTitulo().equalsIgnoreCase(e2.getTitulo())) {
+                return e2;
+            }
+        }
+        return null;
+    }
+    /**
+     * Metodo que retorna a lista de exposicoes do FAE com o id passado por parametro
+     * @param id id 
+     * @return lista de exposicoes do FAE com o id passado por parametro
+     */
+    public RegistoExposicoes getListaExposicoesDoFAE(String id) {
+        RegistoExposicoes l_ExpDoFAE = new RegistoExposicoes();
+
+        for (Exposicao e : this.m_regExposicoes.getExposicao()) {
+            if (e.getListaFaes().getFAE(id) != null) {
+                l_ExpDoFAE.adicionarExposicao(e);
+            }
+
+        }
+        return l_ExpDoFAE;
+    }
+    /**
+     * Retorna lista de exposicoes do organizador com o id passado por parametro
+     * @param strId id 
+     * @return lista de exposicoes do organizador com o id passado por parametro
+     */
+    public RegistoExposicoes getExposicaoOrganizador(String strId) {
+        RegistoExposicoes leOrganizador = new RegistoExposicoes();
+
+        Utilizador u = getUtilizadores().getUtilizadorByID(strId);
+
+        if (u != null) {
+            for (Iterator<Exposicao> it = this.m_regExposicoes.getExposicao().listIterator(); it.hasNext();) {
+                Exposicao e = it.next();
+
+                if (e.getListaOrganizadores().hasOrganizador(strId)) {
+                    leOrganizador.adicionarExposicao(e);
+                }
+            }
+        }
+        return leOrganizador;
+    }
 
 }

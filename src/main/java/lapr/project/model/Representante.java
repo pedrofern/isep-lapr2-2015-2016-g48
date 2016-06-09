@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.util.*;
+import lapr.project.model.lists.*;
 
 /**
  *
@@ -8,12 +9,12 @@ import java.util.*;
  */
 public class Representante {
 
-    private List<Produto> m_listaProdutos;
-    private List<Candidatura> m_listaCandidaturas;
+    private ListaProduto m_listaProdutos;
+    private ListaCandidaturas m_listaCandidaturas;
 
     public Representante() {
-        m_listaProdutos = new ArrayList<Produto>();
-        m_listaCandidaturas = new ArrayList<Candidatura>();
+        m_listaProdutos = new ListaProduto();
+        m_listaCandidaturas = new ListaCandidaturas();
     }
 
     public boolean registaProduto(Produto p) {
@@ -46,11 +47,11 @@ public class Representante {
     }
 
     private boolean addCandidatura(Candidatura c) {
-        return m_listaCandidaturas.add(c);
+        return m_listaCandidaturas.addCandidatura(c);
     }
 
     public Produto getProduto(String nomeProduto) {
-        for (Produto p : this.m_listaProdutos) {
+        for (Produto p : this.m_listaProdutos.getListaProduto()) {
             String s1 = p.getNomeProduto();
             if (s1.equalsIgnoreCase(nomeProduto)) {
                 return p;
@@ -61,24 +62,24 @@ public class Representante {
     }
 
     private boolean addProduto(Produto p) {
-        return m_listaProdutos.add(p);
+        return m_listaProdutos.adicionarProduto(p);
     }
 
     public Produto novoProduto() {
         return new Produto();
     }
 
-    public List<Produto> getListaProdutos() {
-        List<Produto> lProduto = new ArrayList<Produto>();
+    public ListaProduto getListaProdutos() {
+        ListaProduto lProduto = new ListaProduto();
 
-        for (ListIterator<Produto> it = m_listaProdutos.listIterator(); it.hasNext();) {
-            lProduto.add(it.next());
+        for (ListIterator<Produto> it = m_listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
+            lProduto.adicionarProduto(it.next());
         }
 
         return lProduto;
     }
 
-    public List<Produto> getProdutos() {
+    public ListaProduto getProdutos() {
         return m_listaProdutos;
     }
 }

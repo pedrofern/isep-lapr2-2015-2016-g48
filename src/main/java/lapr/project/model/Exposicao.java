@@ -36,11 +36,9 @@ public class Exposicao implements Submissivel, Atribuivel {
     private ListaOrganizadores m_lstOrganizadores;
     private ListaFAE m_lstFaes;
     private ExposicaoEstado state;
-    private CentroExposicoes m_centroExposicoes;
     private Exposicao d_conflitos;
 
-    public Exposicao(CentroExposicoes m_centroExposicoes) {
-        m_centroExposicoes=m_centroExposicoes;
+    public Exposicao() {
         state = new ExposicaoCriadaEstado(this);
         e_listaOrganizadores = new ArrayList<Organizador>();
         listaSubmissoes = new ListaSubmissoes(this);

@@ -25,58 +25,58 @@ public class AtribuirCandidaturaUI {
     }
 
     
-    public void run() {
-
-        novaAtribuicaoCandidatura();
-
-        List<Exposicao> le = m_controllerAC.iniciarAtribuicaoCandidatura();
-
-        apresentaExposicoes(le);
-
-        Exposicao e = selecionaExposicao(le);
-
-        if (e != null) {
-
-            List<Candidatura> lc = m_controllerAC.getListaCandidaturas();
-
-            apresentaCandidaturas(lc);
-
-            Candidatura c = selecionaCandidatura(lc);
-
-            if (c != null) {
-
-                List<FAE> lf = m_controllerAC.getListaFAE();
-
-                apresentaFAE(lf);
-
-                FAE f = selecionaFAE(lf);
-
-                m_controllerAC.setAtribuicao();
-
-                String strQuestao = "Confirma a decisao da atribuição de candidatura com a seguinte informação: \n" + m_controllerAC.getInfoResumo() + "\n Opção (S/N):";
-                boolean bConfirma = confirma(strQuestao);
-
-                if (bConfirma) {
-                    if (m_controllerAC.registarDecisao()) {
-                        System.out.println("Decisao concluida com sucesso.");
-                    } else {
-                        System.out.println("Decisao cancelada devido a erros.");
-                    }
-
-                } else {
-                    System.out.println("Decisao de atribuição de candidatura cancelada.");
-                }
-
-                System.out.println("Terminado.");
-
-            } else {
-                System.out.println("Decisao de candidatura cancelada.");
-            }
-
-        } else {
-            System.out.println("Decisao de candidatura cancelada.");
-        }
-    }
+//    public void run() {
+//
+//        novaAtribuicaoCandidatura();
+//
+//        List<Exposicao> le = m_controllerAC.iniciarAtribuicaoCandidatura();
+//
+//        apresentaExposicoes(le);
+//
+//        Exposicao e = selecionaExposicao(le);
+//
+//        if (e != null) {
+//
+//            List<Candidatura> lc = m_controllerAC.getListaCandidaturas();
+//
+//            apresentaCandidaturas(lc);
+//
+//            Candidatura c = selecionaCandidatura(lc);
+//
+//            if (c != null) {
+//
+//                List<FAE> lf = m_controllerAC.getListaFAE();
+//
+//                apresentaFAE(lf);
+//
+//                FAE f = selecionaFAE(lf);
+//
+//                m_controllerAC.setAtribuicao();
+//
+//                String strQuestao = "Confirma a decisao da atribuição de candidatura com a seguinte informação: \n" + m_controllerAC.getInfoResumo() + "\n Opção (S/N):";
+//                boolean bConfirma = confirma(strQuestao);
+//
+//                if (bConfirma) {
+//                    if (m_controllerAC.registarDecisao()) {
+//                        System.out.println("Decisao concluida com sucesso.");
+//                    } else {
+//                        System.out.println("Decisao cancelada devido a erros.");
+//                    }
+//
+//                } else {
+//                    System.out.println("Decisao de atribuição de candidatura cancelada.");
+//                }
+//
+//                System.out.println("Terminado.");
+//
+//            } else {
+//                System.out.println("Decisao de candidatura cancelada.");
+//            }
+//
+//        } else {
+//            System.out.println("Decisao de candidatura cancelada.");
+//        }
+//    }
 
     private void novaAtribuicaoCandidatura() {
         m_controllerAC.novaAtribuicaoCandidatura();

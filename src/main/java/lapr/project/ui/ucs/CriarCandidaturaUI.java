@@ -3,118 +3,112 @@ package lapr.project.ui.ucs;
 import lapr.project.model.*;
 import lapr.project.controller.*;
 import lapr.project.ui.*;
+import lapr.project.model.lists.*;
 import lapr.project.utils.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Pedro Fernandes
  */
 public class CriarCandidaturaUI {
+    
+    /**
+     * A largura da janela em píxeis.
+     */
+    private static final int JANELA_LARGURA = 800;
+    /**
+     * A altura da janela em píxeis.
+     */
+    private static final int JANELA_ALTURA = 600;
+    /**
+     * Guarda a dimensão de uma label por omissão
+     */
+    private static final Dimension LABEL_TAMANHO = new JLabel("Nº Convites:").
+                                                        getPreferredSize();
+    /**
+     * Guarda janela anterior
+     */
+    private JFrame framePai;
+    /**
+     * Guarda lista produtos em jlist
+     */
+    private JList lstProdutos;
+    /**
+     * Guarda lista demonstrações em jlist
+     */
+    private JList lstDemonstracoes;
+    /**
+     * Guarda o botao adicionar produto
+     */
+    private JButton botaoAdicionarProduto;
+    /**
+     * Guarda o botao remover produto
+     */
+    private JButton botaoRemoverProduto;
+    /**
+     * Guarda o botao ver demonstrações
+     */
+    private JButton botaoVerRecursoDemonstracao;
+    /**
+     * Guarda o nome introduzido da candidatura
+     */
+    private JTextField txtNome;
+    /**
+     * Guarda a morada introduzida da candidatura
+     */
+    private JTextField txtMorada;
+    /**
+     * Guarda o telemovel introduzido da candidatura
+     */
+    private JTextField txtTelemovel;
+    /**
+     * Guarda a area introduzida da candidatura
+     */
+    private JTextField txtArea;
+    /**
+     * Guarda o nº convites introduzido da candidatura
+     */
+    private JTextField txtConvites;
+    /**
+     * Guarda a lista produtos da candidatura
+     */      
+    private ListaProduto listaProdutos;
+    /**
+     * Guarda a lista demonstrações da candidatura
+     */
+    private ListaDemonstracoes listaDemonstracoes;
+    /**
+     * Guarda a lista recursos da candidatura
+     */
+    private RegistoRecursos listaRecursos;
+    /**
+     * Guarda objectos candidatura
+     */
+    private Candidatura candidatura;
+    /**
+     * Guarda objectos exposição
+     */
+    private Exposicao exposicao;
+    /**
+     * Guarda objectos centro exposições
+     */
+    private CentroExposicoes centroExposicoes;
 
     private Representante e_representante;
     private CriarCandidaturaController m_controllerCCC;
 
-    public CriarCandidaturaUI(Representante representante) {
-        e_representante = representante;
+    public CriarCandidaturaUI(JFrame framePai, CentroExposicoes ce) {
+        e_representante = new Representante();
         m_controllerCCC = new CriarCandidaturaController(e_representante);
+        centroExposicoes = ce;
     }
 
     
-    public void run() {
-        novaCandidatura();
-
-        introduzNomeEmpresa();
-        introduzMorada();
-        introduzTelemovel();
-        introduzAreaExposicao();
-        introduzQuantidadeConvites();
-        adicionaProduto();
-
-        apresentaCandidatura();
-
-        if (confirmaCriacaoCandidatura()) {
-            if (m_controllerCCC.registaCandidatura()) {
-                System.out.println("Candidatura registada.");
-            } else {
-                System.out.println("Candidatura não registada.");
-            }
-        }
-    }
-
-    private void novaCandidatura() {
-        m_controllerCCC.novaCandidatura();
-    }
-
-    private void introduzNomeEmpresa() {
-        String nomeEmpresa = Utils.readLineFromConsole("Introduza Nome da Empresa: ");
-
-        m_controllerCCC.setNomeEmpresa(nomeEmpresa);
-    }
-
-    private void introduzMorada() {
-        String morada = Utils.readLineFromConsole("Introduza Morada: ");
-
-        m_controllerCCC.setMorada(morada);
-    }
-
-    private void introduzTelemovel() {
-        String telemovel = Utils.readLineFromConsole("Introduza Telemovel: ");
-
-        int nrTelemovel = Integer.parseInt(telemovel);
-
-        m_controllerCCC.setTelemovel(nrTelemovel);
-    }
-
-    private void introduzAreaExposicao() {
-        String areaExposicao = Utils.readLineFromConsole("Introduza Area de Exposicao: ");
-
-        double areaExposicaoo = Double.parseDouble(areaExposicao);
-
-        m_controllerCCC.setAreaExposicao(areaExposicaoo);
-    }
-
-    private void introduzQuantidadeConvites() {
-        String quantidadeConvites = Utils.readLineFromConsole("Introduza Quantidade de Convites: ");
-
-        int quantidadeConvitess = Integer.parseInt(quantidadeConvites);
-
-        m_controllerCCC.setQuantidadeConvites(quantidadeConvitess);
-    }
-
-    private void adicionaProduto() {
-        String strResposta;
-        do {
-            String nomeProduto = Utils.readLineFromConsole("Introduza o nome do Produto: ");
-
-            boolean bAdicionado = m_controllerCCC.addProduto(nomeProduto);
-
-            if (bAdicionado) {
-                System.out.println("Produto adicionado.");
-            } else {
-                System.out.println("Produto não adicionado.");
-            }
-
-            strResposta = Utils.readLineFromConsole("Introduzir outro Produto (S/N)? ");
-        } while (strResposta.equalsIgnoreCase("S"));
-    }
-
-    private void apresentaCandidatura() {
-        System.out.println("Candidatura: ");
-
-        System.out.println(m_controllerCCC.getCandidaturaString());
-    }
-
-    private boolean confirmaCriacaoCandidatura() {
-        String strConfirma;
-        do {
-            strConfirma = Utils.readLineFromConsole("Confirma criação de Candidatura (S/N): ");
-        } while (!strConfirma.equalsIgnoreCase("s") && !strConfirma.equalsIgnoreCase("n"));
-
-        if (strConfirma.equalsIgnoreCase("s")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 }
