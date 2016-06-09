@@ -6,8 +6,8 @@
 package lapr.project.ui.ucs;
 
 import javax.swing.AbstractListModel;
-import lapr.project.model.lists.RegistoRecursos;
-import lapr.project.model.Recurso;
+import lapr.project.model.lists.*;
+import lapr.project.model.*;
 
 /**
  *
@@ -18,14 +18,14 @@ public class ModeloListaRecursos extends AbstractListModel {
     /**
      * Guarda lista recursos
      */
-    private RegistoRecursos listaRecursos;
+    private ListaRecurso listaRecursos;
 
     /**
      * Construtor de objetos modelo lista recursos
      *
      * @param listaRecursos lista recursos
      */
-    public ModeloListaRecursos(RegistoRecursos listaRecursos) {
+    public ModeloListaRecursos(ListaRecurso listaRecursos) {
         this.listaRecursos = listaRecursos;
     }
 
@@ -71,7 +71,7 @@ public class ModeloListaRecursos extends AbstractListModel {
      * @return true se remover false caso contrario
      */
     public boolean removeElement(Recurso recurso) {
-        int indice = listaRecursos.indiceDeRecurso(recurso);
+        int indice = listaRecursos.indiceDe(recurso);
         boolean recursoRemovido = listaRecursos.removerRecurso(recurso);
         if (recursoRemovido) {
             fireIntervalRemoved(this, indice, indice);

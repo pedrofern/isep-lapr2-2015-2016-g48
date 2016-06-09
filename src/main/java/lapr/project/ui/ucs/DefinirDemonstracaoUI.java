@@ -13,14 +13,18 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import lapr.project.model.Recurso;
+import lapr.project.model.Utilizador;
 
 public class DefinirDemonstracaoUI extends JFrame {
 
-    private JButton btnConfirmar, btnCancelar;
+    private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso;
     private JComboBox comboBoxExposicao;
-    private JTextField txtCodigo;
-    private JTextArea txtDescricao;
+    private JTextArea txtDescricao=new JTextArea();
     private JFrame framepai;
+    private ModeloListaRecursos modeloListaRecurso;
+    private JList listaCompletaRecurso;
+    private ListaRecurso listaRecurso;
     private JList listProduto = new JList();
     private JScrollPane scroListaRecurso = new JScrollPane(listProduto);
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
@@ -42,8 +46,7 @@ public class DefinirDemonstracaoUI extends JFrame {
 
         add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelSul(), BorderLayout.SOUTH);
-        add(criarPainelOeste(), BorderLayout.WEST);
-        add(criarPainelCentro(), BorderLayout.CENTER);
+        add(criarPainelListas(), BorderLayout.CENTER);
     }
 
     private JPanel criarPainelNorte() throws FileNotFoundException {
@@ -65,35 +68,6 @@ public class DefinirDemonstracaoUI extends JFrame {
         return comboBoxExposicao;
     }
 
-    private JPanel criarPainelOeste() {
-        JPanel painel = new JPanel(new GridLayout(0, 1));
-
-        final int CAMPO_LARGURA = 30;
-        txtCodigo = new JTextField();
-        txtCodigo.setPreferredSize(new Dimension(500, 100));
-        txtCodigo.setBorder(new TitledBorder("Código/ID"));
-        txtCodigo.requestFocus();
-
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 1000;
-        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-        painel.setBorder(new TitledBorder("Dados Demonstração"));
-        painel.add(txtCodigo);
-        painel.add(criarPainelRecurso());
-
-        return painel;
-
-    }
-
-    private JScrollPane criarPainelRecurso() {
-        JPanel painel = new JPanel(new GridLayout(0, 1, 0, 0));
-        scroListaRecurso.setBorder(new TitledBorder("Lista Produto"));
-        scroListaRecurso.setPreferredSize(new Dimension(140, 205));
-        painel.add(scroListaRecurso, BorderLayout.NORTH);
-
-        return scroListaRecurso;
-    }
-
     private JPanel criarPainelDescricao() {
         JPanel painel = new JPanel(new FlowLayout());
 
@@ -110,15 +84,6 @@ public class DefinirDemonstracaoUI extends JFrame {
         return painel;
     }
 
-    private JPanel criarPainelCentro() {
-
-        JPanel painel = new JPanel(new FlowLayout());
-
-        painel.add(criarPainelDescricao());
-
-        return painel;
-    }
-
     private JPanel criarPainelSul() {
 
         JPanel p = new JPanel(new FlowLayout());
@@ -129,6 +94,92 @@ public class DefinirDemonstracaoUI extends JFrame {
         p.add(criarBotaoLimpar());
 
         return p;
+    }
+
+    private JPanel criarPainelListas() {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        listaCompletaRecurso = new JList();
+        listaRecurso = new ListaRecurso();
+        modeloListaRecurso = new ModeloListaRecursos(listaRecurso);
+        btnAdicionarRecurso = criarBotaoAdicionarRecurso();
+        p.add(criarPainelListaRecurso("Lista de Recurso",
+                listaCompletaRecurso,
+                modeloListaRecurso, btnAdicionarRecurso));
+        
+        p.add(criarPainelDescricao("Descrição ", txtDescricao));
+
+        return p;
+    }
+
+    private JPanel criarPainelDescricao(
+            String tituloDescrição,
+            JTextArea descricao
+    ) {
+        JLabel lblTitulo = new JLabel(tituloDescrição, JLabel.LEFT);
+
+        JScrollPane scrPane = new JScrollPane(txtDescricao);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        return p;
+    }
+
+    private JPanel criarPainelListaRecurso(
+            String tituloLista,
+            JList lstLista,
+            ModeloListaRecursos modeloLista,
+            JButton btnAdicionar) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
+        lstLista.setModel(modeloLista);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        JPanel pBotoes = criarPainelBotoes(btnAdicionar);
+        p.add(pBotoes, BorderLayout.SOUTH);
+        return p;
+    }
+
+    private JPanel criarPainelBotoes(JButton btn1) {
+
+        JPanel p = new JPanel(new GridLayout(2, 1, 0, 10));
+
+        p.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+
+        p.add(btn1);
+
+        return p;
+    }
+
+    private JButton criarBotaoAdicionarRecurso() {
+        btnAdicionarRecurso = new JButton("Adicionar Recurso");
+        btnAdicionarRecurso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloListaRecurso.addElement((Recurso) listaCompletaRecurso.getSelectedValue());
+                listaCompletaRecurso.clearSelection();
+
+            }
+        });
+        return btnAdicionarRecurso;
     }
 
     private JButton criarBotaoConfirmar() {
@@ -163,7 +214,6 @@ public class DefinirDemonstracaoUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                txtCodigo.setText(null);
                 txtDescricao.setText(null);
 
             }

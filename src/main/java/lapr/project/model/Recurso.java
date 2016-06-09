@@ -4,7 +4,7 @@ package lapr.project.model;
  *
  * @author Pedro Fernandes
  */
-public class Recurso {
+public class Recurso implements Comparable<Recurso> {
 
     private String descricao;
 
@@ -31,6 +31,22 @@ public class Recurso {
     @Override
     public String toString() {
         return this.getDescricao();
+    }
+
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Recurso recurso = (Recurso) outroObjeto;
+
+        return descricao.equalsIgnoreCase(recurso.descricao);
+    }
+
+    public int compareTo(Recurso outroRecurso) {
+        return descricao.compareTo(outroRecurso.descricao);
     }
 
 }
