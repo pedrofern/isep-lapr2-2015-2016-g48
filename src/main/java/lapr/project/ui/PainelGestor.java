@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.CriarStandUI;
 
 /**
@@ -22,14 +23,14 @@ public class PainelGestor extends JPanel {
 
     private static JPanel pPrincipal;
     private static JPanel pInfo;
-    private static String m_ut;
+    private static Utilizador m_ut;
     private CentroExposicoes m_ce;
     
     private static final int LINHAS=5, COLUNAS=2,HGAP=20, VGAP=20;
     private static final Dimension DIM_BOTOES=new Dimension(150,35);
     private static final int TAM_LETRA_BOTAO=9;
     
-    public PainelGestor(CentroExposicoes ce, String ut) {
+    public PainelGestor(CentroExposicoes ce, Utilizador ut) {
         
          super();
         

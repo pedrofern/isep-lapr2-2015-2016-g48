@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.AlterarUtilizadorUI;
 
 /**
@@ -30,14 +31,15 @@ import lapr.project.ui.ucs.AlterarUtilizadorUI;
  */
 public class Janela extends JFrame /** implements Serializable**/{
     private final CentroExposicoes m_ce;
-    public String m_ut;
+    private Utilizador m_ut;
+    private String tipo_utilizador;
     
     private JTabbedPane tabPane;
     private static PainelInfoUser pUser;
  
     private static int WIDTH=600, HEIGHT=500, MINWIDTH=600, MINHEIGHT=480;
  
-    public Janela(CentroExposicoes ce, String id_utilizador) {
+    public Janela(CentroExposicoes ce, Utilizador id_utilizador) {
         
         super("Centro de Exposições");
         this.m_ce=ce;
@@ -209,35 +211,36 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private JTabbedPane criarSeparadores() {
-  
+        tipo_utilizador="Admin";
+        
         JTabbedPane tabPane = new JTabbedPane(); 
-
-        if("Fae".equals(m_ut)){
+        
+        if("Fae".equals(tipo_utilizador)){
             tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
        }
         
-       if("Organizador".equals(m_ut)){
+       if("Organizador".equals(tipo_utilizador)){
            tabPane.addTab("Home", new PainelInicio());
            tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
 
        }
-       if("Representante".equals(m_ut)){
+       if("Representante".equals(tipo_utilizador)){
 
             tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
        }
        
-      if("Organizador+Fae".equals(m_ut)){
+      if("Organizador+Fae".equals(tipo_utilizador)){
 
             tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
             tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce,m_ut));
        }
       
-      if("Gestor".equals(m_ut)){
+      if("Gestor".equals(tipo_utilizador)){
  
            tabPane.addTab("MenuGestor", new PainelGestor(m_ce, m_ut));
           
       }
-      if("Admin".equals(m_ut)){
+      if("Admin".equals(tipo_utilizador)){
           
         tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
 

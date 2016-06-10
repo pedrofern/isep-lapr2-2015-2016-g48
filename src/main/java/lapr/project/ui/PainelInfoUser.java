@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -14,11 +15,12 @@ import javax.swing.JPanel;
  */
 public class PainelInfoUser extends JPanel {
     
-    private String m_user;
+    private Utilizador m_user;
+    private String tipo_utilizador;
     
-    public PainelInfoUser(String ut){
+    public PainelInfoUser(Utilizador user){
         super();
-        this.m_user=ut;
+        this.m_user=user;
         
         setLayout(new BorderLayout());
     }
@@ -38,7 +40,8 @@ public class PainelInfoUser extends JPanel {
         
         label.setBounds(80,130,130,80);
         
-        switch (m_user){
+        tipo_utilizador="Admin";
+        switch (tipo_utilizador){
             case "Organizador":
                 
                  try{
@@ -126,9 +129,9 @@ public class PainelInfoUser extends JPanel {
         
         pDados.setLayout(gl);
         
-        JLabel lblNome=new JLabel("Nome"); 
-        JLabel lblEmail=new JLabel("Email");
-        JLabel lblUsername=new JLabel("Username");
+        JLabel lblNome=new JLabel("Nome" + m_user.getNome()); 
+        JLabel lblEmail=new JLabel("Email" + m_user.getEmail());
+        JLabel lblUsername=new JLabel("Username" + m_user.getUsername());
 
         pDados.add(lblUsername);
         pDados.add(lblNome);

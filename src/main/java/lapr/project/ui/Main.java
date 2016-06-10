@@ -37,7 +37,7 @@ public class Main {
 //        if (ce == null) {
              ce = new CentroExposicoes();        
 //        }
-                Login log = new Login(ce, "");
+                Login log = new Login(ce);
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
 	}

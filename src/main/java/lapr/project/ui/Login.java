@@ -32,11 +32,11 @@ public class Login extends JFrame /**implements Serializable**/ {
 
     private static final Dimension LABEL_TAMANHO = new JLabel("Username").getPreferredSize();        
     
-    public Login(CentroExposicoes ce,String u){
+    public Login(CentroExposicoes ce){
         
         super("Menu Login");
         this.m_ce=ce;
-        this.m_ut=u;
+
         framePai = Login.this;
         
         criarComponentes();
@@ -220,7 +220,7 @@ public class Login extends JFrame /**implements Serializable**/ {
                 
                 //CentroExposicoes ce=new CentroExposicoes();
                 
-                new Janela (m_ce, username.getText());
+                
                 
                 //Para teste
                     Utilizador ut1= new Utilizador("1130155@isep.ipp.pt","Ana",true);
@@ -235,11 +235,14 @@ public class Login extends JFrame /**implements Serializable**/ {
                    lu.addUtilizador(ut3);
                    lu.addUtilizador(ut4);
                    lu.addUtilizador(ut5);
-                    
+                 
+                   new Janela (m_ce, ut1);
+                 
+                 
                     if(username.getText().equalsIgnoreCase(ut1.getUsername())){
                         if(ut1.getRegistado()!= false){
-                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
-                        new Janela (m_ce, username.getText());
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo!");
+                        new Janela (m_ce, ut1);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
                         new RegistarUtilizadorUI(m_ce);  
@@ -247,8 +250,8 @@ public class Login extends JFrame /**implements Serializable**/ {
                     }
                     if(username.getText().equalsIgnoreCase(ut2.getUsername())){
                          if(ut2.getRegistado()!= false){
-                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
-                        new Janela (m_ce, username.getText());
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo!");
+                        new Janela (m_ce, ut2);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
                         new RegistarUtilizadorUI(m_ce);  
@@ -256,8 +259,8 @@ public class Login extends JFrame /**implements Serializable**/ {
                     }
                     if(username.getText().equalsIgnoreCase(ut3.getUsername())){
                         if(ut3.getRegistado()!= false){
-                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
-                        new Janela (m_ce, username.getText());
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo!");
+                        new Janela (m_ce, ut3);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
                         new RegistarUtilizadorUI(m_ce);  
@@ -265,8 +268,8 @@ public class Login extends JFrame /**implements Serializable**/ {
                     }
                     if(username.getText().equalsIgnoreCase(ut4.getUsername())){
                          if(ut4.getRegistado()!= false){
-                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
-                        new Janela (m_ce, username.getText());
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo!");
+                        new Janela (m_ce, ut4);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
                         new RegistarUtilizadorUI(m_ce);  
@@ -275,33 +278,13 @@ public class Login extends JFrame /**implements Serializable**/ {
                     if(username.getText().equalsIgnoreCase(ut5.getUsername())){
                         if(ut5.getRegistado()!= false){
                         JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
-                        new Janela (m_ce, username.getText());
+                        new Janela (m_ce, ut5);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
                         new RegistarUtilizadorUI(m_ce); 
                     }
                     }
                
-//                if(username.getText().equals("Admin")){
-//                    new Janela(m_ce,username.getText());
-//                }
-//                    if(username.equals("FAE")){
-//                       new Janela(m_ce, username.getText()); 
-//                    }
-//                        if(username.equals("Organizador")){
-//                            new Janela(m_ce, username.getText()); 
-//                        }
-//                else
-//                            if(username.equals("Gestor")){
-//                                 new Janela(m_ce, username.getText()); 
-//                            }
-//                else
-//                                if(username.equals("Representante")){
-//                                     new Janela(m_ce, username.getText); 
-//                                }
-//                              
-//                
-//
                 dispose();
             }
         });
