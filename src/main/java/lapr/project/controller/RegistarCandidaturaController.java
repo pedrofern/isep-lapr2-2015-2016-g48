@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaProduto;
 
 /**
  *
@@ -18,7 +19,7 @@ public class RegistarCandidaturaController {
     public RegistarCandidaturaController(Representante representante,Exposicao exp) {
         e_representante = representante;
         m_exposicao = exp;
-        m_listaCandidaturas = m_exposicao.getRegistoCandidaturas();        
+        m_listaCandidaturas = m_exposicao.getRegistoCandidaturas(); 
     }
 
     public void novaCandidatura() {
@@ -47,6 +48,10 @@ public class RegistarCandidaturaController {
 
     public void setQuantidadeConvites(int quantidadeConvites) {
         m_candidatura.setQuantidadeConvites(quantidadeConvites);
+    }
+    
+    public void setProdutos(ListaProduto listaProduto){
+        m_candidatura.setListaProdutos(listaProduto);
     }
     
     public Candidatura registaCandidatura(String nomeEmpresa,String morada,int telemovel,

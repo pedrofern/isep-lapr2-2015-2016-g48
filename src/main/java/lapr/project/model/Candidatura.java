@@ -85,11 +85,15 @@ public class Candidatura {
     }
 
     public ListaProduto getListaProdutos() {
-        ListaProduto lOrg = new ListaProduto();
+        ListaProduto lProd = new ListaProduto();
         for (ListIterator<Produto> it = e_listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
-            lOrg.adicionarProduto(it.next());
+            lProd.adicionarProduto(it.next());
         }
-        return lOrg;
+        return lProd;
+    }
+    
+    public void setListaProdutos(ListaProduto listaProdutos){
+        e_listaProdutos = listaProdutos;
     }
 
     public ListaCandidaturas getListaCandidaturas() {

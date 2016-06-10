@@ -26,7 +26,7 @@ public class RegistarCandidaturaUI extends JFrame{
     /**
      * A altura da janela em píxeis.
      */
-    private static final int JANELA_ALTURA = 700;
+    private static final int JANELA_ALTURA = 400;
     /**
      * Guarda a dimensão de uma label por omissão
      */
@@ -121,20 +121,35 @@ public class RegistarCandidaturaUI extends JFrame{
         listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
     //testar demonstracoes
         listaRecursos = new RegistoRecursos();
-//        Demonstracao d1= new Demonstracao(1, "descricaoTeste", listaRecursos,centroExposicoes);
-//        Demonstracao d2= new Demonstracao(2, "descricaoTeste2", listaRecursos,centroExposicoes);
-//        Demonstracao d3= new Demonstracao(3, "descricaoTeste3", listaRecursos,centroExposicoes);
-//        listaDemonstracoes.registaDemonstracao(d1);
-//        listaDemonstracoes.registaDemonstracao(d2);
-//        listaDemonstracoes.registaDemonstracao(d3);
+        Demonstracao d1= new Demonstracao();        
+        Demonstracao d2= new Demonstracao();
+        Demonstracao d3= new Demonstracao();
+        Data d = new Data();
+        d.setData(2016, 02, 05);
+        d1.setDados("demo1", "tema1", d, d);
+        d2.setDados("demo2", "tema2", d, d);
+        d3.setDados("demo2", "tema3", d, d);
+        listaDemonstracoes.registaDemonstracao(d1);
+        listaDemonstracoes.registaDemonstracao(d2);
+        listaDemonstracoes.registaDemonstracao(d3);
     //fim
         listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
+             
         
-        add(criarPainelExposicao(listaExposicoes), BorderLayout.NORTH);
-        add(criarPainelCandidatura(), BorderLayout.CENTER);
         
         m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
         m_controllerRCC.novaCandidatura();
+//        m_controllerRCC.set
+        
+        JPanel norte = criarPainelExposicao(listaExposicoes);
+        JPanel centro = criarPainelListas();
+        JPanel botoes = criarPainelBotoes(); 
+        
+        add(norte, BorderLayout.NORTH);   
+        add(centro, BorderLayout.CENTER);
+        add(botoes, BorderLayout.SOUTH);
+
+        
                 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
@@ -142,8 +157,6 @@ public class RegistarCandidaturaUI extends JFrame{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setVisible(true);  
-        
-        
         
     }
     /**
@@ -154,34 +167,20 @@ public class RegistarCandidaturaUI extends JFrame{
         return lstProdutos;
     }
     private JPanel criarPainelExposicao(RegistoExposicoes lstExposicoes){
-        JPanel painel= new JPanel(new FlowLayout());
+        JPanel painel= new JPanel();
         
         comboExp = Utils.criarComboExpo(lstExposicoes);
 
-        painel.add(comboExp);
-
-        add(painel);
+        painel.add(comboExp);        
+        painel.add(criarPainelDados());
         
         return painel;
-    }
-    private JPanel criarPainelCandidatura(){
-        JPanel painelCand= new JPanel(new FlowLayout());
-        
-        JPanel norte = criarPainelNorte();
-        JPanel centro = criarPainelListas();
-        JPanel botoes = criarPainelBotoes();        
-        
-        add(norte, BorderLayout.NORTH);
-        add(centro, BorderLayout.CENTER);
-        add(botoes, BorderLayout.SOUTH);
-        
-        return painelCand;
     }
     /**
      * cria painel para introdução dos dados gerais da candidatura
      * @return painel para introdução dos dados gerais da candidatura
      */
-    private JPanel criarPainelNorte(){
+    private JPanel criarPainelDados(){
         JPanel painelNorte = new JPanel( new GridLayout(5,1));
         final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 10;
         final int MARGEM_ESQUERDA = 25, MARGEM_DIREITA = 0;
@@ -590,6 +589,7 @@ public class RegistarCandidaturaUI extends JFrame{
 //        lstDemonstracoes = new JList(modeloListaDemo);
 //        botaoVerRecursoDemonstracao = criarBotaoRecursosDemonstracao();
         p.add(criarPainelListaDemo());//("Demonstrações:",lstDemonstracoes,botaoVerRecursoDemonstracao));
+        
         return p;
     }
     /**
