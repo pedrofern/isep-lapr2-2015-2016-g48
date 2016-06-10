@@ -7,58 +7,37 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
-import lapr.project.ui.Login;
-import lapr.project.utils.*;
+import lapr.project.utils.Utils;
 
 /**
  *
  * @author Pedro Fernandes
  */
 public class RegistarUtilizadorUI extends JFrame{
-    /**
+    
+     /**
      * Guarda a largura mínima da janela em píxeis.
      */
     private static final int JANELA_LARGURA_MINIMO = 650;
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
-    private static final int JANELA_ALTURA_MINIMO = 275;
-    /**
-     * Guarda a dimensão de uma label por omissão
-     */
-    private static final Dimension LABEL_TAMANHO = new JLabel("Username: ").
-                                                        getPreferredSize();
-    /**
-     * Guarda o nome introduzido da candidatura
-     */
-    private JTextField txtNome;
-    /**
-     * Guarda a morada introduzida da candidatura
-     */
-    private JTextField txtEmail;
-    /**
-     * Guarda o telemovel introduzido da candidatura
-     */
-    private JTextField txtUsername;
-    /**
-     * Guarda a area introduzida da candidatura
-     */
-    private JPasswordField txtPassword;
-    private String strErro;
-    private CentroExposicoes centroDeExposicoes;
-    private RegistarUtilizadorController m_controllerRU;
-   
-    private JPanel painelNorte;
-    private JPanel painelEmail;
+    private static final int JANELA_ALTURA_MINIMO = 275; 
+    
+    private CentroExposicoes m_ce;
+    
     private String pergunta="Pretende cancelar o registo do utilizador?";
+      
+    private RegistarUtilizadorController m_controllerRU;
+    
+    private PainelDadosUtilizador norte;
     
     public RegistarUtilizadorUI(CentroExposicoes ce) {
         
         super("Registar Utilizador");
-
-    
-        centroDeExposicoes = ce;
-        m_controllerRU = new RegistarUtilizadorController(centroDeExposicoes);
+ 
+        m_ce = ce;
+        m_controllerRU = new RegistarUtilizadorController(m_ce);
  
         addWindowListener(new WindowAdapter() {
             @Override
@@ -67,11 +46,7 @@ public class RegistarUtilizadorUI extends JFrame{
             }
         });
         
-        JPanel norte = criarPainelDadosUtilizador();
-        JPanel botoes = criarPainelBotoes();        
-        
-        add(norte, BorderLayout.NORTH);
-        add(botoes, BorderLayout.SOUTH);
+        add(criarPainel());
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
@@ -81,104 +56,18 @@ public class RegistarUtilizadorUI extends JFrame{
         setVisible(true);          
     }
     
-    private JPanel criarPainelDadosUtilizador(){
-        painelNorte = new JPanel( new GridLayout(4,1));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 10;
-        final int MARGEM_ESQUERDA = 25, MARGEM_DIREITA = 0;
-        painelNorte.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder("Dados Utilizador"),
-                new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA)));
+    private JPanel criarPainel(){
+        JPanel p =new JPanel();
+        p.setLayout(new BorderLayout());
+        norte = new PainelDadosUtilizador();
+        JPanel botoes = criarPainelBotoes();  
         
-        txtNome = new JTextField(40);
-        txtNome.requestFocusInWindow();
-        txtNome.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev){
-                txtNome.setText(txtNome.getText().replaceAll("[^a-z||^A-Z||^ ]", ""));
-            }
-        });
-        txtNome.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtNome.getText().length() > 40) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
-            }
-        }); 
+        p.add(norte, BorderLayout.NORTH);
+        p.add(botoes, BorderLayout.SOUTH);
         
-        txtUsername = new JTextField(20);
-        txtUsername.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtUsername.getText().length() > 20) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
-            }
-        });
-        
-        txtEmail = new JTextField(40);
-        txtEmail.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev){
-                txtEmail.setText(txtEmail.getText().replaceAll("[^a-z||^A-Z||^@||^.||^-||^_]", ""));
-            }
-        });
-        txtEmail.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtEmail.getText().length() > 40) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
-            }
-        }); 
-        
-        txtPassword = new JPasswordField(20);
-        txtPassword.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtPassword.getText().length() > 20) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
-            }
-        });
-
-        painelNorte.add(criarPainelLabels("Username: ", txtUsername, strErro));
-        painelNorte.add(criarPainelLabels("Password: ", txtPassword,""));
-        painelNorte.add(criarPainelLabels("Nome:", txtNome,""));
-        
-        painelEmail=criarPainelLabels("Email:", txtEmail,"");      
-        painelNorte.add(painelEmail);
-
-        return painelNorte;
-    }
-    
-    /**
-     * cria painel para introduzir label1, campo para introdução dados e label2
-     * @param label1 introduzir label1
-     * @param texto campo para introdução dados 
-     * @param label2 introduzir label1
-     * @return painel para introduzir label1, campo para introdução dados e label2
-     */
-    private JPanel criarPainelLabels(String label1, JTextField texto, String label2) {
-        JLabel lbl1 = new JLabel(label1, JLabel.RIGHT);
-        lbl1.setPreferredSize(LABEL_TAMANHO);
-        
-        JLabel lbl2 = new JLabel(label2, JLabel.LEFT);
-        lbl2.setPreferredSize(new Dimension(150,20));
-        
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        p.add(lbl1);
-        p.add(texto);
-        p.add(lbl2);
-
         return p;
     }
+    
     /**
      * cria painel botões
      * @return painel botões
@@ -204,16 +93,16 @@ public class RegistarUtilizadorUI extends JFrame{
     }
     
     private JButton criarBotaoRegistar() {
-        JButton botao = new JButton("Registar Candidatura");
+        JButton botao = new JButton("Registar Utilizador");
         botao.setMnemonic(KeyEvent.VK_R);
-        botao.setToolTipText("Registar Candidatura");
+        botao.setToolTipText("Registar Utilizador");
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(txtNome.getText().isEmpty()==true||
-                    txtEmail.getText().isEmpty()==true||
-                    txtPassword.getText().isEmpty()==true||
-                    txtUsername.getText().isEmpty()==true){
+                if(norte.getTxtNome().getText().isEmpty()==true||
+                    norte.getTxtEmail().getText().isEmpty()==true||
+                    norte.getTxtPassword().getText().isEmpty()==true||
+                    norte.getTxtUsername().getText().isEmpty()==true){
                         JOptionPane.showMessageDialog(
                             null,
                             "Tem de preencher todos os campos!",
@@ -232,21 +121,22 @@ public class RegistarUtilizadorUI extends JFrame{
      * @return botão limpar
      */
     private JButton criarBotaoLimpar() {
-        JButton botao = new JButton("Limpar Candidatura");
+        JButton botao = new JButton("Limpar");
         botao.setMnemonic(KeyEvent.VK_L);
-        botao.setToolTipText("Limpa dados gerais da candidatura");
+        botao.setToolTipText("Limpa dados gerais do novo utilizador");
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                txtNome.setText("");
-                txtEmail.setText("");
-                txtPassword.setText("");
-                txtUsername.setText("");
+                norte.getTxtNome().setText("");
+                norte.getTxtEmail().setText("");
+                norte.getTxtPassword().setText("");
+                norte.getTxtUsername().setText("");
             }
         });
 
         return botao;
     }
+    
     /**
      * criar botão cancelar e volta menu anterior
      * @return botão cancelar e volta menu anterior 
@@ -254,7 +144,7 @@ public class RegistarUtilizadorUI extends JFrame{
     private JButton criarBotaoCancelar() {
         JButton botao = new JButton("Cancelar");
         botao.setMnemonic(KeyEvent.VK_S);
-        botao.setToolTipText("Cancela a atribuição e volta ao menu anterior");
+        botao.setToolTipText("Cancela o registo de utilizador e volta ao menu anterior");
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -265,12 +155,12 @@ public class RegistarUtilizadorUI extends JFrame{
         return botao;
     }
     
-    private void guardar() {
+     private void guardar() {
             String nome,email,pass,user;
-            nome = txtNome.getText();
-            email = txtEmail.getText();
-            pass = txtPassword.getText();
-            user = txtUsername.getText();
+            nome = norte.getTxtNome().getText();
+            email = norte.getTxtEmail().getText();
+            pass = norte.getTxtPassword().getText();
+            user = norte.getTxtUsername().getText();
             m_controllerRU.novoUtilizador();
             m_controllerRU.criaUtilizador(nome, email, user, pass);
                 JOptionPane.showMessageDialog(
@@ -284,12 +174,12 @@ public class RegistarUtilizadorUI extends JFrame{
                             JOptionPane.INFORMATION_MESSAGE);    
             dispose();
     }
-    
+     
     private void fecharJanelaRegistoUtilizador(String pergunta){
-        if (txtNome.getText()!=""||
-                txtEmail.getText()!=""||
-                txtPassword.getText()!=""||
-                txtUsername.getText()!=""){
+        if (norte.getTxtNome().getText()!=""||
+                norte.getTxtEmail().getText()!=""||
+                norte.getTxtPassword().getText()!=""||
+                norte.getTxtUsername().getText()!=""){
             String[] opcoes = {"Sim", "Não"};
             
             int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
@@ -302,13 +192,5 @@ public class RegistarUtilizadorUI extends JFrame{
             }
         }
     }
-        
-    public void removerEmailPainelNorte(){
-        painelNorte.remove(painelEmail);
-    } 
-    
-    public void setPergunta(String novaPergunta){
-        pergunta=novaPergunta;
-    }
- 
+
 }

@@ -35,7 +35,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private JTabbedPane tabPane;
     private static PainelInfoUser pUser;
  
-    private static int WIDTH=550, HEIGHT=500, MINWIDTH=200, MINHEIGHT=250;
+    private static int WIDTH=600, HEIGHT=500, MINWIDTH=600, MINHEIGHT=480;
  
     public Janela(CentroExposicoes ce, String id_utilizador) {
         
@@ -245,9 +245,12 @@ public class Janela extends JFrame /** implements Serializable**/{
 
         tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
 
-//        tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(m_ce, m_ut));
+        
       }  
-       return tabPane; 
+      
+      tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(m_ce, m_ut));
+      
+      return tabPane; 
     }
     
     private void fecharJanela() {
