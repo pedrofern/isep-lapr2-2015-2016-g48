@@ -37,7 +37,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private JTabbedPane tabPane;
     private static PainelInfoUser pUser;
  
-    private static int WIDTH=600, HEIGHT=500, MINWIDTH=600, MINHEIGHT=480;
+    private static int WIDTH=625, HEIGHT=500, MINWIDTH=625, MINHEIGHT=480;
  
     public Janela(CentroExposicoes ce, Utilizador id_utilizador) {
         

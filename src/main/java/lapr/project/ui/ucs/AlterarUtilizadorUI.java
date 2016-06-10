@@ -157,7 +157,7 @@ public class AlterarUtilizadorUI extends JPanel{
             pass = norte.getTxtPassword().getText();
             user = norte.getTxtUsername().getText();
 
-            m_controller.alteraUtilizador(nome, email, user, pass);
+            m_controller.alteraDados(nome, user, pass, email);
                 JOptionPane.showMessageDialog(
                             null,
                             "Dados novo utilizador registado: \n"

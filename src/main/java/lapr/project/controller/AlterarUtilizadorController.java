@@ -28,9 +28,5 @@ public class AlterarUtilizadorController {
         uClone.setPassword(strPwd);
         return m_centroDeExposicoes.getRegistoUtilizadores().alteraUtilizador(m_user, uClone);
     }
-
-    public void alteraUtilizador(String nome, String email, String user, String pass) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

@@ -10,14 +10,18 @@ import lapr.project.model.lists.*;
  */
 public class AvaliarCandidaturaController {
 
-    private CentroExposicoes m_centroDeExposicoes;
+    private CentroExposicoes m_ce;
     private Candidatura m_candidatura;
     private FAE fae;
     private Avaliacao avaliacao;
     private Exposicao m_exposicao;
 
-    public AvaliarCandidaturaController(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
+    public AvaliarCandidaturaController(CentroExposicoes ce) {
+        m_ce = ce;
+    }
+    
+    public RegistoExposicoes getRegistoExposicoes(){
+        return m_ce.getListaExposicoes();
     }
 
     public ListaCandidaturas getListaCandidaturas() {
@@ -25,7 +29,7 @@ public class AvaliarCandidaturaController {
     }
 
     public RegistoExposicoes iniciarAvaliacao() {
-        return this.m_centroDeExposicoes.getListaExposicoes();
+        return this.m_ce.getListaExposicoes();
     }
 
     public Avaliacao setAvaliacao(String strResposta, String strJustificacao) {
