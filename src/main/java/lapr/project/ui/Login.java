@@ -235,9 +235,7 @@ public class Login extends JFrame /**implements Serializable**/ {
                    lu.addUtilizador(ut3);
                    lu.addUtilizador(ut4);
                    lu.addUtilizador(ut5);
-                 
-                   new Janela (m_ce, ut1);
-                 
+
                  
                     if(username.getText().equalsIgnoreCase(ut1.getUsername())){
                         if(ut1.getRegistado()!= false){

@@ -36,9 +36,10 @@ public class AlterarUtilizadorUI extends JPanel{
          m_user=user;
              
          m_controller=new AlterarUtilizadorController(m_ce);
-         
-         setLayout(new BorderLayout());
+        
+        setLayout(new BorderLayout());
         add(criarPainel());
+        norte.preencherDadosUtilizador(user);
     }
     
     
@@ -79,9 +80,6 @@ public class AlterarUtilizadorUI extends JPanel{
         return p;
     }
     
-    private void preencherDadosUtilizador(Utilizador utilizador){
-        norte.preencherDadosUtilizador(utilizador);
-    }
     
     private JButton criarBotaoRegistar() {
         JButton botao = new JButton("Registar Utilizador");

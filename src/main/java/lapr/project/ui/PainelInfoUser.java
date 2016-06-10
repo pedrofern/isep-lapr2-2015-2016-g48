@@ -129,9 +129,9 @@ public class PainelInfoUser extends JPanel {
         
         pDados.setLayout(gl);
         
-        JLabel lblNome=new JLabel("Nome" + m_user.getNome()); 
-        JLabel lblEmail=new JLabel("Email" + m_user.getEmail());
-        JLabel lblUsername=new JLabel("Username" + m_user.getUsername());
+        JLabel lblNome=new JLabel("Nome: " + m_user.getNome()); 
+        JLabel lblEmail=new JLabel("Email: " + m_user.getEmail());
+        JLabel lblUsername=new JLabel("Username: " + m_user.getUsername());
 
         pDados.add(lblUsername);
         pDados.add(lblNome);
