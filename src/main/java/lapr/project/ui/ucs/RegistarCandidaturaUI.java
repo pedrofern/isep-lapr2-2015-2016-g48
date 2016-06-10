@@ -121,12 +121,12 @@ public class RegistarCandidaturaUI extends JFrame{
         listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
     //testar demonstracoes
         listaRecursos = new RegistoRecursos();
-//        Demonstracao d1= new Demonstracao(1, "descricaoTeste", listaRecursos,centroExposicoes);
-//        Demonstracao d2= new Demonstracao(2, "descricaoTeste2", listaRecursos,centroExposicoes);
-//        Demonstracao d3= new Demonstracao(3, "descricaoTeste3", listaRecursos,centroExposicoes);
-//        listaDemonstracoes.registaDemonstracao(d1);
-//        listaDemonstracoes.registaDemonstracao(d2);
-//        listaDemonstracoes.registaDemonstracao(d3);
+        Demonstracao d1= new Demonstracao(1, "descricaoTeste", listaRecursos,centroExposicoes);
+        Demonstracao d2= new Demonstracao(2, "descricaoTeste2", listaRecursos,centroExposicoes);
+        Demonstracao d3= new Demonstracao(3, "descricaoTeste3", listaRecursos,centroExposicoes);
+        listaDemonstracoes.registaDemonstracao(d1);
+        listaDemonstracoes.registaDemonstracao(d2);
+        listaDemonstracoes.registaDemonstracao(d3);
     //fim
         listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
         

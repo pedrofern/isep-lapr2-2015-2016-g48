@@ -2,8 +2,6 @@ package lapr.project.model;
 
 import lapr.project.model.mechanisms.Atribuicao;
 import java.util.*;
-import lapr.project.model.lists.*;
-
 
 /**
  *
@@ -11,6 +9,7 @@ import lapr.project.model.lists.*;
  */
 public class Organizador {
 
+    private Utilizador m_oUtilizador;
     private List<Atribuicao> ac_listaAtribuicao;
     private final String m_strNome;
     private Utilizador m_utilizador;
@@ -18,12 +17,6 @@ public class Organizador {
     public Organizador(Utilizador u) {
         m_strNome = u.getNome();
         this.setUtilizador(u);
-    }
-    
-     public Organizador() {
-         ac_listaAtribuicao=new ArrayList<>();
-         m_utilizador=new Utilizador();
-         m_strNome=null;
     }
 
     private void setUtilizador(Utilizador u) {
@@ -35,7 +28,7 @@ public class Organizador {
     }
 
     public boolean valida() {
-        if (m_utilizador.valida()) {
+        if (m_oUtilizador.valida()) {
             System.out.println("Organizador:valida: " + this.toString());
             return true;
         }
@@ -45,11 +38,6 @@ public class Organizador {
     public Atribuicao novaAtribuicaoCandidatura() {
         return new Atribuicao();
     }
-    
-     public Demonstracao novaDemonstracao() {
-        return new Demonstracao();
-    }
-
 
     public boolean registaAtribuicaoCandidatura(Atribuicao ac) {
         if (validaAtribuicaoCandidatura(ac)) {
@@ -77,12 +65,12 @@ public class Organizador {
 
     @Override
     public String toString() {
-        return this.m_utilizador.toString();
+        return this.m_oUtilizador.toString();
     }
 
     public boolean isUtilizador(Utilizador u) {
-        if (this.m_utilizador != null) {
-            return this.m_utilizador.equals(u);
+        if (this.m_oUtilizador != null) {
+            return this.m_oUtilizador.equals(u);
         }
         return false;
     }

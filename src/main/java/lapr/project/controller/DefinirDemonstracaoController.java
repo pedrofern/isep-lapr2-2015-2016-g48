@@ -8,46 +8,45 @@ import lapr.project.model.lists.*;
  *
  * @author Pedro Fernandes
  */
-public class CriarDemonstracaoController {
+public class DefinirDemonstracaoController {
 
     private Demonstracao m_demonstracao;
     private RegistoExposicoes m_listaExposicoes;
     private Exposicao m_exposicao;
     private RegistoRecursos m_listaRecursos;
-    private Organizador o_organizador;
-
-    public CriarDemonstracaoController(Organizador organizador, Exposicao expo) {
-        o_organizador=organizador;
+    
+    public DefinirDemonstracaoController(Exposicao expo) {
         m_exposicao = expo;
     }
 
-    public void novaDemonstracao() {
-        m_demonstracao = o_organizador.novaDemonstracao();
-    }
+//    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos lst_recursos) {
+//        return m_exposicao.getRegistoDemonstracao().novaDemonstracao(codigoUnico, strDescricao, lst_recursos, m_centroDeExposicoes);
+//    }
 
-//    public Demonstracao registaDemonstracao(String descricao ) {
-//        
+//    public boolean registaDemonstracao(Demonstracao demonstracao) {
+//        return m_exposicao.getRegistoDemonstracao().registaDemonstracao(demonstracao);
 //    }
 
     public void setCodigoUnico(int codigoUnico) {
         m_demonstracao.setCod(codigoUnico);
     }
-
+    
     public void setDescricao(String novaDescricao) {
         m_demonstracao.setDesc(novaDescricao);
     }
-
+    
 //    public void setListaRecursos(RegistoRecursos novaListaRecursos) {
 //        m_demonstracao.setListaRecursos(novaListaRecursos);
 //    }
+    
     public RegistoRecursos getListaRecursos() {
         return m_listaRecursos;
     }
-
-    public void addRecursoDemonstracao(Recurso r) {
+        
+    public void addRecursoDemonstracao(Recurso r){
         m_demonstracao.addRecurso(r);
     }
-
+    
     public RegistoExposicoes getListaExposicoes() {
         RegistoExposicoes le = new RegistoExposicoes();
 
@@ -63,10 +62,11 @@ public class CriarDemonstracaoController {
 //        }
 //        return null;
 //    }
+    
     public Demonstracao getDemonstracao() {
         return m_demonstracao;
     }
-
+    
 //    public Demonstracao setDados(int cdgUnico, String strDescricao) {
 //        m_demonstracao.setCod(cdgUnico);
 //        m_demonstracao.setDesc(strDescricao);

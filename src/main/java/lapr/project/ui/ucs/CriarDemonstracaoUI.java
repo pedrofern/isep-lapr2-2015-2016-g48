@@ -12,11 +12,10 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.ui.*;
 import lapr.project.model.lists.*;
-import lapr.project.ui.ucs.*;
+import lapr.project.ui.ucs.ModeloListaRecursos;
 
 public class CriarDemonstracaoUI extends JFrame {
 
@@ -31,31 +30,12 @@ public class CriarDemonstracaoUI extends JFrame {
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
-    private CentroExposicoes centroDeExposicoes;
-    private CriarDemonstracaoController m_controllerCD;
-    private Exposicao m_exposicao;
-    private RegistoExposicoes m_registoExposicao;
-    private RegistoDemonstracoes m_listaDemonstracoes;
-    private Organizador o_organizador;
-    private RegistoRecursos listaRecursos;
-    private Demonstracao m_demonstracao;
 
-    public CriarDemonstracaoUI(CentroExposicoes ce) throws FileNotFoundException {
+    public CriarDemonstracaoUI() throws FileNotFoundException {
 
         super("Criar Demonstração");
-
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        o_organizador = new Organizador();
-
-        centroDeExposicoes = ce;
-        m_exposicao = ce.novaExposicao();
-        ce.registaExposicao(m_exposicao);
-        m_registoExposicao = ce.getListaExposicoes();
-        m_registoExposicao.adicionarExposicao(m_exposicao);
-
-        m_controllerCD = new CriarDemonstracaoController(o_organizador, m_exposicao);
-        m_controllerCD.novaDemonstracao();
 
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
@@ -109,9 +89,9 @@ public class CriarDemonstracaoUI extends JFrame {
         JPanel p = new JPanel(new FlowLayout());
 
         p.setBorder(new TitledBorder("Opção"));
-//        p.add(criarBotaoConfirmar());
-//        p.add(criarBotaoCancelar());
-//        p.add(criarBotaoLimpar());
+        p.add(criarBotaoConfirmar());
+        p.add(criarBotaoCancelar());
+        p.add(criarBotaoLimpar());
 
         return p;
     }
@@ -238,73 +218,34 @@ public class CriarDemonstracaoUI extends JFrame {
         return btnAdicionarRecurso;
     }
 
-//    private JButton criarBotaoConfirmar() {
-//        btnConfirmar = new JButton("Confirmar");
-//
-//        btnConfirmar.setMnemonic(KeyEvent.VK_C);
-//        btnConfirmar.setToolTipText("Criar Demonstração");
-//        btnConfirmar.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-                
-//                try{                       
-//                    
-//                    
-//                     m_demonstracao= m_controllerCD.re
-//                    if (candidatura != null) {                      
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Candidatura adicionada.",
-//                                "Nova Candidatura",
-//                                JOptionPane.INFORMATION_MESSAGE);
-//                        dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Candidatura já registada!",
-//                                "Nova Candidatura",
-//                                JOptionPane.ERROR_MESSAGE);
-//                    }
-//                    dispose();                      
-//                }
-//                catch (NumberFormatException ex){
-//                    JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Registar Candidatura",
-//                            JOptionPane.ERROR_MESSAGE);                        
-//                }
-//            }
-//            }
-//        });
-//
-//        return btnConfirmar;
-//    }
+    private JButton criarBotaoConfirmar() {
+        btnConfirmar = new JButton("Confirmar");
+        return btnConfirmar;
+    }
 
-//    private JButton criarBotaoCancelar() {
-//        btnCancelar = new JButton("Cancelar");
-//        btnCancelar.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                dispose();
-//            }
-//        });
-//        return btnCancelar;
-//    }
-//
-//    private JButton criarBotaoLimpar() {
-//
-//        JButton btn = new JButton("Limpar");
-//        btn.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                txtDescricao.setText(null);
-//
-//            }
-//        });
-//        return btn;
-//
-//    }
+    private JButton criarBotaoCancelar() {
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        return btnCancelar;
+    }
+
+    private JButton criarBotaoLimpar() {
+
+        JButton btn = new JButton("Limpar");
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                txtDescricao.setText(null);
+
+            }
+        });
+        return btn;
+
+    }
 }
