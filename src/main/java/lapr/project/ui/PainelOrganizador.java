@@ -7,6 +7,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,6 +17,7 @@ import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
+import lapr.project.ui.ucs.CriarDemonstracaoUI;
 
 /**
  *
@@ -124,7 +128,13 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               
+                try {
+                    new CriarDemonstracaoUI(m_ce);
+                    // JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(PainelOrganizador.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
             

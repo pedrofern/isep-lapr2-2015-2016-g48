@@ -370,7 +370,7 @@ public class CriarDemonstracaoUI extends JFrame {
                     int resposta = JOptionPane.showOptionDialog(
                             CriarDemonstracaoUI.this,
                             "Eliminar\n" + recurso.toString(),
-                            "Eliminar Telefone",
+                            "Eliminar Recurso",
                             0,
                             JOptionPane.QUESTION_MESSAGE,
                             null,
