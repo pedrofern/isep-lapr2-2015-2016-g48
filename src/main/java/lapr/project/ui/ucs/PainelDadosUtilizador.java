@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import lapr.project.controller.RegistarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -187,9 +188,16 @@ public class PainelDadosUtilizador extends JPanel{
         return txtPassword;
     }
  
-    public void removerEmailPainelNorte(){
-        remove(painelEmail);
+    public void desativarUserNamePainelNorte(){
+        txtUsername.setEnabled(false);
     } 
+
+    public void preencherDadosUtilizador(Utilizador ut){
+        txtNome.setText(ut.getNome());
+        txtEmail.setText(ut.getEmail());
+        txtPassword.setText(ut.getPassword());
+        txtUsername.setText(ut.getUsername());
+    }
     
  
    

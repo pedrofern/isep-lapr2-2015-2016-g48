@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
 
 /**
@@ -22,14 +23,14 @@ public class PainelOrganizador extends JPanel {
  
     private static JPanel pPrincipal;
     private static JPanel pInfo;
-    private static String m_ut;
+    private static Utilizador m_ut;
     private CentroExposicoes m_ce;
 
     private static final int LINHAS=5, COLUNAS=2,HGAP=20, VGAP=20;
     private static final Dimension DIM_BOTOES=new Dimension(200,35);
     private static final int TAM_LETRA_BOTAO=9;
 
-    PainelOrganizador(CentroExposicoes ce, String ut) {
+    PainelOrganizador(CentroExposicoes ce, Utilizador ut) {
         super();
         
         this.m_ce=ce;
