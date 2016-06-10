@@ -14,6 +14,7 @@ import java.util.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -235,13 +236,45 @@ public class CriarExposicaoUI extends JFrame {
         local=txtLocal.getText();
         dataInicio=txtDataInicio.getText();
         dataFim=txtDataFim.getText();
+        m_controller.novaExposicao();
+        m_controller.criaExposicao(titulo, descricao, local, null, null);
+//        JOptionPane.showMessageDialog(
+//                            null,
+//                            "Nova Exposição: \n"
+//                                    +"\nTitulo: "+titulo
+//                                    +"\nDescricao: "+descricao
+//                                    +"\Local: "+local
+//                                    +"\nData Inicio: "+dataInicio
+//                                    +"\nData Fim: "+dataFim,
+//                            "Nova Exposição",
+//                            JOptionPane.INFORMATION_MESSAGE);    
+            dispose();
+        
+        
         
         
     }
 
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
-        
+//        btnConfirmar.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if(titulo.getText().isEmpty()==true||
+//                    descricao.getText().isEmpty()==true||
+//                    local.getText().isEmpty()==true||
+//                    dataInicio.getText().isEmpty()==true||
+//                    dataFim.getText().isEmpty()==true){
+////                        JOptionPane.showMessageDialog(
+////                            null,
+////                            "Tem de preencher todos os campos!",
+////                            "Criar Exposoção",
+////                            JOptionPane.ERROR_MESSAGE);                        
+//                }else{
+                    guardar();
+//                }
+//            }
+//        });
         return btnConfirmar;
     }
 
