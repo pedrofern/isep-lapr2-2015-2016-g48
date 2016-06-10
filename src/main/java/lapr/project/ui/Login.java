@@ -6,7 +6,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.ui.ucs.RegistarUtilizadorUI;
-
+import lapr.project.model.lists.*;
+import lapr.project.model.*;
 
 
 /**
@@ -27,6 +28,7 @@ public class Login extends JFrame /**implements Serializable**/ {
     private String m_ut;
     //private FicheiroCentroExposicoes ficheiroCentroExposicoes;
     private CentroExposicoes centroExposicoes;
+  
 
     private static final Dimension LABEL_TAMANHO = new JLabel("Username").getPreferredSize();        
     
@@ -219,6 +221,66 @@ public class Login extends JFrame /**implements Serializable**/ {
                 //CentroExposicoes ce=new CentroExposicoes();
                 
                 new Janela (m_ce, username.getText());
+                
+                //Para teste
+                    Utilizador ut1= new Utilizador("1130155@isep.ipp.pt","Ana",true);
+                    Utilizador ut2= new Utilizador("1130155@isep.ipp.pt","Filipe",true);
+                    Utilizador ut3= new Utilizador("1151182@isep.ipp.pt","Tomas",true);
+                    Utilizador ut4= new Utilizador("1151094@isep.ipp.pt","Eduangelo",true);
+                    Utilizador ut5= new Utilizador("1151088@isep.ipp.pt","Diana",true);
+                    
+                   RegistoUtilizadores lu = new RegistoUtilizadores();
+                   lu.addUtilizador(ut1);
+                   lu.addUtilizador(ut2);
+                   lu.addUtilizador(ut3);
+                   lu.addUtilizador(ut4);
+                   lu.addUtilizador(ut5);
+                    
+                    if(username.getText().equalsIgnoreCase(ut1.getUsername())){
+                        if(ut1.getRegistado()!= false){
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
+                        new Janela (m_ce, username.getText());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
+                        new RegistarUtilizadorUI(m_ce);  
+                    }
+                    }
+                    if(username.getText().equalsIgnoreCase(ut2.getUsername())){
+                         if(ut2.getRegistado()!= false){
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
+                        new Janela (m_ce, username.getText());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
+                        new RegistarUtilizadorUI(m_ce);  
+                    }
+                    }
+                    if(username.getText().equalsIgnoreCase(ut3.getUsername())){
+                        if(ut3.getRegistado()!= false){
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
+                        new Janela (m_ce, username.getText());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
+                        new RegistarUtilizadorUI(m_ce);  
+                    }
+                    }
+                    if(username.getText().equalsIgnoreCase(ut4.getUsername())){
+                         if(ut4.getRegistado()!= false){
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
+                        new Janela (m_ce, username.getText());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
+                        new RegistarUtilizadorUI(m_ce);  
+                    } 
+                    }
+                    if(username.getText().equalsIgnoreCase(ut5.getUsername())){
+                        if(ut5.getRegistado()!= false){
+                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo.");
+                        new Janela (m_ce, username.getText());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
+                        new RegistarUtilizadorUI(m_ce); 
+                    }
+                    }
                
 //                if(username.getText().equals("Admin")){
 //                    new Janela(m_ce,username.getText());
