@@ -18,13 +18,13 @@ import lapr.project.model.*;
 import lapr.project.ui.*;
 import lapr.project.controller.*;
 import lapr.project.model.lists.*;
-import lapr.project.ui.ucs.*;
+import lapr.project.ui.ucs.ModeloListaRecursos;
 import lapr.project.utils.*;
 
 public class CriarDemonstracaoUI extends JFrame {
 
     private JFormattedTextField campoDataInicial, campoDataFinal;
-    private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso, btnEleminarRecurso;
+    private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso;
     private JComboBox comboBoxExposicao;
     private JTextArea txtDescricao = new JTextArea();
     private JFrame framepai;
@@ -37,7 +37,6 @@ public class CriarDemonstracaoUI extends JFrame {
     private Organizador o_Organizador;
     private CentroExposicoes centroExposicoes;
     private Exposicao exposicao;
-    private Recurso recurso;
     private RegistoDemonstracoes listaDemostracao;
     private CriarDemonstracaoController m_demonstracaoController;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
@@ -57,10 +56,6 @@ public class CriarDemonstracaoUI extends JFrame {
         listaExposicoes = ce.getListaExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
 
-        exposicao.setTitulo("TESTE EXPOSICAO");
-        ce.registaExposicao(exposicao);
-        listaExposicoes = ce.getListaExposicoes();
-        listaExposicoes.adicionarExposicao(exposicao);
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, exposicao);
@@ -89,8 +84,10 @@ public class CriarDemonstracaoUI extends JFrame {
     private JPanel criarPainelExposicao() {
         JPanel p = new JPanel();
 
+     
+
         comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
-        //FcomboBoxExposicao.setEnabled(false);
+       //FcomboBoxExposicao.setEnabled(false);
 
         p.add(comboBoxExposicao);
 
@@ -136,12 +133,10 @@ public class CriarDemonstracaoUI extends JFrame {
         listaCompletaRecurso = new JList();
         listaRecurso = new RegistoRecursos();
         modeloListaRecurso = new ModeloListaRecursos(listaRecurso);
-        btnAdicionarRecurso = criarBotaoAdicionarRecurso();
-        btnEleminarRecurso = criarBotaoEliminarRecurso(listaCompletaRecurso);
 
         p.add(criarPainelListaRecurso("Lista de Recurso",
                 listaCompletaRecurso,
-                modeloListaRecurso, btnAdicionarRecurso, btnEleminarRecurso));
+                modeloListaRecurso, criarBotaoAdicionarRecurso()));
 
         p.add(criarPainelDescricao("Descrição ", txtDescricao, criarPainelDataInicial(), criarPainelDataFinal()));
 
@@ -171,7 +166,7 @@ public class CriarDemonstracaoUI extends JFrame {
             String tituloLista,
             JList lstLista,
             ModeloListaRecursos modeloLista,
-            JButton btnAdicionar, JButton btnEleminarRecurso) {
+            JButton btnAdicionar) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
         lstLista.setModel(modeloLista);
@@ -185,7 +180,7 @@ public class CriarDemonstracaoUI extends JFrame {
         p.add(lblTitulo, BorderLayout.NORTH);
         p.add(scrPane, BorderLayout.CENTER);
 
-        JPanel pBotoes = criarPainelBotoes(btnAdicionar, btnEleminarRecurso);
+        JPanel pBotoes = criarPainelBotoes(btnAdicionar);
         p.add(pBotoes, BorderLayout.SOUTH);
         return p;
     }
@@ -202,21 +197,22 @@ public class CriarDemonstracaoUI extends JFrame {
         return p;
     }
 
-    private JPanel criarPainelBotoes(JButton btn1, JButton btn2) {
+    private JPanel criarPainelBotoes(JButton btn1) {
 
         JPanel p = new JPanel(new GridLayout(2, 1, 0, 10));
 
         p.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         p.add(btn1);
-        p.add(btn2);
 
         return p;
     }
 
     private JButton criarBotaoAdicionarRecurso() {
         btnAdicionarRecurso = new JButton("Adicionar Recurso");
+//        btnAdicionarRecurso.setVisible(true);
 
+        //btnAdicionarRecurso.setEnabled(listaRecurso.tamanho() != 0);
         btnAdicionarRecurso.addActionListener(new ActionListener() {
 
             @Override
@@ -224,22 +220,13 @@ public class CriarDemonstracaoUI extends JFrame {
 
                 try {
 
-                    recurso = new Recurso("Recurso");
-                    listaRecurso.adicionarRecurso(recurso);
                     Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
-                    for (int i = 0; i < opcoes.length; i++) {
-
-                        opcoes[i] = recurso;
-
-                    }
-
                     Recurso recurso = (Recurso) JOptionPane.showInputDialog(CriarDemonstracaoUI.this,
                             "Escolha um recurso", null,
                             JOptionPane.PLAIN_MESSAGE,
                             null,
                             opcoes,
                             opcoes[0]);
-
                     if (recurso != null) {
                         String[] opcoes2 = {"Sim", "Não"};
                         int resposta = JOptionPane.showOptionDialog(CriarDemonstracaoUI.this,
@@ -350,48 +337,6 @@ public class CriarDemonstracaoUI extends JFrame {
         });
         return btn;
 
-    }
-
-    private JButton criarBotaoEliminarRecurso(JList lstLista) {
-        btnEleminarRecurso = new JButton("Eliminar Recurso");
-        btnEleminarRecurso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Recurso[] opcoes = listaRecurso.getArray();
-                Recurso recurso = (Recurso) JOptionPane.showInputDialog(
-                        CriarDemonstracaoUI.this,
-                        "Escolha um recurso:", "Eliminar Recurso",
-                        JOptionPane.PLAIN_MESSAGE,
-                        null,
-                        opcoes,
-                        opcoes[0]);
-                if (recurso!= null) {
-                    String[] opcoes2 = {"Sim", "Não"};
-                    int resposta = JOptionPane.showOptionDialog(
-                            CriarDemonstracaoUI.this,
-                            "Eliminar\n" + recurso.toString(),
-                            "Eliminar Telefone",
-                            0,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,
-                            opcoes2,
-                            opcoes2[1]);
-                    final int SIM = 0;
-                    if (resposta == SIM) {
-                        ModeloListaRecursos  modeloListaRecurso
-                                = (ModeloListaRecursos) listaCompletaRecurso.getModel();
-                        modeloListaRecurso.removeElement(recurso);
-                        if (modeloListaRecurso.getSize() == 0) {
-                            listaCompletaRecurso.setEnabled(false);
-                            btnEleminarRecurso.setEnabled(false);
-                          
-                        }
-                    }
-                }
-
-            }
-        });
-        return btnEleminarRecurso;
     }
 
     private JPanel criarPainelDataInicial() {
