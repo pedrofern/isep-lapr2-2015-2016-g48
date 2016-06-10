@@ -20,7 +20,7 @@ public class CriarExposicaoController {
 
     public CriarExposicaoController(CentroExposicoes ce) {
         this.m_oCE = ce;
-        m_regExposicoes = ce.getRegistoExposicoes();
+        m_regExposicoes = ce.getListaExposicoes();
         m_regUtilizadores = ce.getRegistoUtilizadores();
     }
 

@@ -37,10 +37,6 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JList lstProdutos;
     /**
-     * Guarda lista demonstrações em jlist
-     */
-    private JList lstDemonstracoes;
-    /**
      * Guarda o botao adicionar produto
      */
     private JButton botaoAdicionarProduto;
@@ -89,6 +85,10 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private RegistoRecursos listaRecursos;
     /**
+     * Guarda a lista recursos da candidatura
+     */
+    private RegistoExposicoes listaExposicoes;
+    /**
      * Guarda objectos candidatura
      */
     private Candidatura candidatura;
@@ -104,15 +104,19 @@ public class RegistarCandidaturaUI extends JFrame{
     private Representante e_representante;
     private RegistarCandidaturaController m_controllerRCC;
 
-    public RegistarCandidaturaUI(CentroExposicoes ce, Exposicao exp) {
+    public RegistarCandidaturaUI(CentroExposicoes ce) {
         
         super("Registar Candidatura");
         
-        exposicao = exp;
         e_representante = new Representante();
-        m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
+
         centroExposicoes = ce;
-        m_controllerRCC.novaCandidatura();
+        exposicao = ce.novaExposicao();
+        ce.registaExposicao(exposicao);
+        listaExposicoes = ce.getListaExposicoes();
+        listaExposicoes.adicionarExposicao(exposicao);
+        
+//        listaExposicoes = ce.getListaExposicoes();
         listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
     //testar demonstracoes
         listaRecursos = new RegistoRecursos();
@@ -123,14 +127,14 @@ public class RegistarCandidaturaUI extends JFrame{
         listaDemonstracoes.registaDemonstracao(d2);
         listaDemonstracoes.registaDemonstracao(d3);
     //fim
-        JPanel norte = criarPainelNorte();
-        JPanel centro = criarPainelListas();
-        JPanel botoes = criarPainelBotoes();        
+        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
         
-        add(norte, BorderLayout.NORTH);
-        add(centro, BorderLayout.CENTER);
-        add(botoes, BorderLayout.SOUTH);
+        add(criarPainelExposicao(listaExposicoes), BorderLayout.NORTH);
+        add(criarPainelCandidatura(), BorderLayout.CENTER);
         
+        m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
+        m_controllerRCC.novaCandidatura();
+                
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(JANELA_LARGURA, JANELA_ALTURA));
@@ -148,12 +152,27 @@ public class RegistarCandidaturaUI extends JFrame{
     public JList getLstProdutos() {
         return lstProdutos;
     }
-    /**
-     * Devolve uma lista demonstrações
-     * @return lista demonstrações
-     */
-    public JList getLstDemonstracoes() {
-        return lstDemonstracoes;
+    private JPanel criarPainelExposicao(RegistoExposicoes lstExposicoes){
+        JPanel painel= new JPanel(new FlowLayout());
+        
+        comboExp = Utils.criarComboExpo(lstExposicoes);
+        
+        add(painel);
+        
+        return painel;
+    }
+    private JPanel criarPainelCandidatura(){
+        JPanel painelCand= new JPanel(new FlowLayout());
+        
+        JPanel norte = criarPainelNorte();
+        JPanel centro = criarPainelListas();
+        JPanel botoes = criarPainelBotoes();        
+        
+        add(norte, BorderLayout.NORTH);
+        add(centro, BorderLayout.CENTER);
+        add(botoes, BorderLayout.SOUTH);
+        
+        return painelCand;
     }
     /**
      * cria painel para introdução dos dados gerais da candidatura

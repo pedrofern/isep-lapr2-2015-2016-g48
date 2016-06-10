@@ -52,7 +52,7 @@ public class DialogoSelecionarExposicao extends JDialog{
 //                }
 //                if (e != null) {
     //-------------------------------------------------------
-                    new RegistarCandidaturaUI(ce,e);
+                    new RegistarCandidaturaUI(ce);
     //-------------------------------------------------------
 //                }
 //            }

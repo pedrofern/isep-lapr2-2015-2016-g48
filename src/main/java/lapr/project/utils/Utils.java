@@ -121,49 +121,59 @@ public class Utils {
     }
     
     
-    public void criarComboExpo(RegistoExposicoes lista_exposicao){
+    public static JComboBox criarComboExpo(RegistoExposicoes lista_exposicao){
         Exposicao[] opcoes=lista_exposicao.getArray();
         JComboBox comboExpos=new JComboBox();
         
         DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
         
         comboExpos.setModel(combo);
+        
+        return comboExpos;
     }
     
-    public void criarComboCand(ListaCandidaturas lista_candidaturas){
+    public static JComboBox criarComboCand(ListaCandidaturas lista_candidaturas){
         Candidatura[] opcoes=lista_candidaturas.getArray();
         JComboBox comboCands=new JComboBox();
         
         DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
         
         comboCands.setModel(combo);
+        
+        return comboCands;
     }
     
-     public void criarComboDemo(RegistoDemonstracoes lista_demo){
+     public static JComboBox criarComboDemo(RegistoDemonstracoes lista_demo){
         Demonstracao[] opcoes=lista_demo.getArray();
         JComboBox comboDemos=new JComboBox();
         
         DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
         
         comboDemos.setModel(combo);
+        
+        return comboDemos;
     }
      
      
-      public void criarComboStand(RegistoStands lista_stands){
+      public static JComboBox criarComboStand(RegistoStands lista_stands){
         Stand[] opcoes=lista_stands.getArray();
         JComboBox comboStands=new JComboBox();
         
         DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
         
         comboStands.setModel(combo);
+        
+        return comboStands;
     }
       
-        public void criarComboRecurso(RegistoRecursos lista_recursos){
+        public static JComboBox criarComboRecurso(RegistoRecursos lista_recursos){
         Recurso[] opcoes=lista_recursos.getArray();
         JComboBox comboRecursos=new JComboBox();
         
         DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
         
         comboRecursos.setModel(combo);
+    
+        return comboRecursos;
     }
 }

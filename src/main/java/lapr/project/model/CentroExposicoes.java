@@ -81,10 +81,6 @@ public class CentroExposicoes {
     public ListaCandidaturas getRegistoCandidaturas() {
         return this.m_regCandidaturas;
     }
-
-    public RegistoExposicoes getRegistoExposicoes() {
-        return this.m_regExposicoes;
-    }
     
     public RegistoRecursos getRegistoRecursos() {
         return this.m_regRecursos;
@@ -175,7 +171,7 @@ public class CentroExposicoes {
         }
         CentroExposicoes outroCentro = (CentroExposicoes) o;
         return this.getRegistoUtilizadores().equals(outroCentro.getRegistoUtilizadores())
-                && this.getRegistoExposicoes().equals(outroCentro.getRegistoExposicoes());
+                && this.getListaExposicoes().equals(outroCentro.getListaExposicoes());
     }
 
     public RegistoExposicoes getListaExposicoes() {
