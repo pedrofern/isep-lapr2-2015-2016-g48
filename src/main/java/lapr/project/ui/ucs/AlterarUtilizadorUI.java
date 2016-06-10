@@ -30,6 +30,7 @@ public class AlterarUtilizadorUI extends JPanel{
 
     public AlterarUtilizadorUI(CentroExposicoes ce, Utilizador user){
         
+<<<<<<< Upstream, based on origin/master
          
          super();
          m_ce=ce;
@@ -39,6 +40,16 @@ public class AlterarUtilizadorUI extends JPanel{
          
          setLayout(new BorderLayout());
         add(criarPainel());
+=======
+        this.setTitle("Alterar Utilizador");
+        String pergunta="Pretende cancelar a alteração do registo de utilizador?";
+        
+//        this.setPergunta(pergunta);
+// 
+//        this.removerEmailPainelNorte();
+        
+        
+>>>>>>> 998fc2b [UC8] alteração do codigo 
     }
     
     

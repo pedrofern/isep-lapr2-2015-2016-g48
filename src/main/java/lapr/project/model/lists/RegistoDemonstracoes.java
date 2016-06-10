@@ -18,9 +18,9 @@ public class RegistoDemonstracoes {
         m_lstDemonstracao = new ArrayList<>();
     }
 
-    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos listaRecursos, CentroExposicoes m_centroExposicoes) {
-        return new Demonstracao(codigoUnico, strDescricao, listaRecursos, m_centroExposicoes);
-    }
+//    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos listaRecursos, CentroExposicoes m_centroExposicoes) {
+//        return new Demonstracao(codigoUnico, strDescricao, listaRecursos, m_centroExposicoes);
+//    }
 
     public boolean registaDemonstracao(Demonstracao demonstracao) {
         if (validaDemonstracao(demonstracao)) {
@@ -30,7 +30,7 @@ public class RegistoDemonstracoes {
     }
 
     public boolean validaDemonstracao(Demonstracao demonstracao) {
-//        System.out.println("ListaDemonstracoes: validaDemonstracao: " + demonstracao.valida());
+//        System.out.println("RegistoDemonstracoes: validaDemonstracao: " + demonstracao.valida());
         return true;
     }
 
