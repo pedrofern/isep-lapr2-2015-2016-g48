@@ -10,8 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 import lapr.project.model.*;
 import lapr.project.ui.*;
 import lapr.project.controller.*;
@@ -20,6 +22,7 @@ import lapr.project.ui.ucs.ModeloListaRecursos;
 
 public class CriarDemonstracaoUI extends JFrame {
 
+    private JFormattedTextField campoDataInicial, campoDataFinal;
     private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso;
     private JComboBox comboBoxExposicao;
     private JTextArea txtDescricao = new JTextArea();
@@ -55,7 +58,7 @@ public class CriarDemonstracaoUI extends JFrame {
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         m_demonstracaoController = new DefinirDemonstracaoController(o_Organizador, exposicao);
-        
+
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -131,14 +134,14 @@ public class CriarDemonstracaoUI extends JFrame {
                 listaCompletaRecurso,
                 modeloListaRecurso, criarBotaoAdicionarRecurso()));
 
-        p.add(criarPainelDescricao("Descrição ", txtDescricao));
+        p.add(criarPainelDescricao("Descrição ", txtDescricao,criarPainelDataInicial(),criarPainelDataFinal()));
 
         return p;
     }
 
     private JPanel criarPainelDescricao(
             String tituloDescrição,
-            JTextArea descricao
+            JTextArea descricao, JPanel datainicial, JPanel datafinal
     ) {
         JLabel lblTitulo = new JLabel(tituloDescrição, JLabel.LEFT);
 
@@ -150,6 +153,7 @@ public class CriarDemonstracaoUI extends JFrame {
 
         p.add(lblTitulo, BorderLayout.NORTH);
         p.add(scrPane, BorderLayout.CENTER);
+        p.add(criarPainelData(datainicial, datafinal),BorderLayout.SOUTH);
 
         return p;
     }
@@ -174,6 +178,18 @@ public class CriarDemonstracaoUI extends JFrame {
 
         JPanel pBotoes = criarPainelBotoes(btnAdicionar);
         p.add(pBotoes, BorderLayout.SOUTH);
+        return p;
+    }
+
+    private JPanel criarPainelData(JPanel datainicial, JPanel datafinal) {
+
+        JPanel p = new JPanel(new GridLayout(2, 1, 0, 10));
+
+        p.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+
+        p.add(datainicial);
+        p.add(datafinal);
+
         return p;
     }
 
@@ -239,6 +255,43 @@ public class CriarDemonstracaoUI extends JFrame {
 
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
+
+        btnConfirmar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                try {
+
+//                    String descricao=txtDescricao.getText();
+//
+//                    candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
+//                    if (candidatura != null) {
+//                        JOptionPane.showMessageDialog(
+//                                null,
+//                                "Candidatura adicionada.",
+//                                "Nova Candidatura",
+//                                JOptionPane.INFORMATION_MESSAGE);
+//                        dispose();
+//                    } else {
+//                        JOptionPane.showMessageDialog(
+//                                null,
+//                                "Candidatura já registada!",
+//                                "Nova Candidatura",
+//                                JOptionPane.ERROR_MESSAGE);
+//                    }
+                    dispose();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Tem de preencher todos os campos!",
+                            "Registar Candidatura",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        }
+        );
         return btnConfirmar;
     }
 
@@ -261,10 +314,49 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 txtDescricao.setText(null);
+                campoDataInicial.setText(null);
+                campoDataInicial.setText(null);
 
             }
         });
         return btn;
 
+    }
+
+    private JPanel criarPainelDataInicial() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data incial :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataInicial = new JFormattedTextField(mascara);
+            campoDataInicial.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoDataInicial);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
+    private JPanel criarPainelDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data final :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataFinal = new JFormattedTextField(mascara);
+            campoDataFinal.setPreferredSize(new Dimension(80, 20));
+
+            painel.add(labelData);
+            painel.add(campoDataFinal);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
     }
 }

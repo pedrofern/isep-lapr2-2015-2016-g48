@@ -17,9 +17,10 @@ public class Organizador {
         m_strNome = u.getNome();
         this.setUtilizador(u);
     }
+
     public Organizador() {
         m_strNome = null;
-        m_utilizador=new Utilizador();
+        m_utilizador = new Utilizador();
     }
 
     private void setUtilizador(Utilizador u) {
@@ -28,6 +29,12 @@ public class Organizador {
 
     public Utilizador getUtilizador() {
         return this.m_utilizador;
+    }
+
+    public Demonstracao novaDemonstracao() {
+
+        return new Demonstracao();
+
     }
 
     public boolean valida() {

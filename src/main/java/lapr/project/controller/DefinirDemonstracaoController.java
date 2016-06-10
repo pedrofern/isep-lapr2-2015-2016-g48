@@ -22,13 +22,15 @@ public class DefinirDemonstracaoController {
         o_organizador=o_Oraganizador;
     }
 
-    public void novaDemonstracao(String strDescricao, String temaExposicao, Data inicio, Data fim) {
-        m_demonstracao.setDados(strDescricao, temaExposicao, inicio, fim);
+    public void novaDemonstracao() {
+        m_demonstracao=o_organizador.novaDemonstracao();
     }
 
-//    public boolean registaDemonstracao(Demonstracao demonstracao) {
-//        return m_exposicao.getRegistoDemonstracao().registaDemonstracao(demonstracao);
-//    }
+    public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
+        m_demonstracao.setDados(descricao, temaExposicao, inicio, fim);
+        
+        return m_demonstracao;
+    }
 
 //    public void setCodigoUnico(int codigoUnico) {
 //        m_demonstracao.setCod(codigoUnico);
