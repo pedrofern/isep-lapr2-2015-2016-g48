@@ -236,6 +236,7 @@ public class CriarExposicaoUI extends JFrame {
         dataInicio=txtDataInicio.getText();
         dataFim=txtDataFim.getText();
         
+        
     }
 
     private JButton criarBotaoConfirmar() {

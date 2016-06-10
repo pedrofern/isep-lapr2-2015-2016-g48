@@ -5,6 +5,7 @@ import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.model.*;
 import java.util.*;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -113,6 +114,21 @@ public class CriarExposicaoController {
             return m_exposicao;
         }
         return null;
+    }
+    
+    public Exposicao criaExposicao(String titulo, String descricao, String local, Date dInicio, Date dFim) {        
+        m_exposicao.setTitulo(titulo);
+        m_exposicao.setTextoDescritivo(descricao);
+        m_exposicao.setLocal(local);
+        m_exposicao.setDataInicio(dInicio);
+        m_exposicao.setDataFim(dFim);
+        
+        if (m_regExposicoes.registaExposicao(m_exposicao)) {
+            return m_exposicao;
+        } else {
+            return null;
+        }
+
     }
     
     private void createTimers() {
