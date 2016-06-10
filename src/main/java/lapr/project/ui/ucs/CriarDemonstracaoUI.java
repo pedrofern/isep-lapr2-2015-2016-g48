@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
 import lapr.project.ui.*;
+import lapr.project.controller.*;
 import lapr.project.model.lists.*;
 import lapr.project.ui.ucs.ModeloListaRecursos;
 
@@ -26,17 +27,35 @@ public class CriarDemonstracaoUI extends JFrame {
     private ModeloListaRecursos modeloListaRecurso;
     private JList listaCompletaRecurso;
     private RegistoRecursos listaRecurso;
+    private Demonstracao demostracao;
+    private RegistoExposicoes listaExposicoes;
     private JTable tableListaRecurso;
+    private Organizador o_Organizador;
+    private CentroExposicoes centroExposicoes;
+    private Exposicao exposicao;
+    private RegistoDemonstracoes listaDemostracao;
+    private DefinirDemonstracaoController m_demonstracaoController;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
 
-    public CriarDemonstracaoUI() throws FileNotFoundException {
+    public CriarDemonstracaoUI(CentroExposicoes ce) throws FileNotFoundException {
 
         super("Criar Demonstração");
+
+        o_Organizador = new Organizador();
+
+        centroExposicoes = ce;
+        exposicao = ce.novaExposicao();
+        exposicao.setTitulo("TESTE EXPOSICAO");
+        ce.registaExposicao(exposicao);
+        listaExposicoes = ce.getListaExposicoes();
+        listaExposicoes.adicionarExposicao(exposicao);
+
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        m_demonstracaoController = new DefinirDemonstracaoController(o_Organizador, exposicao);
+        
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
         setVisible(true);

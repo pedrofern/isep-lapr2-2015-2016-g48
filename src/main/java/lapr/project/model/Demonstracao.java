@@ -62,14 +62,14 @@ public class Demonstracao implements Serializable {
         return m_listaRecursos;
     }
 
-    /**
-     * Metodo que modifica o codigo
-     *
-     * @param cod codigo
-     */
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
+//    /**
+//     * Metodo que modifica o codigo
+//     *
+//     * @param cod codigo
+//     */
+//    public void setCod(int cod) {
+//        this.cod = cod;
+//    }
 
     /**
      * Metodo que modifica a descricao
@@ -128,14 +128,14 @@ public class Demonstracao implements Serializable {
         }
     }
 
-    /**
-     * Metodo que retorna o codigo
-     *
-     * @return o codigo
-     */
-    public int getCod() {
-        return cod;
-    }
+//    /**
+//     * Metodo que retorna o codigo
+//     *
+//     * @return o codigo
+//     */
+//    public int getCod() {
+//        return cod;
+//    }
 
     /**
      * Metodo que retorna a descrição

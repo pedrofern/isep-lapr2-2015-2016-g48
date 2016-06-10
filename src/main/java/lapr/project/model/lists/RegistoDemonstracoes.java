@@ -5,6 +5,7 @@ import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Recurso;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -13,13 +14,14 @@ import lapr.project.model.Recurso;
 public class RegistoDemonstracoes {
 
     private ArrayList<Demonstracao> m_lstDemonstracao;
+    private Demonstracao m_demonstraco;
 
     public RegistoDemonstracoes() {
         m_lstDemonstracao = new ArrayList<>();
     }
 
-    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos listaRecursos, CentroExposicoes m_centroExposicoes) {
-        return new Demonstracao(codigoUnico, strDescricao, listaRecursos, m_centroExposicoes);
+    public void novaDemonstracao(String strDescricao, String temaExposicao, Data inicio, Data fim ) {
+        m_demonstraco.setDados(strDescricao, temaExposicao, inicio, fim);
     }
 
     public boolean registaDemonstracao(Demonstracao demonstracao) {

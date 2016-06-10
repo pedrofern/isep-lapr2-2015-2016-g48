@@ -3,6 +3,7 @@ package lapr.project.controller;
 import java.util.*;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -14,23 +15,25 @@ public class DefinirDemonstracaoController {
     private RegistoExposicoes m_listaExposicoes;
     private Exposicao m_exposicao;
     private RegistoRecursos m_listaRecursos;
+    private Organizador o_organizador;
     
-    public DefinirDemonstracaoController(Exposicao expo) {
+    public DefinirDemonstracaoController(Organizador o_Oraganizador, Exposicao expo) {
         m_exposicao = expo;
+        o_organizador=o_Oraganizador;
     }
 
-//    public Demonstracao novaDemonstracao(int codigoUnico, String strDescricao, RegistoRecursos lst_recursos) {
-//        return m_exposicao.getRegistoDemonstracao().novaDemonstracao(codigoUnico, strDescricao, lst_recursos, m_centroDeExposicoes);
-//    }
+    public void novaDemonstracao(String strDescricao, String temaExposicao, Data inicio, Data fim) {
+        m_demonstracao.setDados(strDescricao, temaExposicao, inicio, fim);
+    }
 
 //    public boolean registaDemonstracao(Demonstracao demonstracao) {
 //        return m_exposicao.getRegistoDemonstracao().registaDemonstracao(demonstracao);
 //    }
 
-    public void setCodigoUnico(int codigoUnico) {
-        m_demonstracao.setCod(codigoUnico);
-    }
-    
+//    public void setCodigoUnico(int codigoUnico) {
+//        m_demonstracao.setCod(codigoUnico);
+//    }
+//    
     public void setDescricao(String novaDescricao) {
         m_demonstracao.setDesc(novaDescricao);
     }

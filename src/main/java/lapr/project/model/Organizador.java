@@ -9,7 +9,6 @@ import java.util.*;
  */
 public class Organizador {
 
-    private Utilizador m_oUtilizador;
     private List<Atribuicao> ac_listaAtribuicao;
     private final String m_strNome;
     private Utilizador m_utilizador;
@@ -17,6 +16,10 @@ public class Organizador {
     public Organizador(Utilizador u) {
         m_strNome = u.getNome();
         this.setUtilizador(u);
+    }
+    public Organizador() {
+        m_strNome = null;
+        m_utilizador=new Utilizador();
     }
 
     private void setUtilizador(Utilizador u) {
@@ -28,7 +31,7 @@ public class Organizador {
     }
 
     public boolean valida() {
-        if (m_oUtilizador.valida()) {
+        if (m_utilizador.valida()) {
             System.out.println("Organizador:valida: " + this.toString());
             return true;
         }
@@ -65,12 +68,12 @@ public class Organizador {
 
     @Override
     public String toString() {
-        return this.m_oUtilizador.toString();
+        return this.m_utilizador.toString();
     }
 
     public boolean isUtilizador(Utilizador u) {
-        if (this.m_oUtilizador != null) {
-            return this.m_oUtilizador.equals(u);
+        if (this.m_utilizador != null) {
+            return this.m_utilizador.equals(u);
         }
         return false;
     }
