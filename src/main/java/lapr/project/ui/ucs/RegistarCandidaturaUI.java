@@ -112,6 +112,7 @@ public class RegistarCandidaturaUI extends JFrame{
 
         centroExposicoes = ce;
         exposicao = ce.novaExposicao();
+        exposicao.setTitulo("TESTE EXPOSICAO");
         ce.registaExposicao(exposicao);
         listaExposicoes = ce.getListaExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
@@ -135,7 +136,7 @@ public class RegistarCandidaturaUI extends JFrame{
         m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
         m_controllerRCC.novaCandidatura();
                 
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(JANELA_LARGURA, JANELA_ALTURA));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -156,7 +157,9 @@ public class RegistarCandidaturaUI extends JFrame{
         JPanel painel= new JPanel(new FlowLayout());
         
         comboExp = Utils.criarComboExpo(lstExposicoes);
-        
+
+        painel.add(comboExp);
+
         add(painel);
         
         return painel;
