@@ -24,18 +24,22 @@ import lapr.project.ui.*;
  */
 public class DefinirRecursoUI extends JFrame {
 
-     private CentroExposicoes m_centroDeExposicoes;
+    private CentroExposicoes m_ce;
     private DefinirRecursoController m_controller;
     private JTextArea text;
+    private Utilizador m_user;
+    private Recurso m_r;
     
     private static final int WIDTH=350, HEIGHT=350;
     
     
-    public DefinirRecursoUI(CentroExposicoes centroDeExposicoes) {
+    public DefinirRecursoUI(CentroExposicoes centroDeExposicoes, Utilizador user) {
        
-        m_centroDeExposicoes = centroDeExposicoes;
-        m_controller = new DefinirRecursoController(m_centroDeExposicoes);
+        m_ce = centroDeExposicoes;
+        m_controller = new DefinirRecursoController(m_ce);
+        m_user=user;
         
+       
         criarComponentes();
         
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -139,11 +143,27 @@ public class DefinirRecursoUI extends JFrame {
                 
                 if(text.getText()==null|| text.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Não introduziu dados.");
-                }else
+                }else{
                     JOptionPane.showMessageDialog(null, "Operação efectuada com sucesso.");
+                    guardar();
+            }
             }
         });
         return btn;
+    }
+    
+    private void guardar(){
+        
+        String descricao;
+        descricao=text.getText();
+        m_controller.novoRecurso();
+        m_controller.setDescricao(descricao);
+        
+        for(Recurso r: m_ce.getRegistoRecursos().getListaRecursos()){
+             System.out.println(r.toString());
+        }
+       
+        
     }
         
     

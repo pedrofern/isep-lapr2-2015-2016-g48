@@ -10,6 +10,7 @@ import lapr.project.model.Recurso;
 public class RegistoRecursos {
 
     private ArrayList<Recurso> listaRecursos;
+    private Recurso m_r;
     /**
      * Construtor relativo a lista de Recursos
      */
@@ -43,12 +44,26 @@ public class RegistoRecursos {
      * @param recurso recurso
      * @return true se o recurso for adicionado false em caso contrario
      */
-    public boolean adicionarRecurso(Recurso recurso) {
-        if (!listaRecursos.contains(recurso)) {
-            return listaRecursos.add(recurso);
-        }
-        return false;
+    
+    public boolean adicionarRecurso(Recurso r){
+        
+        if(!listaRecursos.contains(r)){
+            return listaRecursos.add(r);
+        }return false;
     }
+    
+    public Recurso novoRecurso() {
+        
+    
+        m_r= new Recurso();
+        
+       listaRecursos.add(m_r);
+        
+       return m_r;
+       
+    }
+    
+    
      /**
      * Metodo para remover o recurso passado por parametro a lista de recursos
      * @param recurso recurso

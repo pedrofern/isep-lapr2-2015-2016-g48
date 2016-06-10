@@ -1,6 +1,8 @@
 package lapr.project.controller;
 
+import java.util.List;
 import lapr.project.model.*;
+import lapr.project.model.lists.RegistoRecursos;
 
 /**
  *
@@ -8,11 +10,14 @@ import lapr.project.model.*;
  */
 public class DefinirRecursoController {
 
-    private CentroExposicoes m_centroDeExposicoes;
+    private CentroExposicoes m_ce;
     private Recurso m_recurso;
+   
+    
 
     public DefinirRecursoController(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
+        m_ce = centroDeExposicoes;
+        
     }
 
 //    public Recurso novoRecurso(String strDescricao) {
@@ -33,6 +38,18 @@ public class DefinirRecursoController {
 //        }
 //        return null;
 //    }
+    
+    public void novoRecurso(){
+        
+        
+    
+       
+       m_recurso=m_ce.getRegistoRecursos().novoRecurso();
+        
+        
+    }
+    
+    
     
     public Recurso getRecurso() {
         return m_recurso;
