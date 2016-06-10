@@ -44,16 +44,6 @@ public class Demonstracao implements Serializable {
     }
 
     /**
-     * Metodo que constroi objetos demonstração por omissão
-     *
-     * @param m_centroExposicoes centro de exposições
-     */
-    public Demonstracao(CentroExposicoes m_centroExposicoes) {
-        m_listaRecursos = new RegistoRecursos();
-        this.m_centroExposicoes = m_centroExposicoes;
-    }
-
-    /**
      * Metodo que retorna a lista de recursos
      *
      * @return lista de recursos

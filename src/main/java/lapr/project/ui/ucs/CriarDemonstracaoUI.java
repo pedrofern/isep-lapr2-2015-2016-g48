@@ -19,6 +19,7 @@ import lapr.project.ui.*;
 import lapr.project.controller.*;
 import lapr.project.model.lists.*;
 import lapr.project.ui.ucs.ModeloListaRecursos;
+import lapr.project.utils.*;
 
 public class CriarDemonstracaoUI extends JFrame {
 
@@ -37,7 +38,7 @@ public class CriarDemonstracaoUI extends JFrame {
     private CentroExposicoes centroExposicoes;
     private Exposicao exposicao;
     private RegistoDemonstracoes listaDemostracao;
-    private DefinirDemonstracaoController m_demonstracaoController;
+    private CriarDemonstracaoController m_demonstracaoController;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
@@ -57,7 +58,7 @@ public class CriarDemonstracaoUI extends JFrame {
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        m_demonstracaoController = new DefinirDemonstracaoController(o_Organizador, exposicao);
+        m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, exposicao);
 
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
@@ -76,18 +77,21 @@ public class CriarDemonstracaoUI extends JFrame {
         p.setBorder(new TitledBorder("Exposição"));
         JLabel lbl = new JLabel("Seleciona uma exposição", SwingConstants.RIGHT);
         p.add(lbl);
-        p.add(getListaExposicao());
+        p.add(criarPainelExposicao());
         return p;
     }
 
-    private JComboBox getListaExposicao() {
+    private JPanel criarPainelExposicao() {
+        JPanel p = new JPanel();
 
-        comboBoxExposicao = new JComboBox();
-        comboBoxExposicao.setSelectedIndex(-1);
-        comboBoxExposicao.setEditable(false);
-        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+     
 
-        return comboBoxExposicao;
+        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
+       //FcomboBoxExposicao.setEnabled(false);
+
+        p.add(comboBoxExposicao);
+
+        return p;
     }
 
     private JPanel criarPainelDescricao() {
@@ -134,7 +138,7 @@ public class CriarDemonstracaoUI extends JFrame {
                 listaCompletaRecurso,
                 modeloListaRecurso, criarBotaoAdicionarRecurso()));
 
-        p.add(criarPainelDescricao("Descrição ", txtDescricao,criarPainelDataInicial(),criarPainelDataFinal()));
+        p.add(criarPainelDescricao("Descrição ", txtDescricao, criarPainelDataInicial(), criarPainelDataFinal()));
 
         return p;
     }
@@ -153,7 +157,7 @@ public class CriarDemonstracaoUI extends JFrame {
 
         p.add(lblTitulo, BorderLayout.NORTH);
         p.add(scrPane, BorderLayout.CENTER);
-        p.add(criarPainelData(datainicial, datafinal),BorderLayout.SOUTH);
+        p.add(criarPainelData(datainicial, datafinal), BorderLayout.SOUTH);
 
         return p;
     }
@@ -263,29 +267,41 @@ public class CriarDemonstracaoUI extends JFrame {
 
                 try {
 
-//                    String descricao=txtDescricao.getText();
-//
-//                    candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
-//                    if (candidatura != null) {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Candidatura adicionada.",
-//                                "Nova Candidatura",
-//                                JOptionPane.INFORMATION_MESSAGE);
-//                        dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Candidatura já registada!",
-//                                "Nova Candidatura",
-//                                JOptionPane.ERROR_MESSAGE);
-//                    }
+                    String descricao = txtDescricao.getText();
+                    String temaExposicao = exposicao.getTitulo();
+                    String[] dataInicial = campoDataInicial.getText().split("/");
+                    String[] dataFinal = campoDataFinal.getText().split("/");
+                    int diainicial = Integer.parseInt(dataInicial[0]);
+                    int mesinicial = Integer.parseInt(dataInicial[1]);
+                    int anoinicial = Integer.parseInt(dataInicial[2]);
+                    int diafinal = Integer.parseInt(dataFinal[0]);
+                    int mesfinal = Integer.parseInt(dataFinal[1]);
+                    int anofinal = Integer.parseInt(dataFinal[2]);
+
+                    Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
+                    Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
+
+                    demostracao = m_demonstracaoController.registaDemonstracao(descricao, temaExposicao, dataInicialPrimeiro, dataFinalUltimo);
+                    if (demostracao != null) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Demonstração adicionada.",
+                                "Nova Demonstração",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Demonstração já registada!",
+                                "Nova Demonstração",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                     dispose();
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(
                             null,
                             "Tem de preencher todos os campos!",
-                            "Registar Candidatura",
+                            "Registar Demonstração",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -315,7 +331,7 @@ public class CriarDemonstracaoUI extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 txtDescricao.setText(null);
                 campoDataInicial.setText(null);
-                campoDataInicial.setText(null);
+                campoDataFinal.setText(null);
 
             }
         });

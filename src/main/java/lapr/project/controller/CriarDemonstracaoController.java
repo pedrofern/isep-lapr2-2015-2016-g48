@@ -9,7 +9,7 @@ import lapr.project.utils.Data;
  *
  * @author Pedro Fernandes
  */
-public class DefinirDemonstracaoController {
+public class CriarDemonstracaoController {
 
     private Demonstracao m_demonstracao;
     private RegistoExposicoes m_listaExposicoes;
@@ -17,7 +17,7 @@ public class DefinirDemonstracaoController {
     private RegistoRecursos m_listaRecursos;
     private Organizador o_organizador;
     
-    public DefinirDemonstracaoController(Organizador o_Oraganizador, Exposicao expo) {
+    public CriarDemonstracaoController(Organizador o_Oraganizador, Exposicao expo) {
         m_exposicao = expo;
         o_organizador=o_Oraganizador;
     }
@@ -27,6 +27,7 @@ public class DefinirDemonstracaoController {
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
+       
         m_demonstracao.setDados(descricao, temaExposicao, inicio, fim);
         
         return m_demonstracao;
