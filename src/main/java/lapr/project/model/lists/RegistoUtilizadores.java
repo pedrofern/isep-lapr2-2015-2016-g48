@@ -144,5 +144,9 @@ public class RegistoUtilizadores {
     public String toString() {
         return "RegistoUtilizadores:" + "m_listaUtilizadores=" + m_listaUtilizadores;
     }
+    
+    public Utilizador[] getArray() {
+        return m_listaUtilizadores.toArray( new Utilizador[m_listaUtilizadores.size()] );
+     }
 
 }
