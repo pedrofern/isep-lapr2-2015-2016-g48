@@ -30,8 +30,8 @@ import lapr.project.ui.ucs.AlterarUtilizadorUI;
  * @author Diana
  */
 public class Janela extends JFrame /** implements Serializable**/{
-    private final CentroExposicoes m_ce;
-    private Utilizador m_ut;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_ut;
     private String tipo_utilizador;
     
     private JTabbedPane tabPane;

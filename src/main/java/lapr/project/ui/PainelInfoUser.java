@@ -15,7 +15,7 @@ import lapr.project.model.Utilizador;
  */
 public class PainelInfoUser extends JPanel {
     
-    private Utilizador m_user;
+    private static Utilizador m_user;
     private String tipo_utilizador;
     private static JLabel lblNome, lblEmail;
     

@@ -22,11 +22,11 @@ import lapr.project.ui.ucs.RegistarUtilizadorUI;
  * @author Diana
  */
 public class AlterarUtilizadorUI extends JPanel{
-    private CentroExposicoes m_ce;
-    private Utilizador m_user;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
     private AlterarUtilizadorController m_controller;
     private PainelDadosUtilizador norte;
-    private String pergunta="Pretende cancelar a alteração do registo de utilizador?";
+    private static final String pergunta="Pretende cancelar a alteração do registo de utilizador?";
       
 
     public AlterarUtilizadorUI(CentroExposicoes ce, Utilizador user){

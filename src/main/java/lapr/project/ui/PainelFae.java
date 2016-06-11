@@ -89,7 +89,7 @@ public class PainelFae extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                
-                new AvaliarCandidaturaUI(m_ce, m_ut);
+                AvaliarCandidaturaUI a= new AvaliarCandidaturaUI(m_ce, m_ut);
             }
         });
         

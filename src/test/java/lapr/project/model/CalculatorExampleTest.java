@@ -34,10 +34,10 @@ public class CalculatorExampleTest {
 	@Test
 	public void ensureAverageWorks() {
 		double expected = 5;
-		int firstOperand = 10;
-		int secondOperand = 2;
+		double firstOperand = 10;
+		double secondOperand = 2;
 		
-		double result = CalculatorExample.average(firstOperand, secondOperand);
+		double result = CalculatorExample.average((int)firstOperand, (int)secondOperand);
 		
                 assertEquals(expected, result, result);
 
