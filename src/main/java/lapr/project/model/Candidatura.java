@@ -62,9 +62,13 @@ public class Candidatura {
     public int getQuantidadeConvites(){
         return this.quantidadeConvites;
     }
-
+    
     public String getInfo() {
         return this.toString();
+    }
+    
+    public ListaFAE getListaFAE(){
+        return e_listaFAE;
     }
     
     public ListaAvaliacoes getListaAvaliacoes(){
@@ -102,14 +106,14 @@ public class Candidatura {
     public void setListaProdutos(ListaProduto listaProdutos){
         e_listaProdutos = listaProdutos;
     }
-//
-//    public ListaCandidaturas getListaCandidaturas() {
-//        ListaCandidaturas lc = new ListaCandidaturas();
-//        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
-//            lc.addCandidatura(it.next());
-//        }
-//        return lc;
-//    }
+
+    public ListaCandidaturas getListaCandidaturas() {
+        ListaCandidaturas lc = new ListaCandidaturas();
+        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
+            lc.addCandidatura(it.next());
+        }
+        return lc;
+    }
 
     public boolean addProduto(String nomeProduto) {
         Produto p = new Produto(nomeProduto);
@@ -170,7 +174,18 @@ public class Candidatura {
 
     @Override
     public String toString() {
-        return this.nomeEmpresa + "\n" + this.morada + "\n" + this.telemovel + "\n" + this.areaExposicao + "\n" + this.quantidadeConvites;
+        return this.nomeEmpresa;
     }
-
+    
+    public String toStringDadosGerais() {
+        return this.nomeEmpresa + "\n" 
+                + this.morada + "\n" + 
+                this.telemovel + "\n" + 
+                this.areaExposicao + "\n" + 
+                this.quantidadeConvites;
+    }
+    
+    public String toStringCompleto() {
+        return this.toStringDadosGerais() + "\n" + this.getListaProdutos();
+    }
 }

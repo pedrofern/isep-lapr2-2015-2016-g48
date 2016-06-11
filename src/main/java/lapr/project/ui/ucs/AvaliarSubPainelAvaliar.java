@@ -178,18 +178,18 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
             public void actionPerformed(ActionEvent e) {
                 //nao esquecer try... candidatura adicionada e avaliacao criada
                 //m_candidatura=(Candidatura) comboCands.getSelectedItem();
-                
-                AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(m_controllerAC);
-        
-                
-                pJustificacao.mostrarPainel();
-         
-                m_candidatura=new Candidatura();
-                
-                pQuestoes.setVisible(false);
-                    
-                add(pJustificacao);
-                AvaliarCandidaturaUI.ativarGuardar();
+//                
+//                AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(m_controllerAC);
+//        
+//                
+//                pJustificacao.mostrarPainel();
+//         
+//                m_candidatura=new Candidatura();
+//                
+//                pQuestoes.setVisible(false);
+//                    
+//                add(pJustificacao);
+//                AvaliarCandidaturaUI.ativarGuardar();
                 
             }     
         }
