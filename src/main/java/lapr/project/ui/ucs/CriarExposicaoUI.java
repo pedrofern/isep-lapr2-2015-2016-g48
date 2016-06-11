@@ -32,7 +32,7 @@ import lapr.project.ui.*;
  */
 public class CriarExposicaoUI extends JFrame {
 
-    private JFormattedTextField campoDataInicial, campoDataFinal;
+    private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataAlterarConflito;
     private CentroExposicoes m_centroDeExposicoes;
     private CriarExposicaoController m_controller;
     private static final int JANELA_LARGURA = 700;
@@ -56,23 +56,25 @@ public class CriarExposicaoUI extends JFrame {
         setVisible(true);
     }
 
-//    private void novaExposicao() {
-//        m_controller.novaExposicao();
-//    }
     public void criarComponentes() {
 
+        //add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelSul(), BorderLayout.SOUTH);
-        add(criarPainelCentro(), BorderLayout.CENTER);
+        add(criarPainelOeste(), BorderLayout.WEST);
     }
 
-    private JPanel criarPainelCentro() {
+    private JPanel criarPainelOeste() {
         JPanel p = new JPanel(new GridLayout(0, 1));
         p.add(criarPainelTitulo());
         p.add(criarPainelDescricao());
         p.add(criarPainelLocal());
-        p.add(criarPainelDataInicial());
-        p.add(criarPainelDataFinal());
-        p.setPreferredSize(new Dimension(200, 50));
+        p.add(criarPainelExposicaoData(criarPainelExposiçãoDataInicial(), criarPainelExposiçãoDataFinal()));
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new TitledBorder("Dados"));
         return p;
     }
 
@@ -159,7 +161,34 @@ public class CriarExposicaoUI extends JFrame {
 
     }
 
-    private JPanel criarPainelDataInicial() {
+    private JPanel criarPainelExposicaoData(JPanel datainicial, JPanel datafinal) {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+        painel.add(datainicial);
+        painel.add(datafinal);
+
+        return painel;
+
+    }
+
+    private JPanel criarPainelPeriodo() {
+        JPanel painel = new JPanel(new GridLayout(0, 1));
+
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        painel.setBorder(new TitledBorder("Periodo: "));
+                
+        return painel;
+
+    }
+
+    private JPanel criarPainelExposiçãoDataInicial() {
         JPanel painel = new JPanel(new FlowLayout());
         try {
             JLabel labelData = new JLabel("Data incial :");
@@ -177,7 +206,7 @@ public class CriarExposicaoUI extends JFrame {
         return painel;
     }
 
-    private JPanel criarPainelDataFinal() {
+    private JPanel criarPainelExposiçãoDataFinal() {
         JPanel painel = new JPanel(new FlowLayout());
         try {
             JLabel labelData = new JLabel("Data final :");
@@ -196,6 +225,78 @@ public class CriarExposicaoUI extends JFrame {
         return painel;
     }
 
+    private JPanel criarPainelCandidaturaDataInicial() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data incial :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoSubCandDataInicial = new JFormattedTextField(mascara);
+            campoSubCandDataInicial.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoSubCandDataInicial);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
+    private JPanel criarPainelCandidaturaDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data final :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoSubCandDataFinal = new JFormattedTextField(mascara);
+            campoSubCandDataFinal.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoSubCandDataFinal);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
+    private JPanel criarPainelStandsDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data final :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoSubStandsDatainicial = new JFormattedTextField(mascara);
+            campoSubStandsDataFinal.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoSubStandsDataFinal);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
+    private JPanel criarPainelConflitoDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataAlterarConflito = new JFormattedTextField(mascara);
+            campoDataAlterarConflito.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoDataAlterarConflito);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
     private JPanel criarPainelSul() {
         JPanel p = new JPanel(new FlowLayout());
         p.setBorder(new TitledBorder("Opções"));
@@ -204,8 +305,8 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private JPanel criarPainelBotoes() {
-         JButton btnOK = criarBotaoConfirmar();
-         getRootPane().setDefaultButton(btnOK);
+        JButton btnOK = criarBotaoConfirmar();
+        getRootPane().setDefaultButton(btnOK);
         JButton btnClose = criarBotaoFechar();
         JPanel p = new JPanel();
         p.add(btnOK);
@@ -227,7 +328,7 @@ public class CriarExposicaoUI extends JFrame {
         Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
         Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
         m_controller.novaExposicao();
-        m_controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro,dataFinalUltimo);
+        m_controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
 //        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Nova Exposição: \n"
@@ -241,20 +342,21 @@ public class CriarExposicaoUI extends JFrame {
         dispose();
 
     }
+
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
         btnConfirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(txtTitulo.getText().isEmpty()==true||
-                    txtDescricao.getText().isEmpty()==true||
-                    txtLocal.getText().isEmpty()==true){
+                if (txtTitulo.getText().isEmpty() == true
+                        || txtDescricao.getText().isEmpty() == true
+                        || txtLocal.getText().isEmpty() == true) {
 //                        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Tem de preencher todos os campos!",
 //                            "Criar Exposoção",
 //                            JOptionPane.ERROR_MESSAGE);                        
-                }else{
+                } else {
                     guardar();
                 }
             }
@@ -310,7 +412,6 @@ public class CriarExposicaoUI extends JFrame {
 //        }
 //        return null;
 //    }
-
 //    private void apresentaExposicao(Exposicao exposicao) {
 //        if (exposicao == null) {
 //            System.out.println("Exposicao não registada.");
