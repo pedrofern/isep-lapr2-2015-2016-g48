@@ -25,7 +25,8 @@ public class Utilizador implements Comparable<Utilizador>{
         password = PASS_POR_OMISSAO;
     }
 
-    public Utilizador(String email, String username, Boolean bRegistado) {
+    public Utilizador(String nome, String email, String username, Boolean bRegistado) {
+        this.nome=nome;
         this.email = email;
         this.username = username;
         this.m_bRegistado = bRegistado;

@@ -42,8 +42,8 @@ public class PainelFae extends JPanel{
         criarPainelPrincipal(); 
         criarPainelInfo();
 
-        add(pPrincipal, BorderLayout.CENTER);
-        add(pInfo, BorderLayout.EAST); 
+        add(pPrincipal, BorderLayout.WEST);
+        add(pInfo, BorderLayout.CENTER); 
         
     }
     
@@ -59,7 +59,7 @@ public class PainelFae extends JPanel{
         pInfo=new JPanel();
         pInfo.setLayout(new BorderLayout());
 
-        PainelInicio p=new PainelInicio();
+        PainelInicio p=new PainelInicio(m_ce);
         
         pInfo.add(p);         
     }

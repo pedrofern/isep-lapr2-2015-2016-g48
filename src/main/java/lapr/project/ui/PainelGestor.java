@@ -58,7 +58,7 @@ public class PainelGestor extends JPanel {
         pInfo=new JPanel();
         pInfo.setLayout(new BorderLayout());
 
-        PainelInicio p=new PainelInicio();
+        PainelInicio p=new PainelInicio(m_ce);
         
         pInfo.add(p);  
     }

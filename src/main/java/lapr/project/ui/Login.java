@@ -36,12 +36,15 @@ public class Login extends JFrame /**implements Serializable**/ {
         this.m_ce=ce;
         
         //Para teste
-                    Utilizador ut1= new Utilizador("1130155@isep.ipp.pt","Ana",true);
-                    Utilizador ut2= new Utilizador("1130155@isep.ipp.pt","Pedro",true);
-                    Utilizador ut3= new Utilizador("1151182@isep.ipp.pt","Tomas",true);
-                    Utilizador ut4= new Utilizador("1151094@isep.ipp.pt","Eduangelo",true);
-                    Utilizador ut5= new Utilizador("1151088@isep.ipp.pt","Diana",true);
-                    
+                     Utilizador ut1=new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true );
+                     
+                    Utilizador ut2= new Utilizador("Ana Silva", "1130155@isep.ipp.pt","Gestor",true);
+                    Utilizador ut3= new Utilizador("Diana Silva", "1151088@isep.ipp.pt","Organizador",true);
+                    Utilizador ut4= new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt","Organizador+Fae",true);
+                    Utilizador ut5= new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt","Fae",true);
+                    Utilizador ut6= new Utilizador("Tomás Magalhães" , "1151182@isep.ipp.pt","Representante",true);
+                   
+            
                    RegistoUtilizadores lu = m_ce.getRegistoUtilizadores();
                    lu.addUtilizador(ut1);
                    lu.addUtilizador(ut2);
@@ -235,16 +238,16 @@ public class Login extends JFrame /**implements Serializable**/ {
                 
                 //CentroExposicoes ce=new CentroExposicoes();
                 
-                 for (Utilizador u: m_ce.getRegistoUtilizadores().getListaUtilizadores()){
-            System.out.println(u.toString());
-        }
+//                 for (Utilizador u: m_ce.getRegistoUtilizadores().getListaUtilizadores()){
+//                    System.out.println(u.toString());
+//                }
             
                  for(Utilizador u: m_ce.getRegistoUtilizadores().getListaUtilizadores()){
      
                      if(username.getText().equalsIgnoreCase(u.getUsername())){
             
                         if(u.getRegistado()!= false){
-                        JOptionPane.showMessageDialog(null, "Utilizador valido. Bem vindo!");
+                        JOptionPane.showMessageDialog(null, "Utilizador válido. Bem vindo!");
                         new Janela (m_ce, u);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");

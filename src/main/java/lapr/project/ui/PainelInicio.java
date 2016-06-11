@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import lapr.project.model.CentroExposicoes;
 
 /**
  *
@@ -11,8 +12,11 @@ import javax.swing.JPanel;
  */
 public class PainelInicio extends JPanel {
 
-    public PainelInicio() {
+    private static CentroExposicoes m_ce;
+    
+    public PainelInicio(CentroExposicoes ce) {
         super();
+        m_ce=ce;
 
         setLayout(new BorderLayout());
         
@@ -21,34 +25,40 @@ public class PainelInicio extends JPanel {
     
     private void criarComponentes(){
         
-        //PainelLogoAjustavel pImagem=new PainelLogoAjustavel();
+        PainelLogoAjustavel pImagem=new PainelLogoAjustavel();
         
         add(painelTexto(), BorderLayout.NORTH);
-        //add(pImagem, BorderLayout.CENTER);
+        add(pImagem, BorderLayout.CENTER);
     }
     
     private JPanel painelTexto(){
- 
-        JPanel pAcerca=new JPanel();  
-        pAcerca.setLayout(new GridLayout(3,1));
+        JPanel p=new JPanel();
         
+        JPanel pAcerca=new JPanel();  
+        
+        GridLayout gl=new GridLayout(1,3);
+        gl.setHgap(20);
+        
+        pAcerca.setLayout(gl);
         JPanel pInfo1=new JPanel();
-        JLabel info1=new JLabel("Nº utilizadores: ....");
+        JLabel info1=new JLabel("Nº Utilizadores: " + m_ce.getRegistoUtilizadores().getListaUtilizadores().size());
         pInfo1.add(info1);
         
         JPanel pInfo2=new JPanel();
-        JLabel info2=new JLabel("Nº exposiçoes: ....");
+        JLabel info2=new JLabel("Nº Exposiçoes: " + m_ce.getListaExposicoes().getExposicao().size());
         pInfo1.add(info2);
-
-        JPanel pInfo3=new JPanel();
-        JLabel info3=new JLabel("Nº candidaturas: ....");
-        pInfo1.add(info3);        
+//
+//        JPanel pInfo3=new JPanel();
+//        JLabel info3=new JLabel("Nº candidaturas: ");
+//        pInfo1.add(info3);        
         
+    
         pAcerca.add(pInfo1);
         pAcerca.add(pInfo2);
-        pAcerca.add(pInfo2); 
+//        pAcerca.add(pInfo2); 
         
-        return pAcerca;
+        p.add(pAcerca);
+        return p;
      }
         
 }

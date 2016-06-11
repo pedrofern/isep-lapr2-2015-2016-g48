@@ -35,7 +35,7 @@ public class PainelLogoAjustavel extends JPanel{
             double altura = dimensaoPainel.getHeight();
             
             ImageIcon ICON = 
-            new ImageIcon(PainelLogoAjustavel.class.getResource("/main/java/lapr/project/ui/imagens/pated_logo.jpg"));
+            new ImageIcon("src/main/resources/images/ce.png");
             
             Image img2 = ICON.getImage().getScaledInstance(
                 (int) largura, 

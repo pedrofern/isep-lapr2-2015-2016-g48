@@ -211,7 +211,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private JTabbedPane criarSeparadores() {
-        tipo_utilizador="Admin";
+        tipo_utilizador=m_ut.getUsername();
         
         JTabbedPane tabPane = new JTabbedPane(); 
         
@@ -220,7 +220,7 @@ public class Janela extends JFrame /** implements Serializable**/{
        }
         
        if("Organizador".equals(tipo_utilizador)){
-           tabPane.addTab("Home", new PainelInicio());
+           tabPane.addTab("Home", new PainelInicio(m_ce));
            tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
 
        }
@@ -230,9 +230,10 @@ public class Janela extends JFrame /** implements Serializable**/{
        }
        
       if("Organizador+Fae".equals(tipo_utilizador)){
-
-            tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+          
             tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce,m_ut));
+            tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+            
        }
       
       if("Gestor".equals(tipo_utilizador)){
@@ -242,14 +243,16 @@ public class Janela extends JFrame /** implements Serializable**/{
       }
       if("Admin".equals(tipo_utilizador)){
           
-        tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+         tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+         
+         tabPane.add("Menu Gestor", new PainelGestor(m_ce,m_ut));
 
-        tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+         tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
 
+       
         tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
         
-        tabPane.add("Menu Gestor", new PainelGestor(m_ce,m_ut));
-
+        
         
       }  
       
