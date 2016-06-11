@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaCandidaturasDemonstracoes;
 import lapr.project.model.lists.ListaProduto;
 
 /**
@@ -70,7 +71,11 @@ public class RegistarCandidaturaController {
     }
 
     public boolean valida() {
+        if(m_candidatura.valida() == false){
+            return false;
+        }else{
         return true;
+        }
     }
 
     public boolean addProduto(String nomeProduto) {
@@ -90,4 +95,22 @@ public class RegistarCandidaturaController {
     public boolean registaCandidatura() {
         return e_representante.registaCandidatura(m_candidatura);
     }
+    
+//    public CandidaturaDemonstracao novaCandidaturaDemonstracao(){
+//        CandidaturaDemonstracao cd = new CandidaturaDemonstracao();
+//        
+//        cd.setAreaExposicaoCD(areaExposicao);
+//        cd.setListaProdutos(e_listaProdutos);
+//        cd.setMoradaCD(morada);
+//        cd.setNomeEmpresaCD(nomeEmpresa);
+//        cd.setQuantidadeConvitesCD(quantidadeConvites);
+//        cd.setTelemovelCD(telemovel);
+//        
+//        return cd;
+//    }
+//    
+//    public ListaCandidaturasDemonstracoes novaListaCandidaturasDemonstracoes(){
+//        ListaCandidaturasDemonstracoes lcd = new ListaCandidaturasDemonstracoes();
+//        lcd.novaCandidatura()
+//    }
 }

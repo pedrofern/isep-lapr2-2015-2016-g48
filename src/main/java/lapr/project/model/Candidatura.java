@@ -151,22 +151,22 @@ public class Candidatura {
         return true;
     }
 
-    public boolean validaTelemovel() {
-        if (telemovel<900000000 && telemovel>999999999){
+    public boolean validaTelemovel() {  
+        if (telemovel<900000000 || telemovel>999999999){
             return false;
         }
         return true;
     }
 
     public boolean validaArea() {
-        if (areaExposicao<1 && areaExposicao>999){
+        if (areaExposicao<1 || areaExposicao>999){
             return false;
         }
         return true;
     }
     
     public boolean validaContives() {
-        if (areaExposicao<1 && areaExposicao>999){
+        if (areaExposicao<1 || areaExposicao>999){
             return false;
         }
         return true;
@@ -186,6 +186,7 @@ public class Candidatura {
     }
     
     public String toStringCompleto() {
-        return this.toStringDadosGerais() + "\n" + this.getListaProdutos();
+        return this.toStringDadosGerais() + "\n" 
+                + this.e_listaProdutos.getListaProduto().toString();
     }
 }

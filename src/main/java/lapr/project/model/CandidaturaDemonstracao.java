@@ -134,21 +134,21 @@ public class CandidaturaDemonstracao {
     }
 
     public boolean validaTelemovel() {
-        if (telemovelCD<900000000 && telemovelCD>999999999){
+        if (telemovelCD<900000000 || telemovelCD>999999999){
             return false;
         }
         return true;
     }
 
     public boolean validaArea() {
-        if (areaExposicaoCD<1 && areaExposicaoCD>999){
+        if (areaExposicaoCD<1 || areaExposicaoCD>999){
             return false;
         }
         return true;
     }
     
     public boolean validaContives() {
-        if (areaExposicaoCD<1 && areaExposicaoCD>999){
+        if (areaExposicaoCD<1 || areaExposicaoCD>999){
             return false;
         }
         return true;

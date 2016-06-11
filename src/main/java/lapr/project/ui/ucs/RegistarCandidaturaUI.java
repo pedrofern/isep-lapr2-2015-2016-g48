@@ -49,6 +49,10 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JButton botaoVerRecursoDemonstracao;
     /**
+     * Guarda as Demonstracoes da exposicao
+     */
+    private JCheckBox cbDemo;
+    /**
      * Guarda lista com exposições
      */
     private JComboBox comboExp;
@@ -111,16 +115,20 @@ public class RegistarCandidaturaUI extends JFrame{
         e_representante = new Representante();
 
         centroExposicoes = ce;
+    //inico testes
         exposicao = ce.novaExposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
         ce.registaExposicao(exposicao);
         listaExposicoes = ce.getListaExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
         
-//        listaExposicoes = ce.getListaExposicoes();
+        //listaExposicoes = ce.getListaExposicoes();
         listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
-    //testar demonstracoes
+        //testar demonstracoes
         listaRecursos = new RegistoRecursos();
+        Recurso r1 = new Recurso("Recurso1");
+        Recurso r2 = new Recurso("Recurso2");
+        Recurso r3 = new Recurso("Recurso3");
         Demonstracao d1= new Demonstracao();        
         Demonstracao d2= new Demonstracao();
         Demonstracao d3= new Demonstracao();
@@ -216,7 +224,7 @@ public class RegistarCandidaturaUI extends JFrame{
             }
         });
         
-        txtTelemovel = new JTextField(9);
+        txtTelemovel = new JTextField(7);
         txtTelemovel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -232,7 +240,7 @@ public class RegistarCandidaturaUI extends JFrame{
             }
         }); 
         
-        txtArea = new JTextField(4);
+        txtArea = new JTextField(2);
         txtArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -242,13 +250,13 @@ public class RegistarCandidaturaUI extends JFrame{
         txtArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtArea.getText().length() > 3) {
+                if (txtArea.getText().length() > 2) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtConvites = new JTextField(4);
+        txtConvites = new JTextField(2);
         txtConvites.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -266,7 +274,7 @@ public class RegistarCandidaturaUI extends JFrame{
         
         painelNorte.add(criarPainelNome("Nome:", txtNome,""));
         painelNorte.add(criarPainelNome("Morada:", txtMorada,""));
-        painelNorte.add(criarPainelNome("Telemóvel:", txtTelemovel,""));
+        painelNorte.add(criarPainelNome("Telemóvel:", txtTelemovel,"9xxxxxxxx"));
         painelNorte.add(criarPainelNome("Área:", txtArea,"m^2"));
         painelNorte.add(criarPainelNome("Nº Convites:", txtConvites,"(máx 999)"));
         
@@ -349,31 +357,6 @@ public class RegistarCandidaturaUI extends JFrame{
         return p;
     }
     /**
-     * cria painel botão lista demonstraões, recebendo um botão por parametro
-     * @param btn botão
-     * @return painel botão lista demonstraões, recebendo um botão por parametro
-     */
-    private JPanel criarPainelBotaoListaDemo(JButton btn) {
-
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 1;
-        final int INTERVALO_HORIZONTAL = 0, INTERVALO_VERTICAL = 10;        
-        JPanel p = new JPanel(new GridLayout( NUMERO_LINHAS, 
-                                              NUMERO_COLUNAS, 
-                                              INTERVALO_HORIZONTAL,
-                                              INTERVALO_VERTICAL));
-        
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-        p.setBorder(BorderFactory.createEmptyBorder( MARGEM_SUPERIOR, 
-                                                     MARGEM_ESQUERDA,
-                                                     MARGEM_INFERIOR, 
-                                                     MARGEM_DIREITA));
-        
-        p.add(btn);
-        
-        return p;
-    }
-    /**
      * cria botão adicionar produto
      * @return botão adicionar produto
      */
@@ -445,41 +428,6 @@ public class RegistarCandidaturaUI extends JFrame{
         return botaoRemoverProduto;
     }
     /**
-     * criar botão para ver demonstrações
-     * @return botão para ver demonstrações
-     */
-    private JButton criarBotaoRecursosDemonstracao(){
-        botaoVerRecursoDemonstracao = new JButton("Ver Recursos Demonstração");
-        botaoVerRecursoDemonstracao.setMnemonic(KeyEvent.VK_V);
-        botaoVerRecursoDemonstracao.setToolTipText("Mostra os recursos da demonstração");
-        botaoVerRecursoDemonstracao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-//                    int select = lstDemonstracoes.getSelectedIndex();
-//                    listaRecursos = listaDemonstracoes.obterDemonstracao(select).getListaRecursos();
-//                    Recurso[] opcoes = listaRecursos.getArray();
-//                        JOptionPane.showInputDialog(
-//                            RegistarCandidaturaUI.this,
-//                            "Recursos :", 
-//                            "Recursos",
-//                            JOptionPane.PLAIN_MESSAGE,
-//                            null,
-//                            opcoes,
-//                            opcoes[0]);
-                }catch (ArrayIndexOutOfBoundsException ex){
-                    JOptionPane.showMessageDialog(
-                        null,
-                        "Não selecionou demonstração!",
-                        "Ver Recursos",
-                        JOptionPane.INFORMATION_MESSAGE);                        
-                }
-            }
-        });
-
-        return botaoVerRecursoDemonstracao;
-    }
-    /**
      * criar botão registar
      * @return botão registar
      */
@@ -492,27 +440,37 @@ public class RegistarCandidaturaUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try{                       
                     int area = Integer.parseInt(txtArea.getText());
-                    int convites = Integer.parseInt(txtConvites.getText());
+                    int convites = Integer.parseInt(txtConvites.getText());                    
                     String morada = txtMorada.getText();
                     String nome = txtNome.getText();
-                    int telemovel = Integer.parseInt(txtTelemovel.getText());
-                    
+                    int telemovel = Integer.parseInt(txtTelemovel.getText());  
                     candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
-                    if (candidatura != null) {                      
+                    boolean adicionarNovaCandidatura = m_controllerRCC.valida();
+                    if (adicionarNovaCandidatura == true) {                        
+                        if (candidatura == null){
                         JOptionPane.showMessageDialog(
                                 null,
-                                "Candidatura adicionada.",
+                                "Candidatura já registada",
+                                "Nova Candidatura",
+                                JOptionPane.ERROR_MESSAGE);
+                        }
+//                        candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Candidatura adicionada: \n"
+                                +candidatura.toStringCompleto(),
                                 "Nova Candidatura",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();
-                    } else {
+                    }
+                     
+                    else {
                         JOptionPane.showMessageDialog(
                                 null,
-                                "Candidatura já registada!",
+                                "O registo não é válido!\nVerifique todos os campos",
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
-                    }
-                    dispose();                      
+                    }                                        
                 }
                 catch (NumberFormatException ex){
                     JOptionPane.showMessageDialog(
@@ -554,7 +512,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JButton criarBotaoCancelar() {
         JButton botao = new JButton("Cancelar");
         botao.setMnemonic(KeyEvent.VK_S);
-        botao.setToolTipText("Cancela a atribuição e volta ao menu anterior");
+        botao.setToolTipText("Cancela o registo candidatura e volta ao menu anterior");
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -584,10 +542,6 @@ public class RegistarCandidaturaUI extends JFrame{
                                 lstProdutos,
                                 botaoAdicionarProduto,
                                 botaoRemoverProduto));
-//        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
-//        ModeloListaDemonstracoes modeloListaDemo = new ModeloListaDemonstracoes(listaDemonstracoes);
-//        lstDemonstracoes = new JList(modeloListaDemo);
-//        botaoVerRecursoDemonstracao = criarBotaoRecursosDemonstracao();
         p.add(criarPainelListaDemo());//("Demonstrações:",lstDemonstracoes,botaoVerRecursoDemonstracao));
         
         return p;
@@ -656,37 +610,32 @@ public class RegistarCandidaturaUI extends JFrame{
  
         for(Demonstracao d:opcoes){
             String sDemo=d.toString();
-            JCheckBox cb=new JCheckBox(sDemo);
+            cbDemo=new JCheckBox(sDemo);
             
-            cb.addItemListener(new ItemListener() {
+            cbDemo.addItemListener(new ItemListener() {
 
                 @Override
                 public void itemStateChanged(ItemEvent e) {
-                   if(cb.isSelected()){
-                       //adicionar 
-//                       centroExposicoes.getRegistoDemos().addDemonstracao(d);
-        System.out.println("selecionou");
+                   if(cbDemo.isSelected()){
+                      
+        System.out.println("selecionou");        
                    }
                }
             });
-            pCheck.add(cb);
+            pCheck.add(cbDemo);
         }
         return pCheck;
     }
 
- private class CheckBoxHandler implements ItemListener{
-        private Demonstracao demo=null;
-         
- 
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-    
-        }
-    }
-
-
-
-    
+//    private class CheckBoxHandler implements ItemListener{
+//        private Demonstracao demo=null;
+//         
+// 
+//
+//        @Override
+//        public void itemStateChanged(ItemEvent e) {
+//    
+//        }
+//    }
 
 }
