@@ -10,13 +10,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import lapr.project.controller.*;
-import java.util.*;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
 import lapr.project.ui.*;
 import lapr.project.utils.Utils;
@@ -34,22 +34,25 @@ public class AvaliarCandidaturaUI extends JFrame{
      /**
      * Guarda a largura mínima da janela em píxeis.
      */
-    private static final int JANELA_LARGURA_MINIMO = 650;
+    private static final int JANELA_LARGURA_MINIMO = 850;
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
     private static final int JANELA_ALTURA_MINIMO = 275; 
     
     private CentroExposicoes m_ce;
+    private Exposicao m_exposicao;
+    private Candidatura m_candidatura;
     
     private String pergunta="Pretende cancelar a avaliação da candidatura?";
     
-    private JPanel painelNorte;
-    private JPanel painelCentro;
+    private static AvaliarSubPainelAvaliar pAvaliar;
+    private static AvaliarSubPainelCands pCands;
+    private static JPanel pExpos;
     
-    private JComboBox comboExpos;
+    private static JComboBox comboExpos;
+    private static JButton selExpo;
     
-    private JComboBox comboCands;
 
     public AvaliarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
         
@@ -77,51 +80,69 @@ public class AvaliarCandidaturaUI extends JFrame{
     }
     
     private void criarComponentes(){
-        painelNorte=new JPanel();
-        painelNorte.setLayout(new BorderLayout());
+        JPanel painel=new JPanel();
+        painel.setLayout(new BorderLayout());
         
-        criarPainelNorte();
-        criarPainelCentro();
+        pCands=new AvaliarSubPainelCands(m_controllerAC);
+        pAvaliar=new AvaliarSubPainelAvaliar(m_controllerAC);
+        criarPainelExpos();
         
-        add(painelNorte,BorderLayout.NORTH);
-        add(painelCentro, BorderLayout.CENTER);
-        add(criarPainelBotoes(),BorderLayout.SOUTH);
+        JPanel painelOeste=new JPanel();
+        painelOeste.setLayout(new BorderLayout());
+        
+        painelOeste.add(pExpos, BorderLayout.NORTH);
+        painelOeste.add(pCands, BorderLayout.CENTER);
+        
+        painel.add(painelOeste, BorderLayout.WEST);
+        painel.add(pAvaliar, BorderLayout.CENTER);
+        painel.add(criarPainelBotoes(), BorderLayout.SOUTH);
+        
+        pCands.setVisible(true);
+        pAvaliar.setVisible(true);
+        
+        add(painel);
         
     }
     
-    private void criarPainelNorte(){
-        painelNorte=new JPanel();
-        painelNorte.add(criarComboExposicoes());
+    private void criarPainelExpos(){
+        pExpos=new JPanel();
+        pExpos.setLayout(new FlowLayout());
+        pExpos.setBorder(new TitledBorder("Seleccione a exposição: "));
+        
+        String[] opcoes={"gato", "cao"};
+        comboExpos=new JComboBox(opcoes);
+        
+        pExpos.add(comboExpos);
+        pExpos.add(criarBtSelect());
     }
     
-    private JPanel criarComboExposicoes(){
-        JPanel p=new JPanel();
+    private JButton criarBtSelect(){
+        selExpo=new JButton("Selecionar");
+        selExpo.setMnemonic(KeyEvent.VK_S);
+        selExpo.setToolTipText("Selecionar exposição da lista");
         
-        p.setLayout(new BorderLayout());
+        selExpo.addActionListener(new ActionListener(){
+           
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+//                m_exposicao=(Exposicao) comboExpos.getSelectedItem();
+//                
+
+                m_exposicao=new Exposicao();
+                pCands.setExpo(m_exposicao);
+                
+                pCands.mostrarPainel();
+                
+                pCands.setVisible(true);
+                
+               selExpo.setEnabled(false);
+            }     
+        }
+        );
         
-        comboExpos=Utils.criarComboExpo(m_controllerAC.getRegistoExposicoes());
-        
-        p.add(comboExpos, BorderLayout.CENTER);
-        p.add(criarPainelBtsExpo(), BorderLayout.SOUTH);
-        
-        return p;
-    }
+        return selExpo;
     
-    
-    private JPanel criarPainelBtsExpo(){
-        JPanel painelBts=new JPanel();
-        JButton btSelect= new JButton("Seleccionar");
-        JButton btVoltar= new JButton("Voltar");
-        
-        painelBts.add(btSelect);
-        painelBts.add(btVoltar);
-        
-        return painelBts;
-    }
-    
-    private void criarPainelCentro(){
-        painelCentro=new JPanel();
-        
     }
     
      /**
@@ -248,6 +269,10 @@ public class AvaliarCandidaturaUI extends JFrame{
             } else {
                  setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
             }
+        }
+        
+        public static AvaliarSubPainelAvaliar getPainelAvaliar(){
+            return pAvaliar;
         }
     }
         

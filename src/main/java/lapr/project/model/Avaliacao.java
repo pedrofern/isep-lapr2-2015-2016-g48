@@ -4,10 +4,11 @@ import lapr.project.model.states.AvaliacaoState;
 import lapr.project.model.states.AvaliacaoStateIniciada;
 import lapr.project.model.states.AvaliacaoStateConcluida;
 import java.util.List;
+import lapr.project.model.lists.ListaQuestoes;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Diana Silva
  */
 public class Avaliacao {
     
@@ -15,8 +16,8 @@ public class Avaliacao {
     private String resposta;
     private String justificacao;
     private Candidatura m_candidatura;
-    private Organizador organizador;
-    private List<Avaliacao> m_listaAvaliacoes;
+    private Organizador m_organizador;
+    private ListaQuestoes m_listaQuestoes;
     private FAE fae;
     private Criterio criterio;
 
@@ -26,7 +27,11 @@ public class Avaliacao {
     }
 
     public Avaliacao() {
-
+        m_listaQuestoes=new ListaQuestoes();
+    }
+    
+    public ListaQuestoes getListaQuestoes(){
+        return m_listaQuestoes;
     }
     
     /**
@@ -39,7 +44,7 @@ public class Avaliacao {
     }
     
     public Candidatura setCandidatura(Candidatura c) {
-        if (organizador.validaAvaliacao(c)) {
+        if (m_organizador.validaAvaliacao(c)) {
             return c;
         } else {
             return null;
@@ -47,7 +52,7 @@ public class Avaliacao {
     }
 
     public FAE setCandidatura(FAE f) {
-        if (organizador.validaAvaliacao(f)) {
+        if (m_organizador.validaAvaliacao(f)) {
             return f;
         } else {
             return null;

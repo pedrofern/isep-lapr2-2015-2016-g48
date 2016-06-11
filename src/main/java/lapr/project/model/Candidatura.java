@@ -19,6 +19,7 @@ public class Candidatura {
     private ListaProduto e_listaProdutos;
     private ListaFAE e_listaFAE;
     private ListaCandidaturas c_listaCandidaturas;
+    private ListaAvaliacoes c_listaAvaliacoes;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
         this.nomeEmpresa = nomeEmpresa;
@@ -28,11 +29,13 @@ public class Candidatura {
         this.quantidadeConvites = quantidadeConvites;
         e_listaProdutos = new ListaProduto();
         e_listaFAE = new ListaFAE();
-        c_listaCandidaturas = new ListaCandidaturas();
+        c_listaAvaliacoes=new ListaAvaliacoes();
     }
     
     public Candidatura() {
-        e_listaProdutos = new ListaProduto();
+       e_listaProdutos = new ListaProduto();
+        e_listaFAE = new ListaFAE();
+        c_listaAvaliacoes=new ListaAvaliacoes();
     }
 
     @Override
@@ -62,6 +65,10 @@ public class Candidatura {
 
     public String getInfo() {
         return this.toString();
+    }
+    
+    public ListaAvaliacoes getListaAvaliacoes(){
+        return c_listaAvaliacoes;
     }
 
     public void setNomeEmpresa(String novoNomeEmpresa) {
@@ -95,14 +102,14 @@ public class Candidatura {
     public void setListaProdutos(ListaProduto listaProdutos){
         e_listaProdutos = listaProdutos;
     }
-
-    public ListaCandidaturas getListaCandidaturas() {
-        ListaCandidaturas lc = new ListaCandidaturas();
-        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
-            lc.addCandidatura(it.next());
-        }
-        return lc;
-    }
+//
+//    public ListaCandidaturas getListaCandidaturas() {
+//        ListaCandidaturas lc = new ListaCandidaturas();
+//        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
+//            lc.addCandidatura(it.next());
+//        }
+//        return lc;
+//    }
 
     public boolean addProduto(String nomeProduto) {
         Produto p = new Produto(nomeProduto);

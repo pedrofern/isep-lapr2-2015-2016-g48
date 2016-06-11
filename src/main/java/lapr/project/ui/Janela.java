@@ -247,6 +247,8 @@ public class Janela extends JFrame /** implements Serializable**/{
         tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
 
         tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
+        
+        tabPane.add("Menu Gestor", new PainelGestor(m_ce,m_ut));
 
         
       }  

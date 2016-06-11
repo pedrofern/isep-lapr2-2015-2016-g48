@@ -31,7 +31,7 @@ public class Questao {
      * Define o texto da questão.
      * @param criterio o texto da questão relativa ao critério
      */
-    public void setQuestion(Criterio criterio) {
+    public void setPergunta(Criterio criterio) {
         this.pergunta= criterio.toString();
     }
     
@@ -39,7 +39,7 @@ public class Questao {
      * Define a resposta da questão
      * @param answer a resposta à questão
      */
-    public void setAnswer(int answer){
+    public void setResposta(int answer){
         if(answer>=0 && answer<=5){
             resposta=answer;
         }else{
@@ -50,9 +50,9 @@ public class Questao {
     /**
        Apresenta a questão
     */
-    public void display()
+    public String getPergunta()
     {
-        System.out.println(pergunta);
+        return pergunta;
     }
     
     
