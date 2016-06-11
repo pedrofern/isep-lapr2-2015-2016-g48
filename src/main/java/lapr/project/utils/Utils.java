@@ -45,33 +45,33 @@ public class Utils {
         }
     }
 
-    public static Date readDateFromConsole(String strPrompt) {
-        do {
-            try {
-                String strDate = readLineFromConsole(strPrompt);
-
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-
-                Date date = df.parse(strDate);
-
-                return date;
-            } catch (ParseException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } while (true);
-    }
+//    public static Data readDateFromConsole(String strPrompt) {
+//        do {
+//            try {
+//                String strDate = readLineFromConsole(strPrompt);
+//
+//                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//
+//                Data data = df.parse(strDate);
+//
+//                return data;
+//            } catch (ParseException ex) {
+//                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } while (true);
+//    }
     
     /**
      * Obtem uma instancia de Date com a data atual.
      *
      * @return data atual
      */
-    static public Date getdataAtual() {
+    static public Data getdataAtual() {
         Calendar hoje = Calendar.getInstance();
         int ano = hoje.get(Calendar.YEAR);
         int mes = hoje.get(Calendar.MONTH) + 1;// janeiro é representado por 0
         int dia = hoje.get(Calendar.DAY_OF_MONTH);
-        return new Date(dia, mes, ano);
+        return new Data(dia, mes, ano);
     }
 
     public static boolean confirma(String sMessage) {

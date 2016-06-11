@@ -3,15 +3,18 @@ package lapr.project.ui.ucs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
 import java.util.*;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 import lapr.project.ui.*;
 
 /**
@@ -28,6 +32,7 @@ import lapr.project.ui.*;
  */
 public class CriarExposicaoUI extends JFrame {
 
+    private JFormattedTextField campoDataInicial, campoDataFinal;
     private CentroExposicoes m_centroDeExposicoes;
     private CriarExposicaoController m_controller;
     private static final int JANELA_LARGURA = 700;
@@ -35,8 +40,7 @@ public class CriarExposicaoUI extends JFrame {
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Criar Exposicao").getPreferredSize();
     private JButton btnConfirmar, btnFechar;
-    private JTextField txtTitulo,txtDescricao,txtDataInicio,txtDataFim,txtLocal;
-
+    private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
 
     public CriarExposicaoUI(CentroExposicoes centroDeExposicoes) {
         m_centroDeExposicoes = centroDeExposicoes;
@@ -56,25 +60,23 @@ public class CriarExposicaoUI extends JFrame {
 //        m_controller.novaExposicao();
 //    }
     public void criarComponentes() {
-        
+
         add(criarPainelSul(), BorderLayout.SOUTH);
         add(criarPainelCentro(), BorderLayout.CENTER);
     }
 
-    
-    
-    private JPanel criarPainelCentro(){
-        JPanel p = new JPanel(new FlowLayout());
+    private JPanel criarPainelCentro() {
+        JPanel p = new JPanel(new GridLayout(0, 1));
         p.add(criarPainelTitulo());
         p.add(criarPainelDescricao());
-        p.add(criarPainelDataInicio());
-        p.add(criarPainelDataInicio());
         p.add(criarPainelLocal());
+        p.add(criarPainelDataInicial());
+        p.add(criarPainelDataFinal());
         p.setPreferredSize(new Dimension(200, 50));
         return p;
     }
-    
-    private JPanel criarPainelTitulo(){
+
+    private JPanel criarPainelTitulo() {
         JPanel p = new JPanel(new FlowLayout());
         JLabel lbl = new JLabel("Titulo:", SwingConstants.LEFT);
         lbl.setPreferredSize(LABEL_TAMANHO);
@@ -83,7 +85,7 @@ public class CriarExposicaoUI extends JFrame {
         txtTitulo.requestFocus();
         txtTitulo.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent ev){
+            public void keyReleased(KeyEvent ev) {
                 txtTitulo.setText(txtTitulo.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
@@ -92,16 +94,16 @@ public class CriarExposicaoUI extends JFrame {
             public void keyTyped(KeyEvent ev) {
                 if (txtTitulo.getText().length() > 40) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
+                }
             }
-        }); 
+        });
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtTitulo);
         return p;
     }
-    
-    private JPanel criarPainelLocal(){
+
+    private JPanel criarPainelLocal() {
         JPanel p = new JPanel(new FlowLayout());
         JLabel lbl = new JLabel("Local:", SwingConstants.LEFT);
         lbl.setPreferredSize(LABEL_TAMANHO);
@@ -110,7 +112,7 @@ public class CriarExposicaoUI extends JFrame {
         txtLocal.requestFocus();
         txtLocal.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent ev){
+            public void keyReleased(KeyEvent ev) {
                 txtLocal.setText(txtLocal.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
@@ -119,16 +121,16 @@ public class CriarExposicaoUI extends JFrame {
             public void keyTyped(KeyEvent ev) {
                 if (txtLocal.getText().length() > 40) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
+                }
             }
-        }); 
+        });
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtLocal);
         return p;
     }
-    
-    private JPanel criarPainelDescricao(){
+
+    private JPanel criarPainelDescricao() {
         JPanel p = new JPanel(new FlowLayout());
         JLabel lbl = new JLabel("Descrição:", SwingConstants.LEFT);
         lbl.setPreferredSize(LABEL_TAMANHO);
@@ -137,7 +139,7 @@ public class CriarExposicaoUI extends JFrame {
         txtDescricao.requestFocus();
         txtDescricao.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent ev){
+            public void keyReleased(KeyEvent ev) {
                 txtDescricao.setText(txtDescricao.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
@@ -146,9 +148,9 @@ public class CriarExposicaoUI extends JFrame {
             public void keyTyped(KeyEvent ev) {
                 if (txtDescricao.getText().length() > 40) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
+                }
             }
-        }); 
+        });
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
         p.add(lbl);
         p.add(txtDescricao);
@@ -156,59 +158,42 @@ public class CriarExposicaoUI extends JFrame {
         return p;
 
     }
-    
-    private JPanel criarPainelDataInicio(){
-        JPanel p = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Data Inicio:", SwingConstants.LEFT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
-        final int CAMPO_LARGURA = 30;
-        txtDataInicio = new JTextField(CAMPO_LARGURA);
-        txtDataInicio.requestFocus();
-        txtDataInicio.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev){
-                txtDataInicio.setText(txtDataInicio.getText().replaceAll("[^0-9]", ""));
-            }
-        });
-        txtDataInicio.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtDataInicio.getText().length() > 8) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
-            }
-        }); 
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.add(lbl);
-        p.add(txtDataInicio);        
-        return p;
+
+    private JPanel criarPainelDataInicial() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data incial :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataInicial = new JFormattedTextField(mascara);
+            campoDataInicial.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoDataInicial);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
     }
-    
-    private JPanel criarPainelDataFim(){
-        JPanel p = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Data Fim:", SwingConstants.LEFT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
-        final int CAMPO_LARGURA = 30;
-        txtDataFim = new JTextField(CAMPO_LARGURA);
-        txtDataFim.requestFocus();
-        txtDataFim.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev){
-                txtDataFim.setText(txtDataFim.getText().replaceAll("[^0-9]", ""));
-            }
-        });
-        txtDataFim.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtDataFim.getText().length() > 8) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                } 
-            }
-        }); 
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.add(lbl);
-        p.add(txtDataFim);        
-        return p;
+
+    private JPanel criarPainelDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data final :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataFinal = new JFormattedTextField(mascara);
+            campoDataFinal.setPreferredSize(new Dimension(80, 20));
+
+            painel.add(labelData);
+            painel.add(campoDataFinal);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
     }
 
     private JPanel criarPainelSul() {
@@ -219,8 +204,8 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private JPanel criarPainelBotoes() {
-        JButton btnOK = criarBotaoConfirmar();
-        getRootPane().setDefaultButton(btnOK);
+         JButton btnOK = criarBotaoConfirmar();
+         getRootPane().setDefaultButton(btnOK);
         JButton btnClose = criarBotaoFechar();
         JPanel p = new JPanel();
         p.add(btnOK);
@@ -228,16 +213,21 @@ public class CriarExposicaoUI extends JFrame {
         return p;
 
     }
-    
+
     private void guardar() {
-        String titulo,descricao,local, dataInicio,dataFim;
-        titulo=txtTitulo.getText();
-        descricao=txtDescricao.getText();
-        local=txtLocal.getText();
-        dataInicio=txtDataInicio.getText();
-        dataFim=txtDataFim.getText();
+
+        String[] dataInicial = campoDataInicial.getText().split("/");
+        String[] dataFinal = campoDataFinal.getText().split("/");
+        int diainicial = Integer.parseInt(dataInicial[0]);
+        int mesinicial = Integer.parseInt(dataInicial[1]);
+        int anoinicial = Integer.parseInt(dataInicial[2]);
+        int diafinal = Integer.parseInt(dataFinal[0]);
+        int mesfinal = Integer.parseInt(dataFinal[1]);
+        int anofinal = Integer.parseInt(dataFinal[2]);
+        Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
+        Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
         m_controller.novaExposicao();
-        m_controller.criaExposicao(titulo, descricao, local, null, null);
+        m_controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro,dataFinalUltimo);
 //        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Nova Exposição: \n"
@@ -248,33 +238,27 @@ public class CriarExposicaoUI extends JFrame {
 //                                    +"\nData Fim: "+dataFim,
 //                            "Nova Exposição",
 //                            JOptionPane.INFORMATION_MESSAGE);    
-            dispose();
-        
-        
-        
-        
-    }
+        dispose();
 
+    }
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
-//        btnConfirmar.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if(titulo.getText().isEmpty()==true||
-//                    descricao.getText().isEmpty()==true||
-//                    local.getText().isEmpty()==true||
-//                    dataInicio.getText().isEmpty()==true||
-//                    dataFim.getText().isEmpty()==true){
-////                        JOptionPane.showMessageDialog(
-////                            null,
-////                            "Tem de preencher todos os campos!",
-////                            "Criar Exposoção",
-////                            JOptionPane.ERROR_MESSAGE);                        
-//                }else{
+        btnConfirmar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(txtTitulo.getText().isEmpty()==true||
+                    txtDescricao.getText().isEmpty()==true||
+                    txtLocal.getText().isEmpty()==true){
+//                        JOptionPane.showMessageDialog(
+//                            null,
+//                            "Tem de preencher todos os campos!",
+//                            "Criar Exposoção",
+//                            JOptionPane.ERROR_MESSAGE);                        
+                }else{
                     guardar();
-//                }
-//            }
-//        });
+                }
+            }
+        });
         return btnConfirmar;
     }
 
@@ -289,49 +273,49 @@ public class CriarExposicaoUI extends JFrame {
         return btnFechar;
     }
 
-    private Exposicao introduzDadosExposicao() {
-        String strTitulo = Utils.readLineFromConsole("Introduza Titulo: ");
-        m_controller.setTitulo(strTitulo);
+//    private Exposicao introduzDadosExposicao() {
+//        String strTitulo = Utils.readLineFromConsole("Introduza Titulo: ");
+//        m_controller.setTitulo(strTitulo);
+//
+//        String strDescricao = Utils.readLineFromConsole("Introduza Descricao: ");
+//        m_controller.setDescricao(strDescricao);
+//
+//        String strLocal = Utils.readLineFromConsole("Introduza Local: ");
+//        m_controller.setLocal(strLocal);
+//
+//        Data dtInicio = Utils.readDateFromConsole("Introduza Data Inicio: ");
+//        m_controller.setDataInicio(dtInicio);
+//
+//        Data dtFim = Utils.readDateFromConsole("Introduza Data Fim: ");
+//        m_controller.setDataFim(dtFim);
+//
+//        Data dtInicioSubmissao = Utils.readDateFromConsole("Introduza Data Inicio Submissao: ");
+//        m_controller.setDataInicioSubmissao(dtInicioSubmissao);
+//
+//        Data dtFimSubmissao = Utils.readDateFromConsole("Introduza Data Fim Submissao: ");
+//        m_controller.setDataFimSubmissao(dtFimSubmissao);
+//
+//        Data dtInicioAtribuicao = Utils.readDateFromConsole("Introduza Data Inicio Atribuicao: ");
+//        m_controller.setDataInicioAtribuicao(dtInicioAtribuicao);
+//
+//        while (Utils.confirma("Pretende inserir orgaizador (s/n)?")) {
+//            String strOrg = Utils.readLineFromConsole("Introduza ID Organizador: ");
+//            m_controller.addOrganizador(strOrg);
+//        }
+//
+//        apresentaExposicao(m_controller.getExposicao());
+//
+//        if (Utils.confirma("Confirma?")) {
+//            return m_controller.registaExposicao();
+//        }
+//        return null;
+//    }
 
-        String strDescricao = Utils.readLineFromConsole("Introduza Descricao: ");
-        m_controller.setDescricao(strDescricao);
-
-        String strLocal = Utils.readLineFromConsole("Introduza Local: ");
-        m_controller.setLocal(strLocal);
-
-        Date dtInicio = Utils.readDateFromConsole("Introduza Data Inicio: ");
-        m_controller.setDataInicio(dtInicio);
-
-        Date dtFim = Utils.readDateFromConsole("Introduza Data Fim: ");
-        m_controller.setDataFim(dtFim);
-
-        Date dtInicioSubmissao = Utils.readDateFromConsole("Introduza Data Inicio Submissao: ");
-        m_controller.setDataInicioSubmissao(dtInicioSubmissao);
-
-        Date dtFimSubmissao = Utils.readDateFromConsole("Introduza Data Fim Submissao: ");
-        m_controller.setDataFimSubmissao(dtFimSubmissao);
-
-        Date dtInicioAtribuicao = Utils.readDateFromConsole("Introduza Data Inicio Atribuicao: ");
-        m_controller.setDataInicioAtribuicao(dtInicioAtribuicao);
-
-        while (Utils.confirma("Pretende inserir orgaizador (s/n)?")) {
-            String strOrg = Utils.readLineFromConsole("Introduza ID Organizador: ");
-            m_controller.addOrganizador(strOrg);
-        }
-
-        apresentaExposicao(m_controller.getExposicao());
-
-        if (Utils.confirma("Confirma?")) {
-            return m_controller.registaExposicao();
-        }
-        return null;
-    }
-
-    private void apresentaExposicao(Exposicao exposicao) {
-        if (exposicao == null) {
-            System.out.println("Exposicao não registada.");
-        } else {
-            System.out.println(exposicao.toString());
-        }
-    }
+//    private void apresentaExposicao(Exposicao exposicao) {
+//        if (exposicao == null) {
+//            System.out.println("Exposicao não registada.");
+//        } else {
+//            System.out.println(exposicao.toString());
+//        }
+//    }
 }

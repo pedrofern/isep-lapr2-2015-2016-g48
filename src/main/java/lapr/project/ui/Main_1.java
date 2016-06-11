@@ -29,8 +29,11 @@ public class Main_1 {
         //new CriarExposicaoUI();
         //new DefinirFAEUI();
         
-        CentroExposicoes centro=new CentroExposicoes();
-        new CriarDemonstracaoUI(centro);
+//        CentroExposicoes centro=new CentroExposicoes();
+//        new CriarDemonstracaoUI(centro);
+        
+        
+        new CriarExposicaoUI();
         
        // new DefinirDemonstracaoUI();
 
