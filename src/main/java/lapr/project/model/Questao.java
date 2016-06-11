@@ -55,5 +55,21 @@ public class Questao {
         return pergunta;
     }
     
+    /**
+     * Apresenta a resposta
+     */
+    public int getResposta(){
+        return resposta;
+    }
+    
+    /**
+     * Apresenta a pergunta e a resposta 
+     */
+    public String display(){
+        String q=pergunta + ": " + resposta;
+        
+        return q;
+    }
+    
     
 }

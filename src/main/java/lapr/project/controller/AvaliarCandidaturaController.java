@@ -49,6 +49,30 @@ public class AvaliarCandidaturaController {
         m_avaliacao.getListaQuestoes().criarQuestao(m_questao);
     }
     
+    public void setRespostas(int resp1, int resp2, int resp3, int resp4, int resp5){
+        m_avaliacao.getListaQuestoes().getListaQuestoes().get(0).setResposta(resp1);
+        m_avaliacao.getListaQuestoes().getListaQuestoes().get(1).setResposta(resp2);
+        m_avaliacao.getListaQuestoes().getListaQuestoes().get(2).setResposta(resp3);
+        m_avaliacao.getListaQuestoes().getListaQuestoes().get(3).setResposta(resp4);
+        m_avaliacao.getListaQuestoes().getListaQuestoes().get(4).setResposta(resp5);  
+    }
+    public String getInfoClassificacoes(){
+        
+        String info= m_avaliacao.getListaQuestoes().getListaQuestoes().get(0).display() + "\n";
+        info+=m_avaliacao.getListaQuestoes().getListaQuestoes().get(1).display() + "\n";
+        info+=m_avaliacao.getListaQuestoes().getListaQuestoes().get(2).display() + "\n";
+        info+=m_avaliacao.getListaQuestoes().getListaQuestoes().get(3).display() + "\n";
+        info+=m_avaliacao.getListaQuestoes().getListaQuestoes().get(4).display() + "\n";  
+        info+="Média: " + calcularMedia();
+        
+        return info;
+    }
+    
+    private double calcularMedia(){
+        
+        return m_avaliacao.getListaQuestoes().calcularMedia();
+    }
+  
     public void criarQuestao(){
         m_questao=new Questao();
     }
@@ -72,6 +96,16 @@ public class AvaliarCandidaturaController {
     public void setPergunta5(){
         m_questao.setPergunta(Criterio.RECOMENDACAO_GLOBAL);
     }
+    
+    public void setResposta(int resposta){
+        m_questao.setResposta(resposta);
+    }
+    
+    public int getResposta(){
+        return m_questao.getResposta();
+    }
+    
+    
     
     
 //    public RegistoExposicoes iniciarAvaliacao() {
