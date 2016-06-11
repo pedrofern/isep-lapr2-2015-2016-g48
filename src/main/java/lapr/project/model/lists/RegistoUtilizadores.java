@@ -26,15 +26,16 @@ public class RegistoUtilizadores {
 
     public boolean registaUtilizador(Utilizador u) {
         if (u.valida() && validaUtilizador(u)) {
-            return addUtilizador(u);
+//            System.out.println("cucu");
+                    return addUtilizador(u);
         } else {
             return false;
         }
     }
 
     private boolean validaUtilizador(Utilizador u) {
-        System.out.println("RegistoUtilizadores: validaUtilizador: " + u.toString());
-        return true;
+//        System.out.println("RegistoUtilizadores: validaUtilizador: " + u.toString());
+          return true;
     }
 
     public boolean addUtilizador(Utilizador u) {

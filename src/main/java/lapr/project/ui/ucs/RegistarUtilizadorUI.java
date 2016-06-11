@@ -162,6 +162,7 @@ public class RegistarUtilizadorUI extends JFrame{
             pass = norte.getTxtPassword().getText();
             user = norte.getTxtUsername().getText();
             m_controllerRU.novoUtilizador();
+
             m_controllerRU.criaUtilizador(nome, email, user, pass);
                 JOptionPane.showMessageDialog(
                             null,

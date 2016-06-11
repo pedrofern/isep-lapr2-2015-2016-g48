@@ -16,6 +16,7 @@ public class RegistarUtilizadorController {
     public RegistarUtilizadorController(CentroExposicoes ce) {
         centroDeExposicoes = ce;
         m_registoUtilizadores = centroDeExposicoes.getRegistoUtilizadores();
+
     }
 
     public void novoUtilizador() {
@@ -27,14 +28,19 @@ public class RegistarUtilizadorController {
         m_utilizador.setPassword(pass);
         m_utilizador.setNome(nome);
         m_utilizador.setEmail(email);
+        
+        m_utilizador.setRegistado(Boolean.TRUE);
 
         if (m_registoUtilizadores.registaUtilizador(m_utilizador)) {
             return m_utilizador;
+        
         } else {
             return null;
         }
+        
 
     }
+    
 
     public void setUtilizador(Utilizador m_utilizador) {
         this.m_utilizador = m_utilizador;
