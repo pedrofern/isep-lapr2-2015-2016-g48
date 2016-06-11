@@ -2,11 +2,17 @@ package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -23,10 +29,8 @@ import lapr.project.model.lists.ListaCandidaturas;
  * @author Diana
  */
 public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
-    
-    private CentroExposicoes m_ce;
-    private Exposicao m_exposicao;
-    private JPanel painelQuestoes;
+
+    private JPanel painelQuestoes, pQuestoes;
     private ListaCandidaturas m_listaCandidaturas;
     private Candidatura m_candidatura;
     private Avaliacao m_avaliacao;
@@ -37,11 +41,13 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
     public AvaliarSubPainelAvaliar(AvaliarCandidaturaController controller){
         super();   
         m_controllerAC=controller;
+        
+        setPreferredSize(new Dimension(800,getHeight()));
     }   
         public void mostrarPainel(){
             setLayout(new BorderLayout());
-            setBorder(new TitledBorder("Avaliacao")); 
-            add(criarPainelAvaliacao());
+            setBorder(new TitledBorder("Classificação")); 
+            add(criarPainelJustificacao());
             
         }
         
@@ -49,8 +55,8 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
             m_candidatura=c;
         }
         
-        private JPanel criarPainelAvaliacao(){
-            JPanel pQuestoes=new JPanel();
+        private JPanel criarPainelJustificacao(){
+            pQuestoes=new JPanel();
             pQuestoes.setLayout(new BorderLayout());
             
             painelQuestoes=new JPanel();
@@ -58,6 +64,8 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
             painelQuestoes.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
             painelQuestoes.setLayout(g1);
             
+            
+            //alterar qd ja houver candidatura seleccionada ( nao ha candidaturas no registo)
             m_candidatura=new Candidatura();
             
             m_controllerAC.setCandidatura(m_candidatura);
@@ -73,7 +81,8 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
             criarQuestao4();
             criarQuestao5();
             
-            pQuestoes.add(painelQuestoes);
+            pQuestoes.add(painelQuestoes, BorderLayout.CENTER);
+            pQuestoes.add(criarBotaoContinuar(), BorderLayout.SOUTH);
             
             return pQuestoes;
         }
@@ -154,9 +163,44 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
         painelQuestoes.add(q5);
         painelQuestoes.add(criarPainelRadioButtons());
     }
-        
-        
-        
-        
-    }
 
+    private JPanel criarBotaoContinuar() {
+        
+        JPanel p=new JPanel();
+        JButton btContinuar=new JButton("Continuar");
+        
+        btContinuar.setMnemonic(KeyEvent.VK_S);
+        btContinuar.setSize(20, getHeight());
+        
+        btContinuar.addActionListener(new ActionListener(){
+           
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //nao esquecer try... candidatura adicionada e avaliacao criada
+                //m_candidatura=(Candidatura) comboCands.getSelectedItem();
+                
+                AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(m_controllerAC);
+        
+                
+                pJustificacao.mostrarPainel();
+         
+                m_candidatura=new Candidatura();
+                
+                pQuestoes.setVisible(false);
+                    
+                add(pJustificacao);
+                AvaliarCandidaturaUI.ativarGuardar();
+                
+            }     
+        }
+        );
+        
+        p.add(btContinuar);
+        
+        return p;
+    }
+        
+        
+        
+        
+}

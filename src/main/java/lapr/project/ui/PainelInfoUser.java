@@ -17,6 +17,7 @@ public class PainelInfoUser extends JPanel {
     
     private Utilizador m_user;
     private String tipo_utilizador;
+    private static JLabel lblNome, lblEmail;
     
     public PainelInfoUser(Utilizador user){
         super();
@@ -129,8 +130,8 @@ public class PainelInfoUser extends JPanel {
         
         pDados.setLayout(gl);
         
-        JLabel lblNome=new JLabel("Nome: " + m_user.getNome()); 
-        JLabel lblEmail=new JLabel("Email: " + m_user.getEmail());
+        lblNome=new JLabel("Nome: " + m_user.getNome()); 
+        lblEmail=new JLabel("Email: " + m_user.getEmail());
         JLabel lblUsername=new JLabel("Username: " + m_user.getUsername());
 
         pDados.add(lblUsername);
@@ -171,6 +172,13 @@ public class PainelInfoUser extends JPanel {
         p.add(labelLogo,BorderLayout.EAST);
         
         return p;
+    }
+    
+    
+     public static void setLabels(String nome, String email) {
+               
+        lblNome.setText("Nome: " + nome); 
+        lblEmail.setText("Email: " + email);
     }
 
 }

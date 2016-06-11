@@ -61,7 +61,7 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
     }
 
     private JButton criarBtSelect() {
-        selCand=new JButton("Seleccionar:");
+        selCand=new JButton("Seleccionar");
         
         selCand.setMnemonic(KeyEvent.VK_S);
         selCand.setToolTipText("Selecionar candidatura da lista");
@@ -77,6 +77,7 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
                 AvaliarSubPainelAvaliar painel=AvaliarCandidaturaUI.getPainelAvaliar();
                 
                 painel.mostrarPainel();
+      
                 selCand.setEnabled(false);
                 painel.setVisible(true);
                 

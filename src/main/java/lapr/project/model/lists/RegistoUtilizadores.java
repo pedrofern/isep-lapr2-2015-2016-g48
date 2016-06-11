@@ -66,10 +66,10 @@ public class RegistoUtilizadores {
 
     public boolean alteraUtilizador(Utilizador uOriginal, Utilizador uClone) {
         if (uClone.valida()) {
-            List<Utilizador> lstUtilizadores = new ArrayList<Utilizador>(m_listaUtilizadores);
-            lstUtilizadores.remove(uOriginal);
-            lstUtilizadores.add(uClone);
-            if (validaLista(lstUtilizadores)) {
+//            List<Utilizador> lstUtilizadores = new ArrayList<Utilizador>(m_listaUtilizadores);
+//            lstUtilizadores.remove(uOriginal);
+//            lstUtilizadores.add(uClone);
+            if (validaLista(m_listaUtilizadores)) {
                 uOriginal.setNome(uClone.getNome());
                 uOriginal.setEmail(uClone.getEmail());
                 uOriginal.setUsername(uClone.getUsername());
@@ -81,7 +81,6 @@ public class RegistoUtilizadores {
     }
     
     private boolean validaLista(List<Utilizador> lista) {
-        System.out.println("RegistoUtilizadores: validaLista: " + lista.toString());
         return true;
     }
 

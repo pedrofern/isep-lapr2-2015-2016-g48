@@ -13,6 +13,7 @@ import lapr.project.controller.AlterarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.ui.Janela;
+import lapr.project.ui.PainelInfoUser;
 import lapr.project.utils.Utils;
 import lapr.project.ui.ucs.RegistarUtilizadorUI;
 
@@ -156,7 +157,8 @@ public class AlterarUtilizadorUI extends JPanel{
             email = norte.getTxtEmail().getText();
             pass = norte.getTxtPassword().getText();
             user = norte.getTxtUsername().getText();
-
+            
+            m_controller.setUtilizador(m_user);
             m_controller.alteraDados(nome, user, pass, email);
                 JOptionPane.showMessageDialog(
                             null,
@@ -166,7 +168,9 @@ public class AlterarUtilizadorUI extends JPanel{
                                     +"\nNome: "+nome
                                     +"\nEmail: "+email,
                             "Registar Utilizador",
-                            JOptionPane.INFORMATION_MESSAGE);    
+                            JOptionPane.INFORMATION_MESSAGE);  
+                
+            PainelInfoUser.setLabels(m_user.getNome(), m_user.getEmail());
             norte.getTxtNome().setText("");
             norte.getTxtEmail().setText("");
             norte.getTxtPassword().setText("");

@@ -4,7 +4,7 @@ import lapr.project.model.*;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Diana Silva
  */
 public class AlterarUtilizadorController {
     
@@ -13,6 +13,11 @@ public class AlterarUtilizadorController {
 
     public AlterarUtilizadorController(CentroExposicoes centroDeExposicoes) {
         m_centroDeExposicoes = centroDeExposicoes;
+    }
+    
+    public void setUtilizador(Utilizador u){
+        m_user=u;
+        
     }
 
     public Utilizador getUtilizador(String strID) {
