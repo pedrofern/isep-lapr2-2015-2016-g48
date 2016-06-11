@@ -11,6 +11,7 @@ import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -20,13 +21,13 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
 
     private String titulo;
     private String textoDescritivo;
-    private Date dataInicio;
-    private Date dataFim;
+    private Data dataInicio;
+    private Data dataFim;
     private String local;
-    private Date dataInicioSubmissao;
-    private Date dataFimSubmissao;
-    private Date dataInicioAtribuicao;
-    private Date dataFimAtribuicao;
+    private Data dataInicioSubmissao;
+    private Data dataFimSubmissao;
+    private Data dataInicioAtribuicao;
+    private Data dataFimAtribuicao;
     private ListaCandidaturas m_regCandidaturas;
     private ListaFAE m_regFAEs;
     private final List<Organizador> e_listaOrganizadores;
@@ -162,7 +163,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return local;
     }
 
-    public void setDataInicioSubmissao(Date strDataInicioSubmissao) {
+    public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
         this.dataInicioSubmissao = strDataInicioSubmissao;
     }
 
@@ -174,7 +175,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return this.m_regFAEs;
     }
 
-    public Date getDataInicioSubmissao() {
+    public Data getDataInicioSubmissao() {
         return this.dataInicioSubmissao;
     }
 
@@ -187,35 +188,35 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return state;
     }
 
-    public void setDataFimSubmissao(Date strDataFimSubmissao) {
+    public void setDataFimSubmissao(Data strDataFimSubmissao) {
         this.dataFimSubmissao = strDataFimSubmissao;
     }
 
-    public Date getDataFimSubmissao() {
+    public Data getDataFimSubmissao() {
         return this.dataFimSubmissao;
     }
 
-    public void setDataInicioAtribuicao(Date strDataInicioAtribuicao) {
+    public void setDataInicioAtribuicao(Data strDataInicioAtribuicao) {
         this.dataInicioAtribuicao = strDataInicioAtribuicao;
     }
 
-    public Date getDataInicioAtribuicao() {
+    public Data getDataInicioAtribuicao() {
         return this.dataInicioAtribuicao;
     }
 
-    public void setDataInicio(Date strDataInicio) {
+    public void setDataInicio(Data strDataInicio) {
         this.dataInicio = strDataInicio;
     }
 
-    public Date getDataInicio() {
+    public Data getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataFim(Date strDataFim) {
+    public void setDataFim(Data strDataFim) {
         this.dataFim = strDataFim;
     }
 
-    public Date getDataFim() {
+    public Data getDataFim() {
         return dataFim;
     }
 

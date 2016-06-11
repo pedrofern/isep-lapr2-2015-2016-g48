@@ -18,7 +18,7 @@ public class ExposicaoStateEmRevisao implements ExposicaoEstado{
 
     @Override
     public boolean valida() {
-        Date dataAtual = Utils.getdataAtual();
+        Data dataAtual = Utils.getdataAtual();
         if (exposicao.getDataFimSubmissao().compareTo(dataAtual) <= 0) {
             return true;
         }

@@ -61,7 +61,7 @@ public class CriarExposicaoController {
      *
      * @param strDataInicio a data de início
      */
-    public void setDataInicio(Date strDataInicio) {
+    public void setDataInicio(Data strDataInicio) {
         m_exposicao.setDataInicio(strDataInicio);
     }
 
@@ -70,19 +70,19 @@ public class CriarExposicaoController {
      *
      * @param strDataFim a data final
      */
-    public void setDataFim(Date strDataFim) {
+    public void setDataFim(Data strDataFim) {
         m_exposicao.setDataFim(strDataFim);
     }
 
-    public void setDataInicioSubmissao(Date strDataInicioSubmissao) {
+    public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
         m_exposicao.setDataInicioSubmissao(strDataInicioSubmissao);
     }
 
-    public void setDataFimSubmissao(Date strDataFimSubmissao) {
+    public void setDataFimSubmissao(Data strDataFimSubmissao) {
         m_exposicao.setDataFimSubmissao(strDataFimSubmissao);
     }
 
-    public void setDataInicioAtribuicao(Date strDataInicioAtribuicao) {
+    public void setDataInicioAtribuicao(Data strDataInicioAtribuicao) {
         m_exposicao.setDataInicioAtribuicao(strDataInicioAtribuicao);
     }
 
@@ -116,7 +116,7 @@ public class CriarExposicaoController {
         return null;
     }
     
-    public Exposicao criaExposicao(String titulo, String descricao, String local, Date dInicio, Date dFim) {        
+    public Exposicao criaExposicao(String titulo, String descricao, String local, Data dInicio, Data dFim) {        
         m_exposicao.setTitulo(titulo);
         m_exposicao.setTextoDescritivo(descricao);
         m_exposicao.setLocal(local);
