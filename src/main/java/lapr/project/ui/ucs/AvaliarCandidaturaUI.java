@@ -27,6 +27,7 @@ import lapr.project.utils.Utils;
  */
 public class AvaliarCandidaturaUI extends JFrame{
 
+    
     private CentroExposicoes m_centroDeExposicoes;
     private AvaliarCandidaturaController m_controllerAC;
     private Utilizador m_user;
@@ -34,7 +35,7 @@ public class AvaliarCandidaturaUI extends JFrame{
      /**
      * Guarda a largura mínima da janela em píxeis.
      */
-    private static final int JANELA_LARGURA_MINIMO = 850;
+    private static final int JANELA_LARGURA_MINIMO = 650;
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
@@ -48,10 +49,11 @@ public class AvaliarCandidaturaUI extends JFrame{
     
     private static AvaliarSubPainelAvaliar pAvaliar;
     private static AvaliarSubPainelCands pCands;
-    private static JPanel pExpos;
+    private static AvaliarSubPainelJustificacao pJustificacao;
+    private static JPanel pExpos, painel;
     
     private static JComboBox comboExpos;
-    private static JButton selExpo;
+    private static JButton selExpo, btGuardar;
     
 
     public AvaliarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
@@ -80,11 +82,12 @@ public class AvaliarCandidaturaUI extends JFrame{
     }
     
     private void criarComponentes(){
-        JPanel painel=new JPanel();
+        painel=new JPanel();
         painel.setLayout(new BorderLayout());
         
         pCands=new AvaliarSubPainelCands(m_controllerAC);
         pAvaliar=new AvaliarSubPainelAvaliar(m_controllerAC);
+        
         criarPainelExpos();
         
         JPanel painelOeste=new JPanel();
@@ -95,13 +98,12 @@ public class AvaliarCandidaturaUI extends JFrame{
         
         painel.add(painelOeste, BorderLayout.WEST);
         painel.add(pAvaliar, BorderLayout.CENTER);
+      
         painel.add(criarPainelBotoes(), BorderLayout.SOUTH);
         
-        pCands.setVisible(true);
-        pAvaliar.setVisible(true);
-        
+        btGuardar.setEnabled(false);
+
         add(painel);
-        
     }
     
     private void criarPainelExpos(){
@@ -170,10 +172,10 @@ public class AvaliarCandidaturaUI extends JFrame{
     }
     
     private JButton criarBotaoRegistar() {
-        JButton botao = new JButton("Guardar");
-        botao.setMnemonic(KeyEvent.VK_R);
-        botao.setToolTipText("Guardar avaliação de candidatura");
-        botao.addActionListener(new ActionListener() {
+        btGuardar = new JButton("Guardar");
+        btGuardar.setMnemonic(KeyEvent.VK_R);
+        btGuardar.setToolTipText("Introduza todos os dados solicitados para poder guardar");
+        btGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                if(norte.getTxtNome().getText().isEmpty()==true||
@@ -191,7 +193,7 @@ public class AvaliarCandidaturaUI extends JFrame{
             }
         });
 
-        return botao;
+        return btGuardar;
     }
     /**
      * criar botão limpar
@@ -274,6 +276,15 @@ public class AvaliarCandidaturaUI extends JFrame{
         public static AvaliarSubPainelAvaliar getPainelAvaliar(){
             return pAvaliar;
         }
+        
+        public static AvaliarSubPainelJustificacao getPainelJustificar() {
+            return pJustificacao;
+        }
+        
+        public static void ativarGuardar(){
+            btGuardar.setEnabled(true);
+        }
+   
     }
         
  

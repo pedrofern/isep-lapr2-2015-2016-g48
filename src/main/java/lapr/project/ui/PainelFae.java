@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
+import lapr.project.ui.ucs.AvaliarCandidaturaUI;
 
 /**
  *
@@ -88,8 +89,7 @@ public class PainelFae extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                
-                JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                
+                new AvaliarCandidaturaUI(m_ce, m_ut);
             }
         });
         
