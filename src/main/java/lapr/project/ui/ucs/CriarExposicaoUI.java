@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import javax.swing.BorderFactory;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
@@ -16,12 +17,16 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+import lapr.project.model.lists.RegistoUtilizadores;
 
 /**
  *
@@ -29,131 +34,76 @@ import javax.swing.text.MaskFormatter;
  */
 public class CriarExposicaoUI extends JFrame {
 
+    private JList listaCompletaUtilizador;
+    private RegistoUtilizadores listaUtilizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataAlterarConflito;
-    private static CentroExposicoes ce;
-    private CriarExposicaoController controller;
+    private CentroExposicoes m_centroDeExposicoes;
+    private CriarExposicaoController m_controller;
     private static final int JANELA_LARGURA = 700;
     private static final int JANELA_ALTURA = 300;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Criar Exposicao").getPreferredSize();
-    private JButton btnConfirmar, btnFechar;
+    private JButton btnConfirmar, btnFechar, btnAdicionarOrganizador, btnEleminarOrganizador;
     private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
+    private ModeloListaUtilizadores modelolistautilizador;
+     
 
-    public CriarExposicaoUI(CentroExposicoes centroExposicoes) {
+    public CriarExposicaoUI(CentroExposicoes centro) {
         super("Criar Exposicao");
+        m_centroDeExposicoes = centro;
         criarComponentes();
-        setSize(JANELA_LARGURA, JANELA_ALTURA);
-        setLocationRelativeTo(framePai);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setMinimumSize(new Dimension(getWidth(), getHeight()));
+        setLocationRelativeTo(null);
         setVisible(true);
-        
-        ce = centroExposicoes;
-
-        controller = new CriarExposicaoController(ce);
-
     }
 
     public void criarComponentes() {
 
         //add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelSul(), BorderLayout.SOUTH);
-        add(criarPainelOeste(), BorderLayout.WEST);
+        add(criarPainelNorte(), BorderLayout.NORTH);
+        add(criarPainelListas(), BorderLayout.CENTER);
     }
 
-    private JPanel criarPainelOeste() {
-        JPanel p = new JPanel(new GridLayout(0, 1));
-        p.add(criarPainelTitulo());
-        p.add(criarPainelDescricao());
-        p.add(criarPainelLocal());
-        p.add(criarPainelExposicaoData(criarPainelExposiçãoDataInicial(), criarPainelExposiçãoDataFinal()));
+    private JPanel criarPainelNorte() {
+        JPanel p = new JPanel(new FlowLayout());
+        p.add(criarPainelDados());
 
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
         p.setBorder(new TitledBorder("Dados"));
         return p;
     }
 
-    private JPanel criarPainelTitulo() {
-        JPanel p = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Titulo:", SwingConstants.LEFT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
-        final int CAMPO_LARGURA = 30;
-        txtTitulo = new JTextField(CAMPO_LARGURA);
-        txtTitulo.requestFocus();
-        txtTitulo.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev) {
-                txtTitulo.setText(txtTitulo.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
-            }
-        });
-        txtTitulo.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtTitulo.getText().length() > 40) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                }
-            }
-        });
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.add(lbl);
+    private JPanel criarPainelDados() {
+        JPanel p = new JPanel(new GridLayout(0, 2, 0, 4));
+        txtTitulo = new JTextField(15);
+        txtDescricao = new JTextField();
+        txtLocal = new JTextField();
+
+        p.add(new JLabel("Titulo"));
         p.add(txtTitulo);
-        return p;
-    }
-
-    private JPanel criarPainelLocal() {
-        JPanel p = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Local:", SwingConstants.LEFT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
-        final int CAMPO_LARGURA = 30;
-        txtLocal = new JTextField(CAMPO_LARGURA);
-        txtLocal.requestFocus();
-        txtLocal.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev) {
-                txtLocal.setText(txtLocal.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
-            }
-        });
-        txtLocal.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtLocal.getText().length() > 40) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                }
-            }
-        });
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.add(lbl);
-        p.add(txtLocal);
-        return p;
-    }
-
-    private JPanel criarPainelDescricao() {
-        JPanel p = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Descrição:", SwingConstants.LEFT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
-        final int CAMPO_LARGURA = 30;
-        txtDescricao = new JTextField(CAMPO_LARGURA);
-        txtDescricao.requestFocus();
-        txtDescricao.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ev) {
-                txtDescricao.setText(txtDescricao.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
-            }
-        });
-        txtDescricao.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent ev) {
-                if (txtDescricao.getText().length() > 40) {
-                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-                }
-            }
-        });
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.add(lbl);
+        p.add(new JLabel("Descrição"));
         p.add(txtDescricao);
+        p.add(new JLabel("Local"));
+        p.add(txtLocal);
 
         return p;
+    }
+
+    private JPanel criarPainelPeriodoData() {
+        JPanel painel = new JPanel(new GridLayout(0, 1));
+        painel.setBorder(new TitledBorder("Periodo de : "));
+        painel.add(criarPainelExposicaoData(criarPainelExposiçãoDataInicial(), criarPainelExposiçãoDataFinal()));
+        painel.add(criarPainelCandidaturaData(criarPainelCandidaturaDataInicial(), criarPainelCandidaturaDataFinal()));
+        painel.add(criarPainelStandsData(criarPainelStandsDataInicial(), criarPainelStandsDataFinal()));
+        painel.add(criarPainelConflitoDataFinal());
+
+        return painel;
 
     }
 
@@ -164,22 +114,123 @@ public class CriarExposicaoUI extends JFrame {
                 NUMERO_COLUNAS,
                 INTERVALO_HORIZONTAL,
                 INTERVALO_VERTICAL));
+
         painel.add(datainicial);
         painel.add(datafinal);
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        painel.setBorder(new TitledBorder("Exposição"));
 
         return painel;
 
     }
 
-    private JPanel criarPainelPeriodo() {
-        JPanel painel = new JPanel(new GridLayout(0, 1));
+    private JPanel criarPainelListas() {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
 
+        listaCompletaUtilizador = new JList();
+        listaUtilizadores = new RegistoUtilizadores();
+        modelolistautilizador = new ModeloListaUtilizadores(listaUtilizadores);
+        p.add(criarPainelPeriodo(criarPainelPeriodoData()));
+        p.add(criarPainelListaOrganizador("Lista de Organizador",
+                listaCompletaUtilizador,
+                modelolistautilizador));
+
+        return p;
+    }
+
+    private JPanel criarPainelPeriodo(JPanel periodo
+    ) {
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        p.add(periodo, BorderLayout.CENTER);
+
+        return p;
+    }
+
+    private JPanel criarPainelListaOrganizador(
+            String tituloLista,
+            JList lstLista,
+            ModeloListaUtilizadores modeloLista) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
+        lstLista.setModel(modeloLista);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        JPanel pBotoes = criarPainelBotoes(criarBotaoAdicionarOrganizador(), criarBotaoEliminarOrganizador(lstLista));
+        p.add(pBotoes, BorderLayout.SOUTH);
+        return p;
+    }
+
+    private JPanel criarPainelBotoes(JButton btn1, JButton btn2) {
+
+        JPanel p = new JPanel(new GridLayout(2, 1, 0, 10));
+
+        p.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+
+        p.add(btn1);
+        p.add(btn2);
+
+        return p;
+    }
+
+    private JPanel criarPainelCandidaturaData(JPanel datainicial, JPanel datafinal) {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        painel.add(datainicial);
+        painel.add(datafinal);
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
-        painel.setBorder(new TitledBorder("Periodo: "));
-                
+
+        painel.setBorder(new TitledBorder("Submissão de candidatura"));
+
+        return painel;
+
+    }
+
+    private JPanel criarPainelStandsData(JPanel datainicial, JPanel datafinal) {
+        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        painel.add(datainicial);
+        painel.add(datafinal);
+        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        painel.setBorder(new TitledBorder("Submissão de Stands"));
+
         return painel;
 
     }
@@ -257,6 +308,24 @@ public class CriarExposicaoUI extends JFrame {
         return painel;
     }
 
+    private JPanel criarPainelStandsDataInicial() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data inicial :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoSubStandsDatainicial = new JFormattedTextField(mascara);
+            campoSubStandsDatainicial.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoSubStandsDatainicial);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
     private JPanel criarPainelStandsDataFinal() {
         JPanel painel = new JPanel(new FlowLayout());
         try {
@@ -264,7 +333,7 @@ public class CriarExposicaoUI extends JFrame {
 
             MaskFormatter mascara = new MaskFormatter("##/##/####");
             mascara.setPlaceholderCharacter('_');
-            campoSubStandsDatainicial = new JFormattedTextField(mascara);
+            campoSubStandsDataFinal = new JFormattedTextField(mascara);
             campoSubStandsDataFinal.setPreferredSize(new Dimension(80, 20));
             painel.add(labelData);
             painel.add(campoSubStandsDataFinal);
@@ -286,6 +355,13 @@ public class CriarExposicaoUI extends JFrame {
             campoDataAlterarConflito.setPreferredSize(new Dimension(80, 20));
             painel.add(labelData);
             painel.add(campoDataAlterarConflito);
+            final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+            final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+            painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                    MARGEM_INFERIOR, MARGEM_DIREITA));
+
+            painel.setBorder(new TitledBorder("Alterar Data De Conflito"));
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -304,9 +380,11 @@ public class CriarExposicaoUI extends JFrame {
         JButton btnOK = criarBotaoConfirmar();
         getRootPane().setDefaultButton(btnOK);
         JButton btnClose = criarBotaoFechar();
+        JButton btnClear = criarBotaoLimpar();
         JPanel p = new JPanel();
         p.add(btnOK);
         p.add(btnClose);
+        p.add(btnClear);
         return p;
 
     }
@@ -323,8 +401,8 @@ public class CriarExposicaoUI extends JFrame {
         int anofinal = Integer.parseInt(dataFinal[2]);
         Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
         Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
-        controller.novaExposicao();
-        controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
+        m_controller.novaExposicao();
+        m_controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
 //        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Nova Exposição: \n"
@@ -371,48 +449,53 @@ public class CriarExposicaoUI extends JFrame {
         return btnFechar;
     }
 
-//    private Exposicao introduzDadosExposicao() {
-//        String strTitulo = Utils.readLineFromConsole("Introduza Titulo: ");
-//        m_controller.setTitulo(strTitulo);
-//
-//        String strDescricao = Utils.readLineFromConsole("Introduza Descricao: ");
-//        m_controller.setDescricao(strDescricao);
-//
-//        String strLocal = Utils.readLineFromConsole("Introduza Local: ");
-//        m_controller.setLocal(strLocal);
-//
-//        Data dtInicio = Utils.readDateFromConsole("Introduza Data Inicio: ");
-//        m_controller.setDataInicio(dtInicio);
-//
-//        Data dtFim = Utils.readDateFromConsole("Introduza Data Fim: ");
-//        m_controller.setDataFim(dtFim);
-//
-//        Data dtInicioSubmissao = Utils.readDateFromConsole("Introduza Data Inicio Submissao: ");
-//        m_controller.setDataInicioSubmissao(dtInicioSubmissao);
-//
-//        Data dtFimSubmissao = Utils.readDateFromConsole("Introduza Data Fim Submissao: ");
-//        m_controller.setDataFimSubmissao(dtFimSubmissao);
-//
-//        Data dtInicioAtribuicao = Utils.readDateFromConsole("Introduza Data Inicio Atribuicao: ");
-//        m_controller.setDataInicioAtribuicao(dtInicioAtribuicao);
-//
-//        while (Utils.confirma("Pretende inserir orgaizador (s/n)?")) {
-//            String strOrg = Utils.readLineFromConsole("Introduza ID Organizador: ");
-//            m_controller.addOrganizador(strOrg);
-//        }
-//
-//        apresentaExposicao(m_controller.getExposicao());
-//
-//        if (Utils.confirma("Confirma?")) {
-//            return m_controller.registaExposicao();
-//        }
-//        return null;
-//    }
-//    private void apresentaExposicao(Exposicao exposicao) {
-//        if (exposicao == null) {
-//            System.out.println("Exposicao não registada.");
-//        } else {
-//            System.out.println(exposicao.toString());
-//        }
-//    }
+    private JButton criarBotaoAdicionarOrganizador() {
+        btnAdicionarOrganizador = new JButton("Adicionar Organizador");
+
+        btnAdicionarOrganizador.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        });
+
+        return btnAdicionarOrganizador;
+    }
+
+    private JButton criarBotaoEliminarOrganizador(JList lstLista) {
+        btnEleminarOrganizador = new JButton("Eliminar Organizador");
+        btnEleminarOrganizador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        });
+        return btnEleminarOrganizador;
+    }
+
+    private JButton criarBotaoLimpar() {
+
+        JButton btn = new JButton("Limpar");
+        btn.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                txtDescricao.setText(null);
+                txtTitulo.setText(null);
+                campoDataInicial.setText(null);
+                campoDataFinal.setText(null);
+                campoDataAlterarConflito.setText(null);
+                campoSubCandDataFinal.setText(null);
+                campoSubCandDataInicial.setText(null);
+                campoSubStandsDatainicial.setText(null);
+                campoSubStandsDataFinal.setText(null);
+
+            }
+        });
+        return btn;
+
+    }
 }
