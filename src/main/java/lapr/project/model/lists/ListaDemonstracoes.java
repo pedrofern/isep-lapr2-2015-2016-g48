@@ -11,12 +11,12 @@ import lapr.project.utils.Data;
  *
  * @author Pedro Fernandes
  */
-public class RegistoDemonstracoes {
+public class ListaDemonstracoes {
 
     private ArrayList<Demonstracao> m_lstDemonstracao;
     private Demonstracao m_demonstraco;
 
-    public RegistoDemonstracoes() {
+    public ListaDemonstracoes() {
         m_lstDemonstracao = new ArrayList<>();
     }
 

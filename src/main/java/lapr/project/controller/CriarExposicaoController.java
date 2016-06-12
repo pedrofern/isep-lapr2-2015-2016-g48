@@ -21,7 +21,7 @@ public class CriarExposicaoController {
 
     public CriarExposicaoController(CentroExposicoes ce) {
         this.m_oCE = ce;
-        m_regExposicoes = ce.getListaExposicoes();
+        m_regExposicoes = ce.getRegistoExposicoes();
         m_regUtilizadores = ce.getRegistoUtilizadores();
     }
 
@@ -87,7 +87,7 @@ public class CriarExposicaoController {
     }
 
     public RegistoUtilizadores getListaUtilizadores() {
-        return this.m_oCE.getUtilizadores();
+        return this.m_oCE.getRegistoUtilizadores();
     }
 
     public Utilizador addOrganizador(String strId) {

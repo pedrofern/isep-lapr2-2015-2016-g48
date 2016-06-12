@@ -11,12 +11,14 @@ import lapr.project.utils.*;
  */
 public class AlterarCandidaturaUI {
     
-    private CentroExposicoes m_centroDeExposicoes;
-    private AlterarCandidaturaController m_controller;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
+    private static AlterarCandidaturaController m_controller;
 
-    public AlterarCandidaturaUI(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
-        m_controller = new AlterarCandidaturaController(m_centroDeExposicoes);
+    public AlterarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
+        m_ce = ce;
+        m_user=user;
+        m_controller = new AlterarCandidaturaController(m_ce);
     }
 
     

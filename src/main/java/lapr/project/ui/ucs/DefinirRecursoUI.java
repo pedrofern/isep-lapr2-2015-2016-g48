@@ -24,21 +24,18 @@ import lapr.project.ui.*;
  */
 public class DefinirRecursoUI extends JFrame {
 
-    private CentroExposicoes m_ce;
+    private static CentroExposicoes m_ce;
     private DefinirRecursoController m_controller;
-    private JTextArea text;
-    private Utilizador m_user;
-    private Recurso m_r;
+    private static JTextArea text;
+     private static Recurso m_r;
     
     private static final int WIDTH=350, HEIGHT=350;
     
     
-    public DefinirRecursoUI(CentroExposicoes centroDeExposicoes, Utilizador user) {
+    public DefinirRecursoUI(CentroExposicoes ce) {
        
-        m_ce = centroDeExposicoes;
+        m_ce = ce;
         m_controller = new DefinirRecursoController(m_ce);
-        m_user=user;
-        
        
         criarComponentes();
         

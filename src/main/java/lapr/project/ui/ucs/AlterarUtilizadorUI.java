@@ -6,16 +6,15 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import lapr.project.controller.AlterarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
-import lapr.project.ui.Janela;
 import lapr.project.ui.PainelInfoUser;
-import lapr.project.utils.Utils;
-import lapr.project.ui.ucs.RegistarUtilizadorUI;
 
 /**
  *
@@ -30,7 +29,6 @@ public class AlterarUtilizadorUI extends JPanel{
       
 
     public AlterarUtilizadorUI(CentroExposicoes ce, Utilizador user){
-        
          
          super();
          m_ce=ce;
@@ -99,7 +97,11 @@ public class AlterarUtilizadorUI extends JPanel{
                             "Registar Utilizador",
                             JOptionPane.ERROR_MESSAGE);                        
                 }else{
-                    guardar();
+                    try {
+                        guardar();
+                    } catch (CloneNotSupportedException ex) {
+                        Logger.getLogger(AlterarUtilizadorUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
@@ -151,7 +153,7 @@ public class AlterarUtilizadorUI extends JPanel{
         return botao;
     }
     
-     private void guardar() {
+     private void guardar() throws CloneNotSupportedException {
             String nome,email,pass,user;
             nome = norte.getTxtNome().getText();
             email = norte.getTxtEmail().getText();

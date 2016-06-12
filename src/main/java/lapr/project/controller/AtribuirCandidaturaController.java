@@ -11,26 +11,27 @@ import lapr.project.model.lists.*;
  */
 public class AtribuirCandidaturaController {
 
-    private CentroExposicoes e_centroDeExposicoes;
-    private Exposicao m_exposicao;
-    private Candidatura c_candidatura;
-    private Organizador organizador;
-    private RegistoExposicoes m_listaExposicoes;
-    private ListaFAE m_listaFAE;
-    private ListaCandidaturas c_listaCandidaturas;
-    private Atribuicao ac_novaAtribuicaoCandidatura;
-    private CentroExposicoes m_centroDeExposicoes;
+    private static CentroExposicoes m_ce;
+    private static Exposicao m_exposicao;
+    private static Utilizador m_user;
+    private static Candidatura c_candidatura;
+    private static Organizador organizador;
+    private static RegistoExposicoes m_listaExposicoes;
+    private static ListaFAE m_listaFAE;
+    private static ListaCandidaturas c_listaCandidaturas;
+    private static Atribuicao ac_novaAtribuicaoCandidatura;
 
-    public AtribuirCandidaturaController(CentroExposicoes centroDeExposicoes) {
-        e_centroDeExposicoes = centroDeExposicoes;
+
+    public AtribuirCandidaturaController(CentroExposicoes ce) {
+        m_ce = ce;
     }
 
     public RegistoExposicoes iniciarAtribuicaoCandidatura() {
-        return this.m_centroDeExposicoes.getListaExposicoes();
+        return this.m_ce.getRegistoExposicoes();
     }
 
     public void novaAtribuicaoCandidatura() {
-        ac_novaAtribuicaoCandidatura = e_centroDeExposicoes.novaAtribuicaoCandidatura();
+        ac_novaAtribuicaoCandidatura = m_ce.novaAtribuicaoCandidatura();
     }
 
     public Atribuicao setAtribuicao() {

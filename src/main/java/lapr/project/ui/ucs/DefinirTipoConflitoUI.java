@@ -12,12 +12,13 @@ import lapr.project.utils.*;
  */
 public class DefinirTipoConflitoUI {
     
-    private CentroExposicoes m_centroDeExposicoes;
+    private static CentroExposicoes m_ce;
+    
     private DefinirTipoConflitoController m_controller;
 
-    public DefinirTipoConflitoUI(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
-        m_controller = new DefinirTipoConflitoController(m_centroDeExposicoes);
+    public DefinirTipoConflitoUI(CentroExposicoes ce) {
+        m_ce = ce;
+        m_controller = new DefinirTipoConflitoController(m_ce);
     }
 
     

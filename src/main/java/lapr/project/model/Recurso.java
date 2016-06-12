@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Pedro Fernandes
@@ -33,6 +35,7 @@ public class Recurso implements Comparable<Recurso> {
         return this.getDescricao();
     }
 
+    @Override
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
             return true;
@@ -45,6 +48,14 @@ public class Recurso implements Comparable<Recurso> {
         return descricao.equalsIgnoreCase(recurso.descricao);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.descricao);
+        return hash;
+    }
+
+    @Override
     public int compareTo(Recurso outroRecurso) {
         return descricao.compareTo(outroRecurso.descricao);
     }

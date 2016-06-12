@@ -135,4 +135,12 @@ public class ListaFAE {
         return false;
     }
     
+    
+      
+    //isto é no registofaes
+    public FAE novoDefinirFAE() {
+        return new FAE();
+    }
+
+    
 }

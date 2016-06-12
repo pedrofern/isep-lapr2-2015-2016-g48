@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
+import lapr.project.ui.ucs.AtualizarConflitosUI;
 import lapr.project.ui.ucs.AvaliarCandidaturaUI;
 
 /**
@@ -80,7 +81,7 @@ public class PainelFae extends JPanel{
     } 
 
    private JButton criarBotaoDefinirCand(){
-        JButton bt=new JButton("Definir candidatura");
+        JButton bt=new JButton("Avaliar candidatura");
         bt.setMnemonic(KeyEvent.VK_D);
         bt.setToolTipText("Avaliação de uma candidatura");
         bt.setPreferredSize(DIM_BOTOES);
@@ -88,8 +89,11 @@ public class PainelFae extends JPanel{
         bt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
-                AvaliarCandidaturaUI a= new AvaliarCandidaturaUI(m_ce, m_ut);
+               try{
+                  AvaliarCandidaturaUI a= new AvaliarCandidaturaUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }
         });
         
@@ -107,7 +111,12 @@ public class PainelFae extends JPanel{
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+
+                try{
+                  AtualizarConflitosUI a= new AtualizarConflitosUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }   
         }
             

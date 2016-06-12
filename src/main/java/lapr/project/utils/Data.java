@@ -159,6 +159,15 @@ public class Data implements Comparable<Data>, Serializable {
                 && this.dia == outraData.dia;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + this.ano;
+        hash = 47 * hash + this.mes;
+        hash = 47 * hash + this.dia;
+        return hash;
+    }
+
     /**
      * Compara a data com a outra data recebida por parâmetro.
      *

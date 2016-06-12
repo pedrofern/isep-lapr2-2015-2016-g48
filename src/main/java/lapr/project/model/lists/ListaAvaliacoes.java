@@ -82,6 +82,13 @@ public class ListaAvaliacoes {
         return this.getListaAvaliacoes().equals(outraLA.getListaAvaliacoes());
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.listaAvaliacoes);
+        return hash;
+    }
+
     /**
      * Obtem a lista de Avaliacoes
      *

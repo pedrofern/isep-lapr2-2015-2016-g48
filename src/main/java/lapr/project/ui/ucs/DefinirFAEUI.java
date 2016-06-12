@@ -21,7 +21,9 @@ import lapr.project.model.lists.*;
  */
 public class DefinirFAEUI extends JFrame {
     
-    
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
+ 
      private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;
@@ -29,9 +31,12 @@ public class DefinirFAEUI extends JFrame {
     private RegistoUtilizadores listaCompletaUtilizadores,listaUtilizadoresFAE;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
-    public DefinirFAEUI() throws FileNotFoundException {
+    public DefinirFAEUI(CentroExposicoes ce, Utilizador user) throws FileNotFoundException {
 
         super("Definir FAE");
+        
+        m_ce=ce;
+        m_user=user;
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

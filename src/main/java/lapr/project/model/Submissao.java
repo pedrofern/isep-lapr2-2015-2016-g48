@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Pedro Fernandes
@@ -131,6 +133,13 @@ public class Submissao {
         }
         Submissao sub = (Submissao) o;
         return this.candidatura.equals(sub.getCandidatura());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.candidatura);
+        return hash;
     }
 
     /**

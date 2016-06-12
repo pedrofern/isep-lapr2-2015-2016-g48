@@ -28,9 +28,11 @@ import lapr.project.utils.Utils;
 public class AvaliarCandidaturaUI extends JFrame{
 
     
-    private CentroExposicoes m_centroDeExposicoes;
-    private AvaliarCandidaturaController m_controllerAC;
-    private Utilizador m_user;
+    private static CentroExposicoes m_ce;
+    private static AvaliarCandidaturaController m_controllerAC;
+    private static Utilizador m_user;
+    private static Exposicao m_exposicao;
+    private static Candidatura m_candidatura;
     
      /**
      * Guarda a largura mínima da janela em píxeis.
@@ -40,12 +42,8 @@ public class AvaliarCandidaturaUI extends JFrame{
      * Guarda a altura mínima da janela em píxeis.
      */
     private static final int JANELA_ALTURA_MINIMO = 275; 
-    
-    private CentroExposicoes m_ce;
-    private Exposicao m_exposicao;
-    private Candidatura m_candidatura;
-    
-    private String pergunta="Pretende cancelar a avaliação da candidatura?";
+        
+    private static final String pergunta="Pretende cancelar a avaliação da candidatura?";
     
     private static AvaliarSubPainelAvaliar pAvaliar;
     private static AvaliarSubPainelCands pCands;
@@ -55,13 +53,12 @@ public class AvaliarCandidaturaUI extends JFrame{
     private static JComboBox comboExpos;
     private static JButton selExpo, btGuardar;
     
-
     public AvaliarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
         
         super("Avaliar Candidatura");
         
         m_ce = ce;
-        m_controllerAC = new AvaliarCandidaturaController(m_centroDeExposicoes);
+        m_controllerAC = new AvaliarCandidaturaController(m_ce);
         user=m_user;
         
         addWindowListener(new WindowAdapter() {

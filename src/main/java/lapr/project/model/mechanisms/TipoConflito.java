@@ -1,5 +1,7 @@
 package lapr.project.model.mechanisms;
 
+import java.util.Objects;
+
 /**
  *
  * @author Pedro Fernandes
@@ -67,5 +69,12 @@ public class TipoConflito {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.descricao);
+        return hash;
     }
 }

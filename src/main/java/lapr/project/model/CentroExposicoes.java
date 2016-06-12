@@ -10,13 +10,20 @@ import java.util.*;
  */
 public class CentroExposicoes {
 
-    private RegistoTipoConflitos registoTipoConflitos;
-    private ListaFAE m_listaFAE;
-    private RegistoRecursos m_regRecursos;
-    private RegistoExposicoes m_regExposicoes;
+    private static RegistoTipoConflitos registoTipoConflitos;
+//   FAES é na exposição
+//    private ListaFAE m_listaFAE;
+    
+    private  RegistoRecursos m_regRecursos;
+    private  RegistoExposicoes m_regExposicoes;
     private RegistoUtilizadores m_regUtilizadores;
-    private ListaCandidaturas m_regCandidaturas;
-    private RegistoDemonstracoes m_listaDemonstracoes;
+    private  RegistoStands m_regStands;
+    
+    //Candidaturas é na exposição
+ //   private ListaCandidaturas m_regCandidaturas;
+    
+    //Demonstrações é na exposição
+//    private RegistoDemonstracoes m_listaDemonstracoes;
     private Timer timer;
     private List<MecanismoAtribuicao> listaMecanismoAtribuicao;
     private List<MecanismoAvaliacao> listaMecanismoAvaliacao;
@@ -27,107 +34,40 @@ public class CentroExposicoes {
         m_regExposicoes = new RegistoExposicoes();
 //        m_listaFAE = new ArrayList<FAE>();
         m_regRecursos = new RegistoRecursos();
-        m_listaDemonstracoes = new RegistoDemonstracoes();
+//        m_listaDemonstracoes = new RegistoDemonstracoes();
+        m_regStands=new RegistoStands();
         this.timer = new Timer();
         this.listaMecanismoAvaliacao = new ArrayList<>();
         this.listaMecanismoDetecao = new ArrayList<>();
         this.listaMecanismoAtribuicao = new ArrayList<>();
-        m_regCandidaturas = new ListaCandidaturas();
-//        fillInData();
+//        m_regCandidaturas = new ListaCandidaturas();
     }
-
-//    public void fillInData() {
-//
-//        Utilizador u = new Utilizador();
-//        u.setNome("João");
-//        u.setEmail("joao@esoft.pt");
-//        u.setUsername("joao");
-//        u.setPassword("abc");
-//        m_listaUtilizadores.add(u);
-//
-//        Utilizador u2 = new Utilizador();
-//        u2.setNome("ricardo");
-//        u2.setEmail("ricardo@esoft.pt");
-//        u2.setUsername("ricardo");
-//        u2.setPassword("def");
-//        m_listaUtilizadores.add(u2);
-//
-//        Utilizador u3 = new Utilizador();
-//        u3.setNome("pedro");
-//        u3.setEmail("pedro@esoft.pt");
-//        u3.setUsername("pedro");
-//        u3.setPassword("ghi");
-//        m_listaUtilizadores.add(u3);
-//
-//        Utilizador u4 = new Utilizador();
-//        u4.setNome("joaquim");
-//        u4.setEmail("joaquim@esoft.pt");
-//        u4.setUsername("joaquim");
-//        u4.setPassword("jkl");
-//        m_listaUtilizadores.add(u4);
-//
-//        Utilizador u5 = new Utilizador();
-//        u5.setNome("Bruno");
-//        u5.setEmail("bruno@esoft.pt");
-//        u5.setUsername("bruno");
-//        u5.setPassword("mno");
-//        m_listaUtilizadores.add(u5);
-//    }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
         return this.m_regUtilizadores;
     }
-
-    public ListaCandidaturas getRegistoCandidaturas() {
-        return this.m_regCandidaturas;
-    }
+//
+//    public ListaCandidaturas getListaCandidaturas() {
+//        return this.m_regCandidaturas;
+//    }
     
     public RegistoRecursos getRegistoRecursos() {
         return this.m_regRecursos;
     }
     
-    public RegistoDemonstracoes getRegistoDemonstracoes() {
-        return this.m_listaDemonstracoes;
+    public RegistoExposicoes getRegistoExposicoes(){
+        return this.m_regExposicoes;
     }
     
-    public FAE novoDefinirFAE() {
-        return new FAE();
+    public RegistoStands getRegistoStands(){
+        return this.m_regStands;
     }
 
     public void schedule(TimerTask task, Date date) {
         timer.schedule(task, date);
     }
-
-    public boolean registaDefinirFAE(FAE f) {
-        if (validaDefinirFAE(f)) {
-            return addDefinirFAE(f);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean addDefinirFAE(FAE f) {
-        return m_listaFAE.adicionarFAE(f);
-    }
-
-    public ListaFAE getListaFAE() {
-        ListaFAE lF = new ListaFAE();
-
-        for (ListIterator<FAE> it = m_listaFAE.getListaFAE().listIterator(); it.hasNext();) {
-            lF.adicionarFAE(it.next());
-        }
-
-        return lF;
-    }
-
-    public boolean validaDefinirFAE(FAE f) {
-        return f.valida();
-    }
-
-    public RegistoUtilizadores getUtilizadores() {
-        return m_regUtilizadores;
-    }
-
+    
+   
     public List<MecanismoAvaliacao> getMecanismosAvaliacao() {
         List<MecanismoAvaliacao> lMecanismos = new ArrayList<>();
 
@@ -171,18 +111,26 @@ public class CentroExposicoes {
         }
         CentroExposicoes outroCentro = (CentroExposicoes) o;
         return this.getRegistoUtilizadores().equals(outroCentro.getRegistoUtilizadores())
-                && this.getListaExposicoes().equals(outroCentro.getListaExposicoes());
+                && this.getRegistoExposicoes().equals(outroCentro.getRegistoExposicoes());
     }
 
-    public RegistoExposicoes getListaExposicoes() {
-        RegistoExposicoes le = new RegistoExposicoes();
-
-        for (Exposicao e : m_regExposicoes.getExposicao()) {
-            le.adicionarExposicao(e);
-        }
-        return le;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.m_regExposicoes);
+        hash = 53 * hash + Objects.hashCode(this.m_regUtilizadores);
+        return hash;
     }
 
+//    public RegistoExposicoes getListaExposicoes() {
+//        RegistoExposicoes le = new RegistoExposicoes();
+//
+//        for (Exposicao e : m_regExposicoes.getExposicao()) {
+//            le.adicionarExposicao(e);
+//        }
+//        return le;
+//    }
+//
     public Atribuicao novaAtribuicaoCandidatura() {
         return new Atribuicao();
     }
@@ -199,7 +147,7 @@ public class CentroExposicoes {
     @Override
     public String toString() {
         return "Empresa:" + "m_regUtilizadores=" + m_regUtilizadores
-                + ", m_regExposicoes=" + m_regExposicoes + "m_regCandidaturas=" + m_regCandidaturas;
+                + ", m_regExposicoes=" + m_regExposicoes /**+ "m_regCandidaturas=" + m_regCandidaturas**/;
     }
     
     /**
@@ -356,7 +304,7 @@ public class CentroExposicoes {
         RegistoExposicoes l_ExpDoFAE = new RegistoExposicoes();
 
         for (Exposicao e : this.m_regExposicoes.getExposicao()) {
-            if (e.getListaFaes().getFAE(id) != null) {
+            if (e.getListaFAEs().getFAE(id) != null) {
                 l_ExpDoFAE.adicionarExposicao(e);
             }
 
@@ -371,7 +319,7 @@ public class CentroExposicoes {
     public RegistoExposicoes getExposicaoOrganizador(String strId) {
         RegistoExposicoes leOrganizador = new RegistoExposicoes();
 
-        Utilizador u = getUtilizadores().getUtilizadorByID(strId);
+        Utilizador u = getRegistoUtilizadores().getUtilizadorByID(strId);
 
         if (u != null) {
             for (Iterator<Exposicao> it = this.m_regExposicoes.getExposicao().listIterator(); it.hasNext();) {

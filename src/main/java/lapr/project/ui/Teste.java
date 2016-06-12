@@ -22,12 +22,12 @@ public class Teste {
        new AvaliarCandidaturaUI(centro,utilizador);gs the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-//        CentroExposicoes centro=new CentroExposicoes();
-//        Utilizador utilizador=new Utilizador();
+        CentroExposicoes ce=new CentroExposicoes();
+        Utilizador user=new Utilizador();
         
        //new AvaliarCandidaturaUI(centro,utilizador);
         //new DefinirFAEUI();
-        new CriarExposicaoUI();
+        RegistarCandidaturaUI teste=new RegistarCandidaturaUI(ce, user);
     }
     
 }

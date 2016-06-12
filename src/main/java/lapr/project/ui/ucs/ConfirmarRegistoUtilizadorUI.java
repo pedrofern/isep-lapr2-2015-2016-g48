@@ -12,12 +12,10 @@ import lapr.project.ui.*;
 public class ConfirmarRegistoUtilizadorUI {
 
     private final ConfirmarRegistoUtilizadorController controller;
-    private Utilizador m_oUu;
     Scanner ler;
 
-    public ConfirmarRegistoUtilizadorUI(CentroExposicoes ce, Utilizador u) {
+    public ConfirmarRegistoUtilizadorUI(CentroExposicoes ce) {
         controller = new ConfirmarRegistoUtilizadorController(ce);
-        m_oUu = u;
         ler = new Scanner(System.in);
     }
 

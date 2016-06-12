@@ -10,8 +10,8 @@ import lapr.project.model.lists.RegistoRecursos;
  */
 public class DefinirRecursoController {
 
-    private CentroExposicoes m_ce;
-    private Recurso m_recurso;
+    private static CentroExposicoes m_ce;
+    private static Recurso m_recurso;
    
     
 

@@ -15,10 +15,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 import lapr.project.model.*;
-import lapr.project.ui.*;
 import lapr.project.controller.*;
 import lapr.project.model.lists.*;
-import lapr.project.ui.ucs.*;
 import lapr.project.utils.*;
 
 public class CriarDemonstracaoUI extends JFrame {
@@ -35,31 +33,33 @@ public class CriarDemonstracaoUI extends JFrame {
     private RegistoExposicoes listaExposicoes;
     private JTable tableListaRecurso;
     private Organizador o_Organizador;
-    private CentroExposicoes centroExposicoes;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
     private Exposicao exposicao;
     private Recurso recurso;
-    private RegistoDemonstracoes listaDemostracao;
+    private ListaDemonstracoes listaDemostracao;
     private CriarDemonstracaoController m_demonstracaoController;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
 
-    public CriarDemonstracaoUI(CentroExposicoes ce) throws FileNotFoundException {
+    public CriarDemonstracaoUI(CentroExposicoes ce, Utilizador user) throws FileNotFoundException {
 
         super("Criar Demonstração");
+        m_user=user;
 
         o_Organizador = new Organizador();
 
-        centroExposicoes = ce;
+        m_ce = ce;
         exposicao = ce.novaExposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
         ce.registaExposicao(exposicao);
-        listaExposicoes = ce.getListaExposicoes();
+        listaExposicoes = ce.getRegistoExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
 
         exposicao.setTitulo("TESTE EXPOSICAO");
         ce.registaExposicao(exposicao);
-        listaExposicoes = ce.getListaExposicoes();
+        listaExposicoes = ce.getRegistoExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

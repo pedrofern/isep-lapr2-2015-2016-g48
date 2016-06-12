@@ -14,6 +14,8 @@ import java.util.Calendar;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
 
 /**
@@ -22,6 +24,9 @@ import lapr.project.model.lists.*;
  */
 public class DefinirDemonstracaoUI extends JFrame {
 
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
+    
     private Calendar dataInicial, dataFinal;
     private JFormattedTextField campoDataInicial, campoDataFinal;
     private JButton btnConfirmar, btnCancelar, btnLimpar;
@@ -31,15 +36,18 @@ public class DefinirDemonstracaoUI extends JFrame {
     private ModeloListaDemonstracoes modeloListaDemonstracao;
     private ModeloListaExposicao modeloListaExposicao;
     private JTable tableListaRecurso;
-    private RegistoDemonstracoes listaDemonstracao;
+    private ListaDemonstracoes listaDemonstracao;
     private RegistoExposicoes listaExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
 
-    public DefinirDemonstracaoUI() throws FileNotFoundException {
+    public DefinirDemonstracaoUI(CentroExposicoes ce, Utilizador user) throws FileNotFoundException {
 
         super("Definir Demonstração");
+        m_ce=ce;
+        m_user=user;
+
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -88,7 +96,7 @@ public class DefinirDemonstracaoUI extends JFrame {
                 modeloListaExposicao));
 
         listaCompletaDemonstracao = new JList();
-        listaDemonstracao = new RegistoDemonstracoes();
+        listaDemonstracao = new ListaDemonstracoes();
         modeloListaDemonstracao = new ModeloListaDemonstracoes(listaDemonstracao);
         p.add(criarPainelListaDemonstracao("Lista Demonstração", listaCompletaDemonstracao, modeloListaDemonstracao));
 

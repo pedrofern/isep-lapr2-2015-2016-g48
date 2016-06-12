@@ -2,7 +2,6 @@ package lapr.project.model.mechanisms;
 
 import lapr.project.model.Avaliacao;
 import lapr.project.model.lists.ListaAvaliacoes;
-import lapr.project.model.mechanisms.MecanismoAtribuicao;
 
 /**
  *

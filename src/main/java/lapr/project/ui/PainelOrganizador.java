@@ -17,7 +17,11 @@ import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
+import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
 import lapr.project.ui.ucs.CriarDemonstracaoUI;
+import lapr.project.ui.ucs.DecidirCandidaturaUI;
+import lapr.project.ui.ucs.DefinirDemonstracaoUI;
+import lapr.project.ui.ucs.DefinirFAEUI;
 
 /**
  *
@@ -89,8 +93,13 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }     
+                try{
+                  DefinirFAEUI a= new DefinirFAEUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
+            }
+              
         }
             
         );
@@ -108,7 +117,11 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AtribuirCandidaturaUI();     
+                try{
+                  AtribuirCandidaturaUI a= new AtribuirCandidaturaUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               } 
             }
             
         }
@@ -130,7 +143,9 @@ public class PainelOrganizador extends JPanel {
             public void actionPerformed(ActionEvent e) {
                
                 try {
-                    new CriarDemonstracaoUI(m_ce);
+                    
+                  CriarDemonstracaoUI a= new CriarDemonstracaoUI(m_ce, m_ut);
+               
                     // JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(PainelOrganizador.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,7 +172,11 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                try{
+                  DecidirCandidaturaUI a= new DecidirCandidaturaUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             
@@ -176,8 +195,11 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                try{    
+                  AtribuirStandCandidaturaUI a= new AtribuirStandCandidaturaUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             
@@ -196,8 +218,11 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                try{
+                  DefinirDemonstracaoUI a= new DefinirDemonstracaoUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             

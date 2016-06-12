@@ -19,12 +19,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  *
  * @author Tomas
  */
 public class CriarStandUI extends JFrame {
+    
+    private static CentroExposicoes m_ce;
     
     private JButton btnConfirmar, btnLimpar, btnFechar;
     private static final int JANELA_LARGURA = 788;
@@ -34,13 +38,16 @@ public class CriarStandUI extends JFrame {
     private JTextField txtID,txtDescricao,txtArea;
 
     
-    public CriarStandUI() {
+    public CriarStandUI(CentroExposicoes ce) {
 
         super("Criar Stand");
+        
+        m_ce=ce;
         criarComponentes();
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
+        
     }
     
     public void criarComponentes() {

@@ -13,7 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
+import lapr.project.ui.ucs.ConfirmarRegistoUtilizadorUI;
+import lapr.project.ui.ucs.CriarExposicaoUI;
 import lapr.project.ui.ucs.CriarStandUI;
+import lapr.project.ui.ucs.DefinirRecursoUI;
+import lapr.project.ui.ucs.DefinirTipoConflitoUI;
 
 /**
  *
@@ -92,8 +96,11 @@ public class PainelGestor extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                
+                try{
+                  CriarExposicaoUI a= new CriarExposicaoUI(m_ce);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             
@@ -112,8 +119,12 @@ public class PainelGestor extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-               JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                
+               try{
+                  ConfirmarRegistoUtilizadorUI a= new ConfirmarRegistoUtilizadorUI(m_ce);
+
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             
@@ -132,8 +143,11 @@ public class PainelGestor extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                
+                try{
+                  DefinirRecursoUI a= new DefinirRecursoUI(m_ce);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             
@@ -152,8 +166,11 @@ public class PainelGestor extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                
+                try{
+                  DefinirTipoConflitoUI a= new DefinirTipoConflitoUI(m_ce);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             
@@ -172,8 +189,11 @@ public class PainelGestor extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                  new CriarStandUI();
+               try{
+                  CriarStandUI a= new CriarStandUI(m_ce);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
             }     
         }
             

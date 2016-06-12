@@ -11,6 +11,7 @@ import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
+import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.utils.Data;
 
 /**
@@ -29,11 +30,12 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     private Data dataInicioAtribuicao;
     private Data dataFimAtribuicao;
     private ListaCandidaturas m_regCandidaturas;
-    private ListaFAE m_regFAEs;
+    private ListaFAE m_listaFAEs;
     private final List<Organizador> e_listaOrganizadores;
     private ListaSubmissoes listaSubmissoes;
     private ProcessoAtribuicao processoAtribuicao;
     private ListaOrganizadores m_lstOrganizadores;
+    private ListaDemonstracoes m_listaDemonstracoes;
     private ExposicaoEstado state;
     private Exposicao d_conflitos;
 
@@ -42,6 +44,9 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         e_listaOrganizadores = new ArrayList<Organizador>();
         listaSubmissoes = new ListaSubmissoes(this);
         m_regCandidaturas = new ListaCandidaturas();
+        m_listaDemonstracoes=new ListaDemonstracoes();
+        m_listaFAEs= new ListaFAE();
+        
     }
 
     public boolean setState(ExposicaoEstado state) {
@@ -77,6 +82,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return this.getState().isInEmDecisao();
     }
 
+    @Override
     public boolean isInEmDecidida() {
         return this.getState().isInEmDecidida();
     }
@@ -171,8 +177,15 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return this.m_regCandidaturas;
     }
 
-    public ListaFAE getRegistoFAEs() {
-        return this.m_regFAEs;
+    public ListaFAE getListaFAEs() {
+        //        ListaFAE lF = new ListaFAE();
+//
+//        for (ListIterator<FAE> it = m_listaFAE.getListaFAE().listIterator(); it.hasNext();) {
+//            lF.adicionarFAE(it.next());
+//        }
+
+        
+        return this.m_listaFAEs;
     }
 
     public Data getDataInicioSubmissao() {
@@ -222,6 +235,10 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
 
     public ListaOrganizadores getListaOrganizadores() {
         return this.m_lstOrganizadores;
+    }
+    
+    public ListaDemonstracoes getListaDemonstracoes(){
+        return this.m_listaDemonstracoes;
     }
 
     /**
@@ -273,6 +290,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
      * @param o O objeto que vai ser comparado com a exposicao.
      * @return True se forem iguais, false se não forem.
      */
+ 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -283,6 +301,14 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         }
         Exposicao outraEX = (Exposicao) o;
         return this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.titulo);
+        hash = 29 * hash + Objects.hashCode(this.textoDescritivo);
+        return hash;
     }
 
     /**
@@ -296,10 +322,6 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
 
     public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
         this.m_lstOrganizadores = lstOrganizadores;
-    }
-
-    public ListaFAE getListaFaes() {
-        return this.m_regFAEs;
     }
 
     /**
@@ -340,7 +362,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     }
 
     public void setListaFaes(ListaFAE lstFaes) {
-        this.m_regFAEs = lstFaes;
+        this.m_listaFAEs = lstFaes;
     }
 
     public boolean valida() {
@@ -418,7 +440,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     }
 
     public boolean hasFAE(Utilizador u) {
-        for (Iterator<FAE> it = this.m_regFAEs.getListaFAE().listIterator(); it.hasNext();) {
+        for (Iterator<FAE> it = this.m_listaFAEs.getListaFAE().listIterator(); it.hasNext();) {
             FAE fae = it.next();
 
             if (fae.isUtilizador(u)) {
@@ -435,16 +457,22 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     }
     @Override
     public ListaSubmissoes getListaSubmissoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return listaSubmissoes;
     }
 
     @Override
     public void alteraParaEmSubmissao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void alteraParaEmAtribuicao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
+
+    public boolean validaDefinirFAE(FAE f) {
+        return f.valida();
+    }
+
+
 }

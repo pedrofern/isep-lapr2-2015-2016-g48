@@ -6,7 +6,7 @@
 package lapr.project.ui.ucs;
 
 import javax.swing.AbstractListModel;
-import lapr.project.model.lists.RegistoDemonstracoes;
+import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.Demonstracao;
 
 /**
@@ -17,12 +17,12 @@ public class ModeloListaDemonstracoes extends AbstractListModel {
     /**
      * Guarda as listas demonstrações
      */
-    private RegistoDemonstracoes listaDemonstracoes;
+    private ListaDemonstracoes listaDemonstracoes;
     /**
      * Constrói uma instância de modelo lista demonstrações
      * @param listaDemonstracoes lista demonstrações
      */
-    public ModeloListaDemonstracoes(RegistoDemonstracoes listaDemonstracoes) {
+    public ModeloListaDemonstracoes(ListaDemonstracoes listaDemonstracoes) {
         this.listaDemonstracoes = listaDemonstracoes;
     }
     /**

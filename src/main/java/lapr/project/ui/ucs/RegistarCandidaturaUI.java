@@ -2,16 +2,12 @@ package lapr.project.ui.ucs;
 
 import lapr.project.model.*;
 import lapr.project.controller.*;
-import lapr.project.ui.*;
-import lapr.project.ui.ucs.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -83,7 +79,7 @@ public class RegistarCandidaturaUI extends JFrame{
     /**
      * Guarda a lista demonstrações da candidatura
      */
-    private RegistoDemonstracoes listaDemonstracoes;
+    private ListaDemonstracoes listaDemonstracoes;
     /**
      * Guarda a lista recursos da candidatura
      */
@@ -103,27 +99,30 @@ public class RegistarCandidaturaUI extends JFrame{
     /**
      * Guarda objectos centro exposições
      */
-    private CentroExposicoes centroExposicoes;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
 
     private Representante e_representante;
     private RegistarCandidaturaController m_controllerRCC;
 
-    public RegistarCandidaturaUI(CentroExposicoes ce) {
+    public RegistarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
         
         super("Registar Candidatura");
         
+        m_user=user;        
+        
         e_representante = new Representante();
 
-        centroExposicoes = ce;
+        m_ce = ce;
     //inico testes
         exposicao = ce.novaExposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
         ce.registaExposicao(exposicao);
-        listaExposicoes = ce.getListaExposicoes();
+        listaExposicoes = ce.getRegistoExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
         
         //listaExposicoes = ce.getListaExposicoes();
-        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
+        listaDemonstracoes = exposicao.getListaDemonstracoes();
         //testar demonstracoes
         listaRecursos = new RegistoRecursos();
         Recurso r1 = new Recurso("Recurso1");
@@ -141,8 +140,7 @@ public class RegistarCandidaturaUI extends JFrame{
         listaDemonstracoes.registaDemonstracao(d2);
         listaDemonstracoes.registaDemonstracao(d3);
     //fim
-        listaDemonstracoes = centroExposicoes.getRegistoDemonstracoes();
-             
+        listaDemonstracoes = exposicao.getListaDemonstracoes();
         
         
         m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
@@ -445,6 +443,10 @@ public class RegistarCandidaturaUI extends JFrame{
                     String nome = txtNome.getText();
                     int telemovel = Integer.parseInt(txtTelemovel.getText());  
                     candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
+                    
+                    //alterar - estava a dar block por causa de não estar a ir buscar candidatura no toStringCompleto
+                    candidatura=new Candidatura();
+                    
                     boolean adicionarNovaCandidatura = m_controllerRCC.valida();
                     if (adicionarNovaCandidatura == true) {                        
                         if (candidatura == null){
@@ -602,7 +604,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JPanel criarPainelCheckBoxDemo(){
         JPanel pCheck=new JPanel();
         
-        Demonstracao[] opcoes=centroExposicoes.getRegistoDemonstracoes().getArray();
+        Demonstracao[] opcoes=exposicao.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
         

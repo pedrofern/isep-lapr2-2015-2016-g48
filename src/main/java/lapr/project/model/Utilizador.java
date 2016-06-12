@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.util.Objects;
 import lapr.project.utils.*;
 
 /**
@@ -12,10 +13,10 @@ public class Utilizador implements Comparable<Utilizador>{
     private String email;
     private String password;
     private String username;
-    private String NOME_POR_OMISSAO = "Utilizador não registado";
-    private String EMAIL_POR_OMISSAO = "Email do utilizador não registado";
-    private String PASS_POR_OMISSAO = "Password do utilizador não registado";
-    private String USER_POR_OMISSAO = "Username do utilizador não registado";
+    private static final String NOME_POR_OMISSAO = "Utilizador não registado";
+    private static final String EMAIL_POR_OMISSAO = "Email do utilizador não registado";
+    private static final String PASS_POR_OMISSAO = "Password do utilizador não registado";
+    private static final String USER_POR_OMISSAO = "Username do utilizador não registado";
     private Boolean m_bRegistado;
 
     public Utilizador() {
@@ -43,9 +44,11 @@ public class Utilizador implements Comparable<Utilizador>{
      * Constroi uma instancia cópia do Utilizador.
      * 
      * @return cópia do Utilizador
+     * @throws java.lang.CloneNotSupportedException
      */
     @Override
-    public Utilizador clone() {
+    public Utilizador clone() throws CloneNotSupportedException {
+       super.clone();
         return new Utilizador(this.getNome(), this.getUsername(), this.getPassword(), this.getEmail());
     }
     
@@ -142,6 +145,7 @@ public class Utilizador implements Comparable<Utilizador>{
         return str;
     }
 
+    @Override
     public boolean equals(Object outroObjeto) {
         if (this == outroObjeto) {
             return true;
@@ -154,6 +158,14 @@ public class Utilizador implements Comparable<Utilizador>{
         return nome.equalsIgnoreCase(outroUtilizador.nome);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        return hash;
+    }
+
+    @Override
     public int compareTo(Utilizador outroUtilizador) {
         return email.compareTo(outroUtilizador.email);
     }

@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Pedro Fernandes
@@ -50,4 +52,11 @@ public class Produto {
         
         return nomeProduto.equalsIgnoreCase(outroProduto.nomeProduto);
     }   
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.nomeProduto);
+        return hash;
+    }
 }

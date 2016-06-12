@@ -1,6 +1,5 @@
 package lapr.project.ui;
 
-import lapr.project.ui.ucs.AlterarUtilizadorUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;

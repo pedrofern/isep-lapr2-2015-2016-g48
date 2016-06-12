@@ -33,7 +33,7 @@ import lapr.project.ui.*;
 public class CriarExposicaoUI extends JFrame {
 
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataAlterarConflito;
-    private CentroExposicoes m_centroDeExposicoes;
+    private static CentroExposicoes m_ce;
     private CriarExposicaoController m_controller;
     private static final int JANELA_LARGURA = 700;
     private static final int JANELA_ALTURA = 300;
@@ -42,18 +42,17 @@ public class CriarExposicaoUI extends JFrame {
     private JButton btnConfirmar, btnFechar;
     private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
 
-    public CriarExposicaoUI(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
-        m_controller = new CriarExposicaoController(m_centroDeExposicoes);
-
-    }
-
-    public CriarExposicaoUI() {
+    public CriarExposicaoUI(CentroExposicoes ce) {
         super("Criar Exposicao");
         criarComponentes();
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
+        
+        m_ce = ce;
+
+        m_controller = new CriarExposicaoController(m_ce);
+
     }
 
     public void criarComponentes() {

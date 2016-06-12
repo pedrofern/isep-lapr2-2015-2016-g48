@@ -12,17 +12,16 @@ import lapr.project.utils.*;
  */
 public class AtribuirCandidaturaUI {
 
-    private CentroExposicoes m_centroDeExposicoes;
-    private AtribuirCandidaturaController m_controllerAC;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
+    private static AtribuirCandidaturaController m_controllerAC;
 
-    public AtribuirCandidaturaUI(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
-        m_controllerAC = new AtribuirCandidaturaController(m_centroDeExposicoes);
+    public AtribuirCandidaturaUI(CentroExposicoes ce, Utilizador user) {
+        m_ce = ce;
+        m_user=user;
+        m_controllerAC = new AtribuirCandidaturaController(m_ce);
     }
 
-    public AtribuirCandidaturaUI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     
 //    public void run() {

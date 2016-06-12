@@ -1,5 +1,6 @@
 package lapr.project.model.mechanisms;
 
+import java.util.Objects;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.mechanisms.ProcessoAtribuicao;
 import lapr.project.model.lists.ListaAvaliacoes;
@@ -92,6 +93,13 @@ public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao {
         }
         ProcessoAtribuicaoExposicao outroPAE = (ProcessoAtribuicaoExposicao) o;
         return this.listaAvaliacoes.equals(outroPAE.listaAvaliacoes);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.listaAvaliacoes);
+        return hash;
     }
     
     /**

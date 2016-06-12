@@ -10,7 +10,7 @@ import lapr.project.model.lists.*;
  */
 public class AvaliarCandidaturaController {
 
-    private CentroExposicoes m_ce;
+    private static CentroExposicoes m_ce;
     private Candidatura m_candidatura;
     private FAE m_fae;
     private Avaliacao m_avaliacao;
@@ -22,7 +22,7 @@ public class AvaliarCandidaturaController {
     }
     
     public RegistoExposicoes getRegistoExposicoes(){
-        return m_ce.getListaExposicoes();
+        return m_ce.getRegistoExposicoes();
     }
 
     public ListaCandidaturas getListaCandidaturas() {

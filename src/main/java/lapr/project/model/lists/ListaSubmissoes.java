@@ -115,4 +115,11 @@ public class ListaSubmissoes {
         ListaSubmissoes lSub = (ListaSubmissoes) o;
         return listaSubmissoes.equals(lSub.getListaSubmissoes());
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.listaSubmissoes);
+        return hash;
+    }
 }

@@ -15,9 +15,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -28,17 +29,21 @@ public class AtribuirStandCandidaturaUI extends JFrame {
     private JButton btnConfirmar, btnLimpar, btnFechar;
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 320;
+    private static CentroExposicoes m_ce;
+    private static Utilizador m_user;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Area de Stand").getPreferredSize();
     private JComboBox comboboxExposicao;
     
-    public AtribuirStandCandidaturaUI() {
+    public AtribuirStandCandidaturaUI(CentroExposicoes ce, Utilizador user) {
 
         super("Atribuir Stand Candidatura");
         criarComponentes();
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
+        
+        
     }
     
     public void criarComponentes() {
