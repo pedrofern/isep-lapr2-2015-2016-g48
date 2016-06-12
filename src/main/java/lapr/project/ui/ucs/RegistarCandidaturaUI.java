@@ -150,7 +150,15 @@ public class RegistarCandidaturaUI extends JFrame{
         controllerRCC.novaCandidatura();
 //        m_controllerRCC.set
         
-        criarComponentes();
+        JPanel norte = criarPainelExposicao(listaExposicoes);
+        JPanel centro = criarPainelListas();
+        JPanel botoes = criarPainelBotoes(); 
+        
+        add(norte, BorderLayout.NORTH);   
+        add(centro, BorderLayout.CENTER);
+        add(botoes, BorderLayout.SOUTH);
+
+        
                 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
@@ -160,12 +168,6 @@ public class RegistarCandidaturaUI extends JFrame{
         setVisible(true);  
         
     }
-    
-    private void criarComponentes(){
-        add(criarPainelExposicao(listaExposicoes), BorderLayout.NORTH);         
-        add(criarPainelListas(), BorderLayout.CENTER);
-        add(criarPainelBotoes(), BorderLayout.SOUTH);
-    }
     /**
      * Devolve uma lista de produtos
      * @return lista produtos
@@ -174,7 +176,7 @@ public class RegistarCandidaturaUI extends JFrame{
         return lstProdutos;
     }
     private JPanel criarPainelExposicao(RegistoExposicoes lstExposicoes){
-        JPanel painel= new JPanel(new FlowLayout());
+        JPanel painel= new JPanel();
         
         comboExp = Utils.criarComboExpo(lstExposicoes);
 
@@ -317,14 +319,10 @@ public class RegistarCandidaturaUI extends JFrame{
         l.setVgap(20);
 
         JPanel p = new JPanel(l);
-            
-        p.setBorder(new TitledBorder("Opções"));
-        
+
         JButton bt1 = criarBotaoRegistar();
         JButton bt2 = criarBotaoLimpar();
         JButton bt3 = criarBotaoCancelar();
-        
-        getRootPane().setDefaultButton(bt1);
         
         p.add(bt1);
         p.add(bt2);
@@ -450,7 +448,7 @@ public class RegistarCandidaturaUI extends JFrame{
                     candidatura = controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
                     
                     //alterar - estava a dar block por causa de não estar a ir buscar candidatura no toStringCompleto
-//                    candidatura=new Candidatura();
+                    candidatura=new Candidatura();
                     
                     boolean adicionarNovaCandidatura = controllerRCC.valida();
                     if (adicionarNovaCandidatura == true) {                        
@@ -461,7 +459,6 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
                         }
-                        candidatura.setListaProdutos(listaProdutos);
 //                        candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
                         JOptionPane.showMessageDialog(
                                 null,
