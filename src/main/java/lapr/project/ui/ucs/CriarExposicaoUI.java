@@ -30,7 +30,7 @@ import lapr.project.model.lists.RegistoUtilizadores;
  * @author Pedro Fernandes
  */
 public class CriarExposicaoUI extends JFrame {
-
+    
     private JList listaCompletaUtilizador;
     private RegistoUtilizadores listaUtilizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataConflito, campoDataAlterarConflito, campoDataAvInicio, campoDataAvFim;
@@ -551,5 +551,26 @@ public class CriarExposicaoUI extends JFrame {
         });
         return btn;
 
+    }
+    
+   
+    /**
+     * Devolve uma lista de produtos
+     * @return lista produtos
+     */
+    public JList getLstOrganizadores() {
+        return listaCompletaUtilizador;
+    }
+    
+    /**
+     * Devolve o botão remover produto
+     * @return botão remover produto
+     */
+    public JButton getBotaoRemoverProduto(){
+        return btnEleminarOrganizador;
+    }
+    
+    public JButton getBotaoAdicionar(){
+        return btnAdicionarOrganizador;
     }
 }

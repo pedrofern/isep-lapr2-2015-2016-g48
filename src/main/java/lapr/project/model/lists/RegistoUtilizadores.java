@@ -104,10 +104,10 @@ public class RegistoUtilizadores {
         u.setRegistado(true);
     }
 
-    boolean hasUtilizador(String username, String password) {
+    boolean hasUtilizador(String email, String id) {
         for (Utilizador utilizador : m_listaUtilizadores) {
-            if (utilizador.getUsername().equals(username)) {
-                if (utilizador.getPassword().equals(password)) {
+            if (utilizador.getEmail().equals(email)) {
+                if (utilizador.getID().equals(id)) {
                     return true;
                 }
             }
@@ -168,6 +168,25 @@ public class RegistoUtilizadores {
             }
         } 
         return m_listaUtilizadoresPend;
+    }
+    
+    public Utilizador getUtilizadorAtravesString(String id, String email){
+        Utilizador u=null;
+        try{
+            if(hasUtilizador(id, email)){
+            for (Utilizador utilizador : m_listaUtilizadores) {
+                if (utilizador.getEmail().equals(email)) {
+                    if (utilizador.getID().equals(id)) {
+                        u=utilizador;
+                    }
+                }
+                }
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return u;
     }
     
 

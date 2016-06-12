@@ -33,6 +33,8 @@ public class ListaOrganizadores {
      * @return boolean
      */
     public boolean addOrganizador(Utilizador u) {
+        
+        
         if (u == null) {
             return false;
         }
