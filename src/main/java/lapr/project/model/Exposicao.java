@@ -38,6 +38,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     private ListaDemonstracoes m_listaDemonstracoes;
     private ExposicaoEstado state;
     private Exposicao d_conflitos;
+    private Timer timer;
 
     public Exposicao() {
         state = new ExposicaoCriadaEstado(this);
@@ -46,7 +47,26 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         m_regCandidaturas = new ListaCandidaturas();
         m_listaDemonstracoes=new ListaDemonstracoes();
         m_listaFAEs= new ListaFAE();
+        timer = new Timer();
         
+    }
+    
+     
+    public ListaDemonstracoes getListaDemonstracoes(){
+        return this.m_listaDemonstracoes;
+    }
+    
+     
+        public ListaFAE getListaFAEs() {
+          return m_listaFAEs;
+    }
+        
+         public ListaOrganizadores getListaOrganizadores() {
+          return m_lstOrganizadores;
+    }
+    
+    public void schedule(TimerTask task, Date date) {
+        timer.schedule(task, date);
     }
 
     public boolean setState(ExposicaoEstado state) {
@@ -177,16 +197,6 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return this.m_regCandidaturas;
     }
 
-    public ListaFAE getListaFAEs() {
-        //        ListaFAE lF = new ListaFAE();
-//
-//        for (ListIterator<FAE> it = m_listaFAE.getListaFAE().listIterator(); it.hasNext();) {
-//            lF.adicionarFAE(it.next());
-//        }
-
-        
-        return this.m_listaFAEs;
-    }
 
     public Data getDataInicioSubmissao() {
         return this.dataInicioSubmissao;
@@ -232,14 +242,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     public Data getDataFim() {
         return dataFim;
     }
-
-    public ListaOrganizadores getListaOrganizadores() {
-        return this.m_lstOrganizadores;
-    }
-    
-    public ListaDemonstracoes getListaDemonstracoes(){
-        return this.m_listaDemonstracoes;
-    }
+   
 
     /**
      * Retorna uma nova instância de processo de atribuição.

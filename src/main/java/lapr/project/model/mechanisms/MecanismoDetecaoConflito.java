@@ -1,12 +1,21 @@
 package lapr.project.model.mechanisms;
 
-import lapr.project.model.mechanisms.TipoConflito;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Diana Silva
  */
-public interface MecanismoDetecaoConflito {
+public class MecanismoDetecaoConflito {
 
-    public boolean detetarConflito(TipoConflito tc);
+    private List<Conflito> listaConflitos;
+    
+    public MecanismoDetecaoConflito(){
+        listaConflitos=new ArrayList<>();
+    }
+    public boolean detetarConflito(){
+       return true;
+     
+    }
 }

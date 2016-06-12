@@ -39,17 +39,27 @@ public class RegistoRecursos {
     public ArrayList<Recurso> getListaRecursos(){
         return listaRecursos;
     }
+    
+    
     /**
      * Metodo para adicionar o recurso passado por parametro a lista de recursos
      * @param recurso recurso
      * @return true se o recurso for adicionado false em caso contrario
      */
     
-    public boolean adicionarRecurso(Recurso r){
+    
         
-        if(!listaRecursos.contains(r)){
+    /**
+     * Metodo que adiciona o recurso passado por parametro a lista
+     * @param r reucrso
+     * @return true se adicionar false caso contrario
+     */
+    public boolean addRecurso(Recurso r) {
+       if(!listaRecursos.contains(r)){
             return listaRecursos.add(r);
-        }return false;
+        }
+       
+       return false;
     }
     
     public Recurso novoRecurso() {
@@ -62,7 +72,7 @@ public class RegistoRecursos {
        return m_r;
        
     }
-    
+        
     
      /**
      * Metodo para remover o recurso passado por parametro a lista de recursos
@@ -95,4 +105,45 @@ public class RegistoRecursos {
     public boolean contem(Recurso recurso){
         return listaRecursos.contains(recurso);
     }
+    
+    
+    /**
+     * Metodo que retorna um recurso
+     * @param recurso recurso
+     * @return recurso
+     */
+    public Recurso getRecurso(String recurso) {
+        for (Recurso r : listaRecursos) {
+            if (r.getDescricao().equalsIgnoreCase(recurso)) {
+                return r;
+            }
+        }
+
+        return null;
+
+    }
+    
+    
+    /**
+     * Metodo que regista um recurso
+     * @param r recurso
+     * @return true se registar ou false caso contrario
+     */
+    public boolean registaRecurso(Recurso r) {
+        if (validaRecurso(r)) {
+            addRecurso(r);
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Metodo que valida recurso
+     * @param r recurso
+     * @return true se validar false caso contrario
+     */
+    public boolean validaRecurso(Recurso r) {
+        return !listaRecursos.contains(r);
+    }
+ 
+    
 }

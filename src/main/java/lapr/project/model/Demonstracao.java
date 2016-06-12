@@ -143,7 +143,7 @@ public class Demonstracao implements Serializable {
      * @return true caso adicone false em caso contrario
      */
     public boolean addRecurso(Recurso r) {
-        return m_listaRecursos.adicionarRecurso(r);
+        return m_listaRecursos.addRecurso(r);
     }
 
     /**

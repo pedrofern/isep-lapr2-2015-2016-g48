@@ -3,7 +3,7 @@ package lapr.project.model.mechanisms;
 import java.util.Objects;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.mechanisms.ProcessoAtribuicao;
-import lapr.project.model.lists.ListaAvaliacoes;
+import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.mechanisms.MecanismoAtribuicao;
 
 /**
@@ -12,7 +12,7 @@ import lapr.project.model.mechanisms.MecanismoAtribuicao;
  */
 public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao {
 
-    private ListaAvaliacoes listaAvaliacoes;
+    private ListaAtribuicoes listaAvaliacoes;
 
     /**
      * O mecanismo de atribuição associado ao processo de atribuição.
@@ -23,14 +23,14 @@ public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao {
      * Construtor que instancia ProcessoAtribuicaoExposicao
      */
     public ProcessoAtribuicaoExposicao() {
-        this.listaAvaliacoes = new ListaAvaliacoes();
+        this.listaAvaliacoes = new ListaAtribuicoes();
     }
 
     /**
      * @return A lista de Avaliacoes do processo de atribuicao.
      */
     @Override
-    public ListaAvaliacoes getListaDeAvaliacoes() {
+    public ListaAtribuicoes getListaDeAvaliacoes() {
         return listaAvaliacoes;
     }
 
@@ -52,7 +52,7 @@ public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao {
      * @param la A lista de Avaliacoes que vai ser associada ao processo de
      * atribuição.
      */
-    public void setListaAvaliacoes(ListaAvaliacoes la) {
+    public void setListaAvaliacoes(ListaAtribuicoes la) {
         this.listaAvaliacoes = la;
     }
 

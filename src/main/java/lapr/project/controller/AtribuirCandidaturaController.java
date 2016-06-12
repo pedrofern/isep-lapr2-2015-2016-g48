@@ -31,7 +31,9 @@ public class AtribuirCandidaturaController {
     }
 
     public void novaAtribuicaoCandidatura() {
-        acNovaAtribuicaoCandidatura = ce.novaAtribuicaoCandidatura();
+        
+        //quem faz atribuição é o mecanismo...
+//        acNovaAtribuicaoCandidatura = ce.novaAtribuicaoCandidatura();
     }
 
     public Atribuicao setAtribuicao() {

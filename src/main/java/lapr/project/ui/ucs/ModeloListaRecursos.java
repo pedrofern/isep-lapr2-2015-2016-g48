@@ -57,7 +57,7 @@ public class ModeloListaRecursos extends AbstractListModel {
      * @return true se adicionar false caso contrario
      */
     public boolean addElement(Recurso recurso) {
-        boolean recursoAdicionado = listaRecursos.adicionarRecurso(recurso);
+        boolean recursoAdicionado = listaRecursos.addRecurso(recurso);
         if (recursoAdicionado) {
             fireIntervalAdded(this, getSize() - 1, getSize() - 1);
         }

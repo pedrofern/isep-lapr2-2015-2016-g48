@@ -28,7 +28,7 @@ public class AvaliarCandidaturaController {
         return exposicao.getRegistoCandidaturas();
     }
 
-    public ListaAvaliacoes getListaCandidaturaAvaliacoes() {
+    public ListaAtribuicoes getListaCandidaturaAvaliacoes() {
         return candidatura.getListaAvaliacoes();
     }
     

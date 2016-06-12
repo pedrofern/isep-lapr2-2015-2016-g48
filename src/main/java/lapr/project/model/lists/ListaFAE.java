@@ -90,9 +90,9 @@ public class ListaFAE {
      * @param strID ID
      * @return true caso existe false caso contrario
      */
-    public boolean hasFAE(String strID) {
+    public boolean hasFAE(Utilizador u) {
         for (FAE fae : this.m_listaFaes) {
-            if (fae.getUtilizador().toString().equals(strID)) {
+            if (fae.getUtilizador().toString().equals(u)) {
                 return true;
             }
         }

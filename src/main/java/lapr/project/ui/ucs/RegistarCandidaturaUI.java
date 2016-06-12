@@ -114,12 +114,15 @@ public class RegistarCandidaturaUI extends JFrame{
         eRepresentante = new Representante();
 
         ce = centroExposicoes;
+        
+        
     //inico testes
-        exposicao = ce.novaExposicao();
+        exposicao = new Exposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
-        ce.registaExposicao(exposicao);
+        
         listaExposicoes = ce.getRegistoExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
+        listaExposicoes.registaExposicao(exposicao);
         
         //listaExposicoes = ce.getListaExposicoes();
         listaDemonstracoes = exposicao.getListaDemonstracoes();

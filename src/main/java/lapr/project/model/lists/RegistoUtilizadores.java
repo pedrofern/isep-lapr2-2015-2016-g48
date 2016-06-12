@@ -33,14 +33,10 @@ public class RegistoUtilizadores {
         }
     }
 
-    private boolean validaUtilizador(Utilizador u) {
-//        System.out.println("RegistoUtilizadores: validaUtilizador: " + u.toString());
-          return true;
-    }
-
     public boolean addUtilizador(Utilizador u) {
         return this.m_listaUtilizadores.add(u);
-    }
+    } 
+    
 
     public List<Utilizador> getListaUtilizadores() {
         return m_listaUtilizadores;
@@ -147,5 +143,32 @@ public class RegistoUtilizadores {
     public Utilizador[] getArray() {
         return m_listaUtilizadores.toArray( new Utilizador[m_listaUtilizadores.size()] );
      }
+    
+    public int countUtilizadores(){
+        return m_listaUtilizadores.size();
+    }
+    
+    
+    
+    /**
+     * Metodo responsavel por validar utilizador
+     * @param u utilizador 
+     * @return true se validar false caso contrario
+     */
+    private boolean validaUtilizador(Utilizador u) {
+        return !m_listaUtilizadores.contains(u);
+    }
+    
+    public List<Utilizador> getUtilizadoresPend(){
+        List<Utilizador>m_listaUtilizadoresPend;
+        m_listaUtilizadoresPend= new ArrayList<>();
+        for (Utilizador u:m_listaUtilizadores){
+            if (u.getRegistado()==false){
+                m_listaUtilizadoresPend.add(u);
+            }
+        } 
+        return m_listaUtilizadoresPend;
+    }
+    
 
 }

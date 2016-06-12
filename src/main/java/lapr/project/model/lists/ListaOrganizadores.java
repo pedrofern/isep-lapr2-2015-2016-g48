@@ -32,7 +32,6 @@ public class ListaOrganizadores {
         if (u == null) {
             return false;
         }
-        System.out.println("ListaOrganizadores: addOrganizador: " + u.toString());
         Organizador o = new Organizador(u);
 
         if (o.valida() && validaOrganizador(o)) {
@@ -69,9 +68,9 @@ public class ListaOrganizadores {
      * @param strID a identificação do Organizador
      * @return bollean
      */
-    public boolean hasOrganizador(String strID) {
+    public boolean hasUtilizador(Utilizador u) {
         for (Organizador org : this.m_listaOrganizadores) {
-            if (org.getUtilizador().getUsername().equals(strID)) {
+            if (org.getUtilizador().getUsername().equals(u)) {
                 return true;
             }
         }

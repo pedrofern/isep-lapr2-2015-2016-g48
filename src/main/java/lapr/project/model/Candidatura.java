@@ -19,7 +19,7 @@ public class Candidatura {
     private ListaProduto e_listaProdutos;
     private ListaFAE e_listaFAE;
     private ListaCandidaturas c_listaCandidaturas;
-    private ListaAvaliacoes c_listaAvaliacoes;
+    private ListaAtribuicoes c_listaAvaliacoes;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
         this.nomeEmpresa = nomeEmpresa;
@@ -29,13 +29,13 @@ public class Candidatura {
         this.quantidadeConvites = quantidadeConvites;
         e_listaProdutos = new ListaProduto();
         e_listaFAE = new ListaFAE();
-        c_listaAvaliacoes=new ListaAvaliacoes();
+        c_listaAvaliacoes=new ListaAtribuicoes();
     }
     
     public Candidatura() {
        e_listaProdutos = new ListaProduto();
         e_listaFAE = new ListaFAE();
-        c_listaAvaliacoes=new ListaAvaliacoes();
+        c_listaAvaliacoes=new ListaAtribuicoes();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Candidatura {
         return e_listaFAE;
     }
     
-    public ListaAvaliacoes getListaAvaliacoes(){
+    public ListaAtribuicoes getListaAvaliacoes(){
         return c_listaAvaliacoes;
     }
 

@@ -1,7 +1,7 @@
 package lapr.project.model.mechanisms;
 
 import lapr.project.model.Avaliacao;
-import lapr.project.model.lists.ListaAvaliacoes;
+import lapr.project.model.lists.ListaAtribuicoes;
 
 /**
  *
@@ -9,7 +9,7 @@ import lapr.project.model.lists.ListaAvaliacoes;
  */
 public interface ProcessoAtribuicao {
 
-    public ListaAvaliacoes getListaDeAvaliacoes();
+    public ListaAtribuicoes getListaDeAvaliacoes();
     
     public abstract MecanismoAtribuicao setMecanismoAtribuicao(MecanismoAtribuicao m);
 
@@ -17,7 +17,7 @@ public interface ProcessoAtribuicao {
 
     public abstract Avaliacao novaAvaliacao();
 
-    public abstract void setListaAvaliacoes(ListaAvaliacoes la);
+    public abstract void setListaAvaliacoes(ListaAtribuicoes la);
 
         public String getInfo();
 }

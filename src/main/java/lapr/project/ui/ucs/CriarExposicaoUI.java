@@ -5,9 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import javax.swing.BorderFactory;
 import lapr.project.controller.*;
@@ -22,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
@@ -37,8 +33,8 @@ public class CriarExposicaoUI extends JFrame {
     private JList listaCompletaUtilizador;
     private RegistoUtilizadores listaUtilizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataAlterarConflito;
-    private CentroExposicoes m_centroDeExposicoes;
-    private CriarExposicaoController m_controller;
+    private static CentroExposicoes ce;
+    private CriarExposicaoController controller;
     private static final int JANELA_LARGURA = 700;
     private static final int JANELA_ALTURA = 300;
     private JFrame framePai;
@@ -46,11 +42,15 @@ public class CriarExposicaoUI extends JFrame {
     private JButton btnConfirmar, btnFechar, btnAdicionarOrganizador, btnEleminarOrganizador;
     private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
     private ModeloListaUtilizadores modelolistautilizador;
-     
+    private static final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
+    private static final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+    
+    private static final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
+    private static final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
 
     public CriarExposicaoUI(CentroExposicoes centro) {
         super("Criar Exposicao");
-        m_centroDeExposicoes = centro;
+        ce = centro;
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -61,7 +61,6 @@ public class CriarExposicaoUI extends JFrame {
 
     public void criarComponentes() {
 
-        //add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelSul(), BorderLayout.SOUTH);
         add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelListas(), BorderLayout.CENTER);
@@ -71,8 +70,6 @@ public class CriarExposicaoUI extends JFrame {
         JPanel p = new JPanel(new FlowLayout());
         p.add(criarPainelDados());
 
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
         p.setBorder(new TitledBorder("Dados"));
@@ -108,8 +105,7 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private JPanel criarPainelExposicaoData(JPanel datainicial, JPanel datafinal) {
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+
         JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
                 NUMERO_COLUNAS,
                 INTERVALO_HORIZONTAL,
@@ -117,8 +113,7 @@ public class CriarExposicaoUI extends JFrame {
 
         painel.add(datainicial);
         painel.add(datafinal);
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
@@ -129,8 +124,7 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private JPanel criarPainelListas() {
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+
         JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
                 NUMERO_COLUNAS,
                 INTERVALO_HORIZONTAL,
@@ -194,8 +188,6 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private JPanel criarPainelCandidaturaData(JPanel datainicial, JPanel datafinal) {
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
         JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
                 NUMERO_COLUNAS,
                 INTERVALO_HORIZONTAL,
@@ -203,20 +195,17 @@ public class CriarExposicaoUI extends JFrame {
 
         painel.add(datainicial);
         painel.add(datafinal);
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+;
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
-        painel.setBorder(new TitledBorder("Submissão de candidatura"));
+        painel.setBorder(new TitledBorder("Submissão de candidaturas"));
 
         return painel;
 
     }
 
     private JPanel criarPainelStandsData(JPanel datainicial, JPanel datafinal) {
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
         JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
                 NUMERO_COLUNAS,
                 INTERVALO_HORIZONTAL,
@@ -224,12 +213,11 @@ public class CriarExposicaoUI extends JFrame {
 
         painel.add(datainicial);
         painel.add(datafinal);
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+   
         painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
-        painel.setBorder(new TitledBorder("Submissão de Stands"));
+        painel.setBorder(new TitledBorder("Atribuição de stands"));
 
         return painel;
 
@@ -238,7 +226,7 @@ public class CriarExposicaoUI extends JFrame {
     private JPanel criarPainelExposiçãoDataInicial() {
         JPanel painel = new JPanel(new FlowLayout());
         try {
-            JLabel labelData = new JLabel("Data incial :");
+            JLabel labelData = new JLabel("Data inicial :");
 
             MaskFormatter mascara = new MaskFormatter("##/##/####");
             mascara.setPlaceholderCharacter('_');
@@ -275,7 +263,7 @@ public class CriarExposicaoUI extends JFrame {
     private JPanel criarPainelCandidaturaDataInicial() {
         JPanel painel = new JPanel(new FlowLayout());
         try {
-            JLabel labelData = new JLabel("Data incial :");
+            JLabel labelData = new JLabel("Data inicial :");
 
             MaskFormatter mascara = new MaskFormatter("##/##/####");
             mascara.setPlaceholderCharacter('_');
@@ -355,12 +343,11 @@ public class CriarExposicaoUI extends JFrame {
             campoDataAlterarConflito.setPreferredSize(new Dimension(80, 20));
             painel.add(labelData);
             painel.add(campoDataAlterarConflito);
-            final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-            final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
+
             painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                     MARGEM_INFERIOR, MARGEM_DIREITA));
 
-            painel.setBorder(new TitledBorder("Alterar Data De Conflito"));
+            painel.setBorder(new TitledBorder("Limite Alteração De Conflitos"));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -401,8 +388,8 @@ public class CriarExposicaoUI extends JFrame {
         int anofinal = Integer.parseInt(dataFinal[2]);
         Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
         Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
-        m_controller.novaExposicao();
-        m_controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
+        controller.novaExposicao();
+        controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
 //        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Nova Exposição: \n"
@@ -419,20 +406,17 @@ public class CriarExposicaoUI extends JFrame {
 
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
-        btnConfirmar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (txtTitulo.getText().isEmpty() == true
-                        || txtDescricao.getText().isEmpty() == true
-                        || txtLocal.getText().isEmpty() == true) {
+        btnConfirmar.addActionListener((ActionEvent e) -> {
+            if (txtTitulo.getText().isEmpty() == true
+                    || txtDescricao.getText().isEmpty() == true
+                    || txtLocal.getText().isEmpty() == true) {
 //                        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Tem de preencher todos os campos!",
 //                            "Criar Exposoção",
-//                            JOptionPane.ERROR_MESSAGE);                        
-                } else {
-                    guardar();
-                }
+//                            JOptionPane.ERROR_MESSAGE);
+            } else {
+                guardar();
             }
         });
         return btnConfirmar;
@@ -440,11 +424,8 @@ public class CriarExposicaoUI extends JFrame {
 
     private JButton criarBotaoFechar() {
         btnFechar = new JButton("Fechar");
-        btnFechar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        btnFechar.addActionListener((ActionEvent e) -> {
+            dispose();
         });
         return btnFechar;
     }
@@ -452,13 +433,7 @@ public class CriarExposicaoUI extends JFrame {
     private JButton criarBotaoAdicionarOrganizador() {
         btnAdicionarOrganizador = new JButton("Adicionar Organizador");
 
-        btnAdicionarOrganizador.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-
+        btnAdicionarOrganizador.addActionListener((ActionEvent e) -> {
         });
 
         return btnAdicionarOrganizador;
@@ -466,12 +441,7 @@ public class CriarExposicaoUI extends JFrame {
 
     private JButton criarBotaoEliminarOrganizador(JList lstLista) {
         btnEleminarOrganizador = new JButton("Eliminar Organizador");
-        btnEleminarOrganizador.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-
+        btnEleminarOrganizador.addActionListener((ActionEvent e) -> {
         });
         return btnEleminarOrganizador;
     }
@@ -479,21 +449,16 @@ public class CriarExposicaoUI extends JFrame {
     private JButton criarBotaoLimpar() {
 
         JButton btn = new JButton("Limpar");
-        btn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                txtDescricao.setText(null);
-                txtTitulo.setText(null);
-                campoDataInicial.setText(null);
-                campoDataFinal.setText(null);
-                campoDataAlterarConflito.setText(null);
-                campoSubCandDataFinal.setText(null);
-                campoSubCandDataInicial.setText(null);
-                campoSubStandsDatainicial.setText(null);
-                campoSubStandsDataFinal.setText(null);
-
-            }
+        btn.addActionListener((ActionEvent ae) -> {
+            txtDescricao.setText(null);
+            txtTitulo.setText(null);
+            campoDataInicial.setText(null);
+            campoDataFinal.setText(null);
+            campoDataAlterarConflito.setText(null);
+            campoSubCandDataFinal.setText(null);
+            campoSubCandDataInicial.setText(null);
+            campoSubStandsDatainicial.setText(null);
+            campoSubStandsDataFinal.setText(null);
         });
         return btn;
 

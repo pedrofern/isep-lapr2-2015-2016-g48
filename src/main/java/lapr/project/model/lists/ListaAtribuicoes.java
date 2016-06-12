@@ -2,18 +2,24 @@ package lapr.project.model.lists;
 
 import java.util.*;
 import lapr.project.model.Avaliacao;
+import lapr.project.model.mechanisms.Atribuicao;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class ListaAvaliacoes {
+public class ListaAtribuicoes {
     private List<Avaliacao> listaAvaliacoes;
 
-    public ListaAvaliacoes() {
+    public ListaAtribuicoes() {
         this.listaAvaliacoes = new ArrayList<>();
     }
 
+    
+    
+    public Atribuicao novaAtribuicaoCandidatura() {
+        return new Atribuicao();
+    }
     /**
      * Obtem as revisoes do revisor passado por parametro.
      *
@@ -78,7 +84,7 @@ public class ListaAvaliacoes {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        ListaAvaliacoes outraLA = (ListaAvaliacoes) o;
+        ListaAtribuicoes outraLA = (ListaAtribuicoes) o;
         return this.getListaAvaliacoes().equals(outraLA.getListaAvaliacoes());
     }
 

@@ -25,17 +25,12 @@ public class RegistoExposicoes {
         return new Exposicao();
     }
 
-    public boolean registaExposicao(Exposicao e) {
-        if (e.valida() && validaExposicao(e)) {
-            return addExposicao(e);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean addExposicao(Exposicao e) {
-        return m_listaExposicoes.add(e);
-    }
+      /**
+     * Metodo que regista uma exposicao
+     * @param e exposicao
+    public boolean adicionarExposicao(Exposicao expo) {
+     * @return true se resgistar false em caso contrario
+     */
     
     public boolean adicionarExposicao(Exposicao expo) {
         if (!m_listaExposicoes.contains(expo)) {
@@ -43,11 +38,28 @@ public class RegistoExposicoes {
         }
         return false;
     }
-
-    public boolean validaExposicao(Exposicao e) {
-        System.out.println("RegistoExposicoes: validaExposicao:" + e.toString());
-        return true;
+    
+       public boolean registaExposicao(Exposicao e) {
+        if (e.valida() && validaExposicao(e)) {
+            return adicionarExposicao(e);
+        } else {
+            return false;
+        }
     }
+
+    /**
+     * Metodo que valida uma exposicao
+     * @param e exposicao
+     * @return true se validar false caso contrario
+     */
+    public boolean validaExposicao(Exposicao e) {
+        if (e.valida()) {
+            // Introduzir as validações aqui
+            return true;
+        }
+        return false;
+    }
+ 
 
     @Override
     public String toString() {
@@ -112,4 +124,75 @@ public class RegistoExposicoes {
         Collections.sort(m_listaExposicoes);
     }
     
+     public int countExposicoes(){
+        return m_listaExposicoes.size();
+    }
+    
+     /**
+     * Metodo que retorna uma exposicao atraves do titulo passado por parametro
+     * @param titulo titulo
+     * @return uma exposicao atraves do titulo passado por parametro
+     */
+    public Exposicao getExposicao(String titulo){
+        for(Exposicao e : m_listaExposicoes){
+            if(e.getTitulo().equalsIgnoreCase(titulo)){
+                return e;
+            }
+        }
+        return null;
+    }
+
+    
+    /**
+     * Metodo que retorna a exposicao passada por parametro
+     * @param e2 exposicao
+     * @return a exposicao passada por parametro
+     */
+    public Exposicao getExposicao(Exposicao e2) {
+        for (Exposicao e1 : m_listaExposicoes) {
+            if (e1.getTitulo().equalsIgnoreCase(e2.getTitulo())) {
+                return e2;
+            }
+        }
+        return null;
+    }
+    /**
+     * Metodo que retorna a lista de exposicoes do FAE com o id passado por parametro
+     * @param id id 
+     * @return lista de exposicoes do FAE com o id passado por parametro
+     */
+    public RegistoExposicoes getExposicoesDoFAE(Utilizador u) {
+        RegistoExposicoes l_ExpDoFAE = new RegistoExposicoes();
+
+        for (Exposicao e : this.m_listaExposicoes) {
+            if (e.getListaFAEs().getFAE(u.getID()) != null) {
+                l_ExpDoFAE.adicionarExposicao(e);
+            }
+
+        }
+        return l_ExpDoFAE;
+    }
+    
+    
+    
+    /**
+     * Retorna lista de exposicoes do organizador com o id passado por parametro
+     * @param strId id 
+     * @return lista de exposicoes do organizador com o id passado por parametro
+     */
+    public RegistoExposicoes getExposicoesOrganizador(Utilizador u) {
+        RegistoExposicoes leOrganizador=new RegistoExposicoes();
+        
+        if (u != null) {
+            for (Iterator<Exposicao> it = m_listaExposicoes.listIterator(); it.hasNext();) {
+                Exposicao e = it.next();
+
+                if (e.getListaOrganizadores().hasUtilizador(u)) {
+                    leOrganizador.adicionarExposicao(e);
+                }
+            }
+        }
+        return leOrganizador;
+    } 
+
 }

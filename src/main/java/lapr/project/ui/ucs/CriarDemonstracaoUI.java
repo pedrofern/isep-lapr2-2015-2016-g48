@@ -51,16 +51,19 @@ public class CriarDemonstracaoUI extends JFrame {
         o_Organizador = new Organizador();
 
         ce = centroExposicoes;
-        exposicao = ce.novaExposicao();
+        exposicao = new Exposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
-        ce.registaExposicao(exposicao);
         listaExposicoes = ce.getRegistoExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
+        listaExposicoes.registaExposicao(exposicao);
+        
+        exposicao = new Exposicao();
+        exposicao.setTitulo("TESTE EXPOSICAO");
+        listaExposicoes = ce.getRegistoExposicoes();
+        listaExposicoes.adicionarExposicao(exposicao);
+        listaExposicoes.registaExposicao(exposicao);
 
-        exposicao.setTitulo("TESTE EXPOSICAO");
-        ce.registaExposicao(exposicao);
-        listaExposicoes = ce.getRegistoExposicoes();
-        listaExposicoes.adicionarExposicao(exposicao);
+      
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, exposicao);
@@ -225,7 +228,7 @@ public class CriarDemonstracaoUI extends JFrame {
                 try {
 
                     recurso = new Recurso("Recurso");
-                    listaRecurso.adicionarRecurso(recurso);
+                    listaRecurso.addRecurso(recurso);
                     Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
                     for (int i = 0; i < opcoes.length; i++) {
 
