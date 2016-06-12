@@ -35,18 +35,19 @@ public class AtribuirCandidaturaController {
         //quem faz atribuição é o mecanismo...
 //        acNovaAtribuicaoCandidatura = ce.novaAtribuicaoCandidatura();
     }
+//
+//    public Atribuicao setAtribuicao() {
+////        if (organizador.validaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura)) {
+////            return acNovaAtribuicaoCandidatura;
+////        } else {
+////            return null;
+////        }
+//    
+//    }
 
-    public Atribuicao setAtribuicao() {
-        if (organizador.validaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura)) {
-            return acNovaAtribuicaoCandidatura;
-        } else {
-            return null;
-        }
-    }
-
-    public boolean registarDecisao() {
-        return organizador.registaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura);
-    }
+//    public boolean registarDecisao() {
+//        return organizador.registaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura);
+//    }
 
     public String getInfoResumo() {
         return this.acNovaAtribuicaoCandidatura.getInfo();
@@ -74,13 +75,13 @@ public class AtribuirCandidaturaController {
     private void addFAE(FAE f) {
         listaFAEs.adicionarFAE(f);
     }
-
-    public boolean validaAtribuicaoCandidatura() {
-        return organizador.validaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura);
-    }
-
-    public boolean registaAtribuicaoCandidatura() {
-        return organizador.registaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura);
-    }
+//
+//    public boolean validaAtribuicaoCandidatura() {
+//        return organizador.validaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura);
+//    }
+//
+//    public boolean registaAtribuicaoCandidatura() {
+//        return organizador.registaAtribuicaoCandidatura(acNovaAtribuicaoCandidatura);
+//    }
 
 }

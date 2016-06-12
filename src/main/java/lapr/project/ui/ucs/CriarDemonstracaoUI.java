@@ -48,7 +48,7 @@ public class CriarDemonstracaoUI extends JFrame {
         super("Criar Demonstração");
         user=utilizador;
 
-        o_Organizador = new Organizador();
+        o_Organizador = new Organizador(utilizador);
 
         ce = centroExposicoes;
         exposicao = new Exposicao();

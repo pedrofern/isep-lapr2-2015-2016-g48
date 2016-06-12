@@ -19,8 +19,12 @@ public class ListaDemonstracoes {
     public ListaDemonstracoes() {
         m_lstDemonstracao = new ArrayList<>();
     }
+    
+    public Demonstracao novaDemonstracao(){
+        return new Demonstracao();
+    }
 
-    public void novaDemonstracao(String strDescricao, String temaExposicao, Data inicio, Data fim ) {
+    public void setDemonstracao(String strDescricao, String temaExposicao, Data inicio, Data fim ) {
         m_demonstraco.setDados(strDescricao, temaExposicao, inicio, fim);
     }
 

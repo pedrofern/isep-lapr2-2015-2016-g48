@@ -22,7 +22,7 @@ public class CriarDemonstracaoController {
     }
 
     public void novaDemonstracao() {
-        demonstravao=organizador.novaDemonstracao();
+        exposicao.getListaDemonstracoes().novaDemonstracao();
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {

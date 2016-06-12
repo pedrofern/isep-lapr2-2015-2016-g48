@@ -16,7 +16,6 @@ public class Avaliacao {
     private String resposta;
     private String justificacao;
     private Candidatura m_candidatura;
-    private Organizador m_organizador;
     private ListaQuestoes m_listaQuestoes;
     private FAE fae;
     private Criterio criterio;
@@ -43,21 +42,6 @@ public class Avaliacao {
         return this.getState().isInConcluida();
     }
     
-    public Candidatura setCandidatura(Candidatura c) {
-        if (m_organizador.validaAvaliacao(c)) {
-            return c;
-        } else {
-            return null;
-        }
-    }
-
-    public FAE setCandidatura(FAE f) {
-        if (m_organizador.validaAvaliacao(f)) {
-            return f;
-        } else {
-            return null;
-        }
-    }
 
     public void setResposta(String r) {
         resposta = r;

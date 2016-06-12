@@ -1,34 +1,35 @@
+
 package lapr.project.model.lists;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import lapr.project.model.Avaliacao;
+import lapr.project.model.Candidatura;
+import lapr.project.model.FAE;
 import lapr.project.model.mechanisms.Atribuicao;
 
 /**
  *
- * @author DianaSilva
+ * @author Pedro Fernandes
  */
-public class ListaAtribuicoes {
-    private List<Atribuicao> listaAvaliacoes;
+public class ListaAvaliacoes {
+     private List<Avaliacao> listaAvaliacoes;
 
-    public ListaAtribuicoes() {
+    public ListaAvaliacoes() {
         this.listaAvaliacoes = new ArrayList<>();
     }
 
-    
-    
-    public Atribuicao novaAtribuicaoCandidatura() {
-        return new Atribuicao();
-    }
     /**
      * Obtem as revisoes do revisor passado por parametro.
      *
      * @param id revisor
      * @return lista revisoes
      */
-    public List<Atribuicao> getAvaliacoesFAE(String id) {
-        List<Atribuicao> listAvaliacoes = new ArrayList<>();
+    public List<Avaliacao> getAvaliacoesFAE(String id) {
+        List<Avaliacao> listAvaliacoes = new ArrayList<>();
 
-        for (Atribuicao a : getListaAtribuicoes()) {
+        for (Avaliacao a : getListaAvaliacoes()) {
 //            if (a.isFAE(id)) {
 //                listAvaliacoes.add(a);
 //            }
@@ -42,31 +43,31 @@ public class ListaAtribuicoes {
      * @return true se estiverem concluídas, false se não estiverem.
      */
     boolean isAvaliacoesConcluidas() {
-        for (Atribuicao a : getListaAtribuicoes()) {
-//            if (!a.isConcluida()) {
-//                return false;
-//            }
+        for (Avaliacao a : getListaAvaliacoes()) {
+            if (!a.isConcluida()) {
+                return false;
+            }
         }
         return true;
     }
 
     /**
-     * Valida uma atribuicao
+     * Valida uma avaliacao
      *
-     * @param atribuicao A atribuicao que vai ser validada
+     * @param avaliacao A avaliacao que vai ser validada
      * @return true se for válida, false se não for.
      */
-    public boolean valida(Atribuicao atribuicao) {
-        return atribuicao.valida();
+    public boolean valida(Avaliacao avaliacao) {
+        return avaliacao.valida();
     }
 
     /**
-     * Adiciona uma Atribuicao à lista de Avaliacoes
+     * Adiciona uma Avaliacao à lista de Avaliacoes
      *
-     * @param a A Atribuicao que vai ser adicionada à lista.
+     * @param a A Avaliacao que vai ser adicionada à lista.
      */
-    public void add(Atribuicao a) {
-        this.getListaAtribuicoes().add(a);
+    public void add(Avaliacao a) {
+        this.getListaAvaliacoes().add(a);
     }
 
     /**
@@ -83,8 +84,8 @@ public class ListaAtribuicoes {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        ListaAtribuicoes outraLA = (ListaAtribuicoes) o;
-        return this.getListaAtribuicoes().equals(outraLA.getListaAtribuicoes());
+        ListaAvaliacoes outraLA = (ListaAvaliacoes) o;
+        return this.getListaAvaliacoes().equals(outraLA.getListaAvaliacoes());
     }
 
     @Override
@@ -99,9 +100,18 @@ public class ListaAtribuicoes {
      *
      * @return the listaAvaliacoes
      */
-    public List<Atribuicao> getListaAtribuicoes() {
+    public List<Avaliacao> getListaAvaliacoes() {
         return listaAvaliacoes;
     }
     
     
+
+    public boolean validaAvaliacaoCandidatura(Candidatura c) {
+        return c.valida();
+    }
+
+    public boolean validaAvaliacaoFae(FAE f) {
+        return f.valida();
+    }
+
 }
