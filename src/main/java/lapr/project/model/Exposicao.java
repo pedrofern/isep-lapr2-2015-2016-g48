@@ -495,7 +495,11 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
 
     @Override
      public String toString() {
-        String str = "Exposição:\n";
+        return titulo;
+    }
+     
+     public String toStringCompleto(){
+         String str = "Exposição:\n";
         str += "\tTitulo: " + this.titulo + "\n";
         str += "\tTexto descritivo: " + this.textoDescritivo + "\n";
         str += "\tData inicial: " + this.dataInicio + "\n";
@@ -511,7 +515,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         }
 
         return str;
-    }
+     }
 
     @Override
     public ListaSubmissoes getListaSubmissoes() {

@@ -78,7 +78,7 @@ public class CriarExposicaoController {
     }
 
     public String getExposicaoString() {
-        return this.exposicao.toString();
+        return this.exposicao.toStringCompleto();
     }
     
     public void addTimer() throws Exception{
