@@ -15,6 +15,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -32,7 +33,7 @@ public class CriarExposicaoUI extends JFrame {
 
     private JList listaCompletaUtilizador;
     private RegistoUtilizadores listaUtilizadores;
-    private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataAlterarConflito;
+    private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataConflito, campoDataAlterarConflito, campoDataAvInicio, campoDataAvFim;
     private static CentroExposicoes ce;
     private CriarExposicaoController controller;
     private static final int JANELA_LARGURA = 700;
@@ -57,6 +58,8 @@ public class CriarExposicaoUI extends JFrame {
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setLocationRelativeTo(null);
         setVisible(true);
+        
+        controller=new CriarExposicaoController(ce);
     }
 
     public void criarComponentes() {
@@ -97,9 +100,12 @@ public class CriarExposicaoUI extends JFrame {
         painel.setBorder(new TitledBorder("Periodo de : "));
         painel.add(criarPainelExposicaoData(criarPainelExposiçãoDataInicial(), criarPainelExposiçãoDataFinal()));
         painel.add(criarPainelCandidaturaData(criarPainelCandidaturaDataInicial(), criarPainelCandidaturaDataFinal()));
-        painel.add(criarPainelStandsData(criarPainelStandsDataInicial(), criarPainelStandsDataFinal()));
+        painel.add(criarPainelAvaliacaoData(criarPainelAvaliacaoDataInicial(), criarPainelAvaliacaoDataFinal()));
+        painel.add(criarPainelStandsData(criarPainelStandsDataInicial(), criarPainelStandsDataFinal()));     
         painel.add(criarPainelConflitoDataFinal());
-
+        painel.add(criarPainelAlteracaoConflitoDataFinal());
+        
+        
         return painel;
 
     }
@@ -222,6 +228,28 @@ public class CriarExposicaoUI extends JFrame {
         return painel;
 
     }
+    
+    
+    private JPanel criarPainelAvaliacaoData(JPanel datainicial, JPanel datafinal) {
+        JPanel painel = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+
+        painel.add(datainicial);
+        painel.add(datafinal);
+   
+        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+
+        painel.setBorder(new TitledBorder("Avaliação de candidaturas"));
+
+        return painel;
+
+    }
+    
+    
+
 
     private JPanel criarPainelExposiçãoDataInicial() {
         JPanel painel = new JPanel(new FlowLayout());
@@ -331,8 +359,44 @@ public class CriarExposicaoUI extends JFrame {
 
         return painel;
     }
+    
+       private JPanel criarPainelAvaliacaoDataInicial() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data inicial :");
 
-    private JPanel criarPainelConflitoDataFinal() {
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataAvInicio = new JFormattedTextField(mascara);
+            campoDataAvInicio.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoDataAvInicio);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+
+    private JPanel criarPainelAvaliacaoDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data final :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataAvFim = new JFormattedTextField(mascara);
+            campoDataAvFim.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoDataAvFim);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+    
+    private JPanel criarPainelAlteracaoConflitoDataFinal() {
         JPanel painel = new JPanel(new FlowLayout());
         try {
             JLabel labelData = new JLabel("Data :");
@@ -348,6 +412,30 @@ public class CriarExposicaoUI extends JFrame {
                     MARGEM_INFERIOR, MARGEM_DIREITA));
 
             painel.setBorder(new TitledBorder("Limite Alteração De Conflitos"));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return painel;
+    }
+    
+    private JPanel criarPainelConflitoDataFinal() {
+        JPanel painel = new JPanel(new FlowLayout());
+        try {
+            JLabel labelData = new JLabel("Data :");
+
+            MaskFormatter mascara = new MaskFormatter("##/##/####");
+            mascara.setPlaceholderCharacter('_');
+            campoDataConflito = new JFormattedTextField(mascara);
+            campoDataConflito.setPreferredSize(new Dimension(80, 20));
+            painel.add(labelData);
+            painel.add(campoDataConflito);
+
+            painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                    MARGEM_INFERIOR, MARGEM_DIREITA));
+
+            painel.setBorder(new TitledBorder("Deteção De Conflitos"));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -377,29 +465,30 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private void guardar() {
+        
+        Data dataInicialPrimeiro = Utils.converterStringParaData(campoDataInicial.getText());
+        Data dataFinalUltimo = Utils.converterStringParaData(campoDataFinal.getText());
+        Data dataInicioSubm= Utils.converterStringParaData(campoSubCandDataInicial.getText());
+        Data dataFimSubm= Utils.converterStringParaData(campoSubCandDataFinal.getText());
+        Data dataInicioStands= Utils.converterStringParaData(campoSubStandsDatainicial.getText());
+        Data dataFimStands=Utils.converterStringParaData(campoSubStandsDataFinal.getText());
+        Data dataConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
+        Data dataInicioAv=Utils.converterStringParaData(campoDataAvInicio.getText());
+        Data dataFimAv=Utils.converterStringParaData(campoDataAvFim.getText());
+        Data dataAConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
+        
+        controller.criarExposicao();
 
-        String[] dataInicial = campoDataInicial.getText().split("/");
-        String[] dataFinal = campoDataFinal.getText().split("/");
-        int diainicial = Integer.parseInt(dataInicial[0]);
-        int mesinicial = Integer.parseInt(dataInicial[1]);
-        int anoinicial = Integer.parseInt(dataInicial[2]);
-        int diafinal = Integer.parseInt(dataFinal[0]);
-        int mesfinal = Integer.parseInt(dataFinal[1]);
-        int anofinal = Integer.parseInt(dataFinal[2]);
-        Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
-        Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
-        controller.novaExposicao();
-        controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
-//        JOptionPane.showMessageDialog(
-//                            null,
-//                            "Nova Exposição: \n"
-//                                    +"\nTitulo: "+titulo
-//                                    +"\nDescricao: "+descricao
-//                                    +"\Local: "+local
-//                                    +"\nData Inicio: "+dataInicio
-//                                    +"\nData Fim: "+dataFim,
-//                            "Nova Exposição",
-//                            JOptionPane.INFORMATION_MESSAGE);    
+        
+        controller.setDados(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm, dataInicioAv, dataFimAv, dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
+        
+        controller.registaExposicao();
+        
+        JOptionPane.showMessageDialog(
+                            null,
+                            "Nova Exposição: \n" + controller.getExposicaoString(),
+                            "Nova Exposição",
+                            JOptionPane.INFORMATION_MESSAGE);    
         dispose();
 
     }

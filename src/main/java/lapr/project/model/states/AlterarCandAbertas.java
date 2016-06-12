@@ -1,20 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.model.states;
 
-import java.util.*;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lapr.project.model.Exposicao;
-import lapr.project.utils.*;
+import lapr.project.utils.Data;
+import lapr.project.utils.Utils;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Diana Silva 
+ * 
+ * 
  */
-public class ExposicaoEmSubmissaoEstado implements ExposicaoEstado{
-    private Exposicao exposicao;
 
-    public ExposicaoEmSubmissaoEstado(Exposicao e) {
-        this.exposicao = e;
+public class AlterarCandAbertas implements ExposicaoEstado {
+    
+    private static Exposicao exposicao;
+    
+    public AlterarCandAbertas(Exposicao e){
+        exposicao=e;
+        
     }
 
+    
     /**
      * Valida se o evento está em submissão e terminou o periodo de submissões,
      * em caso afirmativo é possivel alterar o estado.
@@ -25,8 +39,12 @@ public class ExposicaoEmSubmissaoEstado implements ExposicaoEstado{
     @Override
     public boolean valida() {
         Data dataAtual = Utils.getdataAtual();
-        if (exposicao.getDataFimSubmissao().compareTo(dataAtual) <= 0) {
-            return true;
+        try {
+            if (exposicao.getDataFimSubmissao().compareTo(Data.converterParaDate(dataAtual)) <= 0) {
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AlterarCandAbertas.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

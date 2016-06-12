@@ -132,8 +132,7 @@ public class AvaliarCandidaturaController {
 
     public void selectExposicao(Exposicao e) {
         exposicao = e;
-        this.avaliacao = exposicao.novaAvaliacao();
-        this.candidatura = this.avaliacao.novaCandidatura();
+        
     }
 
     public String getInfoResumo() {

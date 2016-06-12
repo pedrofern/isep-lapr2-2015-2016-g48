@@ -29,6 +29,11 @@ public class ListaFAE {
     public FAE obterFAE(int indice) {
         return m_listaFaes.get(indice);
     }
+    
+    public List<FAE> getListaOrganizadores(){
+        return m_listaFaes;
+    }
+    
     /**
      * metodo que retorna o array FAE
      * @return o array FAE

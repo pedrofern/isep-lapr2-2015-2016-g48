@@ -1,7 +1,11 @@
 package lapr.project.utils;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Representa uma data através do dia, mês e ano.
@@ -221,6 +225,8 @@ public class Data implements Comparable<Data>, Serializable {
     public String toAnoMesDiaString() {
         return String.format("%04d/%02d/%02d", this.ano, this.mes, this.dia);
     }
+    
+
 
     /**
      * Devolve true se a data for maior do que a data recebida por parâmetro. Se
@@ -261,4 +267,29 @@ public class Data implements Comparable<Data>, Serializable {
         int dia = hoje.get(Calendar.DAY_OF_MONTH);
         return new Data(ano, mes, dia);
     }
+    
+    public static Date converterParaDate(Data d) throws Exception{
+        
+        String data=d.toAnoMesDiaString();
+            if(data==null || data.equals("")) 
+                return null;
+        Date convertida=null;
+        try{
+            DateFormat formatter=new SimpleDateFormat("yyyy/MM/dd");
+            convertida=(java.util.Date)formatter.parse(data);
+            
+        }catch(ParseException e){
+            throw e;
+        }
+        return convertida;
+        
+    }
+    
+     public static Date getDataAtualDate() throws Exception{
+    
+        Date d=converterParaDate(dataAtual());
+        return d;
+        
+    }
+ 
 }

@@ -13,13 +13,17 @@ public class ListaOrganizadores {
     /**
      * A lista de Organizadores.
      */
-    private List<Organizador> m_listaOrganizadores;
+    private List<Organizador> listaOrganizadores;
 
     /**
      * Constroi um ArrayList de Organizadores.
      */
     public ListaOrganizadores() {
-        m_listaOrganizadores = new ArrayList<Organizador>();
+        listaOrganizadores = new ArrayList<Organizador>();
+    }
+    
+    public List<Organizador> getListaOrganizadores(){
+        return listaOrganizadores;
     }
 
     /**
@@ -45,10 +49,10 @@ public class ListaOrganizadores {
      * Adiciona o Organizador a uma Lista.
      *
      * @param o o Organizador a adicionar
-     * @return m_listaOrganizadores
+     * @return listaOrganizadores
      */
     private boolean addOrganizador(Organizador o) {
-        return m_listaOrganizadores.add(o);
+        return listaOrganizadores.add(o);
     }
 
     /**
@@ -69,7 +73,7 @@ public class ListaOrganizadores {
      * @return bollean
      */
     public boolean hasUtilizador(Utilizador u) {
-        for (Organizador org : this.m_listaOrganizadores) {
+        for (Organizador org : this.listaOrganizadores) {
             if (org.getUtilizador().getUsername().equals(u)) {
                 return true;
             }
@@ -84,7 +88,7 @@ public class ListaOrganizadores {
      */
     @Override
     public String toString() {
-        return "ListaOrganizadores:" + "m_listaOrganizadores=" + m_listaOrganizadores;
+        return "ListaOrganizadores:" + "listaOrganizadores=" + listaOrganizadores;
     }
 
 }

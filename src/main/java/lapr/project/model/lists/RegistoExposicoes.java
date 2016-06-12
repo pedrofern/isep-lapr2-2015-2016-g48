@@ -22,6 +22,7 @@ public class RegistoExposicoes {
     }
 
     public Exposicao novaExposicao() {
+        
         return new Exposicao();
     }
 

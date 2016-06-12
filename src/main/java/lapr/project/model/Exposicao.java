@@ -11,12 +11,15 @@ import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
+import lapr.project.controller.DetetarConflitosController;
 import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.states.AlterarCandAbertas;
+import lapr.project.model.states.AlterarCandFechadas;
 import lapr.project.utils.Data;
 
 /**
  *
- * @author Pedro Fernandes 
+ * @author Pedro Fernandes e Diana 
  */
 public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao> {
 
@@ -27,45 +30,400 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     private String local;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
-    private Data dataInicioAtribuicao;
-    private Data dataFimAtribuicao;
-    private ListaCandidaturas m_regCandidaturas;
-    private ListaFAE m_listaFAEs;
-    private final List<Organizador> e_listaOrganizadores;
-    private ListaSubmissoes listaSubmissoes;
-    private ProcessoAtribuicao processoAtribuicao;
-    private ListaOrganizadores m_lstOrganizadores;
-    private ListaDemonstracoes m_listaDemonstracoes;
-    private ExposicaoEstado state;
-    private Exposicao d_conflitos;
-    private Timer timer;
+    private Data dataInicioAvaliacao;
+    private Data dataFimAvaliacao;
+    private Data dataAlteracaoConflitos;
+    private Data dataInicioStands;
+    private Data dataFimStands;
+    private Data dataDeteccaoConflitos;
+    
+    private static ListaCandidaturas listaCandidaturas;
+    private static ListaFAE listaFaes;
+    private static ListaOrganizadores listaOrganizadores;
+    private static ListaDemonstracoes listaDemonstracoes;
+    
+    private static ExposicaoEstado state;
+    private static Timer timer;
 
     public Exposicao() {
         state = new ExposicaoCriadaEstado(this);
-        e_listaOrganizadores = new ArrayList<Organizador>();
-        listaSubmissoes = new ListaSubmissoes(this);
-        m_regCandidaturas = new ListaCandidaturas();
-        m_listaDemonstracoes=new ListaDemonstracoes();
-        m_listaFAEs= new ListaFAE();
+        listaOrganizadores = new ListaOrganizadores();
+        listaCandidaturas = new ListaCandidaturas();
+        listaDemonstracoes=new ListaDemonstracoes();
+        listaFaes= new ListaFAE();
         timer = new Timer();
         
     }
     
-     
     public ListaDemonstracoes getListaDemonstracoes(){
-        return this.m_listaDemonstracoes;
+        return listaDemonstracoes;
     }
     
-     
-        public ListaFAE getListaFAEs() {
-          return m_listaFAEs;
+    public ListaFAE getListaFAEs() {
+          return listaFaes;
     }
+    
+    public ListaOrganizadores getListaOrganizadores() {
+          return listaOrganizadores;
+    }
+         
+    public ListaCandidaturas getRegistoCandidaturas() {
+        return listaCandidaturas;
+    }
+   
+    public void setDados(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim, Data dataAvInicio, Data dataAvFim, Data dConflitos, Data dataInicioStands, Data dataFimStand, Data dAConflitos){
+        this.titulo=titulo;
+        textoDescritivo=descricao;
+        this.dataInicio=dataInicio;
+        this.dataFim=dataFim;
+        this.local=local;
+        dataInicioSubmissao=dataSubInicio;
+        dataFimSubmissao=dataSubFim;
+        dataInicioAvaliacao=dataAvInicio;
+        dataFimAvaliacao=dataAvFim;
+        dataDeteccaoConflitos=dConflitos;
+        this.dataInicioStands=dataInicioStands;
+        this.dataFimStands=dataFimStand;
+        dataAlteracaoConflitos=dAConflitos;
+    }
+
+    public void setTitulo(String strTitulo) {
+        titulo = strTitulo;
+    }
+
+    public String getTitulo() {
+        return this.titulo;
+    }
+
+    public void setTextoDescritivo(String strDescritivo) {
+        textoDescritivo = strDescritivo;
+    }
+
+    public String getTextoDescritivo() {
+        return textoDescritivo;
+    }
+
+    public void setLocal(String strLocal) {
+        local = strLocal;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+    
+    public Date getDataInicioSubmissao() throws Exception {
+        return Data.converterParaDate(dataInicioSubmissao);
+    }
+    
+    public Date getDataFimSubmissao() throws Exception {
+        return Data.converterParaDate(dataFimSubmissao);
+    }
+
+    public Date getDataInicioAtribuicao() throws Exception {
+        return Data.converterParaDate(dataInicioAvaliacao); 
+    }
+    
+     public Date getDataFimAtribuicao() throws Exception {
+        return Data.converterParaDate(dataFimAvaliacao); 
+    }
+    
+    public Date getDataInicio() throws Exception {
+        return Data.converterParaDate(dataInicio);
+    }
+    
+    public Date getDataFim() throws Exception {
+        return Data.converterParaDate(dataFim);
+    }
+    
+    public Date getDataAlteracaConflitos() throws Exception {
+        return Data.converterParaDate(dataAlteracaoConflitos);
+    }
+    
+    public Date getDataInicioStands() throws Exception{
+        return Data.converterParaDate(dataInicioStands);
+    }
+    
+    public Date getDataFimStands() throws Exception {
+        return Data.converterParaDate(dataFimStands);
+    }
+    
+    public Date getDataAlteracaoConflitos() throws Exception{   
+        return Data.converterParaDate(dataDeteccaoConflitos);
+    }
+ 
         
-         public ListaOrganizadores getListaOrganizadores() {
-          return m_lstOrganizadores;
+    public void createTimers() throws Exception {
+//        AlterarCandAbertas task1 = new AlterarCandAbertas(this);
+//        
+//        schedule(task1, getDataInicioSubmissao());
+//        
+//        
+//        AlterarCandFechadas task2=new AlterarCandFechadas(this);
+//        
+//        
+//
+//        AlterarStateParaEmAtribuicao task2 = new AlterarStateParaEmAtribuicao(this);
+//        schedule(task2, this.getDataInicioAtribuicao());
+//
+//        DetetarConflitosController task3 = new DetetarConflitosController(ce, this);
+//        schedule(task3, this.getDataFimSubmissao());
+    }
+
+    
+
+    /**
+     * Obtem o estado da exposicao
+     *
+     * @return the state
+     */
+    public ExposicaoEstado getState() {
+        return state;
     }
     
-    public void schedule(TimerTask task, Date date) {
+    public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
+        this.dataInicioSubmissao = strDataInicioSubmissao;
+    }
+
+    public void setDataFimSubmissao(Data strDataFimSubmissao) {
+        this.dataFimSubmissao = strDataFimSubmissao;
+    }
+
+    
+    public void setDataInicioAtribuicao(Data strDataInicioAtribuicao) {
+        this.dataInicioAvaliacao = strDataInicioAtribuicao;
+    }
+
+    public void setDataFim(Data strDataFim) {
+        this.dataFim = strDataFim;
+    }
+    public void setDataInicio(Data strDataInicio) {
+        this.dataInicio = strDataInicio;
+    }
+
+//   
+//
+//    /**
+//     * Retorna uma nova instância de processo de atribuição.
+//     *
+//     * @return uma nova instância de processo de atribuição.
+//     */
+//    @Override
+//    public ProcessoAtribuicao novaAtribuicao() {
+//        return new ProcessoAtribuicaoExposicao();
+//    }
+//
+//    /**
+//     * Define o processo de atribuição e altera o estado para Exposicao em
+// Revisão.
+//     *
+//     * @param pa O processo de atribuição que vai ser definido para a exposicao.
+//     */
+//    @Override
+//    public void setProcessoAtribuicao(ProcessoAtribuicao pa) {
+//        save(pa);
+//        if (this.getState().setStateEmRevisao()) {
+//            setState(new ExposicaoStateEmRevisao(this));
+//        }
+//
+//    }
+//    
+//    public void setDataLimiteAlterarConflitos(Exposicao d_conflitos){
+//        this.d_conflitos=d_conflitos;
+//    }
+//
+//    @Override
+//    public ProcessoAtribuicao getProcessoAtribuicao() {
+//        return processoAtribuicao;
+//    }
+//
+//    /**
+//     * Define o processo de atribuição.
+//     *
+//     * @param pa O processo de atribuição que vai ser definido para a exposicao.
+//     */
+//    public void save(ProcessoAtribuicao pa) {
+//        this.processoAtribuicao = pa;
+//    }
+
+    /**
+     * Verifica se a exposicao é igual a um objeto passado por parâmetro
+     *
+     * @param o O objeto que vai ser comparado com a exposicao.
+     * @return True se forem iguais, false se não forem.
+     */
+ 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Exposicao outraEX = (Exposicao) o;
+        return this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.titulo);
+        hash = 29 * hash + Objects.hashCode(this.textoDescritivo);
+        return hash;
+    }
+
+//    /**
+//     * Modifica a lista de submissoes.
+//     *
+//     * @param listaSubmissoes the listaSubmissoes to set
+//     */
+//    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
+//        this.listaSubmissoes = listaSubmissoes;
+//    }
+
+    public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
+        this.listaOrganizadores = lstOrganizadores;
+    }
+
+    /**
+     * Altera o estado para o estado recebido por parametro.
+     *
+     * @param state
+     * @return boolean se alterou ou não
+     */
+    public boolean setState(String state) {
+//        if (state.equals("ExposicaoFAEDefinidoState")) {
+//            return setState(new ExposicaoFAEDefinidoState(this));
+//        }
+//        if (state.equals("ExposicaoStateCriada")) {
+//            return setState(new ExposicaoCriadaEstado(this));
+//        }
+//        if (state.equals("ExposicaoStateEmDecidida")) {
+//            return setState(new ExposicaoStateEmDecidida(this));
+//        }
+//        if (state.equals("ExposicaoStateEmDecisao")) {
+//            return setState(new ExposicaoStateEmDecisao(this));
+//        }
+//        if (state.equals("ExposicaoStateEmDetecaoConflitos")) {
+//            return setState(new ExposicaoStateEmDetecaoConflitos(this));
+//        }
+//        if (state.equals("ExposicaoStateEmAtribuicao")) {
+//            return setState(new ExposicaoStateEmAtribuicao(this));
+//        }
+//        if (state.equals("ExposicaoStateEmRevisao")) {
+//            return setState(new ExposicaoStateEmRevisao(this));
+//        }
+//        if (state.equals("ExposicaoStateEmSubmissao")) {
+//            return setState(new ExposicaoEmSubmissaoEstado(this));
+//        }
+//        if (state.equals("ExposicaoStateRegistada")) {
+//            return setState(new ExposicaoRegistadaEstado(this));
+//        }
+        return false;
+    }
+
+    public void setListaFaes(ListaFAE lstFaes) {
+        this.listaFaes = lstFaes;
+    }
+
+    public boolean valida() {
+        System.out.println("Exposição: valida: " + this.toString());
+        return true;
+    }
+
+    public boolean validaGeral() {
+        System.out.println("valida: " + this.toString());
+        if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validaTitulo() {
+        if (titulo == null || titulo.matches(".*\\d+.*")) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validaTextoDescritivo() {
+        if (textoDescritivo == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validaLocal() {
+        if (local == null) {
+            return false;
+        }
+        return true;
+    }
+
+
+    public boolean validaMinOrganizadores(List<Organizador> listaOrg) {
+        if (listaOrg.size() >= 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean hasOrganizador(Utilizador u) {
+        for (Organizador o : listaOrganizadores.getListaOrganizadores()) {
+
+            if (o.equals(u)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean validaDemonstracao(Demonstracao d) {
+        System.out.println("Exposição: validaDemonstracao: " + d.toString());
+        return true;
+    }
+
+    public void addDemonstracao(Demonstracao d) {
+        if (validaDemonstracao(d)) {
+            addDemonstracao(d);
+        }
+    }
+
+    public boolean hasFAE(Utilizador u) {
+        for (Iterator<FAE> it = this.listaFaes.getListaFAE().listIterator(); it.hasNext();) {
+            FAE fae = it.next();
+
+            if (fae.isUtilizador(u)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+     
+
+    @Override
+    public int compareTo(Exposicao outraExposicao) {
+        return titulo.compareTo(outraExposicao.titulo);
+    }
+    
+
+    @Override
+    public void alteraParaEmSubmissao() {
+        
+    }
+
+    @Override
+    public void alteraParaEmAtribuicao() {
+        
+    }
+
+    public boolean validaDefinirFAE(FAE f) {
+        return f.valida();
+    }
+
+     public void schedule(TimerTask task, Date date) {
         timer.schedule(task, date);
     }
 
@@ -135,16 +493,8 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return this.getState().setStateEmDecidida();
     }
 
-    public Avaliacao novaAvaliacao() {
-        return new Avaliacao();
-    }
-
     @Override
-    public String toString(){
-        return titulo;
-    }
-    
-    public String toStringCompleto() {
+     public String toString() {
         String str = "Exposição:\n";
         str += "\tTitulo: " + this.titulo + "\n";
         str += "\tTexto descritivo: " + this.textoDescritivo + "\n";
@@ -152,330 +502,39 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         str += "\tData final: " + this.dataFim + "\n";
         str += "\tData inicial de submissão: " + this.dataInicioSubmissao + "\n";
         str += "\tData final de submissão: " + this.dataFimSubmissao + "\n";
-        str += "\tData inicial de atribuição: " + this.dataInicioAtribuicao + "\n";
-        str += "\tData final de atribuição: " + this.dataFimAtribuicao + "\n";
+        str += "\tData inicial de atribuição: " + this.dataInicioAvaliacao + "\n";
+        str += "\tData final de atribuição: " + this.dataFimAvaliacao + "\n";
         str += "\tLocal: " + this.local + "\n";
         str += "\tOrganizadores:\n";
-        for (Organizador o : e_listaOrganizadores) {
+        for (Organizador o : listaOrganizadores.getListaOrganizadores()) {
             str += "\t\t" + o.getUtilizador().getUsername() + "\n";
         }
 
         return str;
     }
-    
-    
 
-    public void setTitulo(String strTitulo) {
-        titulo = strTitulo;
-    }
-
-    public String getTitulo() {
-        return this.titulo;
-    }
-
-    public void setTextoDescritivo(String strDescritivo) {
-        textoDescritivo = strDescritivo;
-    }
-
-    public String getTextoDescritivo() {
-        return textoDescritivo;
-    }
-
-    public void setLocal(String strLocal) {
-        local = strLocal;
-    }
-
-    public String getLocal() {
-        return local;
-    }
-
-    public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
-        this.dataInicioSubmissao = strDataInicioSubmissao;
-    }
-
-    public ListaCandidaturas getRegistoCandidaturas() {
-        return this.m_regCandidaturas;
-    }
-
-
-    public Data getDataInicioSubmissao() {
-        return this.dataInicioSubmissao;
-    }
-
-    /**
-     * Obtem o estado da exposicao
-     *
-     * @return the state
-     */
-    public ExposicaoEstado getState() {
-        return state;
-    }
-
-    public void setDataFimSubmissao(Data strDataFimSubmissao) {
-        this.dataFimSubmissao = strDataFimSubmissao;
-    }
-
-    public Data getDataFimSubmissao() {
-        return this.dataFimSubmissao;
-    }
-
-    public void setDataInicioAtribuicao(Data strDataInicioAtribuicao) {
-        this.dataInicioAtribuicao = strDataInicioAtribuicao;
-    }
-
-    public Data getDataInicioAtribuicao() {
-        return this.dataInicioAtribuicao;
-    }
-
-    public void setDataInicio(Data strDataInicio) {
-        this.dataInicio = strDataInicio;
-    }
-
-    public Data getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataFim(Data strDataFim) {
-        this.dataFim = strDataFim;
-    }
-
-    public Data getDataFim() {
-        return dataFim;
-    }
-   
-
-    /**
-     * Retorna uma nova instância de processo de atribuição.
-     *
-     * @return uma nova instância de processo de atribuição.
-     */
     @Override
-    public ProcessoAtribuicao novaAtribuicao() {
-        return new ProcessoAtribuicaoExposicao();
+    public ListaSubmissoes getListaSubmissoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * Define o processo de atribuição e altera o estado para Exposicao em
- Revisão.
-     *
-     * @param pa O processo de atribuição que vai ser definido para a exposicao.
-     */
     @Override
-    public void setProcessoAtribuicao(ProcessoAtribuicao pa) {
-        save(pa);
-        if (this.getState().setStateEmRevisao()) {
-            setState(new ExposicaoStateEmRevisao(this));
-        }
-
-    }
-    
-    public void setDataLimiteAlterarConflitos(Exposicao d_conflitos){
-        this.d_conflitos=d_conflitos;
+    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public ProcessoAtribuicao getProcessoAtribuicao() {
-        return processoAtribuicao;
-    }
-
-    /**
-     * Define o processo de atribuição.
-     *
-     * @param pa O processo de atribuição que vai ser definido para a exposicao.
-     */
-    public void save(ProcessoAtribuicao pa) {
-        this.processoAtribuicao = pa;
-    }
-
-    /**
-     * Verifica se a exposicao é igual a um objeto passado por parâmetro
-     *
-     * @param o O objeto que vai ser comparado com a exposicao.
-     * @return True se forem iguais, false se não forem.
-     */
- 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        Exposicao outraEX = (Exposicao) o;
-        return this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo());
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.titulo);
-        hash = 29 * hash + Objects.hashCode(this.textoDescritivo);
-        return hash;
-    }
-
-    /**
-     * Modifica a lista de submissoes.
-     *
-     * @param listaSubmissoes the listaSubmissoes to set
-     */
-    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
-        this.listaSubmissoes = listaSubmissoes;
-    }
-
-    public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
-        this.m_lstOrganizadores = lstOrganizadores;
-    }
-
-    /**
-     * Altera o estado para o estado recebido por parametro.
-     *
-     * @param state
-     * @return boolean se alterou ou não
-     */
-    public boolean setState(String state) {
-//        if (state.equals("ExposicaoFAEDefinidoState")) {
-//            return setState(new ExposicaoFAEDefinidoState(this));
-//        }
-//        if (state.equals("ExposicaoStateCriada")) {
-//            return setState(new ExposicaoCriadaEstado(this));
-//        }
-//        if (state.equals("ExposicaoStateEmDecidida")) {
-//            return setState(new ExposicaoStateEmDecidida(this));
-//        }
-//        if (state.equals("ExposicaoStateEmDecisao")) {
-//            return setState(new ExposicaoStateEmDecisao(this));
-//        }
-//        if (state.equals("ExposicaoStateEmDetecaoConflitos")) {
-//            return setState(new ExposicaoStateEmDetecaoConflitos(this));
-//        }
-//        if (state.equals("ExposicaoStateEmAtribuicao")) {
-//            return setState(new ExposicaoStateEmAtribuicao(this));
-//        }
-//        if (state.equals("ExposicaoStateEmRevisao")) {
-//            return setState(new ExposicaoStateEmRevisao(this));
-//        }
-//        if (state.equals("ExposicaoStateEmSubmissao")) {
-//            return setState(new ExposicaoEmSubmissaoEstado(this));
-//        }
-//        if (state.equals("ExposicaoStateRegistada")) {
-//            return setState(new ExposicaoRegistadaEstado(this));
-//        }
-        return false;
-    }
-
-    public void setListaFaes(ListaFAE lstFaes) {
-        this.m_listaFAEs = lstFaes;
-    }
-
-    public boolean valida() {
-        System.out.println("Exposição: valida: " + this.toString());
-        return true;
-    }
-
-    public boolean validaGeral() {
-        System.out.println("valida: " + this.toString());
-        if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean validaTitulo() {
-        if (titulo == null || titulo.matches(".*\\d+.*")) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validaTextoDescritivo() {
-        if (textoDescritivo == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validaLocal() {
-        if (local == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public List<Organizador> getLstOrganizadores() {
-        List<Organizador> lOrg = new ArrayList<Organizador>();
-
-        for (ListIterator<Organizador> it = e_listaOrganizadores.listIterator(); it.hasNext();) {
-            lOrg.add(it.next());
-        }
-
-        return lOrg;
-    }
-
-    public boolean validaLstOrganizadores(List<Organizador> listaOrg) {
-        if (listaOrg.size() >= 2) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hasOrganizador(Utilizador u) {
-        for (Iterator<Organizador> it = this.e_listaOrganizadores.listIterator(); it.hasNext();) {
-            Organizador org = it.next();
-
-            if (org.isUtilizador(u)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean validaDemonstracao(Demonstracao d) {
-        System.out.println("Exposição: validaDemonstracao: " + d.toString());
-        return true;
-    }
-
-    public void addDemonstracao(Demonstracao d) {
-        if (validaDemonstracao(d)) {
-            addDemonstracao(d);
-        }
-    }
-
-    public boolean hasFAE(Utilizador u) {
-        for (Iterator<FAE> it = this.m_listaFAEs.getListaFAE().listIterator(); it.hasNext();) {
-            FAE fae = it.next();
-
-            if (fae.isUtilizador(u)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-     
-
-    public int compareTo(Exposicao outraExposicao) {
-        return titulo.compareTo(outraExposicao.titulo);
-    }
-    @Override
-    public ListaSubmissoes getListaSubmissoes() {
-        return listaSubmissoes;
+    public ProcessoAtribuicao novaAtribuicao() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alteraParaEmSubmissao() {
-        
+    public void setProcessoAtribuicao(ProcessoAtribuicao pa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void alteraParaEmAtribuicao() {
-        
-    }
-
-    public boolean validaDefinirFAE(FAE f) {
-        return f.valida();
-    }
-
-
 }

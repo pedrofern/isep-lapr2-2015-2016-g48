@@ -76,6 +76,7 @@ public class Utils {
         return new Data(dia, mes, ano);
     }
 
+
     public static boolean confirma(String sMessage) {
         String strConfirma;
         do {
@@ -189,4 +190,18 @@ public class Utils {
     
         return comboRecursos;
     }
+        
+        public static Data converterStringParaData(String data){
+            
+            String[] convertida =data.split("/");
+        
+            int diainicial = Integer.parseInt(convertida[0]);
+            int mesinicial = Integer.parseInt(convertida[1]);
+            int anoinicial = Integer.parseInt(convertida[2]);
+         
+            Data data_convertida=new Data(diainicial, mesinicial,anoinicial);
+            
+            return data_convertida;
+        
+        }
 }

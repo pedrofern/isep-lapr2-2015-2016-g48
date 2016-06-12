@@ -1,8 +1,11 @@
 package lapr.project.model.states;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lapr.project.model.Exposicao;
 import lapr.project.utils.*;
+import static lapr.project.utils.Data.getDataAtualDate;
 
 /**
  *
@@ -19,8 +22,13 @@ public class ExposicaoStateEmRevisao implements ExposicaoEstado{
     @Override
     public boolean valida() {
         Data dataAtual = Utils.getdataAtual();
-        if (exposicao.getDataFimSubmissao().compareTo(dataAtual) <= 0) {
-            return true;
+        
+        try {
+            if (exposicao.getDataFimSubmissao().compareTo(getDataAtualDate()) <= 0) {
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ExposicaoStateEmRevisao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
