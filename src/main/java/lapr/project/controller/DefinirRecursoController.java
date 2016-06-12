@@ -10,13 +10,13 @@ import lapr.project.model.lists.RegistoRecursos;
  */
 public class DefinirRecursoController {
 
-    private static CentroExposicoes m_ce;
-    private static Recurso m_recurso;
+    private static CentroExposicoes ce;
+    private static Recurso recurso;
    
     
 
     public DefinirRecursoController(CentroExposicoes centroDeExposicoes) {
-        m_ce = centroDeExposicoes;
+        ce = centroDeExposicoes;
         
     }
 
@@ -29,7 +29,7 @@ public class DefinirRecursoController {
 //    }
     
     public void setDescricao(String novaDescricao) {
-        m_recurso.setDescricao(novaDescricao);
+        recurso.setDescricao(novaDescricao);
     }
     
 //    public Recurso registaRecurso() {
@@ -40,19 +40,14 @@ public class DefinirRecursoController {
 //    }
     
     public void novoRecurso(){
-        
-        
-    
-       
-       m_recurso=m_ce.getRegistoRecursos().novoRecurso();
-        
-        
+  
+       recurso=ce.getRegistoRecursos().novoRecurso();
+
     }
     
-    
-    
+
     public Recurso getRecurso() {
-        return m_recurso;
+        return recurso;
     }
 
 }

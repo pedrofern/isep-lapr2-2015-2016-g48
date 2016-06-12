@@ -21,20 +21,20 @@ import lapr.project.ui.PainelInfoUser;
  * @author Diana
  */
 public class AlterarUtilizadorUI extends JPanel{
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
-    private AlterarUtilizadorController m_controller;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
+    private AlterarUtilizadorController controller;
     private PainelDadosUtilizador norte;
     private static final String pergunta="Pretende cancelar a alteração do registo de utilizador?";
       
 
-    public AlterarUtilizadorUI(CentroExposicoes ce, Utilizador user){
+    public AlterarUtilizadorUI(CentroExposicoes centroExposicoes, Utilizador utilizador){
          
          super();
-         m_ce=ce;
-         m_user=user;
+         ce=centroExposicoes;
+         user=utilizador;
              
-         m_controller=new AlterarUtilizadorController(m_ce);
+         controller=new AlterarUtilizadorController(ce);
         
         setLayout(new BorderLayout());
         add(criarPainel());
@@ -154,25 +154,25 @@ public class AlterarUtilizadorUI extends JPanel{
     }
     
      private void guardar() throws CloneNotSupportedException {
-            String nome,email,pass,user;
+            String nome,email,pass,username;
             nome = norte.getTxtNome().getText();
             email = norte.getTxtEmail().getText();
             pass = norte.getTxtPassword().getText();
-            user = norte.getTxtUsername().getText();
+            username = norte.getTxtUsername().getText();
             
-            m_controller.setUtilizador(m_user);
-            m_controller.alteraDados(nome, user, pass, email);
+            controller.setUtilizador(user);
+            controller.alteraDados(nome, username, pass, email);
                 JOptionPane.showMessageDialog(
                             null,
                             "Dados novo utilizador registado: \n"
-                                    +"\nUsername: "+user
+                                    +"\nUsername: "+username
                                     +"\nPassword: "+pass
                                     +"\nNome: "+nome
                                     +"\nEmail: "+email,
                             "Registar Utilizador",
                             JOptionPane.INFORMATION_MESSAGE);  
                 
-            PainelInfoUser.setLabels(m_user.getNome(), m_user.getEmail());
+            PainelInfoUser.setLabels(user.getNome(), user.getEmail());
             norte.getTxtNome().setText("");
             norte.getTxtEmail().setText("");
             norte.getTxtPassword().setText("");

@@ -99,21 +99,21 @@ public class RegistarCandidaturaUI extends JFrame{
     /**
      * Guarda objectos centro exposições
      */
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
 
-    private Representante e_representante;
-    private RegistarCandidaturaController m_controllerRCC;
+    private Representante eRepresentante;
+    private RegistarCandidaturaController controllerRCC;
 
-    public RegistarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
+    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
         
         super("Registar Candidatura");
         
-        m_user=user;        
+        user=utilizador;        
         
-        e_representante = new Representante();
+        eRepresentante = new Representante();
 
-        m_ce = ce;
+        ce = centroExposicoes;
     //inico testes
         exposicao = ce.novaExposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
@@ -143,8 +143,8 @@ public class RegistarCandidaturaUI extends JFrame{
         listaDemonstracoes = exposicao.getListaDemonstracoes();
         
         
-        m_controllerRCC = new RegistarCandidaturaController(e_representante,exposicao);
-        m_controllerRCC.novaCandidatura();
+        controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
+        controllerRCC.novaCandidatura();
 //        m_controllerRCC.set
         
         JPanel norte = criarPainelExposicao(listaExposicoes);
@@ -442,12 +442,12 @@ public class RegistarCandidaturaUI extends JFrame{
                     String morada = txtMorada.getText();
                     String nome = txtNome.getText();
                     int telemovel = Integer.parseInt(txtTelemovel.getText());  
-                    candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
+                    candidatura = controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
                     
                     //alterar - estava a dar block por causa de não estar a ir buscar candidatura no toStringCompleto
                     candidatura=new Candidatura();
                     
-                    boolean adicionarNovaCandidatura = m_controllerRCC.valida();
+                    boolean adicionarNovaCandidatura = controllerRCC.valida();
                     if (adicionarNovaCandidatura == true) {                        
                         if (candidatura == null){
                         JOptionPane.showMessageDialog(
@@ -535,7 +535,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,
                                               INTERVALO_VERTICAL));
-        listaProdutos = m_controllerRCC.getCandidatura().getListaProdutos();
+        listaProdutos = controllerRCC.getCandidatura().getListaProdutos();
         ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(listaProdutos);
         lstProdutos = new JList(modeloListaProdutos);
         botaoAdicionarProduto = criarBotaoAdicionarProduto();

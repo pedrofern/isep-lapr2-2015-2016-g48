@@ -3,7 +3,6 @@ package lapr.project.ui.ucs;
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.model.*;
-import lapr.project.ui.*;
 
 /**
  *
@@ -12,9 +11,11 @@ import lapr.project.ui.*;
 public class ConfirmarRegistoUtilizadorUI {
 
     private final ConfirmarRegistoUtilizadorController controller;
+    private static CentroExposicoes ce;
     Scanner ler;
 
-    public ConfirmarRegistoUtilizadorUI(CentroExposicoes ce) {
+    public ConfirmarRegistoUtilizadorUI(CentroExposicoes centroExposicoes) {
+        ce=centroExposicoes;
         controller = new ConfirmarRegistoUtilizadorController(ce);
         ler = new Scanner(System.in);
     }

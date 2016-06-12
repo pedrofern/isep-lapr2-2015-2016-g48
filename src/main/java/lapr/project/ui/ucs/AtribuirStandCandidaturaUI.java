@@ -29,13 +29,13 @@ public class AtribuirStandCandidaturaUI extends JFrame {
     private JButton btnConfirmar, btnLimpar, btnFechar;
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 320;
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Area de Stand").getPreferredSize();
     private JComboBox comboboxExposicao;
     
-    public AtribuirStandCandidaturaUI(CentroExposicoes ce, Utilizador user) {
+    public AtribuirStandCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
 
         super("Atribuir Stand Candidatura");
         criarComponentes();

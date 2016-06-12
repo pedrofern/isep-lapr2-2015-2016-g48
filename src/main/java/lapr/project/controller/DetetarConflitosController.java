@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import java.util.*;
 import lapr.project.model.*;
 
 /**
@@ -9,9 +8,10 @@ import lapr.project.model.*;
  */
 public class DetetarConflitosController {
     
-    private CentroExposicoes m_centroDeExposicoes;
+    private static CentroExposicoes ce;
     
-    public DetetarConflitosController(){
+    public DetetarConflitosController(CentroExposicoes centroExposicoes){
+        ce=centroExposicoes;
         
     }
 

@@ -8,30 +8,30 @@ import lapr.project.model.*;
  */
 public class AlterarUtilizadorController {
     
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
 
-    public AlterarUtilizadorController(CentroExposicoes ce) {
-        m_ce = ce;
+    public AlterarUtilizadorController(CentroExposicoes centroExposicoes) {
+        ce = centroExposicoes;
     }
     
     public void setUtilizador(Utilizador u){
-        m_user=u;
+        user=u;
         
     }
 
     public Utilizador getUtilizador(String strID) {
-        m_user = m_ce.getRegistoUtilizadores().getUtilizadorByID(strID);
-        return m_user;
+        user = ce.getRegistoUtilizadores().getUtilizadorByID(strID);
+        return user;
     }
 
     public boolean alteraDados(String strNome, String strUsername, String strPwd, String strEmail) throws CloneNotSupportedException {
-        Utilizador uClone = m_user.clone();
+        Utilizador uClone = user.clone();
         uClone.setNome(strNome);
         uClone.setEmail(strEmail);
         uClone.setUsername(strUsername);
         uClone.setPassword(strPwd);
-        return m_ce.getRegistoUtilizadores().alteraUtilizador(m_user, uClone);
+        return ce.getRegistoUtilizadores().alteraUtilizador(user, uClone);
     }
     
 }

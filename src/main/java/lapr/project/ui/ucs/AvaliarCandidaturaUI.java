@@ -18,8 +18,6 @@ import javax.swing.JPanel;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
-import lapr.project.ui.*;
-import lapr.project.utils.Utils;
 
 /**
  *
@@ -28,11 +26,11 @@ import lapr.project.utils.Utils;
 public class AvaliarCandidaturaUI extends JFrame{
 
     
-    private static CentroExposicoes m_ce;
-    private static AvaliarCandidaturaController m_controllerAC;
-    private static Utilizador m_user;
-    private static Exposicao m_exposicao;
-    private static Candidatura m_candidatura;
+    private static CentroExposicoes ce;
+    private static AvaliarCandidaturaController controllerAC;
+    private static Utilizador user;
+    private static Exposicao exposicao;
+    private static Candidatura candidatura;
     
      /**
      * Guarda a largura mínima da janela em píxeis.
@@ -53,13 +51,13 @@ public class AvaliarCandidaturaUI extends JFrame{
     private static JComboBox comboExpos;
     private static JButton selExpo, btGuardar;
     
-    public AvaliarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
+    public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
         
         super("Avaliar Candidatura");
         
-        m_ce = ce;
-        m_controllerAC = new AvaliarCandidaturaController(m_ce);
-        user=m_user;
+        ce = centroExposicoes;
+        controllerAC = new AvaliarCandidaturaController(ce);
+        user=utilizador;
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -82,8 +80,8 @@ public class AvaliarCandidaturaUI extends JFrame{
         painel=new JPanel();
         painel.setLayout(new BorderLayout());
         
-        pCands=new AvaliarSubPainelCands(m_controllerAC);
-        pAvaliar=new AvaliarSubPainelAvaliar(m_controllerAC);
+        pCands=new AvaliarSubPainelCands(controllerAC);
+        pAvaliar=new AvaliarSubPainelAvaliar(controllerAC);
         
         criarPainelExpos();
         
@@ -128,8 +126,8 @@ public class AvaliarCandidaturaUI extends JFrame{
 //                m_exposicao=(Exposicao) comboExpos.getSelectedItem();
 //                
 
-                m_exposicao=new Exposicao();
-                pCands.setExpo(m_exposicao);
+                exposicao=new Exposicao();
+                pCands.setExpo(exposicao);
                 
                 pCands.mostrarPainel();
                 
@@ -200,14 +198,11 @@ public class AvaliarCandidaturaUI extends JFrame{
         JButton botao = new JButton("Limpar");
         botao.setMnemonic(KeyEvent.VK_L);
         botao.setToolTipText("Limpa dados gerais do novo utilizador");
-        botao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        botao.addActionListener((ActionEvent e) -> {
 //                norte.getTxtNome().setText("");
 //                norte.getTxtEmail().setText("");
 //                norte.getTxtPassword().setText("");
 //                norte.getTxtUsername().setText("");
-            }
         });
 
         return botao;
@@ -221,11 +216,8 @@ public class AvaliarCandidaturaUI extends JFrame{
         JButton botao = new JButton("Cancelar");
         botao.setMnemonic(KeyEvent.VK_S);
         botao.setToolTipText("Cancela o registo de utilizador e volta ao menu anterior");
-        botao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                fecharJanela(pergunta);
-            }
+        botao.addActionListener((ActionEvent e) -> {
+            fecharJanela(pergunta);
         });
 
         return botao;

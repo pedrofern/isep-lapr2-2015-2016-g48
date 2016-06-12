@@ -12,19 +12,16 @@ import java.text.ParseException;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.utils.*;
-import java.util.*;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
-import lapr.project.ui.*;
 
 /**
  *
@@ -33,8 +30,8 @@ import lapr.project.ui.*;
 public class CriarExposicaoUI extends JFrame {
 
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataAlterarConflito;
-    private static CentroExposicoes m_ce;
-    private CriarExposicaoController m_controller;
+    private static CentroExposicoes ce;
+    private CriarExposicaoController controller;
     private static final int JANELA_LARGURA = 700;
     private static final int JANELA_ALTURA = 300;
     private JFrame framePai;
@@ -42,16 +39,16 @@ public class CriarExposicaoUI extends JFrame {
     private JButton btnConfirmar, btnFechar;
     private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
 
-    public CriarExposicaoUI(CentroExposicoes ce) {
+    public CriarExposicaoUI(CentroExposicoes centroExposicoes) {
         super("Criar Exposicao");
         criarComponentes();
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
         
-        m_ce = ce;
+        ce = centroExposicoes;
 
-        m_controller = new CriarExposicaoController(m_ce);
+        controller = new CriarExposicaoController(ce);
 
     }
 
@@ -326,8 +323,8 @@ public class CriarExposicaoUI extends JFrame {
         int anofinal = Integer.parseInt(dataFinal[2]);
         Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
         Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
-        m_controller.novaExposicao();
-        m_controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
+        controller.novaExposicao();
+        controller.criaExposicao(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dataInicialPrimeiro, dataFinalUltimo);
 //        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Nova Exposição: \n"

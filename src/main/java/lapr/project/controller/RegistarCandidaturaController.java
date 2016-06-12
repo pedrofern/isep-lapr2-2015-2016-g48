@@ -11,67 +11,67 @@ import lapr.project.model.lists.ListaProduto;
  */
 public class RegistarCandidaturaController {
 
-    private Representante e_representante;
-    private Utilizador m_user;
-    private Candidatura m_candidatura;
-    private ListaCandidaturas m_listaCandidaturas;
-    private Exposicao m_exposicao;
+    private Representante eRepresentante;
+    private Utilizador user;
+    private Candidatura candidatura;
+    private ListaCandidaturas listaCandidaturas;
+    private Exposicao exposicao;
 
     public RegistarCandidaturaController(Representante representante,Exposicao exp) {
-        e_representante = representante;
-        m_exposicao = exp;
-        m_listaCandidaturas = m_exposicao.getRegistoCandidaturas(); 
+        eRepresentante = representante;
+        exposicao = exp;
+        listaCandidaturas = exposicao.getRegistoCandidaturas(); 
     }
 
     public void novaCandidatura() {
-        m_candidatura = e_representante.novaCandidatura();
+        candidatura = eRepresentante.novaCandidatura();
     }
 
     public String getCandidaturaString() {
-        return m_candidatura.toString();
+        return candidatura.toString();
     }
 
     public void setNomeEmpresa(String nomeEmpresa) {
-        m_candidatura.setNomeEmpresa(nomeEmpresa);
+        candidatura.setNomeEmpresa(nomeEmpresa);
     }
 
     public void setMorada(String morada) {
-        m_candidatura.setMorada(morada);
+        candidatura.setMorada(morada);
     }
 
     public void setTelemovel(int telemovel) {
-        m_candidatura.setTelemovel(telemovel);
+        candidatura.setTelemovel(telemovel);
     }
 
     public void setAreaExposicao(int areaExposicao) {
-        m_candidatura.setAreaExposicao(areaExposicao);
+        candidatura.setAreaExposicao(areaExposicao);
     }
 
     public void setQuantidadeConvites(int quantidadeConvites) {
-        m_candidatura.setQuantidadeConvites(quantidadeConvites);
+        candidatura.setQuantidadeConvites(quantidadeConvites);
     }
     
     public void setProdutos(ListaProduto listaProduto){
-        m_candidatura.setListaProdutos(listaProduto);
+        candidatura.setListaProdutos(listaProduto);
     }
     
     public Candidatura registaCandidatura(String nomeEmpresa,String morada,int telemovel,
                     int areaExposicao,int quantidadeConvites){
-        m_candidatura.setNomeEmpresa(nomeEmpresa);
-        m_candidatura.setMorada(morada);
-        m_candidatura.setTelemovel(telemovel);
-        m_candidatura.setAreaExposicao(areaExposicao);
-        m_candidatura.setQuantidadeConvites(quantidadeConvites);
+        candidatura.setNomeEmpresa(nomeEmpresa);
+        candidatura.setMorada(morada);
+        candidatura.setTelemovel(telemovel);
+        candidatura.setAreaExposicao(areaExposicao);
+        candidatura.setQuantidadeConvites(quantidadeConvites);
         
-        if (m_listaCandidaturas.registaCandidaturas(m_candidatura)) {
-            return m_candidatura;
+        if (listaCandidaturas.registaCandidaturas(candidatura)) {
+            return candidatura;
         } else {
             return null;
         }
     }
 
     public boolean valida() {
-        if(m_candidatura.valida() == false){
+        if(candidatura.valida() == false){
             return false;
         }else{
         return true;
@@ -79,21 +79,21 @@ public class RegistarCandidaturaController {
     }
 
     public boolean addProduto(String nomeProduto) {
-        Produto p = e_representante.getProduto(nomeProduto);
+        Produto p = eRepresentante.getProduto(nomeProduto);
 
         if (p != null) {
-            return m_candidatura.addProduto(nomeProduto);
+            return candidatura.addProduto(nomeProduto);
         } else {
             return false;
         }
     }
 
     public Candidatura getCandidatura() {
-        return m_candidatura;
+        return candidatura;
     }
 
     public boolean registaCandidatura() {
-        return e_representante.registaCandidatura(m_candidatura);
+        return eRepresentante.registaCandidatura(candidatura);
     }
     
 //    public CandidaturaDemonstracao novaCandidaturaDemonstracao(){

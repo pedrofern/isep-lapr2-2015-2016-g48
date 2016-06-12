@@ -28,10 +28,10 @@ import lapr.project.model.lists.ListaCandidaturas;
 public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
 
     private JPanel painelQuestoes, pQuestoes;
-    private ListaCandidaturas m_listaCandidaturas;
-    private Candidatura m_candidatura;
-    private Avaliacao m_avaliacao;
-    private AvaliarCandidaturaController m_controllerAC;
+    private ListaCandidaturas listaCandidaturas;
+    private Candidatura candidatura;
+    private Avaliacao avaliacao;
+    private static AvaliarCandidaturaController controllerAC;
     private int resposta;
     
     AvaliarCandidaturaRadioButton grupo1, grupo2, grupo3, grupo4, grupo5;
@@ -40,7 +40,7 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
     
     public AvaliarSubPainelAvaliar(AvaliarCandidaturaController controller){
         super();   
-        m_controllerAC=controller;
+        controllerAC=controller;
         
         setPreferredSize(new Dimension(800,getHeight()));
     }   
@@ -52,7 +52,7 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
         }
         
         public void setCand(Candidatura c){
-            m_candidatura=c;
+            candidatura=c;
         }
         
         private JPanel criarPainelJustificacao(){
@@ -66,12 +66,12 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
             
             
             //alterar qd ja houver candidatura seleccionada ( nao ha candidaturas no registo)
-            m_candidatura=new Candidatura();
+            candidatura=new Candidatura();
             
-            m_controllerAC.setCandidatura(m_candidatura);
+            controllerAC.setCandidatura(candidatura);
             
-            m_controllerAC.criarAvaliacao();
-            m_controllerAC.adicionarAvaliacao();
+            controllerAC.criarAvaliacao();
+            controllerAC.adicionarAvaliacao();
             
             criarQuestao1();
             criarQuestao2();
@@ -86,11 +86,11 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
         }
 
     private void criarQuestao1() {
-        m_controllerAC.criarQuestao();
-        m_controllerAC.adicionarQuestao();
+        controllerAC.criarQuestao();
+        controllerAC.adicionarQuestao();
         
-        m_controllerAC.setPergunta1();
-        JLabel q1=new JLabel(m_controllerAC.getPergunta());
+        controllerAC.setPergunta1();
+        JLabel q1=new JLabel(controllerAC.getPergunta());
         q1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.LIGHT_GRAY));
         painelQuestoes.add(q1);
         
@@ -118,11 +118,11 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
   
 
     private void criarQuestao2() {
-        m_controllerAC.criarQuestao();
-        m_controllerAC.adicionarQuestao();
+        controllerAC.criarQuestao();
+        controllerAC.adicionarQuestao();
         
-        m_controllerAC.setPergunta2();
-        JLabel q2=new JLabel(m_controllerAC.getPergunta());
+        controllerAC.setPergunta2();
+        JLabel q2=new JLabel(controllerAC.getPergunta());
         q2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.LIGHT_GRAY));
         painelQuestoes.add(q2);
         
@@ -149,11 +149,11 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
     }
 
     private void criarQuestao3() {
-        m_controllerAC.criarQuestao();
-        m_controllerAC.adicionarQuestao();
+        controllerAC.criarQuestao();
+        controllerAC.adicionarQuestao();
         
-        m_controllerAC.setPergunta3();
-        JLabel q3=new JLabel(m_controllerAC.getPergunta());
+        controllerAC.setPergunta3();
+        JLabel q3=new JLabel(controllerAC.getPergunta());
         q3.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.LIGHT_GRAY));
         painelQuestoes.add(q3);
         
@@ -179,11 +179,11 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
     }
 
     private void criarQuestao4() {
-        m_controllerAC.criarQuestao();
-        m_controllerAC.adicionarQuestao();
+        controllerAC.criarQuestao();
+        controllerAC.adicionarQuestao();
         
-        m_controllerAC.setPergunta4();
-        JLabel q4=new JLabel(m_controllerAC.getPergunta());
+        controllerAC.setPergunta4();
+        JLabel q4=new JLabel(controllerAC.getPergunta());
         q4.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.LIGHT_GRAY));
         painelQuestoes.add(q4);
       
@@ -209,11 +209,11 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
     }
 
     private void criarQuestao5() {
-        m_controllerAC.criarQuestao();
-        m_controllerAC.adicionarQuestao();
+        controllerAC.criarQuestao();
+        controllerAC.adicionarQuestao();
         
-        m_controllerAC.setPergunta5();
-        JLabel q5=new JLabel(m_controllerAC.getPergunta());
+        controllerAC.setPergunta5();
+        JLabel q5=new JLabel(controllerAC.getPergunta());
         q5.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.LIGHT_GRAY));
         painelQuestoes.add(q5);
         
@@ -247,64 +247,47 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
         btContinuar.setSize(20, getHeight());
       
         
-        btContinuar.addActionListener(new ActionListener(){
-           
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //nao esquecer try... candidatura adicionada e avaliacao criada
-                //m_candidatura=(Candidatura) comboCands.getSelectedItem();
-                
-                List<AvaliarCandidaturaRadioButton> lista=new ArrayList<AvaliarCandidaturaRadioButton>();
-                lista.add(grupo1);
-                lista.add(grupo2);
-                lista.add(grupo3);
-                lista.add(grupo4);
-                lista.add(grupo5);
-                
-                List<Integer> resposta=new ArrayList<Integer>();
+        btContinuar.addActionListener((ActionEvent e) -> {
+            //nao esquecer try... candidatura adicionada e avaliacao criada
+            //m_candidatura=(Candidatura) comboCands.getSelectedItem();
             
-                for (AvaliarCandidaturaRadioButton grupo: lista){                  
-              
-                        int resp=0;
-                        if (grupo.getButton1().isSelected())
-                            resp=1;
-                        if (grupo.getButton2().isSelected())
-                            resp=2;
-                        if (grupo.getButton3().isSelected())
-                            resp=3;
-                        if (grupo.getButton4().isSelected())
-                            resp=4;
-                        if (grupo.getButton5().isSelected())
-                            resp=5;
-                        
-                        resposta.add(resp);                    
-
-                }
-
+            List<AvaliarCandidaturaRadioButton> lista=new ArrayList<>();
+            lista.add(grupo1);
+            lista.add(grupo2);
+            lista.add(grupo3);
+            lista.add(grupo4);
+            lista.add(grupo5);
+            List<Integer> resposta1 = new ArrayList<>();
+            for (AvaliarCandidaturaRadioButton grupo : lista) {
+                int resp=0;
+                if (grupo.getButton1().isSelected())
+                    resp=1;
+                if (grupo.getButton2().isSelected())
+                    resp=2;
+                if (grupo.getButton3().isSelected())
+                    resp=3;
+                if (grupo.getButton4().isSelected())
+                    resp=4;
+                if (grupo.getButton5().isSelected())
+                    resp=5;
+                resposta1.add(resp);
+            }
 //                TESTE RESPOSTAS
 //                for (int r: resposta){
 //
 //                    System.out.println(r);
 //                }
-
-                m_controllerAC.setRespostas(resposta.get(0), resposta.get(1), resposta.get(2), resposta.get(3), resposta.get(4));
-                
-                JOptionPane.showMessageDialog(
-                            null,
-                            m_controllerAC.getInfoClassificacoes(),
-                            "Classificações dadas",
-                            JOptionPane.INFORMATION_MESSAGE);
-                
-                
-                AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(m_controllerAC);
-
-                
-                pJustificacao.mostrarPainel();
-                pQuestoes.setVisible(false);
-
-                add(pJustificacao);
-                AvaliarCandidaturaUI.ativarGuardar();
-            }
+controllerAC.setRespostas(resposta1.get(0), resposta1.get(1), resposta1.get(2), resposta1.get(3), resposta1.get(4));
+JOptionPane.showMessageDialog(
+        null,
+        controllerAC.getInfoClassificacoes(),
+        "Classificações dadas",
+        JOptionPane.INFORMATION_MESSAGE);
+AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(controllerAC);
+pJustificacao.mostrarPainel();
+pQuestoes.setVisible(false);
+add(pJustificacao);
+AvaliarCandidaturaUI.ativarGuardar();
         });
         
         

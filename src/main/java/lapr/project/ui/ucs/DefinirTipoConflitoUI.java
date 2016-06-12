@@ -12,17 +12,17 @@ import lapr.project.utils.*;
  */
 public class DefinirTipoConflitoUI {
     
-    private static CentroExposicoes m_ce;
+    private static CentroExposicoes ce;
     
-    private DefinirTipoConflitoController m_controller;
+    private DefinirTipoConflitoController controller;
 
-    public DefinirTipoConflitoUI(CentroExposicoes ce) {
-        m_ce = ce;
-        m_controller = new DefinirTipoConflitoController(m_ce);
+    public DefinirTipoConflitoUI(CentroExposicoes centroExposicoes) {
+        ce = centroExposicoes;
+        controller = new DefinirTipoConflitoController(ce);
     }
 
     
-    public void run() {
+//    public void run() {
 //        String strDesc = Utils.readLineFromConsole("Introduza Descrição Tipo Conflito: ");
 //        List<MecanismoDetecaoConflito> lsObjs = m_centroDeExposicoes.getMecanismosDetecaoConflito();
 //        Utils.apresentaLista(lsObjs, "Selecione Mecanismo de Detecao:");
@@ -32,6 +32,6 @@ public class DefinirTipoConflitoUI {
 //
 //        if (Utils.confirma("Confirma (s/n)?")) {
 //            m_controller.registaTipoConflito(tc);
-//        }
-    }
+////        }
+//    }
 }

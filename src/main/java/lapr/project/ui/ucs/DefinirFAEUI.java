@@ -21,8 +21,8 @@ import lapr.project.model.lists.*;
  */
 public class DefinirFAEUI extends JFrame {
     
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
  
      private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
@@ -31,12 +31,12 @@ public class DefinirFAEUI extends JFrame {
     private RegistoUtilizadores listaCompletaUtilizadores,listaUtilizadoresFAE;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
-    public DefinirFAEUI(CentroExposicoes ce, Utilizador user) throws FileNotFoundException {
+    public DefinirFAEUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 
         super("Definir FAE");
         
-        m_ce=ce;
-        m_user=user;
+        ce=centroExposicoes;
+        user=utilizador;
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -187,26 +187,18 @@ public class DefinirFAEUI extends JFrame {
 
     private JButton criarBotaoEliminarJogador(JList lstLista) {
         JButton btn = new JButton("Eliminar FAE");
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ModeloListaUtilizadores modelo = (ModeloListaUtilizadores) lstLista.getModel();
-                modelo.removeElement((Utilizador) lstLista.getSelectedValue());
-
-            }
+        btn.addActionListener((ActionEvent e) -> {
+            ModeloListaUtilizadores modelo = (ModeloListaUtilizadores) lstLista.getModel();
+            modelo.removeElement((Utilizador) lstLista.getSelectedValue());
         });
         return btn;
     }
 
     private JButton criarBotaoAdicionarUtilizador() {
         btnAdicionarUtilizador = new JButton("Adicionar Utilizador");
-        btnAdicionarUtilizador.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                modeloListaFAE.addElement((Utilizador) lstCompletaUtilizadores.getSelectedValue());
-                lstCompletaUtilizadores.clearSelection();
-
-            }
+        btnAdicionarUtilizador.addActionListener((ActionEvent e) -> {
+            modeloListaFAE.addElement((Utilizador) lstCompletaUtilizadores.getSelectedValue());
+            lstCompletaUtilizadores.clearSelection();
         });
         return btnAdicionarUtilizador;
     }
@@ -219,11 +211,8 @@ public class DefinirFAEUI extends JFrame {
 
     private JButton criarBotaoCancelar() {
         btnCancelar = new JButton("Cancelar");
-        btnCancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        btnCancelar.addActionListener((ActionEvent e) -> {
+            dispose();
         });
         return btnCancelar;
     }

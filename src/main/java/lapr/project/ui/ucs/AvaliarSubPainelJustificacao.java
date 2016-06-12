@@ -2,18 +2,13 @@
 package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.PopupMenu;
 import java.io.Serializable;
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import lapr.project.controller.AvaliarCandidaturaController;
 import lapr.project.model.Avaliacao;
@@ -25,17 +20,17 @@ import lapr.project.model.Candidatura;
  */
 public class AvaliarSubPainelJustificacao extends JPanel implements Serializable{
     
-    private Candidatura m_candidatura;
-    private Avaliacao m_avaliacao;
-    private AvaliarCandidaturaController m_controllerAC;
+    private Candidatura candidatura;
+    private Avaliacao avaliacao;
+    private AvaliarCandidaturaController controllerAC;
     
     private final int CAMPO_LARGURA = 30;
     private JTextArea txt;
     
-    public AvaliarSubPainelJustificacao (AvaliarCandidaturaController controller){
+    public AvaliarSubPainelJustificacao (AvaliarCandidaturaController pController){
         super();
         
-        m_controllerAC=controller;
+        controllerAC=pController;
     }
     
     public void mostrarPainel(){
@@ -45,7 +40,7 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
     }
     
     public void setCand(Candidatura c){
-        m_candidatura=c;
+        candidatura=c;
     }
 
     private JPanel criarPainelAvaliacao() {

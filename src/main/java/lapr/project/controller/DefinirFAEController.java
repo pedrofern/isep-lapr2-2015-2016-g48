@@ -11,27 +11,27 @@ import lapr.project.model.*;
  */
 public class DefinirFAEController {
 
-    private final CentroExposicoes m_centro_exposicoes;
-    private Exposicao m_exposicao;
-    private FAE m_FAE;
-    private ListaFAE m_lstFaes;
+    private final CentroExposicoes ce;
+    private Exposicao exposicao;
+    private FAE fae;
+    private ListaFAE listaFaes;
     private RegistoUtilizadores m_registoUtilizadores;
 
-    public DefinirFAEController(CentroExposicoes centro_exposicoes) {
-        m_centro_exposicoes = centro_exposicoes;
+    public DefinirFAEController(CentroExposicoes centroExposicoes) {
+        ce = centroExposicoes;
     }
     
     //TEM DE SER NA EXPOSICAO
 //    public void novoDefinirFAE() {
-//        m_FAE = m_centro_exposicoes.novoDefinirFAE();
+//        fae = ce.novoDefinirFAE();
 //    }
 
     public void selectExposicao(Exposicao e) {
-        this.m_exposicao = e;
+        this.exposicao = e;
     }
 
     public List<Exposicao> getListaExposicoes(String strId) {
-        return m_centro_exposicoes.getRegistoExposicoes().getExposicaoOrganizador(strId);
+        return ce.getRegistoExposicoes().getExposicaoOrganizador(strId);
     }
 
     public List<Utilizador> getListaUtilizadores() {
@@ -42,7 +42,7 @@ public class DefinirFAEController {
         Utilizador u = m_registoUtilizadores.getUtilizadorByID(strID);
 
         if (u != null) {
-            return m_lstFaes.addMembroFAE(u);
+            return listaFaes.addMembroFAE(u);
         } else {
             return null;
         }
@@ -53,19 +53,19 @@ public class DefinirFAEController {
     
 //    public FAE setUtilizador(List<Utilizador> lstUtz) {
 //        for (Utilizador u : lstUtz) {
-//            m_lstFaes.addFAE(u);
+//            listaFaes.addFAE(u);
 //        }
 //
-//        if (m_centro_exposicoes.validaDefinirFAE(m_FAE)) {
-//            return m_FAE;
+//        if (ce.validaDefinirFAE(fae)) {
+//            return fae;
 //        } else {
 //            return null;
 //        }
 //    }
 //
-//    public boolean registaMembroFAE(FAE m_FAE) {
+//    public boolean registaMembroFAE(FAE fae) {
 //
-//        return m_centro_exposicoes.registaDefinirFAE(m_FAE);
+//        return ce.registaDefinirFAE(fae);
 //
 //    }
 

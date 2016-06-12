@@ -9,17 +9,17 @@ import lapr.project.model.*;
  * @author Pedro Fernandes
  */
 public class DefinirTipoConflitoController {
-    private CentroExposicoes m_centroDeExposicoes;
+    private static CentroExposicoes ce;
 
     public DefinirTipoConflitoController(CentroExposicoes centroDeExposicoes) {
-        m_centroDeExposicoes = centroDeExposicoes;
+        ce = centroDeExposicoes;
     }
 
     public TipoConflito novoTipoConflito(String strDescricao, MecanismoDetecaoConflito mecanismo) {
-        return m_centroDeExposicoes.getRegistoTipoConflitos().novoTipoConflito(strDescricao, mecanismo);
+        return ce.getRegistoTipoConflitos().novoTipoConflito(strDescricao, mecanismo);
     }
 
     public boolean registaTipoConflito(TipoConflito tpConflito) {
-        return m_centroDeExposicoes.getRegistoTipoConflitos().registaTipoConflito(tpConflito);
+        return ce.getRegistoTipoConflitos().registaTipoConflito(tpConflito);
     }
 }

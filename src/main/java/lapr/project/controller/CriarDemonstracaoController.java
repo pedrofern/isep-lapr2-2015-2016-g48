@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import java.util.*;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.Data;
@@ -11,74 +10,74 @@ import lapr.project.utils.Data;
  */
 public class CriarDemonstracaoController {
 
-    private Demonstracao m_demonstracao;
-    private RegistoExposicoes m_listaExposicoes;
-    private Exposicao m_exposicao;
-    private RegistoRecursos m_listaRecursos;
-    private Organizador o_organizador;
+    private Demonstracao demonstravao;
+    private RegistoExposicoes registoExposicoes;
+    private Exposicao exposicao;
+    private RegistoRecursos listaRecursos;
+    private Organizador organizador;
     
-    public CriarDemonstracaoController(Organizador o_Oraganizador, Exposicao expo) {
-        m_exposicao = expo;
-        o_organizador=o_Oraganizador;
+    public CriarDemonstracaoController(Organizador pOrganizador, Exposicao expo) {
+        exposicao = expo;
+        organizador=pOrganizador;
     }
 
     public void novaDemonstracao() {
-        m_demonstracao=o_organizador.novaDemonstracao();
+        demonstravao=organizador.novaDemonstracao();
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
        
-        m_demonstracao.setDados(descricao, temaExposicao, inicio, fim);
+        demonstravao.setDados(descricao, temaExposicao, inicio, fim);
         
-        return m_demonstracao;
+        return demonstravao;
     }
 
 //    public void setCodigoUnico(int codigoUnico) {
-//        m_demonstracao.setCod(codigoUnico);
+//        demonstravao.setCod(codigoUnico);
 //    }
 //    
     public void setDescricao(String novaDescricao) {
-        m_demonstracao.setDesc(novaDescricao);
+        demonstravao.setDesc(novaDescricao);
     }
     
 //    public void setListaRecursos(RegistoRecursos novaListaRecursos) {
-//        m_demonstracao.setListaRecursos(novaListaRecursos);
+//        demonstravao.setListaRecursos(novaListaRecursos);
 //    }
     
     public RegistoRecursos getListaRecursos() {
-        return m_listaRecursos;
+        return listaRecursos;
     }
         
     public void addRecursoDemonstracao(Recurso r){
-        m_demonstracao.addRecurso(r);
+        demonstravao.addRecurso(r);
     }
     
     public RegistoExposicoes getListaExposicoes() {
         RegistoExposicoes le = new RegistoExposicoes();
 
-        for (Exposicao e : m_listaExposicoes.getExposicao()) {
+        for (Exposicao e : registoExposicoes.getExposicao()) {
             le.adicionarExposicao(e);
         }
         return le;
     }
 
 //    public Demonstracao registaDemonstracao() {
-//        if (m_exposicao.getRegistoDemonstracao().registaDemonstracao(m_demonstracao)) {
-//            return m_demonstracao;
+//        if (exposicao.getRegistoDemonstracao().registaDemonstracao(demonstravao)) {
+//            return demonstravao;
 //        }
 //        return null;
 //    }
     
     public Demonstracao getDemonstracao() {
-        return m_demonstracao;
+        return demonstravao;
     }
     
 //    public Demonstracao setDados(int cdgUnico, String strDescricao) {
-//        m_demonstracao.setCod(cdgUnico);
-//        m_demonstracao.setDesc(strDescricao);
+//        demonstravao.setCod(cdgUnico);
+//        demonstravao.setDesc(strDescricao);
 //
-//        if (m_exposicao.getRegistoDemonstracao().validaDemonstracao(m_demonstracao)) {
-//            return m_demonstracao;
+//        if (exposicao.getRegistoDemonstracao().validaDemonstracao(demonstravao)) {
+//            return demonstravao;
 //        } else {
 //            return null;
 //        }

@@ -24,8 +24,8 @@ import lapr.project.model.lists.*;
  */
 public class DefinirDemonstracaoUI extends JFrame {
 
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
     
     private Calendar dataInicial, dataFinal;
     private JFormattedTextField campoDataInicial, campoDataFinal;
@@ -42,11 +42,11 @@ public class DefinirDemonstracaoUI extends JFrame {
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
 
-    public DefinirDemonstracaoUI(CentroExposicoes ce, Utilizador user) throws FileNotFoundException {
+    public DefinirDemonstracaoUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 
         super("Definir Demonstração");
-        m_ce=ce;
-        m_user=user;
+        ce=centroExposicoes;
+        user=utilizador;
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

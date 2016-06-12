@@ -14,11 +14,11 @@ import lapr.project.model.Utilizador;
  */
 public class DecidirCandidaturaUI {
     
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
     
-    public DecidirCandidaturaUI(CentroExposicoes ce, Utilizador user){
-        m_ce=ce;
-        m_user=user;
+    public DecidirCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador){
+        ce=centroExposicoes;
+        user=utilizador;
     }
 }

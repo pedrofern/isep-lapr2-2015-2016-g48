@@ -10,24 +10,24 @@ import lapr.project.model.*;
  */
 public class ConfirmarRegistoUtilizadorController {
 
-    private final CentroExposicoes m_ce;
-    private Utilizador m_utilizadorAConfirmar;
-    private RegistoUtilizadores m_registoUtilizadores;
+    private final CentroExposicoes ce;
+    private Utilizador utilizadorAConfirmar;
+    private RegistoUtilizadores registoUtilizadores;
 
-    public ConfirmarRegistoUtilizadorController(CentroExposicoes ce) {
-        this.m_ce = ce;
+    public ConfirmarRegistoUtilizadorController(CentroExposicoes centroExposicoes) {
+        this.ce = centroExposicoes;
     }
 
     public List<Utilizador> iniciaConfirmacaoUtilizador() {
-        return m_registoUtilizadores.getUtilizadoresNaoRegistados();
+        return registoUtilizadores.getUtilizadoresNaoRegistados();
     }
 
     public Utilizador getUtilizadorInfo(String uId) {
-        m_utilizadorAConfirmar = m_registoUtilizadores.getUtilizadorInfo(uId);
-        return m_utilizadorAConfirmar;
+        utilizadorAConfirmar = registoUtilizadores.getUtilizadorInfo(uId);
+        return utilizadorAConfirmar;
     }
 
     public void confirmaRegistoUtilizador() {
-        m_registoUtilizadores.confirmaRegistoUtilizador(m_utilizadorAConfirmar);
+        registoUtilizadores.confirmaRegistoUtilizador(utilizadorAConfirmar);
     }
 }

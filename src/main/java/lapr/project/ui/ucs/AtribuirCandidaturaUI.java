@@ -3,7 +3,6 @@ package lapr.project.ui.ucs;
 import lapr.project.controller.*;
 import java.util.*;
 import lapr.project.model.*;
-import lapr.project.ui.*;
 import lapr.project.utils.*;
 
 /**
@@ -12,14 +11,14 @@ import lapr.project.utils.*;
  */
 public class AtribuirCandidaturaUI {
 
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
-    private static AtribuirCandidaturaController m_controllerAC;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
+    private static AtribuirCandidaturaController controllerAC;
 
-    public AtribuirCandidaturaUI(CentroExposicoes ce, Utilizador user) {
-        m_ce = ce;
-        m_user=user;
-        m_controllerAC = new AtribuirCandidaturaController(m_ce);
+    public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
+        ce = centroExposicoes;
+        user=utilizador;
+        controllerAC = new AtribuirCandidaturaController(ce);
     }
 
 
@@ -78,7 +77,7 @@ public class AtribuirCandidaturaUI {
 //    }
 
     private void novaAtribuicaoCandidatura() {
-        m_controllerAC.novaAtribuicaoCandidatura();
+        controllerAC.novaAtribuicaoCandidatura();
     }
 
     private void apresentaExposicoes(List<Exposicao> le) {

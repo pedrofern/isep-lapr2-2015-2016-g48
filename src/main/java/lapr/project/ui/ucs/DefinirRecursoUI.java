@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import lapr.project.controller.*;
-import java.util.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,28 +13,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import lapr.project.utils.*;
 import lapr.project.model.*;
-import lapr.project.ui.*;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author Ana
  */
 public class DefinirRecursoUI extends JFrame {
 
-    private static CentroExposicoes m_ce;
-    private DefinirRecursoController m_controller;
+    private static CentroExposicoes ce;
+    private DefinirRecursoController controller;
     private static JTextArea text;
-     private static Recurso m_r;
+     private static Recurso r;
     
     private static final int WIDTH=350, HEIGHT=350;
     
     
-    public DefinirRecursoUI(CentroExposicoes ce) {
+    public DefinirRecursoUI(CentroExposicoes centroExposicoes) {
        
-        m_ce = ce;
-        m_controller = new DefinirRecursoController(m_ce);
+        ce = centroExposicoes;
+        controller = new DefinirRecursoController(ce);
        
         criarComponentes();
         
@@ -153,36 +150,14 @@ public class DefinirRecursoUI extends JFrame {
         
         String descricao;
         descricao=text.getText();
-        m_controller.novoRecurso();
-        m_controller.setDescricao(descricao);
+        controller.novoRecurso();
+        controller.setDescricao(descricao);
         
-        for(Recurso r: m_ce.getRegistoRecursos().getListaRecursos()){
+        for(Recurso r: ce.getRegistoRecursos().getListaRecursos()){
              System.out.println(r.toString());
         }
        
         
     }
         
-    
-  
-//    public void run() {
-//
-//        String strDescricao = Utils.readLineFromConsole("Introduza a descrição do recurso: ");
-//        m_controller.setDescricao(strDescricao);
-//
-//        apresentaRecurso(m_controller.getRecurso());
-//
-//        if (Utils.confirma("Confirma?")) {
-//            m_controller.registaRecurso();
-//        }
-//
-//    }
-//    
-//    private void apresentaRecurso(Recurso recurso) {
-//        if (recurso == null) {
-//            System.out.println("Recurso não registado.");
-//        } else {
-//            System.out.println(recurso.toString());
-//        }
-//    }
 }

@@ -10,13 +10,14 @@ import lapr.project.model.lists.RegistoUtilizadores;
  */
 public class SubmeterCandidaturaDemoController {
     
-    private CentroExposicoes m_centroDeExposicoes;
+    private static CentroExposicoes ce;
     
-    private Utilizador m_utilizador;
+    private static Utilizador user;
     
 
-    public SubmeterCandidaturaDemoController(CentroExposicoes ce, String utilizador){
-        
+    public SubmeterCandidaturaDemoController(CentroExposicoes centroExposicoes, Utilizador utilizador){
+        ce=centroExposicoes;
+        user=utilizador;
     }
     
 }

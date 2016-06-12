@@ -4,7 +4,6 @@ import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.model.*;
-import java.util.*;
 import lapr.project.utils.Data;
 
 /**
@@ -13,20 +12,20 @@ import lapr.project.utils.Data;
  */
 public class CriarExposicaoController {
 
-    private final CentroExposicoes m_oCE;
-    private Exposicao m_exposicao;
-    private RegistoExposicoes m_regExposicoes;
-    private RegistoUtilizadores m_regUtilizadores;
-    private ListaOrganizadores m_lstOrganizadores;
+    private static CentroExposicoes ce;
+    private Exposicao exposicao;
+    private RegistoExposicoes regExposicoes;
+    private RegistoUtilizadores regUtilizadores;
+    private ListaOrganizadores lstOrganizadores;
 
-    public CriarExposicaoController(CentroExposicoes ce) {
-        this.m_oCE = ce;
-        m_regExposicoes = ce.getRegistoExposicoes();
-        m_regUtilizadores = ce.getRegistoUtilizadores();
+    public CriarExposicaoController(CentroExposicoes centroExposicoes) {
+        ce = centroExposicoes;
+        regExposicoes = ce.getRegistoExposicoes();
+        regUtilizadores = ce.getRegistoUtilizadores();
     }
 
     public void novaExposicao() {
-        this.m_exposicao = m_regExposicoes.novaExposicao();
+        this.exposicao = regExposicoes.novaExposicao();
     }
 
     /**
@@ -35,7 +34,7 @@ public class CriarExposicaoController {
      * @param strTitulo o título do evento
      */
     public void setTitulo(String strTitulo) {
-        m_exposicao.setTitulo(strTitulo);
+        exposicao.setTitulo(strTitulo);
     }
 
     /**
@@ -44,7 +43,7 @@ public class CriarExposicaoController {
      * @param strDescricao a descrição
      */
     public void setDescricao(String strDescricao) {
-        m_exposicao.setTextoDescritivo(strDescricao);
+        exposicao.setTextoDescritivo(strDescricao);
     }
 
     /**
@@ -53,7 +52,7 @@ public class CriarExposicaoController {
      * @param strLocal o local
      */
     public void setLocal(String strLocal) {
-        m_exposicao.setLocal(strLocal);
+        exposicao.setLocal(strLocal);
     }
 
     /**
@@ -62,7 +61,7 @@ public class CriarExposicaoController {
      * @param strDataInicio a data de início
      */
     public void setDataInicio(Data strDataInicio) {
-        m_exposicao.setDataInicio(strDataInicio);
+        exposicao.setDataInicio(strDataInicio);
     }
 
     /**
@@ -71,60 +70,60 @@ public class CriarExposicaoController {
      * @param strDataFim a data final
      */
     public void setDataFim(Data strDataFim) {
-        m_exposicao.setDataFim(strDataFim);
+        exposicao.setDataFim(strDataFim);
     }
 
     public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
-        m_exposicao.setDataInicioSubmissao(strDataInicioSubmissao);
+        exposicao.setDataInicioSubmissao(strDataInicioSubmissao);
     }
 
     public void setDataFimSubmissao(Data strDataFimSubmissao) {
-        m_exposicao.setDataFimSubmissao(strDataFimSubmissao);
+        exposicao.setDataFimSubmissao(strDataFimSubmissao);
     }
 
     public void setDataInicioAtribuicao(Data strDataInicioAtribuicao) {
-        m_exposicao.setDataInicioAtribuicao(strDataInicioAtribuicao);
+        exposicao.setDataInicioAtribuicao(strDataInicioAtribuicao);
     }
 
     public RegistoUtilizadores getListaUtilizadores() {
-        return this.m_oCE.getRegistoUtilizadores();
+        return this.ce.getRegistoUtilizadores();
     }
 
     public Utilizador addOrganizador(String strId) {
-        Utilizador u = m_regUtilizadores.getUtilizadorByID(strId);
-        m_exposicao.getListaOrganizadores().addOrganizador(u);
+        Utilizador u = regUtilizadores.getUtilizadorByID(strId);
+        exposicao.getListaOrganizadores().addOrganizador(u);
         return u;
 
     }
 
     public void addOrganizador(Utilizador u) {
-        this.m_lstOrganizadores.addOrganizador(u);
+        this.lstOrganizadores.addOrganizador(u);
     }
     
     public void novoOrganizador(Utilizador u) {
-        this.m_lstOrganizadores.addOrganizador(u);
+        this.lstOrganizadores.addOrganizador(u);
     }
 
     public Exposicao getExposicao() {
-        return m_exposicao;
+        return exposicao;
     }
 
     public Exposicao registaExposicao() {
-        if (m_regExposicoes.registaExposicao(m_exposicao)) {
-            return m_exposicao;
+        if (regExposicoes.registaExposicao(exposicao)) {
+            return exposicao;
         }
         return null;
     }
     
     public Exposicao criaExposicao(String titulo, String descricao, String local, Data dInicio, Data dFim) {        
-        m_exposicao.setTitulo(titulo);
-        m_exposicao.setTextoDescritivo(descricao);
-        m_exposicao.setLocal(local);
-        m_exposicao.setDataInicio(dInicio);
-        m_exposicao.setDataFim(dFim);
+        exposicao.setTitulo(titulo);
+        exposicao.setTextoDescritivo(descricao);
+        exposicao.setLocal(local);
+        exposicao.setDataInicio(dInicio);
+        exposicao.setDataFim(dFim);
         
-        if (m_regExposicoes.registaExposicao(m_exposicao)) {
-            return m_exposicao;
+        if (regExposicoes.registaExposicao(exposicao)) {
+            return exposicao;
         } else {
             return null;
         }
@@ -132,21 +131,21 @@ public class CriarExposicaoController {
     }
     
     private void createTimers() {
-//        AlterarStateParaEmSubmissao task1 = new AlterarStateParaEmSubmissao(m_exposicao);
-//        this.m_oCE.schedule(task1, m_exposicao.getDataInicioSubmissao());
+//        AlterarStateParaEmSubmissao task1 = new AlterarStateParaEmSubmissao(exposicao);
+//        this.m_oCE.schedule(task1, exposicao.getDataInicioSubmissao());
 //
-//        AlterarStateParaEmAtribuicao task2 = new AlterarStateParaEmAtribuicao(m_exposicao);
-//        this.m_oCE.schedule(task2, m_exposicao.getDataInicioAtribuicao());
+//        AlterarStateParaEmAtribuicao task2 = new AlterarStateParaEmAtribuicao(exposicao);
+//        this.m_oCE.schedule(task2, exposicao.getDataInicioAtribuicao());
 //
-//        DetetarConflitosController task3 = new DetetarConflitosController(m_oCE, m_exposicao);
-//        this.m_oCE.schedule(task3, m_exposicao.getDataFimSubmissao());
+//        DetetarConflitosController task3 = new DetetarConflitosController(m_oCE, exposicao);
+//        this.m_oCE.schedule(task3, exposicao.getDataFimSubmissao());
     }
 
     public boolean validaExposicao() {
-        return m_regExposicoes.validaExposicao(m_exposicao);
+        return regExposicoes.validaExposicao(exposicao);
     }
 
     public String getExposicaoString() {
-        return this.m_exposicao.toString();
+        return this.exposicao.toString();
     }
 }

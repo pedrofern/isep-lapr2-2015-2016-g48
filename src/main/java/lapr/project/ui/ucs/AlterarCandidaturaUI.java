@@ -2,8 +2,7 @@ package lapr.project.ui.ucs;
 
 import lapr.project.controller.*;
 import lapr.project.model.*;
-import lapr.project.ui.*;
-import lapr.project.utils.*;
+
 
 /**
  *
@@ -11,14 +10,14 @@ import lapr.project.utils.*;
  */
 public class AlterarCandidaturaUI {
     
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
-    private static AlterarCandidaturaController m_controller;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
+    private static AlterarCandidaturaController controller;
 
-    public AlterarCandidaturaUI(CentroExposicoes ce, Utilizador user) {
-        m_ce = ce;
-        m_user=user;
-        m_controller = new AlterarCandidaturaController(m_ce);
+    public AlterarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
+        ce = centroExposicoes;
+        user=utilizador;
+        controller = new AlterarCandidaturaController(ce);
     }
 
     

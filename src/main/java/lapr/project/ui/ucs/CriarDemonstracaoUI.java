@@ -33,8 +33,8 @@ public class CriarDemonstracaoUI extends JFrame {
     private RegistoExposicoes listaExposicoes;
     private JTable tableListaRecurso;
     private Organizador o_Organizador;
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_user;
+    private static CentroExposicoes ce;
+    private static Utilizador user;
     private Exposicao exposicao;
     private Recurso recurso;
     private ListaDemonstracoes listaDemostracao;
@@ -43,14 +43,14 @@ public class CriarDemonstracaoUI extends JFrame {
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
 
-    public CriarDemonstracaoUI(CentroExposicoes ce, Utilizador user) throws FileNotFoundException {
+    public CriarDemonstracaoUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 
         super("Criar Demonstração");
-        m_user=user;
+        user=utilizador;
 
         o_Organizador = new Organizador();
 
-        m_ce = ce;
+        ce = centroExposicoes;
         exposicao = ce.novaExposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
         ce.registaExposicao(exposicao);

@@ -4,10 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
-import javax.swing.border.*;
 import lapr.project.controller.*;
 import lapr.project.model.*;
-import lapr.project.utils.Utils;
 
 /**
  *
@@ -24,20 +22,20 @@ public class RegistarUtilizadorUI extends JFrame{
      */
     private static final int JANELA_ALTURA_MINIMO = 275; 
     
-    private CentroExposicoes m_ce;
+    private CentroExposicoes ce;
     
     private String pergunta="Pretende cancelar o registo do utilizador?";
       
-    private RegistarUtilizadorController m_controllerRU;
+    private RegistarUtilizadorController controllerRU;
     
     private PainelDadosUtilizador norte;
     
-    public RegistarUtilizadorUI(CentroExposicoes ce) {
+    public RegistarUtilizadorUI(CentroExposicoes centroExposicoes) {
         
         super("Registar Utilizador");
  
-        m_ce = ce;
-        m_controllerRU = new RegistarUtilizadorController(m_ce);
+        this.ce = centroExposicoes;
+        this.controllerRU = new RegistarUtilizadorController(ce);
  
         addWindowListener(new WindowAdapter() {
             @Override
@@ -161,9 +159,9 @@ public class RegistarUtilizadorUI extends JFrame{
             email = norte.getTxtEmail().getText();
             pass = norte.getTxtPassword().getText();
             user = norte.getTxtUsername().getText();
-            m_controllerRU.novoUtilizador();
+            controllerRU.novoUtilizador();
 
-            m_controllerRU.criaUtilizador(nome, email, user, pass);
+            controllerRU.criaUtilizador(nome, email, user, pass);
                 JOptionPane.showMessageDialog(
                             null,
                             "Dados novo utilizador registado: \n"
@@ -193,5 +191,4 @@ public class RegistarUtilizadorUI extends JFrame{
             }
         }
     }
-
 }

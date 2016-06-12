@@ -1,8 +1,6 @@
 package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,17 +21,17 @@ import lapr.project.model.lists.ListaCandidaturas;
  */
 public class AvaliarSubPainelCands extends JPanel implements Serializable{
     
-    private Exposicao m_exposicao;
-    private ListaCandidaturas m_lista;
-    private Candidatura m_candidatura;
+    private Exposicao exposicao;
+    private ListaCandidaturas lista;
+    private Candidatura candidatura;
     private JComboBox comboCands;
     private JButton selCand;
-    private final int WIDTH=300;
-    private AvaliarCandidaturaController m_controllerAC;
+    private static final int WIDTH_POR_OMISSAO=300;
+    private AvaliarCandidaturaController controllerAC;
     
     public AvaliarSubPainelCands(AvaliarCandidaturaController controller){
         super();
-        m_controllerAC=controller;
+        controllerAC=controller;
         
     }
     
@@ -57,7 +55,7 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
     }
     
     public void setExpo(Exposicao e){
-        m_exposicao=e;
+        exposicao=e;
     }
 
     private JButton criarBtSelect() {
@@ -73,7 +71,7 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
                 //nao esquecer try... candidatura adicionada e avaliacao criada
                 //m_candidatura=(Candidatura) comboCands.getSelectedItem();
                 
-                m_candidatura=new Candidatura();
+                candidatura=new Candidatura();
                 AvaliarSubPainelAvaliar painel=AvaliarCandidaturaUI.getPainelAvaliar();
                 
                 painel.mostrarPainel();

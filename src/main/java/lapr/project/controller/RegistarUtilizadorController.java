@@ -9,30 +9,30 @@ import lapr.project.model.*;
  */
 public class RegistarUtilizadorController {
 
-    private CentroExposicoes centroDeExposicoes;
-    private Utilizador m_utilizador;
-    private RegistoUtilizadores m_registoUtilizadores;
+    private CentroExposicoes ce;
+    private Utilizador utilizador;
+    private RegistoUtilizadores registoUtilizadores;
 
-    public RegistarUtilizadorController(CentroExposicoes ce) {
-        centroDeExposicoes = ce;
-        m_registoUtilizadores = centroDeExposicoes.getRegistoUtilizadores();
+    public RegistarUtilizadorController(CentroExposicoes centroExposicoes) {
+        ce= centroExposicoes;
+        registoUtilizadores = ce.getRegistoUtilizadores();
 
     }
 
     public void novoUtilizador() {
-        m_utilizador = new Utilizador();
+        utilizador = new Utilizador();
     }
 
     public Utilizador criaUtilizador(String nome, String email, String user, String pass) {        
-        m_utilizador.setUsername(user);
-        m_utilizador.setPassword(pass);
-        m_utilizador.setNome(nome);
-        m_utilizador.setEmail(email);
+        utilizador.setUsername(user);
+        utilizador.setPassword(pass);
+        utilizador.setNome(nome);
+        utilizador.setEmail(email);
         
-        m_utilizador.setRegistado(Boolean.TRUE);
+        utilizador.setRegistado(Boolean.TRUE);
 
-        if (m_registoUtilizadores.registaUtilizador(m_utilizador)) {
-            return m_utilizador;
+        if (registoUtilizadores.registaUtilizador(utilizador)) {
+            return utilizador;
         
         } else {
             return null;
@@ -42,8 +42,8 @@ public class RegistarUtilizadorController {
     }
     
 
-    public void setUtilizador(Utilizador m_utilizador) {
-        this.m_utilizador = m_utilizador;
+    public void setUtilizador(Utilizador user) {
+        this.utilizador = user;
     }
 
 }

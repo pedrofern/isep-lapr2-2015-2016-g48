@@ -20,7 +20,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Utilizador;
 
 /**
  *
@@ -28,7 +27,7 @@ import lapr.project.model.Utilizador;
  */
 public class CriarStandUI extends JFrame {
     
-    private static CentroExposicoes m_ce;
+    private static CentroExposicoes ce;
     
     private JButton btnConfirmar, btnLimpar, btnFechar;
     private static final int JANELA_LARGURA = 788;
@@ -38,11 +37,11 @@ public class CriarStandUI extends JFrame {
     private JTextField txtID,txtDescricao,txtArea;
 
     
-    public CriarStandUI(CentroExposicoes ce) {
+    public CriarStandUI(CentroExposicoes centroExposicoes) {
 
         super("Criar Stand");
         
-        m_ce=ce;
+        ce=centroExposicoes;
         criarComponentes();
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(framePai);
@@ -142,27 +141,19 @@ public class CriarStandUI extends JFrame {
     
     private JButton criarBotaoFechar() {
         btnFechar = new JButton("Fechar");
-        btnFechar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        btnFechar.addActionListener((ActionEvent e) -> {
+            dispose();
         });
         return btnFechar;
     }
     
     private JButton criarBotaoLimpar() {
        btnLimpar = new JButton("Limpar");
-        btnLimpar.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                txtID.setText(null);
-                txtDescricao.setText(null);
-                txtArea.setText(null);
-
-            }
-        });
+        btnLimpar.addActionListener((ActionEvent ae) -> {
+            txtID.setText(null);
+            txtDescricao.setText(null);
+            txtArea.setText(null);
+       });
         return btnLimpar;
     
     }
