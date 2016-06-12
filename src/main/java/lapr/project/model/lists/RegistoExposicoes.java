@@ -67,7 +67,7 @@ public class RegistoExposicoes {
         return "RegistoExposicoes:" + "m_listaExposicoes=" + m_listaExposicoes;
     }
     
-    public List<Exposicao> getExposicao(){
+    public List<Exposicao> getExposicoes(){
         return m_listaExposicoes;
     }
 

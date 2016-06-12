@@ -66,7 +66,7 @@ public class AvaliarCandidaturaControllerTest {
         
         m_controller_teste.setResposta(resposta);
         
-        assertEquals(m_controller_teste.getResposta(), 4);
+        assertEquals(m_controller_teste.getResposta(), resposta);
         
         
     }

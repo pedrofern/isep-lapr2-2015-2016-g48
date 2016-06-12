@@ -55,7 +55,7 @@ public class CriarDemonstracaoController {
     public RegistoExposicoes getListaExposicoes() {
         RegistoExposicoes le = new RegistoExposicoes();
 
-        for (Exposicao e : registoExposicoes.getExposicao()) {
+        for (Exposicao e : registoExposicoes.getExposicoes()) {
             le.adicionarExposicao(e);
         }
         return le;

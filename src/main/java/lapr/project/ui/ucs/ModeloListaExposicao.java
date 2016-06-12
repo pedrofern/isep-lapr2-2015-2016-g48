@@ -23,12 +23,12 @@ public class ModeloListaExposicao extends AbstractListModel {
 
     @Override
     public int getSize() {
-        return listaExposicao.getExposicao().size();
+        return listaExposicao.getExposicoes().size();
     }
 
     @Override
     public Object getElementAt(int indice) {
-        return listaExposicao.getExposicao().get(indice);
+        return listaExposicao.getExposicoes().get(indice);
     }
 
     public boolean addElement(Exposicao exposicao) {
@@ -40,8 +40,8 @@ public class ModeloListaExposicao extends AbstractListModel {
     }
 
     public boolean removeElement(Exposicao exposicao) {
-        int indice = listaExposicao.getExposicao().indexOf(exposicao);
-        boolean exposicaoRemovido = listaExposicao.getExposicao().remove(exposicao);
+        int indice = listaExposicao.getExposicoes().indexOf(exposicao);
+        boolean exposicaoRemovido = listaExposicao.getExposicoes().remove(exposicao);
         if (exposicaoRemovido) {
             fireIntervalRemoved(this, indice, indice);
         }
@@ -49,7 +49,7 @@ public class ModeloListaExposicao extends AbstractListModel {
     }
 
     public boolean contains(Exposicao exposicao) {
-        return listaExposicao.getExposicao().contains(exposicao);
+        return listaExposicao.getExposicoes().contains(exposicao);
     }
 
     public void sort() {

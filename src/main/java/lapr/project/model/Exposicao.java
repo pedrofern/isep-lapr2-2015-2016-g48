@@ -327,13 +327,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     }
 
     public boolean valida() {
-        System.out.println("Exposição: valida: " + this.toString());
-        return true;
-    }
-
-    public boolean validaGeral() {
-        System.out.println("valida: " + this.toString());
-        if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true) {
+         if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true) {
             return true;
         }
         return false;

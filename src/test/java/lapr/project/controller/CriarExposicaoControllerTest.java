@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.RegistoExposicoes;
@@ -48,54 +49,19 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testRegistaExposicao() {
         System.out.println("registaExposicao");
-        CriarExposicaoController instance = null;
-        boolean expResult = true;
-        boolean result = instance.registaExposicao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        int expResult = 1;
         
+        CentroExposicoes ce=new CentroExposicoes();
+        CriarExposicaoController teste=new CriarExposicaoController(ce);   
         
+        teste.criarExposicao();
+        teste.setDados("titulo", "desc", Data.dataAtual(), Data.dataAtual(),"local",Data.dataAtual(),Data.dataAtual(),Data.dataAtual(),Data.dataAtual(),Data.dataAtual(), Data.dataAtual(),Data.dataAtual(),Data.dataAtual());
+        teste.registaExposicao();
         
+        int result = ce.getRegistoExposicoes().countExposicoes();
+       
+        assertEquals(expResult, result);        
     }
 
-    /**
-     * Test of validaExposicao method, of class CriarExposicaoController.
-     */
-    @Test
-    public void testValidaExposicao() {
-        System.out.println("validaExposicao");
-        CriarExposicaoController instance = null;
-        boolean expResult = false;
-        boolean result = instance.validaExposicao();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getExposicaoString method, of class CriarExposicaoController.
-     */
-    @Test
-    public void testGetExposicaoString() {
-        System.out.println("getExposicaoString");
-        CriarExposicaoController instance = null;
-        String expResult = "";
-        String result = instance.getExposicaoString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addTimer method, of class CriarExposicaoController.
-     */
-    @Test
-    public void testAddTimer() throws Exception {
-        System.out.println("addTimer");
-        CriarExposicaoController instance = null;
-        instance.addTimer();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
