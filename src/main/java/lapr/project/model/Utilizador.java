@@ -135,7 +135,12 @@ public class Utilizador implements Comparable<Utilizador>{
     }
 
     @Override
-    public String toString() {
+    public String toString(){
+        return nome+":" + email;
+    }
+    
+    
+    public String toStringGeral() {
         String str = "Utilizador:\n";
         str += "\tNome: " + this.nome + "\n";
         str += "\tUsername: " + this.username + "\n";

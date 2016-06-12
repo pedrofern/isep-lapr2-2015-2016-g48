@@ -23,6 +23,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
+import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 
 /**
@@ -32,7 +33,7 @@ import lapr.project.model.lists.RegistoUtilizadores;
 public class CriarExposicaoUI extends JFrame {
     
     private JList listaCompletaUtilizador;
-    private RegistoUtilizadores listaUtilizadores;
+    private ListaOrganizadores listaUtilizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataConflito, campoDataAlterarConflito, campoDataAvInicio, campoDataAvFim;
     private static CentroExposicoes ce;
     private CriarExposicaoController controller;
@@ -42,7 +43,7 @@ public class CriarExposicaoUI extends JFrame {
     private static final Dimension LABEL_TAMANHO = new JLabel("Criar Exposicao").getPreferredSize();
     private JButton btnConfirmar, btnFechar, btnAdicionarOrganizador, btnEleminarOrganizador;
     private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
-    private ModeloListaUtilizadores modelolistautilizador;
+    private ModeloListaOrganizadores modeloListaOrganizadores;
     private static final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
     private static final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
     
@@ -52,14 +53,15 @@ public class CriarExposicaoUI extends JFrame {
     public CriarExposicaoUI(CentroExposicoes centro) {
         super("Criar Exposicao");
         ce = centro;
-        criarComponentes();
+       controller=new CriarExposicaoController(ce); 
+       criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setLocationRelativeTo(null);
         setVisible(true);
         
-        controller=new CriarExposicaoController(ce);
+        
     }
 
     public void criarComponentes() {
@@ -137,12 +139,15 @@ public class CriarExposicaoUI extends JFrame {
                 INTERVALO_VERTICAL));
 
         listaCompletaUtilizador = new JList();
-        listaUtilizadores = new RegistoUtilizadores();
-        modelolistautilizador = new ModeloListaUtilizadores(listaUtilizadores);
+        controller.criarExposicao();
+     
+        listaUtilizadores = controller.getExposicao().getListaOrganizadores();
+        
+        modeloListaOrganizadores = new ModeloListaOrganizadores(listaUtilizadores);
         p.add(criarPainelPeriodo(criarPainelPeriodoData()));
         p.add(criarPainelListaOrganizador("Lista de Organizador",
                 listaCompletaUtilizador,
-                modelolistautilizador));
+                modeloListaOrganizadores));
 
         return p;
     }
@@ -162,7 +167,7 @@ public class CriarExposicaoUI extends JFrame {
     private JPanel criarPainelListaOrganizador(
             String tituloLista,
             JList lstLista,
-            ModeloListaUtilizadores modeloLista) {
+            ModeloListaOrganizadores modeloLista) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
         lstLista.setModel(modeloLista);
@@ -523,6 +528,7 @@ public class CriarExposicaoUI extends JFrame {
         btnAdicionarOrganizador = new JButton("Adicionar Organizador");
 
         btnAdicionarOrganizador.addActionListener((ActionEvent e) -> {
+            DialogoNovoOrganizador dialogo=new DialogoNovoOrganizador(this, controller, ce);
         });
 
         return btnAdicionarOrganizador;

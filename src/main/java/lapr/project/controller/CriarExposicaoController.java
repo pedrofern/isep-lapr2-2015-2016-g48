@@ -84,5 +84,9 @@ public class CriarExposicaoController {
     public void addTimer() throws Exception{
         exposicao.createTimers();
     }
+    
+    public Exposicao getExposicao(){
+        return exposicao;
+    }
 
 }

@@ -96,8 +96,10 @@ public class PainelGestor extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
+                CriarExposicaoUI a= new CriarExposicaoUI(m_ce);
+                
                 try{
-                  CriarExposicaoUI a= new CriarExposicaoUI(m_ce);
+                  
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }

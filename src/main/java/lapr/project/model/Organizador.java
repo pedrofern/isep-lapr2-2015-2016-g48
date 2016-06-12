@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author Pedro Fernandes
  */
-public class Organizador {
+public class Organizador implements Comparable<Utilizador>{
 
     private Utilizador utilizador;
 
@@ -41,6 +41,11 @@ public class Organizador {
             return this.utilizador.equals(u);
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Utilizador o) {
+         return utilizador.getEmail().compareTo(o.getEmail());
     }
 
 }

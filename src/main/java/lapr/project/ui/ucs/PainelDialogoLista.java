@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -18,9 +21,9 @@ public class PainelDialogoLista extends JPanel{
     
     
     /**
-     * Guarda o texto introduzido no JTextField
-     */
-    private static JTextField txtField;
+     * ComboBox que permite seleccionar objeto pretendido
+     */ 
+    private JComboBox combo;
     
     
     /**
@@ -35,12 +38,15 @@ public class PainelDialogoLista extends JPanel{
     private static final Dimension LABEL_TAMANHO = new JLabel("Produto: ").
                                                         getPreferredSize();
     
-    
-    
-    public PainelDialogoLista(){
+   private CentroExposicoes ce;
+   
+    public PainelDialogoLista(CentroExposicoes cExposicoes){
         super();
+        ce=cExposicoes;
         setLayout(new BorderLayout());
+        
         criarComponentes();
+        
     }
     
     /**
@@ -62,9 +68,13 @@ public class PainelDialogoLista extends JPanel{
         lbl.setPreferredSize(LABEL_TAMANHO);
 
         final int CAMPO_LARGURA = 10;
-        txtField = new JTextField(CAMPO_LARGURA);
-        txtField.requestFocusInWindow();
-
+           
+        for(Utilizador u: ce.getRegistoUtilizadores().getListaUtilizadores()){
+          u.toString();
+        }
+        
+        combo=Utils.criarComboUser(ce.getRegistoUtilizadores());
+      
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
         final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
@@ -72,7 +82,7 @@ public class PainelDialogoLista extends JPanel{
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
         p.add(lbl);
-        p.add(txtField);
+        p.add(combo);
 
         return p;
     }
@@ -82,7 +92,7 @@ public class PainelDialogoLista extends JPanel{
      */
     private JPanel criarPainelBotoes() {
         JButton btOkOK = criarBotaoOK();
-        getRootPane().setDefaultButton(btOkOK);
+//        getRootPane().setDefaultButton(btOkOK);
 
         JButton btOkCancelar = criarBotaoCancelar();
 
@@ -105,7 +115,7 @@ public class PainelDialogoLista extends JPanel{
     private JButton criarBotaoOK() {
         JButton btOk = new JButton("OK");
         btOk.setMnemonic(KeyEvent.VK_O);
-        btOk.setToolTipText("Confirma adição produto");
+        btOk.setToolTipText("Confirma adição organizador");
        
         return btOk;
     }
@@ -130,7 +140,7 @@ public class PainelDialogoLista extends JPanel{
         btCancel=bt;
     }
     
-    public static JTextField getTextField(){
-        return txtField;
+    public JComboBox getComboBoxUtilizadores(){
+        return combo;
     }     
 }

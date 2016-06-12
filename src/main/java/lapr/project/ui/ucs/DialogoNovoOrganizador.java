@@ -1,24 +1,17 @@
 
 package lapr.project.ui.ucs;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import lapr.project.utils.Utils;
 import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Organizador;
-import lapr.project.model.Produto;
 import lapr.project.model.Utilizador;
 
 /**
@@ -28,9 +21,9 @@ import lapr.project.model.Utilizador;
 public class DialogoNovoOrganizador extends JDialog {
    
     /**
-     * Guarda o texto introduzido do produto
+     * ComboBox que permite seleccionar utilizador para organizador
      */   
-    private static JTextField txtField;
+    private static JComboBox combo;
     
     /**
      * Guardar a janela anterior
@@ -39,23 +32,27 @@ public class DialogoNovoOrganizador extends JDialog {
     
     private static CriarExposicaoController controller;
     
+    private CentroExposicoes ce;
+    
     /**
      * Constrói uma caixa dialogo para guardar o organizador na exposição,
      * recebendo a janela e o controller da criação de exposição como parametro
      * @param framePai janela anterior
      */
     
-    public DialogoNovoOrganizador(CriarExposicaoUI framePai, CriarExposicaoController pController){  
+    public DialogoNovoOrganizador(CriarExposicaoUI framePai, CriarExposicaoController pController, CentroExposicoes cExpo){  
         
         super(framePai, "Novo Organizador", true);
 
         this.framePai = framePai;
-        
+        ce=cExpo;
         controller=pController;
         
-        PainelDialogoLista p=new PainelDialogoLista();
+        PainelDialogoLista p=new PainelDialogoLista(ce);
+        alterarOk();
         add(p);
-        txtField=PainelDialogoLista.getTextField();
+    
+        combo=p.getComboBoxUtilizadores();
         
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
@@ -65,6 +62,15 @@ public class DialogoNovoOrganizador extends JDialog {
     }
 
     public static void setBotaoOK(JButton bt){
+        
+        PainelDialogoLista.setBotaoOK(bt);
+    }
+    
+    private void alterarOk(){
+        setBotaoOK(recriarBotaoOK());
+    }
+    
+    public JButton recriarBotaoOK(){
         JButton btn = new JButton("OK");
         btn.setMnemonic(KeyEvent.VK_O);
         btn.setToolTipText("Confirma adição organizador");
@@ -72,11 +78,10 @@ public class DialogoNovoOrganizador extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-//                combo
-//                
-//                controller.addOrganizador(txtField.getText());
-                Utilizador u=new Utilizador();
+                Utilizador u= (Utilizador) combo.getSelectedItem();
                 
+                controller.addOrganizador(u);
+             
                 JList lista = framePai.getLstOrganizadores();
                 ModeloListaUtilizadores modeloListaUsers = (ModeloListaUtilizadores) lista.getModel();
                 boolean organizadorAdicionado = modeloListaUsers.addElement(u);
@@ -84,20 +89,21 @@ public class DialogoNovoOrganizador extends JDialog {
                         framePai.getBotaoRemoverProduto().setEnabled(true);
                         JOptionPane.showMessageDialog(
                                 framePai,
-                                "Produto adicionado à lista de produtos.",
-                                "Novo Produto",
+                                "Organizador adicionado à exposição.",
+                                "Novo Organizador",
                                 JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(
                                 framePai,
-                                "Produto já incluído na lista de produtos!",
-                                "Novo Produto",
+                                "Organizador já incluído na lista de organizadores!",
+                                "Novo Organizador",
                                 JOptionPane.ERROR_MESSAGE);
                     }
-//                dispose();
+                dispose();
             }
+            
         });
-        DialogoNovoOrganizador.setBotaoOK(btn);
+        return btn;
     }
     
     private void setBotaoCancelar(){

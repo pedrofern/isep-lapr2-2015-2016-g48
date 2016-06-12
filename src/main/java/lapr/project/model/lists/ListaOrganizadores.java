@@ -82,6 +82,16 @@ public class ListaOrganizadores {
         }
         return false;
     }
+    
+     
+    public boolean removerUtilizador(Utilizador utilizador) {
+        return listaOrganizadores.remove(utilizador);
+    }
+    
+     
+    public void ordenarPorPosicao(){
+//        Collections.sort(listaOrganizadores);
+    }
 
     /**
      * Devolve a descrição textual da Lista de Organizadores.

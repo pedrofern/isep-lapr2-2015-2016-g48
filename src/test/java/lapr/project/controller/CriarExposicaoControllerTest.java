@@ -62,6 +62,23 @@ public class CriarExposicaoControllerTest {
        
         assertEquals(expResult, result);        
     }
-
+    
+    /**
+     * Test of registaExposicao method, of class CriarExposicaoController.
+     */
+    @Test
+    public void testGetListaUtilizadores() {
+        System.out.println("getUtilizadores");
+        int expResult = 1;
+        
+        CentroExposicoes ce=new CentroExposicoes();
+        ce.getRegistoUtilizadores().addUtilizador(new Utilizador());
+        
+        CriarExposicaoController teste=new CriarExposicaoController(ce);   
+        
+        int result = teste.getListaUtilizadores().countUtilizadores();
+       
+        assertEquals(expResult, result);        
+    }
     
 }
