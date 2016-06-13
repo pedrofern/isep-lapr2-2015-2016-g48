@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import lapr.project.model.mechanisms.ProcessoAtribuicaoExposicao;
 import lapr.project.model.mechanisms.Atribuivel;
 import lapr.project.model.states.ExposicaoCriadaEstado;
 import lapr.project.model.states.ExposicaoStateEmRevisao;
@@ -11,8 +10,6 @@ import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
-import javax.swing.JOptionPane;
-import lapr.project.controller.DetetarConflitosController;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.states.AlterarCandAbertas;
 import lapr.project.model.states.AlterarCandFechadas;
@@ -255,14 +252,15 @@ import lapr.project.utils.Utils;
  
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+        
         Exposicao outraEX = (Exposicao) o;
-        return this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo());
+        if(this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo()))
+               return true;
+        else
+            return false;
     }
 
     @Override
@@ -328,7 +326,7 @@ import lapr.project.utils.Utils;
     }
 
     public boolean valida() {
-         if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true && validaMinOrganizadores()==true) {
+         if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true ) {
             return true;
         }
         return false;
@@ -539,6 +537,9 @@ import lapr.project.utils.Utils;
         str += "\tData final de submissão: " + this.dataFimSubmissao + "\n";
         str += "\tData inicial de atribuição: " + this.dataInicioAvaliacao + "\n";
         str += "\tData final de atribuição: " + this.dataFimAvaliacao + "\n";
+        str += "\tData final de avaliações: " + this.dataInicioAvaliacao + "\n";
+        str+= "\tData para a deteção de conflitos: " + this.dataDeteccaoConflitos+ "\n";
+        str += "\tData alteração de conflitos: " + this.dataAlteracaoConflitos + "\n";
         str += "\tLocal: " + this.local + "\n";
         str += "\tOrganizadores:\n";
         for (Organizador o : listaOrganizadores.getListaOrganizadores()) {

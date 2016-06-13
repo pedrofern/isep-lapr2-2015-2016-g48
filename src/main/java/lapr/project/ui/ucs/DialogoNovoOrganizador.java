@@ -98,6 +98,8 @@ public class DialogoNovoOrganizador extends JDialog {
                                 "Organizador adicionado à exposição.",
                                 "Novo Organizador",
                                 JOptionPane.INFORMATION_MESSAGE);
+                        
+                        dispose();
                     } else {
                         JOptionPane.showMessageDialog(
                                 framePai,
@@ -105,7 +107,7 @@ public class DialogoNovoOrganizador extends JDialog {
                                 "Novo Organizador",
                                 JOptionPane.ERROR_MESSAGE);
                     }
-                dispose();
+               
             }
             
         });

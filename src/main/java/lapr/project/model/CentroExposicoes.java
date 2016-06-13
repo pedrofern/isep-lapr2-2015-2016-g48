@@ -90,6 +90,9 @@ public class CentroExposicoes {
         return hash;
     }
 
+    public void setRegistoExposicoes (RegistoExposicoes re){
+        regExposicoes=re;
+    }
 
 
     @Override

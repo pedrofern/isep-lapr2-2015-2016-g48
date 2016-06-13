@@ -33,24 +33,13 @@ public class ListaOrganizadores {
      * @return boolean
      */
     public boolean addOrganizador(Organizador o) {
-       
-        if (!listaOrganizadores.contains(o)) {
-            return listaOrganizadores.add(o);
-        }
-        return false;
-        
-        
-////        if (u == null) {
-//            return false;
-//        }
-//        
+       if (o == null) 
+            return false;
+ 
+        if (!o.valida() && !validaOrganizador(o))
+            return false;
 
-//        if (o.valida() && validaOrganizador(o)) {
-//
-//            return listaOrganizadores.add(o);
-//        } else {
-//            return false;
-//        }
+        return listaOrganizadores.add(o);
     }
 
     /**
@@ -71,7 +60,11 @@ public class ListaOrganizadores {
      * @return boolean
      */
     private boolean validaOrganizador(Organizador o) {
-        System.out.println("ListaOrganizadores: validaOrganizador:" + o.toString());
+        for(Organizador o1:  listaOrganizadores){
+            if (o1.getUtilizador().getEmail().equalsIgnoreCase(o.getUtilizador().getEmail())) {
+                return false;
+            }
+       }
         return true;
     }
 

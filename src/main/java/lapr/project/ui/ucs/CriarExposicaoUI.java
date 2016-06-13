@@ -483,7 +483,8 @@ public class CriarExposicaoUI extends JFrame {
             Data dataAConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
             
             controller.setDados(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm, dataInicioAv, dataFimAv, dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
-        
+            controller.setListaOrganizadores(listaOrganizadores);
+  
     }
 
     private JButton criarBotaoConfirmar() {
@@ -491,8 +492,7 @@ public class CriarExposicaoUI extends JFrame {
              
         btnConfirmar.addActionListener((ActionEvent e) -> {
             
-            controller.setListaOrganizadores(listaOrganizadores);
-  
+           
             String base="__/__/____";
             
             if (txtTitulo.getText().isEmpty() == true || txtDescricao.getText().isEmpty() == true
@@ -510,32 +510,38 @@ public class CriarExposicaoUI extends JFrame {
                   try{  
                     controller.validaDatas(campoDataInicial.getText(), campoDataFinal.getText(), campoSubCandDataInicial.getText(), campoSubCandDataFinal.getText(), 
                     campoSubStandsDatainicial.getText(), campoSubStandsDataFinal.getText(), campoDataAlterarConflito.getText(), 
-                    campoDataAvInicio.getText(), campoDataAvFim.getText(), campoDataAlterarConflito.getText()
-);
+                    campoDataAvInicio.getText(), campoDataAvFim.getText(), campoDataAlterarConflito.getText());
+                    
                     setDados();
 
                     if(!controller.validaDataFimSuperiorInicio() || !controller.validaMinOrganizadores() || !controller.validaSeguimentoDatas()){
                         if (!controller.validaDataFimSuperiorInicio()){
                             JOptionPane.showMessageDialog(null, "A data fim tem de ser superior à data de início correspondente.", "Criar Exposição",JOptionPane.ERROR_MESSAGE);
                         }if (!controller.validaMinOrganizadores()){
-                            JOptionPane.showMessageDialog(null, "Tem de introduzir pelo menos 2 organizadores", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Introduza pelo menos 2 organizadores", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
                         }if (!controller.validaSeguimentoDatas()){
                             JOptionPane.showMessageDialog(null, "As datas não têm o seguimento devido (por exemplo: data avaliação de candidaturas ser superior à data de submissão", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+                        }if (!controller.validaTituloEDescricao()){
+                            JOptionPane.showMessageDialog(null, "O título, o texto e o local devem estar devidamente preenchidos", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+                       
                         }
                     }  else{
                         if(controller.registaExposicao()){
-                              JOptionPane.showMessageDialog(
-                                       null,
-                                       controller.getExposicaoString(),
-                                       "Nova Exposição",
-                                       JOptionPane.INFORMATION_MESSAGE);    
+                                                        
+                            ce.setRegistoExposicoes(controller.getRegistoExposicoes());
+                            
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    controller.getExposicaoString(),
+                                    "Nova Exposição",
+                                    JOptionPane.INFORMATION_MESSAGE);  
+                             
                             dispose();
                         }else{
-                            JOptionPane.showMessageDialog(null, "Essa exposição já se encontra registada no sistema", "Nova Exposição", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "A exposição já se encontra registada no sistema", "Nova Exposição", JOptionPane.ERROR_MESSAGE);
+  
                         }
 
-                 
-   
                     }
 
                 }catch (Exception e1){

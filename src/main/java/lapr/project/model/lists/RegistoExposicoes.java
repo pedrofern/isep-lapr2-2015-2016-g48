@@ -13,12 +13,12 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoExposicoes {
 
-    private List<Exposicao> m_listaExposicoes;
-    private List<Utilizador> m_listaUtilizadores;
+    private List<Exposicao> listaExposicoes;
+    private List<Utilizador> listaUtilizadores;
 
     public RegistoExposicoes() {
-        m_listaExposicoes = new ArrayList<Exposicao>();
-        m_listaUtilizadores = new ArrayList<Utilizador>();
+        listaExposicoes = new ArrayList<Exposicao>();
+        listaUtilizadores = new ArrayList<Utilizador>();
     }
 
     public Exposicao novaExposicao() {
@@ -34,44 +34,29 @@ public class RegistoExposicoes {
      */
     
     public boolean adicionarExposicao(Exposicao expo) {
-        if (!m_listaExposicoes.contains(expo)) {
-            return m_listaExposicoes.add(expo);
-        }
-        return false;
+        
+        if(hasExposicao(expo)) 
+            return false;
+        else
+            return listaExposicoes.add(expo);
     }
     
        public boolean registaExposicao(Exposicao e) {
-        if (e.valida() && e.validaMinOrganizadores() && e.validaDataFimSuperiorInicio() && e.validaSeguimentoDatas() && validaExposicao(e)) {
+        if (e.valida() && valida(e)) {
             return adicionarExposicao(e);
         } else {
             return false;
         }
     }
 
-    /**
-     * Metodo que valida uma exposicao
-     * @param e exposicao
-     * @return true se validar false caso contrario
-     */
-    public boolean validaExposicao(Exposicao e) {
-        if (e.valida()) {
-            for(Exposicao exposicao: m_listaExposicoes){
-                if(!exposicao.equals(e)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
- 
 
     @Override
     public String toString() {
-        return "RegistoExposicoes:" + "m_listaExposicoes=" + m_listaExposicoes;
+        return "RegistoExposicoes:" + "listaExposicoes=" + listaExposicoes;
     }
     
     public List<Exposicao> getExposicoes(){
-        return m_listaExposicoes;
+        return listaExposicoes;
     }
 
     public List<Exposicao> getExposicaoOrganizador(String strId) {
@@ -79,14 +64,14 @@ public class RegistoExposicoes {
 
         Utilizador user = null;
         
-        for (Utilizador u : this.m_listaUtilizadores) {
+        for (Utilizador u : this.listaUtilizadores) {
             if (u.hasID(strId)) {
                 user = u;
             }
         }
 
         if (user != null) {
-            for (Iterator<Exposicao> it = this.m_listaExposicoes.listIterator(); it.hasNext();) {
+            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
                 Exposicao e = it.next();
 
                 if (e.hasOrganizador(user)) {
@@ -102,14 +87,14 @@ public class RegistoExposicoes {
 
         Utilizador user = null;
         
-        for (Utilizador u : this.m_listaUtilizadores) {
+        for (Utilizador u : this.listaUtilizadores) {
             if (u.hasID(strId)) {
                 user = u;
             }
         }
 
         if (user != null) {
-            for (Iterator<Exposicao> it = this.m_listaExposicoes.listIterator(); it.hasNext();) {
+            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
                 Exposicao e = it.next();
 
                 if (e.hasFAE(user)) {
@@ -121,15 +106,15 @@ public class RegistoExposicoes {
     }
     
     public Exposicao[] getArray() {
-        return m_listaExposicoes.toArray( new Exposicao[m_listaExposicoes.size()] );
+        return listaExposicoes.toArray( new Exposicao[listaExposicoes.size()] );
      }
      
     public void ordenarPorPosicao(){
-        Collections.sort(m_listaExposicoes);
+        Collections.sort(listaExposicoes);
     }
     
      public int countExposicoes(){
-        return m_listaExposicoes.size();
+        return listaExposicoes.size();
     }
     
      /**
@@ -138,7 +123,7 @@ public class RegistoExposicoes {
      * @return uma exposicao atraves do titulo passado por parametro
      */
     public Exposicao getExposicao(String titulo){
-        for(Exposicao e : m_listaExposicoes){
+        for(Exposicao e : listaExposicoes){
             if(e.getTitulo().equalsIgnoreCase(titulo)){
                 return e;
             }
@@ -153,7 +138,7 @@ public class RegistoExposicoes {
      * @return a exposicao passada por parametro
      */
     public Exposicao getExposicao(Exposicao e2) {
-        for (Exposicao e1 : m_listaExposicoes) {
+        for (Exposicao e1 : listaExposicoes) {
             if (e1.getTitulo().equalsIgnoreCase(e2.getTitulo())) {
                 return e2;
             }
@@ -168,7 +153,7 @@ public class RegistoExposicoes {
     public RegistoExposicoes getExposicoesDoFAE(Utilizador u) {
         RegistoExposicoes l_ExpDoFAE = new RegistoExposicoes();
 
-        for (Exposicao e : this.m_listaExposicoes) {
+        for (Exposicao e : this.listaExposicoes) {
             if (e.getListaFAEs().getFAE(u.getID()) != null) {
                 l_ExpDoFAE.adicionarExposicao(e);
             }
@@ -188,7 +173,7 @@ public class RegistoExposicoes {
         RegistoExposicoes leOrganizador=new RegistoExposicoes();
         
         if (u != null) {
-            for (Iterator<Exposicao> it = m_listaExposicoes.listIterator(); it.hasNext();) {
+            for (Iterator<Exposicao> it = listaExposicoes.listIterator(); it.hasNext();) {
                 Exposicao e = it.next();
 
                 if (e.getListaOrganizadores().hasUtilizador(u)) {
@@ -198,5 +183,23 @@ public class RegistoExposicoes {
         }
         return leOrganizador;
     } 
+    
+    public boolean hasExposicao(Exposicao e){
+        for(Exposicao exposicao: listaExposicoes){
+            if(exposicao.equals(e)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean valida(Exposicao e){
+        if(e.validaMinOrganizadores() && e.validaDataFimSuperiorInicio() && e.validaSeguimentoDatas() && !hasExposicao(e)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 }

@@ -48,7 +48,7 @@ public class Utilizador implements Comparable<Utilizador>{
      */
     @Override
     public Utilizador clone() throws CloneNotSupportedException {
-       super.clone();
+      
         return new Utilizador(this.getNome(), this.getUsername(), this.getPassword(), this.getEmail());
     }
     
@@ -101,7 +101,7 @@ public class Utilizador implements Comparable<Utilizador>{
     }
 
     public boolean valida() {
-        System.out.println("Utilizador:valida: " + this.toString());
+  
         return validaNome() && validaUsername() && validaPassword() && validaEmail();
     }
 

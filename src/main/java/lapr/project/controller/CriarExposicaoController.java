@@ -82,20 +82,20 @@ public class CriarExposicaoController {
     public boolean validaSeguimentoDatas(){
         return exposicao.validaSeguimentoDatas();
     }
+    
+    public boolean validaTituloEDescricao(){
+        return exposicao.valida();
+    }
 
     public boolean registaExposicao() {
-        if (ce.getRegistoExposicoes().registaExposicao(exposicao)) {
+        if (!getRegistoExposicoes().registaExposicao(exposicao)) {
+            return false; 
+        } else {
             return true;
         }
-        return false;
+       
     }
-    
-
-
-    public boolean validaExposicao() {
-        return ce.getRegistoExposicoes().validaExposicao(exposicao);
-    }
-
+  
     public String getExposicaoString() {
         return this.exposicao.toStringCompleto();
     }
