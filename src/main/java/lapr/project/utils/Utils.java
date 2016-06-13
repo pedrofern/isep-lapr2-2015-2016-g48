@@ -196,11 +196,11 @@ public class Utils {
             
             String[] convertida =data.split("/");
         
-            int diainicial = Integer.parseInt(convertida[2]);
+            int diainicial = Integer.parseInt(convertida[0]);
             int mesinicial = Integer.parseInt(convertida[1]);
-            int anoinicial = Integer.parseInt(convertida[0]);
+            int anoinicial = Integer.parseInt(convertida[2]);
             
-            Data data_convertida=new Data(diainicial, mesinicial,anoinicial);
+            Data data_convertida=new Data(anoinicial, mesinicial, diainicial);
             
             return data_convertida;
         
@@ -209,8 +209,9 @@ public class Utils {
         public static boolean validaDatasString(String data){
             
             String[] convertida =data.split("/");
-            int diainicial = Integer.parseInt(convertida[2]);
+            int diainicial = Integer.parseInt(convertida[0]);
             int mesinicial = Integer.parseInt(convertida[1]);
+            int anoinicial = Integer.parseInt(convertida[2]);
             
             if(mesinicial>=1 && mesinicial<=12 && diainicial>=1 && diainicial<=31){
                 return true;

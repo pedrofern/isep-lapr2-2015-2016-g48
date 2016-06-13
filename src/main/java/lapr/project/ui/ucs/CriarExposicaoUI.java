@@ -523,14 +523,18 @@ public class CriarExposicaoUI extends JFrame {
                             JOptionPane.showMessageDialog(null, "As datas não têm o seguimento devido (por exemplo: data avaliação de candidaturas ser superior à data de submissão", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
                         }
                     }  else{
-                        controller.registaExposicao(); 
-
-                   JOptionPane.showMessageDialog(
+                        if(controller.registaExposicao()){
+                              JOptionPane.showMessageDialog(
                                        null,
                                        controller.getExposicaoString(),
                                        "Nova Exposição",
                                        JOptionPane.INFORMATION_MESSAGE);    
-                   dispose();
+                            dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Essa exposição já se encontra registada no sistema", "Nova Exposição", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                 
    
                     }
 
@@ -559,7 +563,7 @@ public class CriarExposicaoUI extends JFrame {
             if(controller.getListaUtilizadores().countUtilizadores()==0){
                  JOptionPane.showMessageDialog(
                                        null,
-                                       "Não há utilizadores disponíveis.",
+                                       "Não há utilizadores disponíveis, volte mais tarde.",
                                        "Nova Exposição",
                                        JOptionPane.INFORMATION_MESSAGE);   
                         

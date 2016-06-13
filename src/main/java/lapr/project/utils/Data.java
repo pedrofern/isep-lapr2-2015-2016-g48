@@ -227,6 +227,15 @@ public class Data implements Comparable<Data>, Serializable {
     }
     
 
+    /**
+     * Devolve a data no formato:02d%/%02d/%04d/.
+     *
+     * @return caraterísticas da data.
+     */
+    public String toDiaMesAnoString() {
+        return dia+"/"+mes+"/"+ano;
+    }
+    
 
     /**
      * Devolve true se a data for maior do que a data recebida por parâmetro. Se
