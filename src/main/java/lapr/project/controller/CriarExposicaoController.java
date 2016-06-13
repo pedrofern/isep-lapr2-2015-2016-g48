@@ -15,6 +15,7 @@ public class CriarExposicaoController {
     private static CentroExposicoes ce;
     private Exposicao exposicao;
     private Utilizador user;
+    private Organizador organizador;
 
 
     public CriarExposicaoController(CentroExposicoes centroExposicoes) {
@@ -48,20 +49,38 @@ public class CriarExposicaoController {
     public void setUtilizador(Utilizador u){
         user=u;
     }
+   
     
-    public void getListaOrganizadores(){
-        exposicao.getListaOrganizadores();
+    public ListaOrganizadores getListaOrganizadores(){
+        return exposicao.getListaOrganizadores();
+    }
+    
+    public void setListaOrganizadores(ListaOrganizadores lo){
+        exposicao.setListaOrganizadores(lo);
     }
 
 
-    public boolean addOrganizador(Utilizador u) {
+    public void criaOrganizador(Utilizador u) {
         
-        return exposicao.getListaOrganizadores().addOrganizador(u);
+        organizador= exposicao.getListaOrganizadores().criaOrganizador(u);
   
     }
     
+    public Organizador getOrganizador(){
+        return organizador;
+    }
+    
     public boolean validaMinOrganizadores(){
-        return exposicao.validaMinOrganizadores(exposicao.getListaOrganizadores().getListaOrganizadores());
+        return exposicao.validaMinOrganizadores();
+    }
+    
+     public boolean validaDataFimSuperiorInicio(){
+        return exposicao.validaDataFimSuperiorInicio();
+    }
+    
+     
+    public boolean validaSeguimentoDatas(){
+        return exposicao.validaSeguimentoDatas();
     }
 
     public boolean registaExposicao() {

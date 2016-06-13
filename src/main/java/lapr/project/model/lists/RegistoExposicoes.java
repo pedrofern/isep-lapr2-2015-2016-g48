@@ -41,7 +41,7 @@ public class RegistoExposicoes {
     }
     
        public boolean registaExposicao(Exposicao e) {
-        if (e.valida() && validaExposicao(e)) {
+        if (e.valida() && e.validaMinOrganizadores() && e.validaDataFimSuperiorInicio() && e.validaSeguimentoDatas() && validaExposicao(e)) {
             return adicionarExposicao(e);
         } else {
             return false;
@@ -55,8 +55,11 @@ public class RegistoExposicoes {
      */
     public boolean validaExposicao(Exposicao e) {
         if (e.valida()) {
-            // Introduzir as validações aqui
-            return true;
+            for(Exposicao exposicao: m_listaExposicoes){
+                if(!exposicao.equals(e)){
+                    return true;
+                }
+            }
         }
         return false;
     }

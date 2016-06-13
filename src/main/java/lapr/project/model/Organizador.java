@@ -14,6 +14,7 @@ public class Organizador implements Comparable<Utilizador>{
     public Organizador(Utilizador u) {
         utilizador=u;
     }
+ 
 
     private void setUtilizador(Utilizador u) {
         utilizador = u;
@@ -25,7 +26,7 @@ public class Organizador implements Comparable<Utilizador>{
 
     public boolean valida() {
         if (utilizador.valida()) {
-            System.out.println("Organizador:valida: " + this.toString());
+ 
             return true;
         }
         return false;
@@ -33,7 +34,7 @@ public class Organizador implements Comparable<Utilizador>{
 
     @Override
     public String toString() {
-        return this.utilizador.toString();
+        return utilizador.getEmail();
     }
 
     public boolean isUtilizador(Utilizador u) {

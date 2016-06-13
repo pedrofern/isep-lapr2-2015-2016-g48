@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import lapr.project.utils.Utils;
 import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 
 /**
@@ -32,6 +33,12 @@ public class DialogoNovoOrganizador extends JDialog {
     
     private static CriarExposicaoController controller;
     
+     /**
+     * Guarda o botão ok e cancelar
+     */   
+    private static JButton btOk, btCancel;
+    
+    
     private CentroExposicoes ce;
     
     /**
@@ -48,44 +55,43 @@ public class DialogoNovoOrganizador extends JDialog {
         ce=cExpo;
         controller=pController;
         
-        PainelDialogoLista p=new PainelDialogoLista(ce);
-        alterarOk();
-        add(p);
-    
-        combo=p.getComboBoxUtilizadores();
+        btOk=recriarBotaoOK();
+        btCancel=recriarBotaoCancelar();
         
+      
+        PainelDialogoLista p=new PainelDialogoLista(ce, btOk, btCancel);
+       
+        combo=p.getComboBoxUtilizadores();
+        add(p);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         pack();
         setResizable(false);
         setLocationRelativeTo(framePai);
         setVisible(true);
     }
-
-    public static void setBotaoOK(JButton bt){
-        
-        PainelDialogoLista.setBotaoOK(bt);
-    }
     
-    private void alterarOk(){
-        setBotaoOK(recriarBotaoOK());
-    }
+  
     
     public JButton recriarBotaoOK(){
         JButton btn = new JButton("OK");
         btn.setMnemonic(KeyEvent.VK_O);
         btn.setToolTipText("Confirma adição organizador");
+
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                Utilizador u= (Utilizador) combo.getSelectedItem();
+               Utilizador u= (Utilizador) combo.getSelectedItem();
+              
+               JList lista = framePai.getLstOrganizadores();
+               ModeloListaOrganizadores modeloListaUsers = (ModeloListaOrganizadores) lista.getModel();
                 
-                controller.addOrganizador(u);
-             
-                JList lista = framePai.getLstOrganizadores();
-                ModeloListaUtilizadores modeloListaUsers = (ModeloListaUtilizadores) lista.getModel();
-                boolean organizadorAdicionado = modeloListaUsers.addElement(u);
-                if (organizadorAdicionado) {   
+               controller.criaOrganizador(u);
+                 
+                boolean organizadorAdicionado = modeloListaUsers.addElement(controller.getOrganizador());
+                if (organizadorAdicionado) {
+                        controller.setListaOrganizadores(modeloListaUsers.getListaOrganizadores());
+                        
                         framePai.getBotaoRemoverProduto().setEnabled(true);
                         JOptionPane.showMessageDialog(
                                 framePai,
@@ -106,7 +112,7 @@ public class DialogoNovoOrganizador extends JDialog {
         return btn;
     }
     
-    private void setBotaoCancelar(){
+    private JButton recriarBotaoCancelar(){
         JButton btn = new JButton("Cancelar");
         btn.setMnemonic(KeyEvent.VK_C);
         btn.setToolTipText("Cancelar adição de organizadores");
@@ -117,6 +123,6 @@ public class DialogoNovoOrganizador extends JDialog {
                 dispose();
             }
         });
-         
+         return btn;
     }
 }

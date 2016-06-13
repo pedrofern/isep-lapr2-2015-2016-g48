@@ -11,6 +11,7 @@ import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
+import javax.swing.JOptionPane;
 import lapr.project.controller.DetetarConflitosController;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.states.AlterarCandAbertas;
@@ -327,7 +328,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     }
 
     public boolean valida() {
-         if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true) {
+         if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true && validaMinOrganizadores()==true) {
             return true;
         }
         return false;
@@ -354,13 +355,28 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         return true;
     }
 
-
-    public boolean validaMinOrganizadores(List<Organizador> listaOrg) {
-        if (listaOrg.size() >= 2) {
+    public boolean validaMinOrganizadores() {
+        if (listaOrganizadores.getListaOrganizadores().size() >= 2) {
             return true;
         } else {
             return false;
         }
+    }
+    
+    public boolean validaDataFimSuperiorInicio(){
+        if (dataFim.isMaior(dataInicio) && dataFimAvaliacao.isMaior(dataInicioAvaliacao) && dataFimStands.isMaior(dataInicioStands)
+                && dataFimSubmissao.isMaior(dataInicioSubmissao)){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean validaSeguimentoDatas(){
+        if( dataInicio.isMaior(dataFimStands) || dataFimStands.isMaior(dataFimAvaliacao) && dataFimAvaliacao.isMaior(dataAlteracaoConflitos) &&
+                dataAlteracaoConflitos.isMaior(dataDeteccaoConflitos) && dataDeteccaoConflitos.isMaior(dataFimSubmissao)){
+            return true;
+        }
+        return false;
     }
 
     public boolean hasOrganizador(Utilizador u) {
@@ -505,7 +521,7 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         str += "\tLocal: " + this.local + "\n";
         str += "\tOrganizadores:\n";
         for (Organizador o : listaOrganizadores.getListaOrganizadores()) {
-            str += "\t\t" + o.getUtilizador().getUsername() + "\n";
+            str += "\t\t" + o.getUtilizador().toString() + "\n";
         }
 
         return str;

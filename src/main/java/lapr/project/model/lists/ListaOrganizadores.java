@@ -32,29 +32,36 @@ public class ListaOrganizadores {
      * @param u o utilizador a adicionar.
      * @return boolean
      */
-    public boolean addOrganizador(Utilizador u) {
-        
-        
-        if (u == null) {
-            return false;
+    public boolean addOrganizador(Organizador o) {
+       
+        if (!listaOrganizadores.contains(o)) {
+            return listaOrganizadores.add(o);
         }
-        Organizador o = new Organizador(u);
+        return false;
+        
+        
+////        if (u == null) {
+//            return false;
+//        }
+//        
 
-        if (o.valida() && validaOrganizador(o)) {
-            return addOrganizador(o);
-        } else {
-            return false;
-        }
+//        if (o.valida() && validaOrganizador(o)) {
+//
+//            return listaOrganizadores.add(o);
+//        } else {
+//            return false;
+//        }
     }
 
     /**
-     * Adiciona o Organizador a uma Lista.
+     * Cria e retorna um novo organizador
      *
      * @param o o Organizador a adicionar
      * @return listaOrganizadores
      */
-    private boolean addOrganizador(Organizador o) {
-        return listaOrganizadores.add(o);
+    public Organizador criaOrganizador(Utilizador u) {
+        Organizador o=new Organizador(u);
+        return o;
     }
 
     /**

@@ -32,8 +32,8 @@ import lapr.project.model.lists.RegistoUtilizadores;
  */
 public class CriarExposicaoUI extends JFrame {
     
-    private JList listaCompletaUtilizador;
-    private ListaOrganizadores listaUtilizadores;
+    private JList listaCompletaOrganizadores;
+    private ListaOrganizadores listaOrganizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataConflito, campoDataAlterarConflito, campoDataAvInicio, campoDataAvFim;
     private static CentroExposicoes ce;
     private CriarExposicaoController controller;
@@ -54,6 +54,7 @@ public class CriarExposicaoUI extends JFrame {
         super("Criar Exposicao");
         ce = centro;
        controller=new CriarExposicaoController(ce); 
+       controller.criarExposicao();
        criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -102,12 +103,11 @@ public class CriarExposicaoUI extends JFrame {
         painel.setBorder(new TitledBorder("Periodo de : "));
         painel.add(criarPainelExposicaoData(criarPainelExposiçãoDataInicial(), criarPainelExposiçãoDataFinal()));
         painel.add(criarPainelCandidaturaData(criarPainelCandidaturaDataInicial(), criarPainelCandidaturaDataFinal()));
-        painel.add(criarPainelAvaliacaoData(criarPainelAvaliacaoDataInicial(), criarPainelAvaliacaoDataFinal()));
-        painel.add(criarPainelStandsData(criarPainelStandsDataInicial(), criarPainelStandsDataFinal()));     
         painel.add(criarPainelConflitoDataFinal());
         painel.add(criarPainelAlteracaoConflitoDataFinal());
-        
-        
+        painel.add(criarPainelAvaliacaoData(criarPainelAvaliacaoDataInicial(), criarPainelAvaliacaoDataFinal()));
+        painel.add(criarPainelStandsData(criarPainelStandsDataInicial(), criarPainelStandsDataFinal()));     
+    
         return painel;
 
     }
@@ -137,16 +137,16 @@ public class CriarExposicaoUI extends JFrame {
                 NUMERO_COLUNAS,
                 INTERVALO_HORIZONTAL,
                 INTERVALO_VERTICAL));
-
-        listaCompletaUtilizador = new JList();
-        controller.criarExposicao();
-     
-        listaUtilizadores = controller.getExposicao().getListaOrganizadores();
         
-        modeloListaOrganizadores = new ModeloListaOrganizadores(listaUtilizadores);
+        listaOrganizadores = controller.getListaOrganizadores();
+        
+        modeloListaOrganizadores = new ModeloListaOrganizadores(listaOrganizadores);
+        
+        listaCompletaOrganizadores = new JList(modeloListaOrganizadores);
+        
         p.add(criarPainelPeriodo(criarPainelPeriodoData()));
         p.add(criarPainelListaOrganizador("Lista de Organizador",
-                listaCompletaUtilizador,
+                listaCompletaOrganizadores,
                 modeloListaOrganizadores));
 
         return p;
@@ -469,48 +469,68 @@ public class CriarExposicaoUI extends JFrame {
 
     }
 
-    private void guardar() {
+    private void setDados() {
         
-        Data dataInicialPrimeiro = Utils.converterStringParaData(campoDataInicial.getText());
-        Data dataFinalUltimo = Utils.converterStringParaData(campoDataFinal.getText());
-        Data dataInicioSubm= Utils.converterStringParaData(campoSubCandDataInicial.getText());
-        Data dataFimSubm= Utils.converterStringParaData(campoSubCandDataFinal.getText());
-        Data dataInicioStands= Utils.converterStringParaData(campoSubStandsDatainicial.getText());
-        Data dataFimStands=Utils.converterStringParaData(campoSubStandsDataFinal.getText());
-        Data dataConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
-        Data dataInicioAv=Utils.converterStringParaData(campoDataAvInicio.getText());
-        Data dataFimAv=Utils.converterStringParaData(campoDataAvFim.getText());
-        Data dataAConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
-        
-        controller.criarExposicao();
+            Data dataInicialPrimeiro = Utils.converterStringParaData(campoDataInicial.getText());
+            Data dataFinalUltimo = Utils.converterStringParaData(campoDataFinal.getText());
+            Data dataInicioSubm= Utils.converterStringParaData(campoSubCandDataInicial.getText());
+            Data dataFimSubm= Utils.converterStringParaData(campoSubCandDataFinal.getText());
+            Data dataInicioStands= Utils.converterStringParaData(campoSubStandsDatainicial.getText());
+            Data dataFimStands=Utils.converterStringParaData(campoSubStandsDataFinal.getText());
+            Data dataConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
+            Data dataInicioAv=Utils.converterStringParaData(campoDataAvInicio.getText());
+            Data dataFimAv=Utils.converterStringParaData(campoDataAvFim.getText());
+            Data dataAConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
 
+            controller.setDados(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm, dataInicioAv, dataFimAv, dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
         
-        controller.setDados(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm, dataInicioAv, dataFimAv, dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
-        
-        controller.registaExposicao();
-        
-        JOptionPane.showMessageDialog(
-                            null,
-                            "Nova Exposição: \n" + controller.getExposicaoString(),
-                            "Nova Exposição",
-                            JOptionPane.INFORMATION_MESSAGE);    
-        dispose();
-
     }
 
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
+             
         btnConfirmar.addActionListener((ActionEvent e) -> {
-            if (txtTitulo.getText().isEmpty() == true
-                    || txtDescricao.getText().isEmpty() == true
-                    || txtLocal.getText().isEmpty() == true) {
-//                        JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Criar Exposoção",
-//                            JOptionPane.ERROR_MESSAGE);
-            } else {
-                guardar();
+            
+            controller.setListaOrganizadores(listaOrganizadores);
+  
+            String base="__/__/____";
+            
+            if (txtTitulo.getText().isEmpty() == true || txtDescricao.getText().isEmpty() == true
+                    || txtLocal.getText().isEmpty() == true || campoDataInicial.getText().equals(base) || campoDataFinal.getText().equals(base) || campoDataAvInicio.getText().equals(base) 
+                || campoDataAvFim.getText().equals(base) || campoSubCandDataInicial.getText().equals(base) || campoSubCandDataFinal.getText().equals(base) ||
+                campoSubStandsDataFinal.getText().equals(base) || campoSubCandDataInicial.getText().equals(base) || campoDataAlterarConflito.getText().equals(base)
+                || campoDataAlterarConflito.getText().equals(base)){
+                    
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Tem de preencher todos os campos!",
+                            "Criar Exposoção",
+                            JOptionPane.ERROR_MESSAGE);
+            }else{
+                
+                setDados();
+                
+                if(!controller.validaDataFimSuperiorInicio() || !controller.validaMinOrganizadores() || !controller.validaSeguimentoDatas()){
+                    if (!controller.validaDataFimSuperiorInicio()){
+                        JOptionPane.showMessageDialog(null, "A data fim tem de ser superiores à de início correspondente.", "Criar Exposição",JOptionPane.ERROR_MESSAGE);
+                    }if (!controller.validaMinOrganizadores()){
+                        JOptionPane.showMessageDialog(null, "Tem de introduzir pelo menos 2 organizadores", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+                    }if (!controller.validaSeguimentoDatas()){
+                        JOptionPane.showMessageDialog(null, "As datas não têm o seguimento devido (por exemplo: data submissão candidatura ser superior à a da avaliação", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else {
+
+                    controller.registaExposicao(); 
+
+                   JOptionPane.showMessageDialog(
+                                       null,
+                                       controller.getExposicaoString(),
+                                       "Nova Exposição",
+                                       JOptionPane.INFORMATION_MESSAGE);    
+                   dispose();
+                
+                }
+            
             }
         });
         return btnConfirmar;
@@ -565,7 +585,7 @@ public class CriarExposicaoUI extends JFrame {
      * @return lista produtos
      */
     public JList getLstOrganizadores() {
-        return listaCompletaUtilizador;
+        return listaCompletaOrganizadores;
     }
     
     /**

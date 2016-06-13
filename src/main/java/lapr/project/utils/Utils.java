@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
@@ -190,15 +191,15 @@ public class Utils {
     
         return comboRecursos;
     }
-        
+  
         public static Data converterStringParaData(String data){
             
             String[] convertida =data.split("/");
         
-            int diainicial = Integer.parseInt(convertida[0]);
+            int diainicial = Integer.parseInt(convertida[2]);
             int mesinicial = Integer.parseInt(convertida[1]);
-            int anoinicial = Integer.parseInt(convertida[2]);
-         
+            int anoinicial = Integer.parseInt(convertida[0]);
+            
             Data data_convertida=new Data(diainicial, mesinicial,anoinicial);
             
             return data_convertida;

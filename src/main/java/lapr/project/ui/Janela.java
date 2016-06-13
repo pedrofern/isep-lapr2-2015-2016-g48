@@ -33,7 +33,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private static Utilizador m_ut;
     private String tipo_utilizador;
     
-    private JTabbedPane tabPane;
+    private static JTabbedPane tabPane;
     private static PainelInfoUser pUser;
  
     private static int WIDTH=625, HEIGHT=500, MINWIDTH=625, MINHEIGHT=480;
@@ -212,7 +212,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private JTabbedPane criarSeparadores() {
         tipo_utilizador=m_ut.getUsername();
         
-        JTabbedPane tabPane = new JTabbedPane(); 
+        tabPane = new JTabbedPane(); 
         
         if("Fae".equals(tipo_utilizador)){
             tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
@@ -277,4 +277,9 @@ public class Janela extends JFrame /** implements Serializable**/{
 //        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
         System.exit(0);
     }
+    
+    public static JTabbedPane getTabPane(){
+        return tabPane;
+    }
+  
 }

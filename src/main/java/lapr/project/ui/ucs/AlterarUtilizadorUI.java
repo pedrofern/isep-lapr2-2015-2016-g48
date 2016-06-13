@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import lapr.project.controller.AlterarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
+import lapr.project.ui.Janela;
 import lapr.project.ui.PainelInfoUser;
 
 /**
@@ -143,9 +144,8 @@ public class AlterarUtilizadorUI extends JPanel{
                 String[] opcoes = {"Sim", "Não"};
                 
                 int opcao=JOptionPane.showOptionDialog(new Frame(),pergunta,"Alterar Utilizador", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-                        JOptionPane.showMessageDialog(AlterarUtilizadorUI.this, "Em construção", "Aviso",JOptionPane.WARNING_MESSAGE);
-           
-            
+                        
+               Janela.getTabPane().setSelectedIndex(0);
             
             }
         });

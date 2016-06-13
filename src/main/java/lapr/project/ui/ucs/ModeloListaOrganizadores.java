@@ -22,23 +22,30 @@ public class ModeloListaOrganizadores extends AbstractListModel {
     public ModeloListaOrganizadores(ListaOrganizadores lista) {
         listaOrganizadores=lista;
     }
-
-    @Override
-    public int getSize() {
-        return listaOrganizadores.getListaOrganizadores().size();
-    }
-
+  
     @Override
     public Object getElementAt(int indice) {
         return listaOrganizadores.getListaOrganizadores().indexOf(indice);
     }
     
-    public boolean addElement(Utilizador u){
-        boolean utilizadorAdicionado = listaOrganizadores.addOrganizador(u);
+    public boolean addElement(Organizador o){
+        
+        boolean utilizadorAdicionado = listaOrganizadores.addOrganizador(o);
         if(utilizadorAdicionado)
-            fireIntervalAdded(this, getSize()-1, getSize()-1);
-        return utilizadorAdicionado;
+
+            fireIntervalAdded(this, getSize() -1, getSize() -1);
+        return utilizadorAdicionado;      
+       
     } 
+    
+    @Override
+    public int getSize() {
+        return listaOrganizadores.getListaOrganizadores().size();
+    }
+    
+    public int getRowCount() {
+        return listaOrganizadores.getListaOrganizadores().size();
+    }
 
     public boolean removeElement(Utilizador utilizador){
         int indice = listaOrganizadores.getListaOrganizadores().indexOf(utilizador);
@@ -54,6 +61,10 @@ public class ModeloListaOrganizadores extends AbstractListModel {
     
     public void sort(){
         listaOrganizadores.ordenarPorPosicao();
+    }
+    
+    public ListaOrganizadores getListaOrganizadores(){
+        return listaOrganizadores;
     }
 
 }

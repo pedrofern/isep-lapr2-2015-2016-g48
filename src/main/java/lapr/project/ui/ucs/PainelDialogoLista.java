@@ -3,6 +3,8 @@ package lapr.project.ui.ucs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,7 +31,7 @@ public class PainelDialogoLista extends JPanel{
     /**
      * Guarda os botões OK e Cancelar
      */
-    private static JButton btOk, btCancel;
+    private JButton btOk, btCancel;
     
 
     /**
@@ -40,9 +42,11 @@ public class PainelDialogoLista extends JPanel{
     
    private CentroExposicoes ce;
    
-    public PainelDialogoLista(CentroExposicoes cExposicoes){
+    public PainelDialogoLista(CentroExposicoes cExposicoes, JButton btOk, JButton btCancel){
         super();
         ce=cExposicoes;
+        this.btOk=btOk;
+        this.btCancel=btCancel;
         setLayout(new BorderLayout());
         
         criarComponentes();
@@ -68,11 +72,7 @@ public class PainelDialogoLista extends JPanel{
         lbl.setPreferredSize(LABEL_TAMANHO);
 
         final int CAMPO_LARGURA = 10;
-           
-        for(Utilizador u: ce.getRegistoUtilizadores().getListaUtilizadores()){
-          u.toString();
-        }
-        
+                 
         combo=Utils.criarComboUser(ce.getRegistoUtilizadores());
       
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -91,54 +91,57 @@ public class PainelDialogoLista extends JPanel{
      * @return painel com os botões OK e Cancelar
      */
     private JPanel criarPainelBotoes() {
-        JButton btOkOK = criarBotaoOK();
-//        getRootPane().setDefaultButton(btOkOK);
-
-        JButton btOkCancelar = criarBotaoCancelar();
-
+    
         JPanel p = new JPanel();
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 10;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.add(btOkOK);
-        p.add(btOkCancelar);
+        p.add(btOk);
+        p.add(btCancel);
 
         return p;
     }
     
-        
-    /**
-     * cria botão OK
-     * @return botão OK
-     */
-    private JButton criarBotaoOK() {
-        JButton btOk = new JButton("OK");
-        btOk.setMnemonic(KeyEvent.VK_O);
-        btOk.setToolTipText("Confirma adição organizador");
-       
-        return btOk;
-    }
-    
-    
-    
-    /**
-     * cria botão Cancelar
-     * @return botão Cancelar
-     */
-    private JButton criarBotaoCancelar() {
-        btCancel = new JButton("Cancelar");
-       
-        return btCancel;
-    }  
-    
-    public static void setBotaoOK(JButton bt){
-        btOk=bt;
-    }
-    
-    public static void setBotaoCancelar(JButton bt){
-        btCancel=bt;
-    }
+//        
+//    /**
+//     * cria botão OK
+//     * @return botão OK
+//     */
+//    private JButton criarBotaoOK() {
+//        JButton btOk = new JButton("OK");
+//        btOk.setMnemonic(KeyEvent.VK_O);
+//        btOk.setToolTipText("Confirma adição");
+//       
+//        return btOk;
+//    }
+//    
+//    
+//    
+//    /**
+//     * cria botão Cancelar
+//     * @return botão Cancelar
+//     */
+//    private JButton criarBotaoCancelar() {
+//        btCancel = new JButton("Cancelar");
+//       
+//         btCancel.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////                dispose();
+//            }
+//        });
+//        
+//        return btCancel;
+//    }  
+//    
+//    public JButton getBotaoCancelar(){
+//        return btCancel;
+//    }
+//    
+//    public JButton getBotaoOk(){
+//        return btOk;
+//    }
     
     public JComboBox getComboBoxUtilizadores(){
         return combo;
