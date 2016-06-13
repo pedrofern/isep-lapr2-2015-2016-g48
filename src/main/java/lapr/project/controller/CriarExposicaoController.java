@@ -108,4 +108,10 @@ public class CriarExposicaoController {
         return exposicao;
     }
 
+    public boolean validaDatas(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos, 
+        String dataavcand, String datafavcand, String dataistand, String datafstand) {
+        return exposicao.validaDatas(datai, dataf, datasub, datafsub, dataconflitos, dataaltconflitos, 
+        dataavcand, datafavcand, dataistand, datafstand); 
+    }
+
 }

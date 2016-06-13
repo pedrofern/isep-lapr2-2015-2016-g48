@@ -205,4 +205,17 @@ public class Utils {
             return data_convertida;
         
         }
+        
+        public static boolean validaDatasString(String data){
+            
+            String[] convertida =data.split("/");
+            int diainicial = Integer.parseInt(convertida[2]);
+            int mesinicial = Integer.parseInt(convertida[1]);
+            
+            if(mesinicial>=1 && mesinicial<=12 && diainicial>=1 && diainicial<=31){
+                return true;
+            }
+        
+            return false;
+        }
 }

@@ -17,12 +17,12 @@ import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.states.AlterarCandAbertas;
 import lapr.project.model.states.AlterarCandFechadas;
 import lapr.project.utils.Data;
+import lapr.project.utils.Utils;
 
 /**
  *
  * @author Pedro Fernandes e Diana 
- */
-public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao> {
+ */public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao> {
 
     private String titulo;
     private String textoDescritivo;
@@ -354,6 +354,27 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
         }
         return true;
     }
+    
+    
+    public boolean validaDatas(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos, 
+        String dataavcand, String datafavcand, String dataistand, String datafstand) {
+        boolean b1=Utils.validaDatasString(datai);
+        boolean b2=Utils.validaDatasString(dataf);
+        boolean b3=Utils.validaDatasString(datasub);
+        boolean b4=Utils.validaDatasString(datafsub);
+        boolean b5=Utils.validaDatasString(dataconflitos);
+        boolean b6=Utils.validaDatasString(dataaltconflitos);
+        boolean b7=Utils.validaDatasString(dataavcand);
+        boolean b8=Utils.validaDatasString(datafavcand);
+        boolean b9=Utils.validaDatasString(dataistand);
+        boolean b10=Utils.validaDatasString(datafstand);
+        
+        if(b1==true && b2==true && b3==true && b4==true && b5==true && b6==true && b7==true && b8==true && b9==true && b10==true){
+            return true;
+        }
+        
+       return false;
+    }
 
     public boolean validaMinOrganizadores() {
         if (listaOrganizadores.getListaOrganizadores().size() >= 2) {
@@ -551,4 +572,5 @@ public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao>
     public void setProcessoAtribuicao(ProcessoAtribuicao pa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
