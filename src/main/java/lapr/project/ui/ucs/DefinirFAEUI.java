@@ -11,6 +11,7 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 
@@ -23,7 +24,7 @@ public class DefinirFAEUI extends JFrame {
     
     private static CentroExposicoes ce;
     private static Utilizador user;
- 
+ private CriarExposicaoController controller;
      private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;
@@ -110,7 +111,7 @@ public class DefinirFAEUI extends JFrame {
                 INTERVALO_VERTICAL));
 
         lstCompletaUtilizadores = new JList();
-        listaCompletaUtilizadores = new RegistoUtilizadores();
+        listaCompletaUtilizadores = controller.getListaUtilizadores();
         modeloListaUtilizadores = new ModeloListaUtilizadores(listaCompletaUtilizadores);
         btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
         p.add(criarPainelLista("Lista de Utilizadores",
