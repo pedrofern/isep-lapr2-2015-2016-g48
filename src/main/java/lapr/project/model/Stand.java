@@ -6,7 +6,14 @@ package lapr.project.model;
  */
 public class Stand {
     
+    private String id;
+    private String descricao;
+    private float area;
+    
     public Stand(){
-        
+  
+    }
+    public String getDescricao() {
+        return descricao;
     }
 }
