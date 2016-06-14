@@ -9,7 +9,9 @@ import lapr.project.model.Stand;
  */
 public class RegistoStands {
     
-    
+    /**
+     * 
+     */
     private ArrayList<Stand> listaStands;
     private Stand stand;
     /**
