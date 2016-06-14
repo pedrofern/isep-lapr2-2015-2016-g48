@@ -38,7 +38,7 @@ public class FAE {
         o_utilizador = u;
     }
 
-    public boolean validaFAE() {
+    public boolean validaMenbroFAE() {
         if (m_fae.getNome()!= null && m_fae.getUsername() != null && m_fae.getEmail()!= null){
             return true;
         } else

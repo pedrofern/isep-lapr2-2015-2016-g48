@@ -13,6 +13,7 @@ import javafx.scene.layout.Region;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.controller.CriarExposicaoController;
+import lapr.project.controller.DefinirFAEController;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.Utils;
@@ -27,15 +28,18 @@ public class DefinirFAEUI extends JFrame {
     private static CentroExposicoes ce;
     private static Utilizador user;
     private JComboBox combo;
-    private CriarExposicaoController controller;
+    private DefinirFAEController controller;
     private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;
-    // private ModeloListaUtilizadores modeloListaUtilizadores;
-    //private ModeloListaFAE modeloListaFAE;
     private DefaultListModel modeloListaFAE, modeloListaUtilizadores;
     private RegistoUtilizadores listaCompletaUtilizadores;
+    private RegistoExposicoes listaExposicoes;
     private ListaFAE listaUtilizadoresFAE;
+    private Organizador o_Organizador;
+    private int i = 0;
+    private Exposicao m_exposicao;
+    private Object[] tmp;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
     public DefinirFAEUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
@@ -44,6 +48,14 @@ public class DefinirFAEUI extends JFrame {
 
         ce = centroExposicoes;
         user = utilizador;
+        o_Organizador = new Organizador(user);
+        controller = new DefinirFAEController(centroExposicoes, o_Organizador);
+        m_exposicao = new Exposicao();
+        m_exposicao.setTitulo("TESTE EXPOSICAO");
+
+        listaExposicoes = ce.getRegistoExposicoes();
+        listaExposicoes.adicionarExposicao(m_exposicao);
+        listaExposicoes.registaExposicao(m_exposicao);
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -99,10 +111,8 @@ public class DefinirFAEUI extends JFrame {
     }
 
     private JComboBox getListaExposicao() {
-
-        comboBoxExposicao = new JComboBox();
-        comboBoxExposicao.setSelectedIndex(-1);
-        comboBoxExposicao.setEditable(false);
+      
+        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
         comboBoxExposicao.setPreferredSize(new Dimension(250, 20));
         return comboBoxExposicao;
     }
@@ -200,13 +210,29 @@ public class DefinirFAEUI extends JFrame {
 
     private JButton criarBotaoEliminarJogador(JList lstLista) {
         JButton btn = new JButton("Eliminar FAE");
+        Object[] lista = lstUtilizadoresFAE.getSelectedValues();
         btn.addActionListener((ActionEvent e) -> {
-            int indice = lstUtilizadoresFAE.getSelectedIndex();
 
-            // exclui o item selecionado
-            if (indice > -1) {
-                ((DefaultListModel) (lstUtilizadoresFAE.getModel()))
-                        .remove(indice);
+            if (lstUtilizadoresFAE.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, "Não foi selecionado nenhum item a ser eleminado!", "Nenhum iten selecionado", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+
+                int var = JOptionPane.showConfirmDialog(null, "Deseja realmente eleminar ?", "Deseja realmente eleminar ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                if (var == 0) {
+                    modeloListaFAE.remove(lstUtilizadoresFAE.getSelectedIndex());
+                    int index = lstUtilizadoresFAE.getSelectedIndex();
+                    if (modeloListaFAE.getSize() == 0) {
+                        btn.setEnabled(true);
+
+                    } else if (lstUtilizadoresFAE.getSelectedIndex() == modeloListaFAE.getSize()) {
+                        --index;
+                    } else {
+                        lstUtilizadoresFAE.setSelectedIndex(index);
+                        lstUtilizadoresFAE.ensureIndexIsVisible(index);
+                    }
+                }
             }
         });
         return btn;
@@ -224,6 +250,9 @@ public class DefinirFAEUI extends JFrame {
                 for (Object valor : values) {
                     if (!modeloListaFAE.contains(valor)) {
                         modeloListaFAE.addElement(valor);
+                        tmp[i] = valor;
+                        i++;
+
                     } else {
                         JOptionPane.showMessageDialog(
                                 framePai,
@@ -247,8 +276,30 @@ public class DefinirFAEUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                //controller.getExposicao().getListaFAE().addMembroFAEAll((Utilizador)valor);
+                Exposicao exp = new Exposicao();
+                exp.setTitulo("TEste");
+                Utilizador u = (Utilizador) tmp[i];
+
+                if (controller.registaMenbroFAE(controller.getFAE())) {
+
+                    m_exposicao.getListaFAE();
+                    controller.addFAE(u, exp);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            controller.getFAEString(),
+                            "Novo FAE",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "FAE já adicionado!",
+                            "Novo FAE",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
             }
+
         });
 
         return btnConfirmar;
