@@ -34,7 +34,7 @@ public class Organizador implements Comparable<Utilizador>{
 
     @Override
     public String toString() {
-        return utilizador.getEmail();
+        return utilizador.getNome();
     }
 
     public boolean isUtilizador(Utilizador u) {

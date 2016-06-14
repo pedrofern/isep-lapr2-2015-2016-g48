@@ -9,6 +9,7 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.ui.ucs.ModeloListaOrganizadores;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
 import org.junit.AfterClass;
@@ -36,6 +37,10 @@ public class CriarExposicaoControllerTest {
                
          u=new Utilizador();
         u1=new Utilizador();
+        u.setEmail("teste@isep.ipp.pt");
+        u.setUsername("teste");
+        u1.setEmail("teste1@isep.ipp.pt");
+        u1.setEmail("teste1@isep.ipp.pt");
         o=new Organizador(u);
         o1=new Organizador(u1);
         lo=new ListaOrganizadores();
@@ -59,9 +64,10 @@ public class CriarExposicaoControllerTest {
         boolean expResult = true;
         
         teste.criarExposicao();
-
-        lo.addOrganizador(o);
-        lo.addOrganizador(o1);
+        teste.criaOrganizador(u);
+        teste.criaOrganizador(u1);
+        lo.addOrganizador(new Organizador(u));
+        lo.addOrganizador(new Organizador(u1));
         
         teste.setListaOrganizadores(lo);
  

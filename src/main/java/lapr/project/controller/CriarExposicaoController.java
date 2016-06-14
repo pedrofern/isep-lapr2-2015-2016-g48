@@ -67,12 +67,12 @@ public class CriarExposicaoController {
   
     }
     
-    public void criaFAE(Utilizador u) {
-        
-        fae= exposicao.getListaFAEs().criaFAE(u);
-  
-    }
-    
+//    public void criaFAE(Utilizador u) {
+//        
+//        fae= exposicao.getListaFAEs().criaFAE(u);
+//  
+//    }
+//    
     public Organizador getOrganizador(){
         return organizador;
     }
