@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import lapr.project.controller.*;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,12 +23,13 @@ public class AtribuirCandidaturaUI extends JFrame{
     private static CentroExposicoes ce;
     private static Utilizador user;
     private static AtribuirCandidaturaController controllerAC;
-    private JButton btnConfirmar, btnLimpar, btnFechar;
+    private JButton btnConfirmar, btnLimpar, btnFechar, btnSel1, btnSel2, btnSel3;
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 320;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Area de Stand").getPreferredSize();
-    private JComboBox comboboxExposicao;
+    private JPanel pExpo, pMecs,pAtrib, pFae;
+    private JComboBox comboExposicao, comboMec, comboFae;
       
     public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador)  {
         super("Atribuição de Candidaturas");
@@ -39,12 +39,18 @@ public class AtribuirCandidaturaUI extends JFrame{
         controllerAC = new AtribuirCandidaturaController(ce);
 
         criarComponentes();
+ 
+        pMecs.setVisible(false);
+        pFae.setVisible(false);
+        pAtrib.setVisible(false);
+        btnConfirmar.setEnabled(false);
+        
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(framePai);
         setVisible(true);
     }
     
-    public void criarComponentes() {
+    public final void criarComponentes() {
         add(criarPainelCentro(), BorderLayout.CENTER);
         add(criarPainelOeste(), BorderLayout.WEST);
         add(criarPainelSul(), BorderLayout.SOUTH);
@@ -52,45 +58,96 @@ public class AtribuirCandidaturaUI extends JFrame{
     }
     
     private JPanel criarPainelCentro(){
-        JPanel p = new JPanel(new FlowLayout());
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.setBorder(new TitledBorder("Mecanismos"));
+        pMecs = new JPanel(new BorderLayout());
+        pMecs.setBorder(new EmptyBorder(0, 10, 0, 10));
+        pMecs.setPreferredSize(new Dimension(80, getHeight()));
+        pMecs.setBorder(new TitledBorder("Mecanismo"));
+        
+        pMecs.add(criarPainelMecanismos(), BorderLayout.WEST);
+        pMecs.add(criarPainelFae(), BorderLayout.CENTER);
 
-        return p;
+   
+        return pMecs;
     }
     
     private JPanel criarPainelEste(){
-        JPanel p = new JPanel(new FlowLayout());
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.setBorder(new TitledBorder("Atribuições"));
-        p.setPreferredSize(new Dimension(250, 50));
-
-        return p;
+        pAtrib = new JPanel(new FlowLayout());
+        pAtrib.setPreferredSize(new Dimension(300, getHeight()));
+        pAtrib.setBorder(new EmptyBorder(0, 10, 0, 10));
+        pAtrib.setBorder(new TitledBorder("Candidaturas"));
+        pAtrib.setPreferredSize(new Dimension(250, 50));
+        
+        
+        return pAtrib;
     }
     
     private JPanel criarPainelOeste(){
-    JPanel p = new JPanel(new FlowLayout());
-        p.add(criarPainelExposicao());
-        p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.setBorder(new TitledBorder("Exposição"));
-
-        return p;
+        pExpo = new JPanel(new BorderLayout());
+       pExpo.setPreferredSize(new Dimension(200, getHeight()));
+        pExpo.setBorder(new EmptyBorder(0, 10, 0, 10));
+        pExpo.setBorder(new TitledBorder("Exposição"));
+        pExpo.add(criarPainelExposicao());
+        return pExpo;
     }
     
     private JPanel criarPainelExposicao() {
 
-        JPanel p = new JPanel(new FlowLayout());
+        JPanel p = new JPanel(new BorderLayout());
         p.setBorder(new EmptyBorder(0, 10, 0, 10));
-        p.add(getListaExposicao());
+        p.add(getComboExposicao(), BorderLayout.NORTH);
+        
+        p.add(criarPainelSeleccionar1(), BorderLayout.SOUTH);
         return p;
-
     }
     
-    private JComboBox getListaExposicao() {
+    
+    private JPanel criarPainelMecanismos() {
+
+        JPanel p = new JPanel(new BorderLayout());
+        p.setBorder(new EmptyBorder(0, 10, 0, 10));
+        pMecs.setBorder(new TitledBorder("Mecanismo"));
         
-        comboboxExposicao = Utils.criarComboExpo(ce.getRegistoExposicoes());
-      
-        return comboboxExposicao;
+        p.add(getComboMecanismos(), BorderLayout.NORTH);
+        p.add(criarPainelSeleccionar2(), BorderLayout.SOUTH);
+        return p;
+    }
+    
+    private JPanel criarPainelFae() {
+
+        pFae = new JPanel(new BorderLayout());
+        pFae.setBorder(new EmptyBorder(0, 10, 0, 10));
+        
+        pFae.add(getPanelFaes(), BorderLayout.NORTH);
+        pFae.add(criarPainelSeleccionar3(), BorderLayout.SOUTH);
+        return pFae;
+    }
+    
+    
+    private JComboBox getComboExposicao() {
+        
+        comboExposicao = Utils.criarComboExpo(ce.getRegistoExposicoes());
+        return comboExposicao;
+    }
+    
+
+    private JComboBox getComboMecanismos() {
+        
+        comboMec = Utils.criarComboExpo(ce.getRegistoExposicoes());
+        return comboMec;
+    }
+    
+      private JPanel getPanelFaes() {
+        JPanel p=new JPanel();
+        p.setLayout(new BorderLayout());
+        JLabel lblFae=new JLabel("FAE");
+        pFae.add(lblFae, BorderLayout.NORTH);
+        
+        comboFae = Utils.criarComboUser(ce.getRegistoUtilizadores());
+        
+        p.add(lblFae, BorderLayout.NORTH);
+        p.add(comboFae, BorderLayout.SOUTH);
+        
+        return p;
     }
     
     private JPanel criarPainelSul() {
@@ -112,19 +169,54 @@ public class AtribuirCandidaturaUI extends JFrame{
         return p;
 
     }
-
+   
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
         return btnConfirmar;
     }
 
+    private JPanel criarPainelSeleccionar1() {
+        JPanel p=new JPanel();
+        p.setLayout(new FlowLayout());
+        btnSel1 = new JButton("Seleccionar");
+        btnSel1.addActionListener((ActionEvent e) -> {
+            btnSel2.setEnabled(true);
+            comboExposicao.setEnabled(false);
+            pMecs.setVisible(true);
+                  
+        });
+        
+        p.add(btnSel1);
+        return p;
+    }
+    
+    private JPanel criarPainelSeleccionar2() {
+        JPanel p=new JPanel();
+        p.setLayout(new FlowLayout());
+        btnSel2 = new JButton("Seleccionar");
+        btnSel2.addActionListener((ActionEvent e)->{
+            btnSel3.setEnabled(true);
+            pFae.setVisible(true);
+            pAtrib.setVisible(true);
+        });
+        
+        p.add(btnSel2, BorderLayout.SOUTH);
+        return p;
+    }
+    
+    private JPanel criarPainelSeleccionar3() {
+        JPanel p=new JPanel();
+        p.setLayout(new FlowLayout());
+        btnSel3= new JButton("Seleccionar");
+        
+        p.add(btnSel3, BorderLayout.SOUTH);
+        return p;
+    }
+
     private JButton criarBotaoFechar() {
         btnFechar = new JButton("Fechar");
-        btnFechar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        btnFechar.addActionListener((ActionEvent e) -> {
+            dispose();
         });
         return btnFechar;
     }

@@ -8,10 +8,10 @@ import lapr.project.model.mechanisms.Atribuicao;
  * @author DianaSilva
  */
 public class ListaAtribuicoes {
-    private List<Atribuicao> listaAvaliacoes;
+    private List<Atribuicao> listaAtribuicoes;
 
     public ListaAtribuicoes() {
-        this.listaAvaliacoes = new ArrayList<>();
+        this.listaAtribuicoes = new ArrayList<>();
     }
 
     
@@ -29,7 +29,7 @@ public class ListaAtribuicoes {
         List<Atribuicao> listAvaliacoes = new ArrayList<>();
 
         for (Atribuicao a : getListaAtribuicoes()) {
-//            if (a.isFAE(id)) {
+//            if (a.temFAE(id)) {
 //                listAvaliacoes.add(a);
 //            }
         }
@@ -90,17 +90,21 @@ public class ListaAtribuicoes {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.listaAvaliacoes);
+        hash = 67 * hash + Objects.hashCode(this.listaAtribuicoes);
         return hash;
     }
 
     /**
      * Obtem a lista de Avaliacoes
      *
-     * @return the listaAvaliacoes
+     * @return the listaAtribuicoes
      */
     public List<Atribuicao> getListaAtribuicoes() {
-        return listaAvaliacoes;
+        return listaAtribuicoes;
+    }
+
+    public Object obterAtribuicao(int index) {
+        return listaAtribuicoes.get(index);
     }
     
     
