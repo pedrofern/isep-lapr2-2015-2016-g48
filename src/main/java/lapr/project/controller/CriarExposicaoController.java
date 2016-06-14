@@ -16,6 +16,7 @@ public class CriarExposicaoController {
     private Exposicao exposicao;
     private Utilizador user;
     private Organizador organizador;
+    private FAE fae;
 
 
     public CriarExposicaoController(CentroExposicoes centroExposicoes) {
@@ -66,8 +67,18 @@ public class CriarExposicaoController {
   
     }
     
+    public void criaFAE(Utilizador u) {
+        
+        fae= exposicao.getListaFAEs().criaFAE(u);
+  
+    }
+    
     public Organizador getOrganizador(){
         return organizador;
+    }
+    
+     public FAE getFAE(){
+        return fae;
     }
     
     public boolean validaMinOrganizadores(){

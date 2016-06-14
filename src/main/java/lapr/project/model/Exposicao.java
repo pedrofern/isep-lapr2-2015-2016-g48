@@ -18,8 +18,9 @@ import lapr.project.utils.Utils;
 
 /**
  *
- * @author Pedro Fernandes e Diana 
- */public class Exposicao implements Submissivel, Atribuivel ,Comparable<Exposicao> {
+ * @author Pedro Fernandes e Diana
+ */
+public class Exposicao implements Submissivel, Atribuivel, Comparable<Exposicao> {
 
     private String titulo;
     private String textoDescritivo;
@@ -34,12 +35,12 @@ import lapr.project.utils.Utils;
     private Data dataInicioStands;
     private Data dataFimStands;
     private Data dataDeteccaoConflitos;
-    
+
     private static ListaCandidaturas listaCandidaturas;
     private static ListaFAE listaFaes;
     private static ListaOrganizadores listaOrganizadores;
     private static ListaDemonstracoes listaDemonstracoes;
-    
+
     private static ExposicaoEstado state;
     private static Timer timer;
 
@@ -47,42 +48,42 @@ import lapr.project.utils.Utils;
         state = new ExposicaoCriadaEstado(this);
         listaOrganizadores = new ListaOrganizadores();
         listaCandidaturas = new ListaCandidaturas();
-        listaDemonstracoes=new ListaDemonstracoes();
-        listaFaes= new ListaFAE();
+        listaDemonstracoes = new ListaDemonstracoes();
+        listaFaes = new ListaFAE();
         timer = new Timer();
-        
+
     }
-    
-    public ListaDemonstracoes getListaDemonstracoes(){
+
+    public ListaDemonstracoes getListaDemonstracoes() {
         return listaDemonstracoes;
     }
-    
+
     public ListaFAE getListaFAEs() {
-          return listaFaes;
+        return listaFaes;
     }
-    
+
     public ListaOrganizadores getListaOrganizadores() {
-          return listaOrganizadores;
+        return listaOrganizadores;
     }
-         
+
     public ListaCandidaturas getRegistoCandidaturas() {
         return listaCandidaturas;
     }
-   
-    public void setDados(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim, Data dataAvInicio, Data dataAvFim, Data dConflitos, Data dataInicioStands, Data dataFimStand, Data dAConflitos){
-        this.titulo=titulo;
-        textoDescritivo=descricao;
-        this.dataInicio=dataInicio;
-        this.dataFim=dataFim;
-        this.local=local;
-        dataInicioSubmissao=dataSubInicio;
-        dataFimSubmissao=dataSubFim;
-        dataInicioAvaliacao=dataAvInicio;
-        dataFimAvaliacao=dataAvFim;
-        dataDeteccaoConflitos=dConflitos;
-        this.dataInicioStands=dataInicioStands;
-        this.dataFimStands=dataFimStand;
-        dataAlteracaoConflitos=dAConflitos;
+
+    public void setDados(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim, Data dataAvInicio, Data dataAvFim, Data dConflitos, Data dataInicioStands, Data dataFimStand, Data dAConflitos) {
+        this.titulo = titulo;
+        textoDescritivo = descricao;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.local = local;
+        dataInicioSubmissao = dataSubInicio;
+        dataFimSubmissao = dataSubFim;
+        dataInicioAvaliacao = dataAvInicio;
+        dataFimAvaliacao = dataAvFim;
+        dataDeteccaoConflitos = dConflitos;
+        this.dataInicioStands = dataInicioStands;
+        this.dataFimStands = dataFimStand;
+        dataAlteracaoConflitos = dAConflitos;
     }
 
     public void setTitulo(String strTitulo) {
@@ -108,48 +109,47 @@ import lapr.project.utils.Utils;
     public String getLocal() {
         return local;
     }
-    
+
     public Date getDataInicioSubmissao() throws Exception {
         return Data.converterParaDate(dataInicioSubmissao);
     }
-    
+
     public Date getDataFimSubmissao() throws Exception {
         return Data.converterParaDate(dataFimSubmissao);
     }
 
     public Date getDataInicioAtribuicao() throws Exception {
-        return Data.converterParaDate(dataInicioAvaliacao); 
+        return Data.converterParaDate(dataInicioAvaliacao);
     }
-    
-     public Date getDataFimAtribuicao() throws Exception {
-        return Data.converterParaDate(dataFimAvaliacao); 
+
+    public Date getDataFimAtribuicao() throws Exception {
+        return Data.converterParaDate(dataFimAvaliacao);
     }
-    
+
     public Date getDataInicio() throws Exception {
         return Data.converterParaDate(dataInicio);
     }
-    
+
     public Date getDataFim() throws Exception {
         return Data.converterParaDate(dataFim);
     }
-    
+
     public Date getDataAlteracaConflitos() throws Exception {
         return Data.converterParaDate(dataAlteracaoConflitos);
     }
-    
-    public Date getDataInicioStands() throws Exception{
+
+    public Date getDataInicioStands() throws Exception {
         return Data.converterParaDate(dataInicioStands);
     }
-    
+
     public Date getDataFimStands() throws Exception {
         return Data.converterParaDate(dataFimStands);
     }
-    
-    public Date getDataAlteracaoConflitos() throws Exception{   
+
+    public Date getDataAlteracaoConflitos() throws Exception {
         return Data.converterParaDate(dataDeteccaoConflitos);
     }
- 
-        
+
     public void createTimers() throws Exception {
 //        AlterarCandAbertas task1 = new AlterarCandAbertas(this);
 //        
@@ -167,8 +167,6 @@ import lapr.project.utils.Utils;
 //        schedule(task3, this.getDataFimSubmissao());
     }
 
-    
-
     /**
      * Obtem o estado da exposicao
      *
@@ -177,7 +175,7 @@ import lapr.project.utils.Utils;
     public ExposicaoEstado getState() {
         return state;
     }
-    
+
     public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
         this.dataInicioSubmissao = strDataInicioSubmissao;
     }
@@ -186,7 +184,6 @@ import lapr.project.utils.Utils;
         this.dataFimSubmissao = strDataFimSubmissao;
     }
 
-    
     public void setDataInicioAtribuicao(Data strDataInicioAtribuicao) {
         this.dataInicioAvaliacao = strDataInicioAtribuicao;
     }
@@ -194,6 +191,7 @@ import lapr.project.utils.Utils;
     public void setDataFim(Data strDataFim) {
         this.dataFim = strDataFim;
     }
+
     public void setDataInicio(Data strDataInicio) {
         this.dataInicio = strDataInicio;
     }
@@ -242,25 +240,24 @@ import lapr.project.utils.Utils;
 //    public void save(ProcessoAtribuicao pa) {
 //        this.processoAtribuicao = pa;
 //    }
-
     /**
      * Verifica se a exposicao é igual a um objeto passado por parâmetro
      *
      * @param o O objeto que vai ser comparado com a exposicao.
      * @return True se forem iguais, false se não forem.
      */
- 
     @Override
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        
+
         Exposicao outraEX = (Exposicao) o;
-        if(this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo()))
-               return true;
-        else
+        if (this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo())) {
+            return true;
+        } else {
             return false;
+        }
     }
 
     @Override
@@ -279,7 +276,6 @@ import lapr.project.utils.Utils;
 //    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
 //        this.listaSubmissoes = listaSubmissoes;
 //    }
-
     public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
         this.listaOrganizadores = lstOrganizadores;
     }
@@ -326,7 +322,7 @@ import lapr.project.utils.Utils;
     }
 
     public boolean valida() {
-         if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true ) {
+        if (validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true) {
             return true;
         }
         return false;
@@ -352,26 +348,25 @@ import lapr.project.utils.Utils;
         }
         return true;
     }
-    
-    
-    public boolean validaDatas(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos, 
-        String dataavcand, String datafavcand, String dataistand, String datafstand) {
-        boolean b1=Utils.validaDatasString(datai);
-        boolean b2=Utils.validaDatasString(dataf);
-        boolean b3=Utils.validaDatasString(datasub);
-        boolean b4=Utils.validaDatasString(datafsub);
-        boolean b5=Utils.validaDatasString(dataconflitos);
-        boolean b6=Utils.validaDatasString(dataaltconflitos);
-        boolean b7=Utils.validaDatasString(dataavcand);
-        boolean b8=Utils.validaDatasString(datafavcand);
-        boolean b9=Utils.validaDatasString(dataistand);
-        boolean b10=Utils.validaDatasString(datafstand);
-        
-        if(b1==true && b2==true && b3==true && b4==true && b5==true && b6==true && b7==true && b8==true && b9==true && b10==true){
+
+    public boolean validaDatas(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos,
+            String dataavcand, String datafavcand, String dataistand, String datafstand) {
+        boolean b1 = Utils.validaDatasString(datai);
+        boolean b2 = Utils.validaDatasString(dataf);
+        boolean b3 = Utils.validaDatasString(datasub);
+        boolean b4 = Utils.validaDatasString(datafsub);
+        boolean b5 = Utils.validaDatasString(dataconflitos);
+        boolean b6 = Utils.validaDatasString(dataaltconflitos);
+        boolean b7 = Utils.validaDatasString(dataavcand);
+        boolean b8 = Utils.validaDatasString(datafavcand);
+        boolean b9 = Utils.validaDatasString(dataistand);
+        boolean b10 = Utils.validaDatasString(datafstand);
+
+        if (b1 == true && b2 == true && b3 == true && b4 == true && b5 == true && b6 == true && b7 == true && b8 == true && b9 == true && b10 == true) {
             return true;
         }
-        
-       return false;
+
+        return false;
     }
 
     public boolean validaMinOrganizadores() {
@@ -381,18 +376,18 @@ import lapr.project.utils.Utils;
             return false;
         }
     }
-    
-    public boolean validaDataFimSuperiorInicio(){
+
+    public boolean validaDataFimSuperiorInicio() {
         if (dataFim.isMaior(dataInicio) && dataFimAvaliacao.isMaior(dataInicioAvaliacao) && dataFimStands.isMaior(dataInicioStands)
-                && dataFimSubmissao.isMaior(dataInicioSubmissao)){
+                && dataFimSubmissao.isMaior(dataInicioSubmissao)) {
             return true;
         }
         return false;
     }
-    
-    public boolean validaSeguimentoDatas(){
-        if( dataInicio.isMaior(dataFimStands) || dataFimStands.isMaior(dataFimAvaliacao) && dataFimAvaliacao.isMaior(dataAlteracaoConflitos) &&
-                dataAlteracaoConflitos.isMaior(dataDeteccaoConflitos) && dataDeteccaoConflitos.isMaior(dataFimSubmissao)){
+
+    public boolean validaSeguimentoDatas() {
+        if (dataInicio.isMaior(dataFimStands) || dataFimStands.isMaior(dataFimAvaliacao) && dataFimAvaliacao.isMaior(dataAlteracaoConflitos)
+                && dataAlteracaoConflitos.isMaior(dataDeteccaoConflitos) && dataDeteccaoConflitos.isMaior(dataFimSubmissao)) {
             return true;
         }
         return false;
@@ -430,29 +425,26 @@ import lapr.project.utils.Utils;
         return false;
     }
 
-     
-
     @Override
     public int compareTo(Exposicao outraExposicao) {
         return titulo.compareTo(outraExposicao.titulo);
     }
-    
 
     @Override
     public void alteraParaEmSubmissao() {
-        
+
     }
 
     @Override
     public void alteraParaEmAtribuicao() {
-        
+
     }
 
     public boolean validaDefinirFAE(FAE f) {
         return f.valida();
     }
 
-     public void schedule(TimerTask task, Date date) {
+    public void schedule(TimerTask task, Date date) {
         timer.schedule(task, date);
     }
 
@@ -522,13 +514,17 @@ import lapr.project.utils.Utils;
         return this.getState().setStateEmDecidida();
     }
 
+    public ListaFAE getListaFAE() {
+      return listaFaes;
+    }
+
     @Override
-     public String toString() {
+    public String toString() {
         return titulo;
     }
-     
-     public String toStringCompleto(){
-         String str = "Exposição:\n";
+
+    public String toStringCompleto() {
+        String str = "Exposição:\n";
         str += "\tTitulo: " + this.titulo + "\n";
         str += "\tTexto descritivo: " + this.textoDescritivo + "\n";
         str += "\tData inicial: " + this.dataInicio + "\n";
@@ -538,7 +534,7 @@ import lapr.project.utils.Utils;
         str += "\tData inicial de atribuição: " + this.dataInicioAvaliacao + "\n";
         str += "\tData final de atribuição: " + this.dataFimAvaliacao + "\n";
         str += "\tData final de avaliações: " + this.dataInicioAvaliacao + "\n";
-        str+= "\tData para a deteção de conflitos: " + this.dataDeteccaoConflitos+ "\n";
+        str += "\tData para a deteção de conflitos: " + this.dataDeteccaoConflitos + "\n";
         str += "\tData alteração de conflitos: " + this.dataAlteracaoConflitos + "\n";
         str += "\tLocal: " + this.local + "\n";
         str += "\tOrganizadores:\n";
@@ -547,7 +543,7 @@ import lapr.project.utils.Utils;
         }
 
         return str;
-     }
+    }
 
     @Override
     public ListaSubmissoes getListaSubmissoes() {
