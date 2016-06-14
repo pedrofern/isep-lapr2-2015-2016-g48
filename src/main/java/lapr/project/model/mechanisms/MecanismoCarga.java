@@ -30,9 +30,11 @@ public class MecanismoCarga {
     }
 
     public MecanismoCarga() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        exposicao=new Exposicao();
+        listaFaes=new ListaFAE();
+        listaCandidaturas=new ListaCandidaturas();
+        listaAtribuicoes=new ListaAtribuicoes();
     }
-
     
     public ListaFAE getListFaes(){
         return listaFaes;
@@ -59,12 +61,12 @@ public class MecanismoCarga {
         int n_cand=listaCandidaturas.getListaCandidaturas().size();
         int n_fae=listaFaes.getListaFAE().size();
         
-        int n_candidatura_fae=(n_cand/n_fae) +1;
+        int nCandidaturaFae=(n_cand/n_fae);
 
         for(Candidatura c:listaCandidaturas.getListaCandidaturas()){
   
-//            for (FAE f: listaFaes.getListaFAE()){
-//                for(int i=0; i<=n_candidatura_fae; i++){ 
+            for (FAE f: listaFaes.getListaFAE()){
+                for(int i=0; i<=nCandidaturaFae; i++){ 
 //                    if(c.getEstado()==false){
 //                        if(f.getEstado()==false){
 //                            Atribuicao atribuicao=new Atribuicao(f,c);
@@ -73,8 +75,8 @@ public class MecanismoCarga {
 //                            c.setAtribuida();
 //                        }
 //                      }      
-//               }
-//            }
+               }
+            }
         }
     }
   

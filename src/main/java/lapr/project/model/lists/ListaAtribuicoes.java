@@ -57,7 +57,12 @@ public class ListaAtribuicoes {
      * @return true se for válida, false se não for.
      */
     public boolean valida(Atribuicao atribuicao) {
-        return atribuicao.valida();
+        for(Atribuicao a: listaAtribuicoes){
+            if(atribuicao.equals(this)){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -105,6 +110,16 @@ public class ListaAtribuicoes {
 
     public Object obterAtribuicao(int index) {
         return listaAtribuicoes.get(index);
+    }
+    
+    public boolean addListaAtribuicoes(ListaAtribuicoes lista){
+        for(Atribuicao a: lista.getListaAtribuicoes()){
+           if(valida(a)){
+              listaAtribuicoes.add(a); 
+           }  
+        }
+        if (listaAtribuicoes.isEmpty()) return false;
+        return true;
     }
     
     

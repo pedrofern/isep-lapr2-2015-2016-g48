@@ -1,61 +1,60 @@
 package lapr.project.model.mechanisms;
 
 import java.util.*;
+import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
 import lapr.project.model.Utilizador;
 
 /**
  *
- * @author Pedro Fernandes
+ * @author DianaSilva
  */
 public class Atribuicao {
 
-    private Candidatura m_candidatura;
-    private List<FAE> e_listaFAE;
-
-    public Atribuicao() {
-        e_listaFAE = new ArrayList<FAE>();
+   
+    private Avaliacao avaliacao;
+    private FAE fae;
+    private Candidatura candidatura;
+    private boolean atribuida=false;
+    
+    public Atribuicao(){
+        avaliacao=new Avaliacao();
     }
-
-    public boolean valida() {
-        System.out.println("Atribuição Candidatura: valida: " + this.toString());
-        return true;
+    
+    public Atribuicao(FAE fae, Candidatura c){
+        this.avaliacao=new Avaliacao();
+        this.fae=fae;
+        candidatura=c;            
     }
-
-    private boolean validaFAE(FAE f) {
-        System.out.println("Atribuição Candidatura: validaFAE: " + f.toString());
-        return true;
+    
+    public void setAtribuida(){
+        this.atribuida=true;
     }
-
-    public void addFAE(Utilizador ut) {
-        FAE f = new FAE();
-        f.setUtilizador(ut);
-        if (validaFAE(f)) {
-            addFAE(f);
-        }
+    
+    public FAE getFae(){
+        return fae;
     }
-
-    private void addFAE(FAE f) {
-        e_listaFAE.add(f);
+    
+    public Candidatura getCandidatura(){
+        return candidatura;
     }
-
-    public List<FAE> getListaFAE() {
-        List<FAE> lf = new ArrayList<FAE>();
-
-        for (FAE f : e_listaFAE) {
-            lf.add(f);
-        }
-        return lf;
+    
+    public boolean getEstadoAtribuicao(){
+        return atribuida;
     }
-
-    public String getInfo() {
-        return this.toString() + "\n";
+    
+    public void setFae(FAE fae){
+        this.fae=fae;
+    }
+    
+    public void setCandidatura(Candidatura candidatura){
+        this.candidatura=candidatura;
     }
 
     @Override
     public String toString() {
-        return this.m_candidatura.toString() + "\nATRIBUIDA A: " + getListaFAE() + "\n";
+        return this.candidatura.toString() + "\nATRIBUIDA A: " + fae.toString() + "\n";
     }
 
 }

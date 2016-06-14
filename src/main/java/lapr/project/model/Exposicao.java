@@ -2,7 +2,6 @@ package lapr.project.model;
 
 import lapr.project.model.mechanisms.Atribuivel;
 import lapr.project.model.states.ExposicaoCriadaEstado;
-import lapr.project.model.states.ExposicaoStateEmRevisao;
 import lapr.project.model.states.ExposicaoEstado;
 import lapr.project.model.mechanisms.ProcessoAtribuicao;
 import lapr.project.model.lists.ListaOrganizadores;
@@ -10,11 +9,13 @@ import lapr.project.model.lists.ListaSubmissoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
+import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.states.AlterarCandAbertas;
 import lapr.project.model.states.AlterarCandFechadas;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
+
 
 /**
  *
@@ -40,7 +41,8 @@ public class Exposicao implements Submissivel, Atribuivel, Comparable<Exposicao>
     private static ListaFAE listaFaes;
     private static ListaOrganizadores listaOrganizadores;
     private static ListaDemonstracoes listaDemonstracoes;
-
+    private static ListaAtribuicoes listaAtribuicoes;
+    
     private static ExposicaoEstado state;
     private static Timer timer;
 
@@ -50,6 +52,7 @@ public class Exposicao implements Submissivel, Atribuivel, Comparable<Exposicao>
         listaCandidaturas = new ListaCandidaturas();
         listaDemonstracoes = new ListaDemonstracoes();
         listaFaes = new ListaFAE();
+        listaAtribuicoes=new ListaAtribuicoes();
         timer = new Timer();
 
     }
@@ -68,6 +71,10 @@ public class Exposicao implements Submissivel, Atribuivel, Comparable<Exposicao>
 
     public ListaCandidaturas getRegistoCandidaturas() {
         return listaCandidaturas;
+    }
+    
+    public ListaAtribuicoes getListaAtribuicoes(){
+        return listaAtribuicoes;
     }
 
     public void setDados(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim, Data dataAvInicio, Data dataAvFim, Data dConflitos, Data dataInicioStands, Data dataFimStand, Data dAConflitos) {

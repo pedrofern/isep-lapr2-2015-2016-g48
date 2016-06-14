@@ -18,6 +18,7 @@ public class Utilizador implements Comparable<Utilizador>{
     private static final String PASS_POR_OMISSAO = "Password do utilizador não registado";
     private static final String USER_POR_OMISSAO = "Username do utilizador não registado";
     private Boolean m_bRegistado;
+    private int tempoServico=0;
 
     public Utilizador() {
         nome = NOME_POR_OMISSAO;
@@ -26,11 +27,12 @@ public class Utilizador implements Comparable<Utilizador>{
         password = PASS_POR_OMISSAO;
     }
 
-    public Utilizador(String nome, String email, String username, Boolean bRegistado) {
+    public Utilizador(String nome, String email, String username, Boolean bRegistado, int experiencia) {
         this.nome=nome;
         this.email = email;
         this.username = username;
         this.m_bRegistado = bRegistado;
+        this.tempoServico=experiencia;
     }
     
     public Utilizador(String strNome, String strUsername, String strPwd, String strEmail) {
@@ -168,6 +170,10 @@ public class Utilizador implements Comparable<Utilizador>{
         int hash = 7;
         hash = 29 * hash + Objects.hashCode(this.nome);
         return hash;
+    }
+    
+    public int getTempoServico(){
+        return tempoServico;
     }
 
     @Override

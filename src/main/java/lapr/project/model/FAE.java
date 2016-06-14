@@ -6,7 +6,7 @@ import java.util.*;
  *
  * @author Pedro Fernandes
  */
-public class FAE {
+public class FAE implements Comparable<FAE> {
 
     private final String nome;
     private Utilizador o_utilizador;
@@ -143,5 +143,16 @@ public class FAE {
         }
         return false;
     }
+    
+    
+    public int getTempoServico(){
+        return o_utilizador.getTempoServico();
+    }
+
+    @Override
+    public int compareTo(FAE o) {
+        return this.getTempoServico()-o.getTempoServico();
+    }
+
 
 }
