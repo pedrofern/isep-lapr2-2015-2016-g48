@@ -55,10 +55,6 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JButton botaoRemoverProduto;
     /**
-     * Guarda o botao ver demonstrações
-     */
-    private JButton botaoVerRecursoDemonstracao;
-    /**
      * Guarda as Demonstracoes da exposicao
      */
     private JCheckBox cbDemo;
@@ -106,6 +102,10 @@ public class RegistarCandidaturaUI extends JFrame{
      * Guarda o keyword1 introduzido da candidatura
      */
     private JTextField txtKey5;
+    /**
+     * Guarda a lista produtos da candidatura
+     */      
+    private ListaKeywords listaKeywords;
     /**
      * Guarda a lista produtos da candidatura
      */      
@@ -178,8 +178,7 @@ public class RegistarCandidaturaUI extends JFrame{
         listaDemonstracoes.registaDemonstracao(d3);
     //fim
         listaDemonstracoes = exposicao.getListaDemonstracoes();
-        
-        
+                
         controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
         controllerRCC.novaCandidatura();
 
@@ -207,7 +206,7 @@ public class RegistarCandidaturaUI extends JFrame{
         p.add(criarPainelKeywords(),BorderLayout.EAST);
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.setBorder(new TitledBorder("Dados"));
+
         return p;
     }
      private JPanel criarPainelSul() {
@@ -226,6 +225,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JPanel criarPainelExposicao(RegistoExposicoes lstExposicoes){
         JPanel painel= new JPanel(new FlowLayout());
         
+        painel.setBorder(new TitledBorder("Exposição"));
         comboExp = Utils.criarComboExpo(lstExposicoes);
 
         painel.add(comboExp);        
@@ -238,6 +238,8 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JPanel criarPainelDados(){
         JPanel p = new JPanel(new GridLayout(5,1));
+        
+        p.setBorder(new TitledBorder("Dados"));
         
         txtNome = new JTextField(40);
         txtNome.requestFocusInWindow();
@@ -322,9 +324,10 @@ public class RegistarCandidaturaUI extends JFrame{
         
         return p;
     }
-    private JPanel criarPainelKeywords(){
-        
+    private JPanel criarPainelKeywords(){        
         JPanel p = new JPanel(new GridLayout(5,1));
+        
+        p.setBorder(new TitledBorder("Keywords:"));
         
         txtKey1 = new JTextField(20);
         txtKey1.requestFocusInWindow();
@@ -406,8 +409,8 @@ public class RegistarCandidaturaUI extends JFrame{
                 } 
             }
         }); 
-        p.add(criarPainelNome("Keyword 1:", txtKey1,""));
-        p.add(criarPainelNome("Keyword 2:", txtKey2,""));
+        p.add(criarPainelNome("Keyword 1:", txtKey1,"Obrigatório"));
+        p.add(criarPainelNome("Keyword 2:", txtKey2,"Obrigatório"));
         p.add(criarPainelNome("Keyword 3:", txtKey3,""));
         p.add(criarPainelNome("Keyword 4:", txtKey4,""));
         p.add(criarPainelNome("Keyword 5:", txtKey5,""));
@@ -427,13 +430,9 @@ public class RegistarCandidaturaUI extends JFrame{
         lbl1.setPreferredSize(LABEL_TAMANHO);
         
         JLabel lbl2 = new JLabel(label2, JLabel.LEFT);
-        lbl2.setPreferredSize(new Dimension(150,20));
+        lbl2.setPreferredSize(new Dimension(80,20));
         
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
 
         p.add(lbl1);
         p.add(texto);
@@ -578,11 +577,29 @@ public class RegistarCandidaturaUI extends JFrame{
                     int convites = Integer.parseInt(txtConvites.getText());                    
                     String morada = txtMorada.getText();
                     String nome = txtNome.getText();
-                    int telemovel = Integer.parseInt(txtTelemovel.getText());  
-                    candidatura = controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
+                    int telemovel = Integer.parseInt(txtTelemovel.getText());
+                    if (txtKey1.getText().isEmpty()||txtKey2.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Keyword obrigatória por preencher!",
+                                "Nova Candidatura",
+                                JOptionPane.ERROR_MESSAGE);                        
+                    }else{                    
+                    listaKeywords = controllerRCC.getCandidatura().getListaKeywords();
+                    Keyword k1 = new Keyword(""+txtKey1.getText());
+                    Keyword k2 = new Keyword(""+txtKey2.getText());
+                    Keyword k3 = new Keyword(""+txtKey3.getText());
+                    Keyword k4 = new Keyword(""+txtKey4.getText());
+                    Keyword k5 = new Keyword(""+txtKey5.getText());
+                    listaKeywords.adicionarKeyword(k1);
+                    listaKeywords.adicionarKeyword(k2);
+                    listaKeywords.adicionarKeyword(k3);
+                    listaKeywords.adicionarKeyword(k4);
+                    listaKeywords.adicionarKeyword(k5);
                     
-                    //alterar - estava a dar block por causa de não estar a ir buscar candidatura no toStringCompleto
-//                    candidatura=new Candidatura();
+                    candidatura = controllerRCC.registaCandidatura(
+                            nome, morada, telemovel, area, convites,
+                            listaProdutos,listaKeywords);
                     
                     boolean adicionarNovaCandidatura = controllerRCC.valida();
                     if (adicionarNovaCandidatura == true) {                        
@@ -593,7 +610,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
                         }
-                        candidatura.setListaProdutos(listaProdutos);
+//                        candidatura.setListaProdutos(listaProdutos);
 //                        candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
                         JOptionPane.showMessageDialog(
                                 null,
@@ -610,7 +627,8 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "O registo não é válido!\nVerifique todos os campos",
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
-                    }                                        
+                    }    
+                    }
                 }
                 catch (NumberFormatException ex){
                     JOptionPane.showMessageDialog(

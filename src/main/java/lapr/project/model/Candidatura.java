@@ -16,10 +16,11 @@ public class Candidatura {
     private int telemovel;
     private int areaExposicao;
     private int quantidadeConvites;
-    private ListaProduto e_listaProdutos;
-    private ListaFAE e_listaFAE;
-    private ListaCandidaturas c_listaCandidaturas;
-    private ListaAvaliacoes c_listaAvaliacoes;
+    private ListaProduto listaProdutos;
+    private ListaFAE listaFAE;
+    private ListaCandidaturas listaCandidaturas;
+    private ListaKeywords listaKeywords;
+    private ListaAvaliacoes listaAvaliacoes;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
         this.nomeEmpresa = nomeEmpresa;
@@ -27,20 +28,27 @@ public class Candidatura {
         this.telemovel = telemovel;
         this.areaExposicao = areaExposicao;
         this.quantidadeConvites = quantidadeConvites;
-        e_listaProdutos = new ListaProduto();
-        e_listaFAE = new ListaFAE();
-        c_listaAvaliacoes=new ListaAvaliacoes();
+        listaProdutos = new ListaProduto();
+        listaFAE = new ListaFAE();
+        listaAvaliacoes=new ListaAvaliacoes();
+        listaKeywords = new ListaKeywords();
     }
     
     public Candidatura() {
-       e_listaProdutos = new ListaProduto();
-        e_listaFAE = new ListaFAE();
-        c_listaAvaliacoes=new ListaAvaliacoes();
+       listaProdutos = new ListaProduto();
+       listaFAE = new ListaFAE();
+       listaAvaliacoes=new ListaAvaliacoes();
+       listaKeywords = new ListaKeywords();
     }
 
     @Override
     public Candidatura clone() {
-        return new Candidatura(this.getNomeEmpresa(), this.getMorada(), this.getTelemovel(), this.getAreaExposicao(), this.getQuantidadeConvites());
+        return new Candidatura(
+                this.getNomeEmpresa(), 
+                this.getMorada(), 
+                this.getTelemovel(), 
+                this.getAreaExposicao(), 
+                this.getQuantidadeConvites());
     }
     
     public String getNomeEmpresa() {
@@ -68,11 +76,11 @@ public class Candidatura {
     }
     
     public ListaFAE getListaFAE(){
-        return e_listaFAE;
+        return listaFAE;
     }
     
     public ListaAvaliacoes getListaAvaliacoes(){
-        return c_listaAvaliacoes;
+        return listaAvaliacoes;
     }
 
     public void setNomeEmpresa(String novoNomeEmpresa) {
@@ -97,19 +105,31 @@ public class Candidatura {
 
     public ListaProduto getListaProdutos() {
         ListaProduto lProd = new ListaProduto();
-        for (ListIterator<Produto> it = e_listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
+        for (ListIterator<Produto> it = listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
             lProd.adicionarProduto(it.next());
         }
         return lProd;
     }
     
     public void setListaProdutos(ListaProduto listaProdutos){
-        e_listaProdutos = listaProdutos;
+        this.listaProdutos = listaProdutos;
     }
-
+    
+    public ListaKeywords getListaKeywords() {
+        ListaKeywords lKey = new ListaKeywords();
+        for (ListIterator<Keyword> it = listaKeywords.getListaKeyword().listIterator(); it.hasNext();) {
+            lKey.adicionarKeyword(it.next());
+        }
+        return lKey;
+    }
+    
+    public void setListaKeywords(ListaKeywords listaKeywords){
+        this.listaKeywords = listaKeywords;
+    }
+    
     public ListaCandidaturas getListaCandidaturas() {
         ListaCandidaturas lc = new ListaCandidaturas();
-        for (ListIterator<Candidatura> it = c_listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
+        for (ListIterator<Candidatura> it = listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
             lc.addCandidatura(it.next());
         }
         return lc;
@@ -122,7 +142,7 @@ public class Candidatura {
     }
 
     private boolean addProduto(Produto p) {
-        return e_listaProdutos.adicionarProduto(p);
+        return listaProdutos.adicionarProduto(p);
     }
 
     public boolean validaCandidatura(Candidatura c) {
@@ -178,15 +198,16 @@ public class Candidatura {
     }
     
     public String toStringDadosGerais() {
-        return this.nomeEmpresa + "\n" 
-                + this.morada + "\n" + 
-                this.telemovel + "\n" + 
-                this.areaExposicao + "\n" + 
-                this.quantidadeConvites;
+        return "Nome: "+ this.nomeEmpresa
+                + "\nMorada: " + this.morada
+                + "\nTelemóvel: " + this.telemovel
+                + "\nÁrea pretendida: " + this.areaExposicao
+                + "\nConvites pretendidos: " + this.quantidadeConvites;
     }
     
     public String toStringCompleto() {
-        return this.toStringDadosGerais() + "\n" 
-                + this.e_listaProdutos.getListaProduto().toString();
+        return this.toStringDadosGerais()
+                + "\nKeywords:\n"+this.listaKeywords.getListaKeyword().toString()
+                + "\nProdutos:\n" + this.listaProdutos.getListaProduto().toString();
     }
 }

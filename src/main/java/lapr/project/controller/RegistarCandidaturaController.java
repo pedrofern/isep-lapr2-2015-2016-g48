@@ -4,6 +4,7 @@ import lapr.project.model.*;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaCandidaturasDemonstracoes;
 import lapr.project.model.lists.ListaProduto;
+import lapr.project.model.lists.ListaKeywords;
 
 /**
  *
@@ -12,7 +13,6 @@ import lapr.project.model.lists.ListaProduto;
 public class RegistarCandidaturaController {
 
     private Representante eRepresentante;
-    private Utilizador user;
     private Candidatura candidatura;
     private CandidaturaDemonstracao candidaturaDemonstracao;
     private ListaCandidaturas listaCandidaturas;
@@ -57,13 +57,21 @@ public class RegistarCandidaturaController {
         candidatura.setListaProdutos(listaProduto);
     }
     
+    public void setKeywords(ListaKeywords listaKeywords){
+        candidatura.setListaKeywords(listaKeywords);
+    }
+    
     public Candidatura registaCandidatura(String nomeEmpresa,String morada,int telemovel,
-                    int areaExposicao,int quantidadeConvites){
+                    int areaExposicao,int quantidadeConvites,
+                    ListaProduto listaProdutos,ListaKeywords listaKeywords){
+        
         candidatura.setNomeEmpresa(nomeEmpresa);
         candidatura.setMorada(morada);
         candidatura.setTelemovel(telemovel);
         candidatura.setAreaExposicao(areaExposicao);
         candidatura.setQuantidadeConvites(quantidadeConvites);
+        candidatura.setListaProdutos(listaProdutos);
+        candidatura.setListaKeywords(listaKeywords);
         
         if (listaCandidaturas.registaCandidaturas(candidatura)) {
             return candidatura;
