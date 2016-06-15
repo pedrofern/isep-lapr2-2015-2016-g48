@@ -1,5 +1,6 @@
 package lapr.project.utils;
 
+import java.awt.Dimension;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -128,7 +129,9 @@ public class Utils {
     public static JComboBox criarComboExpo(RegistoExposicoes lista_exposicao){
         Exposicao[] opcoes=lista_exposicao.getArray();
         JComboBox comboExpos=new JComboBox();
-        
+         comboExpos.setSelectedIndex(-1);
+        comboExpos.setEditable(false);
+        comboExpos.setPreferredSize(new Dimension(200, 20));
         DefaultComboBoxModel combo=new DefaultComboBoxModel(opcoes);
         
         comboExpos.setModel(combo);

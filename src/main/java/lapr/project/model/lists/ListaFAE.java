@@ -23,7 +23,7 @@ public class ListaFAE {
     }
 
     public boolean registaMenbroFAE(FAE fae) {
-        if (fae.validaMenbroFAE() && validaListaFAE(m_listaFaes)) {
+        if (fae.validaMenbroFAE()) {
             return adicionarFAE(fae);
         } else {
             return false;

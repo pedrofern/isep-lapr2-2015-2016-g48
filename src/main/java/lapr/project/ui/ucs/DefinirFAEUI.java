@@ -38,8 +38,8 @@ public class DefinirFAEUI extends JFrame {
     private ListaFAE listaUtilizadoresFAE;
     private Organizador o_Organizador;
     private int i = 0;
-    private Exposicao m_exposicao;
-    private Object[] tmp;
+    private Exposicao m_exposicao, exposicaoSelecionada;
+    private Utilizador[] tmp;
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
 
     public DefinirFAEUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
@@ -111,9 +111,24 @@ public class DefinirFAEUI extends JFrame {
     }
 
     private JComboBox getListaExposicao() {
-      
-        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
-        comboBoxExposicao.setPreferredSize(new Dimension(250, 20));
+        String[] tituloExp = new String[listaExposicoes.getExposicoes().size()];
+
+        for (int i = 0; i < tituloExp.length; i++) {
+            tituloExp[i] = listaExposicoes.getExposicoes().get(i).getTitulo();
+        }
+        comboBoxExposicao = new JComboBox(tituloExp);
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+        comboBoxExposicao.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int tmp = comboBoxExposicao.getSelectedIndex();
+                exposicaoSelecionada = listaExposicoes.getExposicoes().get(tmp);
+
+            }
+        });
         return comboBoxExposicao;
     }
 
@@ -180,7 +195,6 @@ public class DefinirFAEUI extends JFrame {
             JButton btnInferior) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
-        //lstLista.setModel(modeloLista);
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrPane = new JScrollPane(lstLista);
 
@@ -245,13 +259,14 @@ public class DefinirFAEUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                int contador = 0;
+                tmp = new Utilizador[listaCompletaUtilizadores.getArray().length];
                 Object[] values = lstCompletaUtilizadores.getSelectedValues();
                 for (Object valor : values) {
                     if (!modeloListaFAE.contains(valor)) {
                         modeloListaFAE.addElement(valor);
-                        tmp[i] = valor;
-                        i++;
+                        tmp[contador] = (Utilizador) valor;
+                        contador++;
 
                     } else {
                         JOptionPane.showMessageDialog(
@@ -278,17 +293,19 @@ public class DefinirFAEUI extends JFrame {
 
                 Exposicao exp = new Exposicao();
                 exp.setTitulo("TEste");
-                Utilizador u = (Utilizador) tmp[i];
-
+                int contador = 0;
+                Utilizador u = (Utilizador) tmp[contador];
+                contador++;
+                controller.addFAE(u, exposicaoSelecionada);
                 if (controller.registaMenbroFAE(controller.getFAE())) {
 
                     m_exposicao.getListaFAE();
-                    controller.addFAE(u, exp);
                     JOptionPane.showMessageDialog(
                             null,
                             controller.getFAEString(),
                             "Novo FAE",
                             JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
 
                 } else {
                     JOptionPane.showMessageDialog(
