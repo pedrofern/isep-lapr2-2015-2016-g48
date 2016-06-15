@@ -21,16 +21,16 @@ public class CandidaturaDemonstracao {
     private int telemovelCD;
     private int areaExposicaoCD;
     private int quantidadeConvitesCD;
-    private ListaProduto e_listaProdutosCD;
-    private ListaCandidaturasDemonstracoes c_listaCandidaturasDemo;
+    private ListaProduto listaProdutosCD;
+    private ListaCandidaturasDemonstracoes listaCandidaturasDemo;
 
-    public CandidaturaDemonstracao() {
-//        this.nomeEmpresaCD = candidaturaExp.getNomeEmpresa();
-//        this.moradaCD = candidaturaExp.getMorada();
-//        this.telemovelCD = candidaturaExp.getTelemovel();
-//        this.areaExposicaoCD = candidaturaExp.getAreaExposicao();
-//        this.quantidadeConvitesCD = candidaturaExp.getQuantidadeConvites();
-//        e_listaProdutosCD = candidaturaExp.getListaProdutos();
+    public CandidaturaDemonstracao(Candidatura candidaturaExp) {
+        this.nomeEmpresaCD = candidaturaExp.getNomeEmpresa();
+        this.moradaCD = candidaturaExp.getMorada();
+        this.telemovelCD = candidaturaExp.getTelemovel();
+        this.areaExposicaoCD = candidaturaExp.getAreaExposicao();
+        this.quantidadeConvitesCD = candidaturaExp.getQuantidadeConvites();
+        listaProdutosCD = candidaturaExp.getListaProdutos();
     }
     
     public String getNomeEmpresaCD() {
@@ -79,19 +79,19 @@ public class CandidaturaDemonstracao {
 
     public ListaProduto getListaProdutosCD() {
         ListaProduto lProd = new ListaProduto();
-        for (ListIterator<Produto> it = e_listaProdutosCD.getListaProduto().listIterator(); it.hasNext();) {
+        for (ListIterator<Produto> it = listaProdutosCD.getListaProduto().listIterator(); it.hasNext();) {
             lProd.adicionarProduto(it.next());
         }
         return lProd;
     }
     
     public void setListaProdutos(ListaProduto listaProdutos){
-        e_listaProdutosCD = listaProdutos;
+        listaProdutosCD = listaProdutos;
     }
 
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         ListaCandidaturasDemonstracoes lc = new ListaCandidaturasDemonstracoes();
-        for (ListIterator<CandidaturaDemonstracao> it = c_listaCandidaturasDemo.getListaCandidaturas().listIterator(); it.hasNext();) {
+        for (ListIterator<CandidaturaDemonstracao> it = listaCandidaturasDemo.getListaCandidaturas().listIterator(); it.hasNext();) {
             lc.addCandidatura(it.next());
         }
         return lc;
@@ -104,7 +104,7 @@ public class CandidaturaDemonstracao {
     }
 
     private boolean addProduto(Produto p) {
-        return e_listaProdutosCD.adicionarProduto(p);
+        return listaProdutosCD.adicionarProduto(p);
     }
 
     public boolean validaCandidatura(Candidatura c) {

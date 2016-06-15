@@ -4,10 +4,30 @@ import lapr.project.model.*;
 import lapr.project.controller.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -16,18 +36,12 @@ import javax.swing.border.*;
 public class RegistarCandidaturaUI extends JFrame{
     
     /**
-     * A largura da janela em píxeis.
-     */
-    private static final int JANELA_LARGURA = 800;
-    /**
-     * A altura da janela em píxeis.
-     */
-    private static final int JANELA_ALTURA = 400;
-    /**
      * Guarda a dimensão de uma label por omissão
      */
     private static final Dimension LABEL_TAMANHO = new JLabel("Nº Convites:").
                                                         getPreferredSize();
+    private static final int MARGEM_SUPERIOR = 5, MARGEM_INFERIOR = 5;
+    private static final int MARGEM_ESQUERDA = 5, MARGEM_DIREITA = 5;
     /**
      * Guarda lista produtos em jlist
      */
@@ -72,6 +86,26 @@ public class RegistarCandidaturaUI extends JFrame{
      * Guarda o nº convites introduzido da candidatura
      */
     private JTextField txtConvites;
+    /**
+     * Guarda o keyword1 introduzido da candidatura
+     */
+    private JTextField txtKey1;
+    /**
+     * Guarda o keyword1 introduzido da candidatura
+     */
+    private JTextField txtKey2;
+    /**
+     * Guarda o keyword1 introduzido da candidatura
+     */
+    private JTextField txtKey3;
+    /**
+     * Guarda o keyword1 introduzido da candidatura
+     */
+    private JTextField txtKey4;
+    /**
+     * Guarda o keyword1 introduzido da candidatura
+     */
+    private JTextField txtKey5;
     /**
      * Guarda a lista produtos da candidatura
      */      
@@ -138,7 +172,7 @@ public class RegistarCandidaturaUI extends JFrame{
         d.setData(2016, 02, 05);
         d1.setDados("demo1", "tema1", d, d);
         d2.setDados("demo2", "tema2", d, d);
-        d3.setDados("demo2", "tema3", d, d);
+        d3.setDados("demo3", "tema3", d, d);
         listaDemonstracoes.registaDemonstracao(d1);
         listaDemonstracoes.registaDemonstracao(d2);
         listaDemonstracoes.registaDemonstracao(d3);
@@ -148,23 +182,39 @@ public class RegistarCandidaturaUI extends JFrame{
         
         controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
         controllerRCC.novaCandidatura();
-//        m_controllerRCC.set
-        
-        criarComponentes();
-                
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        criarComponentes();      
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setMinimumSize(new Dimension(JANELA_LARGURA, JANELA_ALTURA));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setMinimumSize(new Dimension(getWidth(), getHeight()));
         setLocationRelativeTo(null);
-        setVisible(true);  
+        setVisible(true);
         
     }
-    
-    private void criarComponentes(){
-        add(criarPainelExposicao(listaExposicoes), BorderLayout.NORTH);         
+    public void criarComponentes() {
+
+        add(criarPainelSul(), BorderLayout.SOUTH);
+        add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelListas(), BorderLayout.CENTER);
-        add(criarPainelBotoes(), BorderLayout.SOUTH);
+    }
+
+    private JPanel criarPainelNorte() {
+        JPanel p = new JPanel(new BorderLayout());
+        
+        p.add(criarPainelExposicao(listaExposicoes),BorderLayout.WEST);
+        p.add(criarPainelDados(),BorderLayout.CENTER);
+        p.add(criarPainelKeywords(),BorderLayout.EAST);
+        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
+                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new TitledBorder("Dados"));
+        return p;
+    }
+     private JPanel criarPainelSul() {
+        JPanel p = new JPanel(new FlowLayout());
+        p.setBorder(new TitledBorder("Opções"));
+        p.add(criarPainelBotoes());
+        return p;
     }
     /**
      * Devolve uma lista de produtos
@@ -179,7 +229,6 @@ public class RegistarCandidaturaUI extends JFrame{
         comboExp = Utils.criarComboExpo(lstExposicoes);
 
         painel.add(comboExp);        
-        painel.add(criarPainelDados());
         
         return painel;
     }
@@ -188,13 +237,7 @@ public class RegistarCandidaturaUI extends JFrame{
      * @return painel para introdução dos dados gerais da candidatura
      */
     private JPanel criarPainelDados(){
-        JPanel painelNorte = new JPanel( new GridLayout(5,1));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 10;
-        final int MARGEM_ESQUERDA = 25, MARGEM_DIREITA = 0;
-        painelNorte.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder("Dados Empresa"),
-                new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA)));
+        JPanel p = new JPanel(new GridLayout(5,1));
         
         txtNome = new JTextField(40);
         txtNome.requestFocusInWindow();
@@ -271,13 +314,106 @@ public class RegistarCandidaturaUI extends JFrame{
             }
         }); 
         
-        painelNorte.add(criarPainelNome("Nome:", txtNome,""));
-        painelNorte.add(criarPainelNome("Morada:", txtMorada,""));
-        painelNorte.add(criarPainelNome("Telemóvel:", txtTelemovel,"9xxxxxxxx"));
-        painelNorte.add(criarPainelNome("Área:", txtArea,"m^2"));
-        painelNorte.add(criarPainelNome("Nº Convites:", txtConvites,"(máx 999)"));
+        p.add(criarPainelNome("Nome:", txtNome,""));
+        p.add(criarPainelNome("Morada:", txtMorada,""));
+        p.add(criarPainelNome("Telemóvel:", txtTelemovel,"9xxxxxxxx"));
+        p.add(criarPainelNome("Área:", txtArea,"m^2"));
+        p.add(criarPainelNome("Nº Convites:", txtConvites,"(máx 999)"));
         
-        return painelNorte;
+        return p;
+    }
+    private JPanel criarPainelKeywords(){
+        
+        JPanel p = new JPanel(new GridLayout(5,1));
+        
+        txtKey1 = new JTextField(20);
+        txtKey1.requestFocusInWindow();
+        txtKey1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtKey1.setText(txtKey1.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtKey1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtKey1.getText().length() > 19) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
+        
+        txtKey2 = new JTextField(20);
+        txtKey2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtKey2.setText(txtKey2.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtKey2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtKey2.getText().length() > 19) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
+        
+        txtKey3 = new JTextField(20);
+        txtKey3.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtKey3.setText(txtKey3.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtKey3.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtKey3.getText().length() > 19) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
+        
+        txtKey4 = new JTextField(20);
+        txtKey4.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtKey4.setText(txtKey4.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtKey4.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtKey4.getText().length() > 19) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
+        
+        txtKey5 = new JTextField(20);
+        txtKey5.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtKey5.setText(txtKey5.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+            }
+        });
+        txtKey5.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtKey5.getText().length() > 19) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        }); 
+        p.add(criarPainelNome("Keyword 1:", txtKey1,""));
+        p.add(criarPainelNome("Keyword 2:", txtKey2,""));
+        p.add(criarPainelNome("Keyword 3:", txtKey3,""));
+        p.add(criarPainelNome("Keyword 4:", txtKey4,""));
+        p.add(criarPainelNome("Keyword 5:", txtKey5,""));
+        
+        
+        return p;
     }
     /**
      * cria painel para introduzir label1, campo para introdução dados e label2
@@ -316,10 +452,8 @@ public class RegistarCandidaturaUI extends JFrame{
         l.setHgap(20);
         l.setVgap(20);
 
-        JPanel p = new JPanel(l);
-            
-        p.setBorder(new TitledBorder("Opções"));
-        
+        JPanel p = new JPanel();
+
         JButton bt1 = criarBotaoRegistar();
         JButton bt2 = criarBotaoLimpar();
         JButton bt3 = criarBotaoCancelar();
@@ -347,8 +481,6 @@ public class RegistarCandidaturaUI extends JFrame{
                                               INTERVALO_HORIZONTAL,
                                               INTERVALO_VERTICAL));
         
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
         p.setBorder(BorderFactory.createEmptyBorder( MARGEM_SUPERIOR, 
                                                      MARGEM_ESQUERDA,
                                                      MARGEM_INFERIOR, 
@@ -573,8 +705,6 @@ public class RegistarCandidaturaUI extends JFrame{
 
         JPanel p = new JPanel(new BorderLayout());
         
-        final int MARGEM_SUPERIOR = 5, MARGEM_INFERIOR = 5;
-        final int MARGEM_ESQUERDA = 5, MARGEM_DIREITA = 5;
         p.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder(tituloLista),
                 new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
@@ -594,27 +724,28 @@ public class RegistarCandidaturaUI extends JFrame{
      * @return painel lista demonstrações recebendo titulo lista, lista demonstrações e um botao
      */
     private JPanel criarPainelListaDemo(){
+
         JPanel p = new JPanel(new BorderLayout());
-        
-        final int MARGEM_SUPERIOR = 5, MARGEM_INFERIOR = 5;
-        final int MARGEM_ESQUERDA = 5, MARGEM_DIREITA = 5;
-        p.setBorder(BorderFactory.createCompoundBorder(
+
+       p.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder("Demonstrações"),
                 new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA)));
         
-        p.add(criarPainelCheckBoxDemo(), BorderLayout.CENTER);
+        p.add(criarPainelCheckBoxDemo(), BorderLayout.NORTH);
 
+//        JPanel pBotoes = criarPainelBotoesListaProduto(btnSuperior,btnInferior);
+//        p.add(pBotoes, BorderLayout.SOUTH);
         return p;
     }
     private JPanel criarPainelCheckBoxDemo(){
-        JPanel pCheck=new JPanel();
+        JPanel pCheck=new JPanel(new FlowLayout());
         
         Demonstracao[] opcoes=exposicao.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
         
-        setLayout(new GridLayout(LINHAS, 1));
+//        setLayout(new GridLayout(0, 1));
  
         for(Demonstracao d:opcoes){
             String sDemo=d.toString();

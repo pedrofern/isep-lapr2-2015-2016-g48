@@ -4,6 +4,7 @@ import lapr.project.model.lists.RegistoRecursos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List.*;
+import lapr.project.model.lists.ListaCandidaturasDemonstracoes;
 import lapr.project.utils.Data;
 
 /**
@@ -14,6 +15,7 @@ public class Demonstracao implements Serializable {
 
     private CentroExposicoes m_centroExposicoes;
     private RegistoRecursos m_listaRecursos;
+    private ListaCandidaturasDemonstracoes listaCandidaturasDemonstracoes;
     private String desc;
     private String temaexposicao;
     private Data inicio, fim;
@@ -33,7 +35,7 @@ public class Demonstracao implements Serializable {
         codigoUnico = codigoUnico + totalDemonstracao++;
         this.desc = desc;
         this.m_listaRecursos = new RegistoRecursos();
-
+        listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
     }
 
     public void setDados(String desc, String temaexposicao, Data inicio, Data fim) {
@@ -52,6 +54,14 @@ public class Demonstracao implements Serializable {
         return m_listaRecursos;
     }
 
+    /**
+     * Metodo que retorna a lista de recursos
+     *
+     * @return lista de recursos
+     */
+    public ListaCandidaturasDemonstracoes getListaCandidaturasDemonstracao() {
+        return listaCandidaturasDemonstracoes;
+    }
 //    /**
 //     * Metodo que modifica o codigo
 //     *

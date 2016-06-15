@@ -21,8 +21,8 @@ public class ListaCandidaturasDemonstracoes {
      *
      * @return Candidaturas.
      */
-    public CandidaturaDemonstracao novaCandidatura() {
-        return new CandidaturaDemonstracao();
+    public CandidaturaDemonstracao novaCandidatura(Candidatura c) {
+        return new CandidaturaDemonstracao(c);
     }
 
     public boolean registaCandidaturas(CandidaturaDemonstracao c) {

@@ -14,7 +14,9 @@ public class RegistarCandidaturaController {
     private Representante eRepresentante;
     private Utilizador user;
     private Candidatura candidatura;
+    private CandidaturaDemonstracao candidaturaDemonstracao;
     private ListaCandidaturas listaCandidaturas;
+
     private Exposicao exposicao;
 
     public RegistarCandidaturaController(Representante representante,Exposicao exp) {
@@ -95,8 +97,10 @@ public class RegistarCandidaturaController {
     public boolean registaCandidatura() {
         return eRepresentante.registaCandidatura(candidatura);
     }
-    
-//    public CandidaturaDemonstracao novaCandidaturaDemonstracao(){
+//    
+//    public boolean novaCandidaturaDemonstracao(Demonstracao d){
+//        
+//        d.getListaCandidaturasDemonstracao().addCandidatura(candidaturaDemonstracao);
 //        CandidaturaDemonstracao cd = new CandidaturaDemonstracao();
 //        
 //        cd.setAreaExposicaoCD(areaExposicao);
