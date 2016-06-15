@@ -1,6 +1,8 @@
 package lapr.project.model;
 
 import java.util.*;
+import lapr.project.model.lists.ListaFAE;
+import lapr.project.model.lists.ListaKeywords;
 
 /**
  *
@@ -16,6 +18,7 @@ public class FAE implements Comparable<FAE> {
     private final String NOME_POR_OMISSAO = "sem nome";
     private static int numeroFAEs = 1;
     private FAE m_fae;
+    private ListaFAE listaFAE;
 
     public FAE(Utilizador u) {
         this.o_utilizador = u;
@@ -39,12 +42,13 @@ public class FAE implements Comparable<FAE> {
     }
 
     public boolean validaMenbroFAE() {
-        if (m_fae.getNome()!= null && m_fae.getUsername() != null && m_fae.getEmail()!= null){
+        if (m_fae.getNome() != null && m_fae.getUsername() != null && m_fae.getEmail() != null) {
             return true;
-        } else
+        } else {
             return false;
+        }
     }
-    
+
     public boolean valida() {
         return true;
     }
@@ -66,6 +70,16 @@ public class FAE implements Comparable<FAE> {
         return ("Utilizador: " + this.o_utilizador);
     }
 
+//    public String toStringCompleto() {
+//        String str=" ";
+//        str += "\tOrganizadores:\n";
+//        for (FAE fae : listaFAE.getListaFAE()) {
+//            str += "\t\t" + fae.getUtilizador().toString() + "\n";
+//        }
+//
+//        return str;
+//    }
+
     public boolean validaAvaliacao(Avaliacao ava) {
         return ava.valida();
     }
@@ -85,11 +99,11 @@ public class FAE implements Comparable<FAE> {
     public String getUsername() {
         return o_utilizador.getUsername();
     }
-    
+
     public String getEmail() {
         return o_utilizador.getEmail();
     }
-    
+
     public boolean validaFAEDuplicado(List<FAE> listaFAE) {
         StringBuilder s = new StringBuilder();
 
@@ -136,23 +150,21 @@ public class FAE implements Comparable<FAE> {
         }
         return lf;
     }
-    
+
     public boolean isUtilizador(Utilizador u) {
         if (this.o_utilizador != null) {
             return this.o_utilizador.equals(u);
         }
         return false;
     }
-    
-    
-    public int getTempoServico(){
+
+    public int getTempoServico() {
         return o_utilizador.getTempoServico();
     }
 
     @Override
     public int compareTo(FAE o) {
-        return this.getTempoServico()-o.getTempoServico();
+        return this.getTempoServico() - o.getTempoServico();
     }
-
 
 }

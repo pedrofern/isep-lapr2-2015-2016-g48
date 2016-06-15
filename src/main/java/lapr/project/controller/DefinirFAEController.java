@@ -16,12 +16,12 @@ public class DefinirFAEController {
     private FAE fae;
     private ListaFAE listaFaes;
     private RegistoUtilizadores m_registoUtilizadores;
-    private Organizador organizador;
+    private Utilizador utilizador;
     private RegistoExposicoes listaExposicao;
 
-    public DefinirFAEController(CentroExposicoes centroExposicao, Organizador organizador) {
+    public DefinirFAEController(CentroExposicoes centroExposicao, Utilizador utilizador) {
         this.ce = centroExposicao;
-        this.organizador = organizador;
+        this.utilizador = utilizador;
 
     }
 //    public List<Exposicao> getListaExposicaoOrganizadorSemFAEDefinidos(String email) {
@@ -34,88 +34,43 @@ public class DefinirFAEController {
         return ce.getRegistoUtilizadores();
     }
 
-    public boolean registaMenbroFAE(FAE fae) {
-        if (!getListaFAE().registaMenbroFAE(fae)) {
+    public ListaFAE getListaFAE() {
+        return exposicao.getListaFAEs();
+    }
+
+    public FAE getFAE() {
+        
+         for (int i = 0; i < listaFaes.getListaFAE().size(); i++) {
+            
+             return fae=listaFaes.getListaFAE().get(i);
+        }
+        return fae;
+    }
+
+    public void criarFAE(Utilizador utilizador) {
+        listaFaes.criaFAE(utilizador);
+    }
+
+    public void removerFAE(FAE fae) {
+        listaFaes.removerFAE(fae);
+    }
+
+    public void setListaFAE(ListaFAE lo) {
+        exposicao.setListaFaes(lo);
+    }
+
+    public void selectExposicao(Exposicao e) {
+        this.exposicao = e;
+    }
+
+    public boolean registaExposicao(FAE fae) {
+        if (!getListaFAE().registaFAE(fae)) {
             return false;
         } else {
             return true;
         }
 
     }
-
-    public ListaFAE getListaFAE() {
-        return exposicao.getListaFAEs();
-    }
-
-    public boolean addFAE(Utilizador utilizador, Exposicao exposicao) {
-        FAE fae = new FAE(utilizador);
-
-        if (fae != null) {
-            return listaFaes.addFAE(fae, exposicao);
-        } else {
-            return false;
-        }
-    }
-
-    public String getFAEString() {
-        return this.fae.toString();
-    }
-
-    public FAE getFAE() {
-        return fae;
-    }
-
-//    public void setListaFAE(ListaFAE lo) {
-//        exposicao.setListaFaes(lo);
-//    }
-//
-//    public void selectExposicao(Exposicao e) {
-//        this.exposicao = e;
-//    }
-//
-//    public List<Exposicao> getListaExposicoes(String strId) {
-//        return ce.getRegistoExposicoes().getExposicaoOrganizador(strId);
-//    }
-//
-//    public List<Utilizador> getListaUtilizadores() {
-//        return m_registoUtilizadores.getListaUtilizadores();
-//    }
-//
-//    public FAE addMembroFAE(String strID) {
-//        Utilizador u = m_registoUtilizadores.getUtilizadorByID(strID);
-//
-//        if (u != null) {
-//            return listaFaes.addMembroFAE(u);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public void registaMenbroFAE(FAE fae) {
-//        listaFaes.adicionarFAE(fae);
-//    }
-//
-//    public FAE getFAE() {
-//        return fae;
-//    }
-//    
+   
 }
 
-    //tem de ser na exposição
-//    public FAE setUtilizador(List<Utilizador> lstUtz) {
-//        for (Utilizador u : lstUtz) {
-//            listaFaes.addFAE(u);
-//        }
-//
-//        if (ce.validaDefinirFAE(fae)) {
-//            return fae;
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public boolean registaMembroFAE(FAE fae) {
-//
-//        return ce.registaDefinirFAE(fae);
-//
-//    }

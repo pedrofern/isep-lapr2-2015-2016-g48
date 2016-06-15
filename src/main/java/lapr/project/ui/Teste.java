@@ -28,22 +28,22 @@ public class Teste {
             s6="16/11/1111", s7="13/11/1111", s8="17/11/1111", s9="18/11/1111", s10="14/11/1111";
            private static Data d1,d2,d3,d4,d5,d6,d7,d8,d9,d10;
     public static void main(String[] args) throws FileNotFoundException {
-//        CentroExposicoes ce = new CentroExposicoes();
-//        Utilizador user = new Utilizador();
-//        Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true);
-//
-//        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", true);
-//        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", true);
-//        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", true);
-//        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", true);
-//        Utilizador ut6 = new Utilizador("Tomás Magalhães", "1151182@isep.ipp.pt", "Representante", true);
-//
-//        RegistoUtilizadores lu = ce.getRegistoUtilizadores();
-//        lu.addUtilizador(ut1);
-//        lu.addUtilizador(ut2);
-//        lu.addUtilizador(ut3);
-//        lu.addUtilizador(ut4);
-//        lu.addUtilizador(ut5);
+        CentroExposicoes ce = new CentroExposicoes();
+        Utilizador user = new Utilizador();
+        Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true,7);
+
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", true,9);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", true,2);
+        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", true,4);
+        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", true,4);
+        Utilizador ut6 = new Utilizador("Tomás Magalhães", "1151182@isep.ipp.pt", "Representante", true,0);
+
+        RegistoUtilizadores lu = ce.getRegistoUtilizadores();
+        lu.addUtilizador(ut1);
+        lu.addUtilizador(ut2);
+        lu.addUtilizador(ut3);
+        lu.addUtilizador(ut4);
+        lu.addUtilizador(ut5);
 //               ListaOrganizadores lo=new ListaOrganizadores();
 //        Exposicao e = ce.getRegistoExposicoes().novaExposicao();
 //
@@ -61,7 +61,7 @@ public class Teste {
 //        e1.setDados("teste1", "teste1", d1, d2, "teste1", d3, d4, d5, d6, d7, d8, d9, d10);
 //
 //        ce.getRegistoExposicoes().adicionarExposicao(e1);
-
+//
 //        
 //        Exposicao ex = new Exposicao();
 //        
@@ -71,7 +71,7 @@ public class Teste {
 //        RegistoExposicoes re=ce.getRegistoExposicoes();
 //        ce.getRegistoExposicoes().adicionarExposicao(ex);
         //new AvaliarCandidaturaUI(centro,utilizador);
-        //new DefinirFAEUI(ce);
+        new DefinirFAEUI(ce,user);
         //RegistarCandidaturaUI teste=new RegistarCandidaturaUI(ce, user);
         //new CriarStandUI(ce);
     }

@@ -49,7 +49,7 @@ public class DefinirFAEUI extends JFrame {
         ce = centroExposicoes;
         user = utilizador;
         o_Organizador = new Organizador(user);
-        controller = new DefinirFAEController(centroExposicoes, o_Organizador);
+        controller = new DefinirFAEController(centroExposicoes, user);
         m_exposicao = new Exposicao();
         m_exposicao.setTitulo("TESTE EXPOSICAO");
 
@@ -124,8 +124,14 @@ public class DefinirFAEUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int tmp = comboBoxExposicao.getSelectedIndex();
-                exposicaoSelecionada = listaExposicoes.getExposicoes().get(tmp);
+                int tmp=comboBoxExposicao.getSelectedIndex();
+                controller.selectExposicao(listaExposicoes.getExposicoes().get(tmp));
+                if (comboBoxExposicao.getSelectedIndex() >= 0) {
+                    comboBoxExposicao.setEnabled(false);
+                } else {
+
+                    comboBoxExposicao.setEnabled(true);
+                }
 
             }
         });
@@ -236,6 +242,7 @@ public class DefinirFAEUI extends JFrame {
 
                 if (var == 0) {
                     modeloListaFAE.remove(lstUtilizadoresFAE.getSelectedIndex());
+                   listaUtilizadoresFAE.removerFAE((FAE)lstUtilizadoresFAE.getSelectedValue());
                     int index = lstUtilizadoresFAE.getSelectedIndex();
                     if (modeloListaFAE.getSize() == 0) {
                         btn.setEnabled(true);
@@ -259,14 +266,14 @@ public class DefinirFAEUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int contador = 0;
-                tmp = new Utilizador[listaCompletaUtilizadores.getArray().length];
+
                 Object[] values = lstCompletaUtilizadores.getSelectedValues();
+                
                 for (Object valor : values) {
                     if (!modeloListaFAE.contains(valor)) {
                         modeloListaFAE.addElement(valor);
-                        tmp[contador] = (Utilizador) valor;
-                        contador++;
+                        Utilizador u = (Utilizador) valor;
+                        listaUtilizadoresFAE.criaFAE(u);
 
                     } else {
                         JOptionPane.showMessageDialog(
@@ -291,30 +298,26 @@ public class DefinirFAEUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                Exposicao exp = new Exposicao();
-                exp.setTitulo("TEste");
-                int contador = 0;
-                Utilizador u = (Utilizador) tmp[contador];
-                contador++;
-                controller.addFAE(u, exposicaoSelecionada);
-                if (controller.registaMenbroFAE(controller.getFAE())) {
+                FAE fae=new FAE();
+                
+                for (int j = 0; j < listaUtilizadoresFAE.getListaFAE().size(); j++) {
+                 fae=listaUtilizadoresFAE.getListaFAE().get(j);
+                }
+                if (controller.registaExposicao(fae)) {
 
-                    m_exposicao.getListaFAE();
+                    m_exposicao.setListaFaes(controller.getListaFAE());
+
                     JOptionPane.showMessageDialog(
                             null,
-                            controller.getFAEString(),
+                            "Fae definido",
                             "Novo FAE",
                             JOptionPane.INFORMATION_MESSAGE);
+
                     dispose();
-
                 } else {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "FAE já adicionado!",
-                            "Novo FAE",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+                    JOptionPane.showMessageDialog(null, "O fae já se encontra registada no sistema", "Nova FAE", JOptionPane.ERROR_MESSAGE);
 
+                }
             }
 
         });

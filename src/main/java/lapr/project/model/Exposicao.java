@@ -521,9 +521,7 @@ public class Exposicao implements Submissivel, Atribuivel, Comparable<Exposicao>
         return this.getState().setStateEmDecidida();
     }
 
-    public ListaFAE getListaFAE() {
-      return listaFaes;
-    }
+    
 
     @Override
     public String toString() {

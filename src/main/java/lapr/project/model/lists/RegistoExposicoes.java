@@ -145,22 +145,22 @@ public class RegistoExposicoes {
         }
         return null;
     }
-    /**
-     * Metodo que retorna a lista de exposicoes do FAE com o id passado por parametro
-     * @param id id 
-     * @return lista de exposicoes do FAE com o id passado por parametro
-     */
-    public RegistoExposicoes getExposicoesDoFAE(Utilizador u) {
-        RegistoExposicoes l_ExpDoFAE = new RegistoExposicoes();
-
-        for (Exposicao e : this.listaExposicoes) {
-            if (e.getListaFAEs().getFAE(u.getID()) != null) {
-                l_ExpDoFAE.adicionarExposicao(e);
-            }
-
-        }
-        return l_ExpDoFAE;
-    }
+//    /**
+//     * Metodo que retorna a lista de exposicoes do FAE com o id passado por parametro
+//     * @param id id 
+//     * @return lista de exposicoes do FAE com o id passado por parametro
+//     */
+//    public RegistoExposicoes getExposicoesDoFAE(Utilizador u) {
+//        RegistoExposicoes l_ExpDoFAE = new RegistoExposicoes();
+//
+//        for (Exposicao e : this.listaExposicoes) {
+//            if (e.getListaFAEs().getFAE(u.getID()) != null) {
+//                l_ExpDoFAE.adicionarExposicao(e);
+//            }
+//
+//        }
+//        return l_ExpDoFAE;
+//    }
     
     
     
