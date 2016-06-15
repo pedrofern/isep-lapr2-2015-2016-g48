@@ -10,7 +10,7 @@ import lapr.project.utils.Data;
  */
 public class CriarDemonstracaoController {
 
-    private Demonstracao demonstravao;
+    private Demonstracao demonstracao;
     private RegistoExposicoes registoExposicoes;
     private Exposicao exposicao;
     private RegistoRecursos listaRecursos;
@@ -22,26 +22,26 @@ public class CriarDemonstracaoController {
     }
 
     public void novaDemonstracao() {
-        exposicao.getListaDemonstracoes().novaDemonstracao();
+        demonstracao = new Demonstracao();
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
        
-        demonstravao.setDados(descricao, temaExposicao, inicio, fim);
+        demonstracao.setDados(descricao, temaExposicao, inicio, fim);
         
-        return demonstravao;
+        return demonstracao;
     }
 
 //    public void setCodigoUnico(int codigoUnico) {
-//        demonstravao.setCod(codigoUnico);
+//        demonstracao.setCod(codigoUnico);
 //    }
 //    
     public void setDescricao(String novaDescricao) {
-        demonstravao.setDesc(novaDescricao);
+        demonstracao.setDesc(novaDescricao);
     }
     
 //    public void setListaRecursos(RegistoRecursos novaListaRecursos) {
-//        demonstravao.setListaRecursos(novaListaRecursos);
+//        demonstracao.setListaRecursos(novaListaRecursos);
 //    }
     
     public RegistoRecursos getListaRecursos() {
@@ -49,7 +49,7 @@ public class CriarDemonstracaoController {
     }
         
     public void addRecursoDemonstracao(Recurso r){
-        demonstravao.addRecurso(r);
+        demonstracao.addRecurso(r);
     }
     
     public RegistoExposicoes getListaExposicoes() {
@@ -62,22 +62,22 @@ public class CriarDemonstracaoController {
     }
 
 //    public Demonstracao registaDemonstracao() {
-//        if (exposicao.getRegistoDemonstracao().registaDemonstracao(demonstravao)) {
-//            return demonstravao;
+//        if (exposicao.getRegistoDemonstracao().registaDemonstracao(demonstracao)) {
+//            return demonstracao;
 //        }
 //        return null;
 //    }
     
     public Demonstracao getDemonstracao() {
-        return demonstravao;
+        return demonstracao;
     }
     
 //    public Demonstracao setDados(int cdgUnico, String strDescricao) {
-//        demonstravao.setCod(cdgUnico);
-//        demonstravao.setDesc(strDescricao);
+//        demonstracao.setCod(cdgUnico);
+//        demonstracao.setDesc(strDescricao);
 //
-//        if (exposicao.getRegistoDemonstracao().validaDemonstracao(demonstravao)) {
-//            return demonstravao;
+//        if (exposicao.getRegistoDemonstracao().validaDemonstracao(demonstracao)) {
+//            return demonstracao;
 //        } else {
 //            return null;
 //        }

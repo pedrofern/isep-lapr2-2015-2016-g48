@@ -173,18 +173,18 @@ public class RegistarCandidaturaUI extends JFrame{
         d1.setDados("demo1", "tema1", d, d);
         d2.setDados("demo2", "tema2", d, d);
         d3.setDados("demo3", "tema3", d, d);
-        listaDemonstracoes.registaDemonstracao(d1);
-        listaDemonstracoes.registaDemonstracao(d2);
-        listaDemonstracoes.registaDemonstracao(d3);
+        listaDemonstracoes.adicionarDemonstracao(d1);
+        listaDemonstracoes.adicionarDemonstracao(d2);
+        listaDemonstracoes.adicionarDemonstracao(d3);
     //fim
-        listaDemonstracoes = exposicao.getListaDemonstracoes();
+//        listaDemonstracoes = exposicao.getListaDemonstracoes();
                 
         controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
         controllerRCC.novaCandidatura();
 
         criarComponentes();      
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setLocationRelativeTo(null);
