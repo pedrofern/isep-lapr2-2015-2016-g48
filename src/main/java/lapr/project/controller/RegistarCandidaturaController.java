@@ -97,24 +97,12 @@ public class RegistarCandidaturaController {
     public boolean registaCandidatura() {
         return eRepresentante.registaCandidatura(candidatura);
     }
-//    
-//    public boolean novaCandidaturaDemonstracao(Demonstracao d){
-//        
-//        d.getListaCandidaturasDemonstracao().addCandidatura(candidaturaDemonstracao);
-//        CandidaturaDemonstracao cd = new CandidaturaDemonstracao();
-//        
-//        cd.setAreaExposicaoCD(areaExposicao);
-//        cd.setListaProdutos(e_listaProdutos);
-//        cd.setMoradaCD(morada);
-//        cd.setNomeEmpresaCD(nomeEmpresa);
-//        cd.setQuantidadeConvitesCD(quantidadeConvites);
-//        cd.setTelemovelCD(telemovel);
-//        
-//        return cd;
-//    }
-//    
-//    public ListaCandidaturasDemonstracoes novaListaCandidaturasDemonstracoes(){
-//        ListaCandidaturasDemonstracoes lcd = new ListaCandidaturasDemonstracoes();
-//        lcd.novaCandidatura()
-//    }
+    
+    public boolean novaCandidaturaDemonstracao(Demonstracao d){
+            
+        candidaturaDemonstracao = new CandidaturaDemonstracao(candidatura);
+        
+        return d.getListaCandidaturasDemonstracao().addCandidaturaDemonstracao(candidaturaDemonstracao);
+    }
+
 }

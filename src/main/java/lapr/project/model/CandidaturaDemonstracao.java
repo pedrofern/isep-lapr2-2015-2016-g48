@@ -85,69 +85,66 @@ public class CandidaturaDemonstracao {
         return lProd;
     }
     
-    public void setListaProdutos(ListaProduto listaProdutos){
+    public void setListaProdutosDemonstracao(ListaProduto listaProdutos){
         listaProdutosCD = listaProdutos;
     }
 
     public ListaCandidaturasDemonstracoes getListaCandidaturas() {
         ListaCandidaturasDemonstracoes lc = new ListaCandidaturasDemonstracoes();
-        for (ListIterator<CandidaturaDemonstracao> it = listaCandidaturasDemo.getListaCandidaturas().listIterator(); it.hasNext();) {
-            lc.addCandidatura(it.next());
+        for (ListIterator<CandidaturaDemonstracao> it = listaCandidaturasDemo.getListaCandidaturasDemonstracao().listIterator(); it.hasNext();) {
+            lc.addCandidaturaDemonstracao(it.next());
         }
         return lc;
     }
 
-    public boolean addProduto(String nomeProduto) {
+    public boolean addProdutoDemonstracao(String nomeProduto) {
         Produto p = new Produto(nomeProduto);
         p.valida();
-        return addProduto(p);
+        return addProdutoDemonstracao(p);
     }
 
-    private boolean addProduto(Produto p) {
+    private boolean addProdutoDemonstracao(Produto p) {
         return listaProdutosCD.adicionarProduto(p);
     }
 
-    public boolean validaCandidatura(Candidatura c) {
+    public boolean validaCandidaturaDemonstracao(Candidatura c) {
         return c.valida();
     }
 
-    public boolean validaFAE(FAE f) {
-        return f.valida();
-    }
-
     public boolean valida() {
-        return validaNomeEmpresa() && validaMorada() && validaTelemovel() && 
-                validaArea() && validaContives();
+        return validaNomeEmpresaDemonstracao() && validaMoradaDemonstracao() && 
+                validaTelemovelDemonstracao() && 
+                validaAreaDemonstracao() && validaContivesDemonstracao();
     }
-    public boolean validaNomeEmpresa() {
+    public boolean validaNomeEmpresaDemonstracao() {
         if (nomeEmpresaCD == null || nomeEmpresaCD.isEmpty() || nomeEmpresaCD.matches(".*\\d+.*")) {
             return false;
         }
         return true;
     }
 
-    public boolean validaMorada() {
+    public boolean validaMoradaDemonstracao() {
         if (moradaCD == null || moradaCD.isEmpty()) {
             return false;
         }
         return true;
     }
 
-    public boolean validaTelemovel() {
+    public boolean validaTelemovelDemonstracao() {
         if (telemovelCD<900000000 || telemovelCD>999999999){
             return false;
         }
         return true;
     }
 
-    public boolean validaArea() {
+    public boolean validaAreaDemonstracao() {
         if (areaExposicaoCD<1 || areaExposicaoCD>999){
             return false;
         }
         return true;
     }
     
-    public boolean validaContives() {
+    public boolean validaContivesDemonstracao() {
         if (areaExposicaoCD<1 || areaExposicaoCD>999){
             return false;
         }
@@ -167,7 +164,7 @@ public class CandidaturaDemonstracao {
                 this.quantidadeConvitesCD;
     }
     
-    public String toStringCompleto() {
+    public String toStringCompletoCD() {
         return this.toStringDadosGeraisCD() + "\n" + this.getListaProdutosCD();
     }
 }

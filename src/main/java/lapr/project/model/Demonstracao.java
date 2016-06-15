@@ -33,7 +33,6 @@ public class Demonstracao implements Serializable {
 
     public Demonstracao() {
         codigoUnico = codigoUnico + totalDemonstracao++;
-        this.desc = desc;
         this.m_listaRecursos = new RegistoRecursos();
         listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
     }
@@ -90,6 +89,14 @@ public class Demonstracao implements Serializable {
         if (getListaRecursos().contem(r)) {
             return r;
         } else {
+            return null;
+        }
+    }
+    
+    public CandidaturaDemonstracao setCandidaturaDemonstracao(CandidaturaDemonstracao cd){
+        if (getListaCandidaturasDemonstracao().getListaCandidaturasDemonstracao().contains(cd)){
+            return cd;
+        }else {
             return null;
         }
     }
