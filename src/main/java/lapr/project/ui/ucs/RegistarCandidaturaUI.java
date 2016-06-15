@@ -28,6 +28,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.text.html.CSS;
 
 /**
  *
@@ -54,6 +56,7 @@ public class RegistarCandidaturaUI extends JFrame{
      * Guarda o botao remover produto
      */
     private JButton botaoRemoverProduto;
+    private JButton selExp;
     /**
      * Guarda as Demonstracoes da exposicao
      */
@@ -143,50 +146,16 @@ public class RegistarCandidaturaUI extends JFrame{
         
         super("Registar Candidatura");
         
-        user=utilizador;        
-        
+        user=utilizador;
         eRepresentante = new Representante();
-
         ce = centroExposicoes;
-        
-        
-    //inico testes
-        exposicao = new Exposicao();
-        exposicao.setTitulo("TESTE EXPOSICAO");
-        
         listaExposicoes = ce.getRegistoExposicoes();
-        listaExposicoes.adicionarExposicao(exposicao);
-        listaExposicoes.registaExposicao(exposicao);
-        
-        //listaExposicoes = ce.getListaExposicoes();
-        listaDemonstracoes = exposicao.getListaDemonstracoes();
-        //testar demonstracoes
-        listaRecursos = new RegistoRecursos();
-        Recurso r1 = new Recurso("Recurso1");
-        Recurso r2 = new Recurso("Recurso2");
-        Recurso r3 = new Recurso("Recurso3");
-        Demonstracao d1= new Demonstracao();        
-        Demonstracao d2= new Demonstracao();
-        Demonstracao d3= new Demonstracao();
-        Data d = new Data();
-        d.setData(2016, 02, 05);
-        d1.setDados("demo1", "tema1", d, d);
-        d2.setDados("demo2", "tema2", d, d);
-        d3.setDados("demo3", "tema3", d, d);
-        listaDemonstracoes.adicionarDemonstracao(d1);
-        listaDemonstracoes.adicionarDemonstracao(d2);
-        listaDemonstracoes.adicionarDemonstracao(d3);
-    //fim
-//        listaDemonstracoes = exposicao.getListaDemonstracoes();
-                
-        controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
-        controllerRCC.novaCandidatura();
 
-        criarComponentes();      
+        criarComponentes();
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setMinimumSize(new Dimension(getWidth(), getHeight()));
+        setMinimumSize(new Dimension(500, 500));
         setLocationRelativeTo(null);
         setVisible(true);
         
@@ -195,7 +164,17 @@ public class RegistarCandidaturaUI extends JFrame{
 
         add(criarPainelSul(), BorderLayout.SOUTH);
         add(criarPainelNorte(), BorderLayout.NORTH);
-        add(criarPainelListas(), BorderLayout.CENTER);
+
+        txtArea.setEnabled(false);
+        txtConvites.setEnabled(false);
+        txtKey1.setEnabled(false);
+        txtKey2.setEnabled(false);
+        txtKey3.setEnabled(false);
+        txtKey4.setEnabled(false);
+        txtKey5.setEnabled(false);
+        txtMorada.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtTelemovel.setEnabled(false);
     }
 
     private JPanel criarPainelNorte() {
@@ -214,22 +193,16 @@ public class RegistarCandidaturaUI extends JFrame{
         p.setBorder(new TitledBorder("Opções"));
         p.add(criarPainelBotoes());
         return p;
-    }
-    /**
-     * Devolve uma lista de produtos
-     * @return lista produtos
-     */
-    public JList getLstProdutos() {
-        return lstProdutos;
-    }
+    }    
     private JPanel criarPainelExposicao(RegistoExposicoes lstExposicoes){
-        JPanel painel= new JPanel(new FlowLayout());
+        JPanel painel= new JPanel(new BorderLayout());
         
         painel.setBorder(new TitledBorder("Exposição"));
         comboExp = Utils.criarComboExpo(lstExposicoes);
-
-        painel.add(comboExp);        
         
+        painel.add(comboExp, BorderLayout.NORTH);              
+        painel.add(criarBtSelect(),BorderLayout.CENTER);
+
         return painel;
     }
     /**
@@ -241,7 +214,7 @@ public class RegistarCandidaturaUI extends JFrame{
         
         p.setBorder(new TitledBorder("Dados"));
         
-        txtNome = new JTextField(40);
+        txtNome = new JTextField(30);
         txtNome.requestFocusInWindow();
         txtNome.addKeyListener(new KeyAdapter() {
             @Override
@@ -258,7 +231,7 @@ public class RegistarCandidaturaUI extends JFrame{
             }
         }); 
         
-        txtMorada = new JTextField(40);
+        txtMorada = new JTextField(30);
         txtMorada.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
@@ -329,7 +302,7 @@ public class RegistarCandidaturaUI extends JFrame{
         
         p.setBorder(new TitledBorder("Keywords:"));
         
-        txtKey1 = new JTextField(20);
+        txtKey1 = new JTextField(15);
         txtKey1.requestFocusInWindow();
         txtKey1.addKeyListener(new KeyAdapter() {
             @Override
@@ -340,13 +313,13 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey1.getText().length() > 19) {
+                if (txtKey1.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey2 = new JTextField(20);
+        txtKey2 = new JTextField(15);
         txtKey2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -356,13 +329,13 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey2.getText().length() > 19) {
+                if (txtKey2.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey3 = new JTextField(20);
+        txtKey3 = new JTextField(15);
         txtKey3.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -372,13 +345,13 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey3.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey3.getText().length() > 19) {
+                if (txtKey3.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey4 = new JTextField(20);
+        txtKey4 = new JTextField(15);
         txtKey4.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -388,13 +361,13 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey4.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey4.getText().length() > 19) {
+                if (txtKey4.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey5 = new JTextField(20);
+        txtKey5 = new JTextField(15);
         txtKey5.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
@@ -404,7 +377,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey5.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey5.getText().length() > 19) {
+                if (txtKey5.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
@@ -572,7 +545,8 @@ public class RegistarCandidaturaUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{                       
+                try{      
+                    
                     int area = Integer.parseInt(txtArea.getText());
                     int convites = Integer.parseInt(txtConvites.getText());                    
                     String morada = txtMorada.getText();
@@ -701,7 +675,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                 botaoAdicionarProduto,
                                 botaoRemoverProduto));
         p.add(criarPainelListaDemo());//("Demonstrações:",lstDemonstracoes,botaoVerRecursoDemonstracao));
-        
+
         return p;
     }
     /**
@@ -735,6 +709,13 @@ public class RegistarCandidaturaUI extends JFrame{
         return p;
     }
     /**
+     * Devolve uma lista de produtos
+     * @return lista produtos
+     */
+    public JList getLstProdutos() {
+        return lstProdutos;
+    }
+    /**
      * criar painel lista demonstrações recebendo titulo lista, lista demonstrações e um botao
      * @param tituloLista titulo lista
      * @param lstLista lista demonstrações
@@ -750,21 +731,17 @@ public class RegistarCandidaturaUI extends JFrame{
                 new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA)));
         
-        p.add(criarPainelCheckBoxDemo(), BorderLayout.NORTH);
+        p.add(criarPainelCheckBoxDemo(), BorderLayout.CENTER);
 
-//        JPanel pBotoes = criarPainelBotoesListaProduto(btnSuperior,btnInferior);
-//        p.add(pBotoes, BorderLayout.SOUTH);
         return p;
     }
     private JPanel criarPainelCheckBoxDemo(){
         JPanel pCheck=new JPanel(new FlowLayout());
         
-        Demonstracao[] opcoes=exposicao.getListaDemonstracoes().getArray();
+        Demonstracao[] opcoes=listaDemonstracoes.getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
-        
-//        setLayout(new GridLayout(0, 1));
- 
+
         for(Demonstracao d:opcoes){
             String sDemo=d.toString();
             cbDemo=new JCheckBox(sDemo);
@@ -783,7 +760,66 @@ public class RegistarCandidaturaUI extends JFrame{
         }
         return pCheck;
     }
+    private JButton criarBtSelect() {
+        selExp=new JButton("Seleccionar");
+        
+        selExp.setMnemonic(KeyEvent.VK_S);
+        selExp.setToolTipText("Selecionar exposição da lista");
+        
+        selExp.addActionListener(new ActionListener(){
+           
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                exposicao=(Exposicao) comboExp.getSelectedItem();
+                
+                listaDemonstracoes = exposicao.getListaDemonstracoes();
+        //        testar demonstracoes
+                listaRecursos = new RegistoRecursos();
+                Recurso r1 = new Recurso("Recurso1");
+                Recurso r2 = new Recurso("Recurso2");
+                Recurso r3 = new Recurso("Recurso3");
+                Demonstracao d1= new Demonstracao();        
+                Demonstracao d2= new Demonstracao();
+                Demonstracao d3= new Demonstracao();
+                Data d = new Data();
+                d.setData(2016, 02, 05);
+                d1.setDados("demo1", "tema1", d, d);
+                d2.setDados("demo2", "tema2", d, d);
+                d3.setDados("demo3", "tema3", d, d);
+                listaDemonstracoes.adicionarDemonstracao(d1);
+                listaDemonstracoes.adicionarDemonstracao(d2);
+                listaDemonstracoes.adicionarDemonstracao(d3);
+            //fim
+        //        listaDemonstracoes = exposicao.getListaDemonstracoes();
+                
+                controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
+                controllerRCC.novaCandidatura();
+                
+                add(criarPainelListas(), BorderLayout.CENTER);
+                setVisible(true);
+                
+
+                selExp.setEnabled(false);
+                comboExp.setEnabled(false);
+                
+                txtArea.setEnabled(true);
+                txtConvites.setEnabled(true);
+                txtKey1.setEnabled(true);
+                txtKey2.setEnabled(true);
+                txtKey3.setEnabled(true);
+                txtKey4.setEnabled(true);
+                txtKey5.setEnabled(true);
+                txtMorada.setEnabled(true);
+                txtNome.setEnabled(true);
+                txtTelemovel.setEnabled(true);
+            }     
+        }
+        );
+        
+        return selExp;
+    }
+           
 //    private class CheckBoxHandler implements ItemListener{
 //        private Demonstracao demo=null;
 //         
