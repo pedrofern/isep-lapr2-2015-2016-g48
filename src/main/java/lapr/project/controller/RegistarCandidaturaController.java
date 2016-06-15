@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.ListaCandidaturasDemonstracoes;
 import lapr.project.model.lists.ListaProduto;
 import lapr.project.model.lists.ListaKeywords;
 
@@ -83,9 +82,9 @@ public class RegistarCandidaturaController {
     public boolean valida() {
         if(candidatura.valida() == false){
             return false;
-        }else{
-        return true;
         }
+        return true;
+        
     }
 
     public boolean addProduto(String nomeProduto) {

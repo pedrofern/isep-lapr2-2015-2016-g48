@@ -13,25 +13,24 @@ import java.util.Objects;
  */
 public class Keyword {
     
-    private String keyword;
+    private String keywordDescricao;
 
     public Keyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public Keyword() {
-
+        this.keywordDescricao = keyword;
     }
 
     public void setKeyword(String novaKeyword) {
-        this.keyword = novaKeyword;
+        this.keywordDescricao = novaKeyword;
     }
 
     public String getKeyword() {
-        return keyword;
+        return keywordDescricao;
     }
 
     public boolean valida() {
+        if (keywordDescricao == null || keywordDescricao.isEmpty()) {
+            return false;
+        }
         return true;
     }
 
@@ -55,13 +54,13 @@ public class Keyword {
         }
         Keyword outraKeyword = (Keyword) outroObjeto;
         
-        return keyword.equalsIgnoreCase(outraKeyword.keyword);
+        return keywordDescricao.equalsIgnoreCase(outraKeyword.keywordDescricao);
     }   
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.keyword);
+        hash = 97 * hash + Objects.hashCode(this.keywordDescricao);
         return hash;
     }
     

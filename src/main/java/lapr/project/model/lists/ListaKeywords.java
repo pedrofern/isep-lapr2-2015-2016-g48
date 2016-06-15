@@ -7,7 +7,6 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lapr.project.model.Keyword;
 
@@ -50,7 +49,7 @@ public class ListaKeywords implements Serializable {
      *
      * @return lista de keywords
      */
-    public ArrayList<Keyword> getListaKeyword() {
+    public List<Keyword> getListaKeyword() {
         return listaKeyword;
     }
 

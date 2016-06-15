@@ -7,7 +7,6 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lapr.project.model.Produto;
 
@@ -50,7 +49,7 @@ public class ListaProduto implements Serializable {
      *
      * @return lista de produtos
      */
-    public ArrayList<Produto> getListaProduto() {
+    public List<Produto> getListaProduto() {
         return listaProdutos;
     }
 

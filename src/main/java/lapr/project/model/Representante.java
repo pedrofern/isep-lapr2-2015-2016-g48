@@ -9,12 +9,12 @@ import lapr.project.model.lists.*;
  */
 public class Representante {
 
-    private ListaProduto m_listaProdutos;
-    private ListaCandidaturas m_listaCandidaturas;
+    private ListaProduto listaProdutos;
+    private ListaCandidaturas listaCandidaturas;
 
     public Representante() {
-        m_listaProdutos = new ListaProduto();
-        m_listaCandidaturas = new ListaCandidaturas();
+        listaProdutos = new ListaProduto();
+        listaCandidaturas = new ListaCandidaturas();
     }
 
     public boolean registaProduto(Produto p) {
@@ -26,8 +26,7 @@ public class Representante {
     }
 
     private boolean validaProduto(Produto p) {
-        System.out.println("Produto: validaProduto: " + p.toString());
-        return true;
+        return p.valida();
     }
 
     public Candidatura novaCandidatura() {
@@ -47,11 +46,11 @@ public class Representante {
     }
 
     private boolean addCandidatura(Candidatura c) {
-        return m_listaCandidaturas.addCandidatura(c);
+        return listaCandidaturas.addCandidatura(c);
     }
 
     public Produto getProduto(String nomeProduto) {
-        for (Produto p : this.m_listaProdutos.getListaProduto()) {
+        for (Produto p : this.listaProdutos.getListaProduto()) {
             String s1 = p.getNomeProduto();
             if (s1.equalsIgnoreCase(nomeProduto)) {
                 return p;
@@ -62,7 +61,7 @@ public class Representante {
     }
 
     private boolean addProduto(Produto p) {
-        return m_listaProdutos.adicionarProduto(p);
+        return listaProdutos.adicionarProduto(p);
     }
 
     public Produto novoProduto() {
@@ -72,7 +71,7 @@ public class Representante {
     public ListaProduto getListaProdutos() {
         ListaProduto lProduto = new ListaProduto();
 
-        for (ListIterator<Produto> it = m_listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
+        for (ListIterator<Produto> it = listaProdutos.getListaProduto().listIterator(); it.hasNext();) {
             lProduto.adicionarProduto(it.next());
         }
 
@@ -80,6 +79,6 @@ public class Representante {
     }
 
     public ListaProduto getProdutos() {
-        return m_listaProdutos;
+        return listaProdutos;
     }
 }

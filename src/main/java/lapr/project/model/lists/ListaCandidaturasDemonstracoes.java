@@ -10,10 +10,10 @@ import lapr.project.model.*;
  */
 public class ListaCandidaturasDemonstracoes {
     
-    private final List<CandidaturaDemonstracao> m_listaCandidaturasDemonstracoes;
+    private final List<CandidaturaDemonstracao> listaCandidaturasDemonstracoes;
 
     public ListaCandidaturasDemonstracoes() {
-        m_listaCandidaturasDemonstracoes = new ArrayList<>();
+        listaCandidaturasDemonstracoes = new ArrayList<>();
     }
 
     /**
@@ -33,21 +33,20 @@ public class ListaCandidaturasDemonstracoes {
         }
     }
 
-    private boolean validaCandidaturaDemonstracao(CandidaturaDemonstracao c) {
-        System.out.println("RegistoCandidaturas: validaCandidatura: " + c.toString());
-        return true;
+    private boolean validaCandidaturaDemonstracao(CandidaturaDemonstracao cd) {
+        return cd.valida();
     }
 
     public boolean addCandidaturaDemonstracao(CandidaturaDemonstracao c) {
-        return m_listaCandidaturasDemonstracoes.add(c);
+        return listaCandidaturasDemonstracoes.add(c);
     }
 
     public List<CandidaturaDemonstracao> getListaCandidaturasDemonstracao() {
-        return m_listaCandidaturasDemonstracoes;
+        return listaCandidaturasDemonstracoes;
     }
 
     public CandidaturaDemonstracao getCandidaturaDemonstracaoByNomeEmpresa(String strNomeEmpresa) {
-        for (CandidaturaDemonstracao c : this.m_listaCandidaturasDemonstracoes) {
+        for (CandidaturaDemonstracao c : this.listaCandidaturasDemonstracoes) {
             if (c.getNomeEmpresaCD().equals(strNomeEmpresa)) {
                 return c;
             }
@@ -57,7 +56,7 @@ public class ListaCandidaturasDemonstracoes {
 
     public boolean alteraCandidaturaDemonstracao(CandidaturaDemonstracao cOriginal, CandidaturaDemonstracao cClone) {
         if (cClone.valida()) {
-            List<CandidaturaDemonstracao> lstCandidaturas = new ArrayList<CandidaturaDemonstracao>(m_listaCandidaturasDemonstracoes);
+            List<CandidaturaDemonstracao> lstCandidaturas = new ArrayList<>(listaCandidaturasDemonstracoes);
             lstCandidaturas.remove(cOriginal);
             lstCandidaturas.add(cClone);
             if (validaListaDemonstracao(lstCandidaturas)) {
@@ -73,12 +72,12 @@ public class ListaCandidaturasDemonstracoes {
     }
     
     private boolean validaListaDemonstracao(List<CandidaturaDemonstracao> lista) {
-        System.out.println("RegistoCandidaturasDemonstracao: validaLista: " + lista.toString());
+        //validar
         return true;
     }
 
     public CandidaturaDemonstracao getCandidaturaDemonstracaoInfo(String cNomeEmpresa) {
-        for (CandidaturaDemonstracao c : m_listaCandidaturasDemonstracoes) {
+        for (CandidaturaDemonstracao c : listaCandidaturasDemonstracoes) {
             if (cNomeEmpresa.equalsIgnoreCase(c.getNomeEmpresaCD())) {
                 return c;
             }
@@ -93,11 +92,11 @@ public class ListaCandidaturasDemonstracoes {
      */
     @Override
     public String toString() {
-        return "RegistoCandidaturas:" + "m_listaCandidaturas=" + m_listaCandidaturasDemonstracoes;
+        return "RegistoCandidaturas:" + listaCandidaturasDemonstracoes;
     }
     
     public CandidaturaDemonstracao[] getArray() {
-        return m_listaCandidaturasDemonstracoes.toArray( new CandidaturaDemonstracao[m_listaCandidaturasDemonstracoes.size()] );
+        return listaCandidaturasDemonstracoes.toArray(new CandidaturaDemonstracao[listaCandidaturasDemonstracoes.size()] );
      }
     
 }

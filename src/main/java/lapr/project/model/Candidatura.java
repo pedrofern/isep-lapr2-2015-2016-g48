@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 import lapr.project.model.lists.*;
 

@@ -10,10 +10,10 @@ import lapr.project.model.Candidatura;
  */
 public class ListaCandidaturas {
     
-    private final List<Candidatura> m_listaCandidaturas;
+    private final List<Candidatura> listaCandidaturas;
 
     public ListaCandidaturas() {
-        m_listaCandidaturas = new ArrayList<>();
+        listaCandidaturas = new ArrayList<>();
     }
 
     /**
@@ -33,21 +33,20 @@ public class ListaCandidaturas {
         }
     }
 
-    private boolean validaCandidatura(Candidatura c) {
-        System.out.println("RegistoCandidaturas: validaCandidatura: " + c.toString());
-        return true;
+    private boolean validaCandidatura(Candidatura c) {            
+        return c.valida();
     }
 
     public boolean addCandidatura(Candidatura c) {
-        return m_listaCandidaturas.add(c);
+        return listaCandidaturas.add(c);
     }
 
     public List<Candidatura> getListaCandidaturas() {
-        return m_listaCandidaturas;
+        return listaCandidaturas;
     }
 
     public Candidatura getCandidaturaByNomeEmpresa(String strNomeEmpresa) {
-        for (Candidatura c : this.m_listaCandidaturas) {
+        for (Candidatura c : this.listaCandidaturas) {
             if (c.getNomeEmpresa().equals(strNomeEmpresa)) {
                 return c;
             }
@@ -57,7 +56,7 @@ public class ListaCandidaturas {
 
     public boolean alteraCandidatura(Candidatura cOriginal, Candidatura cClone) {
         if (cClone.valida()) {
-            List<Candidatura> lstCandidaturas = new ArrayList<Candidatura>(m_listaCandidaturas);
+            List<Candidatura> lstCandidaturas = new ArrayList<>(listaCandidaturas);
             lstCandidaturas.remove(cOriginal);
             lstCandidaturas.add(cClone);
             if (validaLista(lstCandidaturas)) {
@@ -73,12 +72,12 @@ public class ListaCandidaturas {
     }
     
     private boolean validaLista(List<Candidatura> lista) {
-        System.out.println("RegistoCandidaturas: validaLista: " + lista.toString());
+        //validar
         return true;
     }
 
     public Candidatura getCandidaturaInfo(String cNomeEmpresa) {
-        for (Candidatura c : m_listaCandidaturas) {
+        for (Candidatura c : listaCandidaturas) {
             if (cNomeEmpresa.equalsIgnoreCase(c.getNomeEmpresa())) {
                 return c;
             }
@@ -93,11 +92,11 @@ public class ListaCandidaturas {
      */
     @Override
     public String toString() {
-        return "RegistoCandidaturas:" + "m_listaCandidaturas=" + m_listaCandidaturas;
+        return "RegistoCandidaturas:" + "m_listaCandidaturas=" + listaCandidaturas;
     }
     
     public Candidatura[] getArray() {
-        return m_listaCandidaturas.toArray( new Candidatura[m_listaCandidaturas.size()] );
+        return listaCandidaturas.toArray(new Candidatura[listaCandidaturas.size()] );
      }
     
 }
