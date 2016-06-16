@@ -153,9 +153,9 @@ public class RegistarCandidaturaUI extends JFrame{
 
         criarComponentes();
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
-        setMinimumSize(new Dimension(500, 500));
+        setMinimumSize(new Dimension(1100, 500));
         setLocationRelativeTo(null);
         setVisible(true);
         
@@ -584,8 +584,6 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
                         }
-//                        candidatura.setListaProdutos(listaProdutos);
-//                        candidatura = m_controllerRCC.registaCandidatura(nome, morada, telemovel, area, convites);
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura adicionada: \n"
@@ -643,7 +641,7 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JButton criarBotaoCancelar() {
         JButton botao = new JButton("Cancelar");
-        botao.setMnemonic(KeyEvent.VK_S);
+        botao.setMnemonic(KeyEvent.VK_C);
         botao.setToolTipText("Cancela o registo candidatura e volta ao menu anterior");
         botao.addActionListener(new ActionListener() {
             @Override
@@ -770,49 +768,55 @@ public class RegistarCandidaturaUI extends JFrame{
            
             @Override
             public void actionPerformed(ActionEvent e) {
+                try{
+                    exposicao=(Exposicao) comboExp.getSelectedItem();
 
-                exposicao=(Exposicao) comboExp.getSelectedItem();
-                
-                listaDemonstracoes = exposicao.getListaDemonstracoes();
-        //        testar demonstracoes
-                listaRecursos = new RegistoRecursos();
-                Recurso r1 = new Recurso("Recurso1");
-                Recurso r2 = new Recurso("Recurso2");
-                Recurso r3 = new Recurso("Recurso3");
-                Demonstracao d1= new Demonstracao();        
-                Demonstracao d2= new Demonstracao();
-                Demonstracao d3= new Demonstracao();
-                Data d = new Data();
-                d.setData(2016, 02, 05);
-                d1.setDados("demo1", "tema1", d, d);
-                d2.setDados("demo2", "tema2", d, d);
-                d3.setDados("demo3", "tema3", d, d);
-                listaDemonstracoes.adicionarDemonstracao(d1);
-                listaDemonstracoes.adicionarDemonstracao(d2);
-                listaDemonstracoes.adicionarDemonstracao(d3);
-            //fim
-        //        listaDemonstracoes = exposicao.getListaDemonstracoes();
-                
-                controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
-                controllerRCC.novaCandidatura();
-                
-                add(criarPainelListas(), BorderLayout.CENTER);
-                setVisible(true);
-                
+                    listaDemonstracoes = exposicao.getListaDemonstracoes();
+            //testar demonstracoes
+                    listaRecursos = new RegistoRecursos();
+                    Recurso r1 = new Recurso("Recurso1");
+                    Recurso r2 = new Recurso("Recurso2");
+                    Recurso r3 = new Recurso("Recurso3");
+                    Demonstracao d1= new Demonstracao();        
+                    Demonstracao d2= new Demonstracao();
+                    Demonstracao d3= new Demonstracao();
+                    Data d = new Data();
+                    d.setData(2016, 02, 05);
+                    d1.setDados("demo1", "tema1", d, d);
+                    d2.setDados("demo2", "tema2", d, d);
+                    d3.setDados("demo3", "tema3", d, d);
+                    listaDemonstracoes.adicionarDemonstracao(d1);
+                    listaDemonstracoes.adicionarDemonstracao(d2);
+                    listaDemonstracoes.adicionarDemonstracao(d3);
+             //fim
 
-                selExp.setEnabled(false);
-                comboExp.setEnabled(false);
-                
-                txtArea.setEnabled(true);
-                txtConvites.setEnabled(true);
-                txtKey1.setEnabled(true);
-                txtKey2.setEnabled(true);
-                txtKey3.setEnabled(true);
-                txtKey4.setEnabled(true);
-                txtKey5.setEnabled(true);
-                txtMorada.setEnabled(true);
-                txtNome.setEnabled(true);
-                txtTelemovel.setEnabled(true);
+                    controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
+                    controllerRCC.novaCandidatura();
+
+                    add(criarPainelListas(), BorderLayout.CENTER);
+                    setVisible(true);
+
+                    selExp.setEnabled(false);
+                    comboExp.setEnabled(false);
+
+                    txtArea.setEnabled(true);
+                    txtConvites.setEnabled(true);
+                    txtKey1.setEnabled(true);
+                    txtKey2.setEnabled(true);
+                    txtKey3.setEnabled(true);
+                    txtKey4.setEnabled(true);
+                    txtKey5.setEnabled(true);
+                    txtMorada.setEnabled(true);
+                    txtNome.setEnabled(true);
+                    txtTelemovel.setEnabled(true);
+                }
+                catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Não existem Exposições com período Candidaturas em aberto.",
+                            "Registar Candidatura",
+                            JOptionPane.ERROR_MESSAGE);                        
+                }
             }     
         }
         );
