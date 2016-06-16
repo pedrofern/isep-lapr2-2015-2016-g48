@@ -1,7 +1,9 @@
-package lapr.project.model.mechanisms;
+package lapr.project.model.lists;
 
 import lapr.project.model.mechanisms.TipoConflito;
 import java.util.*;
+import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
+import lapr.project.model.mechanisms.TipoConflito;
 
 /**
  *
@@ -44,24 +46,24 @@ public class RegistoTipoConflitos {
         return listaTipoConflitos;
     }
 
-    /**
-     * Verifica se o registo de tipos de conflito é igual a um objeto passado
-     * por parâmetro.
-     *
-     * @param o O objeto que vai ser comparado
-     * @return True se forem iguais, false se não forem.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (this.getClass() != o.getClass()) {
-            return false;
-        }
-        RegistoTipoConflitos reg = (RegistoTipoConflitos) o;
-        return listaTipoConflitos.equals(reg.getListaConflitos());
-    }
+//    /**
+//     * Verifica se o registo de tipos de conflito é igual a um objeto passado
+//     * por parâmetro.
+//     *
+//     * @param o O objeto que vai ser comparado
+//     * @return True se forem iguais, false se não forem.
+//     */
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (this.getClass() != o.getClass()) {
+//            return false;
+//        }
+//        RegistoTipoConflitos reg = (RegistoTipoConflitos) o;
+//        return listaTipoConflitos.equals(reg.getListaConflitos());
+//    }
 
     @Override
     public int hashCode() {

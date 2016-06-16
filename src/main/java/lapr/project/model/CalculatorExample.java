@@ -47,7 +47,7 @@ public class CalculatorExample {
          */
         
         public static double average(int sum, int number_of_values){
-            return sum/number_of_values;
+            return (double)sum/number_of_values;
         }
         
         /**

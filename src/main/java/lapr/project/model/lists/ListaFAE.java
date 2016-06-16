@@ -77,10 +77,6 @@ public class ListaFAE {
         return false;
     }
 
-    public boolean removerUtilizador(Utilizador utilizador) {
-        return listaFAE.remove(utilizador);
-    }
-
     public boolean removerFAE(FAE fae) {
         return listaFAE.remove(fae);
     }

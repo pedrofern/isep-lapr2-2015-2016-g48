@@ -82,14 +82,7 @@ public class ListaAtribuicoes {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        ListaAtribuicoes outraLA = (ListaAtribuicoes) o;
-        return this.getListaAtribuicoes().equals(outraLA.getListaAtribuicoes());
+        return false;
     }
 
     @Override

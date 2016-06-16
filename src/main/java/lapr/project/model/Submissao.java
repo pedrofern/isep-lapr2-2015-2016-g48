@@ -132,7 +132,7 @@ public class Submissao {
             return false;
         }
         Submissao sub = (Submissao) o;
-        return this.candidatura.equals(sub.getCandidatura());
+        return this.candidatura.getInfo().equals(sub.getCandidatura().getInfo());
     }
 
     @Override

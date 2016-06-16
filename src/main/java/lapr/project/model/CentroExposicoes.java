@@ -1,9 +1,9 @@
 package lapr.project.model;
 
+import lapr.project.model.lists.RegistoTipoConflitos;
 import lapr.project.model.lists.RegistoMecanismosAtribuicao;
 import lapr.project.model.mechanisms.*;
 import lapr.project.model.lists.*;
-import java.util.*;
 
 /**
  *
@@ -11,16 +11,12 @@ import java.util.*;
  */
 public class CentroExposicoes {
 
-    private static RegistoTipoConflitos registoTipoConflitos;
-//   FAES é na exposição
-//    private ListaFAE m_listaFAE;
-    
-    private  RegistoRecursos regRecursos;
+    private final  RegistoRecursos regRecursos;
     private  RegistoExposicoes regExposicoes;
-    private RegistoUtilizadores regUtilizadores;
-    private  RegistoStands regStands;
-    private RegistoMecanismosAtribuicao regMecAtribuicoes;
-    private RegistoTiposConflito regTiposConflitos;
+    private final RegistoUtilizadores regUtilizadores;
+    private final  RegistoStands regStands;
+    private final RegistoMecanismosAtribuicao regMecAtribuicoes;
+    private final RegistoTipoConflitos regTiposConflitos;
 
     public CentroExposicoes() {
         regUtilizadores = new RegistoUtilizadores();
@@ -28,7 +24,7 @@ public class CentroExposicoes {
         regRecursos = new RegistoRecursos();
         regStands=new RegistoStands();
         regMecAtribuicoes=new RegistoMecanismosAtribuicao();
-        regTiposConflitos=new RegistoTiposConflito();
+        regTiposConflitos=new RegistoTipoConflitos();
     }
 
     public RegistoUtilizadores getRegistoUtilizadores() {
@@ -60,30 +56,23 @@ public class CentroExposicoes {
      * @return o registo de tipo de conflitos do centro de exposicoes;
      */
     public RegistoTipoConflitos getRegistoTipoConflitos() {
-        return this.registoTipoConflitos;
+        return regTiposConflitos;
     }
 
-    /**
-     * Verifica se a empresa é igual a um objeto passado por parâmetro
-     *
-     * @param o O objeto que vai ser comparado com a empresa.
-     * @return True se forem iguais, false se não forem.
-     */
-    @Override
-    public boolean equals(Object o) {
-       
-        CentroExposicoes outroCentro = (CentroExposicoes) o;
-        return this.getRegistoUtilizadores().equals(outroCentro.getRegistoUtilizadores())
-                && this.getRegistoExposicoes().equals(outroCentro.getRegistoExposicoes());
-    }
+//    /**
+//     * Verifica se a empresa é igual a um objeto passado por parâmetro
+//     *
+//     * @param o O objeto que vai ser comparado com a empresa.
+//     * @return True se forem iguais, false se não forem.
+//     */
+//    @Override
+//    public boolean equals(Object o) {
+//       
+//        CentroExposicoes outroCentro = (CentroExposicoes) o;
+//        return this.getRegistoUtilizadores().equals(outroCentro.getRegistoUtilizadores())
+//                && this.getRegistoExposicoes().equals(outroCentro.getRegistoExposicoes());
+//    }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.regExposicoes);
-        hash = 53 * hash + Objects.hashCode(this.regUtilizadores);
-        return hash;
-    }
 
     public void setRegistoExposicoes (RegistoExposicoes re){
         regExposicoes=re;

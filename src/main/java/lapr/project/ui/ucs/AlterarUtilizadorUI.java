@@ -172,11 +172,15 @@ public class AlterarUtilizadorUI extends JPanel{
                             "Registar Utilizador",
                             JOptionPane.INFORMATION_MESSAGE);  
                 
-            PainelInfoUser.setLabels(user.getNome(), user.getEmail());
+            setLabels(user.getNome(), user.getEmail());
             norte.getTxtNome().setText("");
             norte.getTxtEmail().setText("");
             norte.getTxtPassword().setText("");
             norte.getTxtUsername().setText("");
+    }
+
+    private static void setLabels(String nome, String email) {
+        PainelInfoUser.setLabels(nome, email);
     }
 
     

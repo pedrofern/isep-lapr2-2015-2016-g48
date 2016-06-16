@@ -43,9 +43,9 @@ public class Organizador implements Comparable<Utilizador>{
         return false;
     }
 
+
     @Override
     public int compareTo(Utilizador o) {
-         return utilizador.getEmail().compareTo(o.getEmail());
+        return getUtilizador().getID().compareTo(o.getID());
     }
-
 }

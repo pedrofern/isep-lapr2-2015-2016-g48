@@ -76,7 +76,7 @@ public class ListaOrganizadores {
      */
     public boolean hasUtilizador(Utilizador u) {
         for (Organizador org : this.listaOrganizadores) {
-            if (org.getUtilizador().getUsername().equals(u)) {
+            if (org.getUtilizador().getID().equals(u.getID())) {
                 return true;
             }
         }

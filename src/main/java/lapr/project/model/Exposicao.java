@@ -240,8 +240,8 @@ public class Exposicao implements Comparable<Exposicao> {
 //    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
 //        this.listaSubmissoes = listaSubmissoes;
 //    }
-    public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
-        this.listaOrganizadores = lstOrganizadores;
+    public static void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
+        listaOrganizadores = lstOrganizadores;
     }
 
     /**
