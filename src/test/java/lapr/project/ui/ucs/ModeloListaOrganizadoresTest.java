@@ -5,9 +5,12 @@
  */
 package lapr.project.ui.ucs;
 
+import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
+import lapr.project.utils.Data;
+import lapr.project.utils.Utils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,7 +24,28 @@ import static org.junit.Assert.*;
  */
 public class ModeloListaOrganizadoresTest {
     
-    public ModeloListaOrganizadoresTest() {
+    private static final String s1 = "19/11/1111", s2 = "20/11/1111", s3 = "11/11/1111", s4 = "12/11/1111", s5 = "15/11/1111",
+            s6 = "16/11/1111", s7 = "13/11/1111", s8 = "17/11/1111", s9 = "18/11/1111", s10 = "14/11/1111";
+    private static Data d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
+    private Exposicao e;
+    
+    public ModeloListaOrganizadoresTest() throws Exception {
+        
+        CentroExposicoes ce=new CentroExposicoes();
+ 
+        e = ce.getRegistoExposicoes().novaExposicao();
+
+        
+        d1 = Utils.converterStringParaData(s1);
+        d2 = Utils.converterStringParaData(s2);
+        d3 = Utils.converterStringParaData(s3);
+        d4 = Utils.converterStringParaData(s4);
+        d5 = Utils.converterStringParaData(s5);
+        d6 = Utils.converterStringParaData(s6);
+        d7 = Utils.converterStringParaData(s7);
+        d8 = Utils.converterStringParaData(s8);
+        d9 = Utils.converterStringParaData(s9);
+        d10 = Utils.converterStringParaData(s10);
     }
     
     @BeforeClass
@@ -52,10 +76,10 @@ public class ModeloListaOrganizadoresTest {
         Utilizador u = new Utilizador();
         u.setNome("Diana");
         Organizador o=new Organizador(u);
-        Exposicao e=new Exposicao();
         
         ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());
         instance.addElement(o);
+
       
         Organizador teste=e.getListaOrganizadores().getListaOrganizadores().get(0);
 
@@ -73,7 +97,6 @@ public class ModeloListaOrganizadoresTest {
         String expResult = "Diana";
         Utilizador u = new Utilizador();
         u.setNome("Diana");
-        Exposicao e=new Exposicao();
         Organizador o=new Organizador(u);
         
         ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());

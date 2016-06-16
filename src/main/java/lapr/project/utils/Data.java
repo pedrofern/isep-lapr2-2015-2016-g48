@@ -26,7 +26,8 @@ public class Data implements Comparable<Data>, Serializable {
      * O dia da data.
      */
     private int dia;
-
+    
+    
     /**
      * Nomes dos dias da semana.
      */
@@ -277,25 +278,20 @@ public class Data implements Comparable<Data>, Serializable {
         return new Data(ano, mes, dia);
     }
     
-    public static Date converterParaDate(Data d) throws ParseException{
+    public Date converterParaDate() throws ParseException{
         
-        String data=d.toAnoMesDiaString();
-            if(data==null || data.equals("")) 
-                return null;
-        Date convertida=null;
-      
+        String data=this.toAnoMesDiaString();
+    
         DateFormat formatter=new SimpleDateFormat("yyyy/MM/dd");
-        convertida=(java.util.Date)formatter.parse(data);
+        Date convertida=(java.util.Date)formatter.parse(data);
 
         return convertida;
         
     }
     
-     public static Date getDataAtualDate() throws Exception{
+     public Date getDataAtualDate() throws Exception{
     
-        Date d=converterParaDate(dataAtual());
-        return d;
-        
+        return dataAtual().converterParaDate();       
     }
  
 }

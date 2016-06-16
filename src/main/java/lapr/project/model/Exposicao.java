@@ -40,8 +40,7 @@ public class Exposicao implements Comparable<Exposicao> {
     private static ListaDemonstracoes listaDemonstracoes;
     private static ListaAtribuicoes listaAtribuicoes;
     
-    private static ExposicaoEstado estado;
-    private static Timer timer;
+    private ExposicaoEstado estado;
     private TimerTask task1, task2, task3, task4, task5, task6, task7;
 
     public Exposicao() throws Exception {
@@ -162,10 +161,6 @@ public class Exposicao implements Comparable<Exposicao> {
         return estado;
     }
 
-    public void schedule(TimerTask task, Date date){
-        timer.schedule(task, date);
-    }
-    
     public ExposicaoEstado getEstadoAtualExposicao(){
         return estado;
     }
@@ -191,29 +186,27 @@ public class Exposicao implements Comparable<Exposicao> {
     }
     
     public void createTimers() throws ParseException{
-   
+        
+        Timer timer=new Timer();
+        
         task1 = new ExposicaoCandidaturasAbertas(this);
-        schedule(task1, Data.converterParaDate(dataInicioSubmissao));
+        timer.schedule(task1, dataInicioSubmissao.converterParaDate());
         
         task2= new ExposicaoCandidaturasFechadas(this); 
-        schedule(task2, Data.converterParaDate(dataFimSubmissao));
+        timer.schedule(task2, dataFimSubmissao.converterParaDate());
 
         task3= new DetetarConflitosController(this);
-        schedule(task3, Data.converterParaDate(dataDeteccaoConflitos));
+        timer.schedule(task3, dataDeteccaoConflitos.converterParaDate());
         
         task4=new ExposicaoConflitosAlterados(this);
-        schedule(task4, Data.converterParaDate(dataAlteracaoConflitos));
+        timer.schedule(task4, dataAlteracaoConflitos.converterParaDate());
         
         task5=new ExposicaoCandidaturasEmAvaliacao(this);
-        schedule(task5, Data.converterParaDate(dataInicioAvaliacao));
+        timer.schedule(task5, dataInicioAvaliacao.converterParaDate());
         
         task6=new ExposicaoStandsAtribuiveis(this);
-        schedule(task6, Data.converterParaDate(dataInicioStands));
+        timer.schedule(task6, dataInicioStands.converterParaDate());
     } 
-    
-    public TimerTask getTask(){
-        return task1;
-    }
 
     /**
      * Verifica se a exposicao é igual a um objeto passado por parâmetro

@@ -22,7 +22,7 @@ public class RegistarCandidaturaUITest {
     
     public RegistarCandidaturaUITest() {
     }
-    
+//    
 //    @BeforeClass
 //    public static void setUpClass() {
 //    }

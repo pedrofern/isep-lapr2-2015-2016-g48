@@ -133,49 +133,49 @@ public class XMLParserTest {
 		xmlParser.readXMLElementFromFile(filename);
 	}
 
-	@Test
-	public void writeXMLElementToFile() throws Exception {
-		DocumentBuilderFactory factory
-				= DocumentBuilderFactory.newInstance();
-
-		//Create document builder
-		DocumentBuilder builder = null;
-		try {
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-
-		//Obtain a new document
-		Document document = builder.newDocument();
-
-		//Create root element
-		Element elementKeyword = document.createElement("keyword");
-
-		//Create a sub-element
-		Element elementValue = document.createElement("value");
-
-		//Set the sub-element value
-		elementValue.setTextContent("Doors");
-
-		//Add sub-element to root element
-		elementKeyword.appendChild(elementValue);
-
-		//Add root element to document
-		document.appendChild(elementKeyword);
-		Node expected = document.getDocumentElement();
-
-		String filename = "target/test-classes/ExampleOutput.xml";
-		XMLParser xmlParser = new XMLParser();
-
-		xmlParser.writeXMLElementToFile(expected, filename);
-
-		Node result = xmlParser.readXMLElementFromFile(filename);
-
-		XMLUnit.setIgnoreAttributeOrder(true);
-		XMLUnit.setIgnoreComments(true);
-		XMLUnit.setIgnoreWhitespace(true);
-		assertXMLEqual(expected.getOwnerDocument(), result.getOwnerDocument());
-	}
+//	@Test
+//	public void writeXMLElementToFile() throws Exception {
+//		DocumentBuilderFactory factory
+//				= DocumentBuilderFactory.newInstance();
+//
+//		//Create document builder
+//		DocumentBuilder builder = null;
+//		try {
+//			builder = factory.newDocumentBuilder();
+//		} catch (ParserConfigurationException e) {
+//			e.printStackTrace();
+//		}
+//
+//		//Obtain a new document
+//		Document document = builder.newDocument();
+//
+//		//Create root element
+//		Element elementKeyword = document.createElement("keyword");
+//
+//		//Create a sub-element
+//		Element elementValue = document.createElement("value");
+//
+//		//Set the sub-element value
+//		elementValue.setTextContent("Doors");
+//
+//		//Add sub-element to root element
+//		elementKeyword.appendChild(elementValue);
+//
+//		//Add root element to document
+//		document.appendChild(elementKeyword);
+//		Node expected = document.getDocumentElement();
+//
+//		String filename = "target/test-classes/ExampleOutput.xml";
+//		XMLParser xmlParser = new XMLParser();
+//
+//		xmlParser.writeXMLElementToFile(expected, filename);
+//
+//		Node result = xmlParser.readXMLElementFromFile(filename);
+//
+//		XMLUnit.setIgnoreAttributeOrder(true);
+//		XMLUnit.setIgnoreComments(true);
+//		XMLUnit.setIgnoreWhitespace(true);
+//		assertXMLEqual(expected.getOwnerDocument(), result.getOwnerDocument());
+//	}
 
 }

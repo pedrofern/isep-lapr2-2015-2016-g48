@@ -5,6 +5,7 @@
  */
 package lapr.project.model.states;
 
+import java.text.ParseException;
 import lapr.project.model.Exposicao;
 
 /**
@@ -13,18 +14,20 @@ import lapr.project.model.Exposicao;
  */
 public class ExposicaoEstadoInicial implements ExposicaoEstado {
 
-    private final Exposicao exposicao;
+    private  Exposicao exposicao;
     
-    public ExposicaoEstadoInicial(Exposicao exposicao) throws Exception{
+    public ExposicaoEstadoInicial(Exposicao exposicao){
         this.exposicao=exposicao;
         
-        exposicao.createTimers();
         
     }
     
-    public boolean setCriada(){
+    public boolean setCriada() throws ParseException{
         if(estaValidaParaCriada()){
+            
+       exposicao.createTimers();
             return exposicao.alterarEstado(new ExposicaoEstadoCriada(exposicao));
+            
         }
         return false;
     }
