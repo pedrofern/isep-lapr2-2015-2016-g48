@@ -86,9 +86,9 @@ public class PainelRepresentante extends JPanel{
     } 
 
     private JButton criarBotaoCriarCand(){
-        JButton bt=new JButton("Criar candidatura");
+        JButton bt=new JButton("Registar candidatura");
         bt.setMnemonic(KeyEvent.VK_C);
-        bt.setToolTipText("Criação de uma candidatura para uma exposição");
+        bt.setToolTipText("Registo de uma candidatura para uma exposição");
         bt.setPreferredSize(DIM_BOTOES);
 
         bt.addActionListener(new ActionListener(){
@@ -120,9 +120,11 @@ public class PainelRepresentante extends JPanel{
         bt.addActionListener(new ActionListener(){
            
             @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }   
+            public void actionPerformed(ActionEvent e) {try{
+                  AlterarCandidaturaUI a= new AlterarCandidaturaUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }}   
         }
             
         );
