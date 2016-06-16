@@ -21,12 +21,12 @@ import lapr.project.utils.*;
 
 public class CriarDemonstracaoUI extends JFrame {
 
-    private JFormattedTextField campoDataInicial, campoDataFinal;
+    private ListaRecursoDemonstracao listarecurosdemonstracao;
     private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso, btnEleminarRecurso;
     private JComboBox comboBoxExposicao;
     private JTextArea txtDescricao = new JTextArea();
     private JFrame framepai;
-    private ModeloListaRecursos modeloListaRecurso;
+    private DefaultListModel modeloListaRecurso;
     private JList listaCompletaRecurso;
     private RegistoRecursos listaRecurso;
     private Demonstracao demostracao;
@@ -46,27 +46,26 @@ public class CriarDemonstracaoUI extends JFrame {
     public CriarDemonstracaoUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 
         super("Criar Demonstração");
-        user=utilizador;
-
-        o_Organizador = new Organizador(utilizador);
-
+        user = utilizador;
         ce = centroExposicoes;
-        exposicao = new Exposicao();
-        exposicao.setTitulo("TESTE EXPOSICAO");
-        listaExposicoes = ce.getRegistoExposicoes();
-        listaExposicoes.adicionarExposicao(exposicao);
-        listaExposicoes.registaExposicao(exposicao);
-        
+        o_Organizador = new Organizador(utilizador);
+        m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, ce);
+        demostracao = m_demonstracaoController.novaDemonstracao();
+        listarecurosdemonstracao = demostracao.getListaRecursosDemonstracao();
+
+//        exposicao = new Exposicao();
+//        exposicao.setTitulo("TESTE EXPOSICAO");
+//        listaExposicoes = ce.getRegistoExposicoes();
+//        listaExposicoes.adicionarExposicao(exposicao);
+//        listaExposicoes.registaExposicao(exposicao);
         exposicao = new Exposicao();
         exposicao.setTitulo("TESTE EXPOSICAO");
         listaExposicoes = ce.getRegistoExposicoes();
         listaExposicoes.adicionarExposicao(exposicao);
         listaExposicoes.registaExposicao(exposicao);
 
-      
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, exposicao);
 
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
@@ -89,15 +88,34 @@ public class CriarDemonstracaoUI extends JFrame {
         return p;
     }
 
-    private JPanel criarPainelExposicao() {
-        JPanel p = new JPanel();
+    private JComboBox criarPainelExposicao() {
 
-        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
-        //FcomboBoxExposicao.setEnabled(false);
+        String[] tituloExp = new String[listaExposicoes.getExposicoes().size()];
 
-        p.add(comboBoxExposicao);
+        for (int i = 0; i < tituloExp.length; i++) {
+            tituloExp[i] = listaExposicoes.getExposicoes().get(i).getTitulo();
+        }
+        comboBoxExposicao = new JComboBox(tituloExp);
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+        comboBoxExposicao.addActionListener(new ActionListener() {
 
-        return p;
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int tmp = comboBoxExposicao.getSelectedIndex();
+                m_demonstracaoController.selectExposicao(listaExposicoes.getExposicoes().get(tmp));
+                if (comboBoxExposicao.getSelectedIndex() >= 0) {
+                    comboBoxExposicao.setEnabled(false);
+                } else {
+
+                    comboBoxExposicao.setEnabled(true);
+                }
+
+            }
+        });
+        return comboBoxExposicao;
+
     }
 
     private JPanel criarPainelDescricao() {
@@ -137,8 +155,8 @@ public class CriarDemonstracaoUI extends JFrame {
                 INTERVALO_VERTICAL));
 
         listaCompletaRecurso = new JList();
-        listaRecurso = new RegistoRecursos();
-        modeloListaRecurso = new ModeloListaRecursos(listaRecurso);
+        modeloListaRecurso = new DefaultListModel();
+        listaCompletaRecurso.setModel(modeloListaRecurso);
         btnAdicionarRecurso = criarBotaoAdicionarRecurso();
         btnEleminarRecurso = criarBotaoEliminarRecurso(listaCompletaRecurso);
 
@@ -146,14 +164,14 @@ public class CriarDemonstracaoUI extends JFrame {
                 listaCompletaRecurso,
                 modeloListaRecurso, btnAdicionarRecurso, btnEleminarRecurso));
 
-        p.add(criarPainelDescricao("Descrição ", txtDescricao, criarPainelDataInicial(), criarPainelDataFinal()));
+        p.add(criarPainelDescricao("Descrição ", txtDescricao));
 
         return p;
     }
 
     private JPanel criarPainelDescricao(
             String tituloDescrição,
-            JTextArea descricao, JPanel datainicial, JPanel datafinal
+            JTextArea descricao
     ) {
         JLabel lblTitulo = new JLabel(tituloDescrição, JLabel.LEFT);
 
@@ -165,7 +183,6 @@ public class CriarDemonstracaoUI extends JFrame {
 
         p.add(lblTitulo, BorderLayout.NORTH);
         p.add(scrPane, BorderLayout.CENTER);
-        p.add(criarPainelData(datainicial, datafinal), BorderLayout.SOUTH);
 
         return p;
     }
@@ -173,11 +190,11 @@ public class CriarDemonstracaoUI extends JFrame {
     private JPanel criarPainelListaRecurso(
             String tituloLista,
             JList lstLista,
-            ModeloListaRecursos modeloLista,
+            DefaultListModel modeloLista,
             JButton btnAdicionar, JButton btnEleminarRecurso) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
-        lstLista.setModel(modeloLista);
+        //lstLista.setModel(modeloLista);
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrPane = new JScrollPane(lstLista);
 
@@ -224,50 +241,54 @@ public class CriarDemonstracaoUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+//                try {
 
-                try {
-
-                    recurso = new Recurso("Recurso");
-                    listaRecurso.addRecurso(recurso);
-                    Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
-                    for (int i = 0; i < opcoes.length; i++) {
-
-                        opcoes[i] = recurso;
-
-                    }
-
-                    Recurso recurso = (Recurso) JOptionPane.showInputDialog(CriarDemonstracaoUI.this,
-                            "Escolha um recurso", null,
-                            JOptionPane.PLAIN_MESSAGE,
-                            null,
-                            opcoes,
-                            opcoes[0]);
-
-                    if (recurso != null) {
-                        String[] opcoes2 = {"Sim", "Não"};
-                        int resposta = JOptionPane.showOptionDialog(CriarDemonstracaoUI.this,
-                                "Adicionar\n" + recurso.toString(),
-                                "Adicionar Recurso",
-                                0,
-                                JOptionPane.QUESTION_MESSAGE,
-                                null,
-                                opcoes2,
-                                opcoes2[1]);
-                        final int SIM = 0;
-                        if (resposta == SIM) {
-
-                            modeloListaRecurso.addElement((Recurso) listaCompletaRecurso.getSelectedValue());
-                            listaCompletaRecurso.clearSelection();
-
-                        }
-                    }
-                } catch (ArrayIndexOutOfBoundsException ex) {
-
-                    JOptionPane.showMessageDialog(CriarDemonstracaoUI.this, "Lista de recurso vazia", "Aviso", JOptionPane.WARNING_MESSAGE);
+                listaRecurso = m_demonstracaoController.getListaRecursos();
+                Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
+                for (int i = 0; i < opcoes.length; i++) {
+                    opcoes[i] = listaRecurso.getListaRecursos().get(i);
                 }
+                Recurso recurso = (Recurso) JOptionPane.showInputDialog(CriarDemonstracaoUI.this,
+                        "Escolha um recurso", null,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        opcoes,
+                        opcoes[0]);
 
+                if (recurso != null) {
+                    String[] opcoes2 = {"Sim", "Não"};
+                    int resposta = JOptionPane.showOptionDialog(CriarDemonstracaoUI.this,
+                            "Adicionar\n" + recurso.toString(),
+                            "Adicionar Recurso",
+                            0,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            opcoes2,
+                            opcoes2[1]);
+                    final int SIM = 0;
+                    if (resposta == SIM) {
+                        if (!modeloListaRecurso.contains(recurso)) {
+                            modeloListaRecurso.addElement(recurso);
+                            listarecurosdemonstracao = m_demonstracaoController.getListaRecursosDemonstracao();
+                            String tmp = recurso.getDescricao();
+                            listarecurosdemonstracao.criaRecursoDemonstracao(tmp);
+
+                        } else {
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    "Recurso já incluído na lista de Recurso!",
+                                    "Novo Recurso",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    }
+
+//                    }
+//                } catch (NullPointerException exp) {
+//                    
+//                }
+                }
             }
-
         });
 
         return btnAdicionarRecurso;
@@ -281,47 +302,47 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
 
-                try {
-
-                    String descricao = txtDescricao.getText();
-                    String temaExposicao = exposicao.getTitulo();
-                    String[] dataInicial = campoDataInicial.getText().split("/");
-                    String[] dataFinal = campoDataFinal.getText().split("/");
-                    int diainicial = Integer.parseInt(dataInicial[0]);
-                    int mesinicial = Integer.parseInt(dataInicial[1]);
-                    int anoinicial = Integer.parseInt(dataInicial[2]);
-                    int diafinal = Integer.parseInt(dataFinal[0]);
-                    int mesfinal = Integer.parseInt(dataFinal[1]);
-                    int anofinal = Integer.parseInt(dataFinal[2]);
-
-                    Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
-                    Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
-
-                    demostracao = m_demonstracaoController.registaDemonstracao(descricao, temaExposicao, dataInicialPrimeiro, dataFinalUltimo);
-                    if (demostracao != null) {
-                        JOptionPane.showMessageDialog(
-                                null,
-                                "Demonstração adicionada.",
-                                "Nova Demonstração",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(
-                                null,
-                                "Demonstração já registada!",
-                                "Nova Demonstração",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                    dispose();
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "Tem de preencher todos os campos!",
-                            "Registar Demonstração",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+//                try {
+//
+//                    String descricao = txtDescricao.getText();
+//                    String temaExposicao = exposicao.getTitulo();
+//                    String[] dataInicial = campoDataInicial.getText().split("/");
+//                    String[] dataFinal = campoDataFinal.getText().split("/");
+//                    int diainicial = Integer.parseInt(dataInicial[0]);
+//                    int mesinicial = Integer.parseInt(dataInicial[1]);
+//                    int anoinicial = Integer.parseInt(dataInicial[2]);
+//                    int diafinal = Integer.parseInt(dataFinal[0]);
+//                    int mesfinal = Integer.parseInt(dataFinal[1]);
+//                    int anofinal = Integer.parseInt(dataFinal[2]);
+//
+//                    Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
+//                    Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
+//
+//                    demostracao = m_demonstracaoController.registaDemonstracao(descricao, temaExposicao, dataInicialPrimeiro, dataFinalUltimo);
+//                    if (demostracao != null) {
+//                        JOptionPane.showMessageDialog(
+//                                null,
+//                                "Demonstração adicionada.",
+//                                "Nova Demonstração",
+//                                JOptionPane.INFORMATION_MESSAGE);
+//                        dispose();
+//                    } else {
+//                        JOptionPane.showMessageDialog(
+//                                null,
+//                                "Demonstração já registada!",
+//                                "Nova Demonstração",
+//                                JOptionPane.ERROR_MESSAGE);
+//                    }
+//                    dispose();
+//                } catch (NumberFormatException ex) {
+//                    JOptionPane.showMessageDialog(
+//                            null,
+//                            "Tem de preencher todos os campos!",
+//                            "Registar Demonstração",
+//                            JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
             }
-
         }
         );
         return btnConfirmar;
@@ -346,8 +367,6 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 txtDescricao.setText(null);
-                campoDataInicial.setText(null);
-                campoDataFinal.setText(null);
 
             }
         });
@@ -360,34 +379,24 @@ public class CriarDemonstracaoUI extends JFrame {
         btnEleminarRecurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Recurso[] opcoes = listaRecurso.getArray();
-                Recurso recurso = (Recurso) JOptionPane.showInputDialog(
-                        CriarDemonstracaoUI.this,
-                        "Escolha um recurso:", "Eliminar Recurso",
-                        JOptionPane.PLAIN_MESSAGE,
-                        null,
-                        opcoes,
-                        opcoes[0]);
-                if (recurso!= null) {
-                    String[] opcoes2 = {"Sim", "Não"};
-                    int resposta = JOptionPane.showOptionDialog(
-                            CriarDemonstracaoUI.this,
-                            "Eliminar\n" + recurso.toString(),
-                            "Eliminar Recurso",
-                            0,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,
-                            opcoes2,
-                            opcoes2[1]);
-                    final int SIM = 0;
-                    if (resposta == SIM) {
-                        ModeloListaRecursos  modeloListaRecurso
-                                = (ModeloListaRecursos) listaCompletaRecurso.getModel();
-                        modeloListaRecurso.removeElement(recurso);
+                if (listaCompletaRecurso.getSelectedIndex() == -1) {
+                    JOptionPane.showMessageDialog(null, "Não foi selecionado nenhum recurso a ser eleminado!", "Nenhum recurso selecionado", JOptionPane.ERROR_MESSAGE);
+
+                } else {
+
+                    int var = JOptionPane.showConfirmDialog(null, "Deseja realmente eliminar ?", "Deseja realmente eliminar ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                    if (var == 0) {
+                        modeloListaRecurso.remove(listaCompletaRecurso.getSelectedIndex());
+                        int index = listaCompletaRecurso.getSelectedIndex();
                         if (modeloListaRecurso.getSize() == 0) {
-                            listaCompletaRecurso.setEnabled(false);
-                            btnEleminarRecurso.setEnabled(false);
-                          
+                            btnEleminarRecurso.setEnabled(true);
+
+                        } else if (listaCompletaRecurso.getSelectedIndex() == modeloListaRecurso.getSize()) {
+                            --index;
+                        } else {
+                            listaCompletaRecurso.setSelectedIndex(index);
+                            listaCompletaRecurso.ensureIndexIsVisible(index);
                         }
                     }
                 }
@@ -397,40 +406,12 @@ public class CriarDemonstracaoUI extends JFrame {
         return btnEleminarRecurso;
     }
 
-    private JPanel criarPainelDataInicial() {
-        JPanel painel = new JPanel(new FlowLayout());
-        try {
-            JLabel labelData = new JLabel("Data incial :");
-
-            MaskFormatter mascara = new MaskFormatter("##/##/####");
-            mascara.setPlaceholderCharacter('_');
-            campoDataInicial = new JFormattedTextField(mascara);
-            campoDataInicial.setPreferredSize(new Dimension(80, 20));
-            painel.add(labelData);
-            painel.add(campoDataInicial);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return painel;
+    public JList getLstRecurso() {
+        return listaCompletaRecurso;
     }
 
-    private JPanel criarPainelDataFinal() {
-        JPanel painel = new JPanel(new FlowLayout());
-        try {
-            JLabel labelData = new JLabel("Data final :");
-
-            MaskFormatter mascara = new MaskFormatter("##/##/####");
-            mascara.setPlaceholderCharacter('_');
-            campoDataFinal = new JFormattedTextField(mascara);
-            campoDataFinal.setPreferredSize(new Dimension(80, 20));
-
-            painel.add(labelData);
-            painel.add(campoDataFinal);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return painel;
+    public JButton getBotaoRemoverRecurso() {
+        return btnEleminarRecurso;
     }
+
 }

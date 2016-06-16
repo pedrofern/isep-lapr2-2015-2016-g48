@@ -15,6 +15,7 @@ public class DefinirFAEController {
     private Exposicao exposicao;
     private FAE fae;
     private ListaFAE listaFaes;
+    private List<FAE> listfae;
     private RegistoUtilizadores m_registoUtilizadores;
     private Utilizador utilizador;
     private RegistoExposicoes listaExposicao;
@@ -22,7 +23,7 @@ public class DefinirFAEController {
     public DefinirFAEController(CentroExposicoes centroExposicao, Utilizador utilizador) {
         this.ce = centroExposicao;
         this.utilizador = utilizador;
-
+        listaFaes = new ListaFAE();
     }
 //    public List<Exposicao> getListaExposicaoOrganizadorSemFAEDefinidos(String email) {
 //
@@ -35,16 +36,12 @@ public class DefinirFAEController {
     }
 
     public ListaFAE getListaFAE() {
-        return exposicao.getListaFAEs();
+
+        return listaFaes;
     }
 
-    public FAE getFAE() {
-        
-         for (int i = 0; i < listaFaes.getListaFAE().size(); i++) {
-            
-             return fae=listaFaes.getListaFAE().get(i);
-        }
-        return fae;
+    public FAE novaFAE() {
+        return fae = new FAE();
     }
 
     public void criarFAE(Utilizador utilizador) {
@@ -63,7 +60,11 @@ public class DefinirFAEController {
         this.exposicao = e;
     }
 
-    public boolean registaExposicao(FAE fae) {
+    public String getFAEString() {
+        return this.listaFaes.toStringCompleto();
+    }
+
+    public boolean registaFAE(FAE fae) {
         if (!getListaFAE().registaFAE(fae)) {
             return false;
         } else {
@@ -71,6 +72,5 @@ public class DefinirFAEController {
         }
 
     }
-   
-}
 
+}

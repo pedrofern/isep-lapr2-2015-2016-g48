@@ -10,25 +10,29 @@ import lapr.project.utils.Data;
  */
 public class CriarDemonstracaoController {
 
+    private CentroExposicoes ce;
     private Demonstracao demonstracao;
     private RegistoExposicoes registoExposicoes;
     private Exposicao exposicao;
     private RegistoRecursos listaRecursos;
     private Organizador organizador;
-    
-    public CriarDemonstracaoController(Organizador pOrganizador, Exposicao expo) {
-        exposicao = expo;
-        organizador=pOrganizador;
+    private Recurso recurso;
+    private ListaDemonstracoes listaDemonstracao;
+
+    public CriarDemonstracaoController(Organizador pOrganizador, CentroExposicoes ce) {
+        this.ce = ce;
+        this.organizador = pOrganizador;
+          
     }
 
-    public void novaDemonstracao() {
-        demonstracao = new Demonstracao();
+    public Demonstracao novaDemonstracao() {
+      return demonstracao = new Demonstracao();
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
-       
+
         demonstracao.setDados(descricao, temaExposicao, inicio, fim);
-        
+
         return demonstracao;
     }
 
@@ -39,19 +43,22 @@ public class CriarDemonstracaoController {
     public void setDescricao(String novaDescricao) {
         demonstracao.setDesc(novaDescricao);
     }
-    
+
 //    public void setListaRecursos(RegistoRecursos novaListaRecursos) {
 //        demonstracao.setListaRecursos(novaListaRecursos);
 //    }
-    
     public RegistoRecursos getListaRecursos() {
-        return listaRecursos;
+        return ce.getRegistoRecursos();
     }
-        
-    public void addRecursoDemonstracao(Recurso r){
+    
+    public ListaRecursoDemonstracao getListaRecursosDemonstracao() {
+        return demonstracao.getListaRecursosDemonstracao();
+    }
+
+    public void addRecursoDemonstracao(Recurso r) {
         demonstracao.addRecurso(r);
     }
-    
+
     public RegistoExposicoes getListaExposicoes() {
         RegistoExposicoes le = new RegistoExposicoes();
 
@@ -62,16 +69,27 @@ public class CriarDemonstracaoController {
     }
 
 //    public Demonstracao registaDemonstracao() {
-//        if (exposicao.getRegistoDemonstracao().registaDemonstracao(demonstracao)) {
+//        if (exposicao.getListaDemonstracoes().registaDemonstracao(demonstracao)) {
 //            return demonstracao;
 //        }
 //        return null;
 //    }
-    
+    public void selectExposicao(Exposicao e) {
+        this.exposicao = e;
+    }
+
     public Demonstracao getDemonstracao() {
         return demonstracao;
     }
-    
+
+    public Recurso getRecurso() {
+        return recurso;
+    }
+
+    public void setListaRecurso(RegistoRecursos recurso) {
+        demonstracao.setRecurso(listaRecursos);
+    }
+
 //    public Demonstracao setDados(int cdgUnico, String strDescricao) {
 //        demonstracao.setCod(cdgUnico);
 //        demonstracao.setDesc(strDescricao);

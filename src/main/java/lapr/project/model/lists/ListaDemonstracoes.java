@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
 
 /**
  *
@@ -19,6 +20,11 @@ public class ListaDemonstracoes {
      */
     public ListaDemonstracoes() {
         listaDemontracoes = new ArrayList<>();
+    }
+    
+     public Demonstracao novaDemonstracao() {
+        
+        return new Demonstracao();
     }
 
     /**
@@ -45,7 +51,7 @@ public class ListaDemonstracoes {
      *
      * @return lista de demonstracoes
      */
-    public ArrayList<Demonstracao> getListaDemonstracoes() {
+    public List<Demonstracao> getListaDemonstracoes() {
         return listaDemontracoes;
     }
 

@@ -9,7 +9,7 @@ import lapr.project.model.Recurso;
  */
 public class RegistoRecursos {
 
-    private ArrayList<Recurso> listaRecursos;
+    private List<Recurso> listaRecursos;
     private Recurso m_r;
     /**
      * Construtor relativo a lista de Recursos
@@ -36,7 +36,7 @@ public class RegistoRecursos {
      * Metodo que retorna a lista de Recursos
      * @return lista recursos
      */
-    public ArrayList<Recurso> getListaRecursos(){
+    public List<Recurso> getListaRecursos(){
         return listaRecursos;
     }
     
@@ -143,6 +143,10 @@ public class RegistoRecursos {
      */
     public boolean validaRecurso(Recurso r) {
         return !listaRecursos.contains(r);
+    }
+    
+     public int countRecurso(){
+        return listaRecursos.size();
     }
  
     

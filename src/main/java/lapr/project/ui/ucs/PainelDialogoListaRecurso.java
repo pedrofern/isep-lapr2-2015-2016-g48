@@ -19,7 +19,7 @@ import lapr.project.utils.Utils;
  *
  * @author DianaSilva
  */
-public class PainelDialogoLista extends JPanel {
+public class PainelDialogoListaRecurso extends JPanel {
 
     /**
      * ComboBox que permite seleccionar objeto pretendido
@@ -39,7 +39,7 @@ public class PainelDialogoLista extends JPanel {
 
     private CentroExposicoes ce;
 
-    public PainelDialogoLista(CentroExposicoes cExposicoes, JButton btOk, JButton btCancel) {
+    public PainelDialogoListaRecurso(CentroExposicoes cExposicoes, JButton btOk, JButton btCancel) {
         super();
         ce = cExposicoes;
         this.btOk = btOk;
@@ -54,41 +54,18 @@ public class PainelDialogoLista extends JPanel {
      * cria os componentes da janela
      */
     private void criarComponentes() {
-        JPanel p1 = criarPainelNome();
+        JPanel p1 = criarPainelRecurso();
         JPanel p2 = criarPainelBotoes();
 
         add(p1, BorderLayout.NORTH);
         add(p2, BorderLayout.SOUTH);
     }
 
-    /**
-     * cria painel para colocar o nome do produto
-     *
-     * @return painel para colocar o nome do produto
-     */
-    private JPanel criarPainelNome() {
-        JLabel lbl = new JLabel("Produto: ", JLabel.RIGHT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
-
-        final int CAMPO_LARGURA = 10;
-
-        combo = Utils.criarComboUser(ce.getRegistoUtilizadores());
-
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        p.add(lbl);
-        p.add(combo);
-
-        return p;
-    }
+   
     
      private JPanel criarPainelRecurso() {
         JLabel lbl = new JLabel("Recurso: ", JLabel.RIGHT);
-        lbl.setPreferredSize(LABEL_TAMANHO);
+        lbl.setPreferredSize(new Dimension(50, 30));
 
         final int CAMPO_LARGURA = 10;
 
@@ -118,7 +95,7 @@ public class PainelDialogoLista extends JPanel {
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
-        p.add(btOk);
+//        p.add(btOk);
         p.add(btCancel);
 
         return p;

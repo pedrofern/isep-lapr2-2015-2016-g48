@@ -14,7 +14,6 @@ public class ListaFAE {
      */
     private List<FAE> listaFAE;
     private FAE fae;
-    
 
     /**
      * Constroi um ArrayList de FAE
@@ -43,8 +42,8 @@ public class ListaFAE {
      * @param u
      */
     public void criaFAE(Utilizador u) {
-       
-        addFAE( new FAE(u));
+
+        addFAE(new FAE(u));
     }
 
     /**
@@ -104,7 +103,6 @@ public class ListaFAE {
         return fae;
     }
 
-
     public boolean hasFAE(FAE fae) {
         for (FAE f : this.listaFAE) {
             if (f.equals(fae)) {
@@ -125,12 +123,20 @@ public class ListaFAE {
 
     public boolean registaFAE(FAE fae) {
         if (fae.valida()) {
-            return addFAE(fae);
+            return true;
         } else {
             return false;
         }
     }
 
+    public String toStringCompleto() {
+        String str = "";
+
+        for (int i=0; i<listaFAE.size(); i++) {
+            str += "\t\t" + listaFAE.get(i).getUtilizador().toStringGeral() + "\n";
+        }
+
+        return str;
+    }
+
 }
-
-

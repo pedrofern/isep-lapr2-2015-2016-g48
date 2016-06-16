@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import lapr.project.model.Exposicao;
+import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 
 /**
@@ -22,26 +23,26 @@ public class RegistoExposicoes {
     }
 
     public Exposicao novaExposicao() {
-        
+
         return new Exposicao();
     }
 
-      /**
+    /**
      * Metodo que regista uma exposicao
-     * @param e exposicao
-    public boolean adicionarExposicao(Exposicao expo) {
+     *
+     * @param e exposicao public boolean adicionarExposicao(Exposicao expo) {
      * @return true se resgistar false em caso contrario
      */
-    
     public boolean adicionarExposicao(Exposicao expo) {
-        
-        if(hasExposicao(expo)) 
+
+        if (hasExposicao(expo)) {
             return false;
-        else
+        } else {
             return listaExposicoes.add(expo);
+        }
     }
-    
-       public boolean registaExposicao(Exposicao e) {
+
+    public boolean registaExposicao(Exposicao e) {
         if (e.valida() && valida(e)) {
             return adicionarExposicao(e);
         } else {
@@ -49,13 +50,12 @@ public class RegistoExposicoes {
         }
     }
 
-
     @Override
     public String toString() {
         return "RegistoExposicoes:" + "listaExposicoes=" + listaExposicoes;
     }
-    
-    public List<Exposicao> getExposicoes(){
+
+    public List<Exposicao> getExposicoes() {
         return listaExposicoes;
     }
 
@@ -63,7 +63,7 @@ public class RegistoExposicoes {
         List<Exposicao> leOrganizador = new ArrayList<Exposicao>();
 
         Utilizador user = null;
-        
+
         for (Utilizador u : this.listaUtilizadores) {
             if (u.hasID(strId)) {
                 user = u;
@@ -81,12 +81,12 @@ public class RegistoExposicoes {
         }
         return leOrganizador;
     }
-    
+
     public List<Exposicao> getExposicaoFAE(String strId) {
         List<Exposicao> leFAE = new ArrayList<Exposicao>();
 
         Utilizador user = null;
-        
+
         for (Utilizador u : this.listaUtilizadores) {
             if (u.hasID(strId)) {
                 user = u;
@@ -104,36 +104,37 @@ public class RegistoExposicoes {
         }
         return leFAE;
     }
-    
+
     public Exposicao[] getArray() {
-        return listaExposicoes.toArray( new Exposicao[listaExposicoes.size()] );
-     }
-     
-    public void ordenarPorPosicao(){
+        return listaExposicoes.toArray(new Exposicao[listaExposicoes.size()]);
+    }
+
+    public void ordenarPorPosicao() {
         Collections.sort(listaExposicoes);
     }
-    
-     public int countExposicoes(){
+
+    public int countExposicoes() {
         return listaExposicoes.size();
     }
-    
-     /**
+
+    /**
      * Metodo que retorna uma exposicao atraves do titulo passado por parametro
+     *
      * @param titulo titulo
      * @return uma exposicao atraves do titulo passado por parametro
      */
-    public Exposicao getExposicao(String titulo){
-        for(Exposicao e : listaExposicoes){
-            if(e.getTitulo().equalsIgnoreCase(titulo)){
+    public Exposicao getExposicao(String titulo) {
+        for (Exposicao e : listaExposicoes) {
+            if (e.getTitulo().equalsIgnoreCase(titulo)) {
                 return e;
             }
         }
         return null;
     }
 
-    
     /**
      * Metodo que retorna a exposicao passada por parametro
+     *
      * @param e2 exposicao
      * @return a exposicao passada por parametro
      */
@@ -161,17 +162,16 @@ public class RegistoExposicoes {
 //        }
 //        return l_ExpDoFAE;
 //    }
-    
-    
-    
+
     /**
      * Retorna lista de exposicoes do organizador com o id passado por parametro
-     * @param strId id 
+     *
+     * @param strId id
      * @return lista de exposicoes do organizador com o id passado por parametro
      */
     public RegistoExposicoes getExposicoesOrganizador(Utilizador u) {
-        RegistoExposicoes leOrganizador=new RegistoExposicoes();
-        
+        RegistoExposicoes leOrganizador = new RegistoExposicoes();
+
         if (u != null) {
             for (Iterator<Exposicao> it = listaExposicoes.listIterator(); it.hasNext();) {
                 Exposicao e = it.next();
@@ -182,22 +182,22 @@ public class RegistoExposicoes {
             }
         }
         return leOrganizador;
-    } 
-    
-    public boolean hasExposicao(Exposicao e){
-        for(Exposicao exposicao: listaExposicoes){
-            if(exposicao.equals(e)){
+    }
+
+    public boolean hasExposicao(Exposicao e) {
+        for (Exposicao exposicao : listaExposicoes) {
+            if (exposicao.equals(e)) {
                 return true;
             }
         }
         return false;
     }
-    
-    public boolean valida(Exposicao e){
-        if(e.validaMinOrganizadores() && e.validaDataFimSuperiorInicio() && e.validaSeguimentoDatas() && !hasExposicao(e)){
+
+
+    public boolean valida(Exposicao e) {
+        if (e.validaMinOrganizadores() && e.validaDataFimSuperiorInicio() && e.validaSeguimentoDatas() && !hasExposicao(e)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

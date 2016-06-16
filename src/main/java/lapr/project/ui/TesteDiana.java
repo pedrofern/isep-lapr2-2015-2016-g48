@@ -5,6 +5,7 @@
  */
 package lapr.project.ui;
 
+import java.io.FileNotFoundException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Organizador;
@@ -12,7 +13,7 @@ import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
-import lapr.project.ui.ucs.CriarExposicaoUI;
+import lapr.project.ui.ucs.*;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
 
@@ -28,10 +29,10 @@ public class TesteDiana {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
         CentroExposicoes ce=new CentroExposicoes();
-        
+        Utilizador user=new Utilizador();
         Utilizador ut1=new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15 );
 
        Utilizador ut2= new Utilizador("Ana Silva", "1130155@isep.ipp.pt","Gestor",true,10);
@@ -70,6 +71,7 @@ public class TesteDiana {
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 
         CriarExposicaoUI c=new CriarExposicaoUI(ce);
+        DefinirFAEUI fa=new DefinirFAEUI(ce, user);
     }
     
     private static void formarDatas(){
