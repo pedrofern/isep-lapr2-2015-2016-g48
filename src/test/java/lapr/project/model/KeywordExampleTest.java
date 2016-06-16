@@ -131,21 +131,21 @@ public class KeywordExampleTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
-	public void testCreateExportImport() throws Exception {
-		String filename = "target/test-classes/TestKeywordImportExport.xml";
-		KeywordExample expected = new KeywordExample("Doors");
-
-		Node memoryNode = expected.exportContentToXMLNode();
-
-		XMLParser xmlParser = new XMLParser();
-		xmlParser.writeXMLElementToFile(memoryNode, filename);
-
-		Node fileNode = xmlParser.readXMLElementFromFile(filename);
-
-		KeywordExample result = new KeywordExample();
-		result = result.importContentFromXMLNode(fileNode);
-
-		assertEquals(expected, result);
-	}
+//	@Test
+//	public void testCreateExportImport() throws Exception {
+//		String filename = "target/test-classes/TestKeywordImportExport.xml";
+//		KeywordExample expected = new KeywordExample("Doors");
+//
+//		Node memoryNode = expected.exportContentToXMLNode();
+//
+//		XMLParser xmlParser = new XMLParser();
+//		xmlParser.writeXMLElementToFile(memoryNode, filename);
+//
+//		Node fileNode = xmlParser.readXMLElementFromFile(filename);
+//
+//		KeywordExample result = new KeywordExample();
+//		result = result.importContentFromXMLNode(fileNode);
+//
+//		assertEquals(expected, result);
+//	}
 }
