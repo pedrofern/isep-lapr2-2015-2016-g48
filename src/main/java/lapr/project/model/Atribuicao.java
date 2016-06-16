@@ -1,4 +1,4 @@
-package lapr.project.model.mechanisms;
+package lapr.project.model;
 
 import java.util.*;
 import lapr.project.model.Avaliacao;

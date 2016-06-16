@@ -277,19 +277,16 @@ public class Data implements Comparable<Data>, Serializable {
         return new Data(ano, mes, dia);
     }
     
-    public static Date converterParaDate(Data d) throws Exception{
+    public static Date converterParaDate(Data d) throws ParseException{
         
         String data=d.toAnoMesDiaString();
             if(data==null || data.equals("")) 
                 return null;
         Date convertida=null;
-        try{
-            DateFormat formatter=new SimpleDateFormat("yyyy/MM/dd");
-            convertida=(java.util.Date)formatter.parse(data);
-            
-        }catch(ParseException e){
-            throw e;
-        }
+      
+        DateFormat formatter=new SimpleDateFormat("yyyy/MM/dd");
+        convertida=(java.util.Date)formatter.parse(data);
+
         return convertida;
         
     }

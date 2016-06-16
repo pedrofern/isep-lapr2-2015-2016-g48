@@ -7,7 +7,7 @@ import java.util.Objects;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
-import lapr.project.model.mechanisms.Atribuicao;
+import lapr.project.model.Atribuicao;
 
 /**
  *
@@ -20,36 +20,6 @@ public class ListaAvaliacoes {
         this.listaAvaliacoes = new ArrayList<>();
     }
 
-    /**
-     * Obtem as revisoes do revisor passado por parametro.
-     *
-     * @param id revisor
-     * @return lista revisoes
-     */
-    public List<Avaliacao> getAvaliacoesFAE(String id) {
-        List<Avaliacao> listAvaliacoes = new ArrayList<>();
-
-        for (Avaliacao a : getListaAvaliacoes()) {
-//            if (a.isFAE(id)) {
-//                listAvaliacoes.add(a);
-//            }
-        }
-        return listAvaliacoes;
-    }
-
-    /**
-     * Verifica se as Avaliacoes estão concluídas.
-     *
-     * @return true se estiverem concluídas, false se não estiverem.
-     */
-    boolean isAvaliacoesConcluidas() {
-        for (Avaliacao a : getListaAvaliacoes()) {
-            if (!a.isConcluida()) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * Valida uma avaliacao
@@ -103,8 +73,6 @@ public class ListaAvaliacoes {
     public List<Avaliacao> getListaAvaliacoes() {
         return listaAvaliacoes;
     }
-    
-    
 
     public boolean validaAvaliacaoCandidatura(Candidatura c) {
         return c.valida();

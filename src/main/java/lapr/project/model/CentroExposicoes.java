@@ -71,12 +71,7 @@ public class CentroExposicoes {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (this.getClass() != o.getClass()) {
-            return false;
-        }
+       
         CentroExposicoes outroCentro = (CentroExposicoes) o;
         return this.getRegistoUtilizadores().equals(outroCentro.getRegistoUtilizadores())
                 && this.getRegistoExposicoes().equals(outroCentro.getRegistoExposicoes());

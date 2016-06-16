@@ -27,7 +27,7 @@ public class CriarExposicaoController {
         return ce.getRegistoExposicoes();
     }
             
-    public void criarExposicao() {
+    public void criarExposicao() throws Exception {
         exposicao = ce.getRegistoExposicoes().novaExposicao();
     }
     

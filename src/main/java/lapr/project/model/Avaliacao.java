@@ -1,8 +1,5 @@
 package lapr.project.model;
 
-import lapr.project.model.states.AvaliacaoState;
-import lapr.project.model.states.AvaliacaoStateIniciada;
-import lapr.project.model.states.AvaliacaoStateConcluida;
 import java.util.List;
 import lapr.project.model.lists.ListaQuestoes;
 
@@ -12,135 +9,74 @@ import lapr.project.model.lists.ListaQuestoes;
  */
 public class Avaliacao {
     
-    private AvaliacaoState state;
-    private String resposta;
+    private boolean resposta;
     private String justificacao;
-    private Candidatura m_candidatura;
-    private ListaQuestoes m_listaQuestoes;
-    private FAE fae;
+    private ListaQuestoes listaQuestoes;
     private Criterio criterio;
+    private boolean estado;
 
-    public Avaliacao(String resposta, String justificacao) {
+    public Avaliacao(boolean resposta, String justificacao) {
         this.resposta = resposta;
         this.justificacao = justificacao;
+        this.estado=false;
+        listaQuestoes=new ListaQuestoes();
+        
     }
 
     public Avaliacao() {
-        m_listaQuestoes=new ListaQuestoes();
+        listaQuestoes=new ListaQuestoes();
     }
     
     public ListaQuestoes getListaQuestoes(){
-        return m_listaQuestoes;
+        return listaQuestoes;
     }
+   
     
-    /**
-     * Verifica se a avaliacao esta no estado concluida.
-     *
-     * @return boolean concluida ou não
-     */
-    public boolean isConcluida() {
-        return this.getState().isInConcluida();
-    }
-    
-
-    public void setResposta(String r) {
-        resposta = r;
+    public void setResposta(boolean resposta) {
+        this.resposta=resposta;
     }
 
     public void setJustificacao(String j) {
         justificacao = j;
     }
-
-        /**
-     * Obtem o FAE da avaliacao.
-     *
-     * @return the fae
-     */
-    public FAE getFAE() {
-        return fae;
-    }
-    
+ 
     /**
-     * Obtem a candidaura decidida.
-     *
-     * @return the candidatura
-     */
-    public Candidatura getM_candidatura() {
-        return m_candidatura;
-    }
-
-    /**
-     * Obtem a aceitação da decisão da candidatura.
+     * Obtem true se a avaliação tiver sido aceite, false se tiver sido recusada.
      *
      * @return the resposta
      */
-    public String getResposta() {
+    public boolean getResposta() {
         return resposta;
-    }
-
-    public String getInfo() {
-        return this.toString() + "\n";
-    }
-/**
-     * Altera o estado para um estado passado por parametro.
-     *
-     * @param state
-     * @return boolean se alterou ou não
-     */
-    public boolean setState(AvaliacaoState state) {
-        this.state = state;
-        return true;
-    }
-    
-    /**
-     * Altera o estado para o estado recebido por parametro.
-     *
-     * @param state
-     * @return boolean se alterou ou não
-     */
-    public boolean setState(String state) {
-        if (state.equals("AvaliacaoStateConcluida")) {
-            return setState(new AvaliacaoStateConcluida(this));
-        }
-        if (state.equals("AvaliacaoStateIniciada")) {
-            return setState(new AvaliacaoStateIniciada(this));
-        }
-        return false;
     }
 
     /**
      * Obtem o estado da Avaliacao
      *
-     * @return the state
+     * @return estado (true se estiver avaliada, false se não)
      */
-    public AvaliacaoState getState() {
-        return state;
-    }
-    
-    boolean isFAE(String id) {
-        return getFAE().getUtilizador().getUsername().equals(id);
-    }
+    public boolean getEstado() {
+        return estado;
+    }  
     
     /**
-     * Altera o estado para avaliacao concluida.
-     *
-     * @return boolean se alterou ou não
+     * Altera o estado para avaliada
      */
-    public boolean setConcluida() {
-        return this.getState().setStateConcluida();
+    public void setAvaliada() {
+        this.estado=true;
     }
-
-    @Override
-    public String toString() {
-        return this.justificacao + " - " + getResposta() + "\n";
-    }
-
     public boolean valida() {
-        System.out.println("Decisao: valida: " + this.toString());
         return true;
     }
 
-    public Candidatura novaCandidatura() {
-        return new Candidatura();
+    
+    @Override
+    public String toString() {
+        String avaliacao=this.justificacao + " - " + getResposta() + "\n";
+        for(Questao q: listaQuestoes.getListaQuestoes()){
+            avaliacao+=q.getPergunta() + ":" + q.getResposta() + "\n";
+            
+        }
+        avaliacao+="Média: " + listaQuestoes.calcularMedia();
+        return avaliacao;
     }
 }

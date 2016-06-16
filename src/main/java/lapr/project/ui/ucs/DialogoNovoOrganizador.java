@@ -82,12 +82,12 @@ public class DialogoNovoOrganizador extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 
                Utilizador u= (Utilizador) combo.getSelectedItem();
-              
+               
+               controller.criaOrganizador(u);
+                
                JList lista = framePai.getLstOrganizadores();
                ModeloListaOrganizadores modeloListaUsers = (ModeloListaOrganizadores) lista.getModel();
                 
-               controller.criaOrganizador(u);
-                 
                 boolean organizadorAdicionado = modeloListaUsers.addElement(controller.getOrganizador());
                 if (organizadorAdicionado) {
                         controller.setListaOrganizadores(modeloListaUsers.getListaOrganizadores());

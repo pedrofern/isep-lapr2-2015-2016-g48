@@ -45,7 +45,7 @@ public class ModeloListaOrganizadoresTest {
      * Test of addElement method, of class ModeloListaOrganizadores.
      */
     @Test
-    public void testAddElement() {
+    public void testAddElement() throws Exception {
         System.out.println("addElement ModeloListaOrganizadores");
       
         String expResult = "Diana";
@@ -67,7 +67,7 @@ public class ModeloListaOrganizadoresTest {
      * Test of getElement method, of class ModeloListaOrganizadores.
      */
     @Test
-    public void testGetElement() {
+    public void testGetElement() throws Exception {
         System.out.println("getElement ModeloListaOrganizadores");
       
         String expResult = "Diana";

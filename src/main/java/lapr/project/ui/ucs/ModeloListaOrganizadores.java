@@ -29,11 +29,12 @@ public class ModeloListaOrganizadores extends AbstractListModel {
     }
     
     public boolean addElement(Organizador o){
-        
+       
         boolean utilizadorAdicionado = listaOrganizadores.addOrganizador(o);
-        if(utilizadorAdicionado)
-
+        if(utilizadorAdicionado){
             fireIntervalAdded(this, getSize() -1, getSize() -1);
+            
+        }
         return utilizadorAdicionado;      
        
     } 

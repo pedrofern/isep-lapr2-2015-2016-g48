@@ -24,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 import lapr.project.model.lists.ListaOrganizadores;
-import lapr.project.model.lists.RegistoUtilizadores;
 
 /**
  *
@@ -32,16 +31,16 @@ import lapr.project.model.lists.RegistoUtilizadores;
  */
 public class CriarExposicaoUI extends JFrame {
     
-    private JList listaCompletaOrganizadores;
+    private JList lstOrganizadores;
     private ListaOrganizadores listaOrganizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataConflito, campoDataAlterarConflito, campoDataAvInicio, campoDataAvFim;
-    private static CentroExposicoes ce;
-    private CriarExposicaoController controller;
+    private final CentroExposicoes ce;
+    private final CriarExposicaoController controller;
     private static final int JANELA_LARGURA = 700;
     private static final int JANELA_ALTURA = 300;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Criar Exposicao").getPreferredSize();
-    private JButton btnConfirmar, btnFechar, btnAdicionarOrganizador, btnEleminarOrganizador;
+    private JButton btnConfirmar, btnFechar, btnAdicionarOrganizador, btnEliminarOrganizador;
     private JTextField txtTitulo, txtDescricao, txtDataInicio, txtDataFim, txtLocal;
     private ModeloListaOrganizadores modeloListaOrganizadores;
     private static final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
@@ -50,7 +49,7 @@ public class CriarExposicaoUI extends JFrame {
     private static final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
     private static final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
 
-    public CriarExposicaoUI(CentroExposicoes centro) {
+    public CriarExposicaoUI(CentroExposicoes centro) throws Exception {
         super("Criar Exposicao");
         ce = centro;
        controller=new CriarExposicaoController(ce); 
@@ -130,29 +129,8 @@ public class CriarExposicaoUI extends JFrame {
         return painel;
 
     }
-
-    private JPanel criarPainelListas() {
-
-        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
-                NUMERO_COLUNAS,
-                INTERVALO_HORIZONTAL,
-                INTERVALO_VERTICAL));
-        
-        listaOrganizadores = controller.getListaOrganizadores();
-        
-        modeloListaOrganizadores = new ModeloListaOrganizadores(listaOrganizadores);
-        
-        listaCompletaOrganizadores = new JList(modeloListaOrganizadores);
-        
-        p.add(criarPainelPeriodo(criarPainelPeriodoData()));
-        p.add(criarPainelListaOrganizador("Lista de Organizador",
-                listaCompletaOrganizadores,
-                modeloListaOrganizadores));
-
-        return p;
-    }
-
-    private JPanel criarPainelPeriodo(JPanel periodo
+    
+  private JPanel criarPainelPeriodo(JPanel periodo
     ) {
 
         JPanel p = new JPanel(new BorderLayout());
@@ -166,11 +144,10 @@ public class CriarExposicaoUI extends JFrame {
 
     private JPanel criarPainelListaOrganizador(
             String tituloLista,
-            JList lstLista,
-            ModeloListaOrganizadores modeloLista) {
+            JList lstLista) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
-        lstLista.setModel(modeloLista);
+//        lstLista.setModel(modeloLista);
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrPane = new JScrollPane(lstLista);
 
@@ -268,7 +245,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoDataInicial);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -287,7 +263,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoDataFinal);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -305,7 +280,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoSubCandDataInicial);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -323,7 +297,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoSubCandDataFinal);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -341,7 +314,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoSubStandsDatainicial);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -359,7 +331,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoSubStandsDataFinal);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -377,7 +348,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoDataAvInicio);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -395,7 +365,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.add(labelData);
             painel.add(campoDataAvFim);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -419,7 +388,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.setBorder(new TitledBorder("Limite Alteração De Conflitos"));
 
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -443,7 +411,6 @@ public class CriarExposicaoUI extends JFrame {
             painel.setBorder(new TitledBorder("Deteção De Conflitos"));
 
         } catch (ParseException e) {
-            e.printStackTrace();
         }
 
         return painel;
@@ -485,6 +452,26 @@ public class CriarExposicaoUI extends JFrame {
             controller.setDados(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm, dataInicioAv, dataFimAv, dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
             controller.setListaOrganizadores(listaOrganizadores);
   
+    }
+    
+    private JPanel criarPainelListas() {
+
+        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
+                NUMERO_COLUNAS,
+                INTERVALO_HORIZONTAL,
+                INTERVALO_VERTICAL));
+        
+        listaOrganizadores = controller.getListaOrganizadores();
+        
+         ModeloListaOrganizadores modeloListaOrganizador = new ModeloListaOrganizadores(listaOrganizadores);
+        
+        lstOrganizadores = new JList(modeloListaOrganizador);
+        
+        p.add(criarPainelPeriodo(criarPainelPeriodoData()));
+        p.add(criarPainelListaOrganizador("Lista de Organizador",
+                lstOrganizadores));
+
+        return p;
     }
 
     private JButton criarBotaoConfirmar() {
@@ -583,10 +570,10 @@ public class CriarExposicaoUI extends JFrame {
     }
 
     private JButton criarBotaoEliminarOrganizador(JList lstLista) {
-        btnEleminarOrganizador = new JButton("Eliminar Organizador");
-        btnEleminarOrganizador.addActionListener((ActionEvent e) -> {
+        btnEliminarOrganizador = new JButton("Eliminar Organizador");
+        btnEliminarOrganizador.addActionListener((ActionEvent e) -> {
         });
-        return btnEleminarOrganizador;
+        return btnEliminarOrganizador;
     }
 
     private JButton criarBotaoLimpar() {
@@ -613,7 +600,7 @@ public class CriarExposicaoUI extends JFrame {
      * @return lista produtos
      */
     public JList getLstOrganizadores() {
-        return listaCompletaOrganizadores;
+        return lstOrganizadores;
     }
     
     /**
@@ -621,7 +608,7 @@ public class CriarExposicaoUI extends JFrame {
      * @return botão remover produto
      */
     public JButton getBotaoRemoverProduto(){
-        return btnEleminarOrganizador;
+        return btnEliminarOrganizador;
     }
     
     public JButton getBotaoAdicionar(){

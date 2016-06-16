@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import lapr.project.model.mechanisms.Atribuicao;
 import java.util.*;
 
 /**

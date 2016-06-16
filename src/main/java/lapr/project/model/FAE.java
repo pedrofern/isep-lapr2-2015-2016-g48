@@ -127,17 +127,23 @@ public class FAE implements Comparable<FAE> {
         return false;
     }
 
-//    @Override
-//    public boolean equals(Object outroObjeto) {
-//        if (this == outroObjeto) {
-//            return true;
-//        }
-//        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
-//            return false;
-//        }
-//        FAE outroFAE = (FAE) outroObjeto;
-//        return this.setUtilizador(u).equals(outroFAE.setUtilizador(u));
-//    }
+    @Override
+    public boolean equals(Object outroObjeto) {
+      
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        FAE outroFAE = (FAE) outroObjeto;
+        return this.getEmail().equals(outroFAE.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.m_fae);
+        return hash;
+    }
+
     private boolean addAvaliacao(Avaliacao ava) {
         return m_listaAvaliacoes.add(ava);
     }

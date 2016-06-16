@@ -1,6 +1,6 @@
 package lapr.project.controller;
 
-import lapr.project.model.mechanisms.Atribuicao;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 

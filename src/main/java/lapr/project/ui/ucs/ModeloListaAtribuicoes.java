@@ -8,7 +8,7 @@ package lapr.project.ui.ucs;
 import javax.swing.AbstractListModel;
 import lapr.project.model.Exposicao;
 import lapr.project.model.lists.ListaAtribuicoes;
-import lapr.project.model.mechanisms.Atribuicao;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.mechanisms.MecanismoCarga;
 import lapr.project.model.mechanisms.MecanismoRanking;
 import lapr.project.model.mechanisms.MecanismoTempoServico;
@@ -44,7 +44,7 @@ public class ModeloListaAtribuicoes extends AbstractListModel {
     
     public void gerarAtribuicoes(Object mecanismo,Exposicao e){
          if (mecanismo instanceof MecanismoCarga){
-             MecanismoCarga m1=new MecanismoCarga();
+             MecanismoCarga m1=new MecanismoCarga(e);
              m1.setExposicao(e);
              m1.atribui();
            

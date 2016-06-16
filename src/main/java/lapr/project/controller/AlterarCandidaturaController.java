@@ -34,6 +34,6 @@ public class AlterarCandidaturaController {
         cClone.setListaProdutos(listaProduto);
         cClone.setListaKeywords(listaKeywords);
         
-        return exposicao.getRegistoCandidaturas().alteraCandidatura(candidatura, cClone);         
+            return exposicao.getListaCandidaturas().alteraCandidatura(candidatura, cClone);         
     }
 }

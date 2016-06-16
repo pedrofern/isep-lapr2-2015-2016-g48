@@ -25,7 +25,7 @@ public class AvaliarCandidaturaController {
     }
 
     public ListaCandidaturas getListaCandidaturas() {
-        return exposicao.getRegistoCandidaturas();
+        return exposicao.getListaCandidaturas();
     }
 
     public ListaAvaliacoes getListaCandidaturaAvaliacoes() {
@@ -111,8 +111,8 @@ public class AvaliarCandidaturaController {
 //        return this.ce.getListaExposicoes();
 //    }
 
-    public Avaliacao setAvaliacao(String strResposta, String strJustificacao) {
-        avaliacao.setResposta(strResposta);
+    public Avaliacao setAvaliacao(boolean bResposta, String strJustificacao) {
+        avaliacao.setResposta(bResposta);
         avaliacao.setJustificacao(strJustificacao);
 
         if (fae.validaAvaliacao(avaliacao)) {
@@ -136,6 +136,6 @@ public class AvaliarCandidaturaController {
     }
 
     public String getInfoResumo() {
-        return this.avaliacao.getInfo() + this.candidatura.getInfo();
+        return this.avaliacao.toString() + this.candidatura.getInfo();
     }
 }

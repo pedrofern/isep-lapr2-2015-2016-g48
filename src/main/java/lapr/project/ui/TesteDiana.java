@@ -31,7 +31,7 @@ public class TesteDiana {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, Exception {
         // TODO code application logic here
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador user = new Utilizador();

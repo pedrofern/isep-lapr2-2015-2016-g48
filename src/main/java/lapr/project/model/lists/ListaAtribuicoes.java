@@ -1,7 +1,7 @@
 package lapr.project.model.lists;
 
 import java.util.*;
-import lapr.project.model.mechanisms.Atribuicao;
+import lapr.project.model.Atribuicao;
 
 /**
  *

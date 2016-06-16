@@ -221,7 +221,7 @@ public class AlterarCandidaturaUI extends JFrame{
 
                     exposicao=(Exposicao) comboExp.getSelectedItem();
 
-                    listaCandidaturas = exposicao.getRegistoCandidaturas();
+                    listaCandidaturas = exposicao.getListaCandidaturas();
                     listaDemonstracoes = exposicao.getListaDemonstracoes();
 
                     painelWest.add(criarPainelCandidatura(listaCandidaturas));

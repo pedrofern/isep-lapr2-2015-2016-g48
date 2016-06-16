@@ -5,6 +5,7 @@
  */
 package lapr.project.model.mechanisms;
 
+import lapr.project.model.Atribuicao;
 import java.util.Collections;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
@@ -20,24 +21,17 @@ import lapr.project.model.lists.ListaFAE;
 public class MecanismoTempoServico implements MecanismoAtribuicao {
     
     private static final String TIPO= "Tempo de Serviço" ;
-    private static Exposicao exposicao;
-    private static ListaFAE listaFaes;
-    private static ListaCandidaturas listaCandidaturas;
-    private static ListaAtribuicoes listaAtribuicoes;
-    private static ListaAtribuicoes listaAtribuicoesNovas;
+    private Exposicao exposicao;
+    private ListaFAE listaFaes;
+    private ListaCandidaturas listaCandidaturas;
+    private ListaAtribuicoes listaAtribuicoes;
+    private ListaAtribuicoes listaAtribuicoesNovas;
     
     public MecanismoTempoServico(Exposicao e){
         this.exposicao=e;
-        this.listaFaes=e.getListaFAEs();
-        this.listaCandidaturas=e.getRegistoCandidaturas();
+        this.listaFaes=e.getListaFAE();
+        this.listaCandidaturas=e.getListaCandidaturas();
         this.listaAtribuicoes=e.getListaAtribuicoes();
-    }
-    
-    public MecanismoTempoServico(){
-        exposicao=new Exposicao();
-        listaFaes=new ListaFAE();
-        listaCandidaturas=new ListaCandidaturas();
-        listaAtribuicoes=new ListaAtribuicoes();
     }
     
     public ListaFAE getListaFaes(){
@@ -50,9 +44,9 @@ public class MecanismoTempoServico implements MecanismoAtribuicao {
     
     public void setExposicao(Exposicao exposicao){
         this.exposicao=exposicao;
-        this.listaFaes=listaFaes;
-        this.listaAtribuicoes=listaAtribuicoes;
-        this.listaCandidaturas=listaCandidaturas;
+        this.listaFaes=exposicao.getListaFAE();
+//        this.listaAtribuicoes=exposicao.getListaAtribuicoes;
+        this.listaCandidaturas=exposicao.getListaCandidaturas();
     }
     
     public ListaCandidaturas getListaCandidaturas(){
@@ -63,8 +57,10 @@ public class MecanismoTempoServico implements MecanismoAtribuicao {
         Collections.sort(listaFaes.getListaFAE());
     }
     
+    
     @Override
     public boolean atribui(ProcessoAtribuicao pa) {
+        
         listaAtribuicoesNovas=new ListaAtribuicoes();
         for (FAE f:listaFaes.getListaFAE()){
             for(Candidatura c:listaCandidaturas.getListaCandidaturas()){

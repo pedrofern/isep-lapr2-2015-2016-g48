@@ -126,7 +126,6 @@ public class AvaliarCandidaturaUI extends JFrame{
 //                m_exposicao=(Exposicao) comboExpos.getSelectedItem();
 //                
 
-                exposicao=new Exposicao();
                 pCands.setExpo(exposicao);
                 
                 pCands.mostrarPainel();

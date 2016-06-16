@@ -24,17 +24,11 @@ public class MecanismoCarga {
             
     public MecanismoCarga(Exposicao e){
         this.exposicao=e;
-        this.listaFaes=e.getListaFAEs();
-        this.listaCandidaturas=e.getRegistoCandidaturas();
+        this.listaFaes=e.getListaFAE();
+        this.listaCandidaturas=e.getListaCandidaturas();
 //        this.listaAtribuicoes=e.getRegistoAtribuicoes;
     }
 
-    public MecanismoCarga() {
-        exposicao=new Exposicao();
-        listaFaes=new ListaFAE();
-        listaCandidaturas=new ListaCandidaturas();
-        listaAtribuicoes=new ListaAtribuicoes();
-    }
     
     public ListaFAE getListFaes(){
         return listaFaes;
@@ -50,9 +44,9 @@ public class MecanismoCarga {
      
      
      public void setExposicao(Exposicao exposicao){
-         exposicao=exposicao;
-         listaFaes=exposicao.getListaFAEs();
-         listaCandidaturas=exposicao.getRegistoCandidaturas();
+         this.exposicao=exposicao;
+         listaFaes=exposicao.getListaFAE();
+         listaCandidaturas=exposicao.getListaCandidaturas();
          listaAtribuicoes=new ListaAtribuicoes();
      }
 

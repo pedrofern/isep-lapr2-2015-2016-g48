@@ -21,7 +21,7 @@ public class RegistarCandidaturaController {
     public RegistarCandidaturaController(Representante representante,Exposicao exp) {
         eRepresentante = representante;
         exposicao = exp;
-        listaCandidaturas = exposicao.getRegistoCandidaturas(); 
+        listaCandidaturas = exposicao.getListaCandidaturas(); 
     }
 
     public void novaCandidatura() {
