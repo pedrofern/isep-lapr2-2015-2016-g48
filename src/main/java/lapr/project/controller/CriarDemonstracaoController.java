@@ -22,11 +22,12 @@ public class CriarDemonstracaoController {
     public CriarDemonstracaoController(Organizador pOrganizador, CentroExposicoes ce) {
         this.ce = ce;
         this.organizador = pOrganizador;
-          
+        listaDemonstracao = new ListaDemonstracoes();
+
     }
 
     public Demonstracao novaDemonstracao() {
-      return demonstracao = new Demonstracao();
+        return demonstracao = new Demonstracao();
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
@@ -36,10 +37,26 @@ public class CriarDemonstracaoController {
         return demonstracao;
     }
 
+    public Demonstracao registaDemonstracao(String descricao, String temaExposicao) {
+
+        demonstracao.setDados(descricao, temaExposicao);
+        if (listaDemonstracao.adicionarDemonstracao(demonstracao)) {
+            return demonstracao;
+        } else {
+
+            return null;
+        }
+
+    }
+
+    public String getDemonstraçãoString() {
+        return this.listaDemonstracao.toStringCompleto();
+    }
 //    public void setCodigoUnico(int codigoUnico) {
 //        demonstracao.setCod(codigoUnico);
 //    }
 //    
+
     public void setDescricao(String novaDescricao) {
         demonstracao.setDesc(novaDescricao);
     }
@@ -50,7 +67,7 @@ public class CriarDemonstracaoController {
     public RegistoRecursos getListaRecursos() {
         return ce.getRegistoRecursos();
     }
-    
+
     public ListaRecursoDemonstracao getListaRecursosDemonstracao() {
         return demonstracao.getListaRecursosDemonstracao();
     }
@@ -68,12 +85,20 @@ public class CriarDemonstracaoController {
         return le;
     }
 
+    public boolean valida() {
+        if (demonstracao.valida() == false) {
+            return false;
+        }
+        return true;
+
+    }
 //    public Demonstracao registaDemonstracao() {
 //        if (exposicao.getListaDemonstracoes().registaDemonstracao(demonstracao)) {
 //            return demonstracao;
 //        }
 //        return null;
 //    }
+
     public void selectExposicao(Exposicao e) {
         this.exposicao = e;
     }

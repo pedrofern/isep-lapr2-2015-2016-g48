@@ -24,7 +24,7 @@ public class CriarDemonstracaoUI extends JFrame {
     private ListaRecursoDemonstracao listarecurosdemonstracao;
     private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso, btnEleminarRecurso;
     private JComboBox comboBoxExposicao;
-    private JTextArea txtDescricao = new JTextArea();
+    private JTextArea txtDescricao;
     private JFrame framepai;
     private DefaultListModel modeloListaRecurso;
     private JList listaCompletaRecurso;
@@ -35,7 +35,7 @@ public class CriarDemonstracaoUI extends JFrame {
     private Organizador o_Organizador;
     private static CentroExposicoes ce;
     private static Utilizador user;
-    private Exposicao exposicao;
+    private Exposicao exposicao, exposicaoseleccionada;
     private Recurso recurso;
     private ListaDemonstracoes listaDemostracao;
     private CriarDemonstracaoController m_demonstracaoController;
@@ -50,19 +50,10 @@ public class CriarDemonstracaoUI extends JFrame {
         ce = centroExposicoes;
         o_Organizador = new Organizador(utilizador);
         m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, ce);
-        demostracao = m_demonstracaoController.novaDemonstracao();
+       demostracao= m_demonstracaoController.novaDemonstracao();
         listarecurosdemonstracao = demostracao.getListaRecursosDemonstracao();
 
-//        exposicao = new Exposicao();
-//        exposicao.setTitulo("TESTE EXPOSICAO");
-//        listaExposicoes = ce.getRegistoExposicoes();
-//        listaExposicoes.adicionarExposicao(exposicao);
-//        listaExposicoes.registaExposicao(exposicao);
-        exposicao = new Exposicao();
-        exposicao.setTitulo("TESTE EXPOSICAO");
         listaExposicoes = ce.getRegistoExposicoes();
-        listaExposicoes.adicionarExposicao(exposicao);
-        listaExposicoes.registaExposicao(exposicao);
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,12 +81,7 @@ public class CriarDemonstracaoUI extends JFrame {
 
     private JComboBox criarPainelExposicao() {
 
-        String[] tituloExp = new String[listaExposicoes.getExposicoes().size()];
-
-        for (int i = 0; i < tituloExp.length; i++) {
-            tituloExp[i] = listaExposicoes.getExposicoes().get(i).getTitulo();
-        }
-        comboBoxExposicao = new JComboBox(tituloExp);
+        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
@@ -104,6 +90,7 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 int tmp = comboBoxExposicao.getSelectedIndex();
+                exposicaoseleccionada = listaExposicoes.getExposicoes().get(tmp);
                 m_demonstracaoController.selectExposicao(listaExposicoes.getExposicoes().get(tmp));
                 if (comboBoxExposicao.getSelectedIndex() >= 0) {
                     comboBoxExposicao.setEnabled(false);
@@ -116,22 +103,6 @@ public class CriarDemonstracaoUI extends JFrame {
         });
         return comboBoxExposicao;
 
-    }
-
-    private JPanel criarPainelDescricao() {
-        JPanel painel = new JPanel(new FlowLayout());
-
-        txtDescricao = new JTextArea();
-        txtDescricao.setPreferredSize(new Dimension(359, 250));
-        txtDescricao.setBorder(new TitledBorder("Descrição"));
-        txtDescricao.requestFocus();
-
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        painel.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        painel.add(txtDescricao);
-        return painel;
     }
 
     private JPanel criarPainelSul() {
@@ -174,7 +145,9 @@ public class CriarDemonstracaoUI extends JFrame {
             JTextArea descricao
     ) {
         JLabel lblTitulo = new JLabel(tituloDescrição, JLabel.LEFT);
-
+        txtDescricao = new JTextArea();
+        txtDescricao.setPreferredSize(new Dimension(359, 250));
+        txtDescricao.requestFocus();
         JScrollPane scrPane = new JScrollPane(txtDescricao);
 
         JPanel p = new JPanel(new BorderLayout());
@@ -241,7 +214,6 @@ public class CriarDemonstracaoUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-//                try {
 
                 listaRecurso = m_demonstracaoController.getListaRecursos();
                 Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
@@ -270,8 +242,8 @@ public class CriarDemonstracaoUI extends JFrame {
                         if (!modeloListaRecurso.contains(recurso)) {
                             modeloListaRecurso.addElement(recurso);
                             listarecurosdemonstracao = m_demonstracaoController.getListaRecursosDemonstracao();
-                            String tmp = recurso.getDescricao();
-                            listarecurosdemonstracao.criaRecursoDemonstracao(tmp);
+                            listarecurosdemonstracao.valida((recurso));
+                             
 
                         } else {
                             JOptionPane.showMessageDialog(
@@ -283,10 +255,6 @@ public class CriarDemonstracaoUI extends JFrame {
 
                     }
 
-//                    }
-//                } catch (NullPointerException exp) {
-//                    
-//                }
                 }
             }
         });
@@ -301,48 +269,51 @@ public class CriarDemonstracaoUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
+                try {
+                    if ((txtDescricao.getText().trim().isEmpty() == true) && listaCompletaRecurso.getSize() == null) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Tem de preencher todos os campos!",
+                                "Criar Demonstração",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                    demostracao =m_demonstracaoController.registaDemonstracao(txtDescricao.getText(), exposicaoseleccionada.getTitulo());
+                    m_demonstracaoController.setListaRecurso(listaRecurso);
 
-//                try {
-//
-//                    String descricao = txtDescricao.getText();
-//                    String temaExposicao = exposicao.getTitulo();
-//                    String[] dataInicial = campoDataInicial.getText().split("/");
-//                    String[] dataFinal = campoDataFinal.getText().split("/");
-//                    int diainicial = Integer.parseInt(dataInicial[0]);
-//                    int mesinicial = Integer.parseInt(dataInicial[1]);
-//                    int anoinicial = Integer.parseInt(dataInicial[2]);
-//                    int diafinal = Integer.parseInt(dataFinal[0]);
-//                    int mesfinal = Integer.parseInt(dataFinal[1]);
-//                    int anofinal = Integer.parseInt(dataFinal[2]);
-//
-//                    Data dataInicialPrimeiro = new Data(diainicial, mesinicial, anoinicial);
-//                    Data dataFinalUltimo = new Data(diafinal, mesfinal, anofinal);
-//
-//                    demostracao = m_demonstracaoController.registaDemonstracao(descricao, temaExposicao, dataInicialPrimeiro, dataFinalUltimo);
-//                    if (demostracao != null) {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Demonstração adicionada.",
-//                                "Nova Demonstração",
-//                                JOptionPane.INFORMATION_MESSAGE);
-//                        dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Demonstração já registada!",
-//                                "Nova Demonstração",
-//                                JOptionPane.ERROR_MESSAGE);
-//                    }
-//                    dispose();
-//                } catch (NumberFormatException ex) {
-//                    JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Registar Demonstração",
-//                            JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
+                    boolean adicionarNovaDemonstracao = m_demonstracaoController.valida();
+                    if (adicionarNovaDemonstracao == true) {
+                        if (demostracao == null) {
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    "Demonstração já criada",
+                                    "Nova Demonstração",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Demonstração adicionada: \n"
+                                +m_demonstracaoController.getDemonstraçãoString(),
+                                "Nova Demonstração",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "O registo não é válido!\nVerifique todos os campos",
+                                "Nova Demonstração",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Tem de preencher todos os campos!",
+                            "Criar Demonstração",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
             }
+
         }
         );
         return btnConfirmar;

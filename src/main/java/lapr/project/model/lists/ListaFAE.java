@@ -122,7 +122,7 @@ public class ListaFAE {
     }
 
     public boolean registaFAE(FAE fae) {
-        if (fae.valida()) {
+        if (fae.validaMenbroFAE()) {
             return true;
         } else {
             return false;

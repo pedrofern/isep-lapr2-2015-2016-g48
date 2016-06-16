@@ -21,6 +21,7 @@ public class Demonstracao implements Serializable {
     private Data inicio, fim;
     private RegistoRecursos registorecurso;
     private ListaRecursoDemonstracao listarecursodemonstracao;
+    private Demonstracao demonstracao;
     /**
      * Metodo que constroi objetos demonstração
      *
@@ -37,7 +38,7 @@ public class Demonstracao implements Serializable {
         codigoUnico = codigoUnico + totalDemonstracao++;
         this.m_listaRecursos = new RegistoRecursos();
         listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
-        listarecursodemonstracao=new ListaRecursoDemonstracao();
+        listarecursodemonstracao = new ListaRecursoDemonstracao();
     }
 
     public void setDados(String desc, String temaexposicao, Data inicio, Data fim) {
@@ -45,6 +46,13 @@ public class Demonstracao implements Serializable {
         this.temaexposicao = temaexposicao;
         this.inicio = inicio;
         this.fim = fim;
+    }
+
+    public void setDados(String desc, String temaexposicao) {
+        setDesc(desc);
+        this.temaexposicao = temaexposicao;
+        this.inicio = new Data();
+        this.fim = new Data();
     }
 
     /**
@@ -55,6 +63,7 @@ public class Demonstracao implements Serializable {
     public RegistoRecursos getListaRecursos() {
         return m_listaRecursos;
     }
+
     public ListaRecursoDemonstracao getListaRecursosDemonstracao() {
         return listarecursodemonstracao;
     }
@@ -67,7 +76,6 @@ public class Demonstracao implements Serializable {
     public ListaCandidaturasDemonstracoes getListaCandidaturasDemonstracao() {
         return listaCandidaturasDemonstracoes;
     }
-
 
     public void addRecursoDemonstracao(Recurso recurso) {
         listarecursodemonstracao.addRecursoDemonstracao(recurso);
@@ -86,21 +94,26 @@ public class Demonstracao implements Serializable {
      *
      * @param desc descricao
      */
-    public final  void setDesc(String desc) {
-        
+    public final void setDesc(String desc) {
+
         if (validaDescricao(desc)) {
-              this.desc = desc;
+            this.desc = desc;
         }
-      
+
+    }
+
+    public static String getCondigoUnico() {
+
+        return codigoUnico;
     }
 
     public boolean validaDescricao(String descricao) {
 
-        if (descricao != null && descricao.trim().isEmpty()) {
-            return true;
-        } else {
-          
+        if (descricao == null || descricao.trim().isEmpty()) {
             return false;
+        } else {
+
+            return true;
         }
     }
 
@@ -207,7 +220,20 @@ public class Demonstracao implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%s", desc);
+        return String.format("%s\n %s", desc, codigoUnico);
+    }
+
+    public String toStringCompleto() {
+        String str = "\n";
+        str += "\tDescrição: " + this.desc + "\n";
+        str += "\tCodigo Unico: " + codigoUnico + "\n";
+        str += "\tTema da exposição: " + temaexposicao + "\n";
+        str += "\tRecursos:\n";
+        for (Recurso recurso : listarecursodemonstracao.getListaRecursoDemonstracao()) {
+            str += "\t\t" + recurso.toString() + "\n";
+        }
+
+        return str;
     }
 
     public void setRecurso(RegistoRecursos registorecurso) {
@@ -216,13 +242,10 @@ public class Demonstracao implements Serializable {
 
     public boolean valida() {
 
-        for (int i = 0; i < registorecurso.getListaRecursos().size(); i++) {
-
-            if (listarecursodemonstracao.valida(registorecurso.getListaRecursos().get(i))&&validaDescricao(desc)) {
-                return true;
-            }
+        if (validaDescricao(desc)) {
+            return true;
         }
-        
+
         return false;
 
     }

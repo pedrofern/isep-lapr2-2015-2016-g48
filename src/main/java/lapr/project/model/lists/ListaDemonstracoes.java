@@ -104,4 +104,14 @@ public class ListaDemonstracoes {
     public boolean contem(Demonstracao demonstracao) {
         return listaDemontracoes.contains(demonstracao);
     }
+    
+    public String toStringCompleto() {
+        String str = "";
+
+        for (int i=0; i<listaDemontracoes.size(); i++) {
+            str += "\t\t" + listaDemontracoes.get(i).toStringCompleto() + "\n";
+        }
+
+        return str;
+    }
 }

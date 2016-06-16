@@ -18,28 +18,31 @@ import lapr.project.model.Utilizador;
 public class ListaRecursoDemonstracao {
 
     private List<Recurso> listarecursodemonstracao;
- 
 
     public ListaRecursoDemonstracao() {
         listarecursodemonstracao = new ArrayList<>();
     }
 
     public void addRecursoDemonstracao(Recurso recurso) {
-        
+
         listarecursodemonstracao.add(recurso);
 
     }
-    
- 
-    public void criaRecursoDemonstracao(String recurso) {
+
+    public List<Recurso> getListaRecursoDemonstracao() {
        
+        return listarecursodemonstracao;
+    }
+
+    public void criaRecursoDemonstracao(String recurso) {
+
         addRecursoDemonstracao(new Recurso(recurso));
     }
 
     public boolean valida(Recurso r) {
 
-        if (r.valida()) {
-            return true;
+        if (!listarecursodemonstracao.contains(r)) {
+            return listarecursodemonstracao.add(r);
         }
         return false;
     }
