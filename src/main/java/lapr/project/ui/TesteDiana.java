@@ -67,7 +67,8 @@ public class TesteDiana {
 
         ce.getRegistoExposicoes().adicionarExposicao(e1);
 
-        AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
+        //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
+
         CriarExposicaoUI c=new CriarExposicaoUI(ce);
     }
     

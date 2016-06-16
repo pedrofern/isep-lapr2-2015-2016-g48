@@ -24,7 +24,7 @@ public class DefinirRecursoUI extends JFrame {
     private static CentroExposicoes ce;
     private DefinirRecursoController controller;
     private static JTextArea text;
-     private static Recurso r;
+    private static Recurso r;
     
     private static final int WIDTH=350, HEIGHT=350;
     
@@ -141,6 +141,7 @@ public class DefinirRecursoUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Operação efectuada com sucesso.");
                     guardar();
             }
+              dispose();  
             }
         });
         return btn;

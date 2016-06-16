@@ -10,6 +10,7 @@ import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.ui.ucs.*;
 import lapr.project.utils.Data;
+import lapr.project.ui.*;
 
 /**
  *
@@ -71,9 +72,10 @@ public class Teste {
 //        RegistoExposicoes re=ce.getRegistoExposicoes();
 //        ce.getRegistoExposicoes().adicionarExposicao(ex);
         //new AvaliarCandidaturaUI(centro,utilizador);
-        new DefinirFAEUI(ce,user);
+        //new DefinirFAEUI(ce,user);
         //RegistarCandidaturaUI teste=new RegistarCandidaturaUI(ce, user);
         //new CriarStandUI(ce);
+        new DefinirRecursoUI(ce);
     }
 
 }
