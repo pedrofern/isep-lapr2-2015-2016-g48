@@ -31,7 +31,6 @@ public class CriarDemonstracaoUI extends JFrame {
     private RegistoRecursos listaRecurso;
     private Demonstracao demostracao;
     private RegistoExposicoes listaExposicoes;
-    private JTable tableListaRecurso;
     private Organizador o_Organizador;
     private static CentroExposicoes ce;
     private static Utilizador user;
@@ -167,7 +166,6 @@ public class CriarDemonstracaoUI extends JFrame {
             JButton btnAdicionar, JButton btnEleminarRecurso) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
-        //lstLista.setModel(modeloLista);
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrPane = new JScrollPane(lstLista);
 
@@ -180,18 +178,6 @@ public class CriarDemonstracaoUI extends JFrame {
 
         JPanel pBotoes = criarPainelBotoes(btnAdicionar, btnEleminarRecurso);
         p.add(pBotoes, BorderLayout.SOUTH);
-        return p;
-    }
-
-    private JPanel criarPainelData(JPanel datainicial, JPanel datafinal) {
-
-        JPanel p = new JPanel(new GridLayout(2, 1, 0, 10));
-
-        p.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-
-        p.add(datainicial);
-        p.add(datafinal);
-
         return p;
     }
 

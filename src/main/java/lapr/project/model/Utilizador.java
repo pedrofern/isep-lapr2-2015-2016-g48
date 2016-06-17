@@ -61,6 +61,10 @@ public class Utilizador implements Comparable<Utilizador>{
     public boolean hasID(String strId) {
         return username.equalsIgnoreCase(strId);
     }
+    
+     public boolean hasEmail(String email) {
+        return email.equalsIgnoreCase(email);
+    }
 
     public String getNome() {
         return nome;

@@ -10,7 +10,7 @@ import lapr.project.model.Candidatura;
  */
 public class ListaCandidaturas {
     
-    private final List<Candidatura> listaCandidaturas;
+    private List<Candidatura> listaCandidaturas;
 
     public ListaCandidaturas() {
         listaCandidaturas = new ArrayList<>();

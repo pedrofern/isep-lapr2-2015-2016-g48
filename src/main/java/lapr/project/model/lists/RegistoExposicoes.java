@@ -105,6 +105,29 @@ public class RegistoExposicoes {
         return leFAE;
     }
 
+    public List<Exposicao> geListatExposicaoOrganizador(String email) {
+        List<Exposicao> leOrg = new ArrayList<>();
+
+        Utilizador user = null;
+
+        for (Utilizador u : this.listaUtilizadores) {
+            if (u.hasEmail(email)) {
+                user = u;
+            }
+        }
+
+        if (user != null) {
+            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
+                Exposicao e = it.next();
+
+                if (e.hasOrganizador(user)) {
+                    leOrg.add(e);
+                }
+            }
+        }
+        return leOrg;
+    }
+
     public Exposicao[] getArray() {
         return listaExposicoes.toArray(new Exposicao[listaExposicoes.size()]);
     }
@@ -146,9 +169,11 @@ public class RegistoExposicoes {
         }
         return null;
     }
-  
+
     /**
-     * Metodo que retorna a lista de exposicoes do FAE com o utilizador passado por parametro
+     * Metodo que retorna a lista de exposicoes do FAE com o utilizador passado
+     * por parametro
+     *
      * @param u utilizador que contém papel de FAE
      * @return lista de exposicoes do FAE com o id passado por parametro
      */
@@ -156,7 +181,7 @@ public class RegistoExposicoes {
         RegistoExposicoes listaExpDoFAE = new RegistoExposicoes();
 
         for (Exposicao e : this.listaExposicoes) {
-            if(e.hasFAE(u)){
+            if (e.hasFAE(u)) {
                 listaExpDoFAE.adicionarExposicao(e);
             }
 
@@ -165,7 +190,8 @@ public class RegistoExposicoes {
     }
 
     /**
-     * Retorna lista de exposicoes do organizador com o utilizador passado por parametro
+     * Retorna lista de exposicoes do organizador com o utilizador passado por
+     * parametro
      *
      * @param u que contém papel de organizador
      * @return lista de exposicoes do organizador com o id passado por parametro
@@ -192,112 +218,123 @@ public class RegistoExposicoes {
             }
         }
         return false;
-    } 
-    
-    public boolean temFuncaoOrganizador(Utilizador utilizador){
-        for(Exposicao e: listaExposicoes){
-            if(e.hasOrganizador(utilizador))
+    }
+
+    public boolean temFuncaoOrganizador(Utilizador utilizador) {
+        for (Exposicao e : listaExposicoes) {
+            if (e.hasOrganizador(utilizador)) {
                 return false;
-            
-        }  
+            }
+
+        }
         return false;
     }
-    
-    public boolean temFuncaoFAE(Utilizador utilizador){
-        for(Exposicao e: listaExposicoes){
-            if(e.hasFAE(utilizador))
+
+    public boolean temFuncaoFAE(Utilizador utilizador) {
+        for (Exposicao e : listaExposicoes) {
+            if (e.hasFAE(utilizador)) {
                 return false;
-        }  
+            }
+        }
         return false;
     }
-    
-    public RegistoExposicoes getExposicoesEstadoCriada(){
-         RegistoExposicoes regExposicoes=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoEstadoCriada)
+
+    public RegistoExposicoes getExposicoesEstadoCriada() {
+        RegistoExposicoes regExposicoes = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoEstadoCriada) {
                 regExposicoes.adicionarExposicao(e);
+            }
         }
-        
+
         return regExposicoes;
     }
-    
-    public RegistoExposicoes getExposicoesFAESemDemonstracao(){
-        RegistoExposicoes regExposicoes=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoFAESemDemonstracao)
+
+    public RegistoExposicoes getExposicoesFAESemDemonstracao() {
+        RegistoExposicoes regExposicoes = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoFAESemDemonstracao) {
                 regExposicoes.adicionarExposicao(e);
+            }
         }
-        
+
         return regExposicoes;
     }
-    
-     public RegistoExposicoes getExposicoesDemonstracaoSemFae(){
-        RegistoExposicoes regExposicoes=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoDemonstracaoSemFAE)
+
+    public RegistoExposicoes getExposicoesDemonstracaoSemFae() {
+        RegistoExposicoes regExposicoes = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoDemonstracaoSemFAE) {
                 regExposicoes.adicionarExposicao(e);
+            }
         }
-        
+
         return regExposicoes;
     }
-    
-    public RegistoExposicoes getExposicoesCandidaturasAbertas(){
-        
-        RegistoExposicoes expoCandAbertas=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasAbertas)
+
+    public RegistoExposicoes getExposicoesCandidaturasAbertas() {
+
+        RegistoExposicoes expoCandAbertas = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasAbertas) {
                 expoCandAbertas.adicionarExposicao(e);
+            }
         }
-        
+
         return expoCandAbertas;
     }
-    
-    public RegistoExposicoes getExposicoesConflitosDetetados(){
-        
-        RegistoExposicoes regExpo=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoConflitosDetetados)
+
+    public RegistoExposicoes getExposicoesConflitosDetetados() {
+
+        RegistoExposicoes regExpo = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoConflitosDetetados) {
                 regExpo.adicionarExposicao(e);
+            }
         }
         return regExpo;
     }
-    
-    public RegistoExposicoes getExposicoesConflitosAlterados(){
-        
-        RegistoExposicoes regExpo=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoConflitosAlterados)
+
+    public RegistoExposicoes getExposicoesConflitosAlterados() {
+
+        RegistoExposicoes regExpo = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoConflitosAlterados) {
                 regExpo.adicionarExposicao(e);
+            }
         }
         return regExpo;
     }
-    
-     public RegistoExposicoes getExposicoesCandidaturasEmAvaliacao(){
-        
-        RegistoExposicoes regExpo=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasEmAvaliacao)
+
+    public RegistoExposicoes getExposicoesCandidaturasEmAvaliacao() {
+
+        RegistoExposicoes regExpo = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasEmAvaliacao) {
                 regExpo.adicionarExposicao(e);
+            }
         }
         return regExpo;
     }
-     
-      public RegistoExposicoes getExposicoesCandidaturasDecididas(){
-        
-        RegistoExposicoes regExpo=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasDecididas)
+
+    public RegistoExposicoes getExposicoesCandidaturasDecididas() {
+
+        RegistoExposicoes regExpo = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasDecididas) {
                 regExpo.adicionarExposicao(e);
+            }
         }
         return regExpo;
     }
-    
-    public RegistoExposicoes getExposicoesStandsAtribuiveis(){
-        
-        RegistoExposicoes regExpo=new RegistoExposicoes();
-        for(Exposicao e:listaExposicoes){
-            if(e.getEstadoAtualExposicao() instanceof ExposicaoStandsAtribuiveis)
+
+    public RegistoExposicoes getExposicoesStandsAtribuiveis() {
+
+        RegistoExposicoes regExpo = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoStandsAtribuiveis) {
                 regExpo.adicionarExposicao(e);
+            }
         }
         return regExpo;
     }
