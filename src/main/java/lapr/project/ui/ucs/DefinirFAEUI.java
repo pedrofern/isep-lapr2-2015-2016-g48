@@ -47,7 +47,6 @@ public class DefinirFAEUI extends JFrame {
 
         ce = centroExposicoes;
         user = utilizador;
-        o_Organizador = new Organizador(user);
         controller = new DefinirFAEController(centroExposicoes, user);
         listaCompletaUtilizadores = controller.getRegistoUTilizadores();
 
@@ -119,15 +118,8 @@ public class DefinirFAEUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 int tmp = comboBoxExposicao.getSelectedIndex();
-                exposicaoselecionda = listaExposicoes.getExposicoes().get(tmp);
-                controller.selectExposicao(listaExposicoes.getExposicoes().get(tmp));
-                if (comboBoxExposicao.getSelectedIndex() >= 0) {
+                controller.selectExposicao((Exposicao)comboBoxExposicao.getSelectedItem());
                     comboBoxExposicao.setEnabled(false);
-                } else {
-
-                    comboBoxExposicao.setEnabled(true);
-                }
-
             }
         });
         return comboBoxExposicao;
@@ -236,7 +228,7 @@ public class DefinirFAEUI extends JFrame {
 
                 if (var == 0) {
                     modeloListaFAE.remove(lstUtilizadoresFAE.getSelectedIndex());
-                    listaUtilizadoresFAE.removerFAE((FAE) lstUtilizadoresFAE.getSelectedValue());
+                    controller.getListaFAE().removerFAE((FAE)lstUtilizadoresFAE.getSelectedValue());
                     int index = lstUtilizadoresFAE.getSelectedIndex();
                     if (modeloListaFAE.getSize() == 0) {
                         btn.setEnabled(true);
@@ -269,7 +261,7 @@ public class DefinirFAEUI extends JFrame {
 
                         Utilizador u = (Utilizador) values[i];
 
-                        listaUtilizadoresFAE.criaFAE(u);
+                        controller.criarFAE(u);
 
                     } else {
                         JOptionPane.showMessageDialog(
@@ -300,13 +292,9 @@ public class DefinirFAEUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Deve seleciona uma exposição !", null, JOptionPane.WARNING_MESSAGE);
                 } else {
 
-                    FAE fae = new FAE();
-
-                    for (int j = 0; j < listaUtilizadoresFAE.getListaFAE().size(); j++) {
-                        fae = listaUtilizadoresFAE.getListaFAE().get(j);
-
-                    }
-                    if (controller.registaFAE(fae)) {
+                     
+                   controller.adicionarFAE();
+                    if (controller.registaEstado()) {
 
                         JOptionPane.showMessageDialog(
                                 null,

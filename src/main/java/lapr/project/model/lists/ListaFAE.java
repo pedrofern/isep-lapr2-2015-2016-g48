@@ -27,27 +27,14 @@ public class ListaFAE {
     }
 
     /**
-     * Valida o Organizador e se for válido adiciona a uma Lista de Organizador.
-     *
-     * @param u o utilizador a adicionar.
-     * @return boolean
-     */
-    public boolean addFAE(FAE fae) {
-        if (validaFAE(fae)) {
-            return listaFAE.add(fae);
-        }
-        return false;
-        
-    }
-
-    /**
      * Cria e retorna um novo organizador
      *
      * @param u
      */
-    public void criaFAE(Utilizador u) {
+    public FAE criaFAE(Utilizador u) {
 
-        addFAE(new FAE(u));
+        return new FAE(u);
+
     }
 
     /**
@@ -112,13 +99,18 @@ public class ListaFAE {
         return false;
     }
 
-    public boolean adicionarFAE(FAE fae) {
-
-        if (hasFAE(fae)) {
-            return false;
-        } else {
+    /**
+     * Valida o Organizador e se for válido adiciona a uma Lista de Organizador.
+     *
+     * @param u o utilizador a adicionar.
+     * @return boolean
+     */
+    public boolean addFAE(FAE fae) {
+        if (validaFAE(fae)) {
             return listaFAE.add(fae);
         }
+        return false;
+
     }
 
     public boolean registaFAE(FAE fae) {
@@ -129,10 +121,11 @@ public class ListaFAE {
         }
     }
 
+
     public String toStringCompleto() {
         String str = "";
 
-        for (int i=0; i<listaFAE.size(); i++) {
+        for (int i = 0; i < listaFAE.size(); i++) {
             str += "\t\t" + listaFAE.get(i).getUtilizador().toStringGeral() + "\n";
         }
 

@@ -4,6 +4,8 @@ import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.*;
 import java.util.*;
 import lapr.project.model.*;
+import lapr.project.model.states.ExposicaoEstado;
+import lapr.project.model.states.*;
 
 /**
  *
@@ -15,7 +17,6 @@ public class DefinirFAEController {
     private Exposicao exposicao;
     private FAE fae;
     private ListaFAE listaFaes;
-    private List<FAE> listfae;
     private RegistoUtilizadores m_registoUtilizadores;
     private Utilizador utilizador;
     private RegistoExposicoes listaExposicao;
@@ -23,7 +24,7 @@ public class DefinirFAEController {
     public DefinirFAEController(CentroExposicoes centroExposicao, Utilizador utilizador) {
         this.ce = centroExposicao;
         this.utilizador = utilizador;
-        listaFaes = new ListaFAE();
+
     }
 //    public List<Exposicao> getListaExposicaoOrganizadorSemFAEDefinidos(String email) {
 //
@@ -40,12 +41,9 @@ public class DefinirFAEController {
         return listaFaes;
     }
 
-    public FAE novaFAE() {
-        return fae = new FAE();
-    }
-
     public void criarFAE(Utilizador utilizador) {
-        listaFaes.criaFAE(utilizador);
+        fae = listaFaes.criaFAE(utilizador);
+
     }
 
     public void removerFAE(FAE fae) {
@@ -58,21 +56,24 @@ public class DefinirFAEController {
 
     public void selectExposicao(Exposicao e) {
         this.exposicao = e;
+        listaFaes = exposicao.getListaFAE();
     }
 
     public String getFAEString() {
         return this.listaFaes.toStringCompleto();
     }
 
-    public boolean registaFAE(FAE fae) {
-        if (!getListaFAE().registaFAE(fae)) {
-            return false;
-        } else {
-            return true;
-        }
+    public void adicionarFAE() {
+        listaFaes.addFAE(fae);
+    }
+
+  
+
+    public boolean registaEstado() {
+        ExposicaoEstado estado=exposicao.getEstadoAtualExposicao();
+        exposicao.alterarEstado(estado);
+        return !((estado instanceof ExposicaoEstadoCriada)||(estado instanceof ExposicaoDemonstracaoSemFAE));
 
     }
-    
-    
 
 }

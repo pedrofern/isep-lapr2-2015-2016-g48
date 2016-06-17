@@ -24,10 +24,10 @@ public class ListarCandidaturaRetiradaUI extends JFrame {
     private CentroExposicoes ce;
     private RegistoExposicoes listaExposicoes;
     private JButton btnConfirmar, btnCancelar;
-    private JComboBox comboBoxExposicao;
+    private JComboBox comboBoxExposicao, comboBoxDemonstracao;
     private JFrame framepai;
-    private DefaultListModel modeloLisCandidaturaExposicao;
-    private JList listaCompletaCandidaturaRetiradaExposicao;
+    private DefaultListModel modeloLisCandidaturaExposicao, modeloLisCandidaturaDemonstracao;
+    private JList listaCompletaCandidaturaRetiradaExposicao, listaCompletaCandidaturaRetiradaDemonstracao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
@@ -51,15 +51,15 @@ public class ListarCandidaturaRetiradaUI extends JFrame {
         add(criarPainelSul(), BorderLayout.SOUTH);
     }
 
-    private JPanel criarPainelNorte() throws FileNotFoundException {
+     private JPanel criarPainelNorte() throws FileNotFoundException {
         JPanel p = new JPanel(new FlowLayout());
-        p.setBorder(new TitledBorder("Exposição"));
-        JLabel lbl = new JLabel("Seleciona uma exposição", SwingConstants.RIGHT);
-        p.add(lbl);
+        p.setBorder(new TitledBorder("Dados"));
+        p.add(new JLabel("Exposição: "));
         p.add(criarPainelExposicao());
+        p.add(new JLabel("Demonstração:  "));
+        p.add(criarPainelDemonstracao());
         return p;
     }
-
     private JComboBox criarPainelExposicao() {
 
         comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
@@ -82,6 +82,27 @@ public class ListarCandidaturaRetiradaUI extends JFrame {
             }
         });
         return comboBoxExposicao;
+
+    }
+
+    private JComboBox criarPainelDemonstracao() {
+
+//        comboBoxDemonstracao = Utils.criarComboDemo();
+        comboBoxDemonstracao = new JComboBox();
+        comboBoxDemonstracao.setSelectedIndex(-1);
+        comboBoxDemonstracao.setEditable(false);
+        comboBoxDemonstracao.setPreferredSize(new Dimension(200, 20));
+        comboBoxDemonstracao.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                comboBoxDemonstracao.getSelectedItem();
+                comboBoxDemonstracao.setEnabled(false);
+               
+
+            }
+        });
+        return comboBoxDemonstracao;
 
     }
 
@@ -108,18 +129,42 @@ public class ListarCandidaturaRetiradaUI extends JFrame {
         modeloLisCandidaturaExposicao = new DefaultListModel();
         listaCompletaCandidaturaRetiradaExposicao.setModel(modeloLisCandidaturaExposicao);
 
-        p.add(criarPainelLista("Lista de Candidaturas Retirada",
+        p.add(criarPainelListaCandidaturaRetiradaExposicao("Lista de Candidaturas Retirada Exposição",
                 listaCompletaCandidaturaRetiradaExposicao,
                 modeloLisCandidaturaExposicao));
+
+        listaCompletaCandidaturaRetiradaDemonstracao = new JList();
+        modeloLisCandidaturaDemonstracao = new DefaultListModel();
+        listaCompletaCandidaturaRetiradaDemonstracao.setModel(modeloLisCandidaturaDemonstracao);
+        p.add(criarPainelListaCandidaturaRetiradaDemonstracao("Lista de Candidatura Retirada Demonstração", listaCompletaCandidaturaRetiradaDemonstracao, modeloLisCandidaturaDemonstracao));
 
         return p;
     }
 
-    private JPanel criarPainelLista(
+    private JPanel criarPainelListaCandidaturaRetiradaExposicao(
             String tituloLista,
             JList lstLista,
             DefaultListModel modelolista) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrPane = new JScrollPane(lstLista);
+
+        JPanel p = new JPanel(new BorderLayout());
+
+        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        p.add(lblTitulo, BorderLayout.NORTH);
+        p.add(scrPane, BorderLayout.CENTER);
+
+        return p;
+    }
+
+    private JPanel criarPainelListaCandidaturaRetiradaDemonstracao(
+            String tituloLista,
+            JList lstLista,
+            DefaultListModel modelolista) {
+        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
+
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrPane = new JScrollPane(lstLista);
 
