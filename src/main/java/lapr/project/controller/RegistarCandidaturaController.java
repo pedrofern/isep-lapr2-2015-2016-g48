@@ -1,35 +1,49 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
-import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.ListaProduto;
-import lapr.project.model.lists.ListaKeywords;
+import lapr.project.model.lists.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
 public class RegistarCandidaturaController {
-
-    private Representante eRepresentante;
+    
     private Candidatura candidatura;
     private CandidaturaDemonstracao candidaturaDemonstracao;
     private ListaCandidaturas listaCandidaturas;
-
     private Exposicao exposicao;
-
-    public RegistarCandidaturaController(Representante representante,Exposicao exp) {
-        eRepresentante = representante;
-        exposicao = exp;
-        listaCandidaturas = exposicao.getListaCandidaturas(); 
+    private ListaDemonstracoes listaDemonstracoes;
+    private CentroExposicoes ce;
+    
+    public RegistarCandidaturaController(CentroExposicoes ce) {
+        this.ce=ce;
     }
 
     public void novaCandidatura() {
-        candidatura = eRepresentante.novaCandidatura();
+        candidatura = listaCandidaturas.novaCandidatura();
     }
 
     public String getCandidaturaString() {
         return candidatura.toString();
+    }
+    
+    public RegistoExposicoes getRegistoExposicoes(){
+        return ce.getRegistoExposicoes();
+    }
+    public ListaDemonstracoes getListaDemonstracoes(){
+        return exposicao.getListaDemonstracoes();
+    }
+    public ListaProduto getListaProdutos(){
+        return candidatura.getListaProdutos();
+    }
+    public ListaKeywords getListaKeywords(){
+        return candidatura.getListaKeywords();
+    }
+    
+    public void selectExposicao(Exposicao exposicao){
+        this.exposicao=exposicao;   
+        listaCandidaturas = exposicao.getListaCandidaturas();
     }
 
     public void setNomeEmpresa(String nomeEmpresa) {
@@ -87,22 +101,12 @@ public class RegistarCandidaturaController {
         
     }
 
-    public boolean addProduto(String nomeProduto) {
-        Produto p = eRepresentante.getProduto(nomeProduto);
-
-        if (p != null) {
-            return candidatura.addProduto(nomeProduto);
-        } else {
-            return false;
-        }
+    public boolean addProduto(Produto nomeProduto) {
+            return candidatura.getListaProdutos().adicionarProduto(nomeProduto);
     }
 
     public Candidatura getCandidatura() {
         return candidatura;
-    }
-
-    public boolean registaCandidatura() {
-        return eRepresentante.registaCandidatura(candidatura);
     }
     
     public boolean novaCandidaturaDemonstracao(Demonstracao d){

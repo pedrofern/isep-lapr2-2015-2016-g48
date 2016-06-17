@@ -105,52 +105,19 @@ public class RegistarCandidaturaUI extends JFrame{
      * Guarda o keyword1 introduzido da candidatura
      */
     private JTextField txtKey5;
-    /**
-     * Guarda a lista produtos da candidatura
-     */      
-    private ListaKeywords listaKeywords;
-    /**
-     * Guarda a lista produtos da candidatura
-     */      
-    private ListaProduto listaProdutos;
-    /**
-     * Guarda a lista demonstrações da candidatura
-     */
-    private ListaDemonstracoes listaDemonstracoes;
-    /**
-     * Guarda a lista recursos da candidatura
-     */
-    private RegistoRecursos listaRecursos;
-    /**
-     * Guarda a lista recursos da candidatura
-     */
-    private RegistoExposicoes listaExposicoes;
-    /**
-     * Guarda objectos candidatura
-     */
-    private Candidatura candidatura;
-    /**
-     * Guarda objectos exposição
-     */
-    private Exposicao exposicao;
-    /**
-     * Guarda objectos centro exposições
-     */
-    private static CentroExposicoes ce;
-    private static Utilizador user;
+    private String validaFormatoDadosNome = "[^a-z||^A-Z||^ ]";
+    private String validaFormatoDadosNum = "[^0-9]";
+    private String validaFormatoDadosKey = "[^a-z||^A-Z||^0-9||^ ]";
 
-    private Representante eRepresentante;
     private RegistarCandidaturaController controllerRCC;
 
-    public RegistarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
+    public RegistarCandidaturaUI(CentroExposicoes ce, Utilizador utilizador) {
         
         super("Registar Candidatura");
         
-        user=utilizador;
-        eRepresentante = new Representante();
-        ce = centroExposicoes;
-        listaExposicoes = ce.getRegistoExposicoes();
-
+        controllerRCC = new RegistarCandidaturaController(ce); 
+        
+        
         criarComponentes();
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -180,7 +147,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JPanel criarPainelNorte() {
         JPanel p = new JPanel(new BorderLayout());
         
-        p.add(criarPainelExposicao(listaExposicoes),BorderLayout.WEST);
+        p.add(criarPainelExposicao(controllerRCC.getRegistoExposicoes()),BorderLayout.WEST);
         p.add(criarPainelDados(),BorderLayout.CENTER);
         p.add(criarPainelKeywords(),BorderLayout.EAST);
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
@@ -219,7 +186,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtNome.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtNome.setText(txtNome.getText().replaceAll("[^a-z||^A-Z||^ ]", ""));
+                txtNome.setText(txtNome.getText().replaceAll(validaFormatoDadosNome, ""));
             }
         });
         txtNome.addKeyListener(new KeyAdapter() {
@@ -245,7 +212,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtTelemovel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtTelemovel.setText(txtTelemovel.getText().replaceAll("[^0-9]", ""));
+                txtTelemovel.setText(txtTelemovel.getText().replaceAll(validaFormatoDadosNum, ""));
             }
         });
         txtTelemovel.addKeyListener(new KeyAdapter() {
@@ -261,7 +228,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtArea.setText(txtArea.getText().replaceAll("[^0-9]", ""));
+                txtArea.setText(txtArea.getText().replaceAll(validaFormatoDadosNum, ""));
             }
         });
         txtArea.addKeyListener(new KeyAdapter() {
@@ -277,7 +244,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtConvites.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtConvites.setText(txtConvites.getText().replaceAll("[^0-9]", ""));
+                txtConvites.setText(txtConvites.getText().replaceAll(validaFormatoDadosNum, ""));
             }
         });
         txtConvites.addKeyListener(new KeyAdapter() {
@@ -307,7 +274,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey1.setText(txtKey1.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey1.setText(txtKey1.getText().replaceAll(validaFormatoDadosKey, ""));
             }
         });
         txtKey1.addKeyListener(new KeyAdapter() {
@@ -323,7 +290,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey2.setText(txtKey2.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey2.setText(txtKey2.getText().replaceAll(validaFormatoDadosKey, ""));
             }
         });
         txtKey2.addKeyListener(new KeyAdapter() {
@@ -339,7 +306,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey3.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey3.setText(txtKey3.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey3.setText(txtKey3.getText().replaceAll(validaFormatoDadosKey, ""));
             }
         });
         txtKey3.addKeyListener(new KeyAdapter() {
@@ -355,7 +322,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey4.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey4.setText(txtKey4.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey4.setText(txtKey4.getText().replaceAll(validaFormatoDadosKey, ""));
             }
         });
         txtKey4.addKeyListener(new KeyAdapter() {
@@ -371,7 +338,7 @@ public class RegistarCandidaturaUI extends JFrame{
         txtKey5.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey5.setText(txtKey5.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey5.setText(txtKey5.getText().replaceAll(validaFormatoDadosKey, ""));
             }
         });
         txtKey5.addKeyListener(new KeyAdapter() {
@@ -492,7 +459,7 @@ public class RegistarCandidaturaUI extends JFrame{
         botaoRemoverProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Produto[] opcoes = listaProdutos.getArray();
+                Produto[] opcoes = controllerRCC.getListaProdutos().getArray();
                 Produto produto = (Produto) JOptionPane.showInputDialog(
                         RegistarCandidaturaUI.this,
                         "Escolha um Produto:", "Eliminar Produto",
@@ -558,26 +525,26 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "Keyword obrigatória por preencher!",
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);                        
-                    }else{                    
-                    listaKeywords = controllerRCC.getCandidatura().getListaKeywords();
+                    }else{                      
                     Keyword k1 = new Keyword(""+txtKey1.getText());
                     Keyword k2 = new Keyword(""+txtKey2.getText());
                     Keyword k3 = new Keyword(""+txtKey3.getText());
                     Keyword k4 = new Keyword(""+txtKey4.getText());
                     Keyword k5 = new Keyword(""+txtKey5.getText());
-                    listaKeywords.adicionarKeyword(k1);
-                    listaKeywords.adicionarKeyword(k2);
-                    listaKeywords.adicionarKeyword(k3);
-                    listaKeywords.adicionarKeyword(k4);
-                    listaKeywords.adicionarKeyword(k5);
+                    controllerRCC.getListaKeywords().adicionarKeyword(k1);
+                    controllerRCC.getListaKeywords().adicionarKeyword(k2);
+                    controllerRCC.getListaKeywords().adicionarKeyword(k3);
+                    controllerRCC.getListaKeywords().adicionarKeyword(k4);
+                    controllerRCC.getListaKeywords().adicionarKeyword(k5);
                     
-                    candidatura = controllerRCC.registaCandidatura(
+                    Candidatura c = controllerRCC.registaCandidatura(
                             nome, morada, telemovel, area, convites,
-                            listaProdutos,listaKeywords);
+                            controllerRCC.getListaProdutos(),
+                            controllerRCC.getListaKeywords());
                     
                     boolean adicionarNovaCandidatura = controllerRCC.valida();
                     if (adicionarNovaCandidatura == true) {                        
-                        if (candidatura == null){
+                        if (c == null){
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura já registada",
@@ -587,7 +554,7 @@ public class RegistarCandidaturaUI extends JFrame{
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura adicionada: \n"
-                                +candidatura.toStringCompleto(),
+                                +c.toStringCompleto(),
                                 "Nova Candidatura",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();
@@ -662,9 +629,8 @@ public class RegistarCandidaturaUI extends JFrame{
         JPanel p = new JPanel(new GridLayout( NUMERO_LINHAS, 
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,
-                                              INTERVALO_VERTICAL));
-        listaProdutos = controllerRCC.getCandidatura().getListaProdutos();
-        ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(listaProdutos);
+                                              INTERVALO_VERTICAL));        
+        ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(controllerRCC.getListaProdutos());
         lstProdutos = new JList(modeloListaProdutos);
         botaoAdicionarProduto = criarBotaoAdicionarProduto();
         botaoRemoverProduto = criarBotaoEliminarProduto();
@@ -736,7 +702,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JPanel criarPainelCheckBoxDemo(){
         JPanel pCheck=new JPanel(new FlowLayout());
         
-        Demonstracao[] opcoes=listaDemonstracoes.getArray();
+        Demonstracao[] opcoes=controllerRCC.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
 
@@ -769,14 +735,17 @@ public class RegistarCandidaturaUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    exposicao=(Exposicao) comboExp.getSelectedItem();
 
-                    listaDemonstracoes = exposicao.getListaDemonstracoes();
+                    controllerRCC.selectExposicao((Exposicao) comboExp.getSelectedItem());
+                    controllerRCC.novaCandidatura();
+
+                    
             //testar demonstracoes
-                    listaRecursos = new RegistoRecursos();
-                    Recurso r1 = new Recurso("Recurso1");
-                    Recurso r2 = new Recurso("Recurso2");
-                    Recurso r3 = new Recurso("Recurso3");
+                    
+//                    listaRecursos = new RegistoRecursos();
+//                    Recurso r1 = new Recurso("Recurso1");
+//                    Recurso r2 = new Recurso("Recurso2");
+//                    Recurso r3 = new Recurso("Recurso3");
                     Demonstracao d1= new Demonstracao();        
                     Demonstracao d2= new Demonstracao();
                     Demonstracao d3= new Demonstracao();
@@ -785,13 +754,11 @@ public class RegistarCandidaturaUI extends JFrame{
                     d1.setDados("demo1", "tema1", d, d);
                     d2.setDados("demo2", "tema2", d, d);
                     d3.setDados("demo3", "tema3", d, d);
-                    listaDemonstracoes.adicionarDemonstracao(d1);
-                    listaDemonstracoes.adicionarDemonstracao(d2);
-                    listaDemonstracoes.adicionarDemonstracao(d3);
+                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d2);
+                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d3);
              //fim
 
-                    controllerRCC = new RegistarCandidaturaController(eRepresentante,exposicao);
-                    controllerRCC.novaCandidatura();
+                    
 
                     add(criarPainelListas(), BorderLayout.CENTER);
                     setVisible(true);

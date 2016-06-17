@@ -20,7 +20,7 @@ public class AlterarUtilizadorController {
     }
     
     public boolean alteraDados(String strNome, String strUsername, String strPwd, String strEmail) throws CloneNotSupportedException {
-        Utilizador uClone = user.clone();
+        Utilizador uClone = user.cloneUtilizador();
         uClone.setNome(strNome);
         uClone.setEmail(strEmail);
         uClone.setUsername(strUsername);

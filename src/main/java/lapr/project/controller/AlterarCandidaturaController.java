@@ -25,7 +25,7 @@ public class AlterarCandidaturaController {
             String strEmail, int strTelemovel, 
             int strAreaExpo, int strQuantidadeConvites,
             ListaProduto listaProduto, ListaKeywords listaKeywords) {
-        Candidatura cClone = candidatura.clone();
+        Candidatura cClone = candidatura.cloneCandidatura();
         cClone.setNomeEmpresa(strNome);
         cClone.setMorada(strEmail);
         cClone.setTelemovel(strTelemovel);

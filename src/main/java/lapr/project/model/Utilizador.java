@@ -46,10 +46,8 @@ public class Utilizador implements Comparable<Utilizador>{
      * Constroi uma instancia cópia do Utilizador.
      * 
      * @return cópia do Utilizador
-     * @throws java.lang.CloneNotSupportedException
      */
-    @Override
-    public Utilizador clone() throws CloneNotSupportedException {
+    public Utilizador cloneUtilizador() {
       
         return new Utilizador(this.getNome(), this.getUsername(), this.getPassword(), this.getEmail());
     }

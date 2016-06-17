@@ -19,6 +19,7 @@ public class Candidatura {
     private ListaCandidaturas listaCandidaturas;
     private ListaKeywords listaKeywords;
     private ListaAvaliacoes listaAvaliacoes;
+    private Representante representante;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
         this.nomeEmpresa = nomeEmpresa;
@@ -29,7 +30,7 @@ public class Candidatura {
         listaProdutos = new ListaProduto();
         listaFAE = new ListaFAE();
         listaAvaliacoes=new ListaAvaliacoes();
-        listaKeywords = new ListaKeywords();
+        listaKeywords = new ListaKeywords();        
     }
     
     public Candidatura() {
@@ -38,9 +39,8 @@ public class Candidatura {
        listaAvaliacoes=new ListaAvaliacoes();
        listaKeywords = new ListaKeywords();
     }
-
-    @Override
-    public Candidatura clone() {
+   
+    public Candidatura cloneCandidatura() {
         return new Candidatura(
                 this.getNomeEmpresa(), 
                 this.getMorada(), 
@@ -99,6 +99,10 @@ public class Candidatura {
 
     public void setQuantidadeConvites(int novaQuantidadeConvites) {
         this.quantidadeConvites = novaQuantidadeConvites;
+    }
+    
+    public void setRepresentante(Utilizador u){
+        this.representante= new Representante(u);
     }
 
     public ListaProduto getListaProdutos() {

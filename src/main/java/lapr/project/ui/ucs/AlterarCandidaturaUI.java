@@ -195,7 +195,7 @@ public class AlterarCandidaturaUI extends JFrame{
         
         JLabel label = new JLabel();
         label.setBounds(100,200,200,100);
-        ImageIcon image=new ImageIcon("src/main/resources/imagens/expo.png");
+        ImageIcon image=new ImageIcon("src/main/resources/images/expo.png");
         Image i=image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);               
         label.setIcon(new ImageIcon(i));
         painel.add(label,BorderLayout.CENTER);
@@ -254,7 +254,7 @@ public class AlterarCandidaturaUI extends JFrame{
         
         JLabel label = new JLabel();
         label.setBounds(200,200,200,200);
-        ImageIcon image=new ImageIcon("src/main/resources/imagens/cand_logo.png");
+        ImageIcon image=new ImageIcon("src/main/resources/images/cand_logo.png");
         Image i=image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH); 
         label.setIcon(new ImageIcon(i));
         painelCand.add(label,BorderLayout.CENTER);
