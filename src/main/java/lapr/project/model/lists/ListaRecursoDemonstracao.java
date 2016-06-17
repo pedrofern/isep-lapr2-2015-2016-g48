@@ -7,6 +7,7 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.FAE;
 import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
@@ -45,6 +46,10 @@ public class ListaRecursoDemonstracao {
             return listarecursodemonstracao.add(r);
         }
         return false;
+    }
+    
+     public void removerRecurso(Recurso recurso) {
+        listarecursodemonstracao.remove(recurso);
     }
 
 }

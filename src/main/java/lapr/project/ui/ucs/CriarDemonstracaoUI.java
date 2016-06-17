@@ -50,7 +50,7 @@ public class CriarDemonstracaoUI extends JFrame {
         ce = centroExposicoes;
         o_Organizador = new Organizador(utilizador);
         m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, ce);
-       demostracao= m_demonstracaoController.novaDemonstracao();
+        demostracao = m_demonstracaoController.novaDemonstracao();
         listarecurosdemonstracao = demostracao.getListaRecursosDemonstracao();
 
         listaExposicoes = ce.getRegistoExposicoes();
@@ -243,7 +243,6 @@ public class CriarDemonstracaoUI extends JFrame {
                             modeloListaRecurso.addElement(recurso);
                             listarecurosdemonstracao = m_demonstracaoController.getListaRecursosDemonstracao();
                             listarecurosdemonstracao.valida((recurso));
-                             
 
                         } else {
                             JOptionPane.showMessageDialog(
@@ -277,7 +276,7 @@ public class CriarDemonstracaoUI extends JFrame {
                                 "Criar Demonstração",
                                 JOptionPane.ERROR_MESSAGE);
                     }
-                    demostracao =m_demonstracaoController.registaDemonstracao(txtDescricao.getText(), exposicaoseleccionada.getTitulo());
+                    demostracao = m_demonstracaoController.registaDemonstracao(txtDescricao.getText(), exposicaoseleccionada.getTitulo());
                     m_demonstracaoController.setListaRecurso(listaRecurso);
 
                     boolean adicionarNovaDemonstracao = m_demonstracaoController.valida();
@@ -292,7 +291,7 @@ public class CriarDemonstracaoUI extends JFrame {
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Demonstração adicionada: \n"
-                                +m_demonstracaoController.getDemonstraçãoString(),
+                                + m_demonstracaoController.getDemonstraçãoString(),
                                 "Nova Demonstração",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();
@@ -358,6 +357,7 @@ public class CriarDemonstracaoUI extends JFrame {
                     int var = JOptionPane.showConfirmDialog(null, "Deseja realmente eliminar ?", "Deseja realmente eliminar ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
                     if (var == 0) {
+                        listarecurosdemonstracao.removerRecurso((Recurso) listaCompletaRecurso.getSelectedValue());
                         modeloListaRecurso.remove(listaCompletaRecurso.getSelectedIndex());
                         int index = listaCompletaRecurso.getSelectedIndex();
                         if (modeloListaRecurso.getSize() == 0) {

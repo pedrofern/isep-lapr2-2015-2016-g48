@@ -42,7 +42,7 @@ public class FAE implements Comparable<FAE> {
     }
 
     public boolean validaMenbroFAE() {
-        if (m_fae.getNome() == null && m_fae.getUsername() == null && m_fae.getEmail() == null) {
+        if (m_fae.getNome() == null || m_fae.getUsername() == null || m_fae.getEmail() == null) {
             return false;
         } else {
             return true;

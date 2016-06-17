@@ -33,7 +33,11 @@ public class ListaFAE {
      * @return boolean
      */
     public boolean addFAE(FAE fae) {
-        return listaFAE.add(fae);
+        if (validaFAE(fae)) {
+            return listaFAE.add(fae);
+        }
+        return false;
+        
     }
 
     /**

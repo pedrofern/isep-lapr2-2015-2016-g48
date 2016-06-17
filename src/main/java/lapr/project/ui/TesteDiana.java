@@ -52,7 +52,7 @@ public class TesteDiana {
         Recurso r1 = new Recurso("Recurso 1");
         Recurso r2 = new Recurso("Recurso 2");
         Recurso r3 = new Recurso("Recurso 3");
-        RegistoRecursos lr=ce.getRegistoRecursos();
+        RegistoRecursos lr = ce.getRegistoRecursos();
         lr.addRecurso(r3);
         lr.addRecurso(r2);
         lr.addRecurso(r1);
@@ -78,8 +78,8 @@ public class TesteDiana {
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 //        CriarExposicaoUI c=new CriarExposicaoUI(ce);
-   //DefinirFAEUI fa=new DefinirFAEUI(ce, user);
-       CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
+        //DefinirFAEUI fa=new DefinirFAEUI(ce, user);
+        CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
     }
 
     private static void formarDatas() {
