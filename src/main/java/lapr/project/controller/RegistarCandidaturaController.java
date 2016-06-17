@@ -13,15 +13,22 @@ public class RegistarCandidaturaController {
     private CandidaturaDemonstracao candidaturaDemonstracao;
     private ListaCandidaturas listaCandidaturas;
     private Exposicao exposicao;
-    private ListaDemonstracoes listaDemonstracoes;
+//    private ListaDemonstracoes listaDemonstracoes;
+    private ListaProduto listaProduto;
+    private ListaKeywords listaKeywords;
     private CentroExposicoes ce;
+    private Utilizador utilizador;
     
-    public RegistarCandidaturaController(CentroExposicoes ce) {
+    public RegistarCandidaturaController(CentroExposicoes ce, Utilizador u) {
         this.ce=ce;
+        utilizador=u;
     }
 
     public void novaCandidatura() {
         candidatura = listaCandidaturas.novaCandidatura();
+        listaProduto=candidatura.getListaProdutos();
+        listaKeywords=candidatura.getListaKeywords();
+        candidatura.setRepresentante(utilizador);
     }
 
     public String getCandidaturaString() {
@@ -35,10 +42,10 @@ public class RegistarCandidaturaController {
         return exposicao.getListaDemonstracoes();
     }
     public ListaProduto getListaProdutos(){
-        return candidatura.getListaProdutos();
+        return listaProduto;
     }
     public ListaKeywords getListaKeywords(){
-        return candidatura.getListaKeywords();
+        return listaKeywords;
     }
     
     public void selectExposicao(Exposicao exposicao){
@@ -74,9 +81,13 @@ public class RegistarCandidaturaController {
         candidatura.setListaKeywords(listaKeywords);
     }
     
-    public Candidatura registaCandidatura(String nomeEmpresa,String morada,int telemovel,
-                    int areaExposicao,int quantidadeConvites,
-                    ListaProduto listaProdutos,ListaKeywords listaKeywords){
+    public void setRepresentante(Utilizador u){
+        candidatura.setRepresentante(u);
+    }
+    
+    public Candidatura registaCandidatura(String nomeEmpresa,String morada,
+            int telemovel, int areaExposicao,int quantidadeConvites,
+            ListaProduto listaProdutos,ListaKeywords listaKeywords){
         
         candidatura.setNomeEmpresa(nomeEmpresa);
         candidatura.setMorada(morada);
@@ -97,12 +108,15 @@ public class RegistarCandidaturaController {
         if(candidatura.valida() == false){
             return false;
         }
-        return true;
-        
+        return true; 
     }
 
     public boolean addProduto(Produto nomeProduto) {
-            return candidatura.getListaProdutos().adicionarProduto(nomeProduto);
+            return listaProduto.adicionarProduto(nomeProduto);
+    }
+    
+    public boolean addKeyword(Keyword keyword) {
+            return listaKeywords.adicionarKeyword(keyword);
     }
 
     public Candidatura getCandidatura() {

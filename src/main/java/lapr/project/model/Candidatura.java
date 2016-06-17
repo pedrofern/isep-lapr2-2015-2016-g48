@@ -200,7 +200,8 @@ public class Candidatura {
     }
     
     public String toStringDadosGerais() {
-        return "Nome: "+ this.nomeEmpresa
+        return "Representante Empresa: " + this.representante.toString()
+                + "\nNome: "+ this.nomeEmpresa
                 + "\nMorada: " + this.morada
                 + "\nTelemóvel: " + this.telemovel
                 + "\nÁrea pretendida: " + this.areaExposicao

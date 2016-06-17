@@ -115,8 +115,7 @@ public class RegistarCandidaturaUI extends JFrame{
         
         super("Registar Candidatura");
         
-        controllerRCC = new RegistarCandidaturaController(ce); 
-        
+        controllerRCC = new RegistarCandidaturaController(ce,utilizador); 
         
         criarComponentes();
 
@@ -531,11 +530,11 @@ public class RegistarCandidaturaUI extends JFrame{
                     Keyword k3 = new Keyword(""+txtKey3.getText());
                     Keyword k4 = new Keyword(""+txtKey4.getText());
                     Keyword k5 = new Keyword(""+txtKey5.getText());
-                    controllerRCC.getListaKeywords().adicionarKeyword(k1);
-                    controllerRCC.getListaKeywords().adicionarKeyword(k2);
-                    controllerRCC.getListaKeywords().adicionarKeyword(k3);
-                    controllerRCC.getListaKeywords().adicionarKeyword(k4);
-                    controllerRCC.getListaKeywords().adicionarKeyword(k5);
+                    controllerRCC.addKeyword(k1);
+                    controllerRCC.addKeyword(k2);
+                    controllerRCC.addKeyword(k3);
+                    controllerRCC.addKeyword(k4);
+                    controllerRCC.addKeyword(k5);
                     
                     Candidatura c = controllerRCC.registaCandidatura(
                             nome, morada, telemovel, area, convites,
@@ -739,7 +738,6 @@ public class RegistarCandidaturaUI extends JFrame{
                     controllerRCC.selectExposicao((Exposicao) comboExp.getSelectedItem());
                     controllerRCC.novaCandidatura();
 
-                    
             //testar demonstracoes
                     
 //                    listaRecursos = new RegistoRecursos();
