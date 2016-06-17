@@ -22,94 +22,21 @@ public class ExposicaoEstadoRegistada implements ExposicaoEstado {
     }
     
     public boolean setFAESemDemonstracao(){
-        if(estaValidaParaEstadoFAESemDemonstracao()){
+        if(exposicao.getEstadoAtualExposicao().valida()!=true){
+            return false;
+        } else {
             return exposicao.alterarEstado((ExposicaoEstado) new ExposicaoFAESemDemonstracao(exposicao));
         }
-        return false;
     }
     
 
     @Override
-    public boolean estaValidaParaCriada() {
-        return false;
+    public boolean valida(){
+       ExposicaoEstado estado=exposicao.getEstadoAtualExposicao();
+        return estado instanceof ExposicaoFAESemDemonstracao || exposicao.getEstadoAtualExposicao() instanceof ExposicaoDemonstracaoSemFAE;
     }
 
-    @Override
-    public boolean estaValidaParaEstadoFAESemDemonstracao() {
-        return true;
-    }
 
-    @Override
-    public boolean estaValidaParaEstadoDemonstracaoSemFae() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoRegistada() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAbertas() {
-        Data dataAtual=Utils.getdataAtual();
-        
-        return Data.dataAtual().isMaior(exposicao.getDataInicioSubmissao()) && exposicao.getDataFimSubmissao().isMaior(dataAtual); 
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasFechadas() {
-        return false;  
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoConflitosAlterados() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasEmAvaliacao() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasNaoAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasEmDecisao() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasDecididas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoStandsAtribuiveis() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoStandsAtribuidos() {
-        return false;
-    }
     
    @Override
     public String toString(){

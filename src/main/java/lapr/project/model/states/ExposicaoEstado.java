@@ -11,38 +11,9 @@ package lapr.project.model.states;
  */
 public interface ExposicaoEstado {
     
-   public  boolean estaValidaParaCriada();
+   public  boolean valida();
     
-    public boolean estaValidaParaEstadoFAESemDemonstracao();
-    
-    public boolean estaValidaParaEstadoDemonstracaoSemFae();
-    
-    public boolean estaValidaParaEstadoRegistada();
-    
-    public boolean estaValidaParaEstadoCandidaturasAbertas();
-    
-    public boolean estaValidaParaEstadoCandidaturasFechadas();
-    
-    public boolean estaValidaParaEstadoConflitosDetetados();
-    
-    public boolean estaValidaParaEstadoConflitosAlterados();
-    
-    public boolean estaValidaParaEstadoCandidaturasAtribuidas();
-    
-    public boolean estaValidaParaEstadoCandidaturasEmAvaliacao();
-    
-    public boolean estaValidaParaEstadoCandidaturasAvaliadas();
-    
-    public boolean estaValidaParaEstadoCandidaturasNaoAvaliadas();
-    
-    public boolean estaValidaParaEstadoCandidaturasEmDecisao();
-    
-    public boolean estaValidaParaEstadoCandidaturasDecididas();
-    
-    public boolean estaValidaParaEstadoStandsAtribuiveis();
-    
-    public boolean estaValidaParaEstadoStandsAtribuidos();
-    
+   @Override
     public String toString();
 
 }

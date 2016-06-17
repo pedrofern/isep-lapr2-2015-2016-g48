@@ -64,11 +64,11 @@ public class RegistoTipoConflitos {
 //        RegistoTipoConflitos reg = (RegistoTipoConflitos) o;
 //        return listaTipoConflitos.equals(reg.getListaConflitos());
 //    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.listaTipoConflitos);
-        return hash;
-    }
+//
+//    @Override
+//    public int hashCode() {
+//        int hash = 3;
+//        hash = 47 * hash + Objects.hashCode(this.listaTipoConflitos);
+//        return hash;
+//    }
 }

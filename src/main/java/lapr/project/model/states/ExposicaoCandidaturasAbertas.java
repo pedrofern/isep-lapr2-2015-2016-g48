@@ -27,92 +27,17 @@ public class ExposicaoCandidaturasAbertas extends TimerTask implements Exposicao
     public boolean setCandidaturasAbertas(){
         ExposicaoEstado estadoAtual=exposicao.getEstadoAtualExposicao();
         
-        if(estadoAtual.estaValidaParaEstadoCandidaturasAbertas()==true)
+        if(true==estadoAtual.valida())
             exposicao.alterarEstado(new ExposicaoCandidaturasAbertas(exposicao));
         
         return false;
     }
-
-    @Override
-    public boolean estaValidaParaCriada() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoFAESemDemonstracao() {
-       return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoDemonstracaoSemFae() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoRegistada() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAbertas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasFechadas() {
-        return true;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoConflitosAlterados() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasEmAvaliacao() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasNaoAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasEmDecisao() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasDecididas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoStandsAtribuiveis() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoStandsAtribuidos() {
-        return false;
-    }
     
+    @Override
+    public boolean valida(){
+       return exposicao.getEstadoAtualExposicao() instanceof ExposicaoEstadoRegistada; 
+    }
+
    @Override
     public String toString(){
        return "Estado: candidaturas em submissão";

@@ -20,99 +20,24 @@ public class ExposicaoEstadoCriada implements ExposicaoEstado {
    }
     
    public boolean setDemonstracaoSemFAE(){
-       if (estaValidaParaEstadoDemonstracaoSemFae()){
+       if (!exposicao.getEstadoAtualExposicao().valida())
+           return false;
+       else
            return exposicao.alterarEstado((ExposicaoEstado) new ExposicaoFAESemDemonstracao(exposicao));
-       }
-       return false;
     }
    
    public boolean setFAEDefinidoSemDemonstracao(){
-       if (estaValidaParaEstadoFAESemDemonstracao()){
+       if (!exposicao.getEstadoAtualExposicao().valida())
+        return false;
+       else 
            return exposicao.alterarEstado((ExposicaoEstado) new ExposicaoFAESemDemonstracao(exposicao));
-       }
-       return false;
    }
     
-    @Override
-    public boolean estaValidaParaCriada() {
-        return false;
+   @Override
+    public boolean valida(){
+       return exposicao.getEstadoAtualExposicao() instanceof ExposicaoEstadoInicial; 
     }
 
-    @Override
-    public boolean estaValidaParaEstadoFAESemDemonstracao() {
-       return true;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoDemonstracaoSemFae() {
-        return true;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoRegistada() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAbertas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasFechadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoConflitosDetetados() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoConflitosAlterados() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAtribuidas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasEmAvaliacao() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasNaoAvaliadas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasEmDecisao() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoCandidaturasDecididas() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoStandsAtribuiveis() {
-        return false;
-    }
-
-    @Override
-    public boolean estaValidaParaEstadoStandsAtribuidos() {
-        return false;
-    }
-    
    @Override
     public String toString(){
         return "Estado: Exposição Criada";
