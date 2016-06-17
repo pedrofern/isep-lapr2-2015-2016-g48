@@ -9,7 +9,7 @@ import lapr.project.model.Recurso;
  */
 public class RegistoRecursos {
 
-    private List<Recurso> listaRecursos;
+    private ArrayList<Recurso> listaRecursos;
     private Recurso m_r;
     /**
      * Construtor relativo a lista de Recursos

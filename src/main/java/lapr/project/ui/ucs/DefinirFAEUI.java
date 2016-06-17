@@ -117,7 +117,7 @@ public class DefinirFAEUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int tmp = comboBoxExposicao.getSelectedIndex();
+               
                 controller.selectExposicao((Exposicao)comboBoxExposicao.getSelectedItem());
                     comboBoxExposicao.setEnabled(false);
             }

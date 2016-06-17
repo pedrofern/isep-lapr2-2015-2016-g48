@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
+import lapr.project.model.states.*;
 import lapr.project.utils.Data;
 
 /**
@@ -15,19 +16,26 @@ public class CriarDemonstracaoController {
     private RegistoExposicoes registoExposicoes;
     private Exposicao exposicao;
     private RegistoRecursos listaRecursos;
-    private Organizador organizador;
+    private Utilizador utilizador;
     private Recurso recurso;
     private ListaDemonstracoes listaDemonstracao;
+    private ListaRecursoDemonstracao listaRecursoDemonstracao;
 
-    public CriarDemonstracaoController(Organizador pOrganizador, CentroExposicoes ce) {
+    public CriarDemonstracaoController(Utilizador utilizador, CentroExposicoes ce) {
         this.ce = ce;
-        this.organizador = pOrganizador;
-        listaDemonstracao = new ListaDemonstracoes();
+        this.utilizador = utilizador;
 
     }
 
-    public Demonstracao novaDemonstracao() {
-        return demonstracao = new Demonstracao();
+    public void selectExposicao(Exposicao e) {
+        this.exposicao = e;
+        listaDemonstracao = exposicao.getListaDemonstracoes();
+    }
+
+    public void novaDemonstracao() {
+        demonstracao = listaDemonstracao.novaDemonstracao();
+        listaRecursoDemonstracao = demonstracao.getListaRecursosDemonstracao();
+        listaRecursos=ce.getRegistoRecursos();
     }
 
     public Demonstracao registaDemonstracao(String descricao, String temaExposicao, Data inicio, Data fim) {
@@ -52,20 +60,13 @@ public class CriarDemonstracaoController {
     public String getDemonstraçãoString() {
         return this.listaDemonstracao.toStringCompleto();
     }
-//    public void setCodigoUnico(int codigoUnico) {
-//        demonstracao.setCod(codigoUnico);
-//    }
-//    
 
     public void setDescricao(String novaDescricao) {
-        demonstracao.setDesc(novaDescricao);
+        this.demonstracao.setDesc(novaDescricao);
     }
 
-//    public void setListaRecursos(RegistoRecursos novaListaRecursos) {
-//        demonstracao.setListaRecursos(novaListaRecursos);
-//    }
     public RegistoRecursos getListaRecursos() {
-        return ce.getRegistoRecursos();
+        return listaRecursos;
     }
 
     public ListaRecursoDemonstracao getListaRecursosDemonstracao() {
@@ -73,7 +74,12 @@ public class CriarDemonstracaoController {
     }
 
     public void addRecursoDemonstracao(Recurso r) {
-        demonstracao.addRecurso(r);
+        this.demonstracao.addRecurso(r);
+    }
+
+    public RegistoExposicoes getRegistoExposicoes() {
+
+        return registoExposicoes = ce.getRegistoExposicoes();
     }
 
     public RegistoExposicoes getListaExposicoes() {
@@ -92,16 +98,6 @@ public class CriarDemonstracaoController {
         return true;
 
     }
-//    public Demonstracao registaDemonstracao() {
-//        if (exposicao.getListaDemonstracoes().registaDemonstracao(demonstracao)) {
-//            return demonstracao;
-//        }
-//        return null;
-//    }
-
-    public void selectExposicao(Exposicao e) {
-        this.exposicao = e;
-    }
 
     public Demonstracao getDemonstracao() {
         return demonstracao;
@@ -111,18 +107,21 @@ public class CriarDemonstracaoController {
         return recurso;
     }
 
-    public void setListaRecurso(RegistoRecursos recurso) {
-        demonstracao.setRecurso(listaRecursos);
+    public void removerRecurso(Recurso recurso) {
+        listaRecursoDemonstracao.removerRecurso(recurso);
     }
 
-//    public Demonstracao setDados(int cdgUnico, String strDescricao) {
-//        demonstracao.setCod(cdgUnico);
-//        demonstracao.setDesc(strDescricao);
-//
-//        if (exposicao.getRegistoDemonstracao().validaDemonstracao(demonstracao)) {
-//            return demonstracao;
-//        } else {
-//            return null;
-//        }
-//    }
+    public void setListaRecursoDemonstracao(ListaRecursoDemonstracao listarecursodemonstracao) {
+        this.demonstracao.setRecursoDemonstracao(listarecursodemonstracao);
+    }
+
+    public boolean registaEstado() {
+       
+        if (demonstracao.valida())  {
+            return false;
+        }
+        return true;
+
+    }
+
 }

@@ -31,14 +31,16 @@ public class Demonstracao implements Serializable {
      * @param m_centroExposicoes centro de exposições
      */
 
-    private static String codigoUnico = "Demo-";
-    private static int totalDemonstracao = 0;
+    private static final String codigoDesc = "Demo-";
+    private static int contador = 0;
 
     public Demonstracao() {
-        codigoUnico = codigoUnico + totalDemonstracao++;
+        
+        
         this.m_listaRecursos = new RegistoRecursos();
-        listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
-        listarecursodemonstracao = new ListaRecursoDemonstracao();
+        this.listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
+        this.listarecursodemonstracao = new ListaRecursoDemonstracao();
+        contador++;
     }
 
     public void setDados(String desc, String temaexposicao, Data inicio, Data fim) {
@@ -78,7 +80,7 @@ public class Demonstracao implements Serializable {
     }
 
     public void addRecursoDemonstracao(Recurso recurso) {
-        listarecursodemonstracao.addRecursoDemonstracao(recurso);
+        this.listarecursodemonstracao.addRecursoDemonstracao(recurso);
     }
 //    /**
 //     * Metodo que modifica o codigo
@@ -104,7 +106,7 @@ public class Demonstracao implements Serializable {
 
     public static String getCondigoUnico() {
 
-        return codigoUnico;
+        return codigoDesc;
     }
 
     public boolean validaDescricao(String descricao) {
@@ -130,6 +132,7 @@ public class Demonstracao implements Serializable {
             return null;
         }
     }
+  
 
     public CandidaturaDemonstracao setCandidaturaDemonstracao(CandidaturaDemonstracao cd) {
         if (getListaCandidaturasDemonstracao().getListaCandidaturasDemonstracao().contains(cd)) {
@@ -220,13 +223,13 @@ public class Demonstracao implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%s\n %s", desc, codigoUnico);
+        return String.format("%s\n %s%d", desc, codigoDesc, contador);
     }
 
     public String toStringCompleto() {
         String str = "\n";
         str += "\tDescrição: " + this.desc + "\n";
-        str += "\tCodigo Unico: " + codigoUnico + "\n";
+        str += "\tCodigo Unico: " + codigoDesc + contador+ "\n";
         str += "\tTema da exposição: " + temaexposicao + "\n";
         str += "\tRecursos:\n";
         for (Recurso recurso : listarecursodemonstracao.getListaRecursoDemonstracao()) {
@@ -236,8 +239,8 @@ public class Demonstracao implements Serializable {
         return str;
     }
 
-    public void setRecurso(RegistoRecursos registorecurso) {
-        this.registorecurso = registorecurso;
+    public void setRecursoDemonstracao(ListaRecursoDemonstracao listarecursodemonstracao) {
+        this.listarecursodemonstracao=listarecursodemonstracao;
     }
 
     public boolean valida() {

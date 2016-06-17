@@ -21,22 +21,15 @@ import lapr.project.utils.*;
 
 public class CriarDemonstracaoUI extends JFrame {
 
-    private ListaRecursoDemonstracao listarecurosdemonstracao;
     private JButton btnConfirmar, btnCancelar, btnAdicionarRecurso, btnEleminarRecurso;
     private JComboBox comboBoxExposicao;
     private JTextArea txtDescricao;
     private JFrame framepai;
     private DefaultListModel modeloListaRecurso;
     private JList listaCompletaRecurso;
-    private RegistoRecursos listaRecurso;
-    private Demonstracao demostracao;
-    private RegistoExposicoes listaExposicoes;
-    private Organizador o_Organizador;
     private static CentroExposicoes ce;
     private static Utilizador user;
     private Exposicao exposicao, exposicaoseleccionada;
-    private Recurso recurso;
-    private ListaDemonstracoes listaDemostracao;
     private CriarDemonstracaoController m_demonstracaoController;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
@@ -47,12 +40,8 @@ public class CriarDemonstracaoUI extends JFrame {
         super("Criar Demonstração");
         user = utilizador;
         ce = centroExposicoes;
-        o_Organizador = new Organizador(utilizador);
-        m_demonstracaoController = new CriarDemonstracaoController(o_Organizador, ce);
-        demostracao = m_demonstracaoController.novaDemonstracao();
-        listarecurosdemonstracao = demostracao.getListaRecursosDemonstracao();
 
-        listaExposicoes = ce.getRegistoExposicoes();
+        m_demonstracaoController = new CriarDemonstracaoController(user, ce);
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +69,7 @@ public class CriarDemonstracaoUI extends JFrame {
 
     private JComboBox criarPainelExposicao() {
 
-        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
+        comboBoxExposicao = Utils.criarComboExpo(m_demonstracaoController.getRegistoExposicoes());
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
@@ -88,15 +77,9 @@ public class CriarDemonstracaoUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int tmp = comboBoxExposicao.getSelectedIndex();
-                exposicaoseleccionada = listaExposicoes.getExposicoes().get(tmp);
-                m_demonstracaoController.selectExposicao(listaExposicoes.getExposicoes().get(tmp));
-                if (comboBoxExposicao.getSelectedIndex() >= 0) {
-                    comboBoxExposicao.setEnabled(false);
-                } else {
-
-                    comboBoxExposicao.setEnabled(true);
-                }
+                m_demonstracaoController.selectExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
+                m_demonstracaoController.novaDemonstracao();
+                comboBoxExposicao.setEnabled(false);
 
             }
         });
@@ -201,10 +184,9 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                listaRecurso = m_demonstracaoController.getListaRecursos();
-                Recurso[] opcoes = new Recurso[listaRecurso.getArray().length];
+                Recurso[] opcoes = new Recurso[m_demonstracaoController.getListaRecursos().getArray().length];
                 for (int i = 0; i < opcoes.length; i++) {
-                    opcoes[i] = listaRecurso.getListaRecursos().get(i);
+                    opcoes[i] = m_demonstracaoController.getListaRecursos().getListaRecursos().get(i);
                 }
                 Recurso recurso = (Recurso) JOptionPane.showInputDialog(CriarDemonstracaoUI.this,
                         "Escolha um recurso", null,
@@ -227,8 +209,7 @@ public class CriarDemonstracaoUI extends JFrame {
                     if (resposta == SIM) {
                         if (!modeloListaRecurso.contains(recurso)) {
                             modeloListaRecurso.addElement(recurso);
-                            listarecurosdemonstracao = m_demonstracaoController.getListaRecursosDemonstracao();
-                            listarecurosdemonstracao.valida((recurso));
+                            m_demonstracaoController.getListaRecursosDemonstracao().valida(recurso);
 
                         } else {
                             JOptionPane.showMessageDialog(
@@ -262,12 +243,12 @@ public class CriarDemonstracaoUI extends JFrame {
                                 "Criar Demonstração",
                                 JOptionPane.ERROR_MESSAGE);
                     }
-                    demostracao = m_demonstracaoController.registaDemonstracao(txtDescricao.getText(), exposicaoseleccionada.getTitulo());
-                    m_demonstracaoController.setListaRecurso(listaRecurso);
+                    m_demonstracaoController.registaDemonstracao(txtDescricao.getText(), ((Exposicao)comboBoxExposicao.getSelectedItem()).getTitulo());
+                    //m_demonstracaoController.setListaRecursoDemonstracao((ListaRecursoDemonstracao)listaCompletaRecurso.getSelectedValue());
 
                     boolean adicionarNovaDemonstracao = m_demonstracaoController.valida();
                     if (adicionarNovaDemonstracao == true) {
-                        if (demostracao == null) {
+                        if (m_demonstracaoController.registaEstado()) {
                             JOptionPane.showMessageDialog(
                                     null,
                                     "Demonstração já criada",
@@ -343,7 +324,7 @@ public class CriarDemonstracaoUI extends JFrame {
                     int var = JOptionPane.showConfirmDialog(null, "Deseja realmente eliminar ?", "Deseja realmente eliminar ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
                     if (var == 0) {
-                        listarecurosdemonstracao.removerRecurso((Recurso) listaCompletaRecurso.getSelectedValue());
+                        m_demonstracaoController.removerRecurso((Recurso) listaCompletaRecurso.getSelectedValue());
                         modeloListaRecurso.remove(listaCompletaRecurso.getSelectedIndex());
                         int index = listaCompletaRecurso.getSelectedIndex();
                         if (modeloListaRecurso.getSize() == 0) {
@@ -360,14 +341,6 @@ public class CriarDemonstracaoUI extends JFrame {
 
             }
         });
-        return btnEleminarRecurso;
-    }
-
-    public JList getLstRecurso() {
-        return listaCompletaRecurso;
-    }
-
-    public JButton getBotaoRemoverRecurso() {
         return btnEleminarRecurso;
     }
 

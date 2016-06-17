@@ -51,5 +51,10 @@ public class ListaRecursoDemonstracao {
      public void removerRecurso(Recurso recurso) {
         listarecursodemonstracao.remove(recurso);
     }
+     
+      public boolean contem(Recurso recurso){
+        return listarecursodemonstracao.contains(recurso);
+    }
+    
 
 }
