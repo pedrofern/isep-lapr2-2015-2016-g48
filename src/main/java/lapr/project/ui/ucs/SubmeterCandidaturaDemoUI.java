@@ -31,7 +31,6 @@ public class SubmeterCandidaturaDemoUI extends JFrame {
         super("Submeter Candidatura a Demonstracao");
         
         this.ce=ce;
-        
-        
+
     }
 }

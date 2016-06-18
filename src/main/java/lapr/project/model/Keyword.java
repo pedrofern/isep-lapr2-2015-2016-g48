@@ -40,7 +40,7 @@ public class Keyword {
     }
     
     /**
-     * Metodo que vai comprar objetos produto entre si
+     * Metodo que vai comprar objetos Keyword entre si
      * @param outroObjeto outro produto
      * @return se os objetos forem iguais retorna true caso contrario false
      */

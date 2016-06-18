@@ -34,11 +34,11 @@ public class Exposicao implements Comparable<Exposicao> {
     private Data dataFimStands;
     private Data dataDeteccaoConflitos;
 
-    private static ListaCandidaturas listaCandidaturas;
-    private static ListaFAE listaFaes;
-    private static ListaOrganizadores listaOrganizadores;
-    private static ListaDemonstracoes listaDemonstracoes;
-    private static ListaAtribuicoes listaAtribuicoes;
+    private ListaCandidaturas listaCandidaturas;
+    private ListaFAE listaFaes;
+    private ListaOrganizadores listaOrganizadores;
+    private ListaDemonstracoes listaDemonstracoes;
+    private ListaAtribuicoes listaAtribuicoes;
     
     private ExposicaoEstado estado;
     private TimerTask task1, task2, task3, task4, task5, task6, task7;
@@ -240,7 +240,7 @@ public class Exposicao implements Comparable<Exposicao> {
 //    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
 //        this.listaSubmissoes = listaSubmissoes;
 //    }
-    public static void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
+    public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
         listaOrganizadores = lstOrganizadores;
     }
 

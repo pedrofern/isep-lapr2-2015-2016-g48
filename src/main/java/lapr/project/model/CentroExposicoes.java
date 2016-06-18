@@ -2,7 +2,7 @@ package lapr.project.model;
 
 import lapr.project.model.lists.RegistoTipoConflitos;
 import lapr.project.model.lists.RegistoMecanismosAtribuicao;
-import lapr.project.model.mechanisms.*;
+//import lapr.project.model.mechanisms.*;
 import lapr.project.model.lists.*;
 
 /**
@@ -11,12 +11,12 @@ import lapr.project.model.lists.*;
  */
 public class CentroExposicoes {
 
-    private final  RegistoRecursos regRecursos;
-    private  RegistoExposicoes regExposicoes;
-    private final RegistoUtilizadores regUtilizadores;
-    private final  RegistoStands regStands;
-    private final RegistoMecanismosAtribuicao regMecAtribuicoes;
-    private final RegistoTipoConflitos regTiposConflitos;
+    private RegistoRecursos regRecursos;
+    private RegistoExposicoes regExposicoes;
+    private RegistoUtilizadores regUtilizadores;
+    private RegistoStands regStands;
+    private RegistoMecanismosAtribuicao regMecAtribuicoes;
+    private RegistoTipoConflitos regTiposConflitos;
 
     public CentroExposicoes() {
         regUtilizadores = new RegistoUtilizadores();
@@ -30,10 +30,6 @@ public class CentroExposicoes {
     public RegistoUtilizadores getRegistoUtilizadores() {
         return this.regUtilizadores;
     }
-//
-//    public ListaCandidaturas getListaCandidaturas() {
-//        return this.m_regCandidaturas;
-//    }
     
     public RegistoRecursos getRegistoRecursos() {
         return this.regRecursos;
@@ -50,7 +46,6 @@ public class CentroExposicoes {
     public RegistoMecanismosAtribuicao getMecanismosAtribuicao(){
         return this.regMecAtribuicoes;
     }
- 
 
     /**
      * @return o registo de tipo de conflitos do centro de exposicoes;

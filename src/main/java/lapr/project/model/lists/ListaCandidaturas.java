@@ -100,5 +100,45 @@ public class ListaCandidaturas {
     public Candidatura[] getArray() {
         return listaCandidaturas.toArray(new Candidatura[listaCandidaturas.size()] );
      }
+    /**
+     * metodo que obtem a candidatura na posicao passada por parametro
+     *
+     * @param indice Numero passado por parametro
+     * @return candidatura na posicao passada por parametro
+     */
+    public Candidatura obterCandidatura(int indice) {
+        return listaCandidaturas.get(indice);
+    }
+    /**
+     * Metodo para remover candidaturas da lista
+     * @param candidatura Candidatura
+     * @return true se remover com sucesso false em caso contrario
+     */
+    public boolean removerCandidatura(Candidatura candidatura) {
+        return listaCandidaturas.remove(candidatura);
+    }
+    /**
+     * Metodo que retorna o tamanho da lista
+     * @return o tamanho da lista
+     */
+    public int tamanho() {
+        return this.listaCandidaturas.size();
+    }
+    /**
+     * Metodo que retorna a posição da candidatura passada por parametro
+     * @param candidatura Candidatura 
+     * @return posição da candidatura passada por parametro
+     */
+    public int indiceDeCandidatura(Candidatura candidatura) {
+        return listaCandidaturas.indexOf(candidatura);
+    }
+    /**
+     * Metodo que verifica se uma candidatura existe na lista
+     * @param candidatura Candidatura
+     * @return true se a candidatura existir false em caso contrário
+     */
+    public boolean contem(Candidatura candidatura) {
+        return listaCandidaturas.contains(candidatura);
+    }
     
 }

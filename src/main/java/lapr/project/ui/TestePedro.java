@@ -64,7 +64,7 @@ public class TestePedro {
         ListaOrganizadores lo = new ListaOrganizadores();
         Exposicao e = ce.getRegistoExposicoes().novaExposicao();
 
-        e.setListaOrganizadores(lo);
+//        e.setListaOrganizadores(lo);
         formarDatas();
         e.setDados("teste", "teste", d1, d2, "teste", d3, d4, d5, d6, d7, d8, d9, d10);
 
@@ -73,7 +73,7 @@ public class TestePedro {
         Exposicao e1 = ce.getRegistoExposicoes().novaExposicao();
 
         ListaOrganizadores lo1 = new ListaOrganizadores();
-        e1.setListaOrganizadores(lo);
+//        e1.setListaOrganizadores(lo);
         formarDatas();
         e1.setDados("teste1", "teste1", d1, d2, "teste1", d3, d4, d5, d6, d7, d8, d9, d10);
 

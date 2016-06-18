@@ -154,7 +154,7 @@ public class RegistarCandidaturaUI extends JFrame{
 
         return p;
     }
-     private JPanel criarPainelSul() {
+    private JPanel criarPainelSul() {
         JPanel p = new JPanel(new FlowLayout());
         p.setBorder(new TitledBorder("Opções"));
         p.add(criarPainelBotoes());
