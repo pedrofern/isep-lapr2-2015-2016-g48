@@ -26,6 +26,7 @@ public class Login extends JFrame /**implements Serializable**/ {
     private JPasswordField password;
     private Login framePai;
     private String m_ut;
+    private JButton btnOK;
     //private FicheiroCentroExposicoes ficheiroCentroExposicoes;
 
     private static final Dimension LABEL_TAMANHO = new JLabel("Username").getPreferredSize();        
@@ -182,8 +183,8 @@ public class Login extends JFrame /**implements Serializable**/ {
     
     private JPanel criarPainelBotoes() {
         
-    JButton btnOK = criarBotaoLogin();
-        getRootPane().setDefaultButton(btnOK);
+        btnOK = criarBotaoLogin();
+        
 
         JButton btnCancelar = criarBotaoSair();
         JButton btnLimpar   = criarBotaoLimpar();
@@ -197,7 +198,9 @@ public class Login extends JFrame /**implements Serializable**/ {
         p.add(btnOK);
         p.add(btnCancelar);
         p.add(btnLimpar);
-
+        
+        getRootPane().setDefaultButton(btnOK);
+        
         return p;
     }
     

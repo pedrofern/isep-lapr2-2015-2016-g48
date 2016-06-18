@@ -7,6 +7,7 @@ package lapr.project.model;
 
 import java.util.ListIterator;
 import lapr.project.model.lists.*;
+import lapr.project.model.states.*;
 
 /**
  *
@@ -21,8 +22,10 @@ public class CandidaturaDemonstracao {
     private int quantidadeConvitesCD;
     private ListaProduto listaProdutosCD;
     private ListaCandidaturasDemonstracoes listaCandidaturasDemo;
+    private CandidaturaDemoEstado estadoCandidaturaDemo;
 
     public CandidaturaDemonstracao(Candidatura candidaturaExp) {
+        estadoCandidaturaDemo = new CandidaturaDemoCriada(this);
         this.nomeEmpresaCD = candidaturaExp.getNomeEmpresa();
         this.moradaCD = candidaturaExp.getMorada();
         this.telemovelCD = candidaturaExp.getTelemovel();
@@ -53,6 +56,14 @@ public class CandidaturaDemonstracao {
     
     public String getInfoCD() {
         return this.toString();
+    }
+    
+    public CandidaturaDemoEstado getEstadoAtualCandidatura(){
+        return estadoCandidaturaDemo;
+    }
+    
+    public void setEstadoCandidaturaDemo(CandidaturaDemoEstado estadoCandidaturaDemo){
+        this.estadoCandidaturaDemo=estadoCandidaturaDemo;
     }
     
     public void setNomeEmpresaCD(String novoNomeEmpresa) {

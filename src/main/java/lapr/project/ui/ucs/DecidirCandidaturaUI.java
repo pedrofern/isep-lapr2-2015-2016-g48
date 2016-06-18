@@ -86,7 +86,7 @@ public class DecidirCandidaturaUI extends JFrame{
         
         painelCentro.add(criarPainelLista("Candidaturas:",jlstCand), BorderLayout.WEST);        
         painelCentro.add(criarPainelLista("Decisão Avaliação FAE:",jlstDecAvFAE), BorderLayout.CENTER);
-        painelCentro.add(criarPainelLista("Avaliação FAE:",jlstAVFAE), BorderLayout.EAST);
+        painelCentro.add(criarPainelLista("Média Avaliação às Questões:",jlstAVFAE), BorderLayout.EAST);
         
         return painelCentro;
     }
