@@ -65,6 +65,8 @@ public class ListaCandidaturas {
                 cOriginal.setTelemovel(cClone.getTelemovel());
                 cOriginal.setAreaExposicao(cClone.getAreaExposicao());
                 cOriginal.setQuantidadeConvites(cClone.getQuantidadeConvites());
+                cOriginal.setListaKeywords(cClone.getListaKeywords());
+                cOriginal.setListaProdutos(cClone.getListaProdutos());
                 return true;
             }
         }

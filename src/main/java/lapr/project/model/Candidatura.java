@@ -41,12 +41,15 @@ public class Candidatura {
     }
    
     public Candidatura cloneCandidatura() {
-        return new Candidatura(
+        Candidatura c = new Candidatura(
                 this.getNomeEmpresa(), 
                 this.getMorada(), 
                 this.getTelemovel(), 
                 this.getAreaExposicao(), 
                 this.getQuantidadeConvites());
+        c.getListaKeywords();
+        c.getListaProdutos();
+        return c;
     }
     
     public String getNomeEmpresa() {
@@ -67,6 +70,10 @@ public class Candidatura {
     
     public int getQuantidadeConvites(){
         return this.quantidadeConvites;
+    }
+    
+    public Representante getRepresentante(){
+        return this.representante;
     }
     
     public String getInfo() {

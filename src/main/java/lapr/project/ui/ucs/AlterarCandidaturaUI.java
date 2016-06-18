@@ -114,50 +114,22 @@ public class AlterarCandidaturaUI extends JFrame{
      * Guarda o keyword1 introduzido da candidatura
      */
     private JTextField txtKey5;
-    /**
-     * Guarda a lista produtos da candidatura
-     */      
-    private ListaKeywords listaKeywords;
-    /**
-     * Guarda a lista produtos da candidatura
-     */      
-    private ListaProduto listaProdutos;
-    /**
-     * Guarda a lista demonstrações da candidatura
-     */
-    private ListaDemonstracoes listaDemonstracoes;
     private JPanel painelWest;
     private JPanel painelPrincipal;    
-    /**
-     * Guarda a lista de exposicoes
-     */
-    private RegistoExposicoes listaExposicoes;
-    /**
-     * Guarda a lista de exposicoes
-     */
-    private ListaCandidaturas listaCandidaturas;
-    /**
-     * Guarda objectos candidatura
-     */
-    private Candidatura candidatura;
-    /**
-     * Guarda objectos exposição
-     */
-    private Exposicao exposicao;
     
     private static CentroExposicoes ce;
-    private static Utilizador user;
+    private static Utilizador utilizador;
     private static AlterarCandidaturaController controllerAC;
 
 
-    public AlterarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
+    public AlterarCandidaturaUI(CentroExposicoes ce, Utilizador utilizador) {
         
         super("Alterar Candidatura");
         
-        user=utilizador;
+        this.ce = ce;
+        this.utilizador=utilizador;
         
-        ce = centroExposicoes;
-        user=utilizador;
+        controllerAC = new AlterarCandidaturaController(ce, utilizador);        
 
         criarComponentes();  
         
@@ -170,10 +142,8 @@ public class AlterarCandidaturaUI extends JFrame{
     }
     private void criarComponentes(){
         painelPrincipal=new JPanel();
-        painelPrincipal.setLayout(new BorderLayout());
-        
-        listaExposicoes = ce.getRegistoExposicoes();        
-        
+        painelPrincipal.setLayout(new BorderLayout());      
+
         add(criarPainelWest(),BorderLayout.WEST);
 
         add(painelPrincipal);
@@ -181,7 +151,7 @@ public class AlterarCandidaturaUI extends JFrame{
     private JPanel criarPainelWest(){
         painelWest= new JPanel(new GridLayout(2,1));
 
-        painelWest.add(criarPainelExposicao(listaExposicoes));        
+        painelWest.add(criarPainelExposicao(controllerAC.getRegistoExposicoes()));        
                 
         return painelWest;
     }
@@ -218,13 +188,10 @@ public class AlterarCandidaturaUI extends JFrame{
                 try{
                     selExp.setEnabled(false);
                     comboExp.setEnabled(false);  
+                    
+                    controllerAC.selectExposicao((Exposicao) comboExp.getSelectedItem());
 
-                    exposicao=(Exposicao) comboExp.getSelectedItem();
-
-                    listaCandidaturas = exposicao.getListaCandidaturas();
-                    listaDemonstracoes = exposicao.getListaDemonstracoes();
-
-                    painelWest.add(criarPainelCandidatura(listaCandidaturas));
+                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
 
                     selCand.setEnabled(true);
                     comboCand.setEnabled(true);
@@ -253,10 +220,10 @@ public class AlterarCandidaturaUI extends JFrame{
         painelCand.add(comboCand, BorderLayout.NORTH); 
         
         JLabel label = new JLabel();
-        label.setBounds(200,200,200,200);
-        ImageIcon image=new ImageIcon("src/main/resources/images/cand_logo.png");
-        Image i=image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH); 
-        label.setIcon(new ImageIcon(i));
+        label.setBounds(160,200,200,160);
+        ImageIcon image2=new ImageIcon("src/main/resources/images/cand_logo.png");
+        Image i2=image2.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH); 
+        label.setIcon(new ImageIcon(i2));
         painelCand.add(label,BorderLayout.CENTER);
         
         painelCand.add(criarBtSelectCand(),BorderLayout.SOUTH);
@@ -277,8 +244,7 @@ public class AlterarCandidaturaUI extends JFrame{
                     selCand.setEnabled(false);
                     comboCand.setEnabled(false);    
 
-                    candidatura =(Candidatura) comboCand.getSelectedItem();
-                    controllerAC = new AlterarCandidaturaController(exposicao, candidatura);
+                    controllerAC.selectCandidatura((Candidatura) comboCand.getSelectedItem());
 
                     criarComponentesCandidatura();
                 }catch(Exception ex){
@@ -306,27 +272,27 @@ public class AlterarCandidaturaUI extends JFrame{
 
     }
     public void inserirDados(){
-        txtArea.setText(Integer.toString(candidatura.getAreaExposicao()));
-        txtConvites.setText(Integer.toString(candidatura.getQuantidadeConvites()));
-        txtMorada.setText(candidatura.getMorada());
-        txtNome.setText(candidatura.getNomeEmpresa());
-        txtTelemovel.setText(Integer.toString(candidatura.getTelemovel()));
+        txtArea.setText(Integer.toString(controllerAC.getInfoCandidatura().getAreaExposicao()));
+        txtConvites.setText(Integer.toString(controllerAC.getInfoCandidatura().getQuantidadeConvites()));
+        txtMorada.setText(controllerAC.getInfoCandidatura().getMorada());
+        txtNome.setText(controllerAC.getInfoCandidatura().getNomeEmpresa());
+        txtTelemovel.setText(Integer.toString(controllerAC.getInfoCandidatura().getTelemovel()));
         
-        int tmp = candidatura.getListaKeywords().tamanho();
+        int tmp = controllerAC.getInfoCandidatura().getListaKeywords().tamanho();
         if (tmp >= 1){
-            txtKey1.setText(candidatura.getListaKeywords().obterKeyword(0).toString());            
+            txtKey1.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(0).toString());            
         }
         if (tmp >= 2){
-            txtKey2.setText(candidatura.getListaKeywords().obterKeyword(1).toString());
+            txtKey2.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(1).toString());
         }
         if (tmp >= 3){
-            txtKey2.setText(candidatura.getListaKeywords().obterKeyword(2).toString());
+            txtKey2.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(2).toString());
         }
         if (tmp >= 4){
-            txtKey3.setText(candidatura.getListaKeywords().obterKeyword(3).toString());
+            txtKey3.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(3).toString());
         }
         if (tmp == 5){
-            txtKey5.setText(candidatura.getListaKeywords().obterKeyword(4).toString());
+            txtKey5.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(4).toString());
         }
 
     }
@@ -618,7 +584,7 @@ public class AlterarCandidaturaUI extends JFrame{
         botaoRemoverProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Produto[] opcoes = listaProdutos.getArray();
+                Produto[] opcoes = controllerAC.getInfoCandidatura().getListaProdutos().getArray();
                 Produto produto = (Produto) JOptionPane.showInputDialog(
                         AlterarCandidaturaUI.this,
                         "Escolha um Produto:", "Eliminar Produto",
@@ -697,7 +663,7 @@ public class AlterarCandidaturaUI extends JFrame{
 //                    listaKeywords.adicionarKeyword(k4);
 //                    listaKeywords.adicionarKeyword(k5);
 //                    
-//                    candidatura = controllerAC.alteraCandidatura(
+//                    candidatura = controllerAC.setDadosCandidatura(
 //                            nome, morada, telemovel, area, convites,
 //                            listaProdutos,listaKeywords);
 //                    
@@ -768,8 +734,7 @@ public class AlterarCandidaturaUI extends JFrame{
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,
                                               INTERVALO_VERTICAL));
-        listaProdutos = controllerAC.getCandidatura(candidatura).getListaProdutos();
-        ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(listaProdutos);
+        ModeloListaProdutos modeloListaProdutos = new ModeloListaProdutos(controllerAC.getInfoCandidatura().getListaProdutos());
         lstProdutos = new JList(modeloListaProdutos);
         botaoAdicionarProduto = criarBotaoAdicionarProduto();
         botaoRemoverProduto = criarBotaoEliminarProduto();
@@ -841,7 +806,7 @@ public class AlterarCandidaturaUI extends JFrame{
     private JPanel criarPainelCheckBoxDemo(){
         JPanel pCheck=new JPanel(new FlowLayout());
         
-        Demonstracao[] opcoes=listaDemonstracoes.getArray();
+        Demonstracao[] opcoes=controllerAC.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
 

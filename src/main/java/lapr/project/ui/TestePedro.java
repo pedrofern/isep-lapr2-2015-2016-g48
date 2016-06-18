@@ -6,9 +6,12 @@
 package lapr.project.ui;
 
 import java.io.FileNotFoundException;
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.Keyword;
 import lapr.project.model.Organizador;
+import lapr.project.model.Produto;
 import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
@@ -75,13 +78,32 @@ public class TestePedro {
         e1.setDados("teste1", "teste1", d1, d2, "teste1", d3, d4, d5, d6, d7, d8, d9, d10);
 
         ce.getRegistoExposicoes().adicionarExposicao(e1);
+        
+        
+        Candidatura candTeste = new Candidatura("candteste", "moradateste", 912345678, 123, 123);
+
+        Keyword k1 = new Keyword("keyteste1");
+        Keyword k2 = new Keyword("keyteste2");
+        ListaKeywords lk = new ListaKeywords();
+        lk.adicionarKeyword(k1);
+        lk.adicionarKeyword(k2);
+        
+        Produto p =new Produto("produtoTEste");
+        ListaProduto lp = new ListaProduto();
+        lp.adicionarProduto(p);
+        
+        candTeste.setListaProdutos(lp);
+        candTeste.setListaKeywords(lk);
+       
+        e1.getListaCandidaturas().addCandidatura(candTeste);
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 //        CriarExposicaoUI c=new CriarExposicaoUI(ce);
 //        DefinirFAEUI fa=new DefinirFAEUI(ce, user);
         //CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
         //ListarCandidaturaRetiradaUI r = new ListarCandidaturaRetiradaUI(ce, user);
-        RegistarCandidaturaUI r = new RegistarCandidaturaUI(ce, user);
+//        RegistarCandidaturaUI r = new RegistarCandidaturaUI(ce, user);
+        AlterarCandidaturaUI a = new AlterarCandidaturaUI(ce, user);
     }
 
     private static void formarDatas() {
