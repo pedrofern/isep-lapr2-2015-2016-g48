@@ -9,35 +9,32 @@ import lapr.project.model.lists.RegistoStands;
  */
 public class Stand {
     
-    private String id;
-    private String descricao;
-    private float area;
+     private String descricao;
+    private String area;
+    private RegistoStands mListaStands;
+    private Exposicao expo;
+    private GestorDeExposicoes gestor;
     
+    private String ID = "Stand-";
+    private static int totalDemonstracao = 0;
     
-    public Stand(String id, String descricao, float area){
-        this.id=id;
-        this.descricao=descricao;
-        this.area=area;
-    }
     public Stand(){
+        ID = ID + totalDemonstracao++;
+        this.descricao=descricao;
+        this.mListaStands=new RegistoStands();
+    }
+    
+ public void setDados(String descricao, String area) {
+       this.descricao=descricao;
+       this.area=area;
+    }
+ 
+ public boolean addStand(Stand s) {
+        return mListaStands.adicionarStand(s);
     }
     
     public String getDescricao() {
         return descricao;
-    }
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**
@@ -50,14 +47,14 @@ public class Stand {
     /**
      * @return the area
      */
-    public float getArea() {
+    public String getArea() {
         return area;
     }
 
     /**
      * @param area the area to set
      */
-    public void setArea(float area) {
+    public void setArea(String area) {
         this.area = area;
     }
     
@@ -67,9 +64,11 @@ public class Stand {
     
     @Override
     public String toString() {
-        String str;
-       str= this.getDescricao();
-        return str;
+        return ("Descricao: "+this.descricao+"\nArea: "+this.area);
         
+    }
+    
+    public void setExpo(Exposicao e){
+        expo =e;
     }
 }

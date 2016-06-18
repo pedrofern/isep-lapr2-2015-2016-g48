@@ -29,8 +29,8 @@ public class PainelGestor extends JPanel {
 
     private static JPanel pPrincipal;
     private static JPanel pInfo;
-    private static Utilizador m_ut;
-    private CentroExposicoes m_ce;
+    private static Utilizador mUt;
+    private CentroExposicoes mCe;
     
     private static final int LINHAS=5, COLUNAS=2,HGAP=20, VGAP=20;
     private static final Dimension DIM_BOTOES=new Dimension(150,35);
@@ -40,8 +40,8 @@ public class PainelGestor extends JPanel {
         
          super();
         
-        this.m_ce=ce;
-        this.m_ut=ut;
+        this.mCe=ce;
+        this.mUt=ut;
 
         setLayout(new BorderLayout());
         
@@ -64,7 +64,7 @@ public class PainelGestor extends JPanel {
         pInfo=new JPanel();
         pInfo.setLayout(new BorderLayout());
 
-        PainelInicio p=new PainelInicio(m_ce);
+        PainelInicio p=new PainelInicio(mCe);
         
         pInfo.add(p);  
     }
@@ -99,7 +99,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    CriarExposicaoUI a= new CriarExposicaoUI(m_ce);
+                    CriarExposicaoUI a= new CriarExposicaoUI(mCe);
                 } catch (Exception ex) {
                     Logger.getLogger(PainelGestor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -128,7 +128,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
-                  ConfirmarRegistoUtilizadorUI a= new ConfirmarRegistoUtilizadorUI(m_ce);
+                  ConfirmarRegistoUtilizadorUI a= new ConfirmarRegistoUtilizadorUI(mCe);
 
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -152,7 +152,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                  DefinirRecursoUI a= new DefinirRecursoUI(m_ce);
+                  DefinirRecursoUI a= new DefinirRecursoUI(mCe);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -175,7 +175,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                  DefinirTipoConflitoUI a= new DefinirTipoConflitoUI(m_ce);
+                  DefinirTipoConflitoUI a= new DefinirTipoConflitoUI(mCe);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -198,7 +198,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
-                  CriarStandUI a= new CriarStandUI(m_ce);
+                  CriarStandUI a= new CriarStandUI(mCe,mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }

@@ -9,13 +9,10 @@ import lapr.project.model.Stand;
  */
 public class RegistoStands {
     
-    /**
-     * 
-     */
     private ArrayList<Stand> listaStands;
-    private Stand stand;
+    private Stand m_s;
     /**
-     * Construtor relativo a lista de Stands
+     * Construtor relativo a lista de stands
      */
     public RegistoStands() {
         listaStands = new ArrayList<>();
@@ -25,12 +22,12 @@ public class RegistoStands {
      * @param indice indice
      * @return o stand no indice passado por parametro
      */
-    public Stand obterStands(int indice) {
+    public Stand obterStand(int indice) {
         return listaStands.get(indice);
     }
     /**
-     * Metodo que retorna o array de stand
-     * @return o array de stand
+     * Metodo que retorna o array de Stand
+     * @return o array de Stand
      */
     public Stand[] getArray() {
         return listaStands.toArray( new Stand[listaStands.size()] );
@@ -42,40 +39,30 @@ public class RegistoStands {
     public ArrayList<Stand> getListaStands(){
         return listaStands;
     }
-    
-    
     /**
      * Metodo para adicionar o stand passado por parametro a lista de stands
      * @param stand stand
-     * @return true se o stand for adicionado false em caso contrario
+     * @return true se o conflito for adicionado false em caso contrario
      */
     
-    
+    public boolean adicionarStand(Stand stand){
         
-    /**
-     * Metodo que adiciona o stand passado por parametro a lista
-     * @param s stand
-     * @return true se adicionar false caso contrario
-     */
-    public boolean addStand(Stand s) {
-       if(!listaStands.contains(s)){
-            return listaStands.add(s);
-        }
-       
-       return false;
+        if(!listaStands.contains(stand)){
+            return listaStands.add(stand);
+        }return false;
     }
     
     public Stand novoStand() {
         
     
-        stand= new Stand();
+        m_s= new Stand();
         
-       listaStands.add(stand);
+       listaStands.add(m_s);
         
-       return stand;
+       return m_s;
        
     }
-        
+    
     
      /**
      * Metodo para remover o stand passado por parametro a lista de stands
@@ -86,7 +73,7 @@ public class RegistoStands {
         return listaStands.remove(stand);
     }
     /**
-     * Metodo para retornar o tamanho da lista de stands
+     * Metodo para retornar o tamanho da lista de cstands
      * @return o tamanho da lista de stands
      */
     public int tamanho() {
@@ -108,43 +95,5 @@ public class RegistoStands {
     public boolean contem(Stand stand){
         return listaStands.contains(stand);
     }
-    
-    
-    /**
-     * Metodo que retorna um stand
-     * @param stand stand
-     * @return stand
-     */
-    public Stand getStand(String stand) {
-        for (Stand s : listaStands) {
-            if (s.getDescricao().equalsIgnoreCase(stand)) {
-                return s;
-            }
-        }
-
-        return null;
-
-    }
-    
-    
-    /**
-     * Metodo que regista um stand
-     * @param s stand
-     * @return true se registar ou false caso contrario
-     */
-    public boolean registaStand(Stand s) {
-        if (validaStand(s)) {
-            addStand(s);
-            return true;
-        }
-        return false;
-    }
-    /**
-     * Metodo que valida stand
-     * @param s stand
-     * @return true se validar false caso contrario
-     */
-    public boolean validaStand(Stand s) {
-        return !listaStands.contains(s);
-    }
+   
 }

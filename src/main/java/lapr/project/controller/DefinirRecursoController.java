@@ -41,7 +41,7 @@ public class DefinirRecursoController {
     
     public static void novoRecurso(){
   
-       recurso=ce.getRegistoRecursos().novoRecurso();
+   recurso=ce.getRegistoRecursos().novoRecurso();
 
     }
     
