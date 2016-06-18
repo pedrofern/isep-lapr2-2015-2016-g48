@@ -77,43 +77,43 @@ public class AlterarCandidaturaUI extends JFrame{
     /**
      * Guarda o nome introduzido da candidatura
      */
-    private JTextField txtNome;
+    private JTextField txtNomeA;
     /**
      * Guarda a morada introduzida da candidatura
      */
-    private JTextField txtMorada;
+    private JTextField txtMoradaA;
     /**
      * Guarda o telemovel introduzido da candidatura
      */
-    private JTextField txtTelemovel;
+    private JTextField txtTelemovelA;
     /**
      * Guarda a area introduzida da candidatura
      */
-    private JTextField txtArea;
+    private JTextField txtAreaA;
     /**
      * Guarda o nº convites introduzido da candidatura
      */
-    private JTextField txtConvites;
+    private JTextField txtConvitesA;
     /**
      * Guarda o keyword1 introduzido da candidatura
      */
-    private JTextField txtKey1;
+    private JTextField txtKey1A;
     /**
      * Guarda o keyword1 introduzido da candidatura
      */
-    private JTextField txtKey2;
+    private JTextField txtKey2A;
     /**
      * Guarda o keyword1 introduzido da candidatura
      */
-    private JTextField txtKey3;
+    private JTextField txtKey3A;
     /**
      * Guarda o keyword1 introduzido da candidatura
      */
-    private JTextField txtKey4;
+    private JTextField txtKey4A;
     /**
      * Guarda o keyword1 introduzido da candidatura
      */
-    private JTextField txtKey5;
+    private JTextField txtKey5A;
     private JPanel painelWest;
     private JPanel painelPrincipal;    
     
@@ -272,27 +272,27 @@ public class AlterarCandidaturaUI extends JFrame{
 
     }
     public void inserirDados(){
-        txtArea.setText(Integer.toString(controllerAC.getInfoCandidatura().getAreaExposicao()));
-        txtConvites.setText(Integer.toString(controllerAC.getInfoCandidatura().getQuantidadeConvites()));
-        txtMorada.setText(controllerAC.getInfoCandidatura().getMorada());
-        txtNome.setText(controllerAC.getInfoCandidatura().getNomeEmpresa());
-        txtTelemovel.setText(Integer.toString(controllerAC.getInfoCandidatura().getTelemovel()));
+        txtAreaA.setText(Integer.toString(controllerAC.getInfoCandidatura().getAreaExposicao()));
+        txtConvitesA.setText(Integer.toString(controllerAC.getInfoCandidatura().getQuantidadeConvites()));
+        txtMoradaA.setText(controllerAC.getInfoCandidatura().getMorada());
+        txtNomeA.setText(controllerAC.getInfoCandidatura().getNomeEmpresa());
+        txtTelemovelA.setText(Integer.toString(controllerAC.getInfoCandidatura().getTelemovel()));
         
         int tmp = controllerAC.getInfoCandidatura().getListaKeywords().tamanho();
         if (tmp >= 1){
-            txtKey1.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(0).toString());            
+            txtKey1A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(0).toString());            
         }
         if (tmp >= 2){
-            txtKey2.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(1).toString());
+            txtKey2A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(1).toString());
         }
         if (tmp >= 3){
-            txtKey2.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(2).toString());
+            txtKey2A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(2).toString());
         }
         if (tmp >= 4){
-            txtKey3.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(3).toString());
+            txtKey3A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(3).toString());
         }
         if (tmp == 5){
-            txtKey5.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(4).toString());
+            txtKey5A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(4).toString());
         }
 
     }
@@ -321,73 +321,73 @@ public class AlterarCandidaturaUI extends JFrame{
         
         p.setBorder(new TitledBorder("Dados"));
         
-        txtNome = new JTextField(30);
-        txtNome.setEditable(false); 
+        txtNomeA = new JTextField(30);
+        txtNomeA.setEditable(false); 
         
-        txtMorada = new JTextField(30);
-        txtNome.requestFocusInWindow();
-        txtMorada.addKeyListener(new KeyAdapter() {
+        txtMoradaA = new JTextField(30);
+        txtNomeA.requestFocusInWindow();
+        txtMoradaA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtMorada.getText().length() > 40) {
+                if (txtMoradaA.getText().length() > 40) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         });
         
-        txtTelemovel = new JTextField(7);
-        txtTelemovel.addKeyListener(new KeyAdapter() {
+        txtTelemovelA = new JTextField(7);
+        txtTelemovelA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtTelemovel.setText(txtTelemovel.getText().replaceAll("[^0-9]", ""));
+                txtTelemovelA.setText(txtTelemovelA.getText().replaceAll("[^0-9]", ""));
             }
         });
-        txtTelemovel.addKeyListener(new KeyAdapter() {
+        txtTelemovelA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtTelemovel.getText().length() > 8) {
+                if (txtTelemovelA.getText().length() > 8) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtArea = new JTextField(2);
-        txtArea.addKeyListener(new KeyAdapter() {
+        txtAreaA = new JTextField(2);
+        txtAreaA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtArea.setText(txtArea.getText().replaceAll("[^0-9]", ""));
+                txtAreaA.setText(txtAreaA.getText().replaceAll("[^0-9]", ""));
             }
         });
-        txtArea.addKeyListener(new KeyAdapter() {
+        txtAreaA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtArea.getText().length() > 2) {
+                if (txtAreaA.getText().length() > 2) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtConvites = new JTextField(2);
-        txtConvites.addKeyListener(new KeyAdapter() {
+        txtConvitesA = new JTextField(2);
+        txtConvitesA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtConvites.setText(txtConvites.getText().replaceAll("[^0-9]", ""));
+                txtConvitesA.setText(txtConvitesA.getText().replaceAll("[^0-9]", ""));
             }
         });
-        txtConvites.addKeyListener(new KeyAdapter() {
+        txtConvitesA.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtConvites.getText().length() > 2) {
+                if (txtConvitesA.getText().length() > 2) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        p.add(criarPainelNome("Nome:", txtNome,""));
-        p.add(criarPainelNome("Morada:", txtMorada,""));
-        p.add(criarPainelNome("Telemóvel:", txtTelemovel,"9xxxxxxxx"));
-        p.add(criarPainelNome("Área:", txtArea,"m^2"));
-        p.add(criarPainelNome("Nº Convites:", txtConvites,"(máx 999)"));
+        p.add(criarPainelNome("Nome:", txtNomeA,""));
+        p.add(criarPainelNome("Morada:", txtMoradaA,""));
+        p.add(criarPainelNome("Telemóvel:", txtTelemovelA,"9xxxxxxxx"));
+        p.add(criarPainelNome("Área:", txtAreaA,"m^2"));
+        p.add(criarPainelNome("Nº Convites:", txtConvitesA,"(máx 999)"));
         
         return p;
     }
@@ -396,91 +396,91 @@ public class AlterarCandidaturaUI extends JFrame{
         
         p.setBorder(new TitledBorder("Keywords:"));
         
-        txtKey1 = new JTextField(15);
-        txtKey1.requestFocusInWindow();
-        txtKey1.addKeyListener(new KeyAdapter() {
+        txtKey1A = new JTextField(15);
+        txtKey1A.requestFocusInWindow();
+        txtKey1A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey1.setText(txtKey1.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey1A.setText(txtKey1A.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
-        txtKey1.addKeyListener(new KeyAdapter() {
+        txtKey1A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey1.getText().length() > 20) {
+                if (txtKey1A.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey2 = new JTextField(15);
-        txtKey2.addKeyListener(new KeyAdapter() {
+        txtKey2A = new JTextField(15);
+        txtKey2A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey2.setText(txtKey2.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey2A.setText(txtKey2A.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
-        txtKey2.addKeyListener(new KeyAdapter() {
+        txtKey2A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey2.getText().length() > 20) {
+                if (txtKey2A.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey3 = new JTextField(15);
-        txtKey3.addKeyListener(new KeyAdapter() {
+        txtKey3A = new JTextField(15);
+        txtKey3A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey3.setText(txtKey3.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey3A.setText(txtKey3A.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
-        txtKey3.addKeyListener(new KeyAdapter() {
+        txtKey3A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey3.getText().length() > 20) {
+                if (txtKey3A.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey4 = new JTextField(15);
-        txtKey4.addKeyListener(new KeyAdapter() {
+        txtKey4A = new JTextField(15);
+        txtKey4A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey4.setText(txtKey4.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey4A.setText(txtKey4A.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
-        txtKey4.addKeyListener(new KeyAdapter() {
+        txtKey4A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey4.getText().length() > 20) {
+                if (txtKey4A.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
         
-        txtKey5 = new JTextField(15);
-        txtKey5.addKeyListener(new KeyAdapter() {
+        txtKey5A = new JTextField(15);
+        txtKey5A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                txtKey5.setText(txtKey5.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
+                txtKey5A.setText(txtKey5A.getText().replaceAll("[^a-z||^A-Z||^0-9||^ ]", ""));
             }
         });
-        txtKey5.addKeyListener(new KeyAdapter() {
+        txtKey5A.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent ev) {
-                if (txtKey5.getText().length() > 20) {
+                if (txtKey5A.getText().length() > 20) {
                     ev.setKeyChar((char) KeyEvent.VK_CLEAR);
                 } 
             }
         }); 
-        p.add(criarPainelNome("Keyword 1:", txtKey1,"Obrigatório"));
-        p.add(criarPainelNome("Keyword 2:", txtKey2,"Obrigatório"));
-        p.add(criarPainelNome("Keyword 3:", txtKey3,""));
-        p.add(criarPainelNome("Keyword 4:", txtKey4,""));
-        p.add(criarPainelNome("Keyword 5:", txtKey5,""));
+        p.add(criarPainelNome("Keyword 1:", txtKey1A,"Obrigatório"));
+        p.add(criarPainelNome("Keyword 2:", txtKey2A,"Obrigatório"));
+        p.add(criarPainelNome("Keyword 3:", txtKey3A,""));
+        p.add(criarPainelNome("Keyword 4:", txtKey4A,""));
+        p.add(criarPainelNome("Keyword 5:", txtKey5A,""));
         
         
         return p;
@@ -639,12 +639,12 @@ public class AlterarCandidaturaUI extends JFrame{
 //            public void actionPerformed(ActionEvent e) {
 //                try{      
                     
-//                    int area = Integer.parseInt(txtArea.getText());
-//                    int convites = Integer.parseInt(txtConvites.getText());                    
-//                    String morada = txtMorada.getText();
-//                    String nome = txtNome.getText();
-//                    int telemovel = Integer.parseInt(txtTelemovel.getText());
-//                    if (txtKey1.getText().isEmpty()||txtKey2.getText().isEmpty()){
+//                    int area = Integer.parseInt(txtAreaA.getText());
+//                    int convites = Integer.parseInt(txtConvitesA.getText());                    
+//                    String morada = txtMoradaA.getText();
+//                    String nome = txtNomeA.getText();
+//                    int telemovel = Integer.parseInt(txtTelemovelA.getText());
+//                    if (txtKey1A.getText().isEmpty()||txtKey2A.getText().isEmpty()){
 //                        JOptionPane.showMessageDialog(
 //                                null,
 //                                "Keyword obrigatória por preencher!",
@@ -652,11 +652,11 @@ public class AlterarCandidaturaUI extends JFrame{
 //                                JOptionPane.ERROR_MESSAGE);                        
 //                    }else{                    
 //                    listaKeywords = controllerAC.getCandidatura(candidatura).getListaKeywords();
-//                    Keyword k1 = new Keyword(""+txtKey1.getText());
-//                    Keyword k2 = new Keyword(""+txtKey2.getText());
-//                    Keyword k3 = new Keyword(""+txtKey3.getText());
-//                    Keyword k4 = new Keyword(""+txtKey4.getText());
-//                    Keyword k5 = new Keyword(""+txtKey5.getText());
+//                    Keyword k1 = new Keyword(""+txtKey1A.getText());
+//                    Keyword k2 = new Keyword(""+txtKey2A.getText());
+//                    Keyword k3 = new Keyword(""+txtKey3A.getText());
+//                    Keyword k4 = new Keyword(""+txtKey4A.getText());
+//                    Keyword k5 = new Keyword(""+txtKey5A.getText());
 //                    listaKeywords.adicionarKeyword(k1);
 //                    listaKeywords.adicionarKeyword(k2);
 //                    listaKeywords.adicionarKeyword(k3);
@@ -728,8 +728,10 @@ public class AlterarCandidaturaUI extends JFrame{
      * @return painel lista produtos e demonstrações
      */
     private JPanel criarPainelListas() {
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
+        final int NUMERO_LINHAS = 1;
+        final int NUMERO_COLUNAS = 2;
+        final int INTERVALO_HORIZONTAL = 20;
+        final int INTERVALO_VERTICAL = 0;
         JPanel p = new JPanel(new GridLayout( NUMERO_LINHAS, 
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,

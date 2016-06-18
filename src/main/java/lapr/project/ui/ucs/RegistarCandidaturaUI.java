@@ -28,8 +28,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.text.html.CSS;
 
 /**
  *
@@ -42,8 +40,10 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private static final Dimension LABEL_TAMANHO = new JLabel("Nº Convites:").
                                                         getPreferredSize();
-    private static final int MARGEM_SUPERIOR = 5, MARGEM_INFERIOR = 5;
-    private static final int MARGEM_ESQUERDA = 5, MARGEM_DIREITA = 5;
+    private static final int MARGEM_SUPERIOR = 5;
+    private static final int MARGEM_INFERIOR = 5;
+    private static final int MARGEM_ESQUERDA = 5;
+    private static final int MARGEM_DIREITA = 5;
     /**
      * Guarda lista produtos em jlist
      */
@@ -412,8 +412,10 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JPanel criarPainelBotoesListaProduto(JButton btn1, JButton btn2) {
 
-        final int NUMERO_LINHAS = 2, NUMERO_COLUNAS = 1;
-        final int INTERVALO_HORIZONTAL = 0, INTERVALO_VERTICAL = 10;        
+        final int NUMERO_LINHAS = 2;
+        final int NUMERO_COLUNAS = 1;
+        final int INTERVALO_HORIZONTAL = 0;
+        final int INTERVALO_VERTICAL = 10;        
         JPanel p = new JPanel(new GridLayout( NUMERO_LINHAS, 
                                               NUMERO_COLUNAS, 
                                               INTERVALO_HORIZONTAL,
@@ -542,14 +544,14 @@ public class RegistarCandidaturaUI extends JFrame{
                             controllerRCC.getListaKeywords());
                     
                     boolean adicionarNovaCandidatura = controllerRCC.valida();
-                    if (adicionarNovaCandidatura == true) {                        
+                    if (adicionarNovaCandidatura) {                        
                         if (c == null){
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura já registada",
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
-                        }
+                        }else{
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura adicionada: \n"
@@ -557,6 +559,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "Nova Candidatura",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();
+                        }
                     }
                      
                     else {
