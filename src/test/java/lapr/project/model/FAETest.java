@@ -21,10 +21,7 @@ import static org.junit.Assert.*;
  */
 public class FAETest {
 
-    private DefinirFAEController controller;
-    private ListaFAE listaFAE;
-    private Exposicao exposicao;
-    private RegistoUtilizadores utilizador;
+   
     private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
 
     public FAETest() {

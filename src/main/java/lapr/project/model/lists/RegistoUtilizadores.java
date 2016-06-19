@@ -126,9 +126,7 @@ public class RegistoUtilizadores {
         return m_listaUtilizadores.remove(utilizador);
     }
     
-    public void ordenarPorPosicao(){
-        Collections.sort(m_listaUtilizadores);
-    }
+
 
     /**
      * Devolve a descrição textual do Registo de Utilizadores.

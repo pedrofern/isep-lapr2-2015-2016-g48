@@ -50,9 +50,7 @@ public class ModeloListaUtilizadores extends AbstractListModel {
         return listaUtilizadores.getListaUtilizadores().contains(utilizador);
     }
     
-    public void sort(){
-        listaUtilizadores.ordenarPorPosicao();
-    }
+
 
 }
 
