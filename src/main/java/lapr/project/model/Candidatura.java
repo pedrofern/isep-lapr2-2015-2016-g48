@@ -50,8 +50,8 @@ public class Candidatura {
                 this.getTelemovel(), 
                 this.getAreaExposicao(), 
                 this.getQuantidadeConvites());
-        c.getListaKeywords();
-        c.getListaProdutos();
+        c.setListaKeywords(this.getListaKeywords());
+        c.setListaProdutos(this.getListaProdutos());
         return c;
     }
     

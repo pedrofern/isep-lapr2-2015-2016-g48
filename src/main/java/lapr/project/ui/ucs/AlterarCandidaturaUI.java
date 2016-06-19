@@ -279,19 +279,19 @@ public class AlterarCandidaturaUI extends JFrame{
         txtTelemovelA.setText(Integer.toString(controllerAC.getInfoCandidatura().getTelemovel()));
         
         int tmp = controllerAC.getInfoCandidatura().getListaKeywords().tamanho();
-        if (tmp >= 1){
+        if (tmp > 0){
             txtKey1A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(0).toString());            
         }
-        if (tmp >= 2){
+        if (tmp > 1){
             txtKey2A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(1).toString());
         }
-        if (tmp >= 3){
+        if (tmp > 2){
             txtKey2A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(2).toString());
         }
-        if (tmp >= 4){
+        if (tmp > 3){
             txtKey3A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(3).toString());
         }
-        if (tmp == 5){
+        if (tmp > 4){
             txtKey5A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(4).toString());
         }
 

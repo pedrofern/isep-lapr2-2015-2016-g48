@@ -599,6 +599,11 @@ public class RegistarCandidaturaUI extends JFrame{
                 txtMorada.setText("");
                 txtNome.setText("");
                 txtTelemovel.setText("");
+                txtKey1.setText("");
+                txtKey2.setText("");
+                txtKey3.setText("");
+                txtKey4.setText("");
+                txtKey5.setText("");
             }
         });
 
@@ -747,16 +752,16 @@ public class RegistarCandidaturaUI extends JFrame{
 //                    Recurso r1 = new Recurso("Recurso1");
 //                    Recurso r2 = new Recurso("Recurso2");
 //                    Recurso r3 = new Recurso("Recurso3");
-                    Demonstracao d1= new Demonstracao();        
-                    Demonstracao d2= new Demonstracao();
-                    Demonstracao d3= new Demonstracao();
-                    Data d = new Data();
-                    d.setData(2016, 02, 05);
-                    d1.setDados("demo1", "tema1", d, d);
-                    d2.setDados("demo2", "tema2", d, d);
-                    d3.setDados("demo3", "tema3", d, d);
-                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d2);
-                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d3);
+//                    Demonstracao d1= new Demonstracao();        
+//                    Demonstracao d2= new Demonstracao();
+//                    Demonstracao d3= new Demonstracao();
+//                    Data d = new Data();
+//                    d.setData(2016, 02, 05);
+//                    d1.setDados("demo1", "tema1", d, d);
+//                    d2.setDados("demo2", "tema2", d, d);
+//                    d3.setDados("demo3", "tema3", d, d);
+//                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d2);
+//                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d3);
              //fim
 
                     

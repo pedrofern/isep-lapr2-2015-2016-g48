@@ -97,6 +97,7 @@ public class RegistarCandidaturaController {
         candidatura.setListaProdutos(listaProdutos);
         candidatura.setListaKeywords(listaKeywords);
         
+        
         if (listaCandidaturas.registaCandidaturas(candidatura)) {
             return candidatura;
         } else {
