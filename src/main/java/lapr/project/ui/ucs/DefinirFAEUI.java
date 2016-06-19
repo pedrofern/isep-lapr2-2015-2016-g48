@@ -117,9 +117,9 @@ public class DefinirFAEUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-               
-                controller.selectExposicao((Exposicao)comboBoxExposicao.getSelectedItem());
-                    comboBoxExposicao.setEnabled(false);
+
+                controller.selectExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
+                comboBoxExposicao.setEnabled(false);
             }
         });
         return comboBoxExposicao;
@@ -138,9 +138,8 @@ public class DefinirFAEUI extends JFrame {
         lstCompletaUtilizadores.setModel(modeloListaUtilizadores);
         for (int i = 0; i < listaCompletaUtilizadores.getListaUtilizadores().size(); i++) {
 
-                modeloListaUtilizadores.addElement(listaCompletaUtilizadores.getListaUtilizadores().get(i));
+            modeloListaUtilizadores.addElement(listaCompletaUtilizadores.getListaUtilizadores().get(i));
 
-            
         }
 
         btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
@@ -151,7 +150,7 @@ public class DefinirFAEUI extends JFrame {
         lstUtilizadoresFAE = new JList();
         modeloListaFAE = new DefaultListModel();
         lstUtilizadoresFAE.setModel(modeloListaFAE);
-        btnEliminarFAE = criarBotaoEliminarRecurso(lstUtilizadoresFAE);
+        btnEliminarFAE = criarBotaoEliminarFAE(lstUtilizadoresFAE);
 
         p.add(criarPainelListaFAE("Lista de FAE:",
                 lstUtilizadoresFAE,
@@ -214,7 +213,7 @@ public class DefinirFAEUI extends JFrame {
         return p;
     }
 
-    private JButton criarBotaoEliminarRecurso(JList lstLista) {
+    private JButton criarBotaoEliminarFAE(JList lstLista) {
         JButton btn = new JButton("Eliminar FAE");
         Object[] lista = lstUtilizadoresFAE.getSelectedValues();
         btn.addActionListener((ActionEvent e) -> {
@@ -228,7 +227,7 @@ public class DefinirFAEUI extends JFrame {
 
                 if (var == 0) {
                     modeloListaFAE.remove(lstUtilizadoresFAE.getSelectedIndex());
-                    controller.getListaFAE().removerFAE((FAE)lstUtilizadoresFAE.getSelectedValue());
+                    controller.getListaFAE().removerFAE((FAE) lstUtilizadoresFAE.getSelectedValue());
                     int index = lstUtilizadoresFAE.getSelectedIndex();
                     if (modeloListaFAE.getSize() == 0) {
                         btn.setEnabled(true);
@@ -262,7 +261,7 @@ public class DefinirFAEUI extends JFrame {
                         Utilizador u = (Utilizador) values[i];
 
                         controller.criarFAE(u);
-
+                        controller.adicionarFAE();
                     } else {
                         JOptionPane.showMessageDialog(
                                 framePai,
@@ -292,8 +291,6 @@ public class DefinirFAEUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Deve seleciona uma exposição !", null, JOptionPane.WARNING_MESSAGE);
                 } else {
 
-                     
-                   controller.adicionarFAE();
                     if (controller.registaEstado()) {
 
                         JOptionPane.showMessageDialog(

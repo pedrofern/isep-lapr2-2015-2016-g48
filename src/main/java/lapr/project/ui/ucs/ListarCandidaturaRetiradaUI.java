@@ -34,7 +34,7 @@ public class ListarCandidaturaRetiradaUI extends JFrame {
 
     public ListarCandidaturaRetiradaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 
-        super("Listar Candidaturas Demonstração");
+        super("Listar Candidaturas Retiradas");
         ce = centroExposicoes;
         listaExposicoes = ce.getRegistoExposicoes();
         criarComponentes();

@@ -79,7 +79,7 @@ public class ListaAvaliacoes {
     }
 
     public boolean validaAvaliacaoFae(FAE f) {
-        return f.valida();
+        return f.validaMenbroFAE();
     }
 
 }

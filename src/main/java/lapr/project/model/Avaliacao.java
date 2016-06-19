@@ -8,7 +8,7 @@ import lapr.project.model.lists.ListaQuestoes;
  * @author Diana Silva
  */
 public class Avaliacao {
-    
+
     private boolean resposta;
     private String justificacao;
     private ListaQuestoes listaQuestoes;
@@ -18,30 +18,30 @@ public class Avaliacao {
     public Avaliacao(boolean resposta, String justificacao) {
         this.resposta = resposta;
         this.justificacao = justificacao;
-        this.estado=false;
-        listaQuestoes=new ListaQuestoes();
-        
+        this.estado = false;
+        listaQuestoes = new ListaQuestoes();
+
     }
 
     public Avaliacao() {
-        listaQuestoes=new ListaQuestoes();
+        listaQuestoes = new ListaQuestoes();
     }
-    
-    public ListaQuestoes getListaQuestoes(){
+
+    public ListaQuestoes getListaQuestoes() {
         return listaQuestoes;
     }
-   
-    
+
     public void setResposta(boolean resposta) {
-        this.resposta=resposta;
+        this.resposta = resposta;
     }
 
     public void setJustificacao(String j) {
         justificacao = j;
     }
- 
+
     /**
-     * Obtem true se a avaliação tiver sido aceite, false se tiver sido recusada.
+     * Obtem true se a avaliação tiver sido aceite, false se tiver sido
+     * recusada.
      *
      * @return the resposta
      */
@@ -56,27 +56,33 @@ public class Avaliacao {
      */
     public boolean getEstado() {
         return estado;
-    }  
-    
+    }
+
     /**
      * Altera o estado para avaliada
      */
     public void setAvaliada() {
-        this.estado=true;
-    }
-    public boolean valida() {
-        return true;
+        this.estado = true;
     }
 
-    
+    public boolean valida() {
+        if (justificacao == null || justificacao.trim().isEmpty()) {
+            return false;
+        } else {
+
+            return true;
+        }
+
+    }
+
     @Override
     public String toString() {
-        String avaliacao=this.justificacao + " - " + getResposta() + "\n";
-        for(Questao q: listaQuestoes.getListaQuestoes()){
-            avaliacao+=q.getPergunta() + ":" + q.getResposta() + "\n";
-            
+        String avaliacao = this.justificacao + " - " + getResposta() + "\n";
+        for (Questao q : listaQuestoes.getListaQuestoes()) {
+            avaliacao += q.getPergunta() + ":" + q.getResposta() + "\n";
+
         }
-        avaliacao+="Média: " + listaQuestoes.calcularMedia();
+        avaliacao += "Média: " + listaQuestoes.calcularMedia();
         return avaliacao;
     }
 }

@@ -291,7 +291,7 @@ public class Exposicao implements Comparable<Exposicao> {
     
     
     public boolean validaDefinirFAE(FAE f) {
-        return f.valida();
+        return f.validaMenbroFAE();
     }
 
     @Override

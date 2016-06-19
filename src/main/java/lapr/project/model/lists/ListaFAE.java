@@ -73,9 +73,9 @@ public class ListaFAE {
     }
 
     public void ordenarPorPosicao() {
-//        Collections.sort(listaOrganizadores);
+       Collections.sort(listaFAE);
     }
-
+    
     /**
      * Devolve a descrição textual da Lista de Organizadores.
      *

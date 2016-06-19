@@ -27,6 +27,9 @@ public class Recurso implements Comparable<Recurso> {
     }
 
     public boolean valida() {
+        if (descricao == null || descricao.trim().isEmpty()) {
+            return false;
+        }
         return true;
     }
 

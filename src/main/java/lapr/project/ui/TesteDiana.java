@@ -78,10 +78,11 @@ public class TesteDiana {
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 //        CriarExposicaoUI c=new CriarExposicaoUI(ce);
-        //DefinirFAEUI fa=new DefinirFAEUI(ce, user);
-        CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
-        //ListarCandidaturaRetiradaUI r = new ListarCandidaturaRetiradaUI(ce, user);
-       // new Login(ce);
+       // DefinirFAEUI fa=new DefinirFAEUI(ce, user);
+        //CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
+      //  ListarCandidaturaRetiradaUI r = new ListarCandidaturaRetiradaUI(ce, user);
+      // new Login(ce);
+      // AtribuirStandCandidaturaUI ad=new AtribuirStandCandidaturaUI(ce,user);
     }
 
     private static void formarDatas() {

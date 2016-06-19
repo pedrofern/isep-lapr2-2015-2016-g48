@@ -170,7 +170,7 @@ public class Candidatura {
     }
 
     public boolean validaFAE(FAE f) {
-        return f.valida();
+        return f.validaMenbroFAE();
     }
 
     public boolean valida() {

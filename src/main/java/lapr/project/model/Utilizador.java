@@ -140,7 +140,7 @@ public class Utilizador implements Comparable<Utilizador>{
 
     @Override
     public String toString(){
-        return nome+":" + email;
+        return nome+":"+email;
     }
     
     
