@@ -52,8 +52,6 @@ public class ModeloListaExposicao extends AbstractListModel {
         return listaExposicao.getExposicoes().contains(exposicao);
     }
 
-    public void sort() {
-        listaExposicao.ordenarPorPosicao();
-    }
+    
 
 }

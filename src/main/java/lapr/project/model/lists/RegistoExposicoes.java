@@ -132,9 +132,7 @@ public class RegistoExposicoes {
         return listaExposicoes.toArray(new Exposicao[listaExposicoes.size()]);
     }
 
-    public void ordenarPorPosicao() {
-        Collections.sort(listaExposicoes);
-    }
+    
 
     public int countExposicoes() {
         return listaExposicoes.size();

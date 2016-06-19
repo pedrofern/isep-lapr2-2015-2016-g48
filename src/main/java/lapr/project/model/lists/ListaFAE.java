@@ -60,8 +60,8 @@ public class ListaFAE {
      * @return bollean
      */
     public boolean hasUtilizador(Utilizador u) {
-        for (FAE org : this.listaFAE) {
-            if (org.getUtilizador().getUsername().equals(u)) {
+        for (FAE fae : this.listaFAE) {
+            if (fae.getUtilizador().getUsername().equals(u)) {
                 return true;
             }
         }
@@ -70,10 +70,6 @@ public class ListaFAE {
 
     public boolean removerFAE(FAE fae) {
         return listaFAE.remove(fae);
-    }
-
-    public void ordenarPorPosicao() {
-       Collections.sort(listaFAE);
     }
     
     /**
@@ -86,10 +82,7 @@ public class ListaFAE {
         return "ListaFAE:" + "listaFAE=" + listaFAE;
     }
 
-    public FAE getFAE() {
-        return fae;
-    }
-
+    
     public boolean hasFAE(FAE fae) {
         for (FAE f : this.listaFAE) {
             if (f.equals(fae)) {
