@@ -71,7 +71,7 @@ public class ListaFAE {
     public boolean removerFAE(FAE fae) {
         return listaFAE.remove(fae);
     }
-    
+
     /**
      * Devolve a descrição textual da Lista de Organizadores.
      *
@@ -82,7 +82,6 @@ public class ListaFAE {
         return "ListaFAE:" + "listaFAE=" + listaFAE;
     }
 
-    
     public boolean hasFAE(FAE fae) {
         for (FAE f : this.listaFAE) {
             if (f.equals(fae)) {
@@ -114,6 +113,9 @@ public class ListaFAE {
         }
     }
 
+    public boolean validaMinFAE() {
+        return listaFAE.size() >= 2;
+    }
 
     public String toStringCompleto() {
         String str = "";

@@ -2,9 +2,20 @@ package lapr.project.model;
 
 import lapr.project.model.lists.RegistoRecursos;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List.*;
+import java.util.Timer;
+import lapr.project.controller.DetetarConflitosController;
 import lapr.project.model.lists.*;
+import lapr.project.model.states.DemonstracaoEstado;
+import lapr.project.model.states.DemonstracaoEstadoInicial;
+import lapr.project.model.states.ExposicaoCandidaturasAbertas;
+import lapr.project.model.states.ExposicaoCandidaturasEmAvaliacao;
+import lapr.project.model.states.ExposicaoCandidaturasFechadas;
+import lapr.project.model.states.ExposicaoConflitosAlterados;
+import lapr.project.model.states.ExposicaoEstado;
+import lapr.project.model.states.ExposicaoStandsAtribuiveis;
 import lapr.project.utils.Data;
 
 /**
@@ -22,6 +33,7 @@ public class Demonstracao implements Serializable {
     private RegistoRecursos registorecurso;
     private ListaRecursoDemonstracao listarecursodemonstracao;
     private Demonstracao demonstracao;
+    private DemonstracaoEstado estado;
     /**
      * Metodo que constroi objetos demonstração
      *
@@ -34,9 +46,8 @@ public class Demonstracao implements Serializable {
     private static final String codigoDesc = "Demo-";
     private static int contador = 0;
 
-    public Demonstracao() {
-        
-        
+    public Demonstracao() throws Exception {
+        estado = new DemonstracaoEstadoInicial(this);
         this.m_listaRecursos = new RegistoRecursos();
         this.listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
         this.listarecursodemonstracao = new ListaRecursoDemonstracao();
@@ -82,14 +93,38 @@ public class Demonstracao implements Serializable {
     public void addRecursoDemonstracao(Recurso recurso) {
         this.listarecursodemonstracao.addRecursoDemonstracao(recurso);
     }
-//    /**
-//     * Metodo que modifica o codigo
-//     *
-//     * @param cod codigo
-//     */
-//    public void setCod(int cod) {
-//        this.cod = cod;
-//    }
+
+    public void createTimers() throws ParseException {
+
+//        Timer timer = new Timer();
+//
+//        task1 = new ExposicaoCandidaturasAbertas(this);
+//        timer.schedule(task1, dataInicioSubmissao.converterParaDate());
+//
+//        task2 = new ExposicaoCandidaturasFechadas(this);
+//        timer.schedule(task2, dataFimSubmissao.converterParaDate());
+//
+//        task3 = new DetetarConflitosController(this);
+//        timer.schedule(task3, dataDeteccaoConflitos.converterParaDate());
+//
+//        task4 = new ExposicaoConflitosAlterados(this);
+//        timer.schedule(task4, dataAlteracaoConflitos.converterParaDate());
+//
+//        task5 = new ExposicaoCandidaturasEmAvaliacao(this);
+//        timer.schedule(task5, dataInicioAvaliacao.converterParaDate());
+//
+//        task6 = new ExposicaoStandsAtribuiveis(this);
+//        timer.schedule(task6, dataInicioStands.converterParaDate());
+    }
+
+    public DemonstracaoEstado getEstadoAtualDemonstracao() {
+        return estado;
+    }
+    
+     public boolean alterarEstado(DemonstracaoEstado estado) {
+        this.estado = estado;
+        return true;
+    }
 
     /**
      * Metodo que modifica a descricao
@@ -107,6 +142,11 @@ public class Demonstracao implements Serializable {
     public static String getCondigoUnico() {
 
         return codigoDesc;
+    }
+
+    public void setPeriodoCandidaturas(Data inicio, Data fim) {
+        this.inicio = inicio;
+        this.fim = fim;
     }
 
     public boolean validaDescricao(String descricao) {
@@ -132,7 +172,6 @@ public class Demonstracao implements Serializable {
             return null;
         }
     }
-  
 
     public CandidaturaDemonstracao setCandidaturaDemonstracao(CandidaturaDemonstracao cd) {
         if (getListaCandidaturasDemonstracao().getListaCandidaturasDemonstracao().contains(cd)) {
@@ -229,7 +268,7 @@ public class Demonstracao implements Serializable {
     public String toStringCompleto() {
         String str = "\n";
         str += "\tDescrição: " + this.desc + "\n";
-        str += "\tCodigo Unico: " + codigoDesc + contador+ "\n";
+        str += "\tCodigo Unico: " + codigoDesc + contador + "\n";
         str += "\tTema da exposição: " + temaexposicao + "\n";
         str += "\tRecursos:\n";
         for (Recurso recurso : listarecursodemonstracao.getListaRecursoDemonstracao()) {
@@ -240,7 +279,7 @@ public class Demonstracao implements Serializable {
     }
 
     public void setRecursoDemonstracao(ListaRecursoDemonstracao listarecursodemonstracao) {
-        this.listarecursodemonstracao=listarecursodemonstracao;
+        this.listarecursodemonstracao = listarecursodemonstracao;
     }
 
     public boolean valida() {

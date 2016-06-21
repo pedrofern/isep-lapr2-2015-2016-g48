@@ -32,7 +32,7 @@ public class CriarDemonstracaoController {
         listaDemonstracao = exposicao.getListaDemonstracoes();
     }
 
-    public void novaDemonstracao() {
+    public void novaDemonstracao() throws Exception {
         demonstracao = listaDemonstracao.novaDemonstracao();
         listaRecursoDemonstracao = demonstracao.getListaRecursosDemonstracao();
         listaRecursos=ce.getRegistoRecursos();

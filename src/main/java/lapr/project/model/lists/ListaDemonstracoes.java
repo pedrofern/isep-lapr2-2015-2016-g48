@@ -22,7 +22,7 @@ public class ListaDemonstracoes {
         listaDemontracoes = new ArrayList<>();
     }
     
-     public Demonstracao novaDemonstracao() {
+     public Demonstracao novaDemonstracao() throws Exception {
         
         return new Demonstracao();
     }

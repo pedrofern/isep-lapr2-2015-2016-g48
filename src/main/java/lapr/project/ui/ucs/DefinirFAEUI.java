@@ -32,11 +32,6 @@ public class DefinirFAEUI extends JFrame {
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private static JComboBox comboBoxExposicao;
     private DefaultListModel modeloListaFAE, modeloListaUtilizadores;
-    private RegistoUtilizadores listaCompletaUtilizadores;
-    private RegistoExposicoes listaExposicoes;
-    private ListaFAE listaUtilizadoresFAE;
-    private Organizador o_Organizador;
-    private ListaOrganizadores listaOrganizadores;
     private Exposicao exposicaoselecionda;
 
     private static final Dimension LABEL_TAMANHO = new JLabel("Inserir novo utilizador").getPreferredSize();
@@ -48,10 +43,10 @@ public class DefinirFAEUI extends JFrame {
         ce = centroExposicoes;
         user = utilizador;
         controller = new DefinirFAEController(centroExposicoes, user);
-        listaCompletaUtilizadores = controller.getRegistoUTilizadores();
+      
 
-        listaExposicoes = ce.getRegistoExposicoes();
-        listaUtilizadoresFAE = controller.getListaFAE();
+       
+       
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,7 +104,7 @@ public class DefinirFAEUI extends JFrame {
 
     private JComboBox getListaExposicao() {
 
-        comboBoxExposicao = Utils.criarComboExpo(listaExposicoes);
+        comboBoxExposicao = Utils.criarComboExpo(controller.getExposicoes());
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
@@ -136,9 +131,9 @@ public class DefinirFAEUI extends JFrame {
         lstCompletaUtilizadores = new JList();
         modeloListaUtilizadores = new DefaultListModel();
         lstCompletaUtilizadores.setModel(modeloListaUtilizadores);
-        for (int i = 0; i < listaCompletaUtilizadores.getListaUtilizadores().size(); i++) {
+        for (int i = 0; i < controller.getRegistoUTilizadores().getListaUtilizadores().size(); i++) {
 
-            modeloListaUtilizadores.addElement(listaCompletaUtilizadores.getListaUtilizadores().get(i));
+            modeloListaUtilizadores.addElement(controller.getRegistoUTilizadores().getListaUtilizadores().get(i));
 
         }
 
@@ -289,24 +284,29 @@ public class DefinirFAEUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Deve seleciona uma exposição e adicionar um utilizador!", null, JOptionPane.WARNING_MESSAGE);
                 } else if (comboBoxExposicao.getSelectedIndex() == -1) {
                     JOptionPane.showMessageDialog(null, "Deve seleciona uma exposição !", null, JOptionPane.WARNING_MESSAGE);
-                } else {
+                } if (controller.validaMinFAE()) {
 
-                    if (controller.registaEstado()) {
+                        if (controller.registaEstado()) {
 
-                        JOptionPane.showMessageDialog(
-                                null,
-                                controller.getFAEString(),
-                                "Novo FAE",
-                                JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    controller.getFAEString(),
+                                    "Novo FAE",
+                                    JOptionPane.INFORMATION_MESSAGE);
 
-                        dispose();
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "O fae já se encontra registada no sistema", "Novo FAE", JOptionPane.ERROR_MESSAGE);
+
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "O fae já se encontra registada no sistema", "Novo FAE", JOptionPane.ERROR_MESSAGE);
-
+                        
+                        JOptionPane.showMessageDialog(null, "Introduza pelo menos 2 FAE", "Definir FAE", JOptionPane.ERROR_MESSAGE);
                     }
+
                 }
 
-            }
+            
 
         });
 

@@ -16,7 +16,7 @@ import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
 import lapr.project.ui.ucs.*;
 import lapr.project.utils.Data;
-import lapr.project.utils.Utils;
+import lapr.project.utils.*;
 
 /**
  *
@@ -42,7 +42,8 @@ public class TesteDiana {
         Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", true, 6);
         Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", true, 3);
         Utilizador ut6 = new Utilizador("Tomás Magalhães", "1151182@isep.ipp.pt", "Representante", true, 1);
-
+          XMLParser xlm=new XMLParser();
+          //xlm.writeXMLElementToFile(ut1, "Grego");
         RegistoUtilizadores lu = ce.getRegistoUtilizadores();
         lu.addUtilizador(ut1);
         lu.addUtilizador(ut2);
@@ -78,7 +79,7 @@ public class TesteDiana {
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 //        CriarExposicaoUI c=new CriarExposicaoUI(ce);
-       // DefinirFAEUI fa=new DefinirFAEUI(ce, user);
+       //DefinirFAEUI fa=new DefinirFAEUI(ce, user);
         //CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
       //  ListarCandidaturaRetiradaUI r = new ListarCandidaturaRetiradaUI(ce, user);
       // new Login(ce);

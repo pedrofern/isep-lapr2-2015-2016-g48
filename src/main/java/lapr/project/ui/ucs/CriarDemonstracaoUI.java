@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
@@ -78,7 +80,11 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 m_demonstracaoController.selectExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
-                m_demonstracaoController.novaDemonstracao();
+                try {
+                    m_demonstracaoController.novaDemonstracao();
+                } catch (Exception ex) {
+                    Logger.getLogger(CriarDemonstracaoUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 comboBoxExposicao.setEnabled(false);
 
             }

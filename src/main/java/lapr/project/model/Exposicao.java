@@ -13,7 +13,6 @@ import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
 
-
 /**
  *
  * @author Pedro Fernandes e Diana
@@ -39,7 +38,7 @@ public class Exposicao implements Comparable<Exposicao> {
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaAtribuicoes listaAtribuicoes;
-    
+
     private ExposicaoEstado estado;
     private TimerTask task1, task2, task3, task4, task5, task6, task7;
 
@@ -49,7 +48,7 @@ public class Exposicao implements Comparable<Exposicao> {
         listaCandidaturas = new ListaCandidaturas();
         listaDemonstracoes = new ListaDemonstracoes();
         listaFaes = new ListaFAE();
-        listaAtribuicoes=new ListaAtribuicoes();
+        listaAtribuicoes = new ListaAtribuicoes();
     }
 
     public ListaDemonstracoes getListaDemonstracoes() {
@@ -67,8 +66,8 @@ public class Exposicao implements Comparable<Exposicao> {
     public ListaCandidaturas getListaCandidaturas() {
         return listaCandidaturas;
     }
-    
-    public ListaAtribuicoes getListaAtribuicoes(){
+
+    public ListaAtribuicoes getListaAtribuicoes() {
         return listaAtribuicoes;
     }
 
@@ -111,12 +110,12 @@ public class Exposicao implements Comparable<Exposicao> {
     public String getLocal() {
         return local;
     }
-    
-    public Data getDataInicio(){
+
+    public Data getDataInicio() {
         return dataInicio;
     }
-    
-    public Data getDataFim(){
+
+    public Data getDataFim() {
         return dataFim;
     }
 
@@ -124,7 +123,7 @@ public class Exposicao implements Comparable<Exposicao> {
         return dataInicioSubmissao;
     }
 
-    public Data getDataFimSubmissao()  {
+    public Data getDataFimSubmissao() {
         return dataFimSubmissao;
     }
 
@@ -151,8 +150,8 @@ public class Exposicao implements Comparable<Exposicao> {
     public Data getDateAlteracaoConflitos() {
         return dataDeteccaoConflitos;
     }
-    
-       /**
+
+    /**
      * Obtem o estado da exposicao
      *
      * @return the state
@@ -161,10 +160,10 @@ public class Exposicao implements Comparable<Exposicao> {
         return estado;
     }
 
-    public ExposicaoEstado getEstadoAtualExposicao(){
+    public ExposicaoEstado getEstadoAtualExposicao() {
         return estado;
     }
-    
+
     public void setDataInicioSubmissao(Data strDataInicioSubmissao) {
         this.dataInicioSubmissao = strDataInicioSubmissao;
     }
@@ -177,6 +176,10 @@ public class Exposicao implements Comparable<Exposicao> {
         this.dataInicioAvaliacao = strDataInicioAtribuicao;
     }
 
+    public void setDataFimAtribuicao(Data strDataFimAtribuicao) {
+        this.dataFimAvaliacao = strDataFimAtribuicao;
+    }
+
     public void setDataFim(Data strDataFim) {
         this.dataFim = strDataFim;
     }
@@ -184,29 +187,42 @@ public class Exposicao implements Comparable<Exposicao> {
     public void setDataInicio(Data strDataInicio) {
         this.dataInicio = strDataInicio;
     }
-    
-    public void createTimers() throws ParseException{
-        
-        Timer timer=new Timer();
-        
+
+    public void setDataAlteracaoConflito(Data strDataAlteracaoConflito) {
+       
+        this.dataAlteracaoConflitos=strDataAlteracaoConflito;
+    }
+      public void setDataInicoStands(Data strDataInicioStands) {
+       
+        this.dataInicioStands=strDataInicioStands;
+    }
+       public void setDataFimStands(Data strDataFimStands) {
+       
+        this.dataFimStands=strDataFimStands;
+    }
+
+    public void createTimers() throws ParseException {
+
+        Timer timer = new Timer();
+
         task1 = new ExposicaoCandidaturasAbertas(this);
         timer.schedule(task1, dataInicioSubmissao.converterParaDate());
-        
-        task2= new ExposicaoCandidaturasFechadas(this); 
+
+        task2 = new ExposicaoCandidaturasFechadas(this);
         timer.schedule(task2, dataFimSubmissao.converterParaDate());
 
-        task3= new DetetarConflitosController(this);
+        task3 = new DetetarConflitosController(this);
         timer.schedule(task3, dataDeteccaoConflitos.converterParaDate());
-        
-        task4=new ExposicaoConflitosAlterados(this);
+
+        task4 = new ExposicaoConflitosAlterados(this);
         timer.schedule(task4, dataAlteracaoConflitos.converterParaDate());
-        
-        task5=new ExposicaoCandidaturasEmAvaliacao(this);
+
+        task5 = new ExposicaoCandidaturasEmAvaliacao(this);
         timer.schedule(task5, dataInicioAvaliacao.converterParaDate());
-        
-        task6=new ExposicaoStandsAtribuiveis(this);
+
+        task6 = new ExposicaoStandsAtribuiveis(this);
         timer.schedule(task6, dataInicioStands.converterParaDate());
-    } 
+    }
 
     /**
      * Verifica se a exposicao é igual a um objeto passado por parâmetro
@@ -250,12 +266,11 @@ public class Exposicao implements Comparable<Exposicao> {
      * @param estado estado para o qual a exposição se altera
      * @return boolean se alterou ou não
      */
-     
-    public boolean alterarEstado(ExposicaoEstado estado){
-        this.estado=estado;
+    public boolean alterarEstado(ExposicaoEstado estado) {
+        this.estado = estado;
         return true;
     }
-    
+
     public void setListaFaes(ListaFAE lstFaes) {
         listaFaes = lstFaes;
     }
@@ -281,15 +296,14 @@ public class Exposicao implements Comparable<Exposicao> {
     }
 
     public boolean hasFAE(Utilizador u) {
-        for (FAE fae: listaFaes.getListaFAE()){
+        for (FAE fae : listaFaes.getListaFAE()) {
             if (fae.getEmail().equals(u.getEmail())) {
                 return true;
             }
         }
         return false;
     }
-    
-    
+
     public boolean validaDefinirFAE(FAE f) {
         return f.validaMenbroFAE();
     }
@@ -297,8 +311,8 @@ public class Exposicao implements Comparable<Exposicao> {
     @Override
     public int compareTo(Exposicao outraExposicao) {
         return titulo.compareTo(outraExposicao.titulo);
-    }    
-    
+    }
+
     public boolean valida() {
         return validaTitulo() == true && validaTextoDescritivo() == true && validaLocal() == true;
     }
@@ -344,7 +358,6 @@ public class Exposicao implements Comparable<Exposicao> {
         return dataInicio.isMaior(dataFimStands) || dataFimStands.isMaior(dataFimAvaliacao) && dataFimAvaliacao.isMaior(dataAlteracaoConflitos)
                 && dataAlteracaoConflitos.isMaior(dataDeteccaoConflitos) && dataDeteccaoConflitos.isMaior(dataFimSubmissao);
     }
-
 
     @Override
     public String toString() {

@@ -7,7 +7,7 @@ import lapr.project.utils.*;
  *
  * @author Pedro Fernandes
  */
-public class Utilizador implements Comparable<Utilizador>{
+public class Utilizador implements Comparable<Utilizador>  {
 
     private String nome;
     private String email;
