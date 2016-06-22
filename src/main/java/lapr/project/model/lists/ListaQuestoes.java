@@ -4,7 +4,6 @@ package lapr.project.model.lists;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Avaliacao;
 import lapr.project.model.CalculatorExample;
 import lapr.project.model.Questao;
 
@@ -14,9 +13,8 @@ import lapr.project.model.Questao;
  */
 
 public class ListaQuestoes implements Serializable{
-    private Avaliacao m_avaliacao;
-    private List<Questao> m_listaQuestoes;
-    private Questao m_questao;
+
+    private ArrayList<Questao> m_listaQuestoes;
     
     public ListaQuestoes(){
         

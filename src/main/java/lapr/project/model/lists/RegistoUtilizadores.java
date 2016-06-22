@@ -10,7 +10,7 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoUtilizadores implements Serializable{
 
-    private List<Utilizador> m_listaUtilizadores;
+    private ArrayList<Utilizador> m_listaUtilizadores;
 
     public RegistoUtilizadores() {
         m_listaUtilizadores = new ArrayList<>();

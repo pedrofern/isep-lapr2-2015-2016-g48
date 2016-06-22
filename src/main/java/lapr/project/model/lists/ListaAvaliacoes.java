@@ -14,7 +14,7 @@ import lapr.project.model.FAE;
  * @author Pedro Fernandes
  */
 public class ListaAvaliacoes implements Serializable{
-     private List<Avaliacao> listaAvaliacoes;
+     private ArrayList<Avaliacao> listaAvaliacoes;
 
     public ListaAvaliacoes() {
         this.listaAvaliacoes = new ArrayList<>();

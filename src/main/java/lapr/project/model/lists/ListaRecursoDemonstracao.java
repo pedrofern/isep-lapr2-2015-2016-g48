@@ -16,7 +16,7 @@ import lapr.project.model.Recurso;
  */
 public class ListaRecursoDemonstracao implements Serializable{
 
-    private List<Recurso> listarecursodemonstracao;
+    private ArrayList<Recurso> listarecursodemonstracao;
 
     public ListaRecursoDemonstracao() {
         listarecursodemonstracao = new ArrayList<>();

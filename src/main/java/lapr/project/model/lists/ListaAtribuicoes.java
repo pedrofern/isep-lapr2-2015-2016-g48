@@ -9,7 +9,7 @@ import lapr.project.model.Atribuicao;
  * @author DianaSilva
  */
 public class ListaAtribuicoes implements Serializable{
-    private List<Atribuicao> listaAtribuicoes;
+    private ArrayList<Atribuicao> listaAtribuicoes;
 
     public ListaAtribuicoes() {
         this.listaAtribuicoes = new ArrayList<>();

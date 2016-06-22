@@ -13,8 +13,7 @@ public class ListaFAE implements Serializable{
     /**
      * A lista de fae
      */
-    private List<FAE> listaFAE;
-    private FAE fae;
+    private ArrayList<FAE> listaFAE;
 
     /**
      * Constroi um ArrayList de FAE

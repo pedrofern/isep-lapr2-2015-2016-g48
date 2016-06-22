@@ -10,7 +10,7 @@ import lapr.project.model.mechanisms.TipoConflito;
  * @author Pedro Fernandes
  */
 public class RegistoTipoConflitos implements Serializable{
-    private List<TipoConflito> listaTipoConflitos;
+    private ArrayList<TipoConflito> listaTipoConflitos;
 
     public RegistoTipoConflitos() {
         listaTipoConflitos = new ArrayList<>();

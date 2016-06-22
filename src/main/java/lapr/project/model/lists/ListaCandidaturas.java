@@ -11,7 +11,7 @@ import lapr.project.model.Candidatura;
  */
 public class ListaCandidaturas implements Serializable{
     
-    private List<Candidatura> listaCandidaturas;
+    private ArrayList<Candidatura> listaCandidaturas;
 
     public ListaCandidaturas() {
         listaCandidaturas = new ArrayList<>();

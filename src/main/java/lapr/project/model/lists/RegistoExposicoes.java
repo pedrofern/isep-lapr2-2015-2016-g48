@@ -14,8 +14,7 @@ import lapr.project.model.states.*;
  */
 public class RegistoExposicoes implements Serializable{
 
-    private List<Exposicao> listaExposicoes;
-    private List<Utilizador> listaUtilizadores;
+    private ArrayList<Exposicao> listaExposicoes;
 
     public RegistoExposicoes() {
         listaExposicoes = new ArrayList<>();
@@ -56,75 +55,6 @@ public class RegistoExposicoes implements Serializable{
 
     public List<Exposicao> getExposicoes() {
         return listaExposicoes;
-    }
-
-    public List<Exposicao> getExposicaoOrganizador(String strId) {
-        List<Exposicao> leOrganizador = new ArrayList<>();
-
-        Utilizador user = null;
-
-        for (Utilizador u : this.listaUtilizadores) {
-            if (u.hasID(strId)) {
-                user = u;
-            }
-        }
-
-        if (user != null) {
-            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
-                Exposicao e = it.next();
-
-                if (e.hasOrganizador(user)) {
-                    leOrganizador.add(e);
-                }
-            }
-        }
-        return leOrganizador;
-    }
-
-    public List<Exposicao> getExposicaoFAE(String strId) {
-        List<Exposicao> leFAE = new ArrayList<>();
-
-        Utilizador user = null;
-
-        for (Utilizador u : this.listaUtilizadores) {
-            if (u.hasID(strId)) {
-                user = u;
-            }
-        }
-
-        if (user != null) {
-            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
-                Exposicao e = it.next();
-
-                if (e.hasFAE(user)) {
-                    leFAE.add(e);
-                }
-            }
-        }
-        return leFAE;
-    }
-
-    public List<Exposicao> geListatExposicaoOrganizador(String email) {
-        List<Exposicao> leOrg = new ArrayList<>();
-
-        Utilizador user = null;
-
-        for (Utilizador u : this.listaUtilizadores) {
-            if (u.hasEmail(email)) {
-                user = u;
-            }
-        }
-
-        if (user != null) {
-            for (Iterator<Exposicao> it = this.listaExposicoes.listIterator(); it.hasNext();) {
-                Exposicao e = it.next();
-
-                if (e.hasOrganizador(user)) {
-                    leOrg.add(e);
-                }
-            }
-        }
-        return leOrg;
     }
 
     public Exposicao[] getArray() {

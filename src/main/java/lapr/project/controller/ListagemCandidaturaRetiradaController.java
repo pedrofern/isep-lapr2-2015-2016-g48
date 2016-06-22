@@ -32,10 +32,10 @@ public class ListagemCandidaturaRetiradaController {
         listacandidaturas = new ListaCandidaturas();
     }
 
-    public List<Exposicao> getListaExposicaoOrganizador(String email) {
-        
-        return listaExposicoes.geListatExposicaoOrganizador(email);
-    }
+//    public List<Exposicao> getListaExposicaoOrganizador(String email) {
+//        
+//        return listaExposicoes.geListatExposicaoOrganizador(email);
+//    }
     
 
 }

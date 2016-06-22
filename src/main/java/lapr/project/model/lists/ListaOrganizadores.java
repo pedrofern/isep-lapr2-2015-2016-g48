@@ -14,7 +14,7 @@ public class ListaOrganizadores implements Serializable{
     /**
      * A lista de Organizadores.
      */
-    private List<Organizador> listaOrganizadores;
+    private ArrayList<Organizador> listaOrganizadores;
 
     /**
      * Constroi um ArrayList de Organizadores.

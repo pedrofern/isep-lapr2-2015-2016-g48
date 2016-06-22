@@ -16,7 +16,7 @@ import lapr.project.model.mechanisms.MecanismoAtribuicao;
  * @author Diana
  */
 public class RegistoMecanismosAtribuicao implements Serializable{
-     private List<MecanismoAtribuicao> listaMecanismoAtribuicao;
+     private ArrayList<MecanismoAtribuicao> listaMecanismoAtribuicao;
      
      public RegistoMecanismosAtribuicao(){
          listaMecanismoAtribuicao=new ArrayList<>();
