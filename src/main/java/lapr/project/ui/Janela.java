@@ -279,9 +279,10 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private void terminar() {
-        int x=0;
-        this.fichCentroExposicoes.guardarFichBinario(Janela.ce);
-        System.exit(0);
+        System.out.println(ce.getRegistoUtilizadores());
+        System.out.println(ce.getRegistoExposicoes());
+        this.fichCentroExposicoes.guardarFichBinario(this.ce);
+        dispose();
     }
     
     public static JTabbedPane getTabPane(){

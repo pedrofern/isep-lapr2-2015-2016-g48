@@ -24,7 +24,7 @@ public class ExposicaoEstadoInicial implements ExposicaoEstado,Serializable {
     public boolean setCriada() throws ParseException{
         if(valida()){
             
-            exposicao.createTimers();
+//            exposicao.createTimers();
             return exposicao.alterarEstado(new ExposicaoEstadoCriada(exposicao));
             
         }

@@ -113,9 +113,9 @@ public class CriarExposicaoController {
         return this.exposicao.toStringCompleto();
     }
     
-    public void addTimer() throws Exception{
-        exposicao.createTimers();
-    }
+//    public void addTimer() throws Exception{
+//        exposicao.createTimers();
+//    }
     
     public Exposicao getExposicao(){
         return exposicao;

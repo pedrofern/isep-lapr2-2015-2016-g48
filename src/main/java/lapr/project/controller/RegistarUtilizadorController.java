@@ -41,6 +41,9 @@ public class RegistarUtilizadorController {
 
     }
     
+    public Utilizador getUtilizador(){
+        return this.utilizador;
+    }
 
     public void setUtilizador(Utilizador user) {
         this.utilizador = user;

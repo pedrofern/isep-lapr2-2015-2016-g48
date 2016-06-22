@@ -3,9 +3,9 @@ package lapr.project.ui.ucs;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import lapr.project.controller.*;
 import lapr.project.model.*;
+import lapr.project.ui.Janela;
 import lapr.project.ui.FichCentroExposicoes;
 
 /**
@@ -28,6 +28,7 @@ public class RegistarUtilizadorUI extends JFrame{
      */
     private FichCentroExposicoes fichCentroExposicoes;
     private CentroExposicoes ce;
+    private JFrame framePai;
     
     private String pergunta="Pretende cancelar o registo do utilizador?";
       
@@ -41,7 +42,8 @@ public class RegistarUtilizadorUI extends JFrame{
         this.fichCentroExposicoes = fichCentroExposicoes;
         this.ce = centroExposicoes;
         this.controllerRU = new RegistarUtilizadorController(ce);
- 
+        this.framePai=framePai;
+        
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -176,7 +178,7 @@ public class RegistarUtilizadorUI extends JFrame{
                                     +"\nEmail: "+email,
                             "Registar Utilizador",
                             JOptionPane.INFORMATION_MESSAGE);  
-            this.fichCentroExposicoes.guardarFichBinario(this.ce);
+            Janela j = new Janela(ce, fichCentroExposicoes, controllerRU.getUtilizador());
             dispose();
     }
      
