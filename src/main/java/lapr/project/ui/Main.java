@@ -19,7 +19,11 @@ public class Main {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-            CentroExposicoes ce;
+            
+            FichCentroExposicoes fichCentroExposicoes = new FichCentroExposicoes();
+
+            CentroExposicoes ce = fichCentroExposicoes.lerFichBinario();
+
 //            for(UIManager.LookAndFeelInfo info: UIManager.getInstalledLookAndFeels()){
 //                if ("Nimbus".equals(info.getName())){
 //                    try {
@@ -37,7 +41,7 @@ public class Main {
 //        if (ce == null) {
              ce = new CentroExposicoes();        
 //        }
-                Login log = new Login(ce);
+                Login log = new Login(ce, fichCentroExposicoes);
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
 	}

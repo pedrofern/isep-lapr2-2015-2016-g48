@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import lapr.project.utils.*;
 
@@ -7,7 +8,7 @@ import lapr.project.utils.*;
  *
  * @author Pedro Fernandes
  */
-public class Utilizador implements Comparable<Utilizador>  {
+public class Utilizador implements Comparable<Utilizador>, Serializable  {
 
     private String nome;
     private String email;

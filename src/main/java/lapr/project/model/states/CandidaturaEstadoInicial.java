@@ -5,17 +5,19 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import lapr.project.model.Candidatura;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class CandidaturaEstadoInicial implements CandidaturaEstado{
-    private final Candidatura candidatura;
+public class CandidaturaEstadoInicial implements CandidaturaEstado, Serializable{
+
+    private CandidaturaEmSubmissao estadoCandidaturaEmSubmissao;
     
     public CandidaturaEstadoInicial(Candidatura candidatura){
-        this.candidatura=candidatura;                
+        estadoCandidaturaEmSubmissao = new CandidaturaEmSubmissao(candidatura);
     }
     
     @Override

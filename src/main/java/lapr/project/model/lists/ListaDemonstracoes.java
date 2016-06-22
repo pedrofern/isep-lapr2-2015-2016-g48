@@ -2,16 +2,14 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class ListaDemonstracoes {
+public class ListaDemonstracoes implements Serializable{
 
     private ArrayList<Demonstracao> listaDemontracoes;
     

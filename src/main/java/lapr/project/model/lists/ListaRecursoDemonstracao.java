@@ -5,18 +5,16 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.FAE;
 import lapr.project.model.Recurso;
-import lapr.project.model.Utilizador;
 
 /**
  *
  * @author Edu
  */
-public class ListaRecursoDemonstracao {
+public class ListaRecursoDemonstracao implements Serializable{
 
     private List<Recurso> listarecursodemonstracao;
 

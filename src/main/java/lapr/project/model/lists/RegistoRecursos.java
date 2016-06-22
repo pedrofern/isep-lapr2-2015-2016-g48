@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.Recurso;
 
@@ -7,7 +8,7 @@ import lapr.project.model.Recurso;
  *
  * @author Pedro Fernandes
  */
-public class RegistoRecursos {
+public class RegistoRecursos implements Serializable{
 
     private ArrayList<Recurso> listaRecursos;
     private Recurso m_r;

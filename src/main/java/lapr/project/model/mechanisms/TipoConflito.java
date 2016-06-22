@@ -1,12 +1,13 @@
 package lapr.project.model.mechanisms;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class TipoConflito {
+public class TipoConflito implements Serializable{
 
     private String descricao;
     private MecanismoDetecaoConflito mecanismo;

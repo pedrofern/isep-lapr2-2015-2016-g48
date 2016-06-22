@@ -5,13 +5,14 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import lapr.project.model.Candidatura;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class CandidaturaAvaliada implements CandidaturaEstado{
+public class CandidaturaAvaliada implements CandidaturaEstado, Serializable{
     
     private final Candidatura candidatura;
     

@@ -1,7 +1,7 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import lapr.project.model.Exposicao;
@@ -12,7 +12,7 @@ import lapr.project.model.states.*;
  *
  * @author Pedro Fernandes, Diana Silva
  */
-public class RegistoExposicoes {
+public class RegistoExposicoes implements Serializable{
 
     private List<Exposicao> listaExposicoes;
     private List<Utilizador> listaUtilizadores;

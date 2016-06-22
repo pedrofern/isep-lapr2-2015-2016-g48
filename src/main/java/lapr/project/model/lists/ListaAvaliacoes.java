@@ -1,19 +1,19 @@
 
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
-import lapr.project.model.Atribuicao;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class ListaAvaliacoes {
+public class ListaAvaliacoes implements Serializable{
      private List<Avaliacao> listaAvaliacoes;
 
     public ListaAvaliacoes() {

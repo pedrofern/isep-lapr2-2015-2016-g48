@@ -1,12 +1,12 @@
 package lapr.project.model;
 
-import java.util.*;
+import java.io.Serializable;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class Organizador implements Comparable<Utilizador>{
+public class Organizador implements Comparable<Utilizador>, Serializable{
 
     private Utilizador utilizador;
 

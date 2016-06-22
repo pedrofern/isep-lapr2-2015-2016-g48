@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ListIterator;
 import lapr.project.model.lists.*;
 import lapr.project.model.states.*;
@@ -13,7 +14,7 @@ import lapr.project.model.states.*;
  *
  * @author Pedro Fernandes
  */
-public class CandidaturaDemonstracao {
+public class CandidaturaDemonstracao implements Serializable{
     
     private String nomeEmpresaCD;
     private String moradaCD;

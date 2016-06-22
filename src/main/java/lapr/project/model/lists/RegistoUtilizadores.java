@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.Utilizador;
 
@@ -7,7 +8,7 @@ import lapr.project.model.Utilizador;
  *
  * @author Pedro Fernandes
  */
-public class RegistoUtilizadores {
+public class RegistoUtilizadores implements Serializable{
 
     private List<Utilizador> m_listaUtilizadores;
 

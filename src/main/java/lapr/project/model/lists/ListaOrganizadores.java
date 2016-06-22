@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
@@ -8,7 +9,7 @@ import lapr.project.model.Utilizador;
  *
  * @author Pedro Fernandes
  */
-public class ListaOrganizadores {
+public class ListaOrganizadores implements Serializable{
 
     /**
      * A lista de Organizadores.

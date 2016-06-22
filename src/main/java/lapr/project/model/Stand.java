@@ -1,15 +1,15 @@
 package lapr.project.model;
 
-import lapr.project.model.lists.ListaDemonstracoes;
+import java.io.Serializable;
 import lapr.project.model.lists.RegistoStands;
 
 /**
  *
  * @author Dians
  */
-public class Stand {
+public class Stand implements Serializable{
     
-     private String descricao;
+    private String descricao;
     private String area;
     private RegistoStands mListaStands;
     private Exposicao expo;

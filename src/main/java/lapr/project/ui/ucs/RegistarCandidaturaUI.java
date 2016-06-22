@@ -146,7 +146,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JPanel criarPainelNorte() {
         JPanel p = new JPanel(new BorderLayout());
         
-        p.add(criarPainelExposicao(controllerRCC.getRegistoExposicoes()),BorderLayout.WEST);
+        p.add(criarPainelExposicao(controllerRCC.getExposicoesEstadoCandidaturasAbertas()),BorderLayout.WEST);
         p.add(criarPainelDados(),BorderLayout.CENTER);
         p.add(criarPainelKeywords(),BorderLayout.EAST);
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
@@ -552,6 +552,8 @@ public class RegistarCandidaturaUI extends JFrame{
                                 "Nova Candidatura",
                                 JOptionPane.ERROR_MESSAGE);
                         }else{
+                            controllerRCC.getSelectedDemonstacao();
+                            
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura adicionada: \n"
@@ -707,11 +709,13 @@ public class RegistarCandidaturaUI extends JFrame{
         return p;
     }
     private JPanel criarPainelCheckBoxDemo(){
-        JPanel pCheck=new JPanel(new FlowLayout());
+        JPanel pCheck=new JPanel();
         
         Demonstracao[] opcoes=controllerRCC.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
+        
+        setLayout(new GridLayout(LINHAS, 1));
 
         for(Demonstracao d:opcoes){
             String sDemo=d.toString();
@@ -722,8 +726,7 @@ public class RegistarCandidaturaUI extends JFrame{
                 @Override
                 public void itemStateChanged(ItemEvent e) {
                    if(cbDemo.isSelected()){
-                      
-        System.out.println("selecionou");        
+                      controllerRCC.selectDemonstracao(d);
                    }
                }
             });

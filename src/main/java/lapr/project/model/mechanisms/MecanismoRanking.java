@@ -5,8 +5,8 @@
  */
 package lapr.project.model.mechanisms;
 
+import java.io.Serializable;
 import lapr.project.model.Atribuicao;
-import java.util.Collections;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
@@ -18,7 +18,7 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
-public class MecanismoRanking implements MecanismoAtribuicao{
+public class MecanismoRanking implements MecanismoAtribuicao, Serializable{
     
     private static final String TIPO= "Qualidade FAE" ;
     private Exposicao exposicao;

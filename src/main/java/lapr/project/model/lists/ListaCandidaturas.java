@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.ArrayList;
 import lapr.project.model.Candidatura;
@@ -8,7 +9,7 @@ import lapr.project.model.Candidatura;
  *
  * @author Pedro Fernandes
  */
-public class ListaCandidaturas {
+public class ListaCandidaturas implements Serializable{
     
     private List<Candidatura> listaCandidaturas;
 

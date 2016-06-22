@@ -1,6 +1,7 @@
 
 package lapr.project.model.mechanisms;
 
+import java.io.Serializable;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
@@ -12,7 +13,7 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
-public class MecanismoCarga {
+public class MecanismoCarga implements Serializable{
 
     
     private static final String TIPO_MECANISMO= "Distribuir equitativamente" ;

@@ -1,12 +1,13 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class Produto {
+public class Produto implements Serializable{
 
     private String nomeProduto;
 

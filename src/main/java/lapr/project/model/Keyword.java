@@ -5,13 +5,14 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class Keyword {
+public class Keyword implements Serializable{
     
     private String keywordDescricao;
 

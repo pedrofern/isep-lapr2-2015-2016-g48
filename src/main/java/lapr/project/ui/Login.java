@@ -16,7 +16,7 @@ import lapr.project.model.*;
  */
 public class Login extends JFrame /**implements Serializable**/ {
     
-    private CentroExposicoes m_ce;
+    private CentroExposicoes ce;
     private String id_utilizador;
     // private FicheiroCentroExposicoes fce;
     private static final int WIDTH=300, HEIGHT=250;
@@ -25,33 +25,37 @@ public class Login extends JFrame /**implements Serializable**/ {
     private JTextField username;
     private JPasswordField password;
     private Login framePai;
-    private String m_ut;
+//    private String m_ut;
     private JButton btnOK;
-    //private FicheiroCentroExposicoes ficheiroCentroExposicoes;
+    /**
+     * Guarda objectos do tipo FichCentroExposicoes
+     */
+    private FichCentroExposicoes fichCentroExposicoes;
 
     private static final Dimension LABEL_TAMANHO = new JLabel("Username").getPreferredSize();        
     
-    public Login(CentroExposicoes ce){
+    public Login(CentroExposicoes ce,FichCentroExposicoes fichCentroExposicoes){
         
         super("Menu Login");
-        this.m_ce=ce;
+        this.fichCentroExposicoes = fichCentroExposicoes;
+        this.ce=ce;
         
         //Para teste
-                     Utilizador ut1=new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true,15 );
-                     
-                    Utilizador ut2= new Utilizador("Ana Silva", "1130155@isep.ipp.pt","Gestor",true,10);
-                    Utilizador ut3= new Utilizador("Diana Silva", "1151088@isep.ipp.pt","Organizador",true,8);
-                    Utilizador ut4= new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt","Organizador+Fae",true, 6);
-                    Utilizador ut5= new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt","Fae",true,3);
-                    Utilizador ut6= new Utilizador("Tomás Magalhães" , "1151182@isep.ipp.pt","Representante",true,1);
-                   
-            
-                   RegistoUtilizadores lu = m_ce.getRegistoUtilizadores();
-                   lu.addUtilizador(ut1);
-                   lu.addUtilizador(ut2);
-                   lu.addUtilizador(ut3);
-                   lu.addUtilizador(ut4);
-                   lu.addUtilizador(ut5);
+//                     Utilizador ut1=new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true,15 );
+//                     
+//                    Utilizador ut2= new Utilizador("Ana Silva", "1130155@isep.ipp.pt","Gestor",true,10);
+//                    Utilizador ut3= new Utilizador("Diana Silva", "1151088@isep.ipp.pt","Organizador",true,8);
+//                    Utilizador ut4= new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt","Organizador+Fae",true, 6);
+//                    Utilizador ut5= new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt","Fae",true,3);
+//                    Utilizador ut6= new Utilizador("Tomás Magalhães" , "1151182@isep.ipp.pt","Representante",true,1);
+//                   
+//            
+//                   RegistoUtilizadores lu = m_ce.getRegistoUtilizadores();
+//                   lu.addUtilizador(ut1);
+//                   lu.addUtilizador(ut2);
+//                   lu.addUtilizador(ut3);
+//                   lu.addUtilizador(ut4);
+//                   lu.addUtilizador(ut5);
         
 
         framePai = Login.this;
@@ -69,7 +73,7 @@ public class Login extends JFrame /**implements Serializable**/ {
             }
         });
         
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -173,7 +177,7 @@ public class Login extends JFrame /**implements Serializable**/ {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                new RegistarUtilizadorUI(m_ce);  
+                new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
                 
             }
         });
@@ -245,16 +249,16 @@ public class Login extends JFrame /**implements Serializable**/ {
 //                    System.out.println(u.toString());
 //                }
             
-                 for(Utilizador u: m_ce.getRegistoUtilizadores().getListaUtilizadores()){
+                 for(Utilizador u: ce.getRegistoUtilizadores().getListaUtilizadores()){
      
                      if(username.getText().equalsIgnoreCase(u.getUsername())){
             
                         if(u.getRegistado()!= false){
                         JOptionPane.showMessageDialog(null, "Utilizador válido. Bem vindo!");
-                        new Janela (m_ce, u);
+                        new Janela (ce,fichCentroExposicoes, u);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
-                        new RegistarUtilizadorUI(m_ce);  
+                        new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
                     }
                 }
                   }
@@ -279,7 +283,7 @@ public class Login extends JFrame /**implements Serializable**/ {
     }
     
     private void terminar() {
-//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
+        this.fichCentroExposicoes.guardarFichBinario(this.ce);
         System.exit(0);
     }
 }

@@ -5,6 +5,7 @@
  */
 package lapr.project.model.mechanisms;
 
+import java.io.Serializable;
 import lapr.project.model.Atribuicao;
 import java.util.Collections;
 import lapr.project.model.Candidatura;
@@ -18,7 +19,7 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
-public class MecanismoTempoServico implements MecanismoAtribuicao {
+public class MecanismoTempoServico implements MecanismoAtribuicao, Serializable {
     
     private static final String TIPO= "Tempo de Serviço" ;
     private Exposicao exposicao;

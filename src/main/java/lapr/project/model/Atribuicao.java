@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
@@ -10,7 +11,7 @@ import lapr.project.model.Utilizador;
  *
  * @author DianaSilva
  */
-public class Atribuicao {
+public class Atribuicao implements Serializable{
 
    
     private Avaliacao avaliacao;

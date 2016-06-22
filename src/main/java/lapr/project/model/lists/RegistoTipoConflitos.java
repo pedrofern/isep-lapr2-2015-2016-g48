@@ -1,6 +1,6 @@
 package lapr.project.model.lists;
 
-import lapr.project.model.mechanisms.TipoConflito;
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
 import lapr.project.model.mechanisms.TipoConflito;
@@ -9,7 +9,7 @@ import lapr.project.model.mechanisms.TipoConflito;
  *
  * @author Pedro Fernandes
  */
-public class RegistoTipoConflitos {
+public class RegistoTipoConflitos implements Serializable{
     private List<TipoConflito> listaTipoConflitos;
 
     public RegistoTipoConflitos() {

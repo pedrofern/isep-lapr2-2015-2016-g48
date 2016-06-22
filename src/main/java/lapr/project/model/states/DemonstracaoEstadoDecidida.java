@@ -5,15 +5,15 @@
  */
 package lapr.project.model.states;
 
-import java.util.TimerTask;
+import java.io.Serializable;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
+
 
 /**
  *
  * @author Edu
  */
-public class DemonstracaoEstadoDecidida implements DemonstracaoEstado{
+public class DemonstracaoEstadoDecidida implements DemonstracaoEstado, Serializable{
     
     private final Demonstracao  demonstracao;
 

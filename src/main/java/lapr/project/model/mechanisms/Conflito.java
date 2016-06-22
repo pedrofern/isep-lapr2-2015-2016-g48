@@ -1,12 +1,13 @@
 package lapr.project.model.mechanisms;
 
+import java.io.Serializable;
 import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class Conflito {
+public class Conflito implements Serializable{
     
     MecanismoDetecaoConflito m_mecanismoDetecaoConflito;
 

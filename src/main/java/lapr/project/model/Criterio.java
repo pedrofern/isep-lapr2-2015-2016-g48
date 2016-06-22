@@ -1,10 +1,12 @@
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Diana Silva
  */
-public enum Criterio {
+public enum Criterio implements Serializable{
     
     CONHECIMENTO{
         @Override

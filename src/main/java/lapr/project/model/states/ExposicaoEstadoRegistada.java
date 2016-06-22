@@ -5,6 +5,7 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import lapr.project.model.Exposicao;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
@@ -13,7 +14,7 @@ import lapr.project.utils.Utils;
  *
  * @author Diana Silva
  */
-public class ExposicaoEstadoRegistada implements ExposicaoEstado {
+public class ExposicaoEstadoRegistada implements ExposicaoEstado,Serializable {
     
     private final Exposicao exposicao;
     

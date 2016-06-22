@@ -6,6 +6,7 @@ import javax.swing.*;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import lapr.project.controller.*;
 import lapr.project.model.*;
+import lapr.project.ui.FichCentroExposicoes;
 
 /**
  *
@@ -22,6 +23,10 @@ public class RegistarUtilizadorUI extends JFrame{
      */
     private static final int JANELA_ALTURA_MINIMO = 275; 
     
+    /**
+     * Guarda objectos do tipo FichCentroExposicoes
+     */
+    private FichCentroExposicoes fichCentroExposicoes;
     private CentroExposicoes ce;
     
     private String pergunta="Pretende cancelar o registo do utilizador?";
@@ -30,10 +35,10 @@ public class RegistarUtilizadorUI extends JFrame{
     
     private PainelDadosUtilizador norte;
     
-    public RegistarUtilizadorUI(CentroExposicoes centroExposicoes) {
+    public RegistarUtilizadorUI(CentroExposicoes centroExposicoes, FichCentroExposicoes fichCentroExposicoes) {
         
         super("Registar Utilizador");
- 
+        this.fichCentroExposicoes = fichCentroExposicoes;
         this.ce = centroExposicoes;
         this.controllerRU = new RegistarUtilizadorController(ce);
  
@@ -170,7 +175,8 @@ public class RegistarUtilizadorUI extends JFrame{
                                     +"\nNome: "+nome
                                     +"\nEmail: "+email,
                             "Registar Utilizador",
-                            JOptionPane.INFORMATION_MESSAGE);    
+                            JOptionPane.INFORMATION_MESSAGE);  
+            this.fichCentroExposicoes.guardarFichBinario(this.ce);
             dispose();
     }
      

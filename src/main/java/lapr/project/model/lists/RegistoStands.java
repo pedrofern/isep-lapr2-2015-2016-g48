@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import lapr.project.model.Stand;
 
@@ -7,7 +8,7 @@ import lapr.project.model.Stand;
  *
  * @author Tomas
  */
-public class RegistoStands {
+public class RegistoStands implements Serializable{
     
     private ArrayList<Stand> listaStands;
     private Stand m_s;

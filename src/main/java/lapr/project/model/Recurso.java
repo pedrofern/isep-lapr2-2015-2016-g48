@@ -1,12 +1,13 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class Recurso implements Comparable<Recurso> {
+public class Recurso implements Comparable<Recurso>, Serializable {
 
     private String descricao;
 

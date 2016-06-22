@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * alterado por Diana Silva <1151088@isep.ipp.pt> on 11/06/16.
  */
-public class CalculatorExample {
+public class CalculatorExample implements Serializable{
 
         /**
          * Calculate the sum of five int numbers.

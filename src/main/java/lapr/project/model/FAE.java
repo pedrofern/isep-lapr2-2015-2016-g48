@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaKeywords;
@@ -8,7 +9,7 @@ import lapr.project.model.lists.ListaKeywords;
  *
  * @author Pedro Fernandes
  */
-public class FAE implements Comparable<FAE> {
+public class FAE implements Comparable<FAE>,Serializable {
 
     private final String nome, email, username;
     private Utilizador o_utilizador;

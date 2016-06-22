@@ -5,15 +5,16 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
+
 
 /**
  *
  * @author Edu
  */
-public class DemonstracaoEstadoInicial implements DemonstracaoEstado {
+public class DemonstracaoEstadoInicial implements DemonstracaoEstado, Serializable {
 
     private final Demonstracao demonstracao;
     

@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import lapr.project.model.lists.RegistoTipoConflitos;
 import lapr.project.model.lists.RegistoMecanismosAtribuicao;
 //import lapr.project.model.mechanisms.*;
@@ -9,7 +10,7 @@ import lapr.project.model.lists.*;
  *
  * @author Pedro Fernandes
  */
-public class CentroExposicoes {
+public class CentroExposicoes implements Serializable{
 
     private RegistoRecursos regRecursos;
     private RegistoExposicoes regExposicoes;

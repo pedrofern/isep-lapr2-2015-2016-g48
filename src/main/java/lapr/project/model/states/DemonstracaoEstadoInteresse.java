@@ -5,14 +5,15 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
+
 
 /**
  *
  * @author Edu
  */
-public class DemonstracaoEstadoInteresse implements DemonstracaoEstado {
+public class DemonstracaoEstadoInteresse implements DemonstracaoEstado, Serializable {
     
         private final Demonstracao demonstracao;
  

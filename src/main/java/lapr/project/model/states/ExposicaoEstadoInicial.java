@@ -5,6 +5,7 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import lapr.project.model.Exposicao;
 
@@ -12,7 +13,7 @@ import lapr.project.model.Exposicao;
  *
  * @author Diana Silva
  */
-public class ExposicaoEstadoInicial implements ExposicaoEstado {
+public class ExposicaoEstadoInicial implements ExposicaoEstado,Serializable {
 
     private final  Exposicao exposicao;
     

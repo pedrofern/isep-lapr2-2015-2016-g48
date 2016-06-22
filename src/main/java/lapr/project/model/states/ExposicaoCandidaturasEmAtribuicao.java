@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package lapr.project.model.states;
+import java.io.Serializable;
 import lapr.project.model.Exposicao;
 
 /**
  *
  * @author Diana Silva
  */
-public class ExposicaoCandidaturasEmAtribuicao implements ExposicaoEstado{
+public class ExposicaoCandidaturasEmAtribuicao implements ExposicaoEstado,Serializable{
     
     private final Exposicao exposicao;
     

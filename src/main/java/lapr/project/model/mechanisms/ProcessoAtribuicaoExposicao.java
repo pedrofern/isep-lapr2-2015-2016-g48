@@ -1,5 +1,6 @@
 package lapr.project.model.mechanisms;
 
+import java.io.Serializable;
 import java.util.Objects;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.mechanisms.ProcessoAtribuicao;
@@ -10,7 +11,7 @@ import lapr.project.model.mechanisms.MecanismoAtribuicao;
  *
  * @author Pedro Fernandes
  */
-public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao {
+public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao, Serializable {
 
     private ListaAtribuicoes listaAvaliacoes;
 

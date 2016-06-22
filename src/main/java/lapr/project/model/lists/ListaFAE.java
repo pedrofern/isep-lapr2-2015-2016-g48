@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.*;
 
@@ -7,7 +8,7 @@ import lapr.project.model.*;
  *
  * @author Pedro Fernandes
  */
-public class ListaFAE {
+public class ListaFAE implements Serializable{
 
     /**
      * A lista de fae

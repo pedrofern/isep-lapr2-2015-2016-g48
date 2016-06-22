@@ -29,20 +29,25 @@ import lapr.project.ui.ucs.AlterarUtilizadorUI;
  * @author Diana
  */
 public class Janela extends JFrame /** implements Serializable**/{
-    private static CentroExposicoes m_ce;
-    private static Utilizador m_ut;
+    private static CentroExposicoes ce;
+    private static Utilizador ut;
     private String tipo_utilizador;
     
     private static JTabbedPane tabPane;
     private static PainelInfoUser pUser;
+    /**
+     * Guarda objectos do tipo FichCentroExposicoes
+     */
+    private FichCentroExposicoes fichCentroExposicoes;
  
     private static int WIDTH=625, HEIGHT=500, MINWIDTH=625, MINHEIGHT=480;
  
-    public Janela(CentroExposicoes ce, Utilizador id_utilizador) {
+    public Janela(CentroExposicoes ce,FichCentroExposicoes fichCentroExposicoes, Utilizador id_utilizador) {
         
         super("Centro de Exposições");
-        this.m_ce=ce;
-        this.m_ut=id_utilizador;
+        this.fichCentroExposicoes = fichCentroExposicoes;
+        this.ce=ce;
+        this.ut=id_utilizador;
         
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
                
@@ -68,7 +73,7 @@ public class Janela extends JFrame /** implements Serializable**/{
         JMenuBar menuBar= criarBarraMenus();
         setJMenuBar(menuBar);
 
-       pUser=new PainelInfoUser(m_ut);
+       pUser=new PainelInfoUser(ut);
        pUser.criarPainel();
         
         tabPane=criarSeparadores();
@@ -210,52 +215,52 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private JTabbedPane criarSeparadores() {
-        tipo_utilizador=m_ut.getUsername();
+        tipo_utilizador=ut.getUsername();
         
         tabPane = new JTabbedPane(); 
         
         if("Fae".equals(tipo_utilizador)){
-            tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
        }
         
        if("Organizador".equals(tipo_utilizador)){
-           tabPane.addTab("Home", new PainelInicio(m_ce));
-           tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+           tabPane.addTab("Home", new PainelInicio(ce));
+           tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
 
        }
        if("Representante".equals(tipo_utilizador)){
 
-            tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
+            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
        }
        
       if("Organizador+Fae".equals(tipo_utilizador)){
           
-            tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce,m_ut));
-            tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
+            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
             
        }
       
       if("Gestor".equals(tipo_utilizador)){
  
-           tabPane.addTab("MenuGestor", new PainelGestor(m_ce, m_ut));
+           tabPane.addTab("MenuGestor", new PainelGestor(ce, ut));
           
       }
       if("Admin".equals(tipo_utilizador)){
           
-         tabPane.addTab("MenuOrganizador", new PainelOrganizador(m_ce, m_ut));
+         tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
          
-         tabPane.add("Menu Gestor", new PainelGestor(m_ce,m_ut));
+         tabPane.add("Menu Gestor", new PainelGestor(ce,ut));
 
-         tabPane.addTab("MenuFae", new PainelFae(m_ce, m_ut));
+         tabPane.addTab("MenuFae", new PainelFae(ce, ut));
 
        
-        tabPane.addTab("MenuRepresentante", new PainelRepresentante(m_ce, m_ut));
+        tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
         
         
         
       }  
       
-      tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(m_ce, m_ut));
+      tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
       
       return tabPane; 
     }
@@ -274,7 +279,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private void terminar() {
-//        this.ficheiroCentroExposicoes.guardar(this.centroExposicoes);
+        this.fichCentroExposicoes.guardarFichBinario(this.ce);
         System.exit(0);
     }
     

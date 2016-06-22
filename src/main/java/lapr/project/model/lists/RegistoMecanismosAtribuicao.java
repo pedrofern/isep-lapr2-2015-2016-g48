@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -14,7 +15,7 @@ import lapr.project.model.mechanisms.MecanismoAtribuicao;
  *
  * @author Diana
  */
-public class RegistoMecanismosAtribuicao {
+public class RegistoMecanismosAtribuicao implements Serializable{
      private List<MecanismoAtribuicao> listaMecanismoAtribuicao;
      
      public RegistoMecanismosAtribuicao(){

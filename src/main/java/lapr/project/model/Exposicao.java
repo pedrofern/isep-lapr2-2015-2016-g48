@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import lapr.project.model.states.*;
 import lapr.project.model.states.ExposicaoEstado;
@@ -17,7 +18,7 @@ import lapr.project.utils.Utils;
  *
  * @author Pedro Fernandes e Diana
  */
-public class Exposicao implements Comparable<Exposicao> {
+public class Exposicao implements Comparable<Exposicao>, Serializable {
 
     private String titulo;
     private String textoDescritivo;

@@ -1,10 +1,12 @@
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Pedro Fernandes
  */
-public class Local {
+public class Local implements Serializable{
 
     private String local;
 

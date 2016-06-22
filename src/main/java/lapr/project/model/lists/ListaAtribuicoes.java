@@ -1,5 +1,6 @@
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.*;
 import lapr.project.model.Atribuicao;
 
@@ -7,7 +8,7 @@ import lapr.project.model.Atribuicao;
  *
  * @author DianaSilva
  */
-public class ListaAtribuicoes {
+public class ListaAtribuicoes implements Serializable{
     private List<Atribuicao> listaAtribuicoes;
 
     public ListaAtribuicoes() {

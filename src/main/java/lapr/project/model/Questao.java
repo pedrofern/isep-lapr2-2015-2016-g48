@@ -1,11 +1,13 @@
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  * A question with a text and an answer
  * @author Diana Silva
  */
 
-public class Questao {
+public class Questao implements Serializable{
     private String pergunta;
     private int resposta;
 

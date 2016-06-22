@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.List;
 import lapr.project.model.lists.ListaQuestoes;
 
@@ -7,7 +8,7 @@ import lapr.project.model.lists.ListaQuestoes;
  *
  * @author Diana Silva
  */
-public class Avaliacao {
+public class Avaliacao implements Serializable{
 
     private boolean avaliacao;
     private String justificacao;

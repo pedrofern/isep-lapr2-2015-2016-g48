@@ -5,6 +5,7 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
 import java.util.TimerTask;
 import lapr.project.model.Exposicao;
 
@@ -12,7 +13,7 @@ import lapr.project.model.Exposicao;
  *
  * @author Diana Silva
  */
-public class ExposicaoStandsAtribuiveis extends TimerTask implements ExposicaoEstado{
+public class ExposicaoStandsAtribuiveis extends TimerTask implements ExposicaoEstado,Serializable{
     private final Exposicao exposicao;
     
     public ExposicaoStandsAtribuiveis(Exposicao exposicao){

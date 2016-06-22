@@ -11,9 +11,12 @@ public class RegistarCandidaturaController {
     
     private Candidatura candidatura;
     private CandidaturaDemonstracao candidaturaDemonstracao;
+    private Demonstracao demonstracao;
     private ListaCandidaturas listaCandidaturas;
     private Exposicao exposicao;
-//    private ListaDemonstracoes listaDemonstracoes;
+    private RegistoExposicoes registoExposicoes;
+    private ListaDemonstracoes listaDemonstracoes;
+    private ListaDemonstracoes listaTemp;
     private ListaProduto listaProduto;
     private ListaKeywords listaKeywords;
     private CentroExposicoes ce;
@@ -22,6 +25,7 @@ public class RegistarCandidaturaController {
     public RegistarCandidaturaController(CentroExposicoes ce, Utilizador u) {
         this.ce=ce;
         utilizador=u;
+        registoExposicoes = ce.getRegistoExposicoes().getExposicoesCandidaturasAbertas();
     }
 
     public void novaCandidatura() {
@@ -35,11 +39,13 @@ public class RegistarCandidaturaController {
         return candidatura.toString();
     }
     
-    public RegistoExposicoes getRegistoExposicoes(){
-        return ce.getRegistoExposicoes();
+    public RegistoExposicoes getExposicoesEstadoCandidaturasAbertas(){
+       return registoExposicoes;
     }
+    
     public ListaDemonstracoes getListaDemonstracoes(){
-        return exposicao.getListaDemonstracoes();
+        listaTemp = new ListaDemonstracoes();
+        return listaDemonstracoes;
     }
     public ListaProduto getListaProdutos(){
         return listaProduto;
@@ -48,9 +54,18 @@ public class RegistarCandidaturaController {
         return listaKeywords;
     }
     
+    public void selectDemonstracao(Demonstracao demonstracao){
+        listaTemp.adicionarDemonstracao(demonstracao);
+    }
+        
+    public ListaDemonstracoes getSelectedDemonstacao(){
+        return listaTemp;
+    }
+    
     public void selectExposicao(Exposicao exposicao){
         this.exposicao=exposicao;   
         listaCandidaturas = exposicao.getListaCandidaturas();
+        listaDemonstracoes = exposicao.getListaDemonstracoes();
     }
 
     public void setNomeEmpresa(String nomeEmpresa) {
@@ -86,9 +101,9 @@ public class RegistarCandidaturaController {
     }
     
     public Candidatura registaCandidatura(String nomeEmpresa,String morada,
-            int telemovel, int areaExposicao,int quantidadeConvites,
-            ListaProduto listaProdutos,ListaKeywords listaKeywords){
-        
+        int telemovel, int areaExposicao,int quantidadeConvites,
+        ListaProduto listaProdutos,ListaKeywords listaKeywords){
+
         candidatura.setNomeEmpresa(nomeEmpresa);
         candidatura.setMorada(morada);
         candidatura.setTelemovel(telemovel);
@@ -96,14 +111,22 @@ public class RegistarCandidaturaController {
         candidatura.setQuantidadeConvites(quantidadeConvites);
         candidatura.setListaProdutos(listaProdutos);
         candidatura.setListaKeywords(listaKeywords);
-        
-        
+
+
         if (listaCandidaturas.registaCandidaturas(candidatura)) {
             return candidatura;
         } else {
             return null;
-        }
+        }   
     }
+    
+//    public CandidaturaDemonstracao registCandidaturaDemonstracao(){
+//        for (int i=0; i<listaTemp.tamanho();i++){
+//            CandidaturaDemonstracao candDemo = new CandidaturaDemonstracao(candidatura);
+//            novaCandidaturaDemonstracao(candidatura)
+//            
+//        }
+//    }
 
     public boolean valida() {
         if(candidatura.valida() == false){
@@ -124,11 +147,11 @@ public class RegistarCandidaturaController {
         return candidatura;
     }
     
-    public boolean novaCandidaturaDemonstracao(Demonstracao d){
-            
-        candidaturaDemonstracao = new CandidaturaDemonstracao(candidatura);
-        
-        return d.getListaCandidaturasDemonstracao().addCandidaturaDemonstracao(candidaturaDemonstracao);
+    public CandidaturaDemonstracao novaCandidaturaDemonstracao(Candidatura candidatura){
+        return candidaturaDemonstracao = new CandidaturaDemonstracao(candidatura);
     }
-
+    
+    public boolean adicionarCandidaturaDemonstracao(CandidaturaDemonstracao candidaturaDemonstracao){        
+        return demonstracao.getListaCandidaturasDemonstracao().addCandidaturaDemonstracao(candidaturaDemonstracao);
+    }
 }
