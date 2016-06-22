@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,7 +27,7 @@ import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.controller.*;
-
+import lapr.project.model.*;
 
 /**
  *
@@ -34,7 +35,7 @@ import lapr.project.controller.*;
  */
 public class CriarStandUI extends JFrame {
     
-    private JButton btnConfirmar, btnLimpar, btnFechar;
+    private JButton btnRegistar, btnLimpar, btnFechar;
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 320;
     private JFrame framePai;
@@ -46,6 +47,7 @@ public class CriarStandUI extends JFrame {
     private RegistoStands m_listaStands; 
     private CriarStandController m_controller;
     private Stand stand;
+    private JList listaStands;
 
 
     
@@ -73,20 +75,6 @@ public class CriarStandUI extends JFrame {
         add(criarPainelSul(), BorderLayout.SOUTH);
     }
     
-//    private JPanel criarPainelCentro() {
-//        JPanel p = new JPanel(new GridLayout(0, 1));
-//        p.add(criarPainelID());
-//        p.add(criarPainelDescricao());
-//        p.add(criarPainelArea());
-//        
-//        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-//        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-//        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-//                MARGEM_INFERIOR, MARGEM_DIREITA));
-//        p.setBorder(new TitledBorder("Dados do Stand"));
-//        return p;
-//    }
-    
     private JPanel criarPainelNorte(String label1, JTextField texto, String label2) {
         JLabel lbl1 = new JLabel(label1, JLabel.RIGHT);
         lbl1.setPreferredSize(LABEL_TAMANHO);
@@ -110,59 +98,7 @@ public class CriarStandUI extends JFrame {
         return p;
     }
     
-//    private JPanel criarPainelID(){
-//        JPanel p = new JPanel(new FlowLayout());
-//        JLabel lbl = new JLabel("ID:", SwingConstants.LEFT);
-//        lbl.setPreferredSize(LABEL_TAMANHO);
-//        final int CAMPO_LARGURA = 30;
-//        txtID = new JTextField(CAMPO_LARGURA);
-//        txtID.requestFocus();
-//        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-//        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-//        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-//                MARGEM_INFERIOR, MARGEM_DIREITA));
-//        p.add(lbl);
-//        p.add(txtID);
-//
-//        return p;
-//
-//    }
-    
-//    private JPanel criarPainelDescricao(){
-//        JPanel p = new JPanel(new FlowLayout());
-//        JLabel lbl = new JLabel("Descrição:", SwingConstants.LEFT);
-//        lbl.setPreferredSize(LABEL_TAMANHO);
-//        final int CAMPO_LARGURA = 30;
-//        txtDescricao = new JTextField(CAMPO_LARGURA);
-//        txtDescricao.requestFocus();
-//        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-//        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-//        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-//                MARGEM_INFERIOR, MARGEM_DIREITA));
-//        p.add(lbl);
-//        p.add(txtDescricao);
-//
-//        return p;
-//
-//    }
-    
-//    private JPanel criarPainelArea(){
-//        JLabel lbl = new JLabel("Área:", SwingConstants.LEFT);
-//        lbl.setPreferredSize(LABEL_TAMANHO);
-//        
-//        final int CAMPO_LARGURA = 30;
-//        txtArea = new JTextField(CAMPO_LARGURA);
-//        txtArea.requestFocus();
-//        JPanel p = new JPanel(new FlowLayout());
-//        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-//        final int MARGEM_ESQUERDA = 0, MARGEM_DIREITA = 0;
-//        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-//            MARGEM_INFERIOR, MARGEM_DIREITA));
-//        p.add(lbl);
-//        p.add(txtArea);
-//
-//        return p;
-//    }
+
     
     private JPanel criarPainelDados() {
         JPanel painelNorte = new JPanel( new GridLayout(5,1));
@@ -173,23 +109,6 @@ public class CriarStandUI extends JFrame {
                 new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA)));
         
-//        txtID=new JTextField(20);
-//        txtID.requestFocusInWindow();
-//        txtID.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyReleased(KeyEvent ev){
-//                txtID.setText(txtID.getText().replaceAll("[^a-z||^A-Z||^ ]", ""));
-//
-//            }
-//        });
-//        txtID.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyTyped(KeyEvent ev) {
-//                if (txtID.getText().length() > 20) {
-//                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
-//                } 
-//            }
-//        }); 
         
         txtDescricao=new JTextField(20);
         txtDescricao.requestFocusInWindow();
@@ -250,71 +169,95 @@ public class CriarStandUI extends JFrame {
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
         final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
         p.add(btnOK);
-        p.add(btnClose);
         p.add(btnClear);
+        p.add(btnClose);
         return p;
 
     }
+   
     
-    private JButton criarBotaoConfirmar() {
-        
-        btnConfirmar = new JButton("Confirmar");
-
-        btnConfirmar.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-
-                try {
-               
-                String descricao = txtDescricao.getText();
-                String area = txtArea.getText();
-               
-                if(txtDescricao.getText()==null|| txtDescricao.getText().trim().isEmpty()&& txtArea.getText()==null|| txtArea.getText().trim().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Não introduziu dados.");
-                }else
-                    JOptionPane.showMessageDialog(null,"Descricao: "+descricao+"\nArea: "+area);
-                    JOptionPane.showMessageDialog(null, "Operação efectuada com sucesso.");
-                
-
-                    //
-//                    
-//                    
+//    private JButton criarBotaoRegistarStand() {
+//        
+//        btnRegistar = new JButton("Registar Stand");
+//        btnRegistar.setMnemonic(KeyEvent.VK_R);
+//        btnRegistar.setToolTipText("Registar Stand");
+//
+//        btnRegistar.addActionListener(new ActionListener() {
+//
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+//
+//                try {
+//               
+//            
+//                   if(txtDescricao.getText()==null|| txtDescricao.getText().trim().isEmpty()&& txtArea.getText()==null|| txtArea.getText().trim().isEmpty()){
+//                    JOptionPane.showMessageDialog(null, "Não introduziu dados.");
+//                    new CriarStandUI(mce,user);
+//                   }
+//                   if(stand.getDescricao().equals(txtDescricao.getText()) || stand.getArea().equals(txtArea.getText())){
+//                       JOptionPane.showMessageDialog(null, "Stand já existente.");
+//                       new CriarStandUI(mce,user);
+//                   }else{
+//                       JOptionPane.showMessageDialog(null, "Stand criado com sucesso");
+//                       guardar();
+//                   }
+//                   dispose();
 //                   
-//                   stand=m_controller.registaStand(descricao, area);
-                   
-                                      
-//                   if(stand !=null){
-//                       JOptionPane.showMessageDialog(
-//                                null,
-//                                "Stand adicionado.",
-//                                "Novo Stand",
-//                                JOptionPane.INFORMATION_MESSAGE);
-//                        dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Stand já registado!",
-//                                "Novo Stand",
-//                                JOptionPane.ERROR_MESSAGE);
-//                    }
-//                    dispose();
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(
+//                } catch (NumberFormatException ex) {
+//                    JOptionPane.showMessageDialog(
+//                            null,
+//                            "Tem de preencher todos os campos!",
+//                            "Registar Stand",
+//                            JOptionPane.ERROR_MESSAGE);
+//                   
+//            }
+//                       
+//            }  
+//        }
+//        );
+//        return btnRegistar;
+//    }
+    
+     private JButton criarBotaoConfirmar() {
+        JButton botao = new JButton("Registar Stand");
+        botao.setMnemonic(KeyEvent.VK_R);
+        botao.setToolTipText("Registar stand");
+        botao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if( txtDescricao.getText().isEmpty()==true||
+                    txtArea.getText().isEmpty()==true)
+                    {
+                        JOptionPane.showMessageDialog(
                             null,
                             "Tem de preencher todos os campos!",
-                            "Registar Stand",
-                            JOptionPane.ERROR_MESSAGE);
+                            "Criar Stand",
+                            JOptionPane.ERROR_MESSAGE);                        
+                }else{
+                        JOptionPane.showMessageDialog(null, "Stand criado com sucesso.\n");
+                        guardar();
                 }
-                
-        
-                
+                dispose();
             }
+        });
 
-        }
-        );
-        return btnConfirmar;
+        return botao;
     }
+    
+    private void guardar(){
+
+        String descricao=txtDescricao.getText();
+        String area = txtArea.getText();
+        m_controller.novoStand();
+        m_controller.registaStand(descricao,area);
+        
+        for(Stand s: mce.getRegistoStands().getListaStands()){
+             System.out.println(s.toString());
+    }
+        
+    }
+    
     
     private JButton criarBotaoFechar() {
         btnFechar = new JButton("Fechar");
