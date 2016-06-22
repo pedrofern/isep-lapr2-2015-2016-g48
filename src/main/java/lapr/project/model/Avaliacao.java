@@ -9,14 +9,14 @@ import lapr.project.model.lists.ListaQuestoes;
  */
 public class Avaliacao {
 
-    private boolean resposta;
+    private boolean avaliacao;
     private String justificacao;
     private ListaQuestoes listaQuestoes;
     private Criterio criterio;
     private boolean estado;
 
     public Avaliacao(boolean resposta, String justificacao) {
-        this.resposta = resposta;
+        this.avaliacao = resposta;
         this.justificacao = justificacao;
         this.estado = false;
         listaQuestoes = new ListaQuestoes();
@@ -32,7 +32,7 @@ public class Avaliacao {
     }
 
     public void setResposta(boolean resposta) {
-        this.resposta = resposta;
+        this.avaliacao = resposta;
     }
 
     public void setJustificacao(String j) {
@@ -45,8 +45,16 @@ public class Avaliacao {
      *
      * @return the resposta
      */
-    public boolean getResposta() {
-        return resposta;
+    public boolean getAvaliacao() {
+        return avaliacao;
+    }
+    
+    /**
+     * Obtém a justificação dada pela FAE sobre a avaliação efectuada
+     * @return a justificação
+     */
+    public String getJustificacao(){
+        return justificacao;
     }
 
     /**
@@ -74,10 +82,15 @@ public class Avaliacao {
         }
 
     }
+    
+    public String getAvaliacaoString(){
+        if (avaliacao==true) return "Aceite";
+        else return "Recusada";
+    }
 
     @Override
     public String toString() {
-        String avaliacao = this.justificacao + " - " + getResposta() + "\n";
+        String avaliacao = "Avaliação: " + getAvaliacaoString() + "\nJustificação: " + this.justificacao + "\n";
         for (Questao q : listaQuestoes.getListaQuestoes()) {
             avaliacao += q.getPergunta() + ":" + q.getResposta() + "\n";
 

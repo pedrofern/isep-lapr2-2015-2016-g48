@@ -1,9 +1,11 @@
 package lapr.project.controller;
 
+import java.text.ParseException;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.model.*;
+import lapr.project.model.states.ExposicaoEstadoInicial;
 import lapr.project.utils.Data;
 
 /**
@@ -124,5 +126,8 @@ public class CriarExposicaoController {
         return exposicao.validaDatas(datai, dataf, datasub, datafsub, dataconflitos, dataaltconflitos, 
         dataavcand, datafavcand, dataistand, datafstand); 
     }
-
+    
+    public void setCriada() throws ParseException {
+        exposicao.setCriada();
+    }
 }

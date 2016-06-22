@@ -10,19 +10,19 @@ import lapr.project.model.*;
 public class DetetarConflitosController extends TimerTask {
     
     private static CentroExposicoes ce;
+    private Exposicao exposicao;
     
     public DetetarConflitosController(CentroExposicoes centroExposicoes){
-        ce=centroExposicoes;
-        
+        ce=centroExposicoes;    
     }
-
-    public DetetarConflitosController(Exposicao exposicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public DetetarConflitosController(Exposicao exposicao){
+        this.exposicao=exposicao;
     }
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("cucu");
     }
 
     

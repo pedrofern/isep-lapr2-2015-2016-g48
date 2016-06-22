@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import lapr.project.controller.*;
 import lapr.project.model.*;
@@ -494,11 +496,11 @@ public class CriarExposicaoUI extends JFrame {
                             "Criar Exposoção",
                             JOptionPane.ERROR_MESSAGE);
             }else{
-                  try{  
+                  
                     controller.validaDatas(campoDataInicial.getText(), campoDataFinal.getText(), campoSubCandDataInicial.getText(), campoSubCandDataFinal.getText(), 
                     campoSubStandsDatainicial.getText(), campoSubStandsDataFinal.getText(), campoDataAlterarConflito.getText(), 
                     campoDataAvInicio.getText(), campoDataAvFim.getText(), campoDataAlterarConflito.getText());
-                    
+                           
                     setDados();
 
                     if(!controller.validaDataFimSuperiorInicio() || !controller.validaMinOrganizadores() || !controller.validaSeguimentoDatas()){
@@ -516,7 +518,11 @@ public class CriarExposicaoUI extends JFrame {
                         if(controller.registaExposicao()){
                                                         
                             ce.setRegistoExposicoes(controller.getRegistoExposicoes());
-                            
+                            try {
+                                controller.setCriada();
+                            } catch (ParseException ex) {
+                                Logger.getLogger(CriarExposicaoUI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             JOptionPane.showMessageDialog(
                                     null,
                                     controller.getExposicaoString(),
@@ -530,11 +536,6 @@ public class CriarExposicaoUI extends JFrame {
                         }
 
                     }
-
-                }catch (Exception e1){
-                    JOptionPane.showMessageDialog(null, "Data inválida encontrada", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
-                        
-                }
             
             }
         });

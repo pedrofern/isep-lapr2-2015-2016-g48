@@ -64,12 +64,6 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
             painelQuestoes.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
             painelQuestoes.setLayout(g1);
             
-            
-            //alterar qd ja houver candidatura seleccionada ( nao ha candidaturas no registo)
-            candidatura=new Candidatura();
-            
-            controllerAC.setCandidatura(candidatura);
-            
             controllerAC.criarAvaliacao();
             controllerAC.adicionarAvaliacao();
             
@@ -272,22 +266,16 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
                     resp=5;
                 resposta1.add(resp);
             }
-//                TESTE RESPOSTAS
-//                for (int r: resposta){
-//
-//                    System.out.println(r);
-//                }
-controllerAC.setRespostas(resposta1.get(0), resposta1.get(1), resposta1.get(2), resposta1.get(3), resposta1.get(4));
-JOptionPane.showMessageDialog(
-        null,
-        controllerAC.getInfoClassificacoes(),
-        "Classificações dadas",
-        JOptionPane.INFORMATION_MESSAGE);
-AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(controllerAC);
-pJustificacao.mostrarPainel();
-pQuestoes.setVisible(false);
-add(pJustificacao);
-AvaliarCandidaturaUI.ativarGuardar();
+
+           controllerAC.setRespostas(resposta1.get(0), resposta1.get(1), resposta1.get(2), resposta1.get(3), resposta1.get(4));
+           JOptionPane.showMessageDialog( null,
+                        controllerAC.getInfoClassificacoes(),
+                        "Classificações dadas",
+                        JOptionPane.INFORMATION_MESSAGE);
+            AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(controllerAC);
+            pJustificacao.mostrarPainel();
+            pQuestoes.setVisible(false);
+            add(pJustificacao);
         });
         
         

@@ -224,6 +224,9 @@ public class Exposicao implements Comparable<Exposicao> {
         timer.schedule(task6, dataInicioStands.converterParaDate());
     }
 
+    
+    
+    
     /**
      * Verifica se a exposicao é igual a um objeto passado por parâmetro
      *
@@ -247,6 +250,8 @@ public class Exposicao implements Comparable<Exposicao> {
         hash = 29 * hash + Objects.hashCode(this.textoDescritivo);
         return hash;
     }
+    
+   
 
 //    /**
 //     * Modifica a lista de submissoes.
@@ -269,6 +274,12 @@ public class Exposicao implements Comparable<Exposicao> {
     public boolean alterarEstado(ExposicaoEstado estado) {
         this.estado = estado;
         return true;
+    }
+    
+    public void setCriada() throws ParseException{
+        ExposicaoEstadoInicial state=(ExposicaoEstadoInicial) estado;
+        state.setCriada();
+        System.out.println(getEstadoAtualExposicao());
     }
 
     public void setListaFaes(ListaFAE lstFaes) {

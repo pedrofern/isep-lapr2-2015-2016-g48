@@ -36,8 +36,8 @@ public class ListaAvaliacoes {
      *
      * @param a A Avaliacao que vai ser adicionada à lista.
      */
-    public void add(Avaliacao a) {
-        this.getListaAvaliacoes().add(a);
+    public boolean add(Avaliacao a) {
+        return getListaAvaliacoes().add(a);
     }
 
     /**

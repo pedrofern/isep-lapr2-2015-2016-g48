@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -35,7 +36,7 @@ public class AvaliarCandidaturaUI extends JFrame{
      /**
      * Guarda a largura mínima da janela em píxeis.
      */
-    private static final int JANELA_LARGURA_MINIMO = 650;
+    private static final int JANELA_LARGURA_MINIMO = 700;
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
@@ -49,7 +50,7 @@ public class AvaliarCandidaturaUI extends JFrame{
     private static JPanel pExpos, painel;
     
     private static JComboBox comboExpos;
-    private static JButton selExpo, btGuardar;
+    private JButton selExpo;
     
     public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
         
@@ -87,16 +88,13 @@ public class AvaliarCandidaturaUI extends JFrame{
         
         JPanel painelOeste=new JPanel();
         painelOeste.setLayout(new BorderLayout());
+        painelOeste.add(pExpos, BorderLayout.CENTER);
+        painelOeste.add(pCands, BorderLayout.NORTH);
         
-        painelOeste.add(pExpos, BorderLayout.NORTH);
-        painelOeste.add(pCands, BorderLayout.CENTER);
-        
-        painel.add(painelOeste, BorderLayout.WEST);
+        painel.add(painelOeste, BorderLayout.NORTH);
         painel.add(pAvaliar, BorderLayout.CENTER);
       
         painel.add(criarPainelBotoes(), BorderLayout.SOUTH);
-        
-        btGuardar.setEnabled(false);
 
         add(painel);
     }
@@ -106,8 +104,7 @@ public class AvaliarCandidaturaUI extends JFrame{
         pExpos.setLayout(new FlowLayout());
         pExpos.setBorder(new TitledBorder("Seleccione a exposição: "));
         
-        String[] opcoes={"gato", "cao"};
-        comboExpos=new JComboBox(opcoes);
+        comboExpos=Utils.criarComboExpo(controllerAC.getExposicoesAtribuidasFAE());
         
         pExpos.add(comboExpos);
         pExpos.add(criarBtSelect());
@@ -123,13 +120,11 @@ public class AvaliarCandidaturaUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                m_exposicao=(Exposicao) comboExpos.getSelectedItem();
-//                
-
-                pCands.setExpo(exposicao);
+                controllerAC.selectExposicao((Exposicao) comboExpos.getSelectedItem());               
                 
                 pCands.mostrarPainel();
                 
+                pExpos.setVisible(false);
                 pCands.setVisible(true);
                 
                selExpo.setEnabled(false);
@@ -154,57 +149,11 @@ public class AvaliarCandidaturaUI extends JFrame{
 
         JPanel p = new JPanel(l);
 
-        JButton bt1 = criarBotaoRegistar();
-        JButton bt2 = criarBotaoLimpar();
         JButton bt3 = criarBotaoCancelar();
         
-        p.add(bt1);
-        p.add(bt2);
         p.add(bt3);
         
         return p;
-    }
-    
-    private JButton criarBotaoRegistar() {
-        btGuardar = new JButton("Guardar");
-        btGuardar.setMnemonic(KeyEvent.VK_R);
-        btGuardar.setToolTipText("Introduza todos os dados solicitados para poder guardar");
-        btGuardar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                if(norte.getTxtNome().getText().isEmpty()==true||
-//                    norte.getTxtEmail().getText().isEmpty()==true||
-//                    norte.getTxtPassword().getText().isEmpty()==true||
-//                    norte.getTxtUsername().getText().isEmpty()==true){
-//                        JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Registar Utilizador",
-//                            JOptionPane.ERROR_MESSAGE);                        
-//                }else{
-                    guardar();
-//                }
-            }
-        });
-
-        return btGuardar;
-    }
-    /**
-     * criar botão limpar
-     * @return botão limpar
-     */
-    private JButton criarBotaoLimpar() {
-        JButton botao = new JButton("Limpar");
-        botao.setMnemonic(KeyEvent.VK_L);
-        botao.setToolTipText("Limpa dados gerais do novo utilizador");
-        botao.addActionListener((ActionEvent e) -> {
-//                norte.getTxtNome().setText("");
-//                norte.getTxtEmail().setText("");
-//                norte.getTxtPassword().setText("");
-//                norte.getTxtUsername().setText("");
-        });
-
-        return botao;
     }
     
     /**
@@ -221,28 +170,6 @@ public class AvaliarCandidaturaUI extends JFrame{
 
         return botao;
     }
-    
-     private void guardar() {
-            String nome,email,pass,user;
-//            nome = norte.getTxtNome().getText();
-//            email = norte.getTxtEmail().getText();
-//            pass = norte.getTxtPassword().getText();
-//            user = norte.getTxtUsername().getText();
-//            m_controllerRU.novoUtilizador();
-//            m_controllerRU.criaUtilizador(nome, email, user, pass);
-                JOptionPane.showMessageDialog(
-                            null,
-//                            "Dados novo utilizador registado: \n"
-//                                    +"\nUsername: "+user
-//                                    +"\nPassword: "+pass
-//                                    +"\nNome: "+nome
-//                                    +"\nEmail: "+email,
-//                            "Registar Utilizador",
-                            JOptionPane.INFORMATION_MESSAGE);    
-            dispose();
-    }
-    
- 
         
         private void fecharJanela(String pergunta){
 //        if (norte.getTxtNome().getText()!=""||
@@ -268,88 +195,5 @@ public class AvaliarCandidaturaUI extends JFrame{
         public static AvaliarSubPainelJustificacao getPainelJustificar() {
             return pJustificacao;
         }
-        
-        public static void ativarGuardar(){
-            btGuardar.setEnabled(true);
-        }
-   
+     
     }
-        
- 
-    
-    
-
-    
-//    public void run() {
-//
-//        List<Exposicao> le = m_controllerDC.iniciarAvaliacao();
-//
-//        apresentaExposicoes(le);
-//
-//        Exposicao e = selecionaExposicao(le);
-//
-//        if (e != null) {
-//            m_controllerDC.selectExposicao(e);
-//
-//            String strResposta = Utils.readLineFromConsole("Introduza a Resposta à Candidatura: ");
-//            String strJustificacao = Utils.readLineFromConsole("Introduza a Justificação dessa Resposta: ");
-//
-//            m_controllerDC.setAvaliacao(strResposta, strJustificacao);
-//
-//            String strQuestao = "Confirma a decisao da candidatura com a seguinte informação: \n" + m_controllerDC.getInfoResumo() + "\n Opção (S/N):";
-//            boolean bConfirma = confirma(strQuestao);
-//
-//            if (bConfirma) {
-//                if (m_controllerDC.registarDecisao()) {
-//                    System.out.println("Decisao concluida com sucesso.");
-//                } else {
-//                    System.out.println("Decisao cancelada devido a erros.");
-//                }
-//
-//            } else {
-//                System.out.println("Decisao de candidatura cancelada.");
-//            }
-//
-//            System.out.println("Terminado.");
-//        } else {
-//            System.out.println("Decisao de candidatura cancelada.");
-//        }
-//
-//    }
-
-//    private Exposicao selecionaExposicao(List<Exposicao> le) {
-//        String opcao;
-//        int nOpcao;
-//        do {
-//            opcao = Utils.readLineFromConsole("Introduza opção: ");
-//            nOpcao = new Integer(opcao);
-//        } while (nOpcao < 0 || nOpcao > le.size());
-//
-//        if (nOpcao == 0) {
-//            return null;
-//        } else {
-//            return le.get(nOpcao - 1);
-//        }
-//    }
-//
-//    private void apresentaExposicoes(List<Exposicao> le) {
-//        System.out.println("Exposicoes: ");
-//
-//        int index = 0;
-//        for (Exposicao e : le) {
-//            index++;
-//
-//            System.out.println(index + ". " + e.toString());
-//        }
-//        System.out.println("");
-//        System.out.println("0 - Cancelar");
-//    }
-//
-//    private boolean confirma(String questao) {
-//        String strConfirma;
-//        do {
-//            strConfirma = Utils.readLineFromConsole(questao);
-//        } while (!strConfirma.equalsIgnoreCase("s") && !strConfirma.equalsIgnoreCase("n"));
-//
-//        return strConfirma.equalsIgnoreCase("s");
-//    }

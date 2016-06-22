@@ -14,6 +14,7 @@ import lapr.project.controller.AvaliarCandidaturaController;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
 import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -45,8 +46,7 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
         JPanel p=new JPanel();
         p.setLayout(new FlowLayout());
         
-        String[] opcoes={"whiskas", "friskies"};
-        comboCands=new JComboBox(opcoes);
+        comboCands=Utils.criarComboCand(controllerAC.getListaCandidaturas());
         
         p.add(comboCands, BorderLayout.NORTH);
         p.add(criarBtSelect());
@@ -54,10 +54,6 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
         return p;
     }
     
-    public void setExpo(Exposicao e){
-        exposicao=e;
-    }
-
     private JButton criarBtSelect() {
         selCand=new JButton("Seleccionar");
         
@@ -69,21 +65,24 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //nao esquecer try... candidatura adicionada e avaliacao criada
-                //m_candidatura=(Candidatura) comboCands.getSelectedItem();
-                
-                candidatura=new Candidatura();
+                controllerAC.setCandidatura((Candidatura) comboCands.getSelectedItem());
+
                 AvaliarSubPainelAvaliar painel=AvaliarCandidaturaUI.getPainelAvaliar();
                 
                 painel.mostrarPainel();
       
                 selCand.setEnabled(false);
                 painel.setVisible(true);
-                
+                setVisible(false);
             }     
         }
         );
         
         return selCand;
+    }
+
+    void setExpo(Exposicao exposicao) {
+        this.exposicao=exposicao;
     }
     
 }

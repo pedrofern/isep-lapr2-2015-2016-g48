@@ -19,8 +19,8 @@ public class AvaliarCandidaturaController {
     public AvaliarCandidaturaController(CentroExposicoes centroExposicoes) {
         ce = centroExposicoes;
     }
-    
-    public RegistoExposicoes getRegistoExposicoes(){
+
+    public RegistoExposicoes getExposicoesAtribuidasFAE() {
         return ce.getRegistoExposicoes();
     }
 
@@ -103,19 +103,12 @@ public class AvaliarCandidaturaController {
     public int getResposta(){
         return questao.getResposta();
     }
-    
-    
-    
-    
-//    public RegistoExposicoes iniciarAvaliacao() {
-//        return this.ce.getListaExposicoes();
-//    }
 
     public Avaliacao setAvaliacao(boolean bResposta, String strJustificacao) {
         avaliacao.setResposta(bResposta);
         avaliacao.setJustificacao(strJustificacao);
 
-        if (fae.validaAvaliacao(avaliacao)) {
+        if (candidatura.getListaAvaliacoes().valida(avaliacao)) {
             return avaliacao;
         } else {
             return null;
@@ -127,7 +120,7 @@ public class AvaliarCandidaturaController {
     }
 
     public boolean registarDecisao() {
-        return fae.registaAvaliacao(avaliacao);
+        return candidatura.getListaAvaliacoes().add(avaliacao);
     }
 
     public void selectExposicao(Exposicao e) {
@@ -137,5 +130,9 @@ public class AvaliarCandidaturaController {
 
     public String getInfoResumo() {
         return this.avaliacao.toString() + this.candidatura.getInfo();
+    }
+
+    public String getInfoAvaliacao() {
+        return avaliacao.toString();
     }
 }
