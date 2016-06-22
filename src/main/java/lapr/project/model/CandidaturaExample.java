@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author by Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
  */
-public class CandidaturaExample implements Importable<CandidaturaExample>, Exportable {
+public class CandidaturaExample implements Importable<CandidaturaExample>, Exportable, Serializable{
 	private static final String ROOT_ELEMENT_NAME = "candidatura";
 	private static final String DESCRIPTION_ELEMENT_NAME = "description";
 	private static final String KEYWORDS_ELEMENT_NAME = "keywords";

@@ -279,7 +279,8 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private void terminar() {
-        this.fichCentroExposicoes.guardarFichBinario(this.ce);
+        int x=0;
+        this.fichCentroExposicoes.guardarFichBinario(Janela.ce);
         System.exit(0);
     }
     

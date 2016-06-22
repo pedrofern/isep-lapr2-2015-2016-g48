@@ -95,7 +95,7 @@ public class PainelDadosUtilizador extends JPanel{
         getTxtEmail().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent ev){
-                getTxtEmail().setText(getTxtEmail().getText().replaceAll("[^a-z||^A-Z||^@||^.||^-||^_]", ""));
+                getTxtEmail().setText(getTxtEmail().getText().replaceAll("[^a-z||^A-Z||^@||^.||^-||^_||^0-9]", ""));
             }
         });
         getTxtEmail().addKeyListener(new KeyAdapter() {

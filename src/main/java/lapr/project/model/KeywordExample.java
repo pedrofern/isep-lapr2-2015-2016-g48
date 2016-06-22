@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -16,7 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  * @author by Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
  */
-public class KeywordExample implements Exportable, Importable<KeywordExample> {
+public class KeywordExample implements Exportable, Importable<KeywordExample>,Serializable {
 
 	private static final String ROOT_ELEMENT_NAME = "keyword";
 	private static final String VALUE_ELEMENT_NAME = "value";

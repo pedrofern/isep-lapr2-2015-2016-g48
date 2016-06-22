@@ -19,7 +19,6 @@ public class RegistoExposicoes implements Serializable{
 
     public RegistoExposicoes() {
         listaExposicoes = new ArrayList<>();
-        listaUtilizadores = new ArrayList<>();
     }
 
     public Exposicao novaExposicao() throws Exception {

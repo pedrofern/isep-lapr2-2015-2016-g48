@@ -13,6 +13,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.util.Properties;
 
@@ -20,7 +21,7 @@ import java.util.Properties;
  * Class that allows converting XML to String and read/write to files.
  * Created by Nuno Bettencourt [NMB] on 29/05/16.
  */
-public class XMLParser {
+public class XMLParser implements Serializable{
 
 	/**
 	 * This methods renders an XML Node to string ommiting the XML declarion on top.

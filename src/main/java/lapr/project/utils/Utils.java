@@ -1,7 +1,7 @@
 package lapr.project.utils;
 
 import java.awt.Dimension;
-import java.io.*;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,39 +31,10 @@ import lapr.project.model.lists.RegistoUtilizadores;
  *
  * @author Pedro Fernandes
  */
-public class Utils {
+public class Utils implements Serializable{
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^.+@.+\\..+$");
 
-    public static String readLineFromConsole(String strPrompt) {
-        try {
-            System.out.println(strPrompt);
-
-            InputStreamReader converter = new InputStreamReader(System.in);
-            BufferedReader in = new BufferedReader(converter);
-
-            return in.readLine();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-//    public static Data readDateFromConsole(String strPrompt) {
-//        do {
-//            try {
-//                String strDate = readLineFromConsole(strPrompt);
-//
-//                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//
-//                Data data = df.parse(strDate);
-//
-//                return data;
-//            } catch (ParseException ex) {
-//                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } while (true);
-//    }
     /**
      * Obtem uma instancia de Date com a data atual.
      *
@@ -75,48 +46,6 @@ public class Utils {
         int mes = hoje.get(Calendar.MONTH) + 1;// janeiro é representado por 0
         int dia = hoje.get(Calendar.DAY_OF_MONTH);
         return new Data(dia, mes, ano);
-    }
-
-    public static boolean confirma(String sMessage) {
-        String strConfirma;
-        do {
-            strConfirma = Utils.readLineFromConsole("\n" + sMessage + "\n");
-        } while (!strConfirma.equalsIgnoreCase("s") && !strConfirma.equalsIgnoreCase("n"));
-
-        return strConfirma.equalsIgnoreCase("s");
-    }
-
-    public static Object apresentaESeleciona(List list, String sHeader) {
-        apresentaLista(list, sHeader);
-        return selecionaObject(list);
-    }
-
-    public static void apresentaLista(List list, String sHeader) {
-        System.out.println(sHeader);
-
-        int index = 0;
-        for (Object o : list) {
-            index++;
-
-            System.out.println(index + ". " + o.toString());
-        }
-        System.out.println("");
-        System.out.println("0 - Cancelar");
-    }
-
-    public static Object selecionaObject(List list) {
-        String opcao;
-        int nOpcao;
-        do {
-            opcao = Utils.readLineFromConsole("Introduza opção: ");
-            nOpcao = new Integer(opcao);
-        } while (nOpcao < 0 || nOpcao > list.size());
-
-        if (nOpcao == 0) {
-            return null;
-        } else {
-            return list.get(nOpcao - 1);
-        }
     }
 
     public static boolean isEmailValido(String email) {
