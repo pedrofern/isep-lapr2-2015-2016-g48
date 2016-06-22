@@ -74,7 +74,7 @@ public class Teste {
         //new AvaliarCandidaturaUI(centro,utilizador);
         //new DefinirFAEUI(ce,user);
         //RegistarCandidaturaUI teste=new RegistarCandidaturaUI(ce, user);
-        new CriarStandUI(ce,user);
+        new CriarDemonstracaoUI(ce,user);
         //new DefinirRecursoUI(ce);
         
     }

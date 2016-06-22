@@ -76,6 +76,8 @@ public class TesteDiana {
         e1.setDados("teste1", "teste1", d1, d2, "teste1", d3, d4, d5, d6, d7, d8, d9, d10);
 
         ce.getRegistoExposicoes().adicionarExposicao(e1);
+        
+        new ConfirmarRegistoUtilizadorUI(ce);
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 //        CriarExposicaoUI c=new CriarExposicaoUI(ce);
@@ -98,5 +100,7 @@ public class TesteDiana {
         d9 = Utils.converterStringParaData(s9);
         d10 = Utils.converterStringParaData(s10);
     }
+    
+    
 
 }
