@@ -25,7 +25,7 @@ public class RegistarCandidaturaController {
     public RegistarCandidaturaController(CentroExposicoes ce, Utilizador u) {
         this.ce=ce;
         utilizador=u;
-        registoExposicoes = ce.getRegistoExposicoes().getExposicoesCandidaturasAbertas();
+        registoExposicoes = ce.getRegistoExposicoes();
     }
 
     public void novaCandidatura() {
@@ -39,8 +39,11 @@ public class RegistarCandidaturaController {
         return candidatura.toString();
     }
     
-    public RegistoExposicoes getExposicoesEstadoCandidaturasAbertas(){
+    public RegistoExposicoes getExposicoes(){
        return registoExposicoes;
+    }
+    public RegistoExposicoes getExposicoesEstadoCandidaturasAbertas(){
+       return registoExposicoes.getExposicoesCandidaturasAbertas();
     }
     
     public ListaDemonstracoes getListaDemonstracoes(){
@@ -120,13 +123,16 @@ public class RegistarCandidaturaController {
         }   
     }
     
-//    public CandidaturaDemonstracao registCandidaturaDemonstracao(){
-//        for (int i=0; i<listaTemp.tamanho();i++){
-//            CandidaturaDemonstracao candDemo = new CandidaturaDemonstracao(candidatura);
-//            novaCandidaturaDemonstracao(candidatura)
-//            
-//        }
-//    }
+    public void registCandidaturaDemonstracao(){
+        candidaturaDemonstracao = new CandidaturaDemonstracao(candidatura);
+        for (int i=0; i<listaTemp.tamanho();i++){
+            
+            Demonstracao d = listaTemp.getListaDemonstracoes().get(i);
+
+            d.getListaCandidaturasDemonstracao().addCandidaturaDemonstracao(candidaturaDemonstracao);
+ 
+        }   
+    }
 
     public boolean valida() {
         if(candidatura.valida() == false){

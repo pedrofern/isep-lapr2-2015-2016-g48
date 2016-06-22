@@ -37,6 +37,10 @@ public class AlterarCandidaturaController {
     public void selectCandidatura(Candidatura candidatura){
         this.candidatura=candidatura;
     }
+    
+    public ListaCandidaturas getListaCandidaturas(){
+        return listaCandidaturas;
+    }
 
     public ListaCandidaturas getListaCandidaturasRepresentante(Utilizador utilizador){
         ListaCandidaturas lstCandidaturasRep = new ListaCandidaturas();

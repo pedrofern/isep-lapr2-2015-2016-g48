@@ -95,7 +95,7 @@ public class ListaFAETest {
         ListaFAE instance = new ListaFAE();
         FAE fae = new FAE(u);
         instance.addFAE(fae);
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.hasUtilizador(u);
         assertEquals(expResult, result);
 

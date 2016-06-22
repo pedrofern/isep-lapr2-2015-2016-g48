@@ -191,8 +191,9 @@ public class AlterarCandidaturaUI extends JFrame{
                     
                     controllerAC.selectExposicao((Exposicao) comboExp.getSelectedItem());
 
-                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
-
+//                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
+                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturas()));
+                    
                     selCand.setEnabled(true);
                     comboCand.setEnabled(true);
 

@@ -105,6 +105,7 @@ public class RegistarCandidaturaUI extends JFrame{
      * Guarda o keyword1 introduzido da candidatura
      */
     private JTextField txtKey5;
+    private JPanel painelGeral;
     private String validaFormatoDadosNome = "[^a-z||^A-Z||^ ]";
     private String validaFormatoDadosNum = "[^0-9]";
     private String validaFormatoDadosKey = "[^a-z||^A-Z||^0-9||^ ]";
@@ -117,7 +118,7 @@ public class RegistarCandidaturaUI extends JFrame{
         
         controllerRCC = new RegistarCandidaturaController(ce,utilizador); 
         
-        criarComponentes();
+        add(criarComponentes());
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
@@ -126,10 +127,10 @@ public class RegistarCandidaturaUI extends JFrame{
         setVisible(true);
         
     }
-    public void criarComponentes() {
-
-        add(criarPainelSul(), BorderLayout.SOUTH);
-        add(criarPainelNorte(), BorderLayout.NORTH);
+    public JPanel criarComponentes() {
+        painelGeral = new JPanel(new BorderLayout());
+        painelGeral.add(criarPainelSul(), BorderLayout.SOUTH);
+        painelGeral.add(criarPainelNorte(), BorderLayout.NORTH);
 
         txtArea.setEnabled(false);
         txtConvites.setEnabled(false);
@@ -141,12 +142,15 @@ public class RegistarCandidaturaUI extends JFrame{
         txtMorada.setEnabled(false);
         txtNome.setEnabled(false);
         txtTelemovel.setEnabled(false);
+        
+        return painelGeral;
     }
 
     private JPanel criarPainelNorte() {
         JPanel p = new JPanel(new BorderLayout());
         
-        p.add(criarPainelExposicao(controllerRCC.getExposicoesEstadoCandidaturasAbertas()),BorderLayout.WEST);
+//        p.add(criarPainelExposicao(controllerRCC.getExposicoesEstadoCandidaturasAbertas()),BorderLayout.WEST);
+        p.add(criarPainelExposicao(controllerRCC.getExposicoes()),BorderLayout.WEST);
         p.add(criarPainelDados(),BorderLayout.CENTER);
         p.add(criarPainelKeywords(),BorderLayout.EAST);
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
@@ -553,11 +557,13 @@ public class RegistarCandidaturaUI extends JFrame{
                                 JOptionPane.ERROR_MESSAGE);
                         }else{
                             controllerRCC.getSelectedDemonstacao();
-                            
+                            controllerRCC.registCandidaturaDemonstracao();
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Candidatura adicionada: \n"
-                                +c.toStringCompleto(),
+                                +c.toStringCompleto()
+                                +"\nDemonstracoes em interesse: \n"
+                                +controllerRCC.getSelectedDemonstacao().toStringCompleto(),
                                 "Nova Candidatura",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();
@@ -709,7 +715,7 @@ public class RegistarCandidaturaUI extends JFrame{
         return p;
     }
     private JPanel criarPainelCheckBoxDemo(){
-        JPanel pCheck=new JPanel();
+        JPanel pCheck=new JPanel(new FlowLayout());
         
         Demonstracao[] opcoes=controllerRCC.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
@@ -769,7 +775,7 @@ public class RegistarCandidaturaUI extends JFrame{
 
                     
 
-                    add(criarPainelListas(), BorderLayout.CENTER);
+                    painelGeral.add(criarPainelListas(), BorderLayout.CENTER);
                     setVisible(true);
 
                     selExp.setEnabled(false);
