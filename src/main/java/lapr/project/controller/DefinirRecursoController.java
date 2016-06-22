@@ -1,6 +1,6 @@
 package lapr.project.controller;
 
-import java.util.List;
+
 import lapr.project.model.*;
 import lapr.project.model.lists.RegistoRecursos;
 
@@ -10,44 +10,43 @@ import lapr.project.model.lists.RegistoRecursos;
  */
 public class DefinirRecursoController {
 
-    private static CentroExposicoes ce;
-    private static Recurso recurso;
+    private CentroExposicoes mce;
+    private Recurso mRecurso;
+    private RegistoRecursos regRecursos;
    
     
 
     public DefinirRecursoController(CentroExposicoes centroDeExposicoes) {
-        ce = centroDeExposicoes;
+        mce = centroDeExposicoes;
         
     }
-
-//    public Recurso novoRecurso(String strDescricao) {
-//        return m_centroDeExposicoes.getRegistoRecurso().novoRecurso(strDescricao);
-//    }
-//
-//    public boolean registaRecurso(Recurso recurso) {
-//        return m_centroDeExposicoes.getRegistoRecurso().registaRecurso(recurso);
-//    }
     
-    public void setDescricao(String novaDescricao) {
-        recurso.setDescricao(novaDescricao);
+    public RegistoRecursos getRegistoRecursos(){
+        return regRecursos=mce.getRegistoRecursos();
+    }
+
+    
+    public String getRecurso() {
+        return mRecurso.getDescricao();
     }
     
-//    public Recurso registaRecurso() {
-//        if (m_centroDeExposicoes.getRegistoRecurso().registaRecurso(m_recurso)) {
-//            return m_recurso;
-//        }
-//        return null;
-//    }
     
-    public static void novoRecurso(){
-  
-   recurso=ce.getRegistoRecursos().novoRecurso();
-
+    public void setRecurso(String novaDescricao) {
+       mRecurso.setDescricao(novaDescricao);
+    }
+   
+    
+    public Recurso novoRecurso(){
+       regRecursos=mce.getRegistoRecursos();
+       return mRecurso= regRecursos.novoRecurso();
+        
+        
     }
     
-
-    public Recurso getRecurso() {
-        return recurso;
+    public void adicionarRecurso(){
+        regRecursos.addRecurso(mRecurso);
     }
+    
+    
 
 }

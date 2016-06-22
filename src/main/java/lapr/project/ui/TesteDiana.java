@@ -37,8 +37,8 @@ public class TesteDiana {
         Utilizador user = new Utilizador();
         Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
 
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", true, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", true, 8);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
         Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", true, 6);
         Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", true, 3);
         Utilizador ut6 = new Utilizador("Tomás Magalhães", "1151182@isep.ipp.pt", "Representante", true, 1);
@@ -77,7 +77,7 @@ public class TesteDiana {
 
         ce.getRegistoExposicoes().adicionarExposicao(e1);
         
-        new ConfirmarRegistoUtilizadorUI(ce);
+        new DefinirRecursoUI(ce);
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
 //        CriarExposicaoUI c=new CriarExposicaoUI(ce);

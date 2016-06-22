@@ -38,7 +38,7 @@ public class RecursoTest {
     }
 
     /**
-     * Test of setDescricao method, of class Recurso.
+     * Test of RegistaRecurso method, of class Recurso.
      */
     @Test
     public void testSetDescricao() {
@@ -52,7 +52,7 @@ public class RecursoTest {
     }
 
     /**
-     * Test of getDescricao method, of class Recurso.
+     * Test of getRecurso method, of class Recurso.
      */
     @Test
     public void testGetDescricao() {

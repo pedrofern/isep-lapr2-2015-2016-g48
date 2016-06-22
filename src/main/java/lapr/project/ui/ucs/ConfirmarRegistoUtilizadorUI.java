@@ -1,6 +1,7 @@
 package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
@@ -28,14 +30,12 @@ import lapr.project.utils.*;
  */
 public class ConfirmarRegistoUtilizadorUI extends JFrame{
 
-    private final ConfirmarRegistoUtilizadorController controller;
+   private final ConfirmarRegistoUtilizadorController controller;
     private static CentroExposicoes ce;
     private JComboBox comboUtilizadores;
-    private JPanel pUtilizadores,painel;
+    private JPanel pUtilizadores;
     private JButton btnConfirmar;
-    private Utilizador ut;
-    private RegistoUtilizadores registoUt;
-    private String pergunta="Pretende cancelar a confirmacao do registo de utilizador?";
+    private String pergunta="Pretende confirmar o registo de utilizador?";
     
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
@@ -56,16 +56,13 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
     
     public void criarComponentes(){
         
-       painel=new JPanel();
-       painel.setLayout(new BorderLayout());
        
-       painel.add(criarPainelNorte(),BorderLayout.NORTH);
        
-        
-       painel.add(pUtilizadores, BorderLayout.CENTER);
-       painel.add(criarPainelBotoes(), BorderLayout.SOUTH);
+       add(criarPainelNorte(),BorderLayout.NORTH);
+       add(criarPainelUtilizador());
+       add(criarPainelBotoes(), BorderLayout.SOUTH);
        
-       add(painel);
+    
     }
     
     private JPanel criarPainelNorte(){
@@ -74,30 +71,33 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         p.setBorder(new TitledBorder("Utilizadores"));
         JLabel lbl = new JLabel("Selecione um utilizador para confirmacao", SwingConstants.RIGHT);
         p.add(lbl);
-        criarPainelUtilizadores();
+        criarPainelUtilizador();
         return p;
         
         
     }
+  
     
-    
-    
-    private void criarPainelUtilizadores(){
-       
-        pUtilizadores=new JPanel();
-//        String[] opcoes={"Ut 1", "Ut 2"};
-//        comboUtilizadores=new JComboBox(opcoes);
+    private JPanel criarPainelUtilizador(){
         
-        registoUt =ce.getRegistoUtilizadores();
+        pUtilizadores = new JPanel(new FlowLayout());
+        pUtilizadores.setPreferredSize(new Dimension(200, getHeight()));
+        pUtilizadores.setBorder(new EmptyBorder(0, 10, 0, 10));
+        pUtilizadores.add(getComboUtilizadores(), BorderLayout.NORTH);
+        
+        return pUtilizadores;
+    }
+    
+    
+    private JComboBox getComboUtilizadores() {
+        
+        
+        comboUtilizadores = Utils.criarComboUser(controller.getRegistoUtilizadores().getUtilizadoresPend());
+        return comboUtilizadores;
+    }
+    
       
-        
-        
-        pUtilizadores.add(Utils.criarComboUser(registoUt));
-        
-            }
-       
-
-    
+  
      private JPanel criarPainelBotoes() {
 
         FlowLayout l = new FlowLayout();
@@ -117,6 +117,8 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         return p;
     }
      
+    
+     
      private JButton criarBotaoConfirmar(){
         
          btnConfirmar = new JButton("Confirmar");
@@ -125,26 +127,18 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
 
              @Override
              public void actionPerformed(ActionEvent e) {
-                if(comboUtilizadores.getSelectedItem()!=null){
-                    
-                    JOptionPane.showMessageDialog(null,"Não selecionou um utilizador. Volte a tentar.");
-                    
-                }else{
-                    
-                   
-                }
+                 
+//                String[] opcoes = {"Sim", "Não"};
+//                
+//                int opcao=JOptionPane.showOptionDialog(new Frame(),pergunta,"Confirma registo do utilizador", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+//                        
+//                Janela.getTabPane().setSelectedIndex(0);
              }
+             
          });
          return btnConfirmar;
     }
                
-//             
-               
-     
-//     private JButton criarBotaoConfirmar(){
-//         
-//         
-//     }
      
      private JButton criarBotaoCancelar() {
         JButton botao = new JButton("Cancelar");
@@ -153,73 +147,15 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         botao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                guardarJanelaConfirmaRegistoUtilizador(pergunta);
+               
+                dispose();
             }
         });
 
         return botao;
     }
      
-     private void guardarJanelaConfirmaRegistoUtilizador(String pergunta){
-        if (comboUtilizadores.getSelectedItem()!=null){
-                
-            String[] opcoes = {"Sim", "Não"};
-            
-            int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
-                    "Confirmar registo utilizador", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-            if (opcao == JOptionPane.YES_OPTION) {                        
-                dispose();
-            } else {
-                 setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
-            }
-        }
-    }
-     
-     
-     
-    
-    
-    
 
-    
-//    public void run() {
-//        System.out.println("Confirmar Registo Utilizador:");
-//
-//        do {
-//            List<Utilizador> lUsers = controller.iniciaConfirmacaoUtilizador();
-//            mostraUtilizadores(lUsers);
-//            selecionaUtilizador();
-//
-//            System.out.print("continuar (s/n)?");
-//        } while ("s".equalsIgnoreCase(ler.nextLine()));
-//    }
-
-//    public void mostraUtilizadores(List<Utilizador> lUsers) {
-//        System.out.println("Utilizadores");
-//        System.out.println("------------");
-//        for (Utilizador u : lUsers) {
-//            System.out.printf("[%s] : %s\n", u.getUsername(), u.getEmail());
-//        }
-//    }
-//
-//    public void selecionaUtilizador() {
-//        System.out.print("Username?:");
-//        String uId = ler.nextLine();
-//
-//        Utilizador u = controller.getUtilizadorInfo(uId);
-//
-//        if (u == null || u.getRegistado()) {
-//            System.out.println("ERRO: utilizador invalido para confirmacao");
-//        } else {
-//            System.out.println(u.toString());
-//            System.out.print("confirma (s/n)?");
-//            if ("s".equalsIgnoreCase(ler.nextLine())) {
-//
-//                controller.confirmaRegistoUtilizador();
-//                System.out.println("sucesso");
-//            }
-//        }
     }
 
 

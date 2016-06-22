@@ -314,7 +314,7 @@ public class RegistoUtilizadoresTest {
         expResult.add(ut3);
         expResult.add(ut4);
         expResult.add(ut5);
-        List<Utilizador> result = instance.getUtilizadoresPend();
+        RegistoUtilizadores result = instance.getUtilizadoresPend();
         assertEquals(expResult, result);
         
     }

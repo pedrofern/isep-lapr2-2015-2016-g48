@@ -10,7 +10,7 @@ import lapr.project.model.Utilizador;
  */
 public class RegistoUtilizadores implements Serializable{
 
-    private ArrayList<Utilizador> m_listaUtilizadores;
+    private List<Utilizador> m_listaUtilizadores;
 
     public RegistoUtilizadores() {
         m_listaUtilizadores = new ArrayList<>();
@@ -127,7 +127,9 @@ public class RegistoUtilizadores implements Serializable{
         return m_listaUtilizadores.remove(utilizador);
     }
     
-
+    public void ordenarPorPosicao(){
+        Collections.sort(m_listaUtilizadores);
+    }
 
     /**
      * Devolve a descrição textual do Registo de Utilizadores.
@@ -158,12 +160,12 @@ public class RegistoUtilizadores implements Serializable{
         return !m_listaUtilizadores.contains(u);
     }
     
-    public List<Utilizador> getUtilizadoresPend(){
-        List<Utilizador>m_listaUtilizadoresPend;
-        m_listaUtilizadoresPend= new ArrayList<>();
+    public RegistoUtilizadores getUtilizadoresPend(){
+        RegistoUtilizadores m_listaUtilizadoresPend;
+        m_listaUtilizadoresPend= new RegistoUtilizadores();
         for (Utilizador u:m_listaUtilizadores){
             if (u.getRegistado()==false){
-                m_listaUtilizadoresPend.add(u);
+                m_listaUtilizadoresPend.addUtilizador(u);
             }
         } 
         return m_listaUtilizadoresPend;
@@ -187,6 +189,5 @@ public class RegistoUtilizadores implements Serializable{
         }
         return u;
     }
-    
 
 }

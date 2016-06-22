@@ -30,4 +30,9 @@ public class ConfirmarRegistoUtilizadorController {
     public void confirmaRegistoUtilizador() {
         registoUtilizadores.confirmaRegistoUtilizador(utilizadorAConfirmar);
     }
+    
+    public RegistoUtilizadores getRegistoUtilizadores(){
+        return registoUtilizadores=ce.getRegistoUtilizadores().getUtilizadoresPend();
+    }
+    
 }
