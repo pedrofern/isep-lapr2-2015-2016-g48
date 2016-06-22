@@ -8,6 +8,7 @@ package lapr.project.ui;
 import java.io.FileNotFoundException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
@@ -33,6 +34,7 @@ public class TesteDiana {
      */
     public static void main(String[] args) throws FileNotFoundException, Exception {
         // TODO code application logic here
+         // TODO code application logic here
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador user = new Utilizador();
         Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
@@ -63,29 +65,35 @@ public class TesteDiana {
         Exposicao e = ce.getRegistoExposicoes().novaExposicao();
 
         e.setListaOrganizadores(lo);
+        
+        FAE f1=new FAE();
+        FAE f2=new FAE();
+        f1.setUtilizador(ut4);
+        f2.setUtilizador(ut3);
+        
+        ListaFAE lf=new ListaFAE();
+        
+        
+        lf.addFAE(f2);
+        lf.addFAE(f1);
         formarDatas();
+        
+        e.setListaFaes(lf);
         e.setDados("teste", "teste", d1, d2, "teste", d3, d4, d5, d6, d7, d8, d9, d10);
-
+        e.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e);
 
         Exposicao e1 = ce.getRegistoExposicoes().novaExposicao();
 
-        ListaOrganizadores lo1 = new ListaOrganizadores();
         e1.setListaOrganizadores(lo);
         formarDatas();
         e1.setDados("teste1", "teste1", d1, d2, "teste1", d3, d4, d5, d6, d7, d8, d9, d10);
-
+        e1.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e1);
         
-        new CriarStandUI(ce,user);
+        //new DefinirRecursoUI(ce);
 
-        //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
-//        CriarExposicaoUI c=new CriarExposicaoUI(ce);
-       //DefinirFAEUI fa=new DefinirFAEUI(ce, user);
-        //CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
-      //  ListarCandidaturaRetiradaUI r = new ListarCandidaturaRetiradaUI(ce, user);
-      // new Login(ce);
-      // AtribuirStandCandidaturaUI ad=new AtribuirStandCandidaturaUI(ce,user);
+        AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }
 
     private static void formarDatas() {

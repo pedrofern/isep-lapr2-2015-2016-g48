@@ -12,14 +12,14 @@ public class AtribuirCandidaturaController {
 
     private static CentroExposicoes ce;
     private static Exposicao exposicao;
-    private static Utilizador user;
-    private static Candidatura candidatura;
-    private static Organizador organizador;
-    private static RegistoExposicoes registoExposicoes;
-    private static ListaFAE listaFAEs;
-    private static ListaCandidaturas cListaCandidaturas;
-    private static Atribuicao acNovaAtribuicaoCandidatura;
-    private static ListaAtribuicoes listaAtribuicoes;
+//    private static Utilizador user;
+//    private static Candidatura candidatura;
+//    private static Organizador organizador;
+//     private static RegistoExposicoes registoExposicoes;
+//    private static ListaFAE listaFAEs;
+//    private static ListaCandidaturas cListaCandidaturas;
+//    private static Atribuicao acNovaAtribuicaoCandidatura;
+//    private static ListaAtribuicoes listaAtribuicoes;
 
 
     public AtribuirCandidaturaController(CentroExposicoes centroExposicoes) {
@@ -28,7 +28,16 @@ public class AtribuirCandidaturaController {
     
     public RegistoExposicoes getListaExposicoes(Utilizador u){
         RegistoExposicoes listaExposicoesAtribuiveisOrg=new RegistoExposicoes();
+        listaExposicoesAtribuiveisOrg=ce.getRegistoExposicoes();
         return listaExposicoesAtribuiveisOrg;
+    }
+    
+    public void setExposicao(Exposicao e){
+        exposicao=e;
+    }
+    
+    public ListaFAE getListaFaes(){
+        return exposicao.getListaFAE();
     }
         
 }

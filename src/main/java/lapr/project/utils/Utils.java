@@ -2,26 +2,20 @@ package lapr.project.utils;
 
 import java.awt.Dimension;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
 import lapr.project.model.Recurso;
 import lapr.project.model.Stand;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.model.lists.RegistoRecursos;
 import lapr.project.model.lists.RegistoStands;
@@ -119,6 +113,20 @@ public class Utils implements Serializable{
 
         return comboRecursos;
     }
+    
+    public static JComboBox criarComboFaes(ListaFAE listaFaes){
+        FAE[] opcoes= listaFaes.getArray();
+        JComboBox comboFaes=new JComboBox();
+        
+        DefaultComboBoxModel combo = new DefaultComboBoxModel(opcoes);
+
+        comboFaes.setModel(combo);
+
+        return comboFaes;
+    }
+    
+    
+    
 
     public static Data converterStringParaData(String data) {
 

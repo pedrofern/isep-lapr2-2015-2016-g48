@@ -28,7 +28,7 @@ public class AtribuirCandidaturaUI extends JFrame{
     private static final int JANELA_ALTURA = 320;
     private JFrame framePai;
     private static final Dimension LABEL_TAMANHO = new JLabel("Area de Stand").getPreferredSize();
-    private JPanel pExpo, pMecs,pAtrib, pFae;
+    private JPanel pExpo, pMecs,pAtrib, pFae, pFaes;
     private JComboBox comboExposicao, comboMec, comboFae;
       
     public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador)  {
@@ -63,7 +63,7 @@ public class AtribuirCandidaturaUI extends JFrame{
         pMecs.setPreferredSize(new Dimension(80, getHeight()));
         pMecs.setBorder(new TitledBorder("Mecanismo"));
         
-        pMecs.add(criarPainelMecanismos(), BorderLayout.WEST);
+        pMecs.add(criarPainelMecanismos(), BorderLayout.NORTH);
         pMecs.add(criarPainelFae(), BorderLayout.CENTER);
 
    
@@ -137,17 +137,14 @@ public class AtribuirCandidaturaUI extends JFrame{
     }
     
       private JPanel getPanelFaes() {
-        JPanel p=new JPanel();
-        p.setLayout(new BorderLayout());
+        pFaes=new JPanel();
+        pFaes.setLayout(new BorderLayout());
         JLabel lblFae=new JLabel("FAE");
         pFae.add(lblFae, BorderLayout.NORTH);
+       
+        pFaes.add(lblFae, BorderLayout.NORTH);
         
-        comboFae = Utils.criarComboUser(ce.getRegistoUtilizadores());
-        
-        p.add(lblFae, BorderLayout.NORTH);
-        p.add(comboFae, BorderLayout.SOUTH);
-        
-        return p;
+        return pFaes;
     }
     
     private JPanel criarPainelSul() {
@@ -181,7 +178,12 @@ public class AtribuirCandidaturaUI extends JFrame{
         btnSel1 = new JButton("Seleccionar");
         btnSel1.addActionListener((ActionEvent e) -> {
             btnSel2.setEnabled(true);
+            controllerAC.setExposicao((Exposicao)comboExposicao.getSelectedItem());
             comboExposicao.setEnabled(false);
+              
+            comboFae = Utils.criarComboFaes(controllerAC.getListaFaes());
+            pFaes.add(comboFae, BorderLayout.SOUTH);
+                     
             pMecs.setVisible(true);
                   
         });
@@ -228,33 +230,6 @@ public class AtribuirCandidaturaUI extends JFrame{
     }
 }
 
-    
-//    public void run() {
-//
-//        novaAtribuicaoCandidatura();
-//
-//        List<Exposicao> le = m_controllerAC.iniciarAtribuicaoCandidatura();
-//
-//        apresentaExposicoes(le);
-//
-//        Exposicao e = selecionaExposicao(le);
-//
-//        if (e != null) {
-//
-//            List<Candidatura> lc = m_controllerAC.getListaCandidaturas();
-//
-//            apresentaCandidaturas(lc);
-//
-//            Candidatura c = selecionaCandidatura(lc);
-//
-//            if (c != null) {
-//
-//                List<FAE> lf = m_controllerAC.getListaFAE();
-//
-//                apresentaFAE(lf);
-//
-//                FAE f = selecionaFAE(lf);
-//
 //                m_controllerAC.setAtribuicao();
 //
 //                String strQuestao = "Confirma a decisao da atribuição de candidatura com a seguinte informação: \n" + m_controllerAC.getInfoResumo() + "\n Opção (S/N):";

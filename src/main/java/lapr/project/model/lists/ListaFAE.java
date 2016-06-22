@@ -48,7 +48,6 @@ public class ListaFAE implements Serializable{
             if (o1.getUtilizador().getEmail().equalsIgnoreCase(fae.getUtilizador().getEmail())) {
                 return false;
             }
-            return true;
         }
         return true;
     }
@@ -56,12 +55,13 @@ public class ListaFAE implements Serializable{
     /**
      * Verifica se existe o Organizador com a mesma ID recebida por parametro.
      *
+     * @param u
      * @param strID a identificação do Organizador
      * @return bollean
      */
     public boolean hasUtilizador(Utilizador u) {
         for (FAE fae : this.listaFAE) {
-            if (fae.getUtilizador().getUsername().equals(u)) {
+            if (fae.getUtilizador().getUsername().equals(u.getUsername())) {
                 return true;
             }
         }
@@ -111,6 +111,11 @@ public class ListaFAE implements Serializable{
         } else {
             return false;
         }
+    }
+    
+    
+    public FAE[] getArray() {
+        return listaFAE.toArray( new FAE[listaFAE.size()] );
     }
 
     public boolean validaMinFAE() {
