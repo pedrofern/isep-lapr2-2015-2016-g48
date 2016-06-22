@@ -155,7 +155,7 @@ public class CandidaturaDemonstracao implements Serializable{
     }
     
     public boolean validaContivesDemonstracao() {
-        if (areaExposicaoCD<1 || areaExposicaoCD>999){
+        if (quantidadeConvitesCD<1 || quantidadeConvitesCD>999){
             return false;
         }
         return true;

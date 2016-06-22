@@ -207,7 +207,7 @@ public class Candidatura implements Serializable{
     }
     
     public boolean validaContives() {
-        if (areaExposicao<1 || areaExposicao>999){
+        if (quantidadeConvites<1 || quantidadeConvites>999){
             return false;
         }
         return true;
