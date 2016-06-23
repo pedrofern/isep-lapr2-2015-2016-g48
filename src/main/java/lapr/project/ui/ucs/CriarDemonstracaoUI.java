@@ -264,7 +264,7 @@ public class CriarDemonstracaoUI extends JFrame {
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Demonstração adicionada: \n"
-                                + m_demonstracaoController.getDemonstraçãoString(),
+                                + m_demonstracaoController.getDemonstracao().toString(),
                                 "Nova Demonstração",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();

@@ -13,7 +13,6 @@ import lapr.project.model.lists.*;
  */
 public class CriarStandController {
     
-    private GestorDeExposicoes gestor;
     private Stand m_stand;
     private RegistoStands m_listaStands;
     private CentroExposicoes mce;

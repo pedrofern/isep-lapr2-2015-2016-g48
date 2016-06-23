@@ -42,7 +42,6 @@ public class CriarStandUI extends JFrame {
     private static final Dimension LABEL_TAMANHO = new JLabel("Descricao: ").getPreferredSize();
     private JTextField txtDescricao,txtArea;
     private Utilizador user;
-    private GestorDeExposicoes gestor;
     private CentroExposicoes mce;
     private RegistoStands m_listaStands; 
     private CriarStandController m_controller;
@@ -57,7 +56,6 @@ public class CriarStandUI extends JFrame {
         
         this.mce=ce;
         this.user=user;
-        gestor=new GestorDeExposicoes();
         
         mce=ce;
         m_controller=new CriarStandController(ce);

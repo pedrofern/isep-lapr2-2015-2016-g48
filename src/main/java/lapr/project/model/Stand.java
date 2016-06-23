@@ -13,7 +13,6 @@ public class Stand implements Serializable{
     private String area;
     private RegistoStands mListaStands;
     private Exposicao expo;
-    private GestorDeExposicoes gestor;
     
     private String ID = "Stand-";
     private static int totalDemonstracao = 0;
