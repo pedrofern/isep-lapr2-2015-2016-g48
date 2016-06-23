@@ -42,11 +42,8 @@ public class DefinirFAEUI extends JFrame {
 
         ce = centroExposicoes;
         user = utilizador;
-        controller = new DefinirFAEController(centroExposicoes, user);
-      
-
-       
-       
+        controller = new DefinirFAEController(ce, user);
+        // controller.getRegistoUTilizadores();
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,6 +111,15 @@ public class DefinirFAEUI extends JFrame {
             public void actionPerformed(ActionEvent ae) {
 
                 controller.selectExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
+                controller.setRegistoUTilizadores();
+                for (int i = 0; i < controller.getRegistoUtilizadoresFAE().getListaUtilizadores().size(); i++) {
+
+                    if (!modeloListaUtilizadores.contains(controller.getRegistoUtilizadoresFAE().getListaUtilizadores().get(i))) {
+                        modeloListaUtilizadores.addElement(controller.getRegistoUtilizadoresFAE().getListaUtilizadores().get(i));
+
+                    }
+
+                }
                 comboBoxExposicao.setEnabled(false);
             }
         });
@@ -131,11 +137,6 @@ public class DefinirFAEUI extends JFrame {
         lstCompletaUtilizadores = new JList();
         modeloListaUtilizadores = new DefaultListModel();
         lstCompletaUtilizadores.setModel(modeloListaUtilizadores);
-        for (int i = 0; i < controller.getRegistoUTilizadores().getListaUtilizadores().size(); i++) {
-
-            modeloListaUtilizadores.addElement(controller.getRegistoUTilizadores().getListaUtilizadores().get(i));
-
-        }
 
         btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
         p.add(criarPainelLista("Lista de Utilizadores",
@@ -255,7 +256,7 @@ public class DefinirFAEUI extends JFrame {
 
                         Utilizador u = (Utilizador) values[i];
 
-                        controller.criarFAE(u);
+                        controller.addFAE(u);
                         controller.adicionarFAE();
                     } else {
                         JOptionPane.showMessageDialog(
@@ -284,29 +285,28 @@ public class DefinirFAEUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Deve seleciona uma exposição e adicionar um utilizador!", null, JOptionPane.WARNING_MESSAGE);
                 } else if (comboBoxExposicao.getSelectedIndex() == -1) {
                     JOptionPane.showMessageDialog(null, "Deve seleciona uma exposição !", null, JOptionPane.WARNING_MESSAGE);
-                } if (controller.validaMinFAE()) {
+                }
+                if (controller.validaMinFAE()) {
 
-                        if (controller.registaEstado()) {
+                    if (controller.registaMembroFAE()) {
 
-                            JOptionPane.showMessageDialog(
-                                    null,
-                                    controller.getFAEString(),
-                                    "Novo FAE",
-                                    JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                controller.getFAEString(),
+                                "Novo FAE",
+                                JOptionPane.INFORMATION_MESSAGE);
 
-                            dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "O fae já se encontra registada no sistema", "Novo FAE", JOptionPane.ERROR_MESSAGE);
-
-                        }
+                        dispose();
                     } else {
-                        
-                        JOptionPane.showMessageDialog(null, "Introduza pelo menos 2 FAE", "Definir FAE", JOptionPane.ERROR_MESSAGE);
-                    }
+                        JOptionPane.showMessageDialog(null, "O fae já se encontra registada no sistema", "Novo FAE", JOptionPane.ERROR_MESSAGE);
 
+                    }
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Introduza pelo menos 2 FAE", "Definir FAE", JOptionPane.ERROR_MESSAGE);
                 }
 
-            
+            }
 
         });
 

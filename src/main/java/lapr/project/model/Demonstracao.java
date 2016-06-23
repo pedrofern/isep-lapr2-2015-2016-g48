@@ -6,17 +6,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List.*;
 import java.util.Timer;
+import java.util.TimerTask;
 import lapr.project.controller.DetetarConflitosController;
 import lapr.project.model.lists.*;
-import lapr.project.model.states.DemonstracaoEstado;
-import lapr.project.model.states.DemonstracaoEstadoInicial;
-import lapr.project.model.states.ExposicaoCandidaturasAbertas;
-import lapr.project.model.states.ExposicaoCandidaturasEmAvaliacao;
-import lapr.project.model.states.ExposicaoCandidaturasFechadas;
-import lapr.project.model.states.ExposicaoConflitosAlterados;
-import lapr.project.model.states.ExposicaoEstado;
-import lapr.project.model.states.ExposicaoStandsAtribuiveis;
+import lapr.project.model.states.*;
 import lapr.project.utils.Data;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -34,6 +29,7 @@ public class Demonstracao implements Serializable {
     private ListaRecursoDemonstracao listarecursodemonstracao;
     private Demonstracao demonstracao;
     private DemonstracaoEstado estado;
+    private TimerTask task1, task2;
     /**
      * Metodo que constroi objetos demonstração
      *
@@ -96,32 +92,21 @@ public class Demonstracao implements Serializable {
 
     public void createTimers() throws ParseException {
 
-//        Timer timer = new Timer();
-//
-//        task1 = new ExposicaoCandidaturasAbertas(this);
-//        timer.schedule(task1, dataInicioSubmissao.converterParaDate());
-//
-//        task2 = new ExposicaoCandidaturasFechadas(this);
-//        timer.schedule(task2, dataFimSubmissao.converterParaDate());
-//
-//        task3 = new DetetarConflitosController(this);
-//        timer.schedule(task3, dataDeteccaoConflitos.converterParaDate());
-//
-//        task4 = new ExposicaoConflitosAlterados(this);
-//        timer.schedule(task4, dataAlteracaoConflitos.converterParaDate());
-//
-//        task5 = new ExposicaoCandidaturasEmAvaliacao(this);
-//        timer.schedule(task5, dataInicioAvaliacao.converterParaDate());
-//
-//        task6 = new ExposicaoStandsAtribuiveis(this);
-//        timer.schedule(task6, dataInicioStands.converterParaDate());
+        Timer timer = new Timer();
+
+        task1 = new DemonstracaoEstadoCandidaturaAberto(this);
+        timer.schedule(task1, inicio.converterParaDate());
+
+        task2 = new DemonstracoesEstadoCandidaturaFechada(this);
+        timer.schedule(task2, fim.converterParaDate());
+
     }
 
     public DemonstracaoEstado getEstadoAtualDemonstracao() {
         return estado;
     }
-    
-     public boolean alterarEstado(DemonstracaoEstado estado) {
+
+    public boolean alterarEstado(DemonstracaoEstado estado) {
         this.estado = estado;
         return true;
     }
@@ -159,6 +144,17 @@ public class Demonstracao implements Serializable {
         }
     }
 
+    public boolean validaDataFimSuperiorInicio() {
+        return fim.isMaior(inicio);
+    }
+
+    public boolean validaDatas(String datai, String dataf) {
+        boolean b1 = Utils.validaDatasString(datai);
+        boolean b2 = Utils.validaDatasString(dataf);
+       
+
+        return b1 == true && b2 == true;
+    }
     /**
      * Metodo que modifica o recurso
      *

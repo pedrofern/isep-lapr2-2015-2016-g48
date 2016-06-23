@@ -72,7 +72,7 @@ public class ListaFAETest {
     }
 
     /**
-     * Test of criaFAE method, of class ListaFAE.
+     * Test of addFAE method, of class ListaFAE.
      */
     @Test
     public void testCriaFAE() {
@@ -80,7 +80,7 @@ public class ListaFAETest {
         Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
         ListaFAE instance = new ListaFAE();
         FAE expResult = new FAE(u);
-        FAE result = instance.criaFAE(u);
+        FAE result = instance.addFAE(u);
         assertEquals(expResult, result);
 
     }

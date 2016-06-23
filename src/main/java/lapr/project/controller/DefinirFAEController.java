@@ -17,9 +17,11 @@ public class DefinirFAEController {
     private Exposicao exposicao;
     private FAE fae;
     private ListaFAE listaFaes;
+    private ListaOrganizadores listaOrganizadores;
     private RegistoUtilizadores m_registoUtilizadores;
     private Utilizador utilizador;
     private RegistoExposicoes listaExposicao;
+    private RegistoUtilizadores listaUtilizador;
 
     public DefinirFAEController(CentroExposicoes centroExposicao, Utilizador utilizador) {
         this.ce = centroExposicao;
@@ -31,8 +33,23 @@ public class DefinirFAEController {
 //        return listaExposicao.getListaExposicaoOrganizadorSemFAEDefinidos(email);
 //    }
 
-    public RegistoUtilizadores getRegistoUTilizadores() {
-        return ce.getRegistoUtilizadores();
+    public void setRegistoUTilizadores() {
+        m_registoUtilizadores = ce.getRegistoUtilizadores();
+        listaUtilizador = new RegistoUtilizadores();
+        for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+            for (Organizador o : listaOrganizadores.getListaOrganizadores()) {
+                if (!(u.getUsername().equals(o.getUtilizador().getUsername()) && u.getEmail().equals(u.getEmail()))) {
+                    listaUtilizador.addUtilizador(u);
+
+                }
+            }
+        }
+
+        m_registoUtilizadores = listaUtilizador;
+    }
+
+    public RegistoUtilizadores getRegistoUtilizadoresFAE() {
+        return m_registoUtilizadores;
     }
 
     public ListaFAE getListaFAE() {
@@ -40,9 +57,8 @@ public class DefinirFAEController {
         return listaFaes;
     }
 
-    public void criarFAE(Utilizador utilizador) {
-        fae = listaFaes.criaFAE(utilizador);
-      
+    public void addFAE(Utilizador utilizador) {
+        fae = listaFaes.addFAE(utilizador);
 
     }
 
@@ -61,6 +77,7 @@ public class DefinirFAEController {
     public void selectExposicao(Exposicao e) {
         this.exposicao = e;
         listaFaes = exposicao.getListaFAE();
+        listaOrganizadores = exposicao.getListaOrganizadores();
     }
 
     public String getFAEString() {
@@ -72,10 +89,19 @@ public class DefinirFAEController {
     }
 
     public RegistoExposicoes getExposicoes() {
-    return   listaExposicao=ce.getRegistoExposicoes();
+        return listaExposicao = ce.getRegistoExposicoes();
     }
 
-    public boolean registaEstado() {
+    public boolean registaMembroFAE() {
+
+        if (fae.validaMenbroFAE()) {
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean atualizaExposicao() {
         ExposicaoEstado estado = exposicao.getEstadoAtualExposicao();
         exposicao.alterarEstado(estado);
         return !((estado instanceof ExposicaoEstadoCriada) || (estado instanceof ExposicaoDemonstracaoSemFAE));

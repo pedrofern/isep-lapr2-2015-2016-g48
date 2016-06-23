@@ -17,6 +17,7 @@ import lapr.project.model.lists.*;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
+import lapr.project.ui.ucs.DefinirFAEUI;
 import lapr.project.utils.Data;
 import lapr.project.utils.*;
 
@@ -51,8 +52,6 @@ public class TesteDiana {
         Utilizador ut10 = new Utilizador("User4", "1060503@isep.ipp.pt", "Fae", true, 4);
 
         
-          XMLParser xlm=new XMLParser();
-          //xlm.writeXMLElementToFile(ut1, "Grego");
         RegistoUtilizadores lu = ce.getRegistoUtilizadores();
         lu.addUtilizador(ut1);
         lu.addUtilizador(ut2);
@@ -70,7 +69,7 @@ public class TesteDiana {
         Organizador o1 = new Organizador(ut2);
         ListaOrganizadores lo = new ListaOrganizadores();
         Exposicao e = ce.getRegistoExposicoes().novaExposicao();
-
+            lo.addOrganizador(o);
         e.setListaOrganizadores(lo);
         
         FAE f1=new FAE();
@@ -211,9 +210,9 @@ public class TesteDiana {
         ce.getRegistoExposicoes().adicionarExposicao(e1);
         
         
-        //new DefinirRecursoUI(ce);
+        new DefinirFAEUI(ce, user);
 
-        AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
+        //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }
 
     private static void formarDatas() {

@@ -86,8 +86,8 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         dataInicioAvaliacao = dataAvInicio;
         dataFimAvaliacao = dataAvFim;
         dataDeteccaoConflitos = dConflitos;
-        this.dataInicioStands = dataInicioStands;
-        this.dataFimStands = dataFimStand;
+        this.setDataInicioStands(dataInicioStands);
+        this.setDataFimStands(dataFimStand);
         dataAlteracaoConflitos = dAConflitos;
     }
 
@@ -202,7 +202,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     }
       public void setDataInicoStands(Data strDataInicioStands) {
        
-        this.dataInicioStands=strDataInicioStands;
+          this.setDataInicioStands(strDataInicioStands);
     }
        public void setDataFimStands(Data strDataFimStands) {
        
@@ -408,5 +408,12 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         }
 
         return str;
+    }
+
+    /**
+     * @param dataInicioStands the dataInicioStands to set
+     */
+    public void setDataInicioStands(Data dataInicioStands) {
+        this.dataInicioStands = dataInicioStands;
     }
 }

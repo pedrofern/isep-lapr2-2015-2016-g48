@@ -8,6 +8,7 @@ package lapr.project.controller;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.Data;
+import lapr.project.model.states.*;
 
 /**
  *
@@ -29,12 +30,18 @@ public class DefinirDemonstracaoController {
     }
 
     public RegistoExposicoes getRegistoExposicoes() {
-
+        
         return registoExposicoes = ce.getRegistoExposicoes();
     }
 
-    public void setEposicao(Exposicao exposicao) {
+    public void setExposicao(Exposicao exposicao) {
         this.exposicao = exposicao;
+       listaDemonstracoes = exposicao.getListaDemonstracoes();
+    }
+
+    public ListaDemonstracoes getListaDemonstracoesCriadas() {
+
+        return  listaDemonstracoes;
     }
 
     public void setDemonstracao(Demonstracao demonstracao) {
@@ -44,7 +51,22 @@ public class DefinirDemonstracaoController {
     }
 
     public void setPeriodoCanidatura(Data inicio, Data fim) {
-            demonstracao.setPeriodoCandidaturas(inicio, fim);
+        demonstracao.setPeriodoCandidaturas(inicio, fim);
+    }
+
+       public boolean validaDataFimSuperiorInicio(){
+        return  demonstracao.validaDataFimSuperiorInicio();
+    }
+       
+       public boolean validaDatas(String datai, String dataf) {
+        return demonstracao.validaDatas(datai, dataf); 
+    }
+    
+    public boolean atualizaDemonstracao() {
+
+        DemonstracaoEstado demoEstado = demonstracao.getEstadoAtualDemonstracao();
+        demonstracao.alterarEstado(demoEstado);
+        return !(demoEstado instanceof DemonstracaoEstadoCriada || demoEstado instanceof DemonstracaoEstadoInteresse || demoEstado instanceof DemonstracaoEstadoDecidida);
     }
 
 }

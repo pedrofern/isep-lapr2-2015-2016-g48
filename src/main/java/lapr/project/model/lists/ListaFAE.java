@@ -31,7 +31,7 @@ public class ListaFAE implements Serializable{
      *
      * @param u
      */
-    public FAE criaFAE(Utilizador u) {
+    public FAE addFAE(Utilizador u) {
 
         return new FAE(u);
 

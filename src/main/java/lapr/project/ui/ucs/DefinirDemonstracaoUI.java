@@ -17,6 +17,11 @@ import javax.swing.text.MaskFormatter;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
+import lapr.project.controller.*;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.Exposicao;
+import lapr.project.utils.Data;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -26,44 +31,88 @@ public class DefinirDemonstracaoUI extends JFrame {
 
     private static CentroExposicoes ce;
     private static Utilizador user;
-    
+
     private Calendar dataInicial, dataFinal;
     private JFormattedTextField campoDataInicial, campoDataFinal;
     private JButton btnConfirmar, btnCancelar, btnLimpar;
     private JComboBox comboBoxExposicao, comboBoxDemonstracao;
     private JFrame framepai;
-    private JList listaCompletaExposicao, listaCompletaDemonstracao;
-    private ModeloListaDemonstracoes modeloListaDemonstracao;
-    private ModeloListaExposicao modeloListaExposicao;
+    private JList listaCompletaDemonstracao;
+    private DefaultListModel modeloListaDemonstracao;
     private JTable tableListaRecurso;
-    private ListaDemonstracoes listaDemonstracao;
-    private RegistoExposicoes listaExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
+    private DefinirDemonstracaoController controller;
 
     public DefinirDemonstracaoUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 
         super("Definir Demonstração");
-        ce=centroExposicoes;
-        user=utilizador;
+        ce = centroExposicoes;
+        user = utilizador;
+        controller = new DefinirDemonstracaoController(ce, user);
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        pack();
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     public void criarComponentes() throws FileNotFoundException {
-
+        add(criarPainelNorte(), BorderLayout.NORTH);
         add(criarPainelListas(), BorderLayout.CENTER);
-        add(criarPainelSul(),BorderLayout.SOUTH);
+        add(criarPainelSul(), BorderLayout.SOUTH);
+    }
+
+    private JPanel criarPainelNorte() {
+        JPanel p = new JPanel(new FlowLayout());
+
+        p.add(criarPainelExposicao());
+
+        p.setBorder(new EmptyBorder(0, 10,
+                0, 10));
+
+        p.setBorder(new TitledBorder("Dados "));
+        return p;
+    }
+
+    private JPanel criarPainelExposicao() {
+        JPanel p = new JPanel(new FlowLayout());
+        JLabel lbl = new JLabel("Exposição", SwingConstants.RIGHT);
+
+        lbl.setPreferredSize(new Dimension(80, 30));
+
+        p.setBorder(new EmptyBorder(0, 0,
+                0, 0));
+
+        p.add(lbl);
+        p.add(getListaExposicao());
+
+        return p;
+    }
+
+    private JComboBox getListaExposicao() {
+
+        comboBoxExposicao = Utils.criarComboExpo(controller.getRegistoExposicoes());
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+        comboBoxExposicao.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+                controller.setExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
+                comboBoxExposicao.setEnabled(false);
+            }
+        });
+        return comboBoxExposicao;
     }
 
     private JPanel criarPainelSul() throws FileNotFoundException {
-        JPanel p = new JPanel(new GridLayout(0, 3,0,4));
+        JPanel p = new JPanel(new GridLayout(0, 3, 0, 4));
 
         p.add(criarPainelDataInicial());
         p.add(criarPainelDataFinal());
@@ -87,18 +136,15 @@ public class DefinirDemonstracaoUI extends JFrame {
                 INTERVALO_HORIZONTAL,
                 INTERVALO_VERTICAL));
 
-        listaCompletaExposicao = new JList();
-        listaExposicao = new RegistoExposicoes();
-        modeloListaExposicao = new ModeloListaExposicao(listaExposicao);
-
-        p.add(criarPainelListaExposicao("Lista Exposição",
-                listaCompletaExposicao,
-                modeloListaExposicao));
-
         listaCompletaDemonstracao = new JList();
-        listaDemonstracao = new ListaDemonstracoes();
-        modeloListaDemonstracao = new ModeloListaDemonstracoes(listaDemonstracao);
-        p.add(criarPainelListaDemonstracao("Lista Demonstração", listaCompletaDemonstracao, modeloListaDemonstracao));
+        modeloListaDemonstracao = new DefaultListModel();
+        listaCompletaDemonstracao.setModel(modeloListaDemonstracao);
+
+         for (int i = 0; i <controller.getListaDemonstracoesCriadas().getListaDemonstracoes().size(); i++) {
+        modeloListaDemonstracao.addElement(controller.getListaDemonstracoesCriadas().getListaDemonstracoes().get(i));
+        }
+
+        p.add(criarPainelListaDemonstracao("Lista Demonstração", listaCompletaDemonstracao));
 
         return p;
     }
@@ -140,34 +186,12 @@ public class DefinirDemonstracaoUI extends JFrame {
         return painel;
     }
 
-    private JPanel criarPainelListaExposicao(
-            String tituloLista,
-            JList lstLista,
-            ModeloListaExposicao modeloLista) {
-
-        JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
-
-        lstLista.setModel(modeloLista);
-        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrPane = new JScrollPane(lstLista);
-
-        JPanel p = new JPanel(new BorderLayout());
-
-        p.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        p.add(lblTitulo, BorderLayout.NORTH);
-        p.add(scrPane, BorderLayout.CENTER);
-
-        return p;
-    }
-
     private JPanel criarPainelListaDemonstracao(
             String tituloLista,
-            JList lstLista,
-            ModeloListaDemonstracoes modeloLista) {
+            JList lstLista
+    ) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
-        lstLista.setModel(modeloLista);
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrPane = new JScrollPane(lstLista);
 
@@ -180,7 +204,7 @@ public class DefinirDemonstracaoUI extends JFrame {
 
         return p;
     }
-    
+
     private JPanel criarPainelBotoes() {
         JButton btnConfirmar = criarBotaoConfirmar();
         getRootPane().setDefaultButton(btnConfirmar);
@@ -201,8 +225,62 @@ public class DefinirDemonstracaoUI extends JFrame {
         return p;
     }
 
+    private void setDados() {
+
+        Data dataInicialPrimeiro = Utils.converterStringParaData(campoDataInicial.getText());
+        Data dataFinalUltimo = Utils.converterStringParaData(campoDataFinal.getText());
+
+        controller.setDemonstracao((Demonstracao) listaCompletaDemonstracao.getSelectedValue());
+        controller.setPeriodoCanidatura(dataFinalUltimo, dataFinalUltimo);
+    }
+
     private JButton criarBotaoConfirmar() {
         btnConfirmar = new JButton("Confirmar");
+        btnConfirmar.addActionListener((ActionEvent e) -> {
+
+            String base = "__/__/____";
+
+            if (campoDataInicial.getText().equals(base) || campoDataFinal.getText().equals(base)) {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Tem de preencher todos os campos!",
+                        "Definir Demonstração",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    controller.validaDatas(campoDataInicial.getText(), campoDataFinal.getText());
+                    setDados();
+
+                    if (!controller.validaDataFimSuperiorInicio()) {
+
+                        JOptionPane.showMessageDialog(null, "A data fim tem de ser superior à data de início correspondente.", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+
+                    } else {
+                        if (controller.atualizaDemonstracao()) {
+
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    controller.getListaDemonstracoesCriadas().toStringCompleto(),
+                                    "Definir Demonstração",
+                                    JOptionPane.INFORMATION_MESSAGE);
+
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "A demonstrações já se encontra registada no sistema", "Definir Demonstração", JOptionPane.ERROR_MESSAGE);
+
+                        }
+
+                    }
+
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null, "Data inválida encontrada", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+            }
+
+        });
         return btnConfirmar;
     }
 
@@ -230,6 +308,5 @@ public class DefinirDemonstracaoUI extends JFrame {
             }
         });
         return btnLimpar;
-
     }
 }
