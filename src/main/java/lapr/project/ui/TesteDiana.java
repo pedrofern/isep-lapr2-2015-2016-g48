@@ -17,6 +17,7 @@ import lapr.project.model.lists.*;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
+import lapr.project.ui.ucs.CriarEstatisticaUI;
 import lapr.project.ui.ucs.DefinirFAEUI;
 import lapr.project.ui.ucs.EstatisticasCandidaturasExposicaoUI;
 import lapr.project.utils.Data;
@@ -212,7 +213,7 @@ public class TesteDiana {
         
         
         //new DefinirFAEUI(ce, user);
-        new EstatisticasCandidaturasExposicaoUI(ce);
+        //new CriarEstatisticaUI(ce, user);
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }

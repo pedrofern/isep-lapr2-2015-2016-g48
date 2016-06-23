@@ -8,24 +8,25 @@ package lapr.project.ui.ucs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
-import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -33,22 +34,18 @@ import lapr.project.model.Utilizador;
  */
 public class CriarEstatisticaUI extends JFrame {
 
-    private DefaultTableModel modeloTabela;
-    private JTable tabela;
     private Exposicao exposicao;
     private CentroExposicoes centro;
     private Utilizador utilizador;
-    private String[] titulo = {"FAE", "Nº de submissões", "Média das classificações do FAE", "Média dos desvios", "Valor observado da estatistica de teste", "Decisão Alerta:Sim/Não"};
-    private Object[][] linha = new Object[10][10];
+    private static JComboBox comboBoxExposicao;
+    private static final Dimension LABEL_TAMANHO = new JLabel("Valor observado da estatistica de teste").getPreferredSize();
 
     public CriarEstatisticaUI(CentroExposicoes centro, Utilizador utilizador) throws FileNotFoundException {
 
-        super("Estatistica");
         this.centro = centro;
         this.utilizador = utilizador;
 
         criarComponentes();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
         setLocationRelativeTo(null);
@@ -57,81 +54,110 @@ public class CriarEstatisticaUI extends JFrame {
 
     public void criarComponentes() throws FileNotFoundException {
 
-        add(criarPainelCentro(), BorderLayout.CENTER);
+        add(criarPainelNorte(), BorderLayout.NORTH);
+        add(criarPainelTabela(), BorderLayout.CENTER);
     }
 
-    private JPanel criarPainelCentro() {
-
+    private JPanel criarPainelNorte() {
         JPanel p = new JPanel(new FlowLayout());
 
-        tabela = new JTable();
+        p.add(criarPainelExposicao());
 
-        TableModel dataModel = new AbstractTableModel() {
-            public int getColumnCount() {
-                return titulo.length;
-            }
+        p.setBorder(new EmptyBorder(0, 10,
+                0, 10));
 
-            public int getRowCount() {
-                return linha.length;
-            }
-
-            public Object getValueAt(int row, int col) {
-                return linha[row][col];
-            }
-
-            public String getColumnName(int column) {
-                return titulo[column];
-            }
-
-            public Class getColumnClass(int col) {
-                return getValueAt(0, col).getClass();
-            }
-        };
-
-        tabela.setModel(dataModel);
-        p.add(criarPainelTabela(tabela));
+        p.setBorder(new TitledBorder("Dados "));
         return p;
     }
 
-    public JPanel criarPainelTabela(JTable tabela) {
+    private JPanel criarPainelExposicao() {
+        JPanel p = new JPanel(new FlowLayout());
+        JLabel lbl = new JLabel("Exposição", SwingConstants.RIGHT);
 
-        JPanel painel = new JPanel(new BorderLayout());
-        ListSelectionModel listMod = tabela.getSelectionModel();
-        listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listMod.addListSelectionListener(new Selecao(tabela));
-        tabela.setPreferredScrollableViewportSize(new Dimension(350, 50));
-        JScrollPane scrPane = new JScrollPane(tabela);
-        
+        lbl.setPreferredSize(LABEL_TAMANHO);
 
-        painel.add(scrPane, BorderLayout.CENTER);
+        p.setBorder(new EmptyBorder(0, 0,
+                0, 0));
+
+        p.add(lbl);
+        p.add(getListaExposicao());
+
+        return p;
+    }
+
+    private JComboBox getListaExposicao() {
+
+//        comboBoxExposicao = Utils.criarComboExpo(); para utilizar com controller
+        comboBoxExposicao = new JComboBox(); //teste
+        comboBoxExposicao.setSelectedIndex(-1);
+        comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
+        comboBoxExposicao.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                comboBoxExposicao.setEnabled(false);
+            }
+        });
+        return comboBoxExposicao;
+    }
+
+    public JPanel criarPainelTabela() {
+        JPanel painel = new JPanel(new FlowLayout());
+        painel.setBorder(new TitledBorder("Estatisticas:"));
+
+        String[] columnNames = {"FAE",
+            "Média das classificações do FAE",
+            "Média dos desvios",
+            "Valor observado da estatistica de teste",
+            "Decisão Alerta:Sim/Não",};
+
+        Object[][] data = {
+            {new Integer(1), new String(" "), new String(" "), new String(" "), new String(" ")},
+            {new Integer(2), new String(" "), new String(" "), new String(" "), new String(" ")},
+            {new Integer(3), new String(" "), new String(" "), new String(" "), new String(" ")},};
+
+        final JTable table = new JTable(data, columnNames);
+        table.setPreferredScrollableViewportSize(new Dimension(1000, 80));
+        table.setFillsViewportHeight(true);
+       
+        //table.getTableHeader().setReorderingAllowed(false);
+
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                imprimirDadosTabela(table);
+               
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        painel.add(scrollPane);
+
         return painel;
     }
 
-    class Selecao implements ListSelectionListener {
+    private void imprimirDadosTabela(JTable table) {
+        int numRows = table.getRowCount();
+        int numCols = table.getColumnCount();
+        javax.swing.table.TableModel model = table.getModel();
 
-        private JTable tabela;
-
-        public Selecao(JTable tb) {
-            this.tabela = tb;
-        }
-
-        public void valueChanged(ListSelectionEvent e) {
-            int maxRows;
-            int[] selRows;
-            Object value;
-
-            if (!e.getValueIsAdjusting()) {
-                selRows = tabela.getSelectedRows();
-
-                if (selRows.length > 0) {
-                    for (int i = 0; i < 3; i++) {
-                        TableModel tm = tabela.getModel();
-                        value = tm.getValueAt(selRows[0], i);
-                        System.out.println("Selecao : " + value);
-                    }
-                    System.out.println();
-                }
+        System.out.println("Dados: ");
+        for (int i = 0; i < numRows; i++) {
+            System.out.print("    row " + i + ":");
+            for (int j = 0; j < numCols; j++) {
+                System.out.print("  " + model.getValueAt(i, j));
             }
+            System.out.println();
+        }
+        System.out.println("--------------------------");
+    }
+
+    class AlinharCentro extends DefaultTableCellRenderer {
+
+        public AlinharCentro() {
+            setHorizontalAlignment(CENTER); // ou LEFT, RIGHT, etc
         }
     }
+
 }
