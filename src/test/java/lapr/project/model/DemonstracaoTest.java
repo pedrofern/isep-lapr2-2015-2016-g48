@@ -257,11 +257,11 @@ public class DemonstracaoTest {
     public void testValida() throws Exception {
         System.out.println("valida");
         Demonstracao instance = new Demonstracao();
-        boolean expResult = false;
+        instance.setDados("Descrição", "Tema");
+        boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
 }
