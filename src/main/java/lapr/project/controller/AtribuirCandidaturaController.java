@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.model.Atribuicao;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 
@@ -13,8 +12,8 @@ public class AtribuirCandidaturaController {
     private static CentroExposicoes ce;
     private Exposicao exposicao;
     private Utilizador user;
-    private static ListaFAE listaFAEs;
-    private static ListaCandidaturas listaCandidaturas;
+    private ListaFAE listaFAEs;
+    private ListaCandidaturas listaCandidaturas;
     private ListaAtribuicoes listaAtribuicoes;
 
     public AtribuirCandidaturaController(CentroExposicoes centroExposicoes, Utilizador u) {
@@ -23,9 +22,15 @@ public class AtribuirCandidaturaController {
         listaAtribuicoes=new ListaAtribuicoes();
     }
     
-    public RegistoExposicoes getListaExposicoes(Utilizador u){
+    public RegistoExposicoes getListaExposicoes(){
         RegistoExposicoes listaExposicoesAtribuiveisOrg=new RegistoExposicoes();
-        listaExposicoesAtribuiveisOrg=ce.getRegistoExposicoes().getExposicoesCandidaturasEmAtribuicao();
+        for(Exposicao e:ce.getRegistoExposicoes().getExposicoesOrganizador(user).getExposicoes()){
+            for(Exposicao e1: ce.getRegistoExposicoes().getExposicoesCandidaturasEmAtribuicao().getExposicoes()){
+                if(e.equals(e1)){
+                    listaExposicoesAtribuiveisOrg.adicionarExposicao(e);
+                }
+            }
+        };
         return listaExposicoesAtribuiveisOrg;
     }
     

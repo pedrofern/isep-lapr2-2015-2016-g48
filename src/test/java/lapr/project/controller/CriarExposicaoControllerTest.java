@@ -90,8 +90,9 @@ public class CriarExposicaoControllerTest {
       
         formarDatas();
 
-        teste.setDados("teste", "teste", d1, d2, "teste", d3, d4, d5, d6, d7, d8, d9, d10);
-
+        teste.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        teste.setDadosData(d5, d6, d7, d8, d9, d10);
+        
         boolean result = teste.validaDataFimSuperiorInicio();
        
         assertEquals(expResult, result);        
@@ -113,8 +114,8 @@ public class CriarExposicaoControllerTest {
  
        formarDatas();
         
-        teste.setDados("teste", "teste", d1, d2, "teste", d3, d4, d5, d6, d7, d8, d9, d10);
-
+        teste.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        teste.setDadosData(d5, d6, d7, d8, d9, d10);
         boolean result = teste.validaSeguimentoDatas();
        
         assertEquals(expResult, result);        
@@ -139,7 +140,9 @@ public class CriarExposicaoControllerTest {
         
         teste.setListaOrganizadores(lo);
         
-        teste.setDados("teste", "teste", d1, d2, "teste", d3, d4,d5,d6,d7,d8,d9,d10);
+        teste.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        teste.setDadosData(d5, d6, d7, d8, d9, d10);
+        
         teste.getRegistoExposicoes().adicionarExposicao(teste.getExposicao());
        
         int result =   teste.getRegistoExposicoes().countExposicoes();
@@ -174,7 +177,7 @@ public class CriarExposicaoControllerTest {
         
         formarDatas();
         
-        boolean result =  teste.validaDatas(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10);
+        boolean result =  teste.validaDatas1(s1, s2, s3, s4, s5, s6) && teste.validaDatas2(s7, s8, s9, s10);
        
         assertEquals(expResult, result);        
     }

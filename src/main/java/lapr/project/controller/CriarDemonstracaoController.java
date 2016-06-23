@@ -79,7 +79,7 @@ public class CriarDemonstracaoController {
 
     public RegistoExposicoes getRegistoExposicoes() {
 
-        return registoExposicoes = ce.getRegistoExposicoes();
+        return registoExposicoes = ce.getRegistoExposicoes().getExposicoesOrganizador(utilizador);
     }
 
     public RegistoExposicoes getListaExposicoes() {

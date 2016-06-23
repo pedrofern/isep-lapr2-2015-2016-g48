@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
-import lapr.project.model.lists.RegistoUtilizadores;
 
 /**
  *
@@ -10,9 +9,9 @@ import lapr.project.model.lists.RegistoUtilizadores;
  */
 public class SubmeterCandidaturaDemoController {
     
-    private static CentroExposicoes ce;
+    private CentroExposicoes ce;
     
-    private static Utilizador user;
+    private Utilizador user;
     
 
     public SubmeterCandidaturaDemoController(CentroExposicoes centroExposicoes, Utilizador utilizador){

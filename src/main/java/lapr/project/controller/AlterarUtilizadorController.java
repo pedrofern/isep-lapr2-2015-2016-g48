@@ -25,8 +25,7 @@ public class AlterarUtilizadorController {
         uClone.setEmail(strEmail);
         uClone.setUsername(strUsername);
         uClone.setPassword(strPwd);
-        boolean b= ce.getRegistoUtilizadores().alteraUtilizador(user, uClone);
-        return b;
+        return ce.getRegistoUtilizadores().alteraUtilizador(user, uClone);
     }
     
 }

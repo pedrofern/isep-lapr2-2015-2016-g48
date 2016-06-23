@@ -12,7 +12,6 @@ public class AvaliarCandidaturaController implements Serializable {
 
     private static CentroExposicoes ce;
     private Candidatura candidatura;
-    private FAE fae;
     private Avaliacao avaliacao;
     private Exposicao exposicao;
     private Questao questao;

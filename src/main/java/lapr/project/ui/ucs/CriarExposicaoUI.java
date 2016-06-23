@@ -451,7 +451,8 @@ public class CriarExposicaoUI extends JFrame {
             Data dataFimAv=Utils.converterStringParaData(campoDataAvFim.getText());
             Data dataAConflitos=Utils.converterStringParaData(campoDataAlterarConflito.getText());
             
-            controller.setDados(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm, dataInicioAv, dataFimAv, dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
+            controller.setDadosPrincipais(txtTitulo.getText(), txtDescricao.getText(), dataInicialPrimeiro, dataFinalUltimo, txtLocal.getText(), dataInicioSubm, dataFimSubm);
+            controller.setDadosData(dataInicioAv, dataFimAv,dataConflitos, dataInicioStands, dataFimStands, dataAConflitos);
             controller.setListaOrganizadores(listaOrganizadores);
   
     }
@@ -496,10 +497,11 @@ public class CriarExposicaoUI extends JFrame {
                             JOptionPane.ERROR_MESSAGE);
             }else{
                   try{
-                    controller.validaDatas(campoDataInicial.getText(), campoDataFinal.getText(), campoSubCandDataInicial.getText(), campoSubCandDataFinal.getText(), 
-                    campoSubStandsDatainicial.getText(), campoSubStandsDataFinal.getText(), campoDataAlterarConflito.getText(), 
-                    campoDataAvInicio.getText(), campoDataAvFim.getText(), campoDataAlterarConflito.getText());
-                           
+                    controller.validaDatas1(campoDataInicial.getText(), campoDataFinal.getText(), campoSubCandDataInicial.getText(), campoSubCandDataFinal.getText(), 
+                     campoDataConflito.getText(), campoDataAlterarConflito.getText());
+                    
+                    controller.validaDatas2(campoDataAvInicio.getText(), campoDataAvFim.getText(),campoSubStandsDatainicial.getText(), campoSubStandsDataFinal.getText());
+                    
                     setDados();
 
                     if(!controller.validaDataFimSuperiorInicio() || !controller.validaMinOrganizadores() || !controller.validaSeguimentoDatas()){

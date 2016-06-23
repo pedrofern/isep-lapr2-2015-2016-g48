@@ -64,7 +64,8 @@ public class AtribuirCandidaturaControllerTest {
         formarDatas();
         
         e.setListaFaes(lf);
-        e.setDados("teste", "teste", d1, d2, "teste", d3, d4, d5, d6, d7, d8, d9, d10);
+        e.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        e.setDadosData(d5, d6, d7, d8, d9, d10);
         e.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e);
         Candidatura c1=new Candidatura();
@@ -109,91 +110,9 @@ public class AtribuirCandidaturaControllerTest {
         AtribuirCandidaturaController instance = new AtribuirCandidaturaController(ce, ut1);
         
         int expResult = 0;
-        int result = instance.getListaExposicoes(ut1).countExposicoes();
+        int result = instance.getListaExposicoes().countExposicoes();
         assertEquals(expResult, result);
     }
-
-//    /**
-//     * Test of setExposicao method, of class AtribuirCandidaturaController.
-//     */
-//    @Test
-//    public void testSetExposicao() {
-//        System.out.println("setExposicao");
-//        Exposicao e = null;
-//        AtribuirCandidaturaController instance = null;
-//        instance.setExposicao(e);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getExposicao method, of class AtribuirCandidaturaController.
-//     */
-//    @Test
-//    public void testGetExposicao() {
-//        System.out.println("getExposicao");
-//        AtribuirCandidaturaController instance = null;
-//        Exposicao expResult = null;
-//        Exposicao result = instance.getExposicao();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getListaFaes method, of class AtribuirCandidaturaController.
-//     */
-//    @Test
-//    public void testGetListaFaes() {
-//        System.out.println("getListaFaes");
-//        AtribuirCandidaturaController instance = null;
-//        ListaFAE expResult = null;
-//        ListaFAE result = instance.getListaFaes();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getListaAtribuicoes method, of class AtribuirCandidaturaController.
-//     */
-//    @Test
-//    public void testGetListaAtribuicoes() {
-//        System.out.println("getListaAtribuicoes");
-//        AtribuirCandidaturaController instance = null;
-//        ListaAtribuicoes expResult = null;
-//        ListaAtribuicoes result = instance.getListaAtribuicoes();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of guardaAtribuicoes method, of class AtribuirCandidaturaController.
-//     */
-//    @Test
-//    public void testGuardaAtribuicoes() {
-//        System.out.println("guardaAtribuicoes");
-//        ListaAtribuicoes listaAtribuicoes = null;
-//        AtribuirCandidaturaController instance = null;
-//        instance.guardaAtribuicoes(listaAtribuicoes);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getListaCandidaturas method, of class AtribuirCandidaturaController.
-//     */
-//    @Test
-//    public void testGetListaCandidaturas() {
-//        System.out.println("getListaCandidaturas");
-//        AtribuirCandidaturaController instance = null;
-//        ListaCandidaturas expResult = null;
-//        ListaCandidaturas result = instance.getListaCandidaturas();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
     
      private static void formarDatas() {
         d1 = Utils.converterStringParaData(s1);

@@ -111,7 +111,8 @@ public class TesteDiana {
         formarDatas();
         
         e.setListaFaes(lf);
-        e.setDados("teste", "teste", d1, d2, "teste", d3, d4, d5, d6, d7, d8, d9, d10);
+        e.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        e.setDadosData(d5, d6, d7, d8, d9, d10);
         e.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e);
         Candidatura c1=new Candidatura();
@@ -204,7 +205,8 @@ public class TesteDiana {
 
         e1.setListaOrganizadores(lo);
         formarDatas();
-        e1.setDados("teste1", "teste1", d1, d2, "teste1", d3, d4, d5, d6, d7, d8, d9, d10);
+        e1.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        e1.setDadosData(d5, d6, d7, d8, d9, d10);
         e1.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e1);
         

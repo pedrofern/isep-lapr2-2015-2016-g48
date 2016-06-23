@@ -7,7 +7,6 @@ import lapr.project.model.states.ExposicaoEstado;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
-import lapr.project.controller.DetetarConflitosController;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaOrganizadores;
@@ -41,7 +40,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     private ListaAtribuicoes listaAtribuicoes;
 
     private ExposicaoEstado estado;
-    private TimerTask task1, task2, task3, task4, task5, task6, task7;
+//    private TimerTask task1, task2, task3, task4, task5, task6, task7;
 
     public Exposicao() throws Exception {
         estado = new ExposicaoEstadoInicial(this);
@@ -72,7 +71,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         return listaAtribuicoes;
     }
 
-    public void setDados(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim, Data dataAvInicio, Data dataAvFim, Data dConflitos, Data dataInicioStands, Data dataFimStand, Data dAConflitos) {
+    public void setDadosPrincipais(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim) {
         this.titulo = titulo;
         textoDescritivo = descricao;
         this.dataInicio = dataInicio;
@@ -80,6 +79,10 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         this.local = local;
         dataInicioSubmissao = dataSubInicio;
         dataFimSubmissao = dataSubFim;
+        
+    }
+    
+    public void setDadosData(Data dataAvInicio, Data dataAvFim, Data dConflitos, Data dataInicioStands, Data dataFimStand, Data dAConflitos){
         dataInicioAvaliacao = dataAvInicio;
         dataFimAvaliacao = dataAvFim;
         dataDeteccaoConflitos = dConflitos;
@@ -206,28 +209,28 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         this.dataFimStands=strDataFimStands;
     }
 
-    public void createTimers() throws ParseException {
+//    public void createTimers() throws ParseException {
 
-        Timer timer = new Timer();
-
-        task1 = new ExposicaoCandidaturasAbertas(this);
-        timer.schedule(task1, dataInicioSubmissao.converterParaDate());
-
-        task2 = new ExposicaoCandidaturasFechadas(this);
-        timer.schedule(task2, dataFimSubmissao.converterParaDate());
-
-        task3 = new DetetarConflitosController(this);
-        timer.schedule(task3, dataDeteccaoConflitos.converterParaDate());
-
-        task4 = new ExposicaoConflitosAlterados(this);
-        timer.schedule(task4, dataAlteracaoConflitos.converterParaDate());
-
-        task5 = new ExposicaoCandidaturasEmAvaliacao(this);
-        timer.schedule(task5, dataInicioAvaliacao.converterParaDate());
-
-        task6 = new ExposicaoStandsAtribuiveis(this);
-        timer.schedule(task6, dataInicioStands.converterParaDate());
-    }
+//        Timer timer = new Timer();
+//
+//        task1 = new ExposicaoCandidaturasAbertas(this);
+//        timer.schedule(task1, dataInicioSubmissao.converterParaDate());
+//
+//        task2 = new ExposicaoCandidaturasFechadas(this);
+//        timer.schedule(task2, dataFimSubmissao.converterParaDate());
+//
+//        task3 = new DetetarConflitosController(this);
+//        timer.schedule(task3, dataDeteccaoConflitos.converterParaDate());
+//
+//        task4 = new ExposicaoConflitosAlterados(this);
+//        timer.schedule(task4, dataAlteracaoConflitos.converterParaDate());
+//
+//        task5 = new ExposicaoCandidaturasEmAvaliacao(this);
+//        timer.schedule(task5, dataInicioAvaliacao.converterParaDate());
+//
+//        task6 = new ExposicaoStandsAtribuiveis(this);
+//        timer.schedule(task6, dataInicioStands.converterParaDate());
+//    }
 
     
     
@@ -344,21 +347,27 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         return local != null;
     }
 
-    public boolean validaDatas(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos,
-            String dataavcand, String datafavcand, String dataistand, String datafstand) {
+    public boolean validaDatas1(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos) {
         boolean b1 = Utils.validaDatasString(datai);
         boolean b2 = Utils.validaDatasString(dataf);
         boolean b3 = Utils.validaDatasString(datasub);
         boolean b4 = Utils.validaDatasString(datafsub);
         boolean b5 = Utils.validaDatasString(dataconflitos);
         boolean b6 = Utils.validaDatasString(dataaltconflitos);
+
+        return b1 == true && b2 == true && b3 == true && b4 == true && b5 == true && b6 == true;
+    }
+    
+       public boolean validaDatas2(String dataavcand, String datafavcand, String dataistand, String datafstand) {
+  
         boolean b7 = Utils.validaDatasString(dataavcand);
         boolean b8 = Utils.validaDatasString(datafavcand);
         boolean b9 = Utils.validaDatasString(dataistand);
         boolean b10 = Utils.validaDatasString(datafstand);
 
-        return b1 == true && b2 == true && b3 == true && b4 == true && b5 == true && b6 == true && b7 == true && b8 == true && b9 == true && b10 == true;
+        return  b7 == true && b8 == true && b9 == true && b10 == true;
     }
+    
 
     public boolean validaMinOrganizadores() {
         return listaOrganizadores.getListaOrganizadores().size() >= 2;

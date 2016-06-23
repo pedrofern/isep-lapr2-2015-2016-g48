@@ -5,7 +5,6 @@ import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.model.*;
-import lapr.project.model.states.ExposicaoEstadoInicial;
 import lapr.project.utils.Data;
 
 /**
@@ -16,10 +15,8 @@ public class CriarExposicaoController {
 
     private static CentroExposicoes ce;
     private Exposicao exposicao;
-    private Utilizador user;
     private Organizador organizador;
     private FAE fae;
-
 
     public CriarExposicaoController(CentroExposicoes centroExposicoes) {
         ce = centroExposicoes;
@@ -37,8 +34,12 @@ public class CriarExposicaoController {
         exposicao=e;
     }
     
-    public void setDados(String titulo, String desc, Data i, Data f, String l, Data is, Data fs, Data diatrib, Data dfatrib, Data dConflitos, Data dIstand, Data dFstand, Data dAConflitos){
-        exposicao.setDados(titulo, desc,i,f,l,is,fs,diatrib,dfatrib,dConflitos, dIstand, dFstand, dAConflitos);
+    public void setDadosPrincipais(String titulo, String desc, Data i, Data f, String l,Data is, Data fs){
+        exposicao.setDadosPrincipais(titulo, desc,i,f,l,is,fs);
+    }
+    
+    public void setDadosData(Data diatrib, Data dfatrib, Data dConflitos, Data dIstand, Data dFstand, Data dAConflitos){
+        exposicao.setDadosData(diatrib,dfatrib, dConflitos, dIstand, dFstand,dAConflitos);
     }
     
     public void validaDadosExposicao(){
@@ -48,11 +49,6 @@ public class CriarExposicaoController {
     public RegistoUtilizadores getListaUtilizadores() {
         return ce.getRegistoUtilizadores();
     }
-    
-    public void setUtilizador(Utilizador u){
-        user=u;
-    }
-   
     
     public ListaOrganizadores getListaOrganizadores(){
         return exposicao.getListaOrganizadores();
@@ -69,12 +65,7 @@ public class CriarExposicaoController {
   
     }
     
-//    public void criaFAE(Utilizador u) {
-//        
-//        fae= exposicao.getListaFAEs().criaFAE(u);
-//  
-//    }
-//    
+
     public Organizador getOrganizador(){
         return organizador;
     }
@@ -101,12 +92,7 @@ public class CriarExposicaoController {
     }
 
     public boolean registaExposicao() {
-        if (!getRegistoExposicoes().registaExposicao(exposicao)) {
-            return false; 
-        } else {
-            return true;
-        }
-       
+        return getRegistoExposicoes().registaExposicao(exposicao);  
     }
   
     public String getExposicaoString() {
@@ -121,10 +107,12 @@ public class CriarExposicaoController {
         return exposicao;
     }
 
-    public boolean validaDatas(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos, 
-        String dataavcand, String datafavcand, String dataistand, String datafstand) {
-        return exposicao.validaDatas(datai, dataf, datasub, datafsub, dataconflitos, dataaltconflitos, 
-        dataavcand, datafavcand, dataistand, datafstand); 
+    public boolean validaDatas1(String datai, String dataf, String datasub, String datafsub, String dataconflitos, String dataaltconflitos ) {
+        return exposicao.validaDatas1(datai, dataf, datasub, datafsub, dataconflitos, dataaltconflitos);
+    }
+    
+    public boolean validaDatas2(String dataavcand, String datafavcand, String dataistand, String datafstand){
+        return exposicao.validaDatas2(dataavcand, datafavcand, dataistand, datafstand);
     }
     
     public void setCriada() throws ParseException {
