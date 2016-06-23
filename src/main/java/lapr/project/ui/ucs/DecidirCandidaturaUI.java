@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import lapr.project.controller.DecidirCandidaturaController;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.Utils;
@@ -48,17 +49,14 @@ public class DecidirCandidaturaUI extends JFrame{
     private static final int JANELA_ALTURA = 500;
     private static final int JANELA_LARGURA = 900;
     
+    private DecidirCandidaturaController controllerDCC;
+
     
-//inicio teste
-    private ListaCandidaturas lstcands = new ListaCandidaturas();
-    private RegistoExposicoes lstExposicoes = new RegistoExposicoes();
-//fim teste
-    
-    public DecidirCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador){
+    public DecidirCandidaturaUI(CentroExposicoes ce, Utilizador utilizador){
         
         super("Decidir Candidatura");
         
-        //instanciar controller
+        controllerDCC = new DecidirCandidaturaController(ce, utilizador);
         
         criarComponentes();
 
@@ -78,11 +76,9 @@ public class DecidirCandidaturaUI extends JFrame{
     private JPanel painelCentro(){
         painelCentro = new JPanel(new BorderLayout());
         
-        //lstcands = controllerRCC.getCandidatura().getListaProdutos();
-        ModeloListaCandidatura modeloListaCandidatura = new ModeloListaCandidatura(lstcands);
-        jlstCand = new JList(modeloListaCandidatura);
-        jlstDecAvFAE = new JList(modeloListaCandidatura);
-        jlstAVFAE = new JList(modeloListaCandidatura);
+        jlstCand = new JList(controllerDCC.getListaCandidaturasPorDecidir().getArray());
+        jlstDecAvFAE = new JList(controllerDCC.getListaCandidaturasPorDecidir().getArray());
+        jlstAVFAE = new JList(controllerDCC.getListaCandidaturasPorDecidir().getArray());
         
         painelCentro.add(criarPainelLista("Candidaturas:",jlstCand), BorderLayout.WEST);        
         painelCentro.add(criarPainelLista("Decisão Avaliação FAE:",jlstDecAvFAE), BorderLayout.CENTER);
@@ -111,8 +107,8 @@ public class DecidirCandidaturaUI extends JFrame{
     private JPanel painelNorte() {
         painelNorte = new JPanel(new FlowLayout());
         
-        painelNorte.add(criarPainelSelecionarExposicao(lstExposicoes)); 
-        painelNorte.add(criarPainelSelecionarCandidatura(lstcands));
+//        painelNorte.add(criarPainelSelecionarExposicao(lstExposicoes)); 
+//        painelNorte.add(criarPainelSelecionarCandidatura(lstcands));
         painelNorte.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 

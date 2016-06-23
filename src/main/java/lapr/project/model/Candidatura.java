@@ -23,6 +23,7 @@ public class Candidatura implements Serializable{
     private ListaAvaliacoes listaAvaliacoes;
     private Representante representante;
     private CandidaturaEstado estadoCandidatura;
+    private boolean decisao;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
         estadoCandidatura = new CandidaturaEstadoInicial(this);
@@ -54,6 +55,10 @@ public class Candidatura implements Serializable{
         c.setListaKeywords(this.getListaKeywords());
         c.setListaProdutos(this.getListaProdutos());
         return c;
+    }
+    
+    public boolean getDecisao(){
+        return decisao;
     }
     
     public String getNomeEmpresa() {
@@ -94,6 +99,10 @@ public class Candidatura implements Serializable{
     
     public CandidaturaEstado getEstadoAtualCandidatura(){
         return estadoCandidatura;
+    }
+    
+    public void setDecisao(boolean decisao){
+        this.decisao=decisao;
     }
     
     public void setEstadoCandidatura(CandidaturaEstado estadoCandidatura){

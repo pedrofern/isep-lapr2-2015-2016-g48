@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ListIterator;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
+import lapr.project.model.states.*;
 
 /**
  *
@@ -20,42 +21,61 @@ public class DecidirCandidaturaController {
     private Candidatura candidatura;
     private Exposicao exposicao;
     private Utilizador utilizador;
+    private ListaAvaliacoes listaAvaliacoes;
     private ListaCandidaturas listaCandidaturas;
     private RegistoExposicoes registoExposicoes;
     private RegistoExposicoes leorganizador;
+    private boolean decisao;
     
     public DecidirCandidaturaController(CentroExposicoes ce, Utilizador utilizador) {
         this.ce = ce;
         this.utilizador = utilizador;
+        registoExposicoes = ce.getRegistoExposicoes();
     }
     
     public RegistoExposicoes getListaExposicoesOrganizador(){
-        return leorganizador = ce.getRegistoExposicoes().getExposicoesOrganizador(utilizador);
+        return leorganizador = registoExposicoes.getExposicoesOrganizador(utilizador);
+    }
+    
+    public RegistoExposicoes getListaExposicoes(){
+        return registoExposicoes;
     }
     
     public void selectExposicao(Exposicao exposicao){
-        this.exposicao=exposicao;   
-        listaCandidaturas = exposicao.getListaCandidaturas();//no estado a decidir
+        this.exposicao=exposicao;  
+        listaCandidaturas = exposicao.getListaCandidaturas();
     }
     
     public void selectCandidatura(Candidatura candidatura){
         this.candidatura=candidatura;
+        listaAvaliacoes = candidatura.getListaAvaliacoes();
     }
     
-    public Candidatura getCandidaturaNome(){
-        return candidatura;
-    }
-    
-    public ListaAvaliacoes getDecisaoAvalicaoFAE(){
-        return candidatura.getListaAvaliacoes();
-    }
-    
-//    public String getAvalicaoQuestoesFAE(){
-//        return candidatura.getListaAvaliacoes().
+//    public ListaCandidaturas getInformacaoDaCandidaturaPorDecidir(){
+//        //for candida avaliadas
+//        
+//        return listaCandidaturas;
 //    }
-    
-    
-    
-    
+
+    public ListaCandidaturas getListaCandidaturasPorDecidir(){
+        ListaCandidaturas listaTemp = listaCandidaturas;
+        for (int i=0;i<listaCandidaturas.tamanho();i++){
+            Candidatura c = listaCandidaturas.obterCandidatura(i);
+            if(c.getEstadoAtualCandidatura() instanceof CandidaturaAvaliada){
+                listaTemp.addCandidatura(c);
+            }
+        }
+        return listaTemp;
+    }
+
+    public void registaDecisao(boolean decisao){        
+        if(candidatura.getEstadoAtualCandidatura() instanceof CandidaturaAvaliada){
+            candidatura.setDecisao(decisao);
+            if (decisao){
+                candidatura.setEstadoCandidatura(new CandidaturaAceite(candidatura));
+            }
+            candidatura.setEstadoCandidatura(new CandidaturaRejeitada(candidatura));
+        }
+    }
     
 }
