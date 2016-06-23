@@ -58,6 +58,7 @@ public class RegistarCandidaturaController {
     }
     
     public void selectDemonstracao(Demonstracao demonstracao){
+        this.demonstracao=demonstracao;
         listaTemp.adicionarDemonstracao(demonstracao);
     }
         

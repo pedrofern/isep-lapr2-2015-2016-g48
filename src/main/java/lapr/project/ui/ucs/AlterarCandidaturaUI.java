@@ -29,9 +29,6 @@ import javax.swing.border.TitledBorder;
 import lapr.project.controller.*;
 import lapr.project.model.*;
 import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.ListaDemonstracoes;
-import lapr.project.model.lists.ListaKeywords;
-import lapr.project.model.lists.ListaProduto;
 import lapr.project.model.lists.RegistoExposicoes;
 import lapr.project.utils.Utils;
 
@@ -287,10 +284,10 @@ public class AlterarCandidaturaUI extends JFrame{
             txtKey2A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(1).toString());
         }
         if (tmp > 2){
-            txtKey2A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(2).toString());
+            txtKey3A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(2).toString());
         }
         if (tmp > 3){
-            txtKey3A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(3).toString());
+            txtKey4A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(3).toString());
         }
         if (tmp > 4){
             txtKey5A.setText(controllerAC.getInfoCandidatura().getListaKeywords().obterKeyword(4).toString());
@@ -807,11 +804,12 @@ public class AlterarCandidaturaUI extends JFrame{
         return p;
     }
     private JPanel criarPainelCheckBoxDemo(){
-        JPanel pCheck=new JPanel(new FlowLayout());
-        
         Demonstracao[] opcoes=controllerAC.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
+        int COL= lenght+1/2;
+        
+        JPanel pCheck=new JPanel(new GridLayout(LINHAS, COL));
 
         for(Demonstracao d:opcoes){
             String sDemo=d.toString();
@@ -822,8 +820,7 @@ public class AlterarCandidaturaUI extends JFrame{
                 @Override
                 public void itemStateChanged(ItemEvent e) {
                    if(cbDemo.isSelected()){
-                      
-        System.out.println("selecionou");        
+                      controllerAC.selectDemonstracao(d);
                    }
                }
             });

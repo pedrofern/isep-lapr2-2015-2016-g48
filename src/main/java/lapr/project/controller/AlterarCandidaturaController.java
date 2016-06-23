@@ -12,10 +12,13 @@ public class AlterarCandidaturaController {
     
     private Candidatura candidatura;
     private Candidatura cClone;
+    private CandidaturaDemonstracao candidaturaDemonstracao;
+    private Demonstracao demonstracao;
     private Exposicao exposicao;
     private CentroExposicoes ce;
     private Utilizador utilizador;
     private ListaCandidaturas listaCandidaturas;
+    private ListaDemonstracoes listaDemoTemp;
 
     public AlterarCandidaturaController(CentroExposicoes ce, Utilizador utilizador) {
         this.ce = ce;
@@ -27,6 +30,7 @@ public class AlterarCandidaturaController {
     }
     
     public ListaDemonstracoes getListaDemonstracoes(){
+        listaDemoTemp = new ListaDemonstracoes();
         return exposicao.getListaDemonstracoes();
     }
     
@@ -73,5 +77,31 @@ public class AlterarCandidaturaController {
         return candidatura.getListaCandidaturas().alteraCandidatura(candidatura, cClone);
     }
     
+    public void selectDemonstracao(Demonstracao demonstracao){
+        this.demonstracao=demonstracao;
+        listaDemoTemp.adicionarDemonstracao(demonstracao);
+    }
+        
+    public ListaDemonstracoes getSelectedDemonstacao(){
+        return listaDemoTemp;
+    }
     
+    public void registCandidaturaDemonstracao(){
+        candidaturaDemonstracao = new CandidaturaDemonstracao(candidatura);
+        for (int i=0; i<listaDemoTemp.tamanho();i++){
+            
+            Demonstracao d = listaDemoTemp.getListaDemonstracoes().get(i);
+
+            d.getListaCandidaturasDemonstracao().addCandidaturaDemonstracao(candidaturaDemonstracao);
+ 
+        }   
+    }
+    
+    public CandidaturaDemonstracao novaCandidaturaDemonstracao(Candidatura candidatura){
+        return candidaturaDemonstracao = new CandidaturaDemonstracao(candidatura);
+    }
+    
+    public boolean adicionarCandidaturaDemonstracao(CandidaturaDemonstracao candidaturaDemonstracao){        
+        return demonstracao.getListaCandidaturasDemonstracao().addCandidaturaDemonstracao(candidaturaDemonstracao);
+    }
 }

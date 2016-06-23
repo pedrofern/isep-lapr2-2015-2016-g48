@@ -259,11 +259,11 @@ public class RegistarCandidaturaUI extends JFrame{
             }
         }); 
         
-        p.add(criarPainelNome("Nome:", txtNome,""));
-        p.add(criarPainelNome("Morada:", txtMorada,""));
-        p.add(criarPainelNome("Telemóvel:", txtTelemovel,"9xxxxxxxx"));
-        p.add(criarPainelNome("Área:", txtArea,"m^2"));
-        p.add(criarPainelNome("Nº Convites:", txtConvites,"(máx 999)"));
+        p.add(criarPainelNomes("Nome:", txtNome,""));
+        p.add(criarPainelNomes("Morada:", txtMorada,""));
+        p.add(criarPainelNomes("Telemóvel:", txtTelemovel,"9xxxxxxxx"));
+        p.add(criarPainelNomes("Área:", txtArea,"m^2"));
+        p.add(criarPainelNomes("Nº Convites:", txtConvites,"(máx 999)"));
         
         return p;
     }
@@ -352,11 +352,11 @@ public class RegistarCandidaturaUI extends JFrame{
                 } 
             }
         }); 
-        p.add(criarPainelNome("Keyword 1:", txtKey1,"Obrigatório"));
-        p.add(criarPainelNome("Keyword 2:", txtKey2,"Obrigatório"));
-        p.add(criarPainelNome("Keyword 3:", txtKey3,""));
-        p.add(criarPainelNome("Keyword 4:", txtKey4,""));
-        p.add(criarPainelNome("Keyword 5:", txtKey5,""));
+        p.add(criarPainelNomes("Keyword 1:", txtKey1,"Obrigatório"));
+        p.add(criarPainelNomes("Keyword 2:", txtKey2,"Obrigatório"));
+        p.add(criarPainelNomes("Keyword 3:", txtKey3,""));
+        p.add(criarPainelNomes("Keyword 4:", txtKey4,""));
+        p.add(criarPainelNomes("Keyword 5:", txtKey5,""));
         
         
         return p;
@@ -368,18 +368,18 @@ public class RegistarCandidaturaUI extends JFrame{
      * @param label2 introduzir label1
      * @return painel para introduzir label1, campo para introdução dados e label2
      */
-    private JPanel criarPainelNome(String label1, JTextField texto, String label2) {
-        JLabel lbl1 = new JLabel(label1, JLabel.RIGHT);
-        lbl1.setPreferredSize(LABEL_TAMANHO);
+    private JPanel criarPainelNomes(String label1, JTextField texto, String label2) {
+        JLabel lb1 = new JLabel(label1, JLabel.RIGHT);
+        lb1.setPreferredSize(LABEL_TAMANHO);
         
-        JLabel lbl2 = new JLabel(label2, JLabel.LEFT);
-        lbl2.setPreferredSize(new Dimension(80,20));
+        JLabel lb2 = new JLabel(label2, JLabel.LEFT);
+        lb2.setPreferredSize(new Dimension(80,20));
         
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        p.add(lbl1);
+        p.add(lb1);
         p.add(texto);
-        p.add(lbl2);
+        p.add(lb2);
 
         return p;
     }
@@ -416,14 +416,14 @@ public class RegistarCandidaturaUI extends JFrame{
      */
     private JPanel criarPainelBotoesListaProduto(JButton btn1, JButton btn2) {
 
-        final int NUMERO_LINHAS = 2;
-        final int NUMERO_COLUNAS = 1;
-        final int INTERVALO_HORIZONTAL = 0;
-        final int INTERVALO_VERTICAL = 10;        
-        JPanel p = new JPanel(new GridLayout( NUMERO_LINHAS, 
-                                              NUMERO_COLUNAS, 
-                                              INTERVALO_HORIZONTAL,
-                                              INTERVALO_VERTICAL));
+        final int N_LINHAS = 2;
+        final int N_COLUNAS = 1;
+        final int INTERVALO_HOR = 0;
+        final int INTERVALO_VER = 10;        
+        JPanel p = new JPanel(new GridLayout( N_LINHAS, 
+                                              N_COLUNAS, 
+                                              INTERVALO_HOR,
+                                              INTERVALO_VER));
         
         p.setBorder(BorderFactory.createEmptyBorder( MARGEM_SUPERIOR, 
                                                      MARGEM_ESQUERDA,
@@ -446,7 +446,7 @@ public class RegistarCandidaturaUI extends JFrame{
         botaoAdicionarProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DialogoNovoProduto(RegistarCandidaturaUI.this);
+                DialogoNovoProduto d = new DialogoNovoProduto(RegistarCandidaturaUI.this);
             }
         });
 
@@ -653,7 +653,7 @@ public class RegistarCandidaturaUI extends JFrame{
                                 lstProdutos,
                                 botaoAdicionarProduto,
                                 botaoRemoverProduto));
-        p.add(criarPainelListaDemo());//("Demonstrações:",lstDemonstracoes,botaoVerRecursoDemonstracao));
+        p.add(criarPainelListaDemo());
 
         return p;
     }
@@ -695,11 +695,8 @@ public class RegistarCandidaturaUI extends JFrame{
         return lstProdutos;
     }
     /**
-     * criar painel lista demonstrações recebendo titulo lista, lista demonstrações e um botao
-     * @param tituloLista titulo lista
-     * @param lstLista lista demonstrações
-     * @param btn botao
-     * @return painel lista demonstrações recebendo titulo lista, lista demonstrações e um botao
+     * criar painel lista demonstrações 
+     * @return painel lista demonstrações 
      */
     private JPanel criarPainelListaDemo(){
 
@@ -755,26 +752,6 @@ public class RegistarCandidaturaUI extends JFrame{
                     controllerRCC.selectExposicao((Exposicao) comboExp.getSelectedItem());
                     controllerRCC.novaCandidatura();
 
-            //testar demonstracoes
-                    
-//                    listaRecursos = new RegistoRecursos();
-//                    Recurso r1 = new Recurso("Recurso1");
-//                    Recurso r2 = new Recurso("Recurso2");
-//                    Recurso r3 = new Recurso("Recurso3");
-//                    Demonstracao d1= new Demonstracao();        
-//                    Demonstracao d2= new Demonstracao();
-//                    Demonstracao d3= new Demonstracao();
-//                    Data d = new Data();
-//                    d.setData(2016, 02, 05);
-//                    d1.setDados("demo1", "tema1", d, d);
-//                    d2.setDados("demo2", "tema2", d, d);
-//                    d3.setDados("demo3", "tema3", d, d);
-//                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d2);
-//                    controllerRCC.getListaDemonstracoes().adicionarDemonstracao(d3);
-             //fim
-
-                    
-
                     painelGeral.add(criarPainelListas(), BorderLayout.CENTER);
                     setVisible(true);
 
@@ -805,16 +782,5 @@ public class RegistarCandidaturaUI extends JFrame{
         
         return selExp;
     }
-           
-//    private class CheckBoxHandler implements ItemListener{
-//        private Demonstracao demo=null;
-//         
-// 
-//
-//        @Override
-//        public void itemStateChanged(ItemEvent e) {
-//    
-//        }
-//    }
 
 }
