@@ -40,7 +40,7 @@ public class AvaliarCandidaturaUI extends JFrame{
     /**
      * Guarda a altura mínima da janela em píxeis.
      */
-    private static final int JANELA_ALTURA_MINIMO = 275; 
+    private static final int JANELA_ALTURA_MINIMO = 400; 
         
     private static final String PERGUNTA="Pretende cancelar a avaliação da candidatura?";
     

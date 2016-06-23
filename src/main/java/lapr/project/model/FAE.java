@@ -13,22 +13,20 @@ public class FAE implements Comparable<FAE>,Serializable {
 
     private final String nome, email, username;
     private Utilizador o_utilizador;
-    private List<FAE> e_listaFAE;
-    private List<Candidatura> m_listaCandidaturas;
     private final String NOME_POR_OMISSAO = "sem nome";
     private static final String EMAIL_POR_OMISSAO = "Email do utilizador não registado";
     private static final String USER_POR_OMISSAO = "Username do utilizador não registado";
-    private static int numeroFAEs = 0;
     private FAE m_fae;
-    private ListaFAE listaFAE;
     private int nCand;
+    private Classificacao classificacao;
 
     public FAE(Utilizador u) {
         this.o_utilizador = u;
         nome = u.getNome();
         username = u.getUsername();
         email = u.getEmail();
-        numeroFAEs++;
+        nCand=0;
+        classificacao=new Classificacao();
     }
 
     public FAE(String strId, Utilizador u) {
@@ -36,14 +34,13 @@ public class FAE implements Comparable<FAE>,Serializable {
         username = u.getUsername();
         email = u.getEmail();
         this.setUtilizador(u);
-        numeroFAEs++;
+        nCand=0;
     }
 
     public FAE() {
         nome = NOME_POR_OMISSAO;
         username =USER_POR_OMISSAO;
         email = EMAIL_POR_OMISSAO;
-        numeroFAEs++;
         nCand=0;
     }
 
@@ -75,6 +72,10 @@ public class FAE implements Comparable<FAE>,Serializable {
     
     public void incrementaNAtribuidas(){
         nCand++;
+    }
+    
+    public Classificacao getClassificacao(){
+        return classificacao;
     }
 
     @Override

@@ -5,42 +5,61 @@ import java.util.List;
 import lapr.project.model.lists.ListaQuestoes;
 
 /**
- *
+ * Classe para objetos do tipo Avaliação que permite gerir e guardar as avaliações às candidaturas.
+ * 
  * @author Diana Silva
  */
 public class Avaliacao implements Serializable{
 
+    /**
+     * Avaliação final dada pelo FAE (aceite ou recusada)
+     */
     private boolean avaliacao;
+    
+    /**
+     * justificação da avaliação dada
+     */
     private String justificacao;
+    
+    /**
+     * lista de questões para classificar de 1-5 (critérios)
+     */
     private ListaQuestoes listaQuestoes;
-    private Criterio criterio;
+    
+    /**
+     * Estado de avaliação da candidatura (avaliada ou não avaliada)
+     */
     private boolean estado;
+    
+    /**
+     * Média das respostas dadas pelo FAE nos critérios (1-5)
+     */
+    private double media;
 
+    
+    /**
+     * Construtor Avaliação recebendo a avaliação e a justificação dadas pelo FAE.
+     * Inicializa o estado como não avaliada a média com 0 e gera a lista de questões-respostas.
+    
+     * @param resposta a avaliação dada pelo FAE (aceite ou recusada)
+     * @param justificacao a justificação dada pelo FAE
+     */
     public Avaliacao(boolean resposta, String justificacao) {
         this.avaliacao = resposta;
         this.justificacao = justificacao;
         this.estado = false;
         listaQuestoes = new ListaQuestoes();
-
+        media=0;
     }
 
+    /**
+     * Construtor Avaliação sem argumento gerando uma nova lista de questões-respostas
+     */
     public Avaliacao() {
         listaQuestoes = new ListaQuestoes();
     }
 
-    public ListaQuestoes getListaQuestoes() {
-        return listaQuestoes;
-    }
-
-    public void setResposta(boolean resposta) {
-        this.avaliacao = resposta;
-    }
-
-    public void setJustificacao(String j) {
-        justificacao = j;
-    }
-
-    /**
+       /**
      * Obtem true se a avaliação tiver sido aceite, false se tiver sido
      * recusada.
      *
@@ -61,34 +80,72 @@ public class Avaliacao implements Serializable{
     /**
      * Obtem o estado da Avaliacao
      *
-     * @return estado (true se estiver avaliada, false se não)
+     * @return estado (true se estiver avaliada, false se não estiver avaliada)
      */
     public boolean getEstado() {
         return estado;
     }
+    
+    /**
+     * Retorna a lista de questões-respostas
+     * @return a lista de questões-respostas definidas para as avaliações
+     */
 
+     public ListaQuestoes getListaQuestoes() {
+        return listaQuestoes;
+    }
+     /**
+      * Retorna a média das respostas dadas pelo FAE
+      * @return média das respostas dadas pelo FAE
+      */
+     public double getMedia(){
+         return media;
+     }
+
+    public void setResposta(boolean resposta) {
+        this.avaliacao = resposta;
+    }
+
+    public void setJustificacao(String j) {
+        justificacao = j;
+    }
+    
     /**
      * Altera o estado para avaliada
      */
     public void setAvaliada() {
         this.estado = true;
     }
+    
+    /**
+     * Altera a média 
+     * @param media médias das respostas dadas pelo FAE
+     */
+    public void setMedia(double media){
+        this.media=media;
+    }
 
+    /**
+     * Método que valida se a justificação está devidamente preenchida
+     * @return 
+     */
     public boolean valida() {
-        if (justificacao == null || justificacao.trim().isEmpty()) {
-            return false;
-        } else {
-
-            return true;
-        }
-
+        return !(justificacao == null || justificacao.trim().isEmpty());
     }
     
+    /**
+     * Método que retorna aceite ou recusada conforme a avaliação dada pelo FAE
+     * @return avaliação dada pelo FAE
+     */
     public String getAvaliacaoString(){
         if (avaliacao==true) return "Aceite";
         else return "Recusada";
     }
 
+    /**
+     * Método que retorna um texto representativo da avaliação
+     * @return a descrição textual da avaliação
+     */
     @Override
     public String toString() {
         String avaliacao = "Avaliação: " + getAvaliacaoString() + "\nJustificação: " + this.justificacao + "\n";
