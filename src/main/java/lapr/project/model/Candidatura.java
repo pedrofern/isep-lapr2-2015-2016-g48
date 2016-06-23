@@ -132,6 +132,8 @@ public class Candidatura implements Serializable{
     public void setRepresentante(Utilizador u){
         this.representante= new Representante(u);
     }
+    
+  
 
     public ListaProduto getListaProdutos() {
         ListaProduto lProd = new ListaProduto();

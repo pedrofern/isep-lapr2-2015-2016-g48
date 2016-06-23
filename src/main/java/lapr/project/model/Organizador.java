@@ -13,6 +13,9 @@ public class Organizador implements Serializable{
     public Organizador(Utilizador u) {
         utilizador=u;
     }
+    public Organizador() {
+        utilizador=new Utilizador();
+    }
  
 
     private void setUtilizador(Utilizador u) {

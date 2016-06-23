@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,6 +35,7 @@ import lapr.project.utils.Utils;
  */
 public class CriarEstatisticaUI extends JFrame {
 
+    private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private Exposicao exposicao;
     private CentroExposicoes centro;
     private Utilizador utilizador;
@@ -120,13 +122,12 @@ public class CriarEstatisticaUI extends JFrame {
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(1000, 80));
         table.setFillsViewportHeight(true);
-       
-        //table.getTableHeader().setReorderingAllowed(false);
 
+        //table.getTableHeader().setReorderingAllowed(false);
         table.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 imprimirDadosTabela(table);
-               
+
             }
         });
 
@@ -151,6 +152,14 @@ public class CriarEstatisticaUI extends JFrame {
             System.out.println();
         }
         System.out.println("--------------------------");
+    }
+
+    private JButton criarBotaoCancelar() {
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.addActionListener((ActionEvent e) -> {
+            dispose();
+        });
+        return btnCancelar;
     }
 
     class AlinharCentro extends DefaultTableCellRenderer {

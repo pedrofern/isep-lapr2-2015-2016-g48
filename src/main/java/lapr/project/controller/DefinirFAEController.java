@@ -36,13 +36,18 @@ public class DefinirFAEController {
     public void setRegistoUTilizadores() {
         m_registoUtilizadores = ce.getRegistoUtilizadores();
         listaUtilizador = new RegistoUtilizadores();
+        Organizador organizador=new Organizador();
         for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {
+
             for (Organizador o : listaOrganizadores.getListaOrganizadores()) {
-                if (!(u.getUsername().equals(o.getUtilizador().getUsername()) && u.getEmail().equals(u.getEmail()))) {
-                    listaUtilizador.addUtilizador(u);
+                if (!(u.getUsername().equals(o.getUtilizador().getUsername()))) {
+                    if (!(u.getUsername().equals("Organizador"))) {
+                            listaUtilizador.addUtilizador(u);
+                    }
 
                 }
             }
+
         }
 
         m_registoUtilizadores = listaUtilizador;

@@ -72,6 +72,7 @@ public class TesteDiana {
         ListaOrganizadores lo = new ListaOrganizadores();
         Exposicao e = ce.getRegistoExposicoes().novaExposicao();
             lo.addOrganizador(o);
+            lo.addOrganizador(o1);
         e.setListaOrganizadores(lo);
         
         FAE f1=new FAE();
@@ -212,9 +213,9 @@ public class TesteDiana {
         ce.getRegistoExposicoes().adicionarExposicao(e1);
         
         
-        //new DefinirFAEUI(ce, user);
+        new DefinirFAEUI(ce, user);
         //new CriarEstatisticaUI(ce, user);
-
+ 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }
 
