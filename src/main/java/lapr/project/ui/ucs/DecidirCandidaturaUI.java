@@ -8,6 +8,8 @@ package lapr.project.ui.ucs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import lapr.project.controller.DecidirCandidaturaController;
@@ -35,6 +38,8 @@ public class DecidirCandidaturaUI extends JFrame{
     
     private JButton btnSelExp;
     private JButton btnSelCand;
+    private JButton botaoRej;
+    private JButton botaoAce;
     private JComboBox comboExposicao;
     private JComboBox comboCandidatura;
     private JList jlstCand;
@@ -71,18 +76,21 @@ public class DecidirCandidaturaUI extends JFrame{
 
         add(painelSul(), BorderLayout.SOUTH);
         add(painelNorte(), BorderLayout.NORTH);
-        add(painelCentro(), BorderLayout.CENTER);
+        botaoAce.setEnabled(false);
+        botaoRej.setEnabled(false);
+        
     }
     private JPanel painelCentro(){
         painelCentro = new JPanel(new BorderLayout());
         
-        jlstCand = new JList(controllerDCC.getListaCandidaturasPorDecidir().getArray());
-        jlstDecAvFAE = new JList(controllerDCC.getListaCandidaturasPorDecidir().getArray());
-        jlstAVFAE = new JList(controllerDCC.getListaCandidaturasPorDecidir().getArray());
+        jlstDecAvFAE = new JList(controllerDCC.getListaAvaliacoesFAE().toArray());
+        jlstAVFAE = new JList(controllerDCC.getListaAvaliacoesFAE().toArray());
         
-        painelCentro.add(criarPainelLista("Candidaturas:",jlstCand), BorderLayout.WEST);        
-        painelCentro.add(criarPainelLista("Decisão Avaliação FAE:",jlstDecAvFAE), BorderLayout.CENTER);
-        painelCentro.add(criarPainelLista("Média Avaliação às Questões:",jlstAVFAE), BorderLayout.EAST);
+        JPanel p = new JPanel(new GridLayout(1,2));       
+        p.add(criarPainelLista("Decisão Avaliação FAE:",jlstDecAvFAE));
+        p.add(criarPainelLista("Média Avaliação às Questões:",jlstAVFAE));
+        
+        painelCentro.add(p, BorderLayout.CENTER);
         
         return painelCentro;
     }
@@ -107,8 +115,7 @@ public class DecidirCandidaturaUI extends JFrame{
     private JPanel painelNorte() {
         painelNorte = new JPanel(new FlowLayout());
         
-//        painelNorte.add(criarPainelSelecionarExposicao(lstExposicoes)); 
-//        painelNorte.add(criarPainelSelecionarCandidatura(lstcands));
+        painelNorte.add(criarPainelSelecionarExposicao(controllerDCC.getListaExposicoesOrganizador()));
         painelNorte.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
@@ -136,9 +143,9 @@ public class DecidirCandidaturaUI extends JFrame{
                     btnSelExp.setEnabled(false);
                     comboExposicao.setEnabled(false);  
                     
-//                    controller.selectExposicao((Exposicao) comboExp.getSelectedItem());
-
+                    controllerDCC.selectExposicao((Exposicao) comboExposicao.getSelectedItem());
                     
+                    painelNorte.add(criarPainelSelecionarCandidatura(controllerDCC.getListaCandidaturasPorDecidir()));
 
                     btnSelCand.setEnabled(true);
                     comboCandidatura.setEnabled(true);
@@ -183,12 +190,14 @@ public class DecidirCandidaturaUI extends JFrame{
                     btnSelExp.setEnabled(false);
                     comboExposicao.setEnabled(false);  
                     
-//                    controller.selectCandidatura((Candidatura) comboExp.getSelectedItem());
+                    controllerDCC.selectCandidatura((Candidatura) comboCandidatura.getSelectedItem());
 
-                    //painelCentro.add()
+                    add(painelCentro(), BorderLayout.CENTER);
 
                     btnSelCand.setEnabled(false);
                     comboCandidatura.setEnabled(false);
+                    botaoAce.setEnabled(true);
+                    botaoRej.setEnabled(true);
 
                     setVisible(true);
                   
@@ -233,37 +242,52 @@ public class DecidirCandidaturaUI extends JFrame{
         return p;
     }
     private JButton criarBotaoAceitar() {
-        JButton botao = new JButton("Aceitar");
-        botao.setMnemonic(KeyEvent.VK_A);
-        botao.setToolTipText("Aceita candidatura");
-        botao.addActionListener(new ActionListener() {
+        botaoAce = new JButton("Aceitar");
+        botaoAce.setMnemonic(KeyEvent.VK_A);
+        botaoAce.setToolTipText("Aceitar candidatura");
+        botaoAce.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //validar aceitação e perguntar se quer fazer nova decisão
-                //se sim
-//                    btnSelCand.setEnabled(true);
-//                    comboCandidatura.setEnabled(true);
+            public void actionPerformed(ActionEvent e) {                
+                String[] opcoes = {"ACEITAR", "Cancelar"};
+                String pergunta = "ACEITAR CANDIDATURA?";
+                int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                        "Confirma?", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+                if (opcao == JOptionPane.YES_OPTION) {
+                    controllerDCC.registaDecisao(true);
+                    dispose();
+                } else {
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
             }
         });
 
-        return botao;
+        return botaoAce;
     }
     private JButton criarBotaoRejeitar() {
-        JButton botao = new JButton("Rejeitar");
-        botao.setMnemonic(KeyEvent.VK_R);
-        botao.setToolTipText("Rejeita candidatura");
-        botao.addActionListener(new ActionListener() {
+        botaoRej = new JButton("Rejeitar");
+        botaoRej.setMnemonic(KeyEvent.VK_R);
+        botaoRej.setToolTipText("Rejeita candidatura");
+        botaoRej.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //validar rejeição e perguntar se quer fazer nova decisão
-                //se sim
-//                    btnSelCand.setEnabled(true);
-//                    comboCandidatura.setEnabled(true);
+                String[] opcoes = {"REJEITAR", "Cancelar"};
+                String pergunta = "REJEITAR CANDIDATURA?";
+                int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
+                        "Confirma?", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+                if (opcao == JOptionPane.YES_OPTION) {
+                    controllerDCC.registaDecisao(false);
+                    dispose();
+                } else {
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
             }
         });
 
-        return botao;
+        return botaoRej;
     }
+
     private JButton criarBotaoCancelar() {
         JButton botao = new JButton("Cancelar");
         botao.setMnemonic(KeyEvent.VK_C);

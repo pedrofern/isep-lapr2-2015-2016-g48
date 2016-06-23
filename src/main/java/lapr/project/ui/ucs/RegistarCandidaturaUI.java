@@ -108,7 +108,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private JPanel painelGeral;
     private String validaFormatoDadosNome = "[^a-z||^A-Z||^ ]";
     private String validaFormatoDadosNum = "[^0-9]";
-    private String validaFormatoDadosKey = "[^a-z||^A-Z||^0-9||^ ]";
+    private String validaFormatoDadosKey = "[^a-z||^A-Z||^0-9]";
 
     private RegistarCandidaturaController controllerRCC;
 
@@ -715,13 +715,13 @@ public class RegistarCandidaturaUI extends JFrame{
         return p;
     }
     private JPanel criarPainelCheckBoxDemo(){
-        JPanel pCheck=new JPanel(new FlowLayout());
         
         Demonstracao[] opcoes=controllerRCC.getListaDemonstracoes().getArray();
         int lenght=opcoes.length;
         int LINHAS= lenght+1/2;
+        int COL= lenght+1/2;
         
-        setLayout(new GridLayout(LINHAS, 1));
+        JPanel pCheck=new JPanel(new GridLayout(LINHAS, COL));
 
         for(Demonstracao d:opcoes){
             String sDemo=d.toString();

@@ -51,11 +51,13 @@ public class DecidirCandidaturaController {
         listaAvaliacoes = candidatura.getListaAvaliacoes();
     }
     
-//    public ListaCandidaturas getInformacaoDaCandidaturaPorDecidir(){
-//        //for candida avaliadas
-//        
-//        return listaCandidaturas;
-//    }
+    public ListaCandidaturas getInformacaoDaCandidaturaPorDecidir(){
+        return listaCandidaturas;
+    }
+    
+    public List<Avaliacao> getListaAvaliacoesFAE(){
+        return listaAvaliacoes.getListaAvaliacoes();
+    }
 
     public ListaCandidaturas getListaCandidaturasPorDecidir(){
         ListaCandidaturas listaTemp = listaCandidaturas;

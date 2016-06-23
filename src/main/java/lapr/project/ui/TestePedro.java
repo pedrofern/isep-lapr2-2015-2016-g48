@@ -103,7 +103,8 @@ public class TestePedro {
         //CriarDemonstracaoUI d = new CriarDemonstracaoUI(ce, user);
         //ListarCandidaturaRetiradaUI r = new ListarCandidaturaRetiradaUI(ce, user);
 //        RegistarCandidaturaUI r = new RegistarCandidaturaUI(ce, user);
-        AlterarCandidaturaUI a = new AlterarCandidaturaUI(ce, user);
+//        AlterarCandidaturaUI a = new AlterarCandidaturaUI(ce, user);
+        DecidirCandidaturaUI b = new DecidirCandidaturaUI(ce, user);
     }
 
     private static void formarDatas() {
