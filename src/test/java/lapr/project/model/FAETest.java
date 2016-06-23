@@ -108,20 +108,20 @@ public class FAETest {
         assertEquals(expResult, result);
 
     }
-
-    /**
-     * Test of validaAvaliacao method, of class FAE.
-     */
-    @Test
-    public void testValidaAvaliacao() {
-        System.out.println("validaAvaliacao");
-        Avaliacao ava = new Avaliacao(true, "Resposta");
-        FAE instance = new FAE(u);
-        boolean expResult = true;
-        boolean result = instance.validaAvaliacao(ava);
-        assertEquals(expResult, result);
-
-    }
+//
+//    /**
+//     * Test of validaAvaliacao method, of class FAE.
+//     */
+//    @Test
+//    public void testValidaAvaliacao() {
+//        System.out.println("validaAvaliacao");
+//        Avaliacao ava = new Avaliacao(true, "Resposta");
+//        FAE instance = new FAE(u);
+//        boolean expResult = true;
+//        boolean result = instance.validaAvaliacao(ava);
+//        assertEquals(expResult, result);
+//
+//    }
 
 
 

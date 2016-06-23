@@ -487,8 +487,7 @@ public class CriarExposicaoUI extends JFrame {
             if (txtTitulo.getText().isEmpty() == true || txtDescricao.getText().isEmpty() == true
                     || txtLocal.getText().isEmpty() == true || campoDataInicial.getText().equals(base) || campoDataFinal.getText().equals(base) || campoDataAvInicio.getText().equals(base) 
                 || campoDataAvFim.getText().equals(base) || campoSubCandDataInicial.getText().equals(base) || campoSubCandDataFinal.getText().equals(base) ||
-                campoSubStandsDataFinal.getText().equals(base) || campoSubCandDataInicial.getText().equals(base) || campoDataAlterarConflito.getText().equals(base)
-                || campoDataAlterarConflito.getText().equals(base)){
+                campoSubStandsDataFinal.getText().equals(base) || campoDataAlterarConflito.getText().equals(base) || campoDataConflito.getText().equals(base)){
                     
                         JOptionPane.showMessageDialog(
                             null,
@@ -496,7 +495,7 @@ public class CriarExposicaoUI extends JFrame {
                             "Criar Exposoção",
                             JOptionPane.ERROR_MESSAGE);
             }else{
-                  
+                  try{
                     controller.validaDatas(campoDataInicial.getText(), campoDataFinal.getText(), campoSubCandDataInicial.getText(), campoSubCandDataFinal.getText(), 
                     campoSubStandsDatainicial.getText(), campoSubStandsDataFinal.getText(), campoDataAlterarConflito.getText(), 
                     campoDataAvInicio.getText(), campoDataAvFim.getText(), campoDataAlterarConflito.getText());
@@ -536,7 +535,10 @@ public class CriarExposicaoUI extends JFrame {
                         }
 
                     }
-            
+                 }catch (Exception e1){
+                   JOptionPane.showMessageDialog(null, "Data inválida encontrada", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
+                        
+                }
             }
         });
         return btnConfirmar;

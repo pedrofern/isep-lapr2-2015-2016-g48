@@ -92,18 +92,4 @@ public class OrganizadorTest {
         
     }
 
-    /**
-     * Test of compareTo method, of class Organizador.
-     */
-    @Test
-    public void testCompareTo() {
-        System.out.println("compareTo");
-        Utilizador o = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
-        Organizador instance = new Organizador(u);
-        int expResult = 0;
-        int result = instance.compareTo(o);
-        assertEquals(expResult, result);
-        
-    }
-
 }

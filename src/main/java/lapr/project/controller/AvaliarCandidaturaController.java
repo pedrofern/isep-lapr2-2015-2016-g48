@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.io.Serializable;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 
@@ -7,7 +8,7 @@ import lapr.project.model.lists.*;
  *
  * @author Diana Silva
  */
-public class AvaliarCandidaturaController {
+public class AvaliarCandidaturaController implements Serializable {
 
     private static CentroExposicoes ce;
     private Candidatura candidatura;

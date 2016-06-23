@@ -30,7 +30,7 @@ public class ListaOrganizadores implements Serializable{
     /**
      * Valida o Organizador e se for válido adiciona a uma Lista de Organizador.
      *
-     * @param u o utilizador a adicionar.
+     * @param o organizador a adicionar 
      * @return boolean
      */
     public boolean addOrganizador(Organizador o) {
@@ -72,7 +72,7 @@ public class ListaOrganizadores implements Serializable{
     /**
      * Verifica se existe o Organizador com a mesma ID recebida por parametro.
      *
-     * @param strID a identificação do Organizador
+     * @param u utilizador a verificar se existe ou não na lista de organizadores
      * @return bollean
      */
     public boolean hasUtilizador(Utilizador u) {
@@ -85,13 +85,8 @@ public class ListaOrganizadores implements Serializable{
     }
     
      
-    public boolean removerUtilizador(Utilizador utilizador) {
-        return listaOrganizadores.remove(utilizador);
-    }
-    
-     
-    public void ordenarPorPosicao(){
-//        Collections.sort(listaOrganizadores);
+    public boolean removerUtilizador(Organizador o) {
+        return listaOrganizadores.remove(o);
     }
 
     /**

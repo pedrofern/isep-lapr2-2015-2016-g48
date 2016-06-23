@@ -42,14 +42,14 @@ public class AvaliarCandidaturaUI extends JFrame{
      */
     private static final int JANELA_ALTURA_MINIMO = 275; 
         
-    private static final String pergunta="Pretende cancelar a avaliação da candidatura?";
+    private static final String PERGUNTA="Pretende cancelar a avaliação da candidatura?";
     
     private static AvaliarSubPainelAvaliar pAvaliar;
-    private static AvaliarSubPainelCands pCands;
+    private AvaliarSubPainelCands pCands;
     private static AvaliarSubPainelJustificacao pJustificacao;
-    private static JPanel pExpos, painel;
+    private JPanel pExpos, painel;
     
-    private static JComboBox comboExpos;
+    private JComboBox comboExpos;
     private JButton selExpo;
     
     public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
@@ -165,7 +165,7 @@ public class AvaliarCandidaturaUI extends JFrame{
         botao.setMnemonic(KeyEvent.VK_S);
         botao.setToolTipText("Cancela o registo de utilizador e volta ao menu anterior");
         botao.addActionListener((ActionEvent e) -> {
-            fecharJanela(pergunta);
+            fecharJanela(PERGUNTA);
         });
 
         return botao;

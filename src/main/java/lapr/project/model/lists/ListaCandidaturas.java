@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.ArrayList;
 import lapr.project.model.Candidatura;
+import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
 
 /**
  *
@@ -44,6 +45,19 @@ public class ListaCandidaturas implements Serializable{
 
     public List<Candidatura> getListaCandidaturas() {
         return listaCandidaturas;
+    }
+    
+    public ListaCandidaturas getListaCandidaturasEmAtribuicao(){
+        
+        ListaCandidaturas listCandidaturas=new ListaCandidaturas();
+        for(Candidatura c: listaCandidaturas){
+   
+            if (c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicaoFAE) {
+                listCandidaturas.addCandidatura(c);
+            }
+        }
+
+        return listCandidaturas;
     }
 
     public Candidatura getCandidaturaByNomeEmpresa(String strNomeEmpresa) {

@@ -19,6 +19,15 @@ public class CandidaturaEmAtribuicaoFAE implements CandidaturaEstado, Serializab
     public CandidaturaEmAtribuicaoFAE(Candidatura candidatura){
         this.candidatura=candidatura;                
     }
+    
+    public boolean setEmAvaliacao(){
+        if(validaEstadoCandidatura()){
+            
+            candidatura.setEstadoCandidatura(new CandidaturaEmAvaliacao(candidatura));
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean validaEstadoCandidatura() {

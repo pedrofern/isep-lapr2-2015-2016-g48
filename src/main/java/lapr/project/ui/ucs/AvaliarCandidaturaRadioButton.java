@@ -1,19 +1,14 @@
 package lapr.project.ui.ucs;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
+import java.io.Serializable;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 /**
  *
  * @author Diana Silva
  */
-public class AvaliarCandidaturaRadioButton {
+public class AvaliarCandidaturaRadioButton implements Serializable {
     private JRadioButton button1;
     private JRadioButton button2;
     private JRadioButton button3;

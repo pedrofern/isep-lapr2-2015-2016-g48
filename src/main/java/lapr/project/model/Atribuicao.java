@@ -55,7 +55,7 @@ public class Atribuicao implements Serializable{
 
     @Override
     public String toString() {
-        return this.candidatura.toString() + "\nATRIBUIDA A: " + fae.toString() + "\n";
+        return this.candidatura.toString() + " - atribuída ao - " + fae.toString() + "\n";
     }
 
 }

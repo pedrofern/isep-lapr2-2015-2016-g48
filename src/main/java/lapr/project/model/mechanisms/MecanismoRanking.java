@@ -18,7 +18,7 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
-public class MecanismoRanking implements MecanismoAtribuicao, Serializable{
+public class MecanismoRanking implements Serializable, MecanismoAtribuicao{
     
     private static final String TIPO= "Qualidade FAE" ;
     private Exposicao exposicao;
@@ -27,11 +27,7 @@ public class MecanismoRanking implements MecanismoAtribuicao, Serializable{
     private ListaAtribuicoes listaAtribuicoes;
     private ListaAtribuicoes listaAtribuicoesNovas;
     
-    public MecanismoRanking(Exposicao e){
-        this.exposicao=e;
-        this.listaFaes=e.getListaFAE();
-        this.listaCandidaturas=e.getListaCandidaturas();
-        this.listaAtribuicoes=e.getListaAtribuicoes();
+    public MecanismoRanking(){
     }
  
     public ListaFAE getListaFaes(){
@@ -56,10 +52,14 @@ public class MecanismoRanking implements MecanismoAtribuicao, Serializable{
     public void sortFaeRanking(){
 //        Collections.sort(listaFaes.getListaFAE());
     }
-    
-    
+ 
+     
+     public ListaAtribuicoes getListaAtribuicoesGeradas(){
+         return this.listaAtribuicoesNovas;
+     }
+
     @Override
-    public boolean atribui(ProcessoAtribuicao pa) {
+    public boolean atribui() {
         
         int n_cand=listaCandidaturas.getListaCandidaturas().size();
         int n_fae=listaFaes.getListaFAE().size();
@@ -78,18 +78,15 @@ public class MecanismoRanking implements MecanismoAtribuicao, Serializable{
             for(Candidatura c:listaCandidaturas.getListaCandidaturas()){
                 
                 Atribuicao atribuicao=new Atribuicao(f,c);
-                if(listaAtribuicoes.valida(atribuicao)){
-                    atribuicao.setAtribuida();
-                    listaAtribuicoesNovas.add(atribuicao);
-                    
-                }        
-            }
+                if(listaAtribuicoesNovas.adicionarAtribuicao(atribuicao))
+                     atribuicao.setAtribuida();      
+             }        
         }
         return listaAtribuicoesNovas.getListaAtribuicoes().isEmpty();
     }
     
     public boolean guardarAtribuicoes(){
-        return listaAtribuicoes.addListaAtribuicoes(listaAtribuicoesNovas);
+        return listaAtribuicoes.adicionharListaAtribuicoes(listaAtribuicoesNovas);
     }
     
     public String toString(){

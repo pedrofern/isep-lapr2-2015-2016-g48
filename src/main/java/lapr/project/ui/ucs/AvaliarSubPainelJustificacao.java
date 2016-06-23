@@ -4,7 +4,6 @@ package lapr.project.ui.ucs;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +33,7 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
     private final int CAMPO_LARGURA = 30;
     private JTextArea txt;
     private JRadioButton button1, button2;
-    private static JButton btGuardar;
+    private JButton btGuardar;
     
     
     public AvaliarSubPainelJustificacao (AvaliarCandidaturaController pController){

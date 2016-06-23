@@ -227,23 +227,17 @@ public class Login extends JFrame /**implements Serializable**/ {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                //CentroExposicoes ce=new CentroExposicoes();
-                
-//                 for (Utilizador u: m_ce.getRegistoUtilizadores().getListaUtilizadores()){
-//                    System.out.println(u.toString());
-//                }
-            
+       
                  for(Utilizador u: ce.getRegistoUtilizadores().getListaUtilizadores()){
      
                      if(username.getText().equalsIgnoreCase(u.getUsername())){
             
                         if(u.getRegistado()!= false){
                         JOptionPane.showMessageDialog(null, "Utilizador válido. Bem vindo!");
-                        new Janela (ce,fichCentroExposicoes, u);
+                        Janela j=new Janela (ce,fichCentroExposicoes, u);
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
-                        new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
+                        RegistarUtilizadorUI r=new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
                     }
                 }
                   }

@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import lapr.project.model.Utilizador;
 
@@ -15,7 +14,7 @@ import lapr.project.model.Utilizador;
  */
 public class PainelInfoUser extends JPanel {
     
-    private static Utilizador m_user;
+    private Utilizador m_user;
     private String tipo_utilizador;
     private  static JLabel lblNome, lblEmail;
     

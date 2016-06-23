@@ -14,7 +14,6 @@ public class FAE implements Comparable<FAE>,Serializable {
     private final String nome, email, username;
     private Utilizador o_utilizador;
     private List<FAE> e_listaFAE;
-    private List<Avaliacao> m_listaAvaliacoes;
     private List<Candidatura> m_listaCandidaturas;
     private final String NOME_POR_OMISSAO = "sem nome";
     private static final String EMAIL_POR_OMISSAO = "Email do utilizador não registado";
@@ -22,6 +21,7 @@ public class FAE implements Comparable<FAE>,Serializable {
     private static int numeroFAEs = 0;
     private FAE m_fae;
     private ListaFAE listaFAE;
+    private int nCand;
 
     public FAE(Utilizador u) {
         this.o_utilizador = u;
@@ -32,7 +32,6 @@ public class FAE implements Comparable<FAE>,Serializable {
     }
 
     public FAE(String strId, Utilizador u) {
-        m_listaAvaliacoes = new ArrayList<Avaliacao>();
         nome = u.getNome();
         username = u.getUsername();
         email = u.getEmail();
@@ -45,6 +44,7 @@ public class FAE implements Comparable<FAE>,Serializable {
         username =USER_POR_OMISSAO;
         email = EMAIL_POR_OMISSAO;
         numeroFAEs++;
+        nCand=0;
     }
 
     public void setUtilizador(Utilizador u) {
@@ -58,6 +58,7 @@ public class FAE implements Comparable<FAE>,Serializable {
             return true;
         }
     }
+   
 
     public String getNome() {
         return nome;
@@ -67,28 +68,18 @@ public class FAE implements Comparable<FAE>,Serializable {
         return o_utilizador;
     }
 
- 
+  
+    public int getNAtribuidas(){
+        return nCand;
+    }
+    
+    public void incrementaNAtribuidas(){
+        nCand++;
+    }
 
     @Override
     public String toString() {
         return ("Utilizador: " + this.o_utilizador.toString());
-    }
-
-    public boolean validaAvaliacao(Avaliacao ava) {
-        return ava.valida();
-    }
-
-    public Avaliacao novaAvaliacao() {
-        return new Avaliacao();
-    }
-
-    public boolean registaAvaliacao(Avaliacao ava) {
-        if (ava.valida() && validaAvaliacao(ava)) {
-            return addAvaliacao(ava);
-     
-        } else {
-            return false;
-        }
     }
 
     public String getUsername() {
@@ -116,10 +107,6 @@ public class FAE implements Comparable<FAE>,Serializable {
         return hash;
     }
 
-    private boolean addAvaliacao(Avaliacao ava) {
-        
-        return m_listaAvaliacoes.add(ava);
-    }
 
     public boolean isUtilizador(Utilizador u) {
         if (this.o_utilizador != null) {

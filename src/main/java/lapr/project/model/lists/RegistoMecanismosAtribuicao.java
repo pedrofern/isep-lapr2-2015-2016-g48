@@ -10,26 +10,60 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import lapr.project.model.mechanisms.MecanismoAtribuicao;
+import lapr.project.model.mechanisms.MecanismoCarga;
+import lapr.project.model.mechanisms.MecanismoRanking;
+import lapr.project.model.mechanisms.MecanismoTempoServico;
 
 /**
  *
  * @author Diana
  */
 public class RegistoMecanismosAtribuicao implements Serializable{
-     private ArrayList<MecanismoAtribuicao> listaMecanismoAtribuicao;
+     
+     private ArrayList<MecanismoAtribuicao> registoMecanismosAtribuicao;
+     
+//     private ArrayList<Object> registoMecanismosAtribuicao;
      
      public RegistoMecanismosAtribuicao(){
-         listaMecanismoAtribuicao=new ArrayList<>();
+         registoMecanismosAtribuicao=new ArrayList<MecanismoAtribuicao>(); 
+         
+        MecanismoCarga m1=new MecanismoCarga();
+        MecanismoTempoServico m2= new MecanismoTempoServico();
+        MecanismoRanking m3=new MecanismoRanking();
+        registoMecanismosAtribuicao.add(m1);
+        registoMecanismosAtribuicao.add(m2);
+        registoMecanismosAtribuicao.add(m3);
+        
      }
      
-    public List<MecanismoAtribuicao> getMecanismosAtribuicao() {
-        List<MecanismoAtribuicao> lMecanismos = new ArrayList<>();
-
-        for (ListIterator<MecanismoAtribuicao> it = listaMecanismoAtribuicao.listIterator(); it.hasNext();) {
-            lMecanismos.add(it.next());
-        }
-
-        return lMecanismos;
+    public void addMecanismo1(MecanismoCarga t){
+        this.registoMecanismosAtribuicao.add(t);
     }
+    
+    public void addMecanismo2(MecanismoTempoServico t){
+        this.registoMecanismosAtribuicao.add(t);
+    }
+    
+    public void addMecanismo3(MecanismoRanking t){
+        this.registoMecanismosAtribuicao.add(t);
+    }
+
+    
+    public ArrayList<MecanismoAtribuicao> getRegistoMecanismos(){
+        return registoMecanismosAtribuicao;
+    }
+
+    public String listaMecanismostoString(){
+        String mecs="Mecanismos: ";
+        for (Object m: registoMecanismosAtribuicao){
+            mecs+=m.toString();
+        }
+        return mecs;
+    }
+
+    public MecanismoAtribuicao[] getArray(){
+        return registoMecanismosAtribuicao.toArray(new MecanismoAtribuicao[registoMecanismosAtribuicao.size()]);
+    }
+    
      
 }

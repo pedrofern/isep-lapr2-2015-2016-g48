@@ -14,12 +14,14 @@ import lapr.project.model.FAE;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
+import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
+import lapr.project.model.states.CandidaturaEmAvaliacao;
 
 /**
  *
  * @author DianaSilva
  */
-public class MecanismoTempoServico implements MecanismoAtribuicao, Serializable {
+public class MecanismoTempoServico implements Serializable, MecanismoAtribuicao {
     
     private static final String TIPO= "Tempo de Serviço" ;
     private Exposicao exposicao;
@@ -28,11 +30,7 @@ public class MecanismoTempoServico implements MecanismoAtribuicao, Serializable 
     private ListaAtribuicoes listaAtribuicoes;
     private ListaAtribuicoes listaAtribuicoesNovas;
     
-    public MecanismoTempoServico(Exposicao e){
-        this.exposicao=e;
-        this.listaFaes=e.getListaFAE();
-        this.listaCandidaturas=e.getListaCandidaturas();
-        this.listaAtribuicoes=e.getListaAtribuicoes();
+    public MecanismoTempoServico(){
     }
     
     public ListaFAE getListaFaes(){
@@ -46,7 +44,7 @@ public class MecanismoTempoServico implements MecanismoAtribuicao, Serializable 
     public void setExposicao(Exposicao exposicao){
         this.exposicao=exposicao;
         this.listaFaes=exposicao.getListaFAE();
-//        this.listaAtribuicoes=exposicao.getListaAtribuicoes;
+        this.listaAtribuicoes=exposicao.getListaAtribuicoes();
         this.listaCandidaturas=exposicao.getListaCandidaturas();
     }
     
@@ -54,33 +52,54 @@ public class MecanismoTempoServico implements MecanismoAtribuicao, Serializable 
         return listaCandidaturas;
     }
     
-    public void sortFaeTempoServico(){
+     public ListaAtribuicoes getListaAtribuicoesGeradas(){
+         return this.listaAtribuicoesNovas;
+     }
+    
+    
+    public void sortFaeTempoServicoDecrescente(){
         Collections.sort(listaFaes.getListaFAE());
+        Collections.reverse(listaFaes.getListaFAE());
     }
-    
-    
+
     @Override
-    public boolean atribui(ProcessoAtribuicao pa) {
+    public boolean atribui() {
+        sortFaeTempoServicoDecrescente();
         
+        
+        int nCand=listaCandidaturas.getListaCandidaturas().size();
+        int nFae=listaFaes.getListaFAE().size();
+  
+        double n20porCentoCand=nCand*0.2;
+        double n30porCentoCand=nCand*0.3;
+        double n50porCentoCand=nCand*0.5;
+
         listaAtribuicoesNovas=new ListaAtribuicoes();
-        for (FAE f:listaFaes.getListaFAE()){
-            for(Candidatura c:listaCandidaturas.getListaCandidaturas()){
-                
-                Atribuicao atribuicao=new Atribuicao(f,c);
-                if(listaAtribuicoes.valida(atribuicao)){
-                    atribuicao.setAtribuida();
-                    listaAtribuicoesNovas.add(atribuicao);
-                    
-                }        
+ 
+       for(Candidatura c:listaCandidaturas.getListaCandidaturas()){
+           for (FAE f: listaFaes.getListaFAE()){  
+        
+             if(f.getNAtribuidas()<n50porCentoCand){
+                  
+                    if(c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicaoFAE){
+                             Atribuicao atribuicao=new Atribuicao(f,c);
+                             if(listaAtribuicoesNovas.adicionarAtribuicao(atribuicao)){
+                                f.incrementaNAtribuidas();
+                                c.setEstadoCandidatura(new CandidaturaEmAvaliacao(c));
+                             }
+                        }
+                   }  
             }
         }
+ 
         return listaAtribuicoesNovas.getListaAtribuicoes().isEmpty();
     }
     
     public boolean guardarAtribuicoes(){
-        return listaAtribuicoes.addListaAtribuicoes(listaAtribuicoesNovas);
+        return listaAtribuicoes.adicionharListaAtribuicoes(listaAtribuicoesNovas);
     }
     
+    @Override
     public String toString(){
         return TIPO;
     }

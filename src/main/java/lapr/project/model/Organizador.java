@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author Pedro Fernandes
  */
-public class Organizador implements Comparable<Utilizador>, Serializable{
+public class Organizador implements Serializable{
 
     private Utilizador utilizador;
 
@@ -43,9 +43,4 @@ public class Organizador implements Comparable<Utilizador>, Serializable{
         return false;
     }
 
-
-    @Override
-    public int compareTo(Utilizador o) {
-        return getUtilizador().getID().compareTo(o.getID());
-    }
 }

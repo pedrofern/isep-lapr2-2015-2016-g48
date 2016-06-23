@@ -232,6 +232,17 @@ public class RegistoExposicoes implements Serializable{
         }
         return regExpo;
     }
+    
+    public RegistoExposicoes getExposicoesCandidaturasEmAtribuicao() {
+
+        RegistoExposicoes regExpo = new RegistoExposicoes();
+        for (Exposicao e : listaExposicoes) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasEmAtribuicao) {
+                regExpo.adicionarExposicao(e);
+            }
+        }
+        return regExpo;
+    }
 
     public RegistoExposicoes getExposicoesCandidaturasEmAvaliacao() {
 

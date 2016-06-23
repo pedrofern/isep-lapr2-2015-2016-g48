@@ -232,4 +232,9 @@ public class Candidatura implements Serializable{
                 + "\nKeywords:\n"+this.listaKeywords.getListaKeyword().toString()
                 + "\nProdutos:\n" + this.listaProdutos.getListaProduto().toString();
     }
+    
+      public void setAtribuida() {
+        CandidaturaEmAtribuicaoFAE state=(CandidaturaEmAtribuicaoFAE)estadoCandidatura;
+        state.setEmAvaliacao();
+    }
 }

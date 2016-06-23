@@ -6,6 +6,6 @@ package lapr.project.model.mechanisms;
  */
 public interface MecanismoAtribuicao {
 
-    public abstract boolean atribui(ProcessoAtribuicao pa);
+    public abstract boolean atribui();
 
 }

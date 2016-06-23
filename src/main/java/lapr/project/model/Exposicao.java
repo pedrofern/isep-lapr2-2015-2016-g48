@@ -107,6 +107,10 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     public void setLocal(String strLocal) {
         local = strLocal;
     }
+    
+    public void setListaAtribuicoes(ListaAtribuicoes lista){
+        listaAtribuicoes=lista;
+    }
 
     public String getLocal() {
         return local;
@@ -280,7 +284,6 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     public void setCriada() throws ParseException{
         ExposicaoEstadoInicial state=(ExposicaoEstadoInicial) estado;
         state.setCriada();
-        System.out.println(getEstadoAtualExposicao());
     }
 
     public void setListaFaes(ListaFAE lstFaes) {

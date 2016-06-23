@@ -48,21 +48,18 @@ public class ModeloListaOrganizadores extends AbstractListModel {
         return listaOrganizadores.getListaOrganizadores().size();
     }
 
-    public boolean removeElement(Utilizador utilizador){
-        int indice = listaOrganizadores.getListaOrganizadores().indexOf(utilizador);
-        boolean utilizadorRemovido = listaOrganizadores.removerUtilizador(utilizador);
+    public boolean removeElement(Organizador o){
+        int indice = listaOrganizadores.getListaOrganizadores().indexOf(o);
+        boolean utilizadorRemovido = listaOrganizadores.removerUtilizador(o);
         if(utilizadorRemovido)
             fireIntervalRemoved(this, indice, indice);
         return utilizadorRemovido;
     }
     
-    public boolean contains(Utilizador utilizador){
-        return listaOrganizadores.getListaOrganizadores().contains(utilizador);
+    public boolean contains(Organizador o){
+        return listaOrganizadores.getListaOrganizadores().contains(o);
     }
-    
-    public void sort(){
-        listaOrganizadores.ordenarPorPosicao();
-    }
+ 
     
     public ListaOrganizadores getListaOrganizadores(){
         return listaOrganizadores;
