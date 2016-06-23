@@ -18,6 +18,7 @@ import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
 import lapr.project.ui.ucs.DefinirFAEUI;
+import lapr.project.ui.ucs.EstatisticasCandidaturasExposicaoUI;
 import lapr.project.utils.Data;
 import lapr.project.utils.*;
 
@@ -210,7 +211,8 @@ public class TesteDiana {
         ce.getRegistoExposicoes().adicionarExposicao(e1);
         
         
-        new DefinirFAEUI(ce, user);
+        //new DefinirFAEUI(ce, user);
+        new EstatisticasCandidaturasExposicaoUI(ce);
 
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }
