@@ -42,7 +42,6 @@ public class DecidirCandidaturaUI extends JFrame{
     private JButton botaoAce;
     private JComboBox comboExposicao;
     private JComboBox comboCandidatura;
-    private JList jlstCand;
     private JList jlstDecAvFAE;
     private JList jlstAVFAE;
     private JPanel painelNorte;

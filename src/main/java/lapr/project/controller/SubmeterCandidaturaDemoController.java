@@ -5,9 +5,11 @@ import lapr.project.model.Utilizador;
 
 /**
  *
- * @author Diana
+ * @author Pedro Fernandes
  */
 public class SubmeterCandidaturaDemoController {
+    
+    
     
     private CentroExposicoes ce;
     
@@ -18,5 +20,7 @@ public class SubmeterCandidaturaDemoController {
         ce=centroExposicoes;
         user=utilizador;
     }
+    
+    
     
 }

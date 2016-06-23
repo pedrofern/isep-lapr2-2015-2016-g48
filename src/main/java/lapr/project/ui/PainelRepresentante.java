@@ -99,7 +99,8 @@ public class PainelRepresentante extends JPanel{
                try{
                   RegistarCandidaturaUI a= new RegistarCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
-                   JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                   JOptionPane.showMessageDialog(PainelRepresentante.this, 
+                           "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
 
 
@@ -123,7 +124,8 @@ public class PainelRepresentante extends JPanel{
             public void actionPerformed(ActionEvent e) {try{
                   AlterarCandidaturaUI a= new AlterarCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
-                   JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                   JOptionPane.showMessageDialog(PainelRepresentante.this, 
+                           "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }}   
         }
             
@@ -143,7 +145,8 @@ public class PainelRepresentante extends JPanel{
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(PainelRepresentante.this, 
+                        "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
             }   
         }
             
@@ -162,8 +165,13 @@ public class PainelRepresentante extends JPanel{
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelRepresentante.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }   
+                try{
+                    SubmeterCandidaturaDemoUI a= new SubmeterCandidaturaDemoUI(m_ce, m_ut);
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(PainelRepresentante.this, 
+                            "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            } 
         }
             
         );
