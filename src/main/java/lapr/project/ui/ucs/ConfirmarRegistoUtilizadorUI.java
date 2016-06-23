@@ -33,12 +33,13 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
    private final ConfirmarRegistoUtilizadorController controller;
     private static CentroExposicoes ce;
     private JComboBox comboUtilizadores;
+    private RegistoUtilizadores lista;
     private JPanel pUtilizadores;
     private JButton btnConfirmar;
     private String pergunta="Pretende confirmar o registo de utilizador?";
     
-    private static final int JANELA_LARGURA = 900;
-    private static final int JANELA_ALTURA = 400;
+    private static final int JANELA_LARGURA = 700;
+    private static final int JANELA_ALTURA = 300;
 
 
     public ConfirmarRegistoUtilizadorUI(CentroExposicoes centroExposicoes) {
@@ -71,7 +72,7 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         p.setBorder(new TitledBorder("Utilizadores"));
         JLabel lbl = new JLabel("Selecione um utilizador para confirmacao", SwingConstants.RIGHT);
         p.add(lbl);
-        criarPainelUtilizador();
+        //criarPainelUtilizador();
         return p;
         
         
@@ -96,6 +97,7 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         return comboUtilizadores;
     }
     
+   
       
   
      private JPanel criarPainelBotoes() {
@@ -127,15 +129,13 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
 
              @Override
              public void actionPerformed(ActionEvent e) {
-                 
-//                String[] opcoes = {"Sim", "Não"};
-//                
-//                int opcao=JOptionPane.showOptionDialog(new Frame(),pergunta,"Confirma registo do utilizador", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-//                        
-//                Janela.getTabPane().setSelectedIndex(0);
+                 guardar();
+            
              }
-             
-         });
+            
+         }
+ 
+         );
          return btnConfirmar;
     }
                
@@ -155,6 +155,22 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         return botao;
     }
      
+     private void guardar(){
+         
+        Utilizador u = new Utilizador();
+        u=(Utilizador)comboUtilizadores.getSelectedItem();
+        u.setRegistado(true);
+     
+//        controller.getRegistoUtilizadores().novoUtilizador();
+//        controller.getRegistoUtilizadores().getUtilizadoresPend();
+//        controller.confirmaRegistoUtilizador();
+         
+        for(Utilizador ut: ce.getRegistoUtilizadores().getListaUtilizadores()){
+             System.out.println(ut.toString());
+     }
+     
+    
+    }
 
     }
 
