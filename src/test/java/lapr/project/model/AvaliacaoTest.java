@@ -45,7 +45,6 @@ public class AvaliacaoTest {
     public void testGetListaQuestoes() {
         System.out.println("getListaQuestoes");
         Avaliacao instance = new Avaliacao();
-
         ListaQuestoes expResult = instance.getListaQuestoes();
         ListaQuestoes result = instance.getListaQuestoes();
         assertEquals(expResult, result);
