@@ -36,13 +36,13 @@ public class DefinirRecursoUI extends JFrame {
     private JButton botaoAdicionarRecurso, botaoRemoverRecurso;
     
     
-    private static final int MARGEM_SUPERIOR = 5;
-    private static final int MARGEM_INFERIOR = 5;
-    private static final int MARGEM_ESQUERDA = 5;
-    private static final int MARGEM_DIREITA = 5;
+    private static final int MARGEM_SUPERIOR = 20;
+    private static final int MARGEM_INFERIOR = 20;
+    private static final int MARGEM_ESQUERDA = 20;
+    private static final int MARGEM_DIREITA  = 20;
   
     
-    private static final int WIDTH=500, HEIGHT=500;
+    private static final int WIDTH=400, HEIGHT=400;
     
     
     public DefinirRecursoUI(CentroExposicoes centroExposicoes) {
@@ -66,7 +66,6 @@ public class DefinirRecursoUI extends JFrame {
         
         this.setTitle("Definir Recurso");
         p.setLayout(new FlowLayout());
-        p.add(criarPainelRecurso(), BorderLayout.NORTH);
         p.add(criarPainelListas(),BorderLayout.CENTER);
         p.add(criarPainelBotoes(), BorderLayout.SOUTH);
         
@@ -140,24 +139,6 @@ public class DefinirRecursoUI extends JFrame {
         
         
         
-      public JPanel criarPainelRecurso(){
-       
-         JPanel p = new JPanel(new FlowLayout());
-
-        text = new JTextArea();
-        text.setPreferredSize(new Dimension(250, 200));
-        text.setBorder(new TitledBorder("Insira o recurso pretendido"));
-        text.requestFocus();
-
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA, MARGEM_INFERIOR, MARGEM_DIREITA));
-
-        p.add(text);
-        
-        return p;
-  
-      }
       
       private JButton criarBotaoAdicionarRecurso(){
         botaoAdicionarRecurso = new JButton("Adicionar Recurso");
@@ -177,9 +158,9 @@ public class DefinirRecursoUI extends JFrame {
      * @return botão eliminar produto
      */
     public JButton criarBotaoRemoverRecurso(){
-        botaoRemoverRecurso = new JButton("Eliminar Produto");
+        botaoRemoverRecurso = new JButton("Eliminar Recurso");
         botaoRemoverRecurso.setMnemonic(KeyEvent.VK_E);
-        botaoRemoverRecurso.setToolTipText("Elimina produtos");
+        botaoRemoverRecurso.setToolTipText("Elimina recursos");
         botaoRemoverRecurso.setEnabled(true);
         botaoRemoverRecurso.addActionListener(new ActionListener() {
             @Override
@@ -197,7 +178,7 @@ public class DefinirRecursoUI extends JFrame {
                     int resposta = JOptionPane.showOptionDialog(
                             DefinirRecursoUI.this,
                             "Eliminar\n" + recurso.toString(),
-                            "Eliminar Produto",
+                            "Eliminar Recurso",
                             0,
                             JOptionPane.QUESTION_MESSAGE,
                             null,
