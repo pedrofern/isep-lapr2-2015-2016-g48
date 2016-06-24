@@ -2,12 +2,17 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.utils.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Utilizador implements Comparable<Utilizador>, Serializable  {
 
     private String nome;

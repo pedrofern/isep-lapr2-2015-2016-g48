@@ -5,13 +5,19 @@
  */
 package lapr.project.model.states;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.Exposicao;
 
 /**
  *
  * @author Edu
  */
+@XmlTransient
+@XmlSeeAlso({DemonstracaoEstadoCandidaturaAberto.class,
+            DemonstracaoEstadoDecidida.class,DemonstracaoEstadoInicial.class,
+            DemonstracaoEstadoInteresse.class,DemonstracaoEstadoRegistada.class,
+            DemonstracoesEstadoCandidaturaFechada.class})
 public class DemonstracaoEstadoCriada implements DemonstracaoEstado {
 
     private final Demonstracao demonstracao;

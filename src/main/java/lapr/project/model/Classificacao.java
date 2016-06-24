@@ -5,11 +5,17 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Classe que permite classificar o FAE, analisando estatisticamente as avaliações do FAE
  * 
  * @author DianaSilva
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Classificacao {
     
     /**

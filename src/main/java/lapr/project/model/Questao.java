@@ -1,12 +1,16 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * A question with a text and an answer
  * @author Diana Silva
  */
-
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Questao implements Serializable{
     private String pergunta;
     private int resposta;

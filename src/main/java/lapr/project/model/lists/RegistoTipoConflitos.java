@@ -2,6 +2,9 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
 import lapr.project.model.mechanisms.TipoConflito;
 
@@ -9,6 +12,8 @@ import lapr.project.model.mechanisms.TipoConflito;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RegistoTipoConflitos implements Serializable{
     private ArrayList<TipoConflito> listaTipoConflitos;
 

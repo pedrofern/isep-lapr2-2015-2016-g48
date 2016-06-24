@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
@@ -13,6 +16,8 @@ import lapr.project.model.FAE;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaAvaliacoes implements Serializable{
      private ArrayList<Avaliacao> listaAvaliacoes;
 

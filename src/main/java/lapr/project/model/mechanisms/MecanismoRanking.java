@@ -6,6 +6,8 @@
 package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
@@ -18,6 +20,10 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
+@XmlTransient
+@XmlSeeAlso({MecanismoCarga.class,
+            MecanismoDetecaoConflito.class,
+            MecanismoTempoServico.class})
 public class MecanismoRanking implements Serializable, MecanismoAtribuicao{
     
     private static final String TIPO= "Qualidade FAE" ;

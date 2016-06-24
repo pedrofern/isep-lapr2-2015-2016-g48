@@ -1,7 +1,9 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.lists.ListaQuestoes;
 
 /**
@@ -9,6 +11,8 @@ import lapr.project.model.lists.ListaQuestoes;
  * 
  * @author Diana Silva
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Avaliacao implements Serializable{
 
     /**

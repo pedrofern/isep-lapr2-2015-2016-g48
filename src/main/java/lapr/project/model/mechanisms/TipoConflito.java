@@ -2,11 +2,16 @@ package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TipoConflito implements Serializable{
 
     private String descricao;

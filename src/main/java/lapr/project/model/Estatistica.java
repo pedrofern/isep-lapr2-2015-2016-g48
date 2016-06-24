@@ -5,12 +5,17 @@
  */
 package lapr.project.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.lists.ListaFAE;
 
 /**
  *
  * @author DianaSilva
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Estatistica {
     
     private Exposicao exposicao;

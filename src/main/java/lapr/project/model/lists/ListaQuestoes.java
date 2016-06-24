@@ -4,6 +4,9 @@ package lapr.project.model.lists;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.CalculatorExample;
 import lapr.project.model.Questao;
 
@@ -11,7 +14,8 @@ import lapr.project.model.Questao;
  *
  * @author Diana
  */
-
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaQuestoes implements Serializable{
 
     private ArrayList<Questao> m_listaQuestoes;

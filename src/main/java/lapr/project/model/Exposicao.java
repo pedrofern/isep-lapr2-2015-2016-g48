@@ -12,11 +12,18 @@ import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
  * @author Pedro Fernandes e Diana
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Exposicao implements Comparable<Exposicao>, Serializable {
 
     private String titulo;
@@ -38,7 +45,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaAtribuicoes listaAtribuicoes;
-
+    @XmlTransient
     private ExposicaoEstado estado;
 //    private TimerTask task1, task2, task3, task4, task5, task6, task7;
 

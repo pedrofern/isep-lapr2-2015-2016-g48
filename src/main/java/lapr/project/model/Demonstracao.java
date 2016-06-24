@@ -3,11 +3,12 @@ package lapr.project.model;
 import lapr.project.model.lists.RegistoRecursos;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List.*;
 import java.util.Timer;
 import java.util.TimerTask;
-import lapr.project.controller.DetetarConflitosController;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.lists.*;
 import lapr.project.model.states.*;
 import lapr.project.utils.Data;
@@ -17,6 +18,8 @@ import lapr.project.utils.Utils;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Demonstracao implements Serializable {
 
     private CentroExposicoes m_centroExposicoes;
@@ -28,6 +31,7 @@ public class Demonstracao implements Serializable {
     private RegistoRecursos registorecurso;
     private ListaRecursoDemonstracao listarecursodemonstracao;
     private Demonstracao demonstracao;
+    @XmlTransient
     private DemonstracaoEstado estado;
     private TimerTask task1, task2;
     /**

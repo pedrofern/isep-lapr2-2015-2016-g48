@@ -1,16 +1,16 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.*;
-import lapr.project.model.Avaliacao;
-import lapr.project.model.Candidatura;
-import lapr.project.model.FAE;
-import lapr.project.model.Utilizador;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author DianaSilva
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Atribuicao implements Serializable{
 
    

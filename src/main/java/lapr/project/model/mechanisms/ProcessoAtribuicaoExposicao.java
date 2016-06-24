@@ -2,15 +2,15 @@ package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Avaliacao;
-import lapr.project.model.mechanisms.ProcessoAtribuicao;
 import lapr.project.model.lists.ListaAtribuicoes;
-import lapr.project.model.mechanisms.MecanismoAtribuicao;
 
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlTransient
 public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao, Serializable {
 
     private ListaAtribuicoes listaAvaliacoes;

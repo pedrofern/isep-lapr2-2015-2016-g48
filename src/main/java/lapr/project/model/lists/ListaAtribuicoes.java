@@ -2,6 +2,9 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
@@ -10,6 +13,8 @@ import lapr.project.model.FAE;
  *
  * @author DianaSilva
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaAtribuicoes implements Serializable{
     private ArrayList<Atribuicao> listaAtribuicoes;
 

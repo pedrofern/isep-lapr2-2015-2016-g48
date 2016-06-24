@@ -1,6 +1,9 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.lists.RegistoTipoConflitos;
 import lapr.project.model.lists.RegistoMecanismosAtribuicao;
 //import lapr.project.model.mechanisms.*;
@@ -10,6 +13,8 @@ import lapr.project.model.lists.*;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CentroExposicoes implements Serializable{
 
     private RegistoRecursos regRecursos;

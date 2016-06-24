@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
 import lapr.project.model.states.*;
@@ -12,6 +15,8 @@ import lapr.project.model.states.*;
  *
  * @author Pedro Fernandes, Diana Silva
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RegistoExposicoes implements Serializable{
 
     private ArrayList<Exposicao> listaExposicoes;

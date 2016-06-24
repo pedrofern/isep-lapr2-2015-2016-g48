@@ -3,11 +3,17 @@ package lapr.project.model.mechanisms;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Diana Silva
  */
+@XmlTransient
+@XmlSeeAlso({MecanismoCarga.class,
+            MecanismoRanking.class,
+            MecanismoTempoServico.class})
 public class MecanismoDetecaoConflito implements Serializable{
 
     private List<Conflito> listaConflitos;

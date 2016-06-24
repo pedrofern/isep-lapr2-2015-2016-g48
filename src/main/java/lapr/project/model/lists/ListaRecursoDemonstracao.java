@@ -8,12 +8,17 @@ package lapr.project.model.lists;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Recurso;
 
 /**
  *
  * @author Edu
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaRecursoDemonstracao implements Serializable{
 
     private ArrayList<Recurso> listarecursodemonstracao;

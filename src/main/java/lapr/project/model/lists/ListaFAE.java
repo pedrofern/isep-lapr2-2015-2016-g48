@@ -2,12 +2,17 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.*;
 
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaFAE implements Serializable{
 
     /**

@@ -7,6 +7,8 @@ package lapr.project.model.states;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Demonstracao;
 
 
@@ -14,6 +16,11 @@ import lapr.project.model.Demonstracao;
  *
  * @author Edu
  */
+@XmlTransient
+@XmlSeeAlso({DemonstracaoEstadoCandidaturaAberto.class,DemonstracaoEstadoCriada.class,
+            DemonstracaoEstadoDecidida.class,
+            DemonstracaoEstadoInteresse.class,DemonstracaoEstadoRegistada.class,
+            DemonstracoesEstadoCandidaturaFechada.class})
 public class DemonstracaoEstadoInicial implements DemonstracaoEstado, Serializable {
 
     private final Demonstracao demonstracao;

@@ -1,12 +1,16 @@
 package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
-import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Conflito implements Serializable{
     
     MecanismoDetecaoConflito m_mecanismoDetecaoConflito;

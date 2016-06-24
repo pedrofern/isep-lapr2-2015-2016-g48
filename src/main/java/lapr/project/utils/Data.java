@@ -5,10 +5,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Representa uma data através do dia, mês e ano.
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Data implements Comparable<Data>, Serializable {
 
     /**

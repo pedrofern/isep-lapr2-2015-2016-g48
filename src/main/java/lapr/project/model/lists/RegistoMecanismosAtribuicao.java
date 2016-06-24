@@ -7,8 +7,9 @@ package lapr.project.model.lists;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.mechanisms.MecanismoAtribuicao;
 import lapr.project.model.mechanisms.MecanismoCarga;
 import lapr.project.model.mechanisms.MecanismoRanking;
@@ -18,6 +19,8 @@ import lapr.project.model.mechanisms.MecanismoTempoServico;
  *
  * @author Diana
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RegistoMecanismosAtribuicao implements Serializable{
      
      private ArrayList<MecanismoAtribuicao> registoMecanismosAtribuicao;

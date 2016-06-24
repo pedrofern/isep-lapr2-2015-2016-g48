@@ -7,12 +7,18 @@ package lapr.project.model.states;
 
 import java.io.Serializable;
 import java.util.TimerTask;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Demonstracao;
 
 /**
  *
  * @author Edu
  */
+@XmlTransient
+@XmlSeeAlso({DemonstracaoEstadoCandidaturaAberto.class,DemonstracaoEstadoCriada.class,
+            DemonstracaoEstadoDecidida.class,DemonstracaoEstadoInicial.class,
+            DemonstracaoEstadoInteresse.class,DemonstracaoEstadoRegistada.class,})
 public class DemonstracoesEstadoCandidaturaFechada extends TimerTask 
         implements DemonstracaoEstado,Serializable {
 

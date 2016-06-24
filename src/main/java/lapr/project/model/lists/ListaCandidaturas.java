@@ -3,6 +3,9 @@ package lapr.project.model.lists;
 import java.io.Serializable;
 import java.util.*;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Candidatura;
 import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
 
@@ -10,6 +13,8 @@ import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListaCandidaturas implements Serializable{
     
     private ArrayList<Candidatura> listaCandidaturas;

@@ -7,6 +7,10 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.ListIterator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.lists.*;
 import lapr.project.model.states.*;
 
@@ -14,6 +18,8 @@ import lapr.project.model.states.*;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CandidaturaDemonstracao implements Serializable{
     
     private String nomeEmpresaCD;
@@ -23,6 +29,7 @@ public class CandidaturaDemonstracao implements Serializable{
     private int quantidadeConvitesCD;
     private ListaProduto listaProdutosCD;
     private ListaCandidaturasDemonstracoes listaCandidaturasDemo;
+    @XmlTransient
     private CandidaturaDemoEstado estadoCandidaturaDemo;
 
     public CandidaturaDemonstracao(Candidatura candidaturaExp) {

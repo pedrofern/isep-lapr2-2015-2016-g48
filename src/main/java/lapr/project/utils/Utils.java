@@ -6,6 +6,9 @@ import java.util.Calendar;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
@@ -25,6 +28,8 @@ import lapr.project.model.lists.RegistoUtilizadores;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Utils implements Serializable{
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^.+@.+\\..+$");

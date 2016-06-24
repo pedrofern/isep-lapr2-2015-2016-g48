@@ -2,6 +2,9 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaKeywords;
 
@@ -9,6 +12,8 @@ import lapr.project.model.lists.ListaKeywords;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FAE implements Comparable<FAE>,Serializable {
 
     private final String nome, email, username;

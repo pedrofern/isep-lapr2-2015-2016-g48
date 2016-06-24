@@ -2,6 +2,8 @@
 package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
@@ -16,6 +18,10 @@ import lapr.project.model.states.CandidaturaEmAvaliacao;
  *
  * @author DianaSilva
  */
+@XmlTransient
+@XmlSeeAlso({MecanismoDetecaoConflito.class,
+            MecanismoRanking.class,
+            MecanismoTempoServico.class})
 public class MecanismoCarga implements Serializable, MecanismoAtribuicao{
 
     private static final String TIPO_MECANISMO= "Carga Equitativa" ;
