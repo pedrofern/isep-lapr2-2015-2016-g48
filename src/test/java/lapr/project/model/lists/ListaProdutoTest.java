@@ -127,7 +127,8 @@ public class ListaProdutoTest {
         System.out.println("removerProduto");
         Produto produto = new Produto("Cadeira");
         ListaProduto instance = new ListaProduto();
-        boolean expResult = false;
+        instance.adicionarProduto(produto);
+        boolean expResult = true;
         boolean result = instance.removerProduto(produto);
         assertEquals(expResult, result);
 
