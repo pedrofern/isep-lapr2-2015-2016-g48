@@ -39,6 +39,11 @@ public class Avaliacao implements Serializable{
      * Média das respostas dadas pelo FAE nos critérios (1-5)
      */
     private double media;
+    
+     /**
+     * Desvio relativamente à média da amostra nas respostas dadas pelo FAE nos critérios (1-5)
+     */
+    private double desvio;
 
     
     /**
@@ -106,10 +111,37 @@ public class Avaliacao implements Serializable{
          return media;
      }
 
+   
+     /**
+      * Retorna o desvio nas avaliações do FAE relativamente aos restantes FAE na amostra
+      * @return desvio nas avaliações do FAE
+      */
+     public double getDesvio(){
+         return desvio;
+     }
+     
+     /**
+      * Altera o desvio do FAE em relação à amostra
+      * @param desvio desvio do FAE na amostra
+      */
+     
+     public void setDesvio(double desvio){
+         this.desvio=desvio;
+     }
+     
+     /**
+      * Método que permite alterar a avaliação de aceite ou recusada
+      * @param resposta 
+      */
+
     public void setResposta(boolean resposta) {
         this.avaliacao = resposta;
     }
 
+    /**
+     * Método que permite alterar a justificação dada na avaliação
+     * @param j justificação da avaliação 
+     */
     public void setJustificacao(String j) {
         justificacao = j;
     }
@@ -161,3 +193,6 @@ public class Avaliacao implements Serializable{
         return avaliacao;
     }
 }
+
+
+
