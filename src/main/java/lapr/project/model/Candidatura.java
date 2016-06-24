@@ -28,7 +28,7 @@ public class Candidatura implements Serializable{
     private ListaKeywords listaKeywords;
     private ListaAvaliacoes listaAvaliacoes;
     private Representante representante;
-    @XmlTransient
+//    @XmlTransient
     private CandidaturaEstado estadoCandidatura;
     private boolean decisao;
 

@@ -1,11 +1,13 @@
 package lapr.project.model.mechanisms;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.mechanisms.ProcessoAtribuicao;
 
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
 public interface Atribuivel {
 
     /**

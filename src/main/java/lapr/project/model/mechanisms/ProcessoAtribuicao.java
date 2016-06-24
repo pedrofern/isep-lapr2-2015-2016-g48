@@ -1,5 +1,6 @@
 package lapr.project.model.mechanisms;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.lists.ListaAtribuicoes;
 
@@ -7,6 +8,7 @@ import lapr.project.model.lists.ListaAtribuicoes;
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
 public interface ProcessoAtribuicao {
 
     public ListaAtribuicoes getListaDeAvaliacoes();

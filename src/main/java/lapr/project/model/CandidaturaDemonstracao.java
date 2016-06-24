@@ -29,7 +29,7 @@ public class CandidaturaDemonstracao implements Serializable{
     private int quantidadeConvitesCD;
     private ListaProduto listaProdutosCD;
     private ListaCandidaturasDemonstracoes listaCandidaturasDemo;
-    @XmlTransient
+//    @XmlTransient
     private CandidaturaDemoEstado estadoCandidaturaDemo;
 
     public CandidaturaDemonstracao(Candidatura candidaturaExp) {
@@ -40,6 +40,9 @@ public class CandidaturaDemonstracao implements Serializable{
         this.areaExposicaoCD = candidaturaExp.getAreaExposicao();
         this.quantidadeConvitesCD = candidaturaExp.getQuantidadeConvites();
         listaProdutosCD = candidaturaExp.getListaProdutos();
+    }
+    public CandidaturaDemonstracao(){
+        
     }
     
     public String getNomeEmpresaCD() {

@@ -6,6 +6,8 @@
 package lapr.project.model.states;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
@@ -17,6 +19,7 @@ import lapr.project.model.Demonstracao;
  * @author Edu
  */
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 //@XmlTransient
 //@XmlSeeAlso({DemonstracaoEstadoCandidaturaAberto.class,DemonstracaoEstadoCriada.class,
 //            DemonstracaoEstadoDecidida.class,DemonstracaoEstadoInicial.class,

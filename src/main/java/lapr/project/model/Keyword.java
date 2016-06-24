@@ -24,6 +24,9 @@ public class Keyword implements Serializable{
     public Keyword(String keyword) {
         this.keywordDescricao = keyword;
     }
+    public Keyword(){
+        
+    }
 
     public void setKeyword(String novaKeyword) {
         this.keywordDescricao = novaKeyword;

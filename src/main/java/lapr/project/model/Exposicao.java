@@ -45,7 +45,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaAtribuicoes listaAtribuicoes;
-    @XmlTransient
+//    @XmlTransient
     private ExposicaoEstado estado;
 //    private TimerTask task1, task2, task3, task4, task5, task6, task7;
 

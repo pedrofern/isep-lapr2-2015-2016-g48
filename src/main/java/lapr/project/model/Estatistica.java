@@ -48,5 +48,8 @@ public class Estatistica {
         z0=0;
         this.intervaloConfianca=intervaloConfianca;
     }
+    public Estatistica(){
+        
+    }
 
 }

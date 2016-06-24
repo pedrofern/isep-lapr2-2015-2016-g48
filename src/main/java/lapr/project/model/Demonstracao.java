@@ -31,7 +31,7 @@ public class Demonstracao implements Serializable {
     private RegistoRecursos registorecurso;
     private ListaRecursoDemonstracao listarecursodemonstracao;
     private Demonstracao demonstracao;
-    @XmlTransient
+//    @XmlTransient
     private DemonstracaoEstado estado;
     private TimerTask task1, task2;
     /**

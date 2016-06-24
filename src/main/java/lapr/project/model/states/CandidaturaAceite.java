@@ -6,6 +6,8 @@
 package lapr.project.model.states;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import lapr.project.model.Candidatura;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -15,13 +17,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Pedro Fernandes
  */
-//@XmlRootElement
-@XmlTransient
-@XmlSeeAlso({CandidaturaAvaliada.class,CandidaturaEmAtribuicaoFAE.class,
-        CandidaturaEmAtribuicaoStand.class,CandidaturaEmAvaliacao.class,
-        CandidaturaEmSubmissao.class, CandidaturaEstadoInicial.class,
-        CandidaturaNaoAvaliada.class,CandidaturaRejeitada.class,
-        CandidaturaRetirada.class, CandidaturaTerminada.class})
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlTransient
+//@XmlSeeAlso({CandidaturaAvaliada.class,CandidaturaEmAtribuicaoFAE.class,
+//        CandidaturaEmAtribuicaoStand.class,CandidaturaEmAvaliacao.class,
+//        CandidaturaEmSubmissao.class, CandidaturaEstadoInicial.class,
+//        CandidaturaNaoAvaliada.class,CandidaturaRejeitada.class,
+//        CandidaturaRetirada.class, CandidaturaTerminada.class})
 public class CandidaturaAceite implements CandidaturaEstado, Serializable{
     
     private final Candidatura candidatura;

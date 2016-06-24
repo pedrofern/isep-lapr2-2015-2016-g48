@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Diana Silva
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlRootElement
+//@XmlAccessorType(XmlAccessType.FIELD)
 public enum Criterio implements Serializable{
     
     CONHECIMENTO{

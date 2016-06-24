@@ -19,6 +19,9 @@ public class Representante implements Comparable<Utilizador>, Serializable{
     public Representante(Utilizador u) {
         utilizador=u;
     }
+    public Representante(){
+        
+    }
 
     private void setRepresentante(Utilizador u) {
         utilizador = u;

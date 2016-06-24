@@ -6,6 +6,9 @@
 package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Atribuicao;
@@ -20,10 +23,12 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
-@XmlTransient
-@XmlSeeAlso({MecanismoCarga.class,
-            MecanismoDetecaoConflito.class,
-            MecanismoTempoServico.class})
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlTransient
+//@XmlSeeAlso({MecanismoCarga.class,
+//            MecanismoDetecaoConflito.class,
+//            MecanismoTempoServico.class})
 public class MecanismoRanking implements Serializable, MecanismoAtribuicao{
     
     private static final String TIPO= "Qualidade FAE" ;

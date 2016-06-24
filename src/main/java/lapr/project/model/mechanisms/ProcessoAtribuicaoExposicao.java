@@ -2,6 +2,9 @@ package lapr.project.model.mechanisms;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.lists.ListaAtribuicoes;
@@ -10,7 +13,9 @@ import lapr.project.model.lists.ListaAtribuicoes;
  *
  * @author Pedro Fernandes
  */
-@XmlTransient
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlTransient
 public class ProcessoAtribuicaoExposicao implements ProcessoAtribuicao, Serializable {
 
     private ListaAtribuicoes listaAvaliacoes;
