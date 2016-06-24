@@ -88,22 +88,7 @@ public class ListaAvaliacoesTest {
 
     }
 
-    /**
-     * Test of hashCode method, of class ListaAvaliacoes.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Avaliacao avaliacao = new Avaliacao(true, "Teste");
-        ListaAvaliacoes instance = new ListaAvaliacoes();
-        instance.add(avaliacao);
-        int expResult = 1386767690;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
+      /**
      * Test of getListaAvaliacoes method, of class ListaAvaliacoes.
      */
     @Test
