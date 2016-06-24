@@ -65,15 +65,14 @@ public class DialogoNovoProduto extends JDialog {
         JLabel lbl = new JLabel("Produto: ", JLabel.RIGHT);
         lbl.setPreferredSize(LABEL_TAMANHO);
 
-        final int CAMPO_LARGURA = 10;
-        txtProduto = new JTextField(CAMPO_LARGURA);
+       
+        txtProduto = new JTextField(10);
         txtProduto.requestFocusInWindow();
 
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        
+        p.setBorder(new EmptyBorder(10, 10,
+                0, 0));
 
         p.add(lbl);
         p.add(txtProduto);
@@ -91,10 +90,9 @@ public class DialogoNovoProduto extends JDialog {
         JButton btnCancelar = criarBotaoCancelar();
 
         JPanel p = new JPanel();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 10;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+       
+        p.setBorder(new EmptyBorder(0, 10,
+               10, 10));
         p.add(btnOK);
         p.add(btnCancelar);
 
