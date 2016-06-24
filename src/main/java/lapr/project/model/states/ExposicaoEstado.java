@@ -5,10 +5,13 @@
  */
 package lapr.project.model.states;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author DianaSilva
  */
+@XmlRootElement
 public interface ExposicaoEstado {
     
    public  boolean valida();

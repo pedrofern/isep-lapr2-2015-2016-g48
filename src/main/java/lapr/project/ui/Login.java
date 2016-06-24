@@ -10,6 +10,10 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.ui.ucs.RegistarUtilizadorUI;
 import lapr.project.model.*;
 import javax.swing.filechooser.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import lapr.project.utils.ExportXMLFile;
 
 
 /**
@@ -17,6 +21,8 @@ import javax.swing.filechooser.*;
  * @author Diana
  * Modificado por Pedro Fernandes 23/06/2016
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Login extends JFrame {
     
     private CentroExposicoes ce;
@@ -184,7 +190,8 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 //exporta xml
-                
+                ExportXMLFile export = new ExportXMLFile();
+                export.exportToXML(ce);
             }
         });
         return btn;

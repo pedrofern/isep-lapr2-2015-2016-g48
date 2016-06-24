@@ -5,10 +5,13 @@
  */
 package lapr.project.model.states;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Pedro Fernandes
  */
+@XmlRootElement
 public interface CandidaturaDemoEstado {    
     
     public  boolean validaEstadoCandidaturaDemo();

@@ -7,6 +7,7 @@ package lapr.project.model.states;
 
 import java.io.Serializable;
 import java.util.TimerTask;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Exposicao;
@@ -15,16 +16,17 @@ import lapr.project.model.Exposicao;
  *
  * @author Diana Silva
  */
-@XmlTransient
-@XmlSeeAlso({ExposicaoCandidaturasAbertas.class,ExposicaoCandidaturasAvaliadas.class,
-            ExposicaoCandidaturasDecididas.class,ExposicaoCandidaturasEmAtribuicao.class,
-            ExposicaoCandidaturasEmAvaliacao.class,ExposicaoCandidaturasEmDecisao.class,
-            ExposicaoCandidaturasFechadas.class,
-            ExposicaoConflitosDetetados.class,ExposicaoDemonstracaoSemFAE.class,
-            ExposicaoEstadoCriada.class,ExposicaoEstadoInicial.class,
-            ExposicaoEstadoRegistada.class,ExposicaoEstadoTerminada.class,
-            ExposicaoFAESemDemonstracao.class,ExposicaoStandsAtribuidos.class,
-            ExposicaoStandsAtribuiveis.class})
+@XmlRootElement
+//@XmlTransient
+//@XmlSeeAlso({ExposicaoCandidaturasAbertas.class,ExposicaoCandidaturasAvaliadas.class,
+//            ExposicaoCandidaturasDecididas.class,ExposicaoCandidaturasEmAtribuicao.class,
+//            ExposicaoCandidaturasEmAvaliacao.class,ExposicaoCandidaturasEmDecisao.class,
+//            ExposicaoCandidaturasFechadas.class,
+//            ExposicaoConflitosDetetados.class,ExposicaoDemonstracaoSemFAE.class,
+//            ExposicaoEstadoCriada.class,ExposicaoEstadoInicial.class,
+//            ExposicaoEstadoRegistada.class,ExposicaoEstadoTerminada.class,
+//            ExposicaoFAESemDemonstracao.class,ExposicaoStandsAtribuidos.class,
+//            ExposicaoStandsAtribuiveis.class})
 public class ExposicaoConflitosAlterados extends TimerTask implements ExposicaoEstado,Serializable{
     
     private final Exposicao exposicao;

@@ -9,11 +9,13 @@ import java.io.Serializable;
 import lapr.project.model.Candidatura;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Pedro Fernandes
  */
+//@XmlRootElement
 @XmlTransient
 @XmlSeeAlso({CandidaturaAvaliada.class,CandidaturaEmAtribuicaoFAE.class,
         CandidaturaEmAtribuicaoStand.class,CandidaturaEmAvaliacao.class,
