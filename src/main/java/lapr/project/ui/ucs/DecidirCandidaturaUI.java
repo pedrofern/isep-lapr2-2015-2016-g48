@@ -43,7 +43,6 @@ public class DecidirCandidaturaUI extends JFrame{
     private JComboBox comboExposicao;
     private JComboBox comboCandidatura;
     private JList jlstDecAvFAE;
-    private JList jlstAVFAE;
     private JPanel painelNorte;
     private JPanel painelCentro;
     private static final int MARGEM_SUPERIOR = 5;
@@ -82,12 +81,10 @@ public class DecidirCandidaturaUI extends JFrame{
     private JPanel painelCentro(){
         painelCentro = new JPanel(new BorderLayout());
         
-        jlstDecAvFAE = new JList(controllerDCC.getListaAvaliacoesFAE().toArray());
-        jlstAVFAE = new JList(controllerDCC.getListaAvaliacoesFAE().toArray());
+        jlstDecAvFAE = new JList(controllerDCC.getListaAvaliacoesFAE().getListaAvaliacoes().toArray());
         
         JPanel p = new JPanel(new GridLayout(1,2));       
         p.add(criarPainelLista("Decisão Avaliação FAE:",jlstDecAvFAE));
-        p.add(criarPainelLista("Média Avaliação às Questões:",jlstAVFAE));
         
         painelCentro.add(p, BorderLayout.CENTER);
         

@@ -55,8 +55,8 @@ public class DecidirCandidaturaController {
         return listaCandidaturas;
     }
     
-    public List<Avaliacao> getListaAvaliacoesFAE(){
-        return listaAvaliacoes.getListaAvaliacoes();
+    public ListaAvaliacoes getListaAvaliacoesFAE(){
+        return listaAvaliacoes;
     }
 
     public ListaCandidaturas getListaCandidaturasPorDecidir(){
