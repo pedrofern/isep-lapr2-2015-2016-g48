@@ -215,8 +215,9 @@ public class TesteDiana {
         
         
         //new DefinirFAEUI(ce, user);
-        new GerarEstatisticasCandidaturaUI(ce);
- 
+        //new GerarEstatisticasCandidaturaUI(ce);
+        new DefinirRecursoUI(ce);
+        
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }
 

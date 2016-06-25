@@ -66,7 +66,7 @@ public class DefinirRecursoUI extends JFrame {
         
         this.setTitle("Definir Recurso");
         p.setLayout(new FlowLayout());
-        p.add(criarPainelListas(),BorderLayout.CENTER);
+        p.add(criarPainelListas(),BorderLayout.NORTH);
         p.add(criarPainelBotoes(), BorderLayout.SOUTH);
         
         add(p);
@@ -211,11 +211,9 @@ public class DefinirRecursoUI extends JFrame {
       
       public JPanel criarPainelBotoes(){
           
-        JButton btnOK = criarBotaoConfirmar();
-        getRootPane().setDefaultButton(btnOK);
+
 
         JButton btnCancelar = criarBotaoSair();
-        JButton btnLimpar   = criarBotaoLimpar();
 
         JPanel p = new JPanel();
         final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 10;
@@ -223,28 +221,13 @@ public class DefinirRecursoUI extends JFrame {
         p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
                 MARGEM_INFERIOR, MARGEM_DIREITA));
 
-        p.add(btnOK);
+
         p.add(btnCancelar);
-        p.add(btnLimpar);
 
         return p;
       }
       
-      private JButton criarBotaoLimpar() {
-
-        JButton btn = new JButton("Limpar");
-        btn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                text.setText(null);
-                text.setText(null);
-                
-            }
-        });
-        return btn;
-    }
-    
+   
     
     private JButton criarBotaoSair() {
         JButton btn = new JButton("Sair");
@@ -257,38 +240,6 @@ public class DefinirRecursoUI extends JFrame {
         });
         return btn;
     }
-    
-    private JButton criarBotaoConfirmar() {
-        JButton btn = new JButton("Confirmar");
-   
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                if(text.getText()==null|| text.getText().trim().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Não introduziu dados.");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Operação efectuada com sucesso.");
-                    guardar();
-            }
-              dispose();  
-            }
-        });
-        return btn;
-    }
-    
-    private void guardar(){
-        
-        String descricao;
-        descricao=text.getText();
-        controller.novoRecurso();
-        controller.setRecurso(descricao);
-        
-        for(Recurso r: ce.getRegistoRecursos().getListaRecursos()){
-             System.out.println(r.toString());
-        }
        
-        
-    }
         
 }
