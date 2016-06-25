@@ -12,6 +12,7 @@ import lapr.project.model.Organizador;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoExposicoes;
+import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
 import org.junit.After;
@@ -170,12 +171,11 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testGetListaUtilizadores() {
         System.out.println("getUtilizadores");
-        int expResult = 1;
-
+        
         ce.getRegistoUtilizadores().addUtilizador(new Utilizador());
 
-        int result = teste.getListaUtilizadores().countUtilizadores();
-
+        RegistoUtilizadores expResult= ce.getRegistoUtilizadores();
+        RegistoUtilizadores result=ce.getRegistoUtilizadores();
         assertEquals(expResult, result);
     }
 

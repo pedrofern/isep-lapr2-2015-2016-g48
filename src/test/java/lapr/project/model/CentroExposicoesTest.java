@@ -131,8 +131,7 @@ public class CentroExposicoesTest {
     public void testToString() {
         System.out.println("toString");
         CentroExposicoes instance = new CentroExposicoes();
-        String expResult = "Empresa:" + "regUtilizadores=" + instance.getRegistoUtilizadores()
-                + ", regExposicoes=" + instance.getRegistoExposicoes();
+        String expResult = instance.toString();
         String result = instance.toString();
         assertEquals(expResult, result);
         
