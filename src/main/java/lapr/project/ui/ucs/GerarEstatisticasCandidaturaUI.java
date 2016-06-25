@@ -16,31 +16,35 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
-import lapr.project.model.*;
 import lapr.project.controller.*;
+import lapr.project.model.Candidatura;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.utils.Utils;
+import lapr.project.model.*;
 import lapr.project.model.lists.*;
-import lapr.project.utils.*;
 
 /**
  *
  * @author anasilva
  */
-public class EstatisticasCandidaturasExposicaoUI extends JFrame{
+public class GerarEstatisticasCandidaturaUI extends JFrame{
     
     private CentroExposicoes ce;
-    private JComboBox combolistaCandidaturas;
-    private final EstatisticasCandidaturasExposicaoController controller;
+    private JComboBox combolistaExposicoes;
+    private final GerarEstatisticasCandidaturaController controller;
     private boolean DEBUG = false;
-    private JPanel painel,pCand;
+    private JPanel painel,pExpo;
     private List<Candidatura> lst;
+    private Utilizador user;
+    private Exposicao expo;
     
    
-   public EstatisticasCandidaturasExposicaoUI(CentroExposicoes ce) {
+   public GerarEstatisticasCandidaturaUI(CentroExposicoes ce) {
         
         super("Estatisticas");
         this.ce=ce;
         
-        controller= new EstatisticasCandidaturasExposicaoController(ce);
+        controller= new GerarEstatisticasCandidaturaController(ce,user);
         
        
         criarComponentes();
@@ -55,7 +59,7 @@ public class EstatisticasCandidaturasExposicaoUI extends JFrame{
         
         public JPanel criarTabela(){
             
-            painel.setBorder(new TitledBorder("Estatisticas:"));
+            painel.setBorder(new TitledBorder("Exposicoes:"));
             //painel.add(combolistaCandidaturas,BorderLayout.NORTH);
             
             String[] columnNames = {"Candidaturas",
@@ -101,7 +105,7 @@ public class EstatisticasCandidaturasExposicaoUI extends JFrame{
         
         painel=new JPanel();
         painel.setLayout(new BorderLayout());
-     
+
         add(criarPainelWest(), BorderLayout.NORTH);
         add(criarTabela(),BorderLayout.NORTH);
         
@@ -109,20 +113,20 @@ public class EstatisticasCandidaturasExposicaoUI extends JFrame{
     }
     
     private JPanel criarPainelWest(){
-        pCand= new JPanel(new BorderLayout());
+        pExpo= new JPanel(new BorderLayout());
 
-        pCand.add(criarPainelCandidaturas((ListaCandidaturas)controller.getListaCandidaturas()));        
+        pExpo.add(criarPainelExposicoes(controller.getRegistoExposicoesOrganizador()));
                 
-        return pCand;
+        return pExpo;
     }
     
     
-    public JPanel criarPainelCandidaturas(ListaCandidaturas lst ){
+    public JPanel criarPainelExposicoes(RegistoExposicoes lista ){
         JPanel p= new JPanel(new BorderLayout());
         
-        painel.setBorder(new TitledBorder("Candidaturas:"));
-        combolistaCandidaturas = Utils.criarComboCand(lst);
-        painel.add(combolistaCandidaturas,BorderLayout.NORTH);
+        painel.setBorder(new TitledBorder("Exposicoes:"));
+        combolistaExposicoes = Utils.criarComboExpo(lista);
+        painel.add(combolistaExposicoes,BorderLayout.NORTH);
         
         return painel;
     }
@@ -153,26 +157,23 @@ public class EstatisticasCandidaturasExposicaoUI extends JFrame{
         JFrame frame = new JFrame("Estatisticas Candidaturas Exposicao");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         CentroExposicoes ce=new CentroExposicoes();
+        Utilizador user = new Utilizador();
  
         //Create and set up the content pane.
-        EstatisticasCandidaturasExposicaoUI newContentPane = new EstatisticasCandidaturasExposicaoUI(ce);
+        GerarEstatisticasCandidaturaUI newContentPane = new GerarEstatisticasCandidaturaUI(ce);
         //newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
- 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
-
- 
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
+        
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 criaMostraInterface();
             }
         });
-    }
+ 
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+}
+    
     
 }
