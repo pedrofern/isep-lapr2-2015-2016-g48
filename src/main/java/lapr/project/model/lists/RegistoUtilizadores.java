@@ -17,6 +17,9 @@ public class RegistoUtilizadores implements Serializable{
 
     private ArrayList<Utilizador> m_listaUtilizadores;
 
+    /**
+     * Metodo construtor para criar instancias de registoUtilizadores
+     */
     public RegistoUtilizadores() {
         m_listaUtilizadores = new ArrayList<>();
     }
@@ -29,7 +32,11 @@ public class RegistoUtilizadores implements Serializable{
     public Utilizador novoUtilizador() {
         return new Utilizador();
     }
-
+/**
+ * Regista e valida o utilizador
+ * @param u
+ * @return true se for valido e false se nao
+ */
     public boolean registaUtilizador(Utilizador u) {
         if (u.valida() && validaUtilizador(u)) {
            return addUtilizador(u);
@@ -37,16 +44,27 @@ public class RegistoUtilizadores implements Serializable{
             return false;
         }
     }
-
+/**
+ * Adiciona utilizador a lista de utilizadores
+ * @param u
+ * @return true se foi adicionado e false se contrario
+ */
     public boolean addUtilizador(Utilizador u) {
         return this.m_listaUtilizadores.add(u);
     } 
-    
+    /**
+     * Devolve a lista de utilizadores
+     * @return 
+     */
     public List<Utilizador> getListaUtilizadores(){
         return m_listaUtilizadores;
     }
    
-
+/**
+ * Devolve o utilizador por id
+ * @param strId
+ * @return o utilizador 
+ */
     public Utilizador getUtilizadorByID(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {
             if (u.getUsername().equals(strId)) {
@@ -55,7 +73,11 @@ public class RegistoUtilizadores implements Serializable{
         }
         return null;
     }
-
+/**
+ * Devolve o utilizador atraves do email
+ * @param strEmail
+ * @return o utilizador
+ */
     public Utilizador getUtilizadorByEmail(String strEmail) {
         for (Utilizador u : this.m_listaUtilizadores) {
             if (u.getEmail().equals(strEmail)) {
@@ -64,7 +86,12 @@ public class RegistoUtilizadores implements Serializable{
         }
         return null;
     }
-
+/**
+ * Altera o utilizador original 
+ * @param uOriginal
+ * @param uClone
+ * @return utilizador actual
+ */
     public boolean alteraUtilizador(Utilizador uOriginal, Utilizador uClone) {
         if (uClone.valida()) {
 //            List<Utilizador> lstUtilizadores = new ArrayList<Utilizador>(m_listaUtilizadores);
@@ -80,11 +107,19 @@ public class RegistoUtilizadores implements Serializable{
         }
         return false;
     }
-    
+    /**
+     * Valida a lista de utilizadores
+     * @param lista
+     * @return true se valida, false se invalida
+     */
     private boolean validaLista(List<Utilizador> lista) {
         return true;
     }
-
+/**
+ * Devolve os dados por id
+ * @param uId
+ * @return utilizador
+ */
     public Utilizador getUtilizadorInfo(String uId) {
         for (Utilizador u : m_listaUtilizadores) {
             if (uId.equalsIgnoreCase(u.getUsername())) {
@@ -93,7 +128,10 @@ public class RegistoUtilizadores implements Serializable{
         }
         return null;
     }
-
+/**
+ * Devolve a lista de utilizadores nao registados
+ * @return a lista de utilizadores nao registados
+ */
     public List<Utilizador> getUtilizadoresNaoRegistados() {
         List<Utilizador> lUsers = new ArrayList<Utilizador>();
 
@@ -104,11 +142,19 @@ public class RegistoUtilizadores implements Serializable{
         }
         return lUsers;
     }
-
+/**
+ * Confirma registo do utilizador
+ * @param u 
+ */
     public void confirmaRegistoUtilizador(Utilizador u) {
         u.setRegistado(true);
     }
-
+/**
+ * Verifica se o utilizador existe
+ * @param email
+ * @param id
+ * @return true se sim, false se nao
+ */
     boolean hasUtilizador(String email, String id) {
         for (Utilizador utilizador : m_listaUtilizadores) {
             if (utilizador.getEmail().equals(email)) {
@@ -122,15 +168,24 @@ public class RegistoUtilizadores implements Serializable{
         return false;
     }
     
-    
+    /**
+     * Devolve o tamanho da lista de utilizadores
+     * @return o tamanho
+     */
     public int tamanho() {
         return this.m_listaUtilizadores.size();
     }
-    
+    /**
+     * Remove o utilizador
+     * @param utilizador
+     * @return true se removido, false se nao
+     */
     public boolean removerUtilizador(Utilizador utilizador) {
         return m_listaUtilizadores.remove(utilizador);
     }
-    
+    /**
+     * Ordena a lista de utilizadores por posicao
+     */
     public void ordenarPorPosicao(){
         Collections.sort(m_listaUtilizadores);
     }
@@ -144,11 +199,17 @@ public class RegistoUtilizadores implements Serializable{
     public String toString() {
         return "RegistoUtilizadores:" + "m_listaUtilizadores=" + m_listaUtilizadores;
     }
-    
+    /**
+     * Devolve um vector com a lista de utilizadores
+     * @return um vector
+     */
     public Utilizador[] getArray() {
         return m_listaUtilizadores.toArray( new Utilizador[m_listaUtilizadores.size()] );
      }
-    
+    /**
+     * Conta o numero de utilizadores da lista
+     * @return o numero de utilizadores da lista
+     */
     public int countUtilizadores(){
         return m_listaUtilizadores.size();
     }
@@ -163,7 +224,10 @@ public class RegistoUtilizadores implements Serializable{
     private boolean validaUtilizador(Utilizador u) {
         return !hasUtilizador(u.getEmail(), u.getID());
     }
-    
+   /**
+    * Devolve a lista de utilizadores pendentes
+    * @return a lista de utilizadores pendentes
+    */
     public RegistoUtilizadores getUtilizadoresPend(){
         RegistoUtilizadores m_listaUtilizadoresPend;
         m_listaUtilizadoresPend= new RegistoUtilizadores();
@@ -174,7 +238,12 @@ public class RegistoUtilizadores implements Serializable{
         } 
         return m_listaUtilizadoresPend;
     }
-    
+    /**
+     * Devolve o id e email como string
+     * @param id
+     * @param email
+     * @return email e id como string
+     */
     public Utilizador getUtilizadorAtravesString(String id, String email){
         Utilizador u=null;
         try{
