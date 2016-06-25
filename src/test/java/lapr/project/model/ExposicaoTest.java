@@ -591,21 +591,6 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of validaDataFimSuperiorInicio method, of class Exposicao.
-     */
-    @Test
-    public void testValidaDataFimSuperiorInicio() throws Exception {
-        System.out.println("validaDataFimSuperiorInicio");
-        Exposicao instance = new Exposicao();
-        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
-        instance.setDataInicio(new Data(2016, 02, 03));
-        instance.setDataFim(new Data(2016, 03, 05));
-        boolean expResult = true;
-        boolean result = instance.validaDataFimSuperiorInicio();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of validaSeguimentoDatas method, of class Exposicao.
      */
     @Test
