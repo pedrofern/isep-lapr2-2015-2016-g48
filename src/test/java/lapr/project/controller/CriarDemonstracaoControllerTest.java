@@ -143,8 +143,8 @@ public class CriarDemonstracaoControllerTest {
         instance.selectExposicao(exp);
         instance.novaDemonstracao();
         instance.setDescricao(descricao);
-        String expResult = instance.getDemonstraçãoString();
-        String result = instance.getDemonstraçãoString();
+        String expResult = instance.getDemonstracaoString();
+        String result = instance.getDemonstracaoString();
         assertEquals(expResult, result);
 
     }

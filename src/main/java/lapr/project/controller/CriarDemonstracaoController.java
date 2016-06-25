@@ -57,7 +57,7 @@ public class CriarDemonstracaoController {
 
     }
 
-    public String getDemonstraçãoString() {
+    public String getDemonstracaoString() {
         return this.listaDemonstracao.toStringCompleto();
     }
 
@@ -79,7 +79,7 @@ public class CriarDemonstracaoController {
 
     public RegistoExposicoes getRegistoExposicoes() {
 
-        return registoExposicoes = ce.getRegistoExposicoes().getExposicoesOrganizador(utilizador);
+        return (registoExposicoes = ce.getRegistoExposicoes().getExposicoesOrganizador(utilizador));
     }
 
     public RegistoExposicoes getListaExposicoes() {

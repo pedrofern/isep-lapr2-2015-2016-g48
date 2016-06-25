@@ -5,7 +5,9 @@
  */
 package lapr.project.model;
 
+import lapr.project.model.lists.ListaAvaliacoes;
 import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaKeywords;
 import lapr.project.model.lists.ListaProduto;
 import lapr.project.model.states.CandidaturaEstado;
@@ -413,6 +415,56 @@ public class CandidaturaTest {
         assertEquals(expResult, result);
 
     }
+
+  
+
+    /**
+     * Test of getDecisao method, of class Candidatura.
+     */
+    @Test
+    public void testGetDecisao() {
+        System.out.println("getDecisao");
+        Candidatura instance = new Candidatura();
+        instance.setDecisao(true);
+        boolean expResult = true;
+        boolean result = instance.getDecisao();
+        assertEquals(expResult, result);
+         
+    }
+
+    /**
+     * Test of getListaFAE method, of class Candidatura.
+     */
+    @Test
+    public void testGetListaFAE() {
+        System.out.println("getListaFAE");
+        Candidatura instance = new Candidatura();
+        ListaFAE expResult = instance.getListaFAE();
+        ListaFAE result = instance.getListaFAE();
+        assertEquals(expResult, result);
+         
+    }
+
+    /**
+     * Test of getListaAvaliacoes method, of class Candidatura.
+     */
+    @Test
+    public void testGetListaAvaliacoes() {
+        System.out.println("getListaAvaliacoes");
+        Candidatura instance = new Candidatura();
+        ListaAvaliacoes expResult = instance.getListaAvaliacoes();
+        ListaAvaliacoes result = instance.getListaAvaliacoes();
+        assertEquals(expResult, result);
+         
+    }
+
+
+  
+
+   
+
+ 
+
 
     
 }
