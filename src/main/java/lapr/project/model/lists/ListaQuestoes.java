@@ -19,6 +19,7 @@ import lapr.project.model.Questao;
 public class ListaQuestoes implements Serializable{
 
     private ArrayList<Questao> m_listaQuestoes;
+    private double media;
     
     public ListaQuestoes(){
         
@@ -56,11 +57,14 @@ public class ListaQuestoes implements Serializable{
         int countRespostas=Calculator.countRespostas(respostas);
         
 //        if(verifica(count, countRespostas)){
-            double media=Calculator.average(soma, count);
+            media=Calculator.average(soma, count);
             return media;
 //        }
-     
-        
+   
+    }
+    
+    public double getMedia(){
+        return media;
     }
     
     private boolean verifica(int v1, int v2){

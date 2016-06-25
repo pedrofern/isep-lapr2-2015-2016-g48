@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Avaliacao;
+import lapr.project.model.Calculator;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
 
@@ -85,6 +86,16 @@ public class ListaAvaliacoes implements Serializable{
 
     public boolean validaAvaliacaoFae(FAE f) {
         return f.validaMenbroFAE();
+    }
+    
+    public double getMedia(){
+        int sum=0;
+        int total=0;
+        for(Avaliacao a: listaAvaliacoes){
+            sum+=a.getMedia();
+            total++;
+        }
+        return Calculator.average(sum, total);
     }
 
 }

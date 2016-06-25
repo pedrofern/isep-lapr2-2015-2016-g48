@@ -120,9 +120,9 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
         l.setVgap(20);
 
         JPanel p = new JPanel(l);
-
-        p.add(criarBotaoLimpar());
+        
         p.add(criarBotaoOK());
+        p.add(criarBotaoLimpar());
         
         return p;
     }

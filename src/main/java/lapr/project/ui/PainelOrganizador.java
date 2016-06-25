@@ -22,6 +22,7 @@ import lapr.project.ui.ucs.CriarDemonstracaoUI;
 import lapr.project.ui.ucs.DecidirCandidaturaUI;
 import lapr.project.ui.ucs.DefinirDemonstracaoUI;
 import lapr.project.ui.ucs.DefinirFAEUI;
+import lapr.project.ui.ucs.GerarEstatisticasCandidaturaUI;
 
 /**
  *
@@ -76,7 +77,7 @@ public class PainelOrganizador extends JPanel {
         pBotoes.add(criarBotaoAtribuirStand());
         pBotoes.add(criarBotaoDefinirDemo());
         pBotoes.add(criarBotaoListarCandRemovidas());
-        pBotoes.add(criarBotaoAlterarDemo());
+        pBotoes.add(criarBotaoGerarEstatisticasCandidatura());
         pBotoes.add(criarBotaoRemoverDemo());
 
         return pBotoes;
@@ -251,18 +252,22 @@ public class PainelOrganizador extends JPanel {
         return bt;
     }
 
-    private JButton criarBotaoAlterarDemo() {
+    private JButton criarBotaoGerarEstatisticasCandidatura() {
         JButton bt=new JButton("Gerar Estatísticas Candidaturas");
         bt.setMnemonic(KeyEvent.VK_A);
-        bt.setToolTipText("Alteração dos dados de demonstração");
+        bt.setToolTipText("Geração de estatísticas relativas às candidaturas - taxa aceitação, média de submissão");
         bt.setPreferredSize(DIM_BOTOES);
 
         bt.addActionListener(new ActionListener(){
            
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+                 try{
+                     GerarEstatisticasCandidaturaUI a= new GerarEstatisticasCandidaturaUI(m_ce, m_ut);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }
+                
             }     
         }
             

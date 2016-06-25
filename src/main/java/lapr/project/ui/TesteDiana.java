@@ -6,6 +6,7 @@
 package lapr.project.ui;
 
 import java.io.FileNotFoundException;
+import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
@@ -16,7 +17,6 @@ import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
 import lapr.project.model.lists.*;
-import lapr.project.model.states.candidaturasExpo.CandidaturaEmAtribuicao;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
 import lapr.project.ui.ucs.CriarEstatisticaUI;
 import lapr.project.ui.ucs.DefinirFAEUI;
@@ -159,31 +159,80 @@ public class TesteDiana {
         c19.setNomeEmpresa("Candidatura19");
         Candidatura c20 = new Candidatura();
         c20.setNomeEmpresa("Candidatura20");
-        e.getListaCandidaturas().addCandidatura(c1);
-        e.getListaCandidaturas().addCandidatura(c2);
-        e.getListaCandidaturas().addCandidatura(c3);
-        e.getListaCandidaturas().addCandidatura(c4);
-        c1.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c2.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c3.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c4.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c5.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c6.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c7.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c8.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c9.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c10.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c11.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c12.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c13.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c14.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c15.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c16.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c17.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c18.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c19.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-        c20.setEstadoCandidatura(new CandidaturaEmAtribuicao());
-
+        Candidatura c21 = new Candidatura();
+        c21.setNomeEmpresa("Candidatura21");
+        Candidatura c22 = new Candidatura();
+        c22.setNomeEmpresa("Candidatura22");
+        Candidatura c23 = new Candidatura();
+        c23.setNomeEmpresa("Candidatura23");
+        Candidatura c24 = new Candidatura();
+        c24.setNomeEmpresa("Candidatura24");
+        Candidatura c25 = new Candidatura();
+        c25.setNomeEmpresa("Candidatura25");
+        Candidatura c26 = new Candidatura();
+        c26.setNomeEmpresa("Candidatura26");
+        Candidatura c27 = new Candidatura();
+        c27.setNomeEmpresa("Candidatura27");
+        Candidatura c28 = new Candidatura();
+        c28.setNomeEmpresa("Candidatura28");
+        Candidatura c29 = new Candidatura();
+        c29.setNomeEmpresa("Candidatura29");
+        Candidatura c30 = new Candidatura();
+        c30.setNomeEmpresa("Candidatura30");
+        
+//        c1.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c1));
+//        c2.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c2));
+//        c3.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c3));
+//        c4.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c4));
+//        c5.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c5));
+//        c6.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c6));
+//        c7.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c7));
+//        c8.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c8));
+//        c9.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c9));
+//        c10.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c10));
+//        c11.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c11));
+//        c12.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c12));
+//        c13.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c13));
+//        c14.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c14));
+//        c15.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c15));
+//        c16.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c16));
+//        c17.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c17));
+//        c18.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c18));
+//        c19.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c19));
+//        c20.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c20));
+//        c21.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c21));
+//        c22.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c22));
+//        c23.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c23));
+//        c24.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c24));
+//        c25.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c25));
+//        c26.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c26));
+//        c27.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c27));
+//        c28.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c28));
+//        c29.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c29));
+//        c30.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c30));   
+        
+        Avaliacao a1=new Avaliacao();
+        
+        a1.setJustificacao("Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.");
+        a1.setResposta(true);
+        a1.setAvaliada();
+        c1.getListaAvaliacoes().add(a1);
+        
+        Avaliacao a2=new Avaliacao();
+        a2.setJustificacao("Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes");
+        a2.setResposta(true);
+        a2.setAvaliada();
+        c1.getListaAvaliacoes().add(a2);
+        
+        Avaliacao a3=new Avaliacao();
+        a3.setJustificacao(("Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites"));
+        a3.setResposta(false);
+        a3.setAvaliada();
+        
+        c1.setDecisao(true);
+        c2.setDecisao(false);
+        c3.setDecisao(true);
+        
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);
         e.getListaCandidaturas().addCandidatura(c3);
@@ -204,6 +253,16 @@ public class TesteDiana {
         e.getListaCandidaturas().addCandidatura(c18);
         e.getListaCandidaturas().addCandidatura(c19);
         e.getListaCandidaturas().addCandidatura(c20);
+        e.getListaCandidaturas().addCandidatura(c21);
+        e.getListaCandidaturas().addCandidatura(c22);
+        e.getListaCandidaturas().addCandidatura(c23);
+        e.getListaCandidaturas().addCandidatura(c24);
+        e.getListaCandidaturas().addCandidatura(c25);
+        e.getListaCandidaturas().addCandidatura(c26);
+        e.getListaCandidaturas().addCandidatura(c27);
+        e.getListaCandidaturas().addCandidatura(c28);
+        e.getListaCandidaturas().addCandidatura(c29);
+        e.getListaCandidaturas().addCandidatura(c30);
 
         Exposicao e1 = ce.getRegistoExposicoes().novaExposicao();
 
@@ -219,13 +278,11 @@ public class TesteDiana {
         demo.setDados("Teste", "teste");
         lista.adicionarDemonstracao(demo);
 
-        //new DefinirFAEUI(ce, user);
-        //new GerarEstatisticasCandidaturaUI(ce);
-        //new DefinirRecursoUI(ce);
-//        new Login(ce, ficheiro);
-//        new Janela(ce, ficheiro, user);
-       // AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
-       DefinirDemonstracaoUI d=new DefinirDemonstracaoUI(ce, user);
+//       FichCentroExposicoes fichCentroExposicoes = new FichCentroExposicoes();
+//       
+//       Login log = new Login(ce, fichCentroExposicoes);
+
+        GerarEstatisticasCandidaturaUI gec=new GerarEstatisticasCandidaturaUI(ce, ut1);
     }
 
     private static void formarDatas() {

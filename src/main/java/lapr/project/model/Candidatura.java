@@ -255,4 +255,17 @@ public class Candidatura implements Serializable{
         CandidaturaEmAtribuicao state=(CandidaturaEmAtribuicao)estadoCandidatura;
         state.setCandidaturaEmAtribuicao(this);
     }
+      
+      public String getDecisaoString(){
+          if(decisao==true){
+              return "aceite";
+          }else{
+              return "recusada";
+          }
+      }
+
+      public String[] toStringEstatistica(){
+          String[] data={getNomeEmpresa(), getDecisaoString(), String.format("%.2f", getListaAvaliacoes().getMedia())};
+          return data;
+      }
 }

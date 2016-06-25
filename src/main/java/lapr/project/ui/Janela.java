@@ -247,9 +247,9 @@ public class Janela extends JFrame /** implements Serializable**/{
       }
       if("Admin".equals(tipo_utilizador)){
           
-         tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
-         
          tabPane.add("Menu Gestor", new PainelGestor(ce,ut));
+         
+         tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
 
          tabPane.addTab("MenuFae", new PainelFae(ce, ut));
 

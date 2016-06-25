@@ -7,7 +7,8 @@ package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import lapr.project.controller.*;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
@@ -31,16 +33,19 @@ import lapr.project.model.lists.*;
  */
 public class GerarEstatisticasCandidaturaUI extends JFrame{
     
-    private CentroExposicoes ce;
+    private static CentroExposicoes ce;
     private JComboBox combolistaExposicoes;
     private final GerarEstatisticasCandidaturaController controller;
-    private boolean DEBUG = false;
     private JPanel painel,pExpo;
     private List<Candidatura> lst;
-    private Utilizador user;
+    private static Utilizador user;
     private Exposicao expo;
     private JLabel lblValorMedioExposicao, lblValorMedioGlobal;
-    
+    private String[][] data;
+    private JTable table;
+    private ListaCandidaturas listaCandidaturas;
+    private DefaultTableModel modeloEstatistica;
+   
    
    public GerarEstatisticasCandidaturaUI(CentroExposicoes ce, Utilizador user) {
         
@@ -48,8 +53,8 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         this.ce=ce;
         this.user=user;
         controller= new GerarEstatisticasCandidaturaController(ce,user);
+        listaCandidaturas=new ListaCandidaturas();
         
-       
         criarComponentes();
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -63,36 +68,21 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         public JPanel criarTabela(){
             
             painel.setBorder(new TitledBorder("Exposicoes:"));
-            //painel.add(combolistaCandidaturas,BorderLayout.NORTH);
             
             String[] columnNames = {"Candidaturas",
                                     "Aceitacao",
-                                    "Valor Medio Submissao (Global)",
-                                    "Valor medio Submissao (Exposicoes)",
-                                    "Taxa Aceitacao candidaturas (Global)",
-                                    "Taxa de Aceitacao candidaturas (Exposicao)"
+                                    "Valor medio Submissao",
                                     };
- 
-        Object[][] data = {
-        {new Integer(5), new String("Sim"),new Integer(5),new Integer(5),new Integer(5),new Integer(5)},
-        {new Integer(3), new String("Nao"),new Integer(3),new Integer(3),new Integer(3),new Integer(3)},
-        {new Integer(2), new String("Nao"),new Integer(2),new Integer(2),new Integer(2),new Integer(2)},
-        {new Integer(2), new String("Sim"),new Integer(2),new Integer(2),new Integer(2),new Integer(2)},
-        {new Integer(2), new String("Sim"),new Integer(2),new Integer(2),new Integer(2),new Integer(2)},
-        {new Integer(2), new String("Nao"),new Integer(2),new Integer(2),new Integer(2),new Integer(2)}
-        };
- 
-        final JTable table = new JTable(data, columnNames);
+            
+             String[][] data={{"sem candidaturas","seleccione a exposição",""}};
+             table = new JTable(data, columnNames);
+        
+             modeloEstatistica=new DefaultTableModel();
+    
+             table.setModel(modeloEstatistica);
+        
         table.setPreferredScrollableViewportSize(new Dimension(500, 200));
         table.setFillsViewportHeight(true);
- 
-        if (DEBUG) {
-            table.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    imprimirDadosTabela(table);
-                }
-            });
-        }
  
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
@@ -111,8 +101,6 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
 
         add(criarPainelWest(), BorderLayout.SOUTH);
         add(criarTabela(),BorderLayout.NORTH);
-        
-        
     }
     
     private JPanel criarPainelLabels(){
@@ -120,8 +108,6 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         p.setLayout(new BorderLayout());
         lblValorMedioExposicao=new JLabel();
         lblValorMedioExposicao.setText("Valor médio submissão (Exposição): ");
-        
-        controller.calcularValorMedioSubmissaoGlobal();
         
         lblValorMedioGlobal=new JLabel();
         lblValorMedioGlobal.setText("Valor médio submissão (CentroExposições): " + controller.getValorMedioSubmissaoGlobal());
@@ -135,36 +121,45 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     private JPanel criarPainelWest(){
         pExpo= new JPanel(new BorderLayout());
 
-        pExpo.add(criarPainelExposicoes(controller.getRegistoExposicoesOrganizador()));
+        pExpo.add(criarPainelExposicoes());
                 
         return pExpo;
     }
     
     
-    public JPanel criarPainelExposicoes(RegistoExposicoes lista ){
+    public JPanel criarPainelExposicoes(){
         JPanel p= new JPanel(new BorderLayout());
         
-        painel.setBorder(new TitledBorder("Exposicoes:"));
-        combolistaExposicoes = Utils.criarComboExpo(lista);
+        painel.setBorder(new TitledBorder("Exposicões"));
+        combolistaExposicoes = Utils.criarComboExpo(controller.getRegistoExposicoesOrganizador());
+        
+        combolistaExposicoes.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                controller.setExposicao((Exposicao)combolistaExposicoes.getSelectedItem());
+                String[] columnNames = {"Candidaturas",
+                                    "Aceitacao",
+                                    "Valor medio Submissao",
+                                    };
+
+                for (String columnName : columnNames) {
+                    modeloEstatistica.addColumn(columnName);
+                    for(Candidatura c:controller.getListaCandidaturas().getListaCandidaturas()){
+                        modeloEstatistica.addRow(c.toStringEstatistica());
+                        
+                    }
+                }    
+                combolistaExposicoes.setEnabled(false);
+                
+            }
+            
+            
+        });
+        
         painel.add(combolistaExposicoes,BorderLayout.NORTH);
         painel.add(criarPainelLabels(), BorderLayout.SOUTH);
         return painel;
-    }
-
-    private void imprimirDadosTabela(JTable table) {
-        int numRows = table.getRowCount();
-        int numCols = table.getColumnCount();
-        javax.swing.table.TableModel model = table.getModel();
- 
-        System.out.println("Dados: ");
-        for (int i=0; i < numRows; i++) {
-            System.out.print("    row " + i + ":");
-            for (int j=0; j < numCols; j++) {
-                System.out.print("  " + model.getValueAt(i, j));
-            }
-            System.out.println();
-        }
-        System.out.println("--------------------------");
     }
  
     /**
@@ -176,8 +171,6 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         //Create and set up the window.
         JFrame frame = new JFrame("Estatisticas Candidaturas Exposicao");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        CentroExposicoes ce=new CentroExposicoes();
-        Utilizador user = new Utilizador();
  
         //Create and set up the content pane.
         GerarEstatisticasCandidaturaUI newContentPane = new GerarEstatisticasCandidaturaUI(ce,user);
