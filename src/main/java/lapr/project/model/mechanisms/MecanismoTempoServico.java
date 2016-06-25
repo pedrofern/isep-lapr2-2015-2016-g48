@@ -19,8 +19,8 @@ import lapr.project.model.FAE;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
-import lapr.project.model.states.CandidaturaEmAvaliacao;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEmAtribuicao;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEmAvaliacao;
 
 /**
  *
@@ -92,11 +92,11 @@ public class MecanismoTempoServico implements Serializable, MecanismoAtribuicao 
         
              if(f.getNAtribuidas()<n50porCentoCand){
                   
-                    if(c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicaoFAE){
+                    if(c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicao){
                              Atribuicao atribuicao=new Atribuicao(f,c);
                              if(listaAtribuicoesNovas.adicionarAtribuicao(atribuicao)){
                                 f.incrementaNAtribuidas();
-                                c.setEstadoCandidatura(new CandidaturaEmAvaliacao(c));
+                                c.setEstadoCandidatura(new CandidaturaEmAvaliacao());
                              }
                         }
                    }  

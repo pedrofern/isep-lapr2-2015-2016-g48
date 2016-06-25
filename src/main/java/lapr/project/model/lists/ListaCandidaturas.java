@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Candidatura;
-import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEmAtribuicao;
 
 /**
  *
@@ -57,7 +57,7 @@ public class ListaCandidaturas implements Serializable{
         ListaCandidaturas listCandidaturas=new ListaCandidaturas();
         for(Candidatura c: listaCandidaturas){
    
-            if (c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicaoFAE) {
+            if (c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicao) {
                 listCandidaturas.addCandidatura(c);
             }
         }

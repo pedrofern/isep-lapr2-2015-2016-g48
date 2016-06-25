@@ -5,11 +5,9 @@
  */
 package lapr.project.controller;
 
-import java.util.List;
-import java.util.ListIterator;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
-import lapr.project.model.states.*;
+import lapr.project.model.states.candidaturasExpo.*;
 
 /**
  *
@@ -74,9 +72,9 @@ public class DecidirCandidaturaController {
         if(candidatura.getEstadoAtualCandidatura() instanceof CandidaturaAvaliada){
             candidatura.setDecisao(decisao);
             if (decisao){
-                candidatura.setEstadoCandidatura(new CandidaturaAceite(candidatura));
+                candidatura.setEstadoCandidatura(new CandidaturaAceite());
             }
-            candidatura.setEstadoCandidatura(new CandidaturaRejeitada(candidatura));
+            candidatura.setEstadoCandidatura(new CandidaturaRejeitada());
         }
     }
     

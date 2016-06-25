@@ -16,7 +16,7 @@ import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoExposicoes;
-import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEmAtribuicao;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
 import org.junit.After;
@@ -76,8 +76,8 @@ public class AtribuirCandidaturaControllerTest {
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);
         
-        c1.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c1));
-        c2.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c2));
+        c1.setEstadoCandidatura(new CandidaturaEmAtribuicao());
+        c2.setEstadoCandidatura(new CandidaturaEmAtribuicao());
         
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);

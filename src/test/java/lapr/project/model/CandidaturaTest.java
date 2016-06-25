@@ -6,11 +6,10 @@
 package lapr.project.model;
 
 import lapr.project.model.lists.ListaAvaliacoes;
-import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaKeywords;
 import lapr.project.model.lists.ListaProduto;
-import lapr.project.model.states.CandidaturaEstado;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEstado;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -153,7 +152,6 @@ public class CandidaturaTest {
         System.out.println("getEstadoAtualCandidatura");
         Candidatura instance = new Candidatura();
         CandidaturaEstado estadoCandidatura = new CandidaturaEstado() {
-            @Override
             public boolean validaEstadoCandidatura() {
                 return true;
             }
@@ -172,7 +170,6 @@ public class CandidaturaTest {
     public void testSetEstadoCandidatura() {
         System.out.println("setEstadoCandidatura");
         CandidaturaEstado estadoCandidatura = new CandidaturaEstado() {
-            @Override
             public boolean validaEstadoCandidatura() {
                 return true;
             }

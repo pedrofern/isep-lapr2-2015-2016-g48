@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.lists.*;
-import lapr.project.model.states.*;
+import lapr.project.model.states.candidaturasExpo.*;
 
 /**
  *
@@ -28,12 +28,12 @@ public class Candidatura implements Serializable{
     private ListaKeywords listaKeywords;
     private ListaAvaliacoes listaAvaliacoes;
     private Representante representante;
-//    @XmlTransient
+    @XmlTransient
     private CandidaturaEstado estadoCandidatura;
     private boolean decisao;
 
     public Candidatura(String nomeEmpresa, String morada, int telemovel, int areaExposicao, int quantidadeConvites) {
-        estadoCandidatura = new CandidaturaEstadoInicial(this);
+        estadoCandidatura = new CandidaturaEmSubmissao();
         this.nomeEmpresa = nomeEmpresa;
         this.morada = morada;
         this.telemovel = telemovel;
@@ -252,7 +252,7 @@ public class Candidatura implements Serializable{
     }
     
       public void setAtribuida() {
-        CandidaturaEmAtribuicaoFAE state=(CandidaturaEmAtribuicaoFAE)estadoCandidatura;
-        state.setEmAvaliacao();
+        CandidaturaEmAtribuicao state=(CandidaturaEmAtribuicao)estadoCandidatura;
+        state.setCandidaturaEmAtribuicao(this);
     }
 }

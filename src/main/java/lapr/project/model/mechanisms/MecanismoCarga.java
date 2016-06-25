@@ -14,8 +14,8 @@ import lapr.project.model.FAE;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
-import lapr.project.model.states.CandidaturaEmAvaliacao;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEmAtribuicao;
+import lapr.project.model.states.candidaturasExpo.CandidaturaEmAvaliacao;
 
 /**
  *
@@ -32,9 +32,8 @@ public class MecanismoCarga implements Serializable, MecanismoAtribuicao{
     private static final String TIPO_MECANISMO= "Carga Equitativa" ;
     private Exposicao exposicao;
     private ListaFAE listaFaes;
-    private  ListaCandidaturas listaCandidaturas;
-    private  ListaAtribuicoes listaAtribuicoes;
-    private ListaCandidaturas listaJaAtribuidas;
+    private ListaCandidaturas listaCandidaturas;
+    private ListaAtribuicoes listaAtribuicoes;
     private ListaAtribuicoes listaAtribuicoesNovas;
             
     public MecanismoCarga(){
@@ -78,11 +77,11 @@ public class MecanismoCarga implements Serializable, MecanismoAtribuicao{
         
              if(f.getNAtribuidas()<nCandidaturaFae){
                  
-                    if(c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicaoFAE){
+                    if(c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicao){
                              Atribuicao atribuicao=new Atribuicao(f,c);
                              listaAtribuicoesNovas.adicionarAtribuicao(atribuicao);
                              f.incrementaNAtribuidas();
-                             c.setEstadoCandidatura(new CandidaturaEmAvaliacao(c));
+                             c.setEstadoCandidatura(new CandidaturaEmAvaliacao());
                         }
                    }      
            }
