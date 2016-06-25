@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import java.util.regex.Pattern;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.*;
 
@@ -12,6 +13,7 @@ public class RegistarUtilizadorController {
     private CentroExposicoes ce;
     private Utilizador utilizador;
     private RegistoUtilizadores registoUtilizadores;
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^.+@.+\\..+$");
 
     public RegistarUtilizadorController(CentroExposicoes centroExposicoes) {
         ce= centroExposicoes;
@@ -37,8 +39,11 @@ public class RegistarUtilizadorController {
         } else {
             return null;
         }
-        
-
+       
+    }
+    
+    public boolean isEmailValido(String email) {
+        return email != null && EMAIL_PATTERN.matcher(email).matches();
     }
     
     public Utilizador getUtilizador(){
