@@ -6,7 +6,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Estatistica;
+import lapr.project.model.EstatisticaFAE;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaCandidaturas;

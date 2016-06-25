@@ -6,7 +6,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.Estatistica;
+import lapr.project.model.EstatisticaFAE;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Utilizador;
@@ -23,7 +23,7 @@ public class AnaliseAvaliacaoFaeController {
     private final CentroExposicoes ce;
     private final Utilizador user;
     private ListaFAE listaFaes;
-    private Estatistica estatistica;
+    private EstatisticaFAE estatistica;
     
     public AnaliseAvaliacaoFaeController(CentroExposicoes centroExposicoes, Utilizador user){
         this.ce=centroExposicoes;
@@ -46,7 +46,7 @@ public class AnaliseAvaliacaoFaeController {
     
     public void setExposicao(Exposicao exposicao){
         this.listaFaes=exposicao.getListaFAE();
-        this.estatistica=exposicao.getEstatistica();
+        this.estatistica=exposicao.getEstatisticaFAE();
     }
     
     public void setIntervaloConfianca(int ic){
@@ -90,7 +90,7 @@ public class AnaliseAvaliacaoFaeController {
     }
     
     public void iniciarTesteEstatistico(FAE fae){
-        Estatistica.testarHipoteseControlo();
+        EstatisticaFAE.testarHipoteseControlo();
         estatistica.testarHipoteseAlternativa(fae);
     }
     

@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * alterado por Diana Silva <1151088@isep.ipp.pt> on 11/06/16.
  */
-public class CalculatorExample implements Serializable{
+public class Calculator implements Serializable{
 
         /**
          * Calculate the sum of five int numbers.
@@ -48,6 +48,16 @@ public class CalculatorExample implements Serializable{
         
         public static double average(int sum, int number_of_values){
             return (double)sum/number_of_values;
+        }
+        
+        /**
+         * Calculator the rate receiving the number to calculate the rate and the total
+         * @param numeroVariavel
+         * @param numeroTotal
+         * @return rate
+         */
+        public static double calculateRate(int number, int totalNumber){
+            return number/totalNumber;
         }
         
         /**

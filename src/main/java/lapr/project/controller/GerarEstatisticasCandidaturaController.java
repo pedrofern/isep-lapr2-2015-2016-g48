@@ -5,7 +5,10 @@
  */
 package lapr.project.controller;
 
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.EstatisticaCandidatura;
+import lapr.project.model.EstatisticaFAE;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaCandidaturas;
@@ -17,9 +20,9 @@ import lapr.project.model.lists.RegistoExposicoes;
  */
 public class GerarEstatisticasCandidaturaController {
     
-    private CentroExposicoes ce;
-    private Utilizador user;  
-    private ListaCandidaturas listaCandidaturas;
+    private final CentroExposicoes ce;
+    private final Utilizador user;  
+    private EstatisticaCandidatura estatistica;
     
     public GerarEstatisticasCandidaturaController(CentroExposicoes centroExposicoes, Utilizador user){
         this.user=user;
@@ -31,12 +34,13 @@ public class GerarEstatisticasCandidaturaController {
     }
     
     public void setExposicao(Exposicao exposicao){
-        listaCandidaturas=exposicao.getListaCandidaturas();
+        estatistica=exposicao.getEstatisticaCandidatura();
+        estatistica.setListaCandidaturas(exposicao.getListaCandidaturas());
     }
     
-//    public void novaEstatistica(){
-//        exposicao.criar....
-//    }
+    public void getEstatisticasCandidaturas(){
+//        estatistica.getEstatisticasCandidaturas();
+    }
     
     public void getEstatisticaCandidaturasGlobal(){
         

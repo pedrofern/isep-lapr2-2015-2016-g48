@@ -48,7 +48,8 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     private ListaOrganizadores listaOrganizadores;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaAtribuicoes listaAtribuicoes;
-    private Estatistica estatistica;
+    private EstatisticaFAE estatisticaFAE;
+    private EstatisticaCandidatura estatisticaCandidatura;
     
 //    @XmlTransient
     private ExposicaoEstado estado;
@@ -61,7 +62,8 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         listaDemonstracoes = new ListaDemonstracoes();
         listaFaes = new ListaFAE();
         listaAtribuicoes = new ListaAtribuicoes();
-        estatistica=new Estatistica();
+        estatisticaFAE=new EstatisticaFAE();
+        estatisticaCandidatura=new EstatisticaCandidatura();
         local=new Local();
     }
 
@@ -85,8 +87,12 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         return listaAtribuicoes;
     }
     
-    public Estatistica getEstatistica(){
-        return estatistica;
+    public EstatisticaFAE getEstatisticaFAE(){
+        return estatisticaFAE;
+    }
+    
+    public EstatisticaCandidatura getEstatisticaCandidatura(){
+        return estatisticaCandidatura;
     }
 
     public void setDadosPrincipais(String titulo, String descricao, Data dataInicio, Data dataFim, String local, Data dataSubInicio, Data dataSubFim) {

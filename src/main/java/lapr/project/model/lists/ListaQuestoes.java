@@ -7,7 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lapr.project.model.CalculatorExample;
+import lapr.project.model.Calculator;
 import lapr.project.model.Questao;
 
 /**
@@ -50,13 +50,13 @@ public class ListaQuestoes implements Serializable{
 //        int resp4=resposta.get(3);
 //        int resp5=resposta.get(4);
 //        
-//        int soma=CalculatorExample.sum(resp1, resp2, resp3, resp4, resp5);
-        int soma= CalculatorExample.sum(respostas);
-        int count=CalculatorExample.countQuestions(m_listaQuestoes);
-        int countRespostas=CalculatorExample.countRespostas(respostas);
+//        int soma=Calculator.sum(resp1, resp2, resp3, resp4, resp5);
+        int soma= Calculator.sum(respostas);
+        int count=Calculator.countQuestions(m_listaQuestoes);
+        int countRespostas=Calculator.countRespostas(respostas);
         
 //        if(verifica(count, countRespostas)){
-            double media=CalculatorExample.average(soma, count);
+            double media=Calculator.average(soma, count);
             return media;
 //        }
      

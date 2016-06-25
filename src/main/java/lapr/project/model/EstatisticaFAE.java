@@ -19,20 +19,16 @@ import lapr.project.model.lists.ListaFAE;
 
 
 /**
- * Classe para objetos do tipo Estatistica que permite gerar e guardar as estatísticas
- * relativas a uma exposição
+ * Classe para objetos do tipo EstatisticaFAE que permite gerar e guardar as estatísticas
+ * relativas aos FAE de uma exposição
  */
-public class Estatistica {
+public class EstatisticaFAE {
     
     /**
      * Lista de FAE que se pretende analisar na estatística
      */
     private ListaFAE listaFaes;
-    
-    /**
-     * Funcionário de Apoio à Exposição do qual se pretende gerar estatísticas
-     */
-    private FAE fae;
+  
     
     /**
      * Media da lista de FAE da exposição
@@ -80,9 +76,9 @@ public class Estatistica {
     private double z0;
     
     /**
-     * Construtor Estatistica inicializando as variáveis estatísticas com 0
+     * Construtor EstatisticaFAE inicializando as variáveis estatísticas com 0
      */
-    public Estatistica(){
+    public EstatisticaFAE(){
         
         mediaAmostral=0;
         desvioAmostral=0;
