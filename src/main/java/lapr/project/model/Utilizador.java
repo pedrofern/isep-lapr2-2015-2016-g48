@@ -33,10 +33,11 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
         password = PASS_POR_OMISSAO;
     }
 
-    public Utilizador(String nome, String email, String username, Boolean bRegistado, int experiencia) {
+    public Utilizador(String nome, String email, String username,String password, Boolean bRegistado, int experiencia) {
         this.nome=nome;
         this.email = email;
         this.username = username;
+        this.password=password;
         this.m_bRegistado = bRegistado;
         this.tempoServico=experiencia;
     }

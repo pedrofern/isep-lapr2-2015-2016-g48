@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class RepresentanteTest {
 
-    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true, 15);
 
     public RepresentanteTest() {
     }
@@ -59,7 +59,7 @@ public class RepresentanteTest {
     public void testValida() {
         System.out.println("valida");
         Representante instance = new Representante(u);
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
         
@@ -84,7 +84,7 @@ public class RepresentanteTest {
     @Test
     public void testIsRepresentante() {
         System.out.println("isRepresentante");
-        Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         Representante instance = new Representante(u);
         boolean expResult = true;
         boolean result = instance.isRepresentante(u);
@@ -98,7 +98,7 @@ public class RepresentanteTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         Representante instance = new Representante(u);
         int expResult = 0;
         int result = instance.compareTo(u);

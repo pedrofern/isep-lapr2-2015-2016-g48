@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class OrganizadorTest {
 
-    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true, 15);
 
     public OrganizadorTest() {
     }
@@ -59,7 +59,7 @@ public class OrganizadorTest {
     public void testValida() {
         System.out.println("valida");
         Organizador instance = new Organizador(u);
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
          
@@ -84,7 +84,7 @@ public class OrganizadorTest {
     @Test
     public void testIsUtilizador() {
         System.out.println("isUtilizador");
-        Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         Organizador instance = new Organizador(u);
         boolean expResult = true;
         boolean result = instance.isUtilizador(u);

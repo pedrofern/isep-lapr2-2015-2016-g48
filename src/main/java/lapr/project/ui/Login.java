@@ -33,6 +33,7 @@ public class Login extends JFrame {
     private JTextField username;
     private JPasswordField password;
     private Login framePai;
+    private Utilizador user;
     private JButton btnOK;
     /**
      * Guarda objectos do tipo FichCentroExposicoes
@@ -256,34 +257,26 @@ public class Login extends JFrame {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-       
-                 for(Utilizador u: ce.getRegistoUtilizadores().getListaUtilizadores()){
-     
-                     if(username.getText()=="" || password.getText()==""){
-                         JOptionPane.showMessageDialog(null, "Tem de preencher todos os campos\n.");
-                     }else if(username.getText().equalsIgnoreCase(u.getUsername()) && password.equals(u.getPassword())){
-            
-                        if(u.getRegistado()!= false){
-                            
-                            for(Organizador o: expo.getListaOrganizadores().getListaOrganizadores()){
-                                if(username.getText().equals(u.getUsername())){
-                                    new Janela(ce,fichCentroExposicoes,u);
-                                }
+                
+                if (username.getText().isEmpty() || password.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Tem de preencher todos os campos.");
+                } else {
+                    for (Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()) {
+                        if (username.getText().equals(u.getUsername()) && password.getText().equals(u.getPassword())) {
+                            if (u.getRegistado()) {
+                                user = u;                                
                             }
-                        JOptionPane.showMessageDialog(null, "Utilizador válido. Bem vindo!");
-                        new Janela (ce,fichCentroExposicoes,u);
-                       
-                        
-                        
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
-                        RegistarUtilizadorUI r=new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
+                        }
                     }
-                }
-                 
-                  }
-               
-                dispose();
+                    if (user==null){
+                        JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");     
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Utilizador válido. Bem vindo!");
+                        Janela j = new Janela(ce, fichCentroExposicoes, user);
+                        dispose();
+                    }
+                    
+                }  
             }
         });
         return btn;

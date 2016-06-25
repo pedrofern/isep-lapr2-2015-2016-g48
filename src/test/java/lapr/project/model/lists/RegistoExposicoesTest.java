@@ -28,7 +28,7 @@ public class RegistoExposicoesTest {
     private static final String s1 = "19/11/2017", s2 = "20/11/2017", s3 = "11/11/2017", s4 = "12/11/2017", s5 = "15/11/2017",
             s6 = "16/11/2017", s7 = "13/11/2017", s8 = "17/11/2017", s9 = "18/11/2017", s10 = "14/11/2017";
     private static Data d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
-    Utilizador user = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+    Utilizador user = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true, 15);
 
     public RegistoExposicoesTest() {
     }

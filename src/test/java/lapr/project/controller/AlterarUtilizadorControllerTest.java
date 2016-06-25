@@ -53,7 +53,7 @@ public class AlterarUtilizadorControllerTest {
         String strPwd = "teste";
         String strEmail = "1151094@isep.ipp.pt";
         AlterarUtilizadorController instance = new AlterarUtilizadorController(ce);
-         Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+         Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true, 15);
         instance.setUtilizador(ut1);
         boolean expResult = true;
         boolean result = instance.alteraDados(strNome, strUsername, strPwd, strEmail);

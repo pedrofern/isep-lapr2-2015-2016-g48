@@ -433,9 +433,9 @@ public class ExposicaoTest {
         System.out.println("validaMinOrganizadores");
         Exposicao instance = new Exposicao();
         instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
-        Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true, 15);
 
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "gestor",false, 10);
         Organizador o = new Organizador(ut1);
         Organizador o1 = new Organizador(ut2);
         ListaOrganizadores lo = instance.getListaOrganizadores();

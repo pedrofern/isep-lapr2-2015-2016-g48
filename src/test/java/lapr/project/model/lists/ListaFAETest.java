@@ -48,10 +48,10 @@ public class ListaFAETest {
     public void testGetListaFAE() {
         System.out.println("getListaFAE");
         ListaFAE instance = new ListaFAE();
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", false, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", false, 3);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "gestor", false, 10);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador",  "admin",false, 8);
+        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae",  "admin",false, 6);
+        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", "admin", false, 3);
         FAE f1 = new FAE(ut2);
         FAE f2 = new FAE(ut3);
         FAE f4 = new FAE(ut4);
@@ -77,7 +77,7 @@ public class ListaFAETest {
     @Test
     public void testCriaFAE() {
         System.out.println("criaFAE");
-        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor",  "admin",false, 10);
         ListaFAE instance = new ListaFAE();
         FAE expResult = new FAE(u);
         FAE result = instance.addFAE(u);
@@ -91,7 +91,7 @@ public class ListaFAETest {
     @Test
     public void testHasUtilizador() {
         System.out.println("hasUtilizador");
-        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
         ListaFAE instance = new ListaFAE();
         FAE fae = new FAE(u);
         instance.addFAE(fae);
@@ -107,7 +107,7 @@ public class ListaFAETest {
     @Test
     public void testRemoverFAE() {
         System.out.println("removerFAE");
-        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
         ListaFAE instance = new ListaFAE();
         FAE fae = new FAE(u);
         instance.addFAE(fae);
@@ -134,7 +134,7 @@ public class ListaFAETest {
     @Test
     public void testHasFAE() {
         System.out.println("hasFAE");
-        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
         ListaFAE instance = new ListaFAE();
         FAE fae = new FAE(u);
         instance.addFAE(fae);
@@ -150,7 +150,7 @@ public class ListaFAETest {
     @Test
     public void testAddFAE() {
         System.out.println("addFAE");
-        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
         ListaFAE instance = new ListaFAE();
         FAE fae = new FAE(u);
         boolean expResult = true;
@@ -165,7 +165,7 @@ public class ListaFAETest {
     @Test
     public void testRegistaFAE() {
         System.out.println("registaFAE");
-        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador u = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
         ListaFAE instance = new ListaFAE();
         FAE fae = new FAE(u);
         instance.addFAE(fae);
@@ -183,7 +183,7 @@ public class ListaFAETest {
         System.out.println("toStringCompleto");
         ListaFAE instance = new ListaFAE();
         ListaFAE lista = new ListaFAE();
-        Utilizador utilizador = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador utilizador = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         FAE fae = new FAE(utilizador);
         instance.getListaFAE().add(fae);
         lista.getListaFAE().add(fae);

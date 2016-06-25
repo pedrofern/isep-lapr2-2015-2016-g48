@@ -43,7 +43,7 @@ public class UtilizadorTest {
     @Test
     public void testCloneUtilizador() {
         System.out.println("cloneUtilizador");
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         Utilizador expResult = instance;
         Utilizador result = instance.cloneUtilizador();
         assertEquals(expResult, result);
@@ -56,7 +56,7 @@ public class UtilizadorTest {
     @Test
     public void testGetID() {
         System.out.println("getID");
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         String expResult = "Admin";
         String result = instance.getID();
         assertEquals(expResult, result);
@@ -69,7 +69,7 @@ public class UtilizadorTest {
     public void testHasID() {
         System.out.println("hasID");
         String strId = "Admin";
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         boolean expResult = true;
         boolean result = instance.hasID(strId);
         assertEquals(expResult, result);
@@ -83,7 +83,7 @@ public class UtilizadorTest {
     public void testHasEmail() {
         System.out.println("hasEmail");
         String email = "nmb@isep.ipp.pt";
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         boolean expResult = true;
         boolean result = instance.hasEmail(email);
         assertEquals(expResult, result);
@@ -96,7 +96,7 @@ public class UtilizadorTest {
     @Test
     public void testGetNome() {
         System.out.println("getNome");
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         String expResult = "Nuno Bettencourt";
         String result = instance.getNome();
         assertEquals(expResult, result);
@@ -121,7 +121,7 @@ public class UtilizadorTest {
     @Test
     public void testGetEmail() {
         System.out.println("getEmail");
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         String expResult = "nmb@isep.ipp.pt";
         String result = instance.getEmail();
         assertEquals(expResult, result);
@@ -172,7 +172,7 @@ public class UtilizadorTest {
     @Test
     public void testGetUsername() {
         System.out.println("getUsername");
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         String expResult = "Admin";
         String result = instance.getUsername();
         assertEquals(expResult, result);
@@ -198,7 +198,7 @@ public class UtilizadorTest {
     @Test
     public void testGetRegistado() {
         System.out.println("getRegistado");
-       Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+       Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         Boolean expResult = true;
         Boolean result = instance.getRegistado();
         assertEquals(expResult, result);
@@ -224,8 +224,8 @@ public class UtilizadorTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-          Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
-        boolean expResult = false;
+          Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
+        boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
         
@@ -237,7 +237,7 @@ public class UtilizadorTest {
     @Test
     public void testValidaNome() {
         System.out.println("validaNome");
-         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         boolean expResult = true;
         boolean result = instance.validaNome();
         assertEquals(expResult, result);
@@ -250,7 +250,7 @@ public class UtilizadorTest {
     @Test
     public void testValidaUsername() {
         System.out.println("validaUsername");
-          Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+          Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         boolean expResult = true;
         boolean result = instance.validaUsername();
         assertEquals(expResult, result);
@@ -275,7 +275,7 @@ public class UtilizadorTest {
     @Test
     public void testValidaEmail() {
         System.out.println("validaEmail");
-         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         boolean expResult = true;
         boolean result = instance.validaEmail();
         assertEquals(expResult, result);
@@ -288,7 +288,7 @@ public class UtilizadorTest {
     @Test
     public void testMostraSimples() {
         System.out.println("mostraSimples");
-         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         String expResult = instance.getUsername()+"-"+instance.getNome();
         String result = instance.mostraSimples();
         assertEquals(expResult, result);
@@ -301,7 +301,7 @@ public class UtilizadorTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
          String expResult=instance.getNome()+":"+instance.getEmail();
         String result = instance.toString();
         assertEquals(expResult, result);
@@ -314,7 +314,7 @@ public class UtilizadorTest {
     @Test
     public void testToStringGeral() {
         System.out.println("toStringGeral");
-       Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+       Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
                String expResult ="Utilizador:\n"+
          "\tNome: " + instance.getNome() + "\n"+
         "\tUsername: " + instance.getUsername()+ "\n"+
@@ -330,8 +330,8 @@ public class UtilizadorTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object outroObjeto =  new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
-        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Object outroObjeto =  new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
+        Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
         boolean expResult = true;
         boolean result = instance.equals(outroObjeto);
         assertEquals(expResult, result);
@@ -344,7 +344,7 @@ public class UtilizadorTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-   Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+   Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         int expResult = -550082158;
         int result = instance.hashCode();
         assertEquals(expResult, result);
@@ -357,7 +357,7 @@ public class UtilizadorTest {
     @Test
     public void testGetTempoServico() {
         System.out.println("getTempoServico");
-         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         int expResult = 15;
         int result = instance.getTempoServico();
         assertEquals(expResult, result);
@@ -370,8 +370,8 @@ public class UtilizadorTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        Utilizador outroUtilizador = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
-         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador outroUtilizador = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
+         Utilizador instance = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin",  "admin",true, 15);
         int expResult = 0;
         int result = instance.compareTo(outroUtilizador);
         assertEquals(expResult, result);

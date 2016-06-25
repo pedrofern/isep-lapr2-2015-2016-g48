@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 public class FAETest {
 
    
-    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true, 15);
 
     public FAETest() {
     }

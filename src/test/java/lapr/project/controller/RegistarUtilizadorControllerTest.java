@@ -24,10 +24,10 @@ public class RegistarUtilizadorControllerTest {
     
     public RegistarUtilizadorControllerTest() {
         ce = new CentroExposicoes();
-        u0=new Utilizador("nome1", "mail1@isep.pt", "u0", true, 10);
-        u1=new Utilizador("nome2", "mail2@isep.pt", "u1", true, 10);
-        u2=new Utilizador("nome3", "mail3@isep.pt", "u2", true, 20);
-        u3=new Utilizador("nome4", "mail4@isep.pt", "u3", true, 5);
+        u0=new Utilizador("nome1", "mail1@isep.pt", "u0","u0", true, 10);
+        u1=new Utilizador("nome2", "mail2@isep.pt", "u1", "u1",true, 10);
+        u2=new Utilizador("nome3", "mail3@isep.pt", "u2", "u2",true, 20);
+        u3=new Utilizador("nome4", "mail4@isep.pt", "u3", "u3",true, 5);
         
     }
     

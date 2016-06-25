@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class RegistoUtilizadoresTest {
 
-    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+    private Utilizador u = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", "admin", true, 15);
 
     public RegistoUtilizadoresTest() {
     }
@@ -61,7 +61,7 @@ public class RegistoUtilizadoresTest {
     public void testRegistaUtilizador() {
         System.out.println("registaUtilizador");
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.registaUtilizador(u);
         assertEquals(expResult, result);
 
@@ -129,9 +129,9 @@ public class RegistoUtilizadoresTest {
     public void testAlteraUtilizador() {
         System.out.println("alteraUtilizador");
         Utilizador uOriginal = u;
-        Utilizador uClone = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", true, 10);
+        Utilizador uClone = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor",  "admin",true, 10);
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.alteraUtilizador(uOriginal, uClone);
         assertEquals(expResult, result);
 
@@ -159,10 +159,10 @@ public class RegistoUtilizadoresTest {
     @Test
     public void testGetUtilizadoresNaoRegistados() {
         System.out.println("getUtilizadoresNaoRegistados");
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", false, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", false, 3);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", "admin", false, 8);
+        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae",  "admin",false, 6);
+        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae",  "admin",false, 3);
         RegistoUtilizadores instance = new RegistoUtilizadores();
         instance.addUtilizador(ut2);
         instance.addUtilizador(ut3);
@@ -200,10 +200,10 @@ public class RegistoUtilizadoresTest {
     @Test
     public void testTamanho() {
         System.out.println("tamanho");
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", false, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", false, 3);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", "admin", false, 8);
+        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", "admin", false, 6);
+        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", "admin", false, 3);
         RegistoUtilizadores instance = new RegistoUtilizadores();
         instance.addUtilizador(ut2);
         instance.addUtilizador(ut3);
@@ -222,7 +222,7 @@ public class RegistoUtilizadoresTest {
     public void testRemoverUtilizador() {
         System.out.println("removerUtilizador");
 
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
         RegistoUtilizadores instance = new RegistoUtilizadores();
         instance.addUtilizador(ut2);
         boolean expResult = true;
@@ -251,10 +251,10 @@ public class RegistoUtilizadoresTest {
     public void testGetArray() {
         System.out.println("getArray");
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", false, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", false, 3);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador",  "admin",false, 8);
+        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", "admin", false, 6);
+        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", "admin", false, 3);
         instance.addUtilizador(ut2);
         instance.addUtilizador(ut3);
         instance.addUtilizador(ut4);
@@ -278,10 +278,10 @@ public class RegistoUtilizadoresTest {
     public void testCountUtilizadores() {
         System.out.println("countUtilizadores");
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", false, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", false, 3);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
+        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", "admin", false, 8);
+        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", "admin", false, 6);
+        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", "admin", false, 3);
         instance.addUtilizador(ut2);
         instance.addUtilizador(ut3);
         instance.addUtilizador(ut4);

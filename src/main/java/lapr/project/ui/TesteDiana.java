@@ -44,17 +44,17 @@ public class TesteDiana {
         // TODO code application logic here
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador user = new Utilizador();
-        Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        Utilizador ut1=new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin","admin", true,15 );   
+        Utilizador ut2= new Utilizador("Ana Silva", "1130155@isep.ipp.pt","Gestor","gestor",true,10);
+        Utilizador ut3= new Utilizador("Diana Silva", "1151088@isep.ipp.pt","Organizador","organizador",true,8);
+        Utilizador ut4= new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt","Organizador+Fae","orgfae",true, 6);
+        Utilizador ut5= new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt","Fae","fae",true,3);
+        Utilizador ut6 = new Utilizador("Tomás Magalhães", "1151182@isep.ipp.pt", "Representante","representante", true, 1);
+        Utilizador ut7 = new Utilizador("User1", "1130155@isep.ipp.pt", "Gestor","gestor", false, 9);
+        Utilizador ut8 = new Utilizador("User2", "1151088@isep.ipp.pt", "Organizador","organizador", false, 7);
+        Utilizador ut9 = new Utilizador("User3", "1151094@isep.ipp.pt", "Organizador+Fae","orgfae", true, 2);
+        Utilizador ut10 = new Utilizador("User4", "1060503@isep.ipp.pt", "Fae","fae", true, 4);
 
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", true, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", true, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", true, 3);
-        Utilizador ut6 = new Utilizador("Tomás Magalhães", "1151182@isep.ipp.pt", "Representante", true, 1);
-        Utilizador ut7 = new Utilizador("User1", "1130155@isep.ipp.pt", "Gestor", false, 9);
-        Utilizador ut8 = new Utilizador("User2", "1151088@isep.ipp.pt", "Organizador", false, 7);
-        Utilizador ut9 = new Utilizador("User3", "1151094@isep.ipp.pt", "Organizador+Fae", true, 2);
-        Utilizador ut10 = new Utilizador("User4", "1060503@isep.ipp.pt", "Fae", true, 4);
 
         RegistoUtilizadores lu = ce.getRegistoUtilizadores();
         lu.addUtilizador(ut1);
