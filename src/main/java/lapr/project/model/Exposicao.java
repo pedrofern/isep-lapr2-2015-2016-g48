@@ -16,6 +16,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import lapr.project.model.lists.ListaAtribuicoes;
+import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaFAE;
 
 
 /**
@@ -30,7 +33,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     private String textoDescritivo;
     private Data dataInicio;
     private Data dataFim;
-    private String local;
+    private Local local;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
     private Data dataInicioAvaliacao;
@@ -59,6 +62,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         listaFaes = new ListaFAE();
         listaAtribuicoes = new ListaAtribuicoes();
         estatistica=new Estatistica();
+        local=new Local();
     }
 
     public ListaDemonstracoes getListaDemonstracoes() {
@@ -90,7 +94,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         textoDescritivo = descricao;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
-        this.local = local;
+        this.local.setLocal(local);
         dataInicioSubmissao = dataSubInicio;
         dataFimSubmissao = dataSubFim;
         
@@ -116,21 +120,21 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     public void setTextoDescritivo(String strDescritivo) {
         textoDescritivo = strDescritivo;
     }
-
-    public String getTextoDescritivo() {
-        return textoDescritivo;
-    }
-
-    public void setLocal(String strLocal) {
-        local = strLocal;
+    
+    public void setLocal(String local){
+        this.local.setLocal(local);
     }
     
     public void setListaAtribuicoes(ListaAtribuicoes lista){
         listaAtribuicoes=lista;
     }
 
+    public String getTextoDescritivo() {
+        return textoDescritivo;
+    }
+
     public String getLocal() {
-        return local;
+        return local.getLocal();
     }
 
     public Data getDataInicio() {
@@ -415,7 +419,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         str += "\tData final de avaliações: " + this.dataInicioAvaliacao + "\n";
         str += "\tData para a deteção de conflitos: " + this.dataDeteccaoConflitos + "\n";
         str += "\tData alteração de conflitos: " + this.dataAlteracaoConflitos + "\n";
-        str += "\tLocal: " + this.local + "\n";
+        str += "\tLocal: " + this.local.getLocal() + "\n";
         str += "\tOrganizadores:\n";
         for (Organizador o : listaOrganizadores.getListaOrganizadores()) {
             str += "\t\t" + o.getUtilizador().toString() + "\n";

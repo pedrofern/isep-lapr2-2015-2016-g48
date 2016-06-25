@@ -5,10 +5,8 @@
  */
 package lapr.project.model;
 
-import lapr.project.model.lists.ListaAtribuicoes;
-import lapr.project.model.lists.ListaCandidaturas;
+
 import lapr.project.model.lists.ListaDemonstracoes;
-import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.states.ExposicaoEstado;
 import lapr.project.utils.Data;
@@ -18,6 +16,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import lapr.project.model.lists.ListaAtribuicoes;
+import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.ListaFAE;
 
 /**
  *

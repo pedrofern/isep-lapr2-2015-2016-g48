@@ -161,7 +161,7 @@ public class RegistoUtilizadores implements Serializable{
      * @return true se validar false caso contrario
      */
     private boolean validaUtilizador(Utilizador u) {
-        return !m_listaUtilizadores.contains(u);
+        return !hasUtilizador(u.getEmail(), u.getID());
     }
     
     public RegistoUtilizadores getUtilizadoresPend(){
