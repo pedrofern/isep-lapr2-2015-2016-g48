@@ -6,12 +6,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -29,6 +27,7 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
     private Candidatura candidatura;
     private Avaliacao avaliacao;
     private AvaliarCandidaturaController controllerAC;
+    private AvaliarCandidaturaUI framePai;
     
     private final int CAMPO_LARGURA = 30;
     private JTextArea txt;
@@ -36,9 +35,9 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
     private JButton btGuardar;
     
     
-    public AvaliarSubPainelJustificacao (AvaliarCandidaturaController pController){
+    public AvaliarSubPainelJustificacao (AvaliarCandidaturaController pController, AvaliarCandidaturaUI framePai){
         super();
-        
+        this.framePai=framePai;
         controllerAC=pController;
     }
     
@@ -122,39 +121,12 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
 
         JPanel p = new JPanel(l);
 
-        JButton bt1 = criarBotaoRegistar();
-        JButton bt2 = criarBotaoLimpar();
-        
-        p.add(bt1);
-        p.add(bt2);
+        p.add(criarBotaoLimpar());
+        p.add(criarBotaoOK());
         
         return p;
     }
     
-    private JButton criarBotaoRegistar() {
-        btGuardar = new JButton("Guardar");
-        btGuardar.setMnemonic(KeyEvent.VK_R);
-        btGuardar.setToolTipText("Introduza todos os dados solicitados para poder guardar");
-        btGuardar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                if(norte.getTxtNome().getText().isEmpty()==true||
-//                    norte.getTxtEmail().getText().isEmpty()==true||
-//                    norte.getTxtPassword().getText().isEmpty()==true||
-//                    norte.getTxtUsername().getText().isEmpty()==true){
-//                        JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Registar Utilizador",
-//                            JOptionPane.ERROR_MESSAGE);                        
-//                }else{
-                   guardar();
-
-            }
-        });
-
-        return btGuardar;
-    }
     /**
      * criar botão limpar
      * @return botão limpar
@@ -164,27 +136,29 @@ public class AvaliarSubPainelJustificacao extends JPanel implements Serializable
         botao.setMnemonic(KeyEvent.VK_L);
         botao.setToolTipText("Limpa dados gerais do novo utilizador");
         botao.addActionListener((ActionEvent e) -> {
-//                norte.getTxtNome().setText("");
-//                norte.getTxtEmail().setText("");
-//                norte.getTxtPassword().setText("");
-//                norte.getTxtUsername().setText("");
+            txt.setText("");
+
         });
 
         return botao;
     }
-        
-    private boolean getAvaliacao(){
-        return button1.isSelected();
+    
+    private JButton criarBotaoOK() {
+        JButton botao = new JButton("Seleccionar");
+        botao.setMnemonic(KeyEvent.VK_L);
+        botao.setToolTipText("Guardar a avaliação");
+        botao.addActionListener((ActionEvent e) -> {
+              controllerAC.setAvaliacao(getAvaliacao(), txt.getText());
+              
+              framePai.setBotaoGuardarEnable();
+              botao.setEnabled(false);
+        });
+
+        return botao;
     }
+    
 
-     private void guardar() {
-
-            controllerAC.setAvaliacao(getAvaliacao(),txt.getText());
-            if(controllerAC.registarDecisao())
-                 JOptionPane.showMessageDialog( null,
-                        controllerAC.getInfoAvaliacao(),
-                        "Avaliação registada",
-                        JOptionPane.INFORMATION_MESSAGE);
-            
+    private  boolean getAvaliacao(){
+        return button1.isSelected();
     }
 }

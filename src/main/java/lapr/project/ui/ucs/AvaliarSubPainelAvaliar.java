@@ -32,14 +32,16 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
     private Candidatura candidatura;
     private Avaliacao avaliacao;
     private static AvaliarCandidaturaController controllerAC;
+    private AvaliarCandidaturaUI framePai;
     private int resposta;
     
     AvaliarCandidaturaRadioButton grupo1, grupo2, grupo3, grupo4, grupo5;
             
     private static final int LINHAS=5, COLUNAS=2;
     
-    public AvaliarSubPainelAvaliar(AvaliarCandidaturaController controller){
+    public AvaliarSubPainelAvaliar(AvaliarCandidaturaController controller, AvaliarCandidaturaUI framePai){
         super();   
+        this.framePai=framePai;
         controllerAC=controller;
         
         setPreferredSize(new Dimension(800,getHeight()));
@@ -272,7 +274,7 @@ public class AvaliarSubPainelAvaliar extends JPanel implements Serializable{
                         controllerAC.getInfoClassificacoes(),
                         "Classificações dadas",
                         JOptionPane.INFORMATION_MESSAGE);
-            AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(controllerAC);
+            AvaliarSubPainelJustificacao pJustificacao=new AvaliarSubPainelJustificacao(controllerAC, framePai);
             pJustificacao.mostrarPainel();
             pQuestoes.setVisible(false);
             add(pJustificacao);

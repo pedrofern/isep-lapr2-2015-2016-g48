@@ -46,7 +46,7 @@ public class Calculator implements Serializable{
          * @return Return the average
          */
         
-        public static double average(int sum, int number_of_values){
+        public static double average(double sum, double number_of_values){
             return (double)sum/number_of_values;
         }
         

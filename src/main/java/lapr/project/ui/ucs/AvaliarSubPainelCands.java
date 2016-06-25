@@ -29,10 +29,12 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
     private JButton selCand;
     private static final int WIDTH_POR_OMISSAO=300;
     private AvaliarCandidaturaController controllerAC;
+    private AvaliarCandidaturaUI framePai;
     
-    public AvaliarSubPainelCands(AvaliarCandidaturaController controller){
+    public AvaliarSubPainelCands(AvaliarCandidaturaController controller, AvaliarCandidaturaUI framePai){
         super();
         controllerAC=controller;
+        this.framePai=framePai;
         
     }
     

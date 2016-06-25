@@ -50,7 +50,7 @@ public class AvaliarCandidaturaUI extends JFrame{
     private JPanel pExpos, painel;
     
     private JComboBox comboExpos;
-    private JButton selExpo;
+    private JButton selExpo, btGuardar;
     
     public AvaliarCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador) {
         
@@ -81,8 +81,8 @@ public class AvaliarCandidaturaUI extends JFrame{
         painel=new JPanel();
         painel.setLayout(new BorderLayout());
         
-        pCands=new AvaliarSubPainelCands(controllerAC);
-        pAvaliar=new AvaliarSubPainelAvaliar(controllerAC);
+        pCands=new AvaliarSubPainelCands(controllerAC, this);
+        pAvaliar=new AvaliarSubPainelAvaliar(controllerAC,this);
         
         criarPainelExpos();
         
@@ -95,6 +95,8 @@ public class AvaliarCandidaturaUI extends JFrame{
         painel.add(pAvaliar, BorderLayout.CENTER);
       
         painel.add(criarPainelBotoes(), BorderLayout.SOUTH);
+        
+        btGuardar.setEnabled(false);
 
         add(painel);
     }
@@ -148,12 +150,50 @@ public class AvaliarCandidaturaUI extends JFrame{
         l.setVgap(20);
 
         JPanel p = new JPanel(l);
-
+        
+        JButton bt2=criarBotaoRegistar();
         JButton bt3 = criarBotaoCancelar();
         
+        p.add(bt2);
         p.add(bt3);
         
         return p;
+    }
+    
+    
+        private JButton criarBotaoRegistar() {
+        btGuardar = new JButton("Guardar");
+        btGuardar.setMnemonic(KeyEvent.VK_R);
+        btGuardar.setToolTipText("Introduza todos os dados solicitados para poder guardar");
+        btGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                if(norte.getTxtNome().getText().isEmpty()==true||
+//                    norte.getTxtEmail().getText().isEmpty()==true||
+//                    norte.getTxtPassword().getText().isEmpty()==true||
+//                    norte.getTxtUsername().getText().isEmpty()==true){
+//                        JOptionPane.showMessageDialog(
+//                            null,
+//                            "Tem de preencher todos os campos!",
+//                            "Registar Utilizador",
+//                            JOptionPane.ERROR_MESSAGE);                        
+//                }else{
+                   guardar();
+
+            }
+        });
+
+        return btGuardar;
+    }
+    
+    private void guardar() {
+            
+            if(controllerAC.registarDecisao())
+                 JOptionPane.showMessageDialog( null,
+                        controllerAC.getInfoAvaliacao(),
+                        "Avaliação registada",
+                        JOptionPane.INFORMATION_MESSAGE);
+            dispose();
     }
     
     /**
@@ -196,4 +236,7 @@ public class AvaliarCandidaturaUI extends JFrame{
             return pJustificacao;
         }
      
+        public void setBotaoGuardarEnable(){
+            btGuardar.setEnabled(true);
+        }
     }

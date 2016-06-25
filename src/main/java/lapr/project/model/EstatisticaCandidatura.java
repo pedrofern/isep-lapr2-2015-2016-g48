@@ -154,4 +154,12 @@ public class EstatisticaCandidatura {
          taxaAceitacao=Calculator.calculateRate(numeroCandidaturasAceites, numeroCandidaturasAceites);
          return taxaAceitacao;
     }
+     
+     public void getEstatisticasCandidatura(){
+         
+     }
+     
+     public void getEstatisticasCandidaturaGlobal(){
+         
+     }
 }

@@ -252,7 +252,7 @@ public class PainelOrganizador extends JPanel {
     }
 
     private JButton criarBotaoAlterarDemo() {
-        JButton bt=new JButton("Alterar Demonstração");
+        JButton bt=new JButton("Gerar Estatísticas Candidaturas");
         bt.setMnemonic(KeyEvent.VK_A);
         bt.setToolTipText("Alteração dos dados de demonstração");
         bt.setPreferredSize(DIM_BOTOES);

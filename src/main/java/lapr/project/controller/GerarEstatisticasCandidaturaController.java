@@ -5,13 +5,11 @@
  */
 package lapr.project.controller;
 
-import lapr.project.model.Candidatura;
+import lapr.project.model.Calculator;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.EstatisticaCandidatura;
-import lapr.project.model.EstatisticaFAE;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
-import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.RegistoExposicoes;
 
 /**
@@ -23,6 +21,8 @@ public class GerarEstatisticasCandidaturaController {
     private final CentroExposicoes ce;
     private final Utilizador user;  
     private EstatisticaCandidatura estatistica;
+    private double valorMedioSubmissao=0;
+    private double taxaAceitacao=0;
     
     public GerarEstatisticasCandidaturaController(CentroExposicoes centroExposicoes, Utilizador user){
         this.user=user;
@@ -38,11 +38,45 @@ public class GerarEstatisticasCandidaturaController {
         estatistica.setListaCandidaturas(exposicao.getListaCandidaturas());
     }
     
-    public void getEstatisticasCandidaturas(){
-//        estatistica.getEstatisticasCandidaturas();
+    public double getValorMedioSubmissaoExposicao(){
+        return estatistica.getValorMedioSubmissao();
     }
     
-    public void getEstatisticaCandidaturasGlobal(){
-        
+    public double getTaxaAceitacaoExposicao(){
+        return estatistica.getTaxaAceitacao();
+    }
+    
+    public double getValorMedioSubmissaoGlobal(){
+        return valorMedioSubmissao;
+    }
+    
+    public double getTaxaAceitacaoGlobal(){
+        return taxaAceitacao;
+    }
+    
+    public double calcularValorMedioSubmissaoGlobal(){
+        int numeroExposicoes=0;
+        double sum=0;
+        for(Exposicao e: ce.getRegistoExposicoes().getExposicoes()){
+            estatistica=e.getEstatisticaCandidatura();
+            estatistica.setListaCandidaturas(e.getListaCandidaturas());
+            sum+=estatistica.calcularValorMedioSubmissao();
+            numeroExposicoes++;
+            valorMedioSubmissao=Calculator.average(sum, numeroExposicoes);
+        }
+        return valorMedioSubmissao;
+    }
+    
+    public double calcularTaxaAceitacaoGlobal(){
+        int numeroExposicoes=0;
+        double sum=0;
+        for(Exposicao e: ce.getRegistoExposicoes().getExposicoes()){
+            estatistica=e.getEstatisticaCandidatura();
+            estatistica.setListaCandidaturas(e.getListaCandidaturas());
+            sum+=estatistica.calcularTaxaAceitacao();
+            numeroExposicoes++;
+            taxaAceitacao=Calculator.average(sum, numeroExposicoes);
+        }
+        return taxaAceitacao;
     }
 }

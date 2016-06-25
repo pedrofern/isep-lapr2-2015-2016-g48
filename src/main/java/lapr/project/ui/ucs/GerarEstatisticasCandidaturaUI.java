@@ -7,11 +7,13 @@ package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -37,13 +39,14 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     private List<Candidatura> lst;
     private Utilizador user;
     private Exposicao expo;
+    private JLabel lblValorMedioExposicao, lblValorMedioGlobal;
     
    
-   public GerarEstatisticasCandidaturaUI(CentroExposicoes ce) {
+   public GerarEstatisticasCandidaturaUI(CentroExposicoes ce, Utilizador user) {
         
         super("Estatisticas");
         this.ce=ce;
-        
+        this.user=user;
         controller= new GerarEstatisticasCandidaturaController(ce,user);
         
        
@@ -106,10 +109,27 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         painel=new JPanel();
         painel.setLayout(new BorderLayout());
 
-        add(criarPainelWest(), BorderLayout.NORTH);
+        add(criarPainelWest(), BorderLayout.SOUTH);
         add(criarTabela(),BorderLayout.NORTH);
         
         
+    }
+    
+    private JPanel criarPainelLabels(){
+        JPanel p=new JPanel();
+        p.setLayout(new BorderLayout());
+        lblValorMedioExposicao=new JLabel();
+        lblValorMedioExposicao.setText("Valor médio submissão (Exposição): ");
+        
+        controller.calcularValorMedioSubmissaoGlobal();
+        
+        lblValorMedioGlobal=new JLabel();
+        lblValorMedioGlobal.setText("Valor médio submissão (CentroExposições): " + controller.getValorMedioSubmissaoGlobal());
+        
+        p.add(lblValorMedioExposicao, BorderLayout.WEST);
+        p.add(lblValorMedioGlobal, BorderLayout.EAST);
+        
+        return p;
     }
     
     private JPanel criarPainelWest(){
@@ -127,7 +147,7 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         painel.setBorder(new TitledBorder("Exposicoes:"));
         combolistaExposicoes = Utils.criarComboExpo(lista);
         painel.add(combolistaExposicoes,BorderLayout.NORTH);
-        
+        painel.add(criarPainelLabels(), BorderLayout.SOUTH);
         return painel;
     }
 
@@ -160,7 +180,7 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         Utilizador user = new Utilizador();
  
         //Create and set up the content pane.
-        GerarEstatisticasCandidaturaUI newContentPane = new GerarEstatisticasCandidaturaUI(ce);
+        GerarEstatisticasCandidaturaUI newContentPane = new GerarEstatisticasCandidaturaUI(ce,user);
         //newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
         
