@@ -33,6 +33,8 @@ public class TesteDiana {
     private static final String s1 = "19/11/2017", s2 = "20/11/2017", s3 = "11/11/2017", s4 = "12/11/2017", s5 = "15/11/2017",
             s6 = "16/11/2017", s7 = "13/11/2017", s8 = "17/11/2017", s9 = "18/11/2017", s10 = "14/11/2017";
     private static Data d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
+    private static FichCentroExposicoes ficheiro;
+    
 
     /**
      * @param args the command line arguments
@@ -44,7 +46,7 @@ public class TesteDiana {
         Utilizador user = new Utilizador();
         Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
 
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
+        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", true, 10);
         Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", false, 8);
         Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae", true, 6);
         Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae", true, 3);
@@ -216,8 +218,9 @@ public class TesteDiana {
         
         //new DefinirFAEUI(ce, user);
         //new GerarEstatisticasCandidaturaUI(ce);
-        new DefinirRecursoUI(ce);
-        
+        //new DefinirRecursoUI(ce);
+        new Login(ce,ficheiro);
+        new Janela(ce,ficheiro,user);
         //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
     }
 

@@ -1,24 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.model.lists;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import lapr.project.model.Stand;
+import lapr.project.model.*;
 
 /**
  *
- * @author Tomas
+ * @author anasilva
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-public class RegistoStands implements Serializable{
+public class RegistoStands {
     
     private ArrayList<Stand> listaStands;
-    private Stand m_s;
+    private Stand mStand;
     /**
-     * Construtor relativo a lista de stands
+     * Construtor relativo a lista de Stands
      */
     public RegistoStands() {
         listaStands = new ArrayList<>();
@@ -39,7 +38,7 @@ public class RegistoStands implements Serializable{
         return listaStands.toArray( new Stand[listaStands.size()] );
     }
     /**
-     * Metodo que retorna a lista de stands
+     * Metodo que retorna a lista de Stands
      * @return lista stands
      */
     public ArrayList<Stand> getListaStands(){
@@ -48,27 +47,28 @@ public class RegistoStands implements Serializable{
     /**
      * Metodo para adicionar o stand passado por parametro a lista de stands
      * @param stand stand
-     * @return true se o conflito for adicionado false em caso contrario
+     * @return true se o stand for adicionado false em caso contrario
      */
-    
-    public boolean adicionarStand(Stand stand){
+    public boolean adicionarStand(Stand s){
         
-        if(!listaStands.contains(stand)){
-            return listaStands.add(stand);
-        }return false;
+       if(!listaStands.contains(s)){
+            return listaStands.add(s);
+        }
+       
+       return false;
     }
     
+    /**
+     * Metodo que cria um novo stand
+     * @return novo stand
+     */
     public Stand novoStand() {
         
     
-        m_s= new Stand();
+       return  new Stand();
         
-       listaStands.add(m_s);
-        
-       return m_s;
        
     }
-    
     
      /**
      * Metodo para remover o stand passado por parametro a lista de stands
@@ -79,7 +79,7 @@ public class RegistoStands implements Serializable{
         return listaStands.remove(stand);
     }
     /**
-     * Metodo para retornar o tamanho da lista de cstands
+     * Metodo para retornar o tamanho da lista de stands
      * @return o tamanho da lista de stands
      */
     public int tamanho() {
@@ -101,5 +101,4 @@ public class RegistoStands implements Serializable{
     public boolean contem(Stand stand){
         return listaStands.contains(stand);
     }
-   
 }

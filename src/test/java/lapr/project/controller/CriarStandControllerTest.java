@@ -47,36 +47,8 @@ public class CriarStandControllerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of registaStand method, of class CriarStandController.
-     */
-    @Test
-    public void testRegistaStand() {
-        System.out.println("registaStand");
-        String descricao = "teste";
-        String area = "teste";
-        CriarStandController instance = new CriarStandController(ce);
-        instance.novoStand();
-        Stand expResult = instance.registaStand(descricao, area);
-        Stand result = instance.registaStand(descricao, area);
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setDescricao method, of class CriarStandController.
-     */
-    @Test
-    public void testSetDescricao() {
-        System.out.println("setDescricao");
-        String result = "teste";
-        CriarStandController instance = new CriarStandController(ce);
-        instance.novoStand();
-        instance.setDescricao(result);
-        String expResult=instance.getStand().getDescricao();
-        assertEquals(expResult, result);
-        
-    }
+    
+    
 
     /**
      * Test of getListaStands method, of class CriarStandController.
@@ -86,8 +58,8 @@ public class CriarStandControllerTest {
         System.out.println("getListaStands");
         CriarStandController instance = new CriarStandController(ce);
         instance.novoStand();
-        RegistoStands expResult = instance.getListaStands();
-        RegistoStands result = instance.getListaStands();
+        RegistoStands expResult = instance.getRegistoStands();
+        RegistoStands result = instance.getRegistoStands();
         assertEquals(expResult, result);
         
     }
@@ -101,8 +73,8 @@ public class CriarStandControllerTest {
         System.out.println("getStand");
         CriarStandController instance = new CriarStandController(ce);
         instance.novoStand();
-        Stand expResult = instance.getStand();
-        Stand result = instance.getStand();
+        String expResult = instance.getStand();
+        String result = instance.getStand();
         assertEquals(expResult, result);
         
     }

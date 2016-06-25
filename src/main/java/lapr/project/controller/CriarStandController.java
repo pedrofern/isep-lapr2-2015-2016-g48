@@ -9,56 +9,47 @@ import lapr.project.model.lists.*;
 
 /**
  *
- * @author Tomas
+ * @author anasilva
  */
 public class CriarStandController {
     
-    private Stand m_stand;
-    private RegistoStands m_listaStands;
+    
     private CentroExposicoes mce;
-    
-    
+    private Stand mStand;
+    private RegistoStands regStands;
    
-    public CriarStandController(CentroExposicoes ce) {
+    
 
-        this.mce=ce;
-    }
-
-    public void novoStand() {
-        m_stand=mce.getRegistoStands().novoStand();
-    }
-
-    public Stand registaStand(String descricao, String area) {
-       
-        m_stand.setDados(descricao, area);
+    public CriarStandController(CentroExposicoes centroDeExposicoes) {
+        mce = centroDeExposicoes;
         
-        return m_stand;
+    }
+    
+    public RegistoStands getRegistoStands(){
+        return regStands=mce.getRegistoStands();
     }
 
-//    public void setCodigoUnico(int codigoUnico) {
-//        m_demonstracao.setCod(codigoUnico);
-//    }
-//    
-    public void setDescricao(String novaDescricao) {
-        m_stand.setDescricao(novaDescricao);
+    
+    public String getStand() {
+        return mStand.getDescricao()+mStand.getArea();
     }
     
-//    public void setListaRecursos(RegistoRecursos novaListaRecursos) {
-//        m_demonstracao.setListaRecursos(novaListaRecursos);
-//    }
     
-    public RegistoStands getListaStands() {
-        return m_listaStands;
-    }
-        
-    public void addStand(Stand s){
-        m_stand.addStand(s);
-    }
     
+    public void setStand(String novoStand) {
+       mStand.setDescricao(novoStand);
+    }
    
-    public Stand getStand() {
-        return m_stand;
+    
+    public Stand novoStand(){
+       regStands=mce.getRegistoStands();
+       return mStand= regStands.novoStand();
+        
+        
     }
     
+    public void adicionarStand(){
+        regStands.adicionarStand(mStand);
+    }
     
 }

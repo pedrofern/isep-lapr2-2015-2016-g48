@@ -9,6 +9,7 @@ import lapr.project.model.lists.RegistoUtilizadores;
  */
 public class Main {
 
+    private static Utilizador user;
 	/**
 	 * Private constructor to hide implicit public one.
 	 */
@@ -20,6 +21,8 @@ public class Main {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
+            
+            
             
             FichCentroExposicoes fichCentroExposicoes = new FichCentroExposicoes();
 
@@ -66,6 +69,7 @@ public class Main {
                 System.out.println(ce.getRegistoExposicoes());
                 System.out.println(ce.getRegistoUtilizadores());
                 Login log = new Login(ce, fichCentroExposicoes);
+                Janela j = new Janela(ce,fichCentroExposicoes,user);
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
 	}
