@@ -8,11 +8,7 @@ package lapr.project.model.mechanisms;
 import java.io.Serializable;
 import lapr.project.model.Atribuicao;
 import java.util.Collections;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
@@ -27,12 +23,7 @@ import lapr.project.model.states.candidaturasExpo.CandidaturaEmAvaliacao;
  * @author DianaSilva
  */
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-//@XmlTransient
-//@XmlSeeAlso({MecanismoCarga.class,
-//            MecanismoRanking.class,
-//            MecanismoDetecaoConflito.class})
-public class MecanismoTempoServico implements Serializable, MecanismoAtribuicao {
+public class MecanismoTempoServico extends Mecanismo implements Serializable{
     
     private static final String TIPO= "Tempo de Serviço" ;
     private Exposicao exposicao;

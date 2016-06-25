@@ -7,6 +7,7 @@ package lapr.project.utils;
 
 import java.beans.XMLEncoder;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -14,20 +15,21 @@ import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import lapr.project.model.CentroExposicoes;
 
 /**
  *
  * 
  */
-public class ExportXMLFile {
+public class XML {
 
     private static final String FILE = "CentroExposicoes.xml";
 
     /**
      * Cria o metodo de exportacao para xml
      */
-    public ExportXMLFile() {
+    public XML() {
     }
 
     /**
@@ -44,7 +46,22 @@ public class ExportXMLFile {
             marshaller.marshal(ce, new FileWriter(FILE));
             return true;
         } catch (JAXBException | IOException e) {
+                System.out.println(e.getMessage());
             return false;
+        }
+    }
+    
+    public CentroExposicoes importFromXML() throws FileNotFoundException {
+        File file = new File("CentroExposicoes.xml");
+        JAXBContext jaxbContext;
+        try {
+            jaxbContext = JAXBContext.newInstance(CentroExposicoes.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            CentroExposicoes ce = (CentroExposicoes) jaxbUnmarshaller.unmarshal(file);
+            return ce;
+        } catch (JAXBException ex) { 
+            System.out.println(ex.getMessage());
+            return null;
         }
     }
 

@@ -13,7 +13,7 @@ import javax.swing.filechooser.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import lapr.project.utils.ExportXMLFile;
+import lapr.project.utils.XML;
 
 
 /**
@@ -175,7 +175,9 @@ public class Login extends JFrame {
                 int resposta = fileChooser.showOpenDialog(framePai);
 
                 if (resposta == JFileChooser.APPROVE_OPTION) {
-                    //importa xml
+                    //import
+//                    XML imp = new XML();
+//                    imp.importFromXML();
                 }
             }
         }
@@ -189,10 +191,9 @@ public class Login extends JFrame {
    
         btn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                
+            public void actionPerformed(ActionEvent e) {                
                 //exporta xml
-                ExportXMLFile export = new ExportXMLFile();
+                XML export = new XML();
                 export.exportToXML(ce);
             }
         });

@@ -25,8 +25,6 @@ public class RegistoMecanismosAtribuicao implements Serializable{
      
      private ArrayList<MecanismoAtribuicao> registoMecanismosAtribuicao;
      
-//     private ArrayList<Object> registoMecanismosAtribuicao;
-     
      public RegistoMecanismosAtribuicao(){
          registoMecanismosAtribuicao=new ArrayList<MecanismoAtribuicao>(); 
          

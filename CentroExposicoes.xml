@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<centroExposicoes>
+    <regRecursos/>
+    <regExposicoes/>
+    <regUtilizadores>
+        <m_listaUtilizadores>
+            <nome>Nuno Bettencourt</nome>
+            <email>nmb@isep.ipp.pt</email>
+            <password>admin</password>
+            <username>Admin</username>
+            <m_bRegistado>true</m_bRegistado>
+            <tempoServico>15</tempoServico>
+        </m_listaUtilizadores>
+        <m_listaUtilizadores>
+            <nome>Ana Silva</nome>
+            <email>1130155@isep.ipp.pt</email>
+            <password>gestor</password>
+            <username>Gestor</username>
+            <m_bRegistado>true</m_bRegistado>
+            <tempoServico>10</tempoServico>
+        </m_listaUtilizadores>
+        <m_listaUtilizadores>
+            <nome>Diana Silva</nome>
+            <email>1151088@isep.ipp.pt</email>
+            <password>organizador</password>
+            <username>Organizador</username>
+            <m_bRegistado>true</m_bRegistado>
+            <tempoServico>8</tempoServico>
+        </m_listaUtilizadores>
+        <m_listaUtilizadores>
+            <nome>Eduângelo Ferreira</nome>
+            <email>1151094@isep.ipp.pt</email>
+            <password>orgfae</password>
+            <username>Organizador+Fae</username>
+            <m_bRegistado>true</m_bRegistado>
+            <tempoServico>6</tempoServico>
+        </m_listaUtilizadores>
+        <m_listaUtilizadores>
+            <nome>Pedro Fernandes</nome>
+            <email>1060503@isep.ipp.pt</email>
+            <password>fae</password>
+            <username>Fae</username>
+            <m_bRegistado>true</m_bRegistado>
+            <tempoServico>3</tempoServico>
+        </m_listaUtilizadores>
+    </regUtilizadores>
+    <regStands/>
+    <regTiposConflitos/>
+</centroExposicoes>

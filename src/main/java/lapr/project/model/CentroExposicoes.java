@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.lists.RegistoTipoConflitos;
 import lapr.project.model.lists.RegistoMecanismosAtribuicao;
 import lapr.project.model.lists.*;
@@ -21,6 +22,7 @@ public class CentroExposicoes implements Serializable{
     private RegistoExposicoes regExposicoes;
     private RegistoUtilizadores regUtilizadores;
     private RegistoStands regStands;
+    @XmlTransient
     private RegistoMecanismosAtribuicao regMecAtribuicoes;
     private RegistoTipoConflitos regTiposConflitos;
     private static int contador=0;
