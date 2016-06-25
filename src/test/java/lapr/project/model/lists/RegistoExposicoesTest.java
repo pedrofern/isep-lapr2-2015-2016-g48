@@ -431,8 +431,8 @@ public class RegistoExposicoesTest {
     }
 
     /**
-     * Test of getExposicoesCandidaturasEmAvaliacao method, of class
-     * RegistoExposicoes.
+     * Test of getExposicoesCandidaturasAtribuidas method, of class
+ RegistoExposicoes.
      */
     @Test
     public void testGetExposicoesCandidaturasEmAvaliacao() throws Exception {
@@ -443,7 +443,7 @@ public class RegistoExposicoesTest {
         ListaFAE lista = exp.getListaFAE();
         lista.addFAE(new FAE(user));
         instance.adicionarExposicao(exp);
-        RegistoExposicoes result = instance.getExposicoesCandidaturasEmAvaliacao();
+        RegistoExposicoes result = instance.getExposicoesCandidaturasAtribuidas();
         RegistoExposicoes expResult = result;
         assertEquals(expResult, result);
 
@@ -469,8 +469,8 @@ public class RegistoExposicoesTest {
     }
 
     /**
-     * Test of getExposicoesStandsAtribuiveis method, of class
-     * RegistoExposicoes.
+     * Test of getExposicoesStandsAtribuidos method, of class
+ RegistoExposicoes.
      */
     @Test
     public void testGetExposicoesStandsAtribuiveis() throws Exception {
@@ -481,7 +481,7 @@ public class RegistoExposicoesTest {
         ListaFAE lista = exp.getListaFAE();
         lista.addFAE(new FAE(user));
         instance.adicionarExposicao(exp);
-        RegistoExposicoes result = instance.getExposicoesStandsAtribuiveis();
+        RegistoExposicoes result = instance.getExposicoesStandsAtribuidos();
         RegistoExposicoes expResult = result;
         assertEquals(expResult, result);
     }

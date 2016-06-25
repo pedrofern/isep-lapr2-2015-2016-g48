@@ -12,7 +12,7 @@ import lapr.project.model.FAE;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.RegistoExposicoes;
-import lapr.project.model.states.ExposicaoCandidaturasAvaliadas;
+import lapr.project.model.states.exposicao.ExposicaoCandidaturasAvaliadas;
 
 /**
  *

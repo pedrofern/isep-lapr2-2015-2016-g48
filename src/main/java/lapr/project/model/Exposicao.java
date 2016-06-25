@@ -2,8 +2,7 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import lapr.project.model.states.*;
-import lapr.project.model.states.ExposicaoEstado;
+import lapr.project.model.states.exposicao.*;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaCandidaturas;
 import java.util.*;
@@ -51,12 +50,12 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     private EstatisticaFAE estatisticaFAE;
     private EstatisticaCandidatura estatisticaCandidatura;
     
-//    @XmlTransient
+    @XmlTransient
     private ExposicaoEstado estado;
 //    private TimerTask task1, task2, task3, task4, task5, task6, task7;
 
     public Exposicao() throws Exception {
-        estado = new ExposicaoEstadoInicial(this);
+        estado = new ExposicaoEstadoInicial();
         listaOrganizadores = new ListaOrganizadores();
         listaCandidaturas = new ListaCandidaturas();
         listaDemonstracoes = new ListaDemonstracoes();
@@ -78,7 +77,6 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     public ListaOrganizadores getListaOrganizadores() {
         return listaOrganizadores;
     }
-   
 
     public ListaCandidaturas getListaCandidaturas() {
         return listaCandidaturas;
@@ -271,7 +269,6 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-
         Exposicao outraEX = (Exposicao) o;
         return this.getTextoDescritivo().equals(outraEX.getTextoDescritivo()) && this.getTitulo().equals(outraEX.getTitulo());
     }
@@ -283,8 +280,6 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         hash = 29 * hash + Objects.hashCode(this.textoDescritivo);
         return hash;
     }
-    
-   
 
 //    /**
 //     * Modifica a lista de submissoes.
@@ -302,16 +297,14 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
      * Altera o estado para o estado recebido por parametro.
      *
      * @param estado estado para o qual a exposição se altera
-     * @return boolean se alterou ou não
      */
-    public boolean alterarEstado(ExposicaoEstado estado) {
+    public void alterarEstado(ExposicaoEstado estado) {
         this.estado = estado;
-        return true;
     }
     
     public void setCriada() throws ParseException{
         ExposicaoEstadoInicial state=(ExposicaoEstadoInicial) estado;
-        state.setCriada();
+        state.setExposicaoCriada(this);
     }
 
     public void setListaFaes(ListaFAE lstFaes) {

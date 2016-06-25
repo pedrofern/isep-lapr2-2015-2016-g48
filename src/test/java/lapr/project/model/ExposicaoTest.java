@@ -5,9 +5,8 @@
  */
 package lapr.project.model;
 
-import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaOrganizadores;
-import lapr.project.model.states.ExposicaoEstado;
+import lapr.project.model.states.exposicao.ExposicaoEstado;
 import lapr.project.utils.Data;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -260,22 +259,6 @@ public class ExposicaoTest {
 
         int expResult = -1149128705;
         int result = instance.hashCode();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setEstadoDemonstracao method, of class Exposicao.
-     */
-    @Test
-    public void testAlterarEstado() throws Exception {
-        System.out.println("alterarEstado");
-        Exposicao instance = new Exposicao();
-        Exposicao exp = new Exposicao();
-        exp.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
-        ExposicaoEstado estado = instance.getEstadoAtualExposicao();
-        boolean expResult = true;
-        boolean result = instance.alterarEstado(estado);
         assertEquals(expResult, result);
 
     }

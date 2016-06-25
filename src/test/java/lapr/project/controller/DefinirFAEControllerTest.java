@@ -177,23 +177,4 @@ public class DefinirFAEControllerTest {
         assertEquals(expResult, result);
 
     }
-
-    /**
-     * Test of atualizaExposicao method, of class DefinirFAEController.
-     */
-    @Test
-    public void testAtualizaExposicao() throws Exception {
-        System.out.println("atualizaExposicao");
-        DefinirFAEController instance = new DefinirFAEController(ce, utilizador);
-        Exposicao exp = new Exposicao();
-        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
-        instance.selectExposicao(new Exposicao());
-        ListaFAE lista = instance.getListaFAE();
-        lista.addFAE(new FAE(new Utilizador("Nome", "Admin", "Ad", "Email")));
-        boolean expResult = true;
-        boolean result = instance.atualizaExposicao();
-        assertEquals(expResult, result);
-
-    }
-
 }

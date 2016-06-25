@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
-import lapr.project.model.states.*;
+import lapr.project.model.states.exposicao.*;
 
 /**
  *
@@ -142,8 +142,6 @@ public class RegistoExposicoes implements Serializable{
         }
         return leOrganizador;
     }
-    
-  
 
     public boolean hasExposicao(Exposicao e) {
         for (Exposicao exposicao : listaExposicoes) {
@@ -176,7 +174,7 @@ public class RegistoExposicoes implements Serializable{
     public RegistoExposicoes getExposicoesEstadoCriada() {
         RegistoExposicoes regExposicoes = new RegistoExposicoes();
         for (Exposicao e : listaExposicoes) {
-            if (e.getEstadoAtualExposicao() instanceof ExposicaoEstadoCriada) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCriada) {
                 regExposicoes.adicionarExposicao(e);
             }
         }
@@ -210,7 +208,7 @@ public class RegistoExposicoes implements Serializable{
 
         RegistoExposicoes expoCandAbertas = new RegistoExposicoes();
         for (Exposicao e : listaExposicoes) {
-            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasAbertas) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasAberta) {
                 expoCandAbertas.adicionarExposicao(e);
             }
         }
@@ -251,11 +249,11 @@ public class RegistoExposicoes implements Serializable{
         return regExpo;
     }
 
-    public RegistoExposicoes getExposicoesCandidaturasEmAvaliacao() {
+    public RegistoExposicoes getExposicoesCandidaturasAtribuidas() {
 
         RegistoExposicoes regExpo = new RegistoExposicoes();
         for (Exposicao e : listaExposicoes) {
-            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasEmAvaliacao) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasAtribuidas) {
                 regExpo.adicionarExposicao(e);
             }
         }
@@ -273,11 +271,11 @@ public class RegistoExposicoes implements Serializable{
         return regExpo;
     }
 
-    public RegistoExposicoes getExposicoesStandsAtribuiveis() {
+    public RegistoExposicoes getExposicoesStandsAtribuidos() {
 
         RegistoExposicoes regExpo = new RegistoExposicoes();
         for (Exposicao e : listaExposicoes) {
-            if (e.getEstadoAtualExposicao() instanceof ExposicaoStandsAtribuiveis) {
+            if (e.getEstadoAtualExposicao() instanceof ExposicaoStandsAtribuidos) {
                 regExpo.adicionarExposicao(e);
             }
         }

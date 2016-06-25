@@ -2,10 +2,8 @@ package lapr.project.controller;
 
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.*;
-import java.util.*;
 import lapr.project.model.*;
-import lapr.project.model.states.ExposicaoEstado;
-import lapr.project.model.states.*;
+import lapr.project.model.states.exposicao.*;
 
 /**
  *
@@ -106,11 +104,9 @@ public class DefinirFAEController {
 
     }
 
-    public boolean atualizaExposicao() {
+    public void atualizaExposicao() {
         ExposicaoEstado estado = exposicao.getEstadoAtualExposicao();
         exposicao.alterarEstado(estado);
-        return !((estado instanceof ExposicaoEstadoCriada) || (estado instanceof ExposicaoDemonstracaoSemFAE));
-
     }
 
 }
