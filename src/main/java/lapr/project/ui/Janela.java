@@ -219,49 +219,52 @@ public class Janela extends JFrame /** implements Serializable**/{
         
         tabPane = new JTabbedPane(); 
         
-        if("Fae".equals(tipo_utilizador)){
-            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
-       }
+//        if("Fae".equals(tipo_utilizador)){
+//            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
+//       }
+//        
+//       if("Organizador".equals(tipo_utilizador)){
+//           tabPane.addTab("Home", new PainelInicio(ce));
+//           tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
+//
+//       }
+//       if("Representante".equals(tipo_utilizador)){
+//
+//            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
+//       }
+//       
+//      if("Organizador+Fae".equals(tipo_utilizador)){
+//          
+//            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
+//            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
+//            
+//       }
         
-       if("Organizador".equals(tipo_utilizador)){
-           tabPane.addTab("Home", new PainelInicio(ce));
-           tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
-
-       }
-       if("Representante".equals(tipo_utilizador)){
-
-            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
-       }
-       
-      if("Organizador+Fae".equals(tipo_utilizador)){
-          
+      if(ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null){
+            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
+            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+      }else if(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)!=null){
+            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
+            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+      }else if(!(ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null) && !(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)!=null)){
             tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
+            tabPane.addTab("MenuFae", new PainelFae(ce, ut)); 
+            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+      }else if(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)==null && ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null){
+            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
+            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+      }else if("Gestor".equals(tipo_utilizador)){
+            tabPane.addTab("MenuGestor", new PainelGestor(ce, ut));
+            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+      }else if("Admin".equals(tipo_utilizador)){
+            tabPane.add("Menu Gestor", new PainelGestor(ce,ut));
+            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
             tabPane.addTab("MenuFae", new PainelFae(ce, ut));
-            
-       }
-      
-      if("Gestor".equals(tipo_utilizador)){
- 
-           tabPane.addTab("MenuGestor", new PainelGestor(ce, ut));
-          
-      }
-      if("Admin".equals(tipo_utilizador)){
-          
-         tabPane.add("Menu Gestor", new PainelGestor(ce,ut));
-         
-         tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
-
-         tabPane.addTab("MenuFae", new PainelFae(ce, ut));
-
-       
-        tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
-        
-        
+            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
+            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
         
       }  
-      
-      tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-      
+   
       return tabPane; 
     }
     

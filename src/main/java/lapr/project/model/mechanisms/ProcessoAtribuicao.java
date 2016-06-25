@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.lists.ListaAtribuicoes;
 
+
 /**
  *
  * @author Pedro Fernandes

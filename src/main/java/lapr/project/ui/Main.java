@@ -36,7 +36,7 @@ public class Main {
                     Utilizador ut3= new Utilizador("Diana Silva", "1151088@isep.ipp.pt","Organizador","organizador",true,8);
                     Utilizador ut4= new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt","Organizador+Fae","orgfae",true, 6);
                     Utilizador ut5= new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt","Fae","fae",true,3);
-//                    Utilizador ut6= new Utilizador("Tomás Magalhães" , "1151182@isep.ipp.pt","Representante",true,1);
+                    //Utilizador ut6= new Utilizador("Filipe" , "1151212@isep.ipp.pt","Representante",true,1);
                    
             
                    RegistoUtilizadores lu = ce.getRegistoUtilizadores();
@@ -45,6 +45,7 @@ public class Main {
                    lu.addUtilizador(ut3);
                    lu.addUtilizador(ut4);
                    lu.addUtilizador(ut5);
+                   
             }
 //            for(UIManager.LookAndFeelInfo info: UIManager.getInstalledLookAndFeels()){
 //                if ("Nimbus".equals(info.getName())){

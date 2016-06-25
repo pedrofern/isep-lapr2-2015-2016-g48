@@ -128,7 +128,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
-                  ConfirmarRegistoUtilizadorUI a= new ConfirmarRegistoUtilizadorUI(mCe);
+                  ConfirmarRegistoUtilizadorUI a= new ConfirmarRegistoUtilizadorUI(mCe,mUt);
 
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -152,7 +152,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                  DefinirRecursoUI a= new DefinirRecursoUI(mCe);
+                  DefinirRecursoUI a= new DefinirRecursoUI(mCe,mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }

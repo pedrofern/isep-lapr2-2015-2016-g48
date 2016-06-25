@@ -142,6 +142,8 @@ public class RegistoExposicoes implements Serializable{
         }
         return leOrganizador;
     }
+    
+  
 
     public boolean hasExposicao(Exposicao e) {
         for (Exposicao exposicao : listaExposicoes) {

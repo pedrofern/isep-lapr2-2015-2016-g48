@@ -32,6 +32,7 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
 
    private final ConfirmarRegistoUtilizadorController controller;
     private static CentroExposicoes ce;
+    private Utilizador user;
     private JComboBox comboUtilizadores;
     private RegistoUtilizadores lista;
     private JPanel pUtilizadores;
@@ -42,9 +43,10 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
     private static final int JANELA_ALTURA = 300;
 
 
-    public ConfirmarRegistoUtilizadorUI(CentroExposicoes centroExposicoes) {
+    public ConfirmarRegistoUtilizadorUI(CentroExposicoes centroExposicoes,Utilizador user) {
         super("Confirmar Registo Utilizador");
         ce=centroExposicoes;
+        this.user=user;
         controller = new ConfirmarRegistoUtilizadorController(ce);
   
         criarComponentes();

@@ -32,6 +32,7 @@ public class DefinirRecursoUI extends JFrame {
     private DefinirRecursoController controller;
     private static JTextArea text;
     private static Recurso r;
+    private Utilizador user;
     private JList listaRecursos;
     private JButton botaoAdicionarRecurso, botaoRemoverRecurso;
     
@@ -45,9 +46,10 @@ public class DefinirRecursoUI extends JFrame {
     private static final int WIDTH=400, HEIGHT=400;
     
     
-    public DefinirRecursoUI(CentroExposicoes centroExposicoes) {
+    public DefinirRecursoUI(CentroExposicoes centroExposicoes,Utilizador user) {
        
         ce = centroExposicoes;
+        this.user=user;
         controller = new DefinirRecursoController(ce);
        
         criarComponentes();

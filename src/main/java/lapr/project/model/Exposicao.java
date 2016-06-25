@@ -78,6 +78,7 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
     public ListaOrganizadores getListaOrganizadores() {
         return listaOrganizadores;
     }
+   
 
     public ListaCandidaturas getListaCandidaturas() {
         return listaCandidaturas;
