@@ -9,7 +9,7 @@ import java.util.*;
  * @author Pedro Fernandes
  */
 public class AlterarCandidaturaController {
-    
+  
     private Candidatura candidatura;
     private Candidatura cClone;
     private CandidaturaDemonstracao candidaturaDemonstracao;
@@ -20,6 +20,8 @@ public class AlterarCandidaturaController {
     private ListaCandidaturas listaCandidaturas;
     private ListaDemonstracoes listaDemoTemp;
 
+    
+    
     public AlterarCandidaturaController(CentroExposicoes ce, Utilizador utilizador) {
         this.ce = ce;
         this.utilizador = utilizador;
