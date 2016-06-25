@@ -8,7 +8,7 @@ package lapr.project.model;
 import lapr.project.model.lists.ListaCandidaturasDemonstracoes;
 import lapr.project.model.lists.ListaRecursoDemonstracao;
 import lapr.project.model.lists.RegistoRecursos;
-import lapr.project.model.states.DemonstracaoEstado;
+import lapr.project.model.states.demonstracao.DemonstracaoEstado;
 import lapr.project.utils.Data;
 import org.junit.After;
 import org.junit.AfterClass;

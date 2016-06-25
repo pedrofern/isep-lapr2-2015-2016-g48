@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.lists.*;
-import lapr.project.model.states.*;
+import lapr.project.model.states.candidaturasDemo.*;
 
 /**
  *
@@ -29,11 +29,11 @@ public class CandidaturaDemonstracao implements Serializable{
     private int quantidadeConvitesCD;
     private ListaProduto listaProdutosCD;
     private ListaCandidaturasDemonstracoes listaCandidaturasDemo;
-//    @XmlTransient
+    @XmlTransient
     private CandidaturaDemoEstado estadoCandidaturaDemo;
 
     public CandidaturaDemonstracao(Candidatura candidaturaExp) {
-        estadoCandidaturaDemo = new CandidaturaDemoCriada(this);
+        estadoCandidaturaDemo = new CandidaturaDemoCriada();
         this.nomeEmpresaCD = candidaturaExp.getNomeEmpresa();
         this.moradaCD = candidaturaExp.getMorada();
         this.telemovelCD = candidaturaExp.getTelemovel();

@@ -265,7 +265,7 @@ public class ExposicaoTest {
     }
 
     /**
-     * Test of alterarEstado method, of class Exposicao.
+     * Test of setEstadoDemonstracao method, of class Exposicao.
      */
     @Test
     public void testAlterarEstado() throws Exception {

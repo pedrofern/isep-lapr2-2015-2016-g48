@@ -8,7 +8,7 @@ package lapr.project.controller;
 import lapr.project.model.*;
 import lapr.project.model.lists.*;
 import lapr.project.utils.Data;
-import lapr.project.model.states.*;
+import lapr.project.model.states.demonstracao.*;
 
 /**
  *
@@ -24,13 +24,11 @@ public class DefinirDemonstracaoController {
     private Demonstracao demonstracao;
 
     public DefinirDemonstracaoController(CentroExposicoes ce, Utilizador utilizador) {
-
         this.ce = ce;
         this.utilizador = utilizador;
     }
 
     public RegistoExposicoes getRegistoExposicoes() {
-        
         return registoExposicoes = ce.getRegistoExposicoes();
     }
 
@@ -40,14 +38,11 @@ public class DefinirDemonstracaoController {
     }
 
     public ListaDemonstracoes getListaDemonstracoesCriadas() {
-
         return  listaDemonstracoes;
     }
 
     public void setDemonstracao(Demonstracao demonstracao) {
-
         this.demonstracao = demonstracao;
-
     }
 
     public void setPeriodoCanidatura(Data inicio, Data fim) {
@@ -63,10 +58,9 @@ public class DefinirDemonstracaoController {
     }
     
     public boolean atualizaDemonstracao() {
-
         DemonstracaoEstado demoEstado = demonstracao.getEstadoAtualDemonstracao();
-        demonstracao.alterarEstado(demoEstado);
-        return !(demoEstado instanceof DemonstracaoEstadoCriada || demoEstado instanceof DemonstracaoEstadoInteresse || demoEstado instanceof DemonstracaoEstadoDecidida);
+        demonstracao.setEstadoDemonstracao(demoEstado);        
+        return demoEstado.valida(demonstracao);
     }
 
 }

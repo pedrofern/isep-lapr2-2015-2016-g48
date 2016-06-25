@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import lapr.project.model.lists.*;
-import lapr.project.model.states.*;
+import lapr.project.model.states.demonstracao.*;
 import lapr.project.utils.Data;
 import lapr.project.utils.Utils;
 
@@ -31,7 +31,7 @@ public class Demonstracao implements Serializable {
     private RegistoRecursos registorecurso;
     private ListaRecursoDemonstracao listarecursodemonstracao;
     private Demonstracao demonstracao;
-//    @XmlTransient
+    @XmlTransient
     private DemonstracaoEstado estado;
     private TimerTask task1, task2;
     /**
@@ -47,7 +47,7 @@ public class Demonstracao implements Serializable {
     private static int contador = 0;
 
     public Demonstracao() throws Exception {
-        estado = new DemonstracaoEstadoInicial(this);
+        estado = new DemonstracaoCriada();
         this.m_listaRecursos = new RegistoRecursos();
         this.listaCandidaturasDemonstracoes = new ListaCandidaturasDemonstracoes();
         this.listarecursodemonstracao = new ListaRecursoDemonstracao();
@@ -94,25 +94,24 @@ public class Demonstracao implements Serializable {
         this.listarecursodemonstracao.addRecursoDemonstracao(recurso);
     }
 
-    public void createTimers() throws ParseException {
-
-        Timer timer = new Timer();
-
-        task1 = new DemonstracaoEstadoCandidaturaAberto(this);
-        timer.schedule(task1, inicio.converterParaDate());
-
-        task2 = new DemonstracoesEstadoCandidaturaFechada(this);
-        timer.schedule(task2, fim.converterParaDate());
-
-    }
+//    public void createTimers() throws ParseException {
+//
+//        Timer timer = new Timer();
+//
+//        task1 = new DemonstracaoEmAberto(this);
+//        timer.schedule(task1, inicio.converterParaDate());
+//
+//        task2 = new DemonstracoesFechadas(this);
+//        timer.schedule(task2, fim.converterParaDate());
+//
+//    }
 
     public DemonstracaoEstado getEstadoAtualDemonstracao() {
         return estado;
     }
 
-    public boolean alterarEstado(DemonstracaoEstado estado) {
+    public void setEstadoDemonstracao(DemonstracaoEstado estado) {
         this.estado = estado;
-        return true;
     }
 
     /**
@@ -125,11 +124,9 @@ public class Demonstracao implements Serializable {
         if (validaDescricao(desc)) {
             this.desc = desc;
         }
-
     }
 
     public static String getCondigoUnico() {
-
         return codigoDesc;
     }
 
@@ -139,11 +136,9 @@ public class Demonstracao implements Serializable {
     }
 
     public boolean validaDescricao(String descricao) {
-
         if (descricao == null || descricao.trim().isEmpty()) {
             return false;
         } else {
-
             return true;
         }
     }
@@ -155,7 +150,6 @@ public class Demonstracao implements Serializable {
     public boolean validaDatas(String datai, String dataf) {
         boolean b1 = Utils.validaDatasString(datai);
         boolean b2 = Utils.validaDatasString(dataf);
-       
 
         return b1 == true && b2 == true;
     }
@@ -182,25 +176,6 @@ public class Demonstracao implements Serializable {
     }
 
     /**
-     * Metodo que modifica e adiciona o recurso a lista
-     *
-     * @param recurso recurso
-     * @return true se adicionou a lista false em caso contrario
-     */
-//    public boolean setRecurso(String recurso) {
-//        
-//        Recurso r = this.m_centroExposicoes.getRegistoRecursos().indiceDeRecurso(recurso);
-//        
-//        if (r != null && validaRecurso(r)) {
-//            m_listaRecursos.adicionarRecurso(r);
-//            
-//            return true;
-//        } else {
-//            return false;
-//        }
-//
-//    }
-    /**
      * metodo que valida o recurso r
      *
      * @param r recurso
@@ -215,14 +190,6 @@ public class Demonstracao implements Serializable {
         }
     }
 
-//    /**
-//     * Metodo que retorna o codigo
-//     *
-//     * @return o codigo
-//     */
-//    public int getCod() {
-//        return cod;
-//    }
     /**
      * Metodo que retorna a descrição
      *
@@ -274,7 +241,6 @@ public class Demonstracao implements Serializable {
         for (Recurso recurso : listarecursodemonstracao.getListaRecursoDemonstracao()) {
             str += "\t\t" + recurso.toString() + "\n";
         }
-
         return str;
     }
 
@@ -287,8 +253,6 @@ public class Demonstracao implements Serializable {
         if (validaDescricao(desc)) {
             return true;
         }
-
         return false;
-
     }
 }

@@ -20,7 +20,7 @@ public interface CandidaturaState extends Serializable{
      * metodo que valida o estado
      *
      * @param c Candidatura
-     * @return true se o estado fo valido
+     * @return true se o estado for valido
      */
     public boolean valida(Candidatura c);
 

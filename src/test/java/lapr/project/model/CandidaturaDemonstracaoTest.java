@@ -5,7 +5,7 @@
  */
 package lapr.project.model;
 
-import lapr.project.model.states.CandidaturaDemoEstado;
+import lapr.project.model.states.candidaturasDemo.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -133,7 +133,6 @@ public class CandidaturaDemonstracaoTest {
         System.out.println("getEstadoAtualCandidatura");
         CandidaturaDemonstracao instance = new CandidaturaDemonstracao(candExp);
         CandidaturaDemoEstado estadoCandidatura = new CandidaturaDemoEstado() {
-            @Override
             public boolean validaEstadoCandidaturaDemo() {
                 return true;
             }
@@ -152,7 +151,6 @@ public class CandidaturaDemonstracaoTest {
     public void testSetEstadoCandidaturaDemo() {
         System.out.println("setEstadoCandidaturaDemo");
         CandidaturaDemoEstado estadoCandidaturaDemo = new CandidaturaDemoEstado() {
-            @Override
             public boolean validaEstadoCandidaturaDemo() {
                 return true;
             }
