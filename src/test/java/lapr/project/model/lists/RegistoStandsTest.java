@@ -107,7 +107,6 @@ public class RegistoStandsTest {
 
     }
 
-
     /**
      * Test of removerStand method, of class RegistoStands.
      */
@@ -165,8 +164,8 @@ public class RegistoStandsTest {
     @Test
     public void testContem() {
         System.out.println("contem");
-        Stand stand=new Stand();
-        Stand stand1=new Stand();
+        Stand stand = new Stand();
+        Stand stand1 = new Stand();
         stand.setDescricao("Descricao");
         stand.setArea("45");
         stand1.setDescricao("Descricao");
@@ -176,7 +175,20 @@ public class RegistoStandsTest {
         boolean expResult = true;
         boolean result = instance.contem(stand);
         assertEquals(expResult, result);
-         
+
+    }
+
+    /**
+     * Test of novoStand method, of class RegistoStands.
+     */
+    @Test
+    public void testNovoStand() {
+        System.out.println("novoStand");
+        RegistoStands instance = new RegistoStands();
+        Stand result = instance.novoStand();
+        Stand expResult = result;
+        assertEquals(expResult, result);
+
     }
 
 }

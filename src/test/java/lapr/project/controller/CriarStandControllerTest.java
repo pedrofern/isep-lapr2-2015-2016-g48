@@ -47,9 +47,6 @@ public class CriarStandControllerTest {
     public void tearDown() {
     }
 
-    
-    
-
     /**
      * Test of getListaStands method, of class CriarStandController.
      */
@@ -61,9 +58,8 @@ public class CriarStandControllerTest {
         RegistoStands expResult = instance.getRegistoStands();
         RegistoStands result = instance.getRegistoStands();
         assertEquals(expResult, result);
-        
-    }
 
+    }
 
     /**
      * Test of getStand method, of class CriarStandController.
@@ -76,7 +72,34 @@ public class CriarStandControllerTest {
         String expResult = instance.getStand();
         String result = instance.getStand();
         assertEquals(expResult, result);
-        
+
+    }
+
+    /**
+     * Test of getRegistoStands method, of class CriarStandController.
+     */
+    @Test
+    public void testGetRegistoStands() {
+        System.out.println("getRegistoStands");
+        CriarStandController instance = new CriarStandController(ce);
+        RegistoStands expResult = instance.getRegistoStands();
+        RegistoStands result = instance.getRegistoStands();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of novoStand method, of class CriarStandController.
+     */
+    @Test
+    public void testNovoStand() {
+        System.out.println("novoStand");
+        CriarStandController instance = new CriarStandController(ce);
+        instance.novoStand();
+        String expResult = instance.getStand();
+        String result = instance.getStand();
+        assertEquals(expResult, result);
+
     }
 
 }
