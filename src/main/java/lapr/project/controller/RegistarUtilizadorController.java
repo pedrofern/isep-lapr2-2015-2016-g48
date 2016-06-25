@@ -15,7 +15,7 @@ public class RegistarUtilizadorController {
 
     public RegistarUtilizadorController(CentroExposicoes centroExposicoes) {
         ce= centroExposicoes;
-        registoUtilizadores = ce.getRegistoUtilizadores();
+        registoUtilizadores = ce.getRegistoUtilizadoresRegistados();
 
     }
 

@@ -9,13 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
-import javafx.scene.layout.Region;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import lapr.project.controller.CriarExposicaoController;
 import lapr.project.controller.DefinirFAEController;
 import lapr.project.model.*;
-import lapr.project.model.lists.*;
+
 import lapr.project.utils.Utils;
 
 /**

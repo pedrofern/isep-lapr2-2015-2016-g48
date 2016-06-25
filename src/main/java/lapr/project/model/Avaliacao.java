@@ -18,7 +18,7 @@ public class Avaliacao implements Serializable{
     /**
      * Avaliação final dada pelo FAE (aceite ou recusada)
      */
-    private boolean avaliacao;
+    private boolean avaliacaoDada;
     
     /**
      * justificação da avaliação dada
@@ -54,7 +54,7 @@ public class Avaliacao implements Serializable{
      * @param justificacao a justificação dada pelo FAE
      */
     public Avaliacao(boolean resposta, String justificacao) {
-        this.avaliacao = resposta;
+        this.avaliacaoDada = resposta;
         this.justificacao = justificacao;
         this.estado = false;
         listaQuestoes = new ListaQuestoes();
@@ -75,7 +75,7 @@ public class Avaliacao implements Serializable{
      * @return the resposta
      */
     public boolean getAvaliacao() {
-        return avaliacao;
+        return avaliacaoDada;
     }
     
     /**
@@ -135,7 +135,7 @@ public class Avaliacao implements Serializable{
       */
 
     public void setResposta(boolean resposta) {
-        this.avaliacao = resposta;
+        this.avaliacaoDada = resposta;
     }
 
     /**
@@ -174,7 +174,7 @@ public class Avaliacao implements Serializable{
      * @return avaliação dada pelo FAE
      */
     public String getAvaliacaoString(){
-        if (avaliacao==true) return "Aceite";
+        if (avaliacaoDada==true) return "Aceite";
         else return "Recusada";
     }
 
@@ -184,13 +184,13 @@ public class Avaliacao implements Serializable{
      */
     @Override
     public String toString() {
-        String avaliacao = "Avaliação: " + getAvaliacaoString() + "\nJustificação: " + this.justificacao + "\n";
+        String avaliacaoDada = "Avaliação: " + getAvaliacaoString() + "\nJustificação: " + this.justificacao + "\n";
         for (Questao q : listaQuestoes.getListaQuestoes()) {
-            avaliacao += q.getPergunta() + ":" + q.getResposta() + "\n";
+            avaliacaoDada += q.getPergunta() + ":" + q.getResposta() + "\n";
 
         }
-        avaliacao += "Média: " + listaQuestoes.calcularMedia();
-        return avaliacao;
+        avaliacaoDada += "Média: " + listaQuestoes.calcularMedia();
+        return avaliacaoDada;
     }
 }
 

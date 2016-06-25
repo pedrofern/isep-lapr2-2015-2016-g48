@@ -5,11 +5,9 @@
  */
 package lapr.project.controller;
 
-import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Estatistica;
 import lapr.project.model.Exposicao;
-import lapr.project.model.Keyword;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaKeywords;
@@ -22,14 +20,10 @@ import lapr.project.model.lists.RegistoExposicoes;
 public class GerarEstatisticasKeywordsController {
     
     private CentroExposicoes ce;
-    private Utilizador user;
-    private Estatistica estatistica;
     private ListaKeywords rankingAceites, rankingRecusadas;
-    private Exposicao exposicao;
     private ListaCandidaturas listaCandidaturas;
     
-    public GerarEstatisticasKeywordsController(CentroExposicoes ce, Utilizador user){
-        this.user=user;
+    public GerarEstatisticasKeywordsController(CentroExposicoes ce){
         this.ce=ce;
     }
     
@@ -48,7 +42,6 @@ public class GerarEstatisticasKeywordsController {
     }
     
     public void setExposicao(Exposicao exposicao){
-        this.exposicao=exposicao;
         listaCandidaturas=exposicao.getListaCandidaturas();
     }
     

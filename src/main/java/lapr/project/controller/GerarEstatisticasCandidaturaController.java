@@ -19,7 +19,6 @@ public class GerarEstatisticasCandidaturaController {
     
     private CentroExposicoes ce;
     private Utilizador user;  
-    private Exposicao exposicao;
     private ListaCandidaturas listaCandidaturas;
     
     public GerarEstatisticasCandidaturaController(CentroExposicoes centroExposicoes, Utilizador user){
@@ -32,7 +31,6 @@ public class GerarEstatisticasCandidaturaController {
     }
     
     public void setExposicao(Exposicao exposicao){
-        this.exposicao=exposicao;
         listaCandidaturas=exposicao.getListaCandidaturas();
     }
     

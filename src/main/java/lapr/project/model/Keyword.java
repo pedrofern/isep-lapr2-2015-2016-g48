@@ -20,9 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Keyword implements Serializable{
     
     private String keywordDescricao;
+    private int utilizacoes;
 
     public Keyword(String keyword) {
         this.keywordDescricao = keyword;
+        this.utilizacoes=0;
     }
     public Keyword(){
         
@@ -49,7 +51,7 @@ public class Keyword implements Serializable{
     }
     
     /**
-     * Metodo que vai comprar objetos Keyword entre si
+     * Metodo que vai comparar objetos Keyword entre si
      * @param outroObjeto outro produto
      * @return se os objetos forem iguais retorna true caso contrario false
      */
@@ -72,5 +74,23 @@ public class Keyword implements Serializable{
         hash = 97 * hash + Objects.hashCode(this.keywordDescricao);
         return hash;
     }
+
+    /**
+     * Obtém o número de vezes que a keyword já foi utilizada
+     * @return número de vezes que a keyword foi utilizada
+     */
+    public int getUtilizacoes() {
+        return utilizacoes;
+    }
+
+    /**
+     * Incrementa um valor no contador de utilizações da password
+     * @param utilizacoes número de vezes que a keyword foi utilizada
+     */
+    public void setUtilizacoes(int utilizacoes) {
+        utilizacoes++;
+    }
+    
+    
     
 }

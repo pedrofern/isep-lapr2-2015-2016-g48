@@ -44,8 +44,10 @@ public class AtribuicaoTest {
     @Test
     public void testGetFae() {
         System.out.println("getFae");
-        Atribuicao instance = new Atribuicao();
-        instance.setFae(new FAE(new Utilizador("Nome", "email", "Admin", "email")));
+        Candidatura c=new Candidatura();
+        FAE fae=new FAE(new Utilizador("Nome", "email", "Admin", "email"));
+        Atribuicao instance = new Atribuicao(fae,c);
+        
         FAE expResult = instance.getFae();
         FAE result = instance.getFae();
         assertEquals(expResult, result);
@@ -58,8 +60,11 @@ public class AtribuicaoTest {
     @Test
     public void testGetCandidatura() {
         System.out.println("getCandidatura");
-        Atribuicao instance = new Atribuicao();
-        instance.setCandidatura(new Candidatura("Empresa", "Morada", 123456789, 89, 5));
+        FAE fae=new FAE();
+        Candidatura c=new Candidatura("Empresa", "Morada", 123456789, 89, 5);
+        
+        Atribuicao instance = new Atribuicao(fae,c);
+
         Candidatura expResult = instance.getCandidatura();
         Candidatura result = instance.getCandidatura();
         assertEquals(expResult, result);
@@ -72,9 +77,11 @@ public class AtribuicaoTest {
     @Test
     public void testGetEstadoAtribuicao() {
         System.out.println("getEstadoAtribuicao");
-        Atribuicao instance = new Atribuicao();
-        instance.setFae(new FAE(new Utilizador("Nome", "email", "Admin", "email")));
-         instance.setCandidatura(new Candidatura("Empresa", "Morada", 123456789, 89, 5));
+        
+        FAE fae=new FAE(new Utilizador("Nome", "email", "Admin", "email"));
+        Candidatura c=new Candidatura("Empresa", "Morada", 123456789, 89, 5);
+        Atribuicao instance = new Atribuicao(fae,c);
+        
         boolean expResult =false;
         boolean result = instance.getEstadoAtribuicao();
         assertEquals(expResult, result);
@@ -89,9 +96,10 @@ public class AtribuicaoTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Atribuicao instance = new Atribuicao();
-         instance.setFae(new FAE(new Utilizador("Nome", "email", "Admin", "email")));
-         instance.setCandidatura(new Candidatura("Empresa", "Morada", 123456789, 89, 5));
+        
+        FAE fae=new FAE(new Utilizador("Nome", "email", "Admin", "email"));
+        Candidatura c=new Candidatura("Empresa", "Morada", 123456789, 89, 5);
+        Atribuicao instance = new Atribuicao(fae,c);
         String expResult = instance.toString();
         String result = instance.toString();
         assertEquals(expResult, result);

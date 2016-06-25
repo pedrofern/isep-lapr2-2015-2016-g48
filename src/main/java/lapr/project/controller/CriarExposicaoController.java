@@ -47,7 +47,7 @@ public class CriarExposicaoController {
     }
 
     public RegistoUtilizadores getListaUtilizadores() {
-        return ce.getRegistoUtilizadores();
+        return ce.getRegistoUtilizadoresRegistados();
     }
     
     public ListaOrganizadores getListaOrganizadores(){

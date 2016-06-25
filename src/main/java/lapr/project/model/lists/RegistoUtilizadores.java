@@ -32,8 +32,7 @@ public class RegistoUtilizadores implements Serializable{
 
     public boolean registaUtilizador(Utilizador u) {
         if (u.valida() && validaUtilizador(u)) {
-//            System.out.println("cucu");
-                    return addUtilizador(u);
+           return addUtilizador(u);
         } else {
             return false;
         }
@@ -43,10 +42,10 @@ public class RegistoUtilizadores implements Serializable{
         return this.m_listaUtilizadores.add(u);
     } 
     
-
-    public List<Utilizador> getListaUtilizadores() {
+    public List<Utilizador> getListaUtilizadores(){
         return m_listaUtilizadores;
     }
+   
 
     public Utilizador getUtilizadorByID(String strId) {
         for (Utilizador u : this.m_listaUtilizadores) {

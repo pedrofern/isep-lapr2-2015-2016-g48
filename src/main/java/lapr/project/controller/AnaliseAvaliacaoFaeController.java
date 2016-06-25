@@ -53,7 +53,7 @@ public class AnaliseAvaliacaoFaeController {
         estatistica.calcularNivelSignificancia(ic);
     }
     
-    public void setListaFaes(ListaFAE fae){
+    public void setListaFaes(ListaFAE listaFaes){
         estatistica.setListaFaes(listaFaes);
     }
     
@@ -89,7 +89,7 @@ public class AnaliseAvaliacaoFaeController {
         return estatistica.calcularZ0();
     }
     
-    public void iniciarTesteEstatistico(int mediaPopulacional, FAE fae){
+    public void iniciarTesteEstatistico(FAE fae){
         Estatistica.testarHipoteseControlo();
         estatistica.testarHipoteseAlternativa(fae);
     }

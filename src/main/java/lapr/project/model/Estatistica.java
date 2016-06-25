@@ -23,11 +23,6 @@ import lapr.project.model.lists.ListaFAE;
  * relativas a uma exposição
  */
 public class Estatistica {
-
-    /**
-     * Exposicao da qual se pretende gerar as estatisticas
-     */
-    private Exposicao exposicao;
     
     /**
      * Lista de FAE que se pretende analisar na estatística
@@ -67,7 +62,7 @@ public class Estatistica {
     /**
      * Média populacional a considerar nos testes de hipóteses
      */
-    private static int MEDIA_POPULACIONAL=1;
+    private static final int MEDIA_POPULACIONAL=1;
     
     /**
      * Nível de significância a considerar nos testes de hipóteses
@@ -108,7 +103,7 @@ public class Estatistica {
 
     /**
      * Calcula a média amostral
-     * @param mediaAmostral the mediaAmostral to set
+     * @return a média amostral calculada
      */
     public double calcularMediaAmostral() {
         return 0;
@@ -232,8 +227,7 @@ public class Estatistica {
     /**
      * Testar H0- se a média populacional é igual a 1
      * 
-     * @param fae
-     * @return 
+     * @return resultado no teste da hipótese de controlo
      */
     
     public static boolean testarHipoteseControlo(){
@@ -245,7 +239,7 @@ public class Estatistica {
      * Testar H1 - se a média populacional é superior a 1 (para criar alerta)
      * 
      * @param fae
-     * @return 
+     * @return o resultado no teste da hipótese alternativa
      */
     
     public boolean testarHipoteseAlternativa(FAE fae){

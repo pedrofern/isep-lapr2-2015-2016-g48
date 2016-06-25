@@ -34,7 +34,7 @@ public class DefinirFAEController {
 //    }
 
     public void setRegistoUTilizadores() {
-        m_registoUtilizadores = ce.getRegistoUtilizadores();
+        m_registoUtilizadores = ce.getRegistoUtilizadoresRegistados();
         listaUtilizador = new RegistoUtilizadores();
         Organizador organizador=new Organizador();
         for (Utilizador u : m_registoUtilizadores.getListaUtilizadores()) {

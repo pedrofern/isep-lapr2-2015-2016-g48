@@ -32,7 +32,7 @@ public class ConfirmarRegistoUtilizadorController {
     }
     
     public RegistoUtilizadores getRegistoUtilizadores(){
-        return registoUtilizadores=ce.getRegistoUtilizadores().getUtilizadoresPend();
+        return registoUtilizadores=ce.getRegistoUtilizadoresNaoRegistados().getUtilizadoresPend();
     }
     
 }

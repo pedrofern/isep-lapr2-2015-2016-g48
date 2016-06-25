@@ -19,9 +19,6 @@ public class Atribuicao implements Serializable{
     private Candidatura candidatura;
     private boolean atribuida=false;
     
-    public Atribuicao(){
-        avaliacao=new Avaliacao();
-    }
     
     public Atribuicao(FAE fae, Candidatura c){
         this.avaliacao=new Avaliacao();

@@ -12,7 +12,6 @@ public class AtribuirCandidaturaController {
     private static CentroExposicoes ce;
     private Exposicao exposicao;
     private Utilizador user;
-    private ListaFAE listaFAEs;
     private ListaCandidaturas listaCandidaturas;
     private ListaAtribuicoes listaAtribuicoes;
 
@@ -36,7 +35,6 @@ public class AtribuirCandidaturaController {
     
     public void setExposicao(Exposicao e){
         exposicao=e;
-        listaFAEs=e.getListaFAE();
         listaAtribuicoes=e.getListaAtribuicoes();
         listaCandidaturas=e.getListaCandidaturas().getListaCandidaturasEmAtribuicao();
     }

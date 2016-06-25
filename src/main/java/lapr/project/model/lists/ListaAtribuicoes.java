@@ -23,9 +23,7 @@ public class ListaAtribuicoes implements Serializable{
     }
 
     public boolean createAtribuicao(FAE f, Candidatura c){
-        Atribuicao atrib=new Atribuicao();
-        atrib.setFae(f);
-        atrib.setCandidatura(c);
+        Atribuicao atrib=new Atribuicao(f,c);
         this.listaAtribuicoes.add(atrib);
         return true;
     }
