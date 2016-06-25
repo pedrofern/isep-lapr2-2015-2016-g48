@@ -75,10 +75,8 @@ public class PainelDialogoLista extends JPanel {
         combo = Utils.criarComboUser(ce.getRegistoUtilizadores());
 
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(10, 10,
+                0, 0));
 
         p.add(lbl);
         p.add(combo);
@@ -90,15 +88,12 @@ public class PainelDialogoLista extends JPanel {
         JLabel lbl = new JLabel("Recurso: ", JLabel.RIGHT);
         lbl.setPreferredSize(LABEL_TAMANHO);
 
-        final int CAMPO_LARGURA = 10;
 
         combo = Utils.criarComboRecurso(ce.getRegistoRecursos());
 
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 0;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(10, 10,
+                0, 0));
 
         p.add(lbl);
         p.add(combo);
@@ -114,55 +109,14 @@ public class PainelDialogoLista extends JPanel {
     private JPanel criarPainelBotoes() {
 
         JPanel p = new JPanel();
-        final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 10;
-        final int MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
-        p.setBorder(new EmptyBorder(MARGEM_SUPERIOR, MARGEM_ESQUERDA,
-                MARGEM_INFERIOR, MARGEM_DIREITA));
+        p.setBorder(new EmptyBorder(0, 10,
+                10, 10));
         p.add(btOk);
         p.add(btCancel);
 
         return p;
     }
 
-//        
-//    /**
-//     * cria botão OK
-//     * @return botão OK
-//     */
-//    private JButton criarBotaoOK() {
-//        JButton btOk = new JButton("OK");
-//        btOk.setMnemonic(KeyEvent.VK_O);
-//        btOk.setToolTipText("Confirma adição");
-//       
-//        return btOk;
-//    }
-//    
-//    
-//    
-//    /**
-//     * cria botão Cancelar
-//     * @return botão Cancelar
-//     */
-//    private JButton criarBotaoCancelar() {
-//        btCancel = new JButton("Cancelar");
-//       
-//         btCancel.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                dispose();
-//            }
-//        });
-//        
-//        return btCancel;
-//    }  
-//    
-//    public JButton getBotaoCancelar(){
-//        return btCancel;
-//    }
-//    
-//    public JButton getBotaoOk(){
-//        return btOk;
-//    }
     public JComboBox getComboBoxUtilizadores() {
         return combo;
     }
