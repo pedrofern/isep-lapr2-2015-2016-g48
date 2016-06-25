@@ -17,8 +17,9 @@ import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
 import lapr.project.model.lists.*;
+import lapr.project.model.states.exposicao.ExposicaoCandidaturasDecididas;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
-import lapr.project.ui.ucs.CriarEstatisticaUI;
+import lapr.project.ui.ucs.AnaliseAvaliacaoFaeUI;
 import lapr.project.ui.ucs.DefinirFAEUI;
 import lapr.project.ui.ucs.*;
 import lapr.project.utils.Data;
@@ -216,23 +217,31 @@ public class TesteDiana {
         a1.setJustificacao("Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.");
         a1.setResposta(true);
         a1.setAvaliada();
+        a1.setMedia(3);
         c1.getListaAvaliacoes().add(a1);
         
         Avaliacao a2=new Avaliacao();
         a2.setJustificacao("Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes");
         a2.setResposta(true);
         a2.setAvaliada();
+        a2.setMedia(1);
         c1.getListaAvaliacoes().add(a2);
         
         Avaliacao a3=new Avaliacao();
         a3.setJustificacao(("Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites"));
         a3.setResposta(false);
+        a3.setMedia(3);
         a3.setAvaliada();
         
         c1.setDecisao(true);
         c2.setDecisao(false);
         c3.setDecisao(true);
         
+        c2.getListaAvaliacoes().add(a2);
+        c2.getListaAvaliacoes().add(a1);
+        
+        c3.getListaAvaliacoes().add(a1);
+        c3.getListaAvaliacoes().add(a3);
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);
         e.getListaCandidaturas().addCandidatura(c3);
@@ -263,14 +272,19 @@ public class TesteDiana {
         e.getListaCandidaturas().addCandidatura(c28);
         e.getListaCandidaturas().addCandidatura(c29);
         e.getListaCandidaturas().addCandidatura(c30);
-
+        e.alterarEstado(new ExposicaoCandidaturasDecididas());
         Exposicao e1 = ce.getRegistoExposicoes().novaExposicao();
 
         e1.setListaOrganizadores(lo);
         formarDatas();
-        e1.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
+        e1.setDadosPrincipais("teste1", "teste1", d1, d2, "teste", d3, d4);
         e1.setDadosData(d5, d6, d7, d8, d9, d10);
         e1.setCriada();
+        e1.getListaCandidaturas().registaCandidaturas(c9);
+        c9.getListaAvaliacoes().add(a1);
+        c9.getListaAvaliacoes().add(a3);
+        
+        c9.setDecisao(true);
         ce.getRegistoExposicoes().adicionarExposicao(e1);
 
         ListaDemonstracoes lista = e.getListaDemonstracoes();

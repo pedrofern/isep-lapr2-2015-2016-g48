@@ -168,10 +168,8 @@ public class Candidatura implements Serializable{
     
     public ListaCandidaturas getListaCandidaturas() {
         ListaCandidaturas lc = new ListaCandidaturas();
-        for (ListIterator<Candidatura> it = listaCandidaturas.getListaCandidaturas().listIterator(); it.hasNext();) {
-            lc.addCandidatura(it.next());
-        }
-        return lc;
+        
+        return listaCandidaturas;
     }
 
     public boolean addProduto(String nomeProduto) {

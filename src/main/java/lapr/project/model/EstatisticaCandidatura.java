@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.text.DecimalFormat;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -91,8 +92,10 @@ public class EstatisticaCandidatura {
     /**
      * @return the taxaAceitacao
      */
-    public double getTaxaAceitacao() {
-        return taxaAceitacao;
+    public String getTaxaAceitacao() {
+        DecimalFormat df= new DecimalFormat("###, ##0.00");
+  
+        return df.format(taxaAceitacao);
     }
 
     /**
@@ -105,8 +108,11 @@ public class EstatisticaCandidatura {
     /**
      * @return the valorMedioSubmissao
      */
-    public double getValorMedioSubmissao() {
-        return valorMedioSubmissao;
+    public String getValorMedioSubmissao() {
+        DecimalFormat df= new DecimalFormat("###, ##0.00");
+        
+        return df.format(valorMedioSubmissao);
+        
     }
 
     /**
@@ -120,7 +126,17 @@ public class EstatisticaCandidatura {
      * @return the listaCandidaturas
      */
     public ListaCandidaturas getListaCandidaturas() {
-        return listaCandidaturas;
+        ListaCandidaturas lc=new ListaCandidaturas();
+        for(Candidatura c: listaCandidaturas.getListaCandidaturas()){
+            for(Avaliacao a: c.getListaAvaliacoes().getListaAvaliacoes()){
+                if(a.getEstado()==true){
+                    if(!lc.contem(c)){
+                        lc.addCandidatura(c);
+                    }
+                }
+            }
+        }
+        return lc;
     }
 
     /**
@@ -133,14 +149,17 @@ public class EstatisticaCandidatura {
     public double calcularValorMedioSubmissao(){
         int numeroAvaliacoes=0;
         int sum=0;
+        
         for(Candidatura c:listaCandidaturas.getListaCandidaturas()){
-            numeroAvaliacoes=c.getListaAvaliacoes().getListaAvaliacoes().size();
+            
             for(Avaliacao a: c.getListaAvaliacoes().getListaAvaliacoes()){
                 sum+=a.getMedia();
+                numeroAvaliacoes++;
             }
         }
         valorMedioSubmissao=Calculator.average(sum, numeroAvaliacoes);
-        return valorMedioSubmissao;
+         return valorMedioSubmissao; 
+ 
     }
     
      public double calcularTaxaAceitacao(){

@@ -48,7 +48,6 @@ public class MecanismoCarga extends Mecanismo implements Serializable{
      
      
      public void setExposicao(Exposicao exposicao){
-         this.exposicao=exposicao;
          listaFaes=exposicao.getListaFAE();
          listaCandidaturas=exposicao.getListaCandidaturas();
          listaAtribuicoes=new ListaAtribuicoes();

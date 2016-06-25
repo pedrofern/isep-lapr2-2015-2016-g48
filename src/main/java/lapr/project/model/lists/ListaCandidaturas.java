@@ -41,7 +41,7 @@ public class ListaCandidaturas implements Serializable{
     }
 
     private boolean validaCandidatura(Candidatura c) {            
-        return c.valida();
+        return !listaCandidaturas.contains(c);
     }
 
     public boolean addCandidatura(Candidatura c) {

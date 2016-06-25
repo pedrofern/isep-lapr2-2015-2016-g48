@@ -43,7 +43,6 @@ public class MecanismoTempoServico extends Mecanismo implements Serializable{
     }
     
     public void setExposicao(Exposicao exposicao){
-        this.exposicao=exposicao;
         this.listaFaes=exposicao.getListaFAE();
         this.listaAtribuicoes=exposicao.getListaAtribuicoes();
         this.listaCandidaturas=exposicao.getListaCandidaturas();

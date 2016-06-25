@@ -14,10 +14,13 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import lapr.project.controller.AtribuirCandidaturaController;
+import lapr.project.controller.DecidirCandidaturaController;
+import lapr.project.controller.GerarEstatisticasCandidaturaController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
+import lapr.project.ui.ucs.AnaliseAvaliacaoFaeUI;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
-import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
 import lapr.project.ui.ucs.CriarDemonstracaoUI;
 import lapr.project.ui.ucs.DecidirCandidaturaUI;
 import lapr.project.ui.ucs.DefinirDemonstracaoUI;
@@ -32,8 +35,8 @@ public class PainelOrganizador extends JPanel {
  
     private static JPanel pPrincipal;
     private static JPanel pInfo;
-    private static Utilizador m_ut;
-    private CentroExposicoes m_ce;
+    private static Utilizador mUt;
+    private CentroExposicoes mCe;
 
     private static final int LINHAS=5, COLUNAS=2,HGAP=20, VGAP=20;
     private static final Dimension DIM_BOTOES=new Dimension(200,35);
@@ -42,8 +45,8 @@ public class PainelOrganizador extends JPanel {
     PainelOrganizador(CentroExposicoes ce, Utilizador ut) {
         super();
         
-        this.m_ce=ce;
-        this.m_ut=ut;
+        this.mCe=ce;
+        this.mUt=ut;
 
         setLayout(new BorderLayout());
  
@@ -95,6 +98,7 @@ public class PainelOrganizador extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
+                    DefinirFAEUI def=new DefinirFAEUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -118,6 +122,7 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    AtribuirCandidaturaUI ac=new AtribuirCandidaturaUI(mCe,mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                } 
@@ -140,15 +145,11 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-               
-                try {
-                    
-               
-                    // JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(PainelOrganizador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+               try{
+                    CriarDemonstracaoUI ui=new CriarDemonstracaoUI(mCe, mUt);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               } 
             }
             
         }
@@ -171,6 +172,7 @@ public class PainelOrganizador extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
+                    DecidirCandidaturaUI ui=new DecidirCandidaturaUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -192,7 +194,8 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{    
+                try{  
+                    
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -215,6 +218,7 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    DefinirDemonstracaoUI ui=new DefinirDemonstracaoUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -257,6 +261,7 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                  try{  
+                     GerarEstatisticasCandidaturaUI ui=new GerarEstatisticasCandidaturaUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -270,18 +275,20 @@ public class PainelOrganizador extends JPanel {
     }
 
     private JButton criarBotaoRemoverDemo() {
-        JButton bt=new JButton("Eliminar Demonstração");
+        JButton bt=new JButton("Gerar estatísticas FAE");
         bt.setMnemonic(KeyEvent.VK_E);
-        bt.setToolTipText("Remoção de uma demonstração");
+        bt.setToolTipText("Geração de estatísticas relativas às avaliações dos FAE");
         bt.setPreferredSize(DIM_BOTOES);
 
         bt.addActionListener(new ActionListener(){
            
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }     
+ try{  
+                    AnaliseAvaliacaoFaeUI ui=new AnaliseAvaliacaoFaeUI(mCe, mUt);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }}     
         }
             
         );

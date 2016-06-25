@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.text.DecimalFormat;
 import lapr.project.model.Calculator;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.EstatisticaCandidatura;
@@ -25,11 +26,6 @@ public class GerarEstatisticasCandidaturaController {
     private double valorMedioSubmissao=0;
     private double taxaAceitacao=0;
     
-    /**
-     * Cria nova instancia da classe
-     * @param centroExposicoes
-     * @param user 
-     */
     public GerarEstatisticasCandidaturaController(CentroExposicoes centroExposicoes, Utilizador user){
         this.user=user;
         ce=centroExposicoes;
@@ -37,77 +33,68 @@ public class GerarEstatisticasCandidaturaController {
         estatistica.setListaCandidaturas(new ListaCandidaturas());
         
     }
-    /**
-     * Devolve lista de exposicoes do organizador
-     * @return lista de exposicoes do organizador
-     */
+    
     public RegistoExposicoes getRegistoExposicoesOrganizador(){
-        return ce.getRegistoExposicoes().getExposicoesOrganizador(user);
+        RegistoExposicoes lecd = new RegistoExposicoes();
+        
+        for(Exposicao e: ce.getRegistoExposicoes().getExposicoesOrganizador(user).getExposicoes()){
+            for(Exposicao e1: ce.getRegistoExposicoes().getExposicoesCandidaturasDecididas().getExposicoes()){
+                if(e.equals(e1)){
+                    lecd.adicionarExposicao(e1);
+                }
+            }
+        }
+        
+        return lecd;
     }
-    /**
-     * Altera exposicao
-     * @param exposicao 
-     */
+    
     public void setExposicao(Exposicao exposicao){
         estatistica=exposicao.getEstatisticaCandidatura();
         estatistica.setListaCandidaturas(exposicao.getListaCandidaturas());
     }
-    /**
-     * Devolve lista de candidaturas
-     * @return lista de candidaturas
-     */
+    
     public ListaCandidaturas getListaCandidaturas(){
         return estatistica.getListaCandidaturas();
     }
-    /**
-     * Devolve o valor medio da submissao da exposicao
-     * @return o valor medio da submissao da exposicao
-     */
-    public double getValorMedioSubmissaoExposicao(){
+    
+    public String getValorMedioSubmissaoExposicao(){
+        estatistica.calcularValorMedioSubmissao();
         return estatistica.getValorMedioSubmissao();
     }
-    /**
-     * Devolve taxa de aceitacao exposicao
-     * @return taxa
-     */
-    public double getTaxaAceitacaoExposicao(){
+    
+    public String getTaxaAceitacaoExposicao(){
+        estatistica.calcularValorMedioSubmissao();
         return estatistica.getTaxaAceitacao();
     }
-    /**
-     * Devolve valor medio de submissao global
-     * @return valor medio
-     */
-    public double getValorMedioSubmissaoGlobal(){
-        return valorMedioSubmissao;
+    
+    public String getValorMedioSubmissaoGlobal(){
+        calcularValorMedioSubmissaoGlobal();
+        DecimalFormat df= new DecimalFormat("###, ##0.00");
+        
+        return df.format(valorMedioSubmissao);
     }
-    /**
-     * Devolve taxa de aceitacao global
-     * @return taxa
-     */
+    
     public double getTaxaAceitacaoGlobal(){
         return taxaAceitacao;
     }
-    /**
-     * Calcula valor medio de submissao global
-     * @return valor medio
-     */
+    
     public double calcularValorMedioSubmissaoGlobal(){
         int numeroExposicoes=0;
         double sum=0;
-        for(Exposicao e: ce.getRegistoExposicoes().getExposicoes()){
+        for(Exposicao e: ce.getRegistoExposicoes().getExposicoesCandidaturasDecididas().getExposicoes()){
             estatistica=e.getEstatisticaCandidatura();
             estatistica.setListaCandidaturas(e.getListaCandidaturas());
+            
             sum+=estatistica.calcularValorMedioSubmissao();
             numeroExposicoes++;
-            valorMedioSubmissao=Calculator.average(sum, numeroExposicoes);
+            
         }
+        
+        valorMedioSubmissao=Calculator.average(sum, numeroExposicoes);
         return valorMedioSubmissao;
     }
-    /**
-     * Calcula taxa de aceitacao global
-     * @return taxa 
-     */
-    public double calcularTaxaAceitacaoGlobal(){
+    
+    public String calcularTaxaAceitacaoGlobal(){
         int numeroExposicoes=0;
         double sum=0;
         for(Exposicao e: ce.getRegistoExposicoes().getExposicoes()){
@@ -115,8 +102,11 @@ public class GerarEstatisticasCandidaturaController {
             estatistica.setListaCandidaturas(e.getListaCandidaturas());
             sum+=estatistica.calcularTaxaAceitacao();
             numeroExposicoes++;
-            taxaAceitacao=Calculator.average(sum, numeroExposicoes);
+            
         }
-        return taxaAceitacao;
+        taxaAceitacao=Calculator.average(sum, numeroExposicoes);
+        DecimalFormat df= new DecimalFormat("###, ##0.00");
+        
+        return df.format(taxaAceitacao);
     }
 }

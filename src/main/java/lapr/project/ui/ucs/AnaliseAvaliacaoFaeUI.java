@@ -33,7 +33,7 @@ import lapr.project.utils.Utils;
  *
  * @author Edu
  */
-public class CriarEstatisticaUI extends JFrame {
+public class AnaliseAvaliacaoFaeUI extends JFrame {
 
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private Exposicao exposicao;
@@ -42,7 +42,7 @@ public class CriarEstatisticaUI extends JFrame {
     private static JComboBox comboBoxExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Valor observado da estatistica de teste").getPreferredSize();
 
-    public CriarEstatisticaUI(CentroExposicoes centro, Utilizador utilizador) throws FileNotFoundException {
+    public AnaliseAvaliacaoFaeUI(CentroExposicoes centro, Utilizador utilizador) throws FileNotFoundException {
 
         this.centro = centro;
         this.utilizador = utilizador;

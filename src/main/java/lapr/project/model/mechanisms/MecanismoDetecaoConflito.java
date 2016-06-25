@@ -14,7 +14,7 @@ public class MecanismoDetecaoConflito extends Mecanismo implements Serializable{
 
     
     public MecanismoDetecaoConflito(){
-        listaConflitos=new ArrayList<>();
+        
     }
     public boolean detetarConflito(){
        return true;
