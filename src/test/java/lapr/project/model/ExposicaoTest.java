@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.states.ExposicaoEstado;
@@ -68,8 +67,7 @@ public class ExposicaoTest {
         result.adicionarDemonstracao(d);
         assertEquals(expResult, result);
 
-    } 
- 
+    }
 
     @Test
     public void testGetTitulo() throws Exception {
@@ -197,9 +195,9 @@ public class ExposicaoTest {
     public void testGetDataAlteracaConflitos() throws Exception {
         System.out.println("getDataAlteracaConflitos");
         Exposicao instance = new Exposicao();
-        Exposicao exp=new Exposicao();
-        instance.setDataAlteracaoConflito(new Data(2016,02,02));
-       
+        Exposicao exp = new Exposicao();
+        instance.setDataAlteracaoConflito(new Data(2016, 02, 02));
+
         Data expResult = instance.getDataAlteracaConflitos();
         Data result = instance.getDataAlteracaConflitos();
         assertEquals(expResult, result);
@@ -266,7 +264,6 @@ public class ExposicaoTest {
 
     }
 
-
     /**
      * Test of alterarEstado method, of class Exposicao.
      */
@@ -274,17 +271,15 @@ public class ExposicaoTest {
     public void testAlterarEstado() throws Exception {
         System.out.println("alterarEstado");
         Exposicao instance = new Exposicao();
-        Exposicao exp=new Exposicao();
+        Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
         ExposicaoEstado estado = instance.getEstadoAtualExposicao();
         boolean expResult = true;
         boolean result = instance.alterarEstado(estado);
         assertEquals(expResult, result);
-        
+
     }
 
-
- 
     /**
      * Test of hasOrganizador method, of class Exposicao.
      */
@@ -297,10 +292,8 @@ public class ExposicaoTest {
         boolean expResult = false;
         boolean result = instance.hasOrganizador(u);
         assertEquals(expResult, result);
-  
-    }
 
-  
+    }
 
     /**
      * Test of hasFAE method, of class Exposicao.
@@ -314,7 +307,7 @@ public class ExposicaoTest {
         boolean expResult = false;
         boolean result = instance.hasFAE(u);
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -323,13 +316,13 @@ public class ExposicaoTest {
     @Test
     public void testValidaDefinirFAE() throws Exception {
         System.out.println("validaDefinirFAE");
-        FAE f = new FAE(new Utilizador("nome","email", "admin", "email"));
+        FAE f = new FAE(new Utilizador("nome", "email", "admin", "email"));
         Exposicao instance = new Exposicao();
         instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
         boolean expResult = true;
         boolean result = instance.validaDefinirFAE(f);
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -345,7 +338,7 @@ public class ExposicaoTest {
         int expResult = 0;
         int result = instance.compareTo(outraExposicao);
         assertEquals(expResult, result);
- 
+
     }
 
     /**
@@ -359,7 +352,7 @@ public class ExposicaoTest {
         boolean expResult = true;
         boolean result = instance.valida();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -373,7 +366,7 @@ public class ExposicaoTest {
         boolean expResult = true;
         boolean result = instance.validaTitulo();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -387,7 +380,7 @@ public class ExposicaoTest {
         boolean expResult = true;
         boolean result = instance.validaTextoDescritivo();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -397,11 +390,11 @@ public class ExposicaoTest {
     public void testValidaLocal() throws Exception {
         System.out.println("validaLocal");
         Exposicao instance = new Exposicao();
-       instance.setLocal("local");
+        instance.setLocal("local");
         boolean expResult = true;
         boolean result = instance.validaLocal();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -410,12 +403,12 @@ public class ExposicaoTest {
     @Test
     public void testValidaDatas1() throws Exception {
         System.out.println("validaDatas1");
-       
+
         Exposicao instance = new Exposicao();
         boolean expResult = true;
         boolean result = instance.validaDatas1(s1, s1, s1, s1, s1, s1);
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -439,24 +432,21 @@ public class ExposicaoTest {
     public void testValidaMinOrganizadores() throws Exception {
         System.out.println("validaMinOrganizadores");
         Exposicao instance = new Exposicao();
-         instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
-       Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
 
         Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", false, 10);
-         Organizador o = new Organizador(ut1);
+        Organizador o = new Organizador(ut1);
         Organizador o1 = new Organizador(ut2);
-        ListaOrganizadores lo=instance.getListaOrganizadores();
+        ListaOrganizadores lo = instance.getListaOrganizadores();
         lo.addOrganizador(o);
         lo.addOrganizador(o1);
-        
-         boolean expResult = true;
+
+        boolean expResult = true;
         boolean result = instance.validaMinOrganizadores();
         assertEquals(expResult, result);
 
     }
-
-
-
 
     /**
      * Test of toString method, of class Exposicao.
@@ -465,13 +455,13 @@ public class ExposicaoTest {
     public void testToString() throws Exception {
         System.out.println("toString");
         Exposicao instance = new Exposicao();
-         instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
-         Exposicao exp=new Exposicao();
-         exp.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
         String expResult = exp.toString();
         String result = instance.toString();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -480,14 +470,160 @@ public class ExposicaoTest {
     @Test
     public void testToStringCompleto() throws Exception {
         System.out.println("toStringCompleto");
-       Exposicao instance = new Exposicao();
-         instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
-         Exposicao exp=new Exposicao();
-         exp.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
         String expResult = exp.toStringCompleto();
         String result = instance.toStringCompleto();
         assertEquals(expResult, result);
- 
+
+    }
+
+    /**
+     * Test of getListaFAE method, of class Exposicao.
+     */
+    @Test
+    public void testGetListaFAE() throws Exception {
+        System.out.println("getListaFAE");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        ListaFAE result = instance.getListaFAE();
+        ListaFAE expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getListaOrganizadores method, of class Exposicao.
+     */
+    @Test
+    public void testGetListaOrganizadores() throws Exception {
+        System.out.println("getListaOrganizadores");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        ListaOrganizadores result = instance.getListaOrganizadores();
+        ListaOrganizadores expResult = result;
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getListaCandidaturas method, of class Exposicao.
+     */
+    @Test
+    public void testGetListaCandidaturas() throws Exception {
+        System.out.println("getListaCandidaturas");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        ListaCandidaturas result = instance.getListaCandidaturas();
+        ListaCandidaturas expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getListaAtribuicoes method, of class Exposicao.
+     */
+    @Test
+    public void testGetListaAtribuicoes() throws Exception {
+        System.out.println("getListaAtribuicoes");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        ListaAtribuicoes result = instance.getListaAtribuicoes();
+        ListaAtribuicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getEstatisticaFAE method, of class Exposicao.
+     */
+    @Test
+    public void testGetEstatisticaFAE() throws Exception {
+        System.out.println("getEstatisticaFAE");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        EstatisticaFAE result = instance.getEstatisticaFAE();
+        EstatisticaFAE expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getEstatisticaCandidatura method, of class Exposicao.
+     */
+    @Test
+    public void testGetEstatisticaCandidatura() throws Exception {
+        System.out.println("getEstatisticaCandidatura");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        EstatisticaCandidatura result = instance.getEstatisticaCandidatura();
+        EstatisticaCandidatura expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+
+    /**
+     * Test of getState method, of class Exposicao.
+     */
+    @Test
+    public void testGetState() throws Exception {
+        System.out.println("getState");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        ExposicaoEstado result = instance.getState();
+        ExposicaoEstado expResult = instance.getState();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getEstadoAtualExposicao method, of class Exposicao.
+     */
+    @Test
+    public void testGetEstadoAtualExposicao() throws Exception {
+        System.out.println("getEstadoAtualExposicao");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        ExposicaoEstado result = instance.getEstadoAtualExposicao();
+        ExposicaoEstado expResult = result;
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of validaDataFimSuperiorInicio method, of class Exposicao.
+     */
+    @Test
+    public void testValidaDataFimSuperiorInicio() throws Exception {
+        System.out.println("validaDataFimSuperiorInicio");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        instance.setDataInicio(new Data(2016, 02, 03));
+        instance.setDataFim(new Data(2016, 03, 05));
+        boolean expResult = true;
+        boolean result = instance.validaDataFimSuperiorInicio();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of validaSeguimentoDatas method, of class Exposicao.
+     */
+    @Test
+    public void testValidaSeguimentoDatas() throws Exception {
+        System.out.println("validaSeguimentoDatas");
+        Exposicao instance = new Exposicao();
+        instance.setDadosPrincipais("Titulo", "Descrição", d1, d1, s1, d1, d1);
+        instance.setDataInicio(new Data(2016, 12, 03));
+        instance.setDataFim(new Data(2016, 12, 05));
+        instance.setDataInicioStands(new Data(2016, 02, 03));
+        instance.setDataFimStands(new Data(2016, 02, 04));
+        instance.setDataInicioAtribuicao(new Data(2016, 02, 05));
+        instance.setDataFimAtribuicao(new Data(2016, 02, 06));
+        instance.setDataAlteracaoConflito(new Data(2016, 02, 07));
+        boolean expResult = true;
+        boolean result = instance.validaSeguimentoDatas();
+        assertEquals(expResult, result);
+
     }
 
 }
