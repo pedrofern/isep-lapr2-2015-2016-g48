@@ -25,6 +25,11 @@ public class GerarEstatisticasCandidaturaController {
     private double valorMedioSubmissao=0;
     private double taxaAceitacao=0;
     
+    /**
+     * Cria nova instancia da classe
+     * @param centroExposicoes
+     * @param user 
+     */
     public GerarEstatisticasCandidaturaController(CentroExposicoes centroExposicoes, Utilizador user){
         this.user=user;
         ce=centroExposicoes;
@@ -32,36 +37,60 @@ public class GerarEstatisticasCandidaturaController {
         estatistica.setListaCandidaturas(new ListaCandidaturas());
         
     }
-    
+    /**
+     * Devolve lista de exposicoes do organizador
+     * @return lista de exposicoes do organizador
+     */
     public RegistoExposicoes getRegistoExposicoesOrganizador(){
         return ce.getRegistoExposicoes().getExposicoesOrganizador(user);
     }
-    
+    /**
+     * Altera exposicao
+     * @param exposicao 
+     */
     public void setExposicao(Exposicao exposicao){
         estatistica=exposicao.getEstatisticaCandidatura();
         estatistica.setListaCandidaturas(exposicao.getListaCandidaturas());
     }
-    
+    /**
+     * Devolve lista de candidaturas
+     * @return lista de candidaturas
+     */
     public ListaCandidaturas getListaCandidaturas(){
         return estatistica.getListaCandidaturas();
     }
-    
+    /**
+     * Devolve o valor medio da submissao da exposicao
+     * @return o valor medio da submissao da exposicao
+     */
     public double getValorMedioSubmissaoExposicao(){
         return estatistica.getValorMedioSubmissao();
     }
-    
+    /**
+     * Devolve taxa de aceitacao exposicao
+     * @return taxa
+     */
     public double getTaxaAceitacaoExposicao(){
         return estatistica.getTaxaAceitacao();
     }
-    
+    /**
+     * Devolve valor medio de submissao global
+     * @return valor medio
+     */
     public double getValorMedioSubmissaoGlobal(){
         return valorMedioSubmissao;
     }
-    
+    /**
+     * Devolve taxa de aceitacao global
+     * @return taxa
+     */
     public double getTaxaAceitacaoGlobal(){
         return taxaAceitacao;
     }
-    
+    /**
+     * Calcula valor medio de submissao global
+     * @return valor medio
+     */
     public double calcularValorMedioSubmissaoGlobal(){
         int numeroExposicoes=0;
         double sum=0;
@@ -74,7 +103,10 @@ public class GerarEstatisticasCandidaturaController {
         }
         return valorMedioSubmissao;
     }
-    
+    /**
+     * Calcula taxa de aceitacao global
+     * @return taxa 
+     */
     public double calcularTaxaAceitacaoGlobal(){
         int numeroExposicoes=0;
         double sum=0;

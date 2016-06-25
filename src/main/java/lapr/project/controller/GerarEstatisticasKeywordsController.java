@@ -23,24 +23,40 @@ public class GerarEstatisticasKeywordsController {
     private ListaKeywords rankingAceites, rankingRecusadas;
     private ListaCandidaturas listaCandidaturas;
     
+    /**
+     * Cria nova instancia da classe
+     * @param ce 
+     */
     public GerarEstatisticasKeywordsController(CentroExposicoes ce){
         this.ce=ce;
     }
-    
+    /**
+     * Verifica se novos rankings foram aceites
+     * @return true se sim, false se nao
+     */
     public boolean novoRankingAceites(){
         rankingAceites= new ListaKeywords();
         return rankingAceites.getListaKeyword().isEmpty();
     }
-    
+    /**
+     * verifica se novos rankings foram recusados
+     * @return true se sim, false se nao
+     */
     public boolean novoRankingRecusadas(){
         rankingRecusadas= new ListaKeywords();
         return rankingRecusadas.getListaKeyword().isEmpty();
     }
-    
+    /**
+     * Devolve lista de exposicoes decididas
+     * @return lista de exposicoes decididas
+     */
     public RegistoExposicoes getExposicoesDecididas(){
         return ce.getRegistoExposicoes().getExposicoesCandidaturasDecididas();
     }
-    
+    /**
+     * Altera exposicao
+     * @param exposicao 
+     */
     public void setExposicao(Exposicao exposicao){
         listaCandidaturas=exposicao.getListaCandidaturas();
     }
