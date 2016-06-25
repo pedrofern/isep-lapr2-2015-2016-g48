@@ -587,6 +587,7 @@ public class CriarExposicaoUI extends JFrame {
         btn.addActionListener((ActionEvent ae) -> {
             txtDescricao.setText(null);
             txtTitulo.setText(null);
+            txtLocal.setText(null);
             campoDataInicial.setText(null);
             campoDataFinal.setText(null);
             campoDataAlterarConflito.setText(null);

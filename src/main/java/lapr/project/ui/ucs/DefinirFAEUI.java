@@ -28,7 +28,7 @@ public class DefinirFAEUI extends JFrame {
     private DefinirFAEController controller;
     private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
-    private static JComboBox comboBoxExposicao;
+    private JComboBox comboBoxExposicao;
     private DefaultListModel modeloListaFAE, modeloListaUtilizadores;
     private Exposicao exposicaoselecionda;
 
@@ -41,7 +41,6 @@ public class DefinirFAEUI extends JFrame {
         ce = centroExposicoes;
         user = utilizador;
         controller = new DefinirFAEController(ce, user);
-        // controller.getRegistoUTilizadores();
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,12 +124,11 @@ public class DefinirFAEUI extends JFrame {
     }
 
     private JPanel criarPainelListas() {
-        final int NUMERO_LINHAS = 1, NUMERO_COLUNAS = 2;
-        final int INTERVALO_HORIZONTAL = 20, INTERVALO_VERTICAL = 0;
-        JPanel p = new JPanel(new GridLayout(NUMERO_LINHAS,
-                NUMERO_COLUNAS,
-                INTERVALO_HORIZONTAL,
-                INTERVALO_VERTICAL));
+        
+        JPanel p = new JPanel(new GridLayout(1,
+                2,
+                20,
+                0));
 
         lstCompletaUtilizadores = new JList();
         modeloListaUtilizadores = new DefaultListModel();
@@ -138,8 +136,7 @@ public class DefinirFAEUI extends JFrame {
 
         btnAdicionarUtilizador = criarBotaoAdicionarUtilizador();
         p.add(criarPainelLista("Lista de Utilizadores",
-                lstCompletaUtilizadores,
-                modeloListaUtilizadores));
+                lstCompletaUtilizadores));
 
         lstUtilizadoresFAE = new JList();
         modeloListaFAE = new DefaultListModel();
@@ -148,15 +145,13 @@ public class DefinirFAEUI extends JFrame {
 
         p.add(criarPainelListaFAE("Lista de FAE:",
                 lstUtilizadoresFAE,
-                modeloListaFAE,
                 btnAdicionarUtilizador, btnEliminarFAE));
         return p;
     }
 
     private JPanel criarPainelLista(
             String tituloLista,
-            JList lstLista,
-            DefaultListModel modelolista) {
+            JList lstLista ) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
 
         lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -175,7 +170,6 @@ public class DefinirFAEUI extends JFrame {
     private JPanel criarPainelListaFAE(
             String tituloLista,
             JList lstLista,
-            DefaultListModel modeloLista,
             JButton btnSuperior,
             JButton btnInferior) {
         JLabel lblTitulo = new JLabel(tituloLista, JLabel.LEFT);
@@ -209,7 +203,7 @@ public class DefinirFAEUI extends JFrame {
 
     private JButton criarBotaoEliminarFAE(JList lstLista) {
         JButton btn = new JButton("Eliminar FAE");
-        Object[] lista = lstUtilizadoresFAE.getSelectedValues();
+       
         btn.addActionListener((ActionEvent e) -> {
 
             if (lstUtilizadoresFAE.getSelectedIndex() == -1) {
