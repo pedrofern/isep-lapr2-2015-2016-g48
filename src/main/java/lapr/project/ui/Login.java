@@ -26,6 +26,7 @@ import lapr.project.utils.ExportXMLFile;
 public class Login extends JFrame {
     
     private CentroExposicoes ce;
+    private Exposicao expo;
     private static final int WIDTH=300, HEIGHT=250;
     private static final int MARGEM_SUPERIOR = 0, MARGEM_INFERIOR = 0, MARGEM_ESQUERDA = 10, MARGEM_DIREITA = 10;
 
@@ -258,16 +259,28 @@ public class Login extends JFrame {
        
                  for(Utilizador u: ce.getRegistoUtilizadores().getListaUtilizadores()){
      
-                     if(username.getText().equalsIgnoreCase(u.getUsername())){
+                     if(username.getText()=="" || password.getText()==""){
+                         JOptionPane.showMessageDialog(null, "Tem de preencher todos os campos\n.");
+                     }else if(username.getText().equalsIgnoreCase(u.getUsername()) && password.equals(u.getPassword())){
             
                         if(u.getRegistado()!= false){
+                            
+                            for(Organizador o: expo.getListaOrganizadores().getListaOrganizadores()){
+                                if(username.getText().equals(u.getUsername())){
+                                    new Janela(ce,fichCentroExposicoes,u);
+                                }
+                            }
                         JOptionPane.showMessageDialog(null, "Utilizador válido. Bem vindo!");
-                        Janela j=new Janela (ce,fichCentroExposicoes, u);
+                        new Janela (ce,fichCentroExposicoes,u);
+                       
+                        
+                        
                     }else{
                         JOptionPane.showMessageDialog(null, "Utilizador não registado no sistema. Por favor registe-se.");
                         RegistarUtilizadorUI r=new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
                     }
                 }
+                 
                   }
                
                 dispose();
