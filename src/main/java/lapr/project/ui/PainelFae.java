@@ -90,7 +90,6 @@ public class PainelFae extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
-                  AvaliarCandidaturaUI a= new AvaliarCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -113,7 +112,6 @@ public class PainelFae extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                  AtualizarConflitosUI a= new AtualizarConflitosUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }

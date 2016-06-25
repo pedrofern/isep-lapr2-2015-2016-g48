@@ -95,7 +95,6 @@ public class PainelOrganizador extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                  DefinirFAEUI a= new DefinirFAEUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -119,7 +118,6 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                  AtribuirCandidaturaUI a= new AtribuirCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                } 
@@ -145,7 +143,6 @@ public class PainelOrganizador extends JPanel {
                
                 try {
                     
-                  CriarDemonstracaoUI a= new CriarDemonstracaoUI(m_ce, m_ut);
                
                     // JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                 } catch (FileNotFoundException ex) {
@@ -174,7 +171,6 @@ public class PainelOrganizador extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                  DecidirCandidaturaUI a= new DecidirCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -197,7 +193,6 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{    
-                  AtribuirStandCandidaturaUI a= new AtribuirStandCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -220,7 +215,6 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                  DefinirDemonstracaoUI a= new DefinirDemonstracaoUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -262,8 +256,7 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
-                 try{
-                     GerarEstatisticasCandidaturaUI a= new GerarEstatisticasCandidaturaUI(m_ce, m_ut);
+                 try{  
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }

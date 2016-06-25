@@ -20,8 +20,7 @@ import lapr.project.model.states.candidaturasExpo.CandidaturaEmAvaliacao;
 @XmlRootElement
 public class MecanismoCarga extends Mecanismo implements Serializable{
 
-    private static final String TIPO_MECANISMO= "Carga Equitativa" ;
-    private Exposicao exposicao;
+    private static final String TIPO_MECANISMO= "Carga Equitativa" ; 
     private ListaFAE listaFaes;
     private ListaCandidaturas listaCandidaturas;
     private ListaAtribuicoes listaAtribuicoes;

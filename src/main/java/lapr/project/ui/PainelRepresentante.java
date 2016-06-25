@@ -97,7 +97,6 @@ public class PainelRepresentante extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
                try{
-                  RegistarCandidaturaUI a= new RegistarCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelRepresentante.this, 
                            "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);

@@ -45,31 +45,18 @@ public class ListaQuestoes implements Serializable{
             respostas.add(resp);
         }
         
-//        int resp1=resposta.get(0);
-//        int resp2=resposta.get(1);
-//        int resp3=resposta.get(2);
-//        int resp4=resposta.get(3);
-//        int resp5=resposta.get(4);
-//        
-//        int soma=Calculator.sum(resp1, resp2, resp3, resp4, resp5);
+
         int soma= Calculator.sum(respostas);
         int count=Calculator.countQuestions(m_listaQuestoes);
-        int countRespostas=Calculator.countRespostas(respostas);
-        
-//        if(verifica(count, countRespostas)){
+       
             media=Calculator.average(soma, count);
             return media;
-//        }
+
    
     }
     
     public double getMedia(){
         return media;
-    }
-    
-    private boolean verifica(int v1, int v2){
-       return v1==v2;
-    }
-    
+    }    
   
 }

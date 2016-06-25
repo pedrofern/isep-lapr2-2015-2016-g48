@@ -51,29 +51,4 @@ public class RegistoTipoConflitos implements Serializable{
         return listaTipoConflitos;
     }
 
-//    /**
-//     * Verifica se o registo de tipos de conflito é igual a um objeto passado
-//     * por parâmetro.
-//     *
-//     * @param o O objeto que vai ser comparado
-//     * @return True se forem iguais, false se não forem.
-//     */
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        if (this.getClass() != o.getClass()) {
-//            return false;
-//        }
-//        RegistoTipoConflitos reg = (RegistoTipoConflitos) o;
-//        return listaTipoConflitos.equals(reg.getListaConflitos());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 3;
-//        hash = 47 * hash + Objects.hashCode(this.listaTipoConflitos);
-//        return hash;
-//    }
 }

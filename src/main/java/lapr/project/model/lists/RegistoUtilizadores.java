@@ -94,7 +94,6 @@ public class RegistoUtilizadores implements Serializable{
  */
     public boolean alteraUtilizador(Utilizador uOriginal, Utilizador uClone) {
         if (uClone.valida()) {
-//            List<Utilizador> lstUtilizadores = new ArrayList<Utilizador>(m_listaUtilizadores);
 //            lstUtilizadores.remove(uOriginal);
 //            lstUtilizadores.add(uClone);
             if (validaLista(m_listaUtilizadores)) {

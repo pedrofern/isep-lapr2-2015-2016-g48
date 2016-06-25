@@ -52,7 +52,6 @@ public class MecanismoRanking extends Mecanismo implements Serializable{
     }
     
     public void sortFaeRanking(){
-//        Collections.sort(listaFaes.getListaFAE());
     }
  
      
@@ -65,13 +64,6 @@ public class MecanismoRanking extends Mecanismo implements Serializable{
         
         int n_cand=listaCandidaturas.getListaCandidaturas().size();
         int n_fae=listaFaes.getListaFAE().size();
-        
-        int n_fae_cand=n_fae/n_cand;
-        
-        double n_20_por_cento_fae=n_fae*0.2;
-        double n_30_por_cento=n_fae*0.3;
-        double n_50_por_cento=n_fae*0.5;
-       
         
         listaAtribuicoesNovas=new ListaAtribuicoes();
         

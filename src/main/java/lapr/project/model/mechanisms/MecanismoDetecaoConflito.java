@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class MecanismoDetecaoConflito extends Mecanismo implements Serializable{
 
-    private List<Conflito> listaConflitos;
     
     public MecanismoDetecaoConflito(){
         listaConflitos=new ArrayList<>();

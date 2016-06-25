@@ -15,9 +15,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import lapr.project.model.lists.ListaAtribuicoes;
-import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.ListaFAE;
+
 
 
 /**
@@ -281,14 +279,6 @@ public class Exposicao implements Comparable<Exposicao>, Serializable {
         return hash;
     }
 
-//    /**
-//     * Modifica a lista de submissoes.
-//     *
-//     * @param listaSubmissoes the listaSubmissoes to set
-//     */
-//    public void setListaSubmissoes(ListaSubmissoes listaSubmissoes) {
-//        this.listaSubmissoes = listaSubmissoes;
-//    }
     public void setListaOrganizadores(ListaOrganizadores lstOrganizadores) {
         listaOrganizadores = lstOrganizadores;
     }

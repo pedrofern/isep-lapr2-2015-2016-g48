@@ -26,7 +26,6 @@ import lapr.project.model.states.candidaturasExpo.CandidaturaEmAvaliacao;
 public class MecanismoTempoServico extends Mecanismo implements Serializable{
     
     private static final String TIPO= "Tempo de Serviço" ;
-    private Exposicao exposicao;
     private ListaFAE listaFaes;
     private ListaCandidaturas listaCandidaturas;
     private ListaAtribuicoes listaAtribuicoes;
@@ -70,10 +69,7 @@ public class MecanismoTempoServico extends Mecanismo implements Serializable{
         
         
         int nCand=listaCandidaturas.getListaCandidaturas().size();
-        int nFae=listaFaes.getListaFAE().size();
   
-        double n20porCentoCand=nCand*0.2;
-        double n30porCentoCand=nCand*0.3;
         double n50porCentoCand=nCand*0.5;
 
         listaAtribuicoesNovas=new ListaAtribuicoes();

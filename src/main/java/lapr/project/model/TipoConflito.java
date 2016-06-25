@@ -16,7 +16,7 @@ import lapr.project.model.mechanisms.MecanismoDetecaoConflito;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TipoConflito implements Serializable{
-    private List<MecanismoDetecaoConflito> listaMecConflito;
+  
      
     public TipoConflito(){
          listaMecConflito=new ArrayList<>();

@@ -54,8 +54,7 @@ public class PainelInicio extends JPanel {
         
     
         pAcerca.add(pInfo1);
-        pAcerca.add(pInfo2);
-//        pAcerca.add(pInfo2); 
+        pAcerca.add(pInfo2); 
         
         p.add(pAcerca);
         return p;
