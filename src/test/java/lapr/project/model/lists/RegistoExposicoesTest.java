@@ -28,6 +28,7 @@ public class RegistoExposicoesTest {
     private static final String s1 = "19/11/2017", s2 = "20/11/2017", s3 = "11/11/2017", s4 = "12/11/2017", s5 = "15/11/2017",
             s6 = "16/11/2017", s7 = "13/11/2017", s8 = "17/11/2017", s9 = "18/11/2017", s10 = "14/11/2017";
     private static Data d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
+    Utilizador user = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
 
     public RegistoExposicoesTest() {
     }
@@ -186,7 +187,6 @@ public class RegistoExposicoesTest {
 
     }
 
-   
     /**
      * Test of hasExposicao method, of class RegistoExposicoes.
      */
@@ -256,6 +256,234 @@ public class RegistoExposicoesTest {
         boolean result = instance.valida(exp);
         assertEquals(expResult, result);
 
+    }
+
+    /**
+     * Test of getExposicoesDoFAE method, of class RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesDoFAE() throws Exception {
+        System.out.println("getExposicoesDoFAE");
+
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesDoFAE(user);
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesOrganizador method, of class RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesOrganizador() throws Exception {
+        System.out.println("getExposicoesOrganizador");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesOrganizador(user);
+        RegistoExposicoes expResult = result;
+
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesEstadoCriada method, of class RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesEstadoCriada() throws Exception {
+        System.out.println("getExposicoesEstadoCriada");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesEstadoCriada();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesFAESemDemonstracao method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesFAESemDemonstracao() throws Exception {
+        System.out.println("getExposicoesFAESemDemonstracao");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesFAESemDemonstracao();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesDemonstracaoSemFae method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesDemonstracaoSemFae() throws Exception {
+        System.out.println("getExposicoesDemonstracaoSemFae");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaDemonstracoes lista = exp.getListaDemonstracoes();
+        Demonstracao demo = new Demonstracao();
+        demo.setDados("Teste", "Teste");
+        lista.adicionarDemonstracao(demo);
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesDemonstracaoSemFae();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesCandidaturasAbertas method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesCandidaturasAbertas() throws Exception {
+        System.out.println("getExposicoesCandidaturasAbertas");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesCandidaturasAbertas();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesConflitosDetetados method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesConflitosDetetados() throws Exception {
+        System.out.println("getExposicoesConflitosDetetados");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesConflitosDetetados();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesConflitosAlterados method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesConflitosAlterados() throws Exception {
+        System.out.println("getExposicoesConflitosAlterados");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesConflitosAlterados();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesCandidaturasEmAtribuicao method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesCandidaturasEmAtribuicao() throws Exception {
+        System.out.println("getExposicoesCandidaturasEmAtribuicao");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesCandidaturasEmAtribuicao();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesCandidaturasEmAvaliacao method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesCandidaturasEmAvaliacao() throws Exception {
+        System.out.println("getExposicoesCandidaturasEmAvaliacao");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesCandidaturasEmAvaliacao();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesCandidaturasDecididas method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesCandidaturasDecididas() throws Exception {
+        System.out.println("getExposicoesCandidaturasDecididas");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesCandidaturasDecididas();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getExposicoesStandsAtribuiveis method, of class
+     * RegistoExposicoes.
+     */
+    @Test
+    public void testGetExposicoesStandsAtribuiveis() throws Exception {
+        System.out.println("getExposicoesStandsAtribuiveis");
+        RegistoExposicoes instance = new RegistoExposicoes();
+        Exposicao exp = new Exposicao();
+        exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
+        ListaFAE lista = exp.getListaFAE();
+        lista.addFAE(new FAE(user));
+        instance.adicionarExposicao(exp);
+        RegistoExposicoes result = instance.getExposicoesStandsAtribuiveis();
+        RegistoExposicoes expResult = result;
+        assertEquals(expResult, result);
     }
 
 }

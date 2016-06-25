@@ -140,8 +140,18 @@ public class DefinirDemonstracaoUI extends JFrame {
         modeloListaDemonstracao = new DefaultListModel();
         listaCompletaDemonstracao.setModel(modeloListaDemonstracao);
 
-         for (int i = 0; i <controller.getListaDemonstracoesCriadas().getListaDemonstracoes().size(); i++) {
-        modeloListaDemonstracao.addElement(controller.getListaDemonstracoesCriadas().getListaDemonstracoes().get(i));
+//        for (int i = 0; i < controller.getListaDemonstracoesCriadas().getListaDemonstracoes().size(); i++) {
+//            modeloListaDemonstracao.addElement(controller.getListaDemonstracoesCriadas());
+//        }
+        for (Demonstracao d : controller.getListaDemonstracoesCriadas().getListaDemonstracoes()) {
+
+            System.out.println(d.toString());
+        }
+        for (Exposicao e : controller.getRegistoExposicoes().getExposicoes()) {
+            for (Demonstracao d : controller.getListaDemonstracoesCriadas().getListaDemonstracoes()) {
+
+                System.out.println(d.toString());
+            }
         }
 
         p.add(criarPainelListaDemonstracao("Lista Demonstração", listaCompletaDemonstracao));
@@ -256,20 +266,17 @@ public class DefinirDemonstracaoUI extends JFrame {
 
                         JOptionPane.showMessageDialog(null, "A data fim tem de ser superior à data de início correspondente.", "Criar Exposição", JOptionPane.ERROR_MESSAGE);
 
+                    } else if (controller.atualizaDemonstracao()) {
+
+                        JOptionPane.showMessageDialog(
+                                null,
+                                controller.getListaDemonstracoesCriadas().toStringCompleto(),
+                                "Definir Demonstração",
+                                JOptionPane.INFORMATION_MESSAGE);
+
+                        dispose();
                     } else {
-                        if (controller.atualizaDemonstracao()) {
-
-                            JOptionPane.showMessageDialog(
-                                    null,
-                                    controller.getListaDemonstracoesCriadas().toStringCompleto(),
-                                    "Definir Demonstração",
-                                    JOptionPane.INFORMATION_MESSAGE);
-
-                            dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "A demonstrações já se encontra registada no sistema", "Definir Demonstração", JOptionPane.ERROR_MESSAGE);
-
-                        }
+                        JOptionPane.showMessageDialog(null, "A demonstrações já se encontra registada no sistema", "Definir Demonstração", JOptionPane.ERROR_MESSAGE);
 
                     }
 

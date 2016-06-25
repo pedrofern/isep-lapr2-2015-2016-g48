@@ -8,13 +8,14 @@ package lapr.project.ui;
 import java.io.FileNotFoundException;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Exposicao;
 import lapr.project.model.FAE;
 import lapr.project.model.Organizador;
 import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
-import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.lists.*;
 import lapr.project.model.states.CandidaturaEmAtribuicaoFAE;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
 import lapr.project.ui.ucs.CriarEstatisticaUI;
@@ -34,14 +35,13 @@ public class TesteDiana {
             s6 = "16/11/2017", s7 = "13/11/2017", s8 = "17/11/2017", s9 = "18/11/2017", s10 = "14/11/2017";
     private static Data d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
     private static FichCentroExposicoes ficheiro;
-    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, Exception {
         // TODO code application logic here
-         // TODO code application logic here
+        // TODO code application logic here
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador user = new Utilizador();
         Utilizador ut1 = new Utilizador("Nuno Bettencourt", "nmb@isep.ipp.pt", "Admin", true, 15);
@@ -56,7 +56,6 @@ public class TesteDiana {
         Utilizador ut9 = new Utilizador("User3", "1151094@isep.ipp.pt", "Organizador+Fae", true, 2);
         Utilizador ut10 = new Utilizador("User4", "1060503@isep.ipp.pt", "Fae", true, 4);
 
-        
         RegistoUtilizadores lu = ce.getRegistoUtilizadores();
         lu.addUtilizador(ut1);
         lu.addUtilizador(ut2);
@@ -74,23 +73,23 @@ public class TesteDiana {
         Organizador o1 = new Organizador(ut2);
         ListaOrganizadores lo = new ListaOrganizadores();
         Exposicao e = ce.getRegistoExposicoes().novaExposicao();
-            lo.addOrganizador(o);
-            lo.addOrganizador(o1);
+        lo.addOrganizador(o);
+        lo.addOrganizador(o1);
         e.setListaOrganizadores(lo);
-        
-        FAE f1=new FAE();
-        FAE f2=new FAE();
-        FAE f3=new FAE();
-        FAE f4=new FAE();
-        FAE f5=new FAE();
-        FAE f6=new FAE();
-        FAE f7=new FAE();
-        FAE f8=new FAE();
-        FAE f9=new FAE();
-        FAE f10=new FAE();
+
+        FAE f1 = new FAE();
+        FAE f2 = new FAE();
+        FAE f3 = new FAE();
+        FAE f4 = new FAE();
+        FAE f5 = new FAE();
+        FAE f6 = new FAE();
+        FAE f7 = new FAE();
+        FAE f8 = new FAE();
+        FAE f9 = new FAE();
+        FAE f10 = new FAE();
 
         f1.setUtilizador(ut1);
-        f2.setUtilizador(ut2); 
+        f2.setUtilizador(ut2);
         f3.setUtilizador(ut3);
         f4.setUtilizador(ut4);
         f5.setUtilizador(ut5);
@@ -99,8 +98,8 @@ public class TesteDiana {
         f8.setUtilizador(ut8);
         f9.setUtilizador(ut9);
         f10.setUtilizador(ut10);
-        
-        ListaFAE lf=new ListaFAE();
+
+        ListaFAE lf = new ListaFAE();
 
         lf.addFAE(f1);
         lf.addFAE(f2);
@@ -112,53 +111,53 @@ public class TesteDiana {
         lf.addFAE(f8);
         lf.addFAE(f9);
         lf.addFAE(f10);
-        
+
         formarDatas();
-        
+
         e.setListaFaes(lf);
         e.setDadosPrincipais("teste", "teste", d1, d2, "teste", d3, d4);
         e.setDadosData(d5, d6, d7, d8, d9, d10);
         e.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e);
-        Candidatura c1=new Candidatura();
+        Candidatura c1 = new Candidatura();
         c1.setNomeEmpresa("Candidatura1");
-        Candidatura c2=new Candidatura();
+        Candidatura c2 = new Candidatura();
         c2.setNomeEmpresa("Candidatura2");
-        Candidatura c3=new Candidatura();
+        Candidatura c3 = new Candidatura();
         c3.setNomeEmpresa("Candidatura3");
-        Candidatura c4=new Candidatura();
+        Candidatura c4 = new Candidatura();
         c4.setNomeEmpresa("Candidatura4");
-        Candidatura c5=new Candidatura();
+        Candidatura c5 = new Candidatura();
         c5.setNomeEmpresa("Candidatura5");
-        Candidatura c6=new Candidatura();
+        Candidatura c6 = new Candidatura();
         c6.setNomeEmpresa("Candidatura6");
-        Candidatura c7=new Candidatura();
+        Candidatura c7 = new Candidatura();
         c7.setNomeEmpresa("Candidatura7");
-        Candidatura c8=new Candidatura();
+        Candidatura c8 = new Candidatura();
         c8.setNomeEmpresa("Candidatura8");
-        Candidatura c9=new Candidatura();
+        Candidatura c9 = new Candidatura();
         c9.setNomeEmpresa("Candidatura9");
-        Candidatura c10=new Candidatura();
+        Candidatura c10 = new Candidatura();
         c10.setNomeEmpresa("Candidatura10");
-        Candidatura c11=new Candidatura();
+        Candidatura c11 = new Candidatura();
         c11.setNomeEmpresa("Candidatura11");
-        Candidatura c12=new Candidatura();
+        Candidatura c12 = new Candidatura();
         c12.setNomeEmpresa("Candidatura12");
-        Candidatura c13=new Candidatura();
+        Candidatura c13 = new Candidatura();
         c13.setNomeEmpresa("Candidatura13");
-        Candidatura c14=new Candidatura();
+        Candidatura c14 = new Candidatura();
         c14.setNomeEmpresa("Candidatura14");
-        Candidatura c15=new Candidatura();
+        Candidatura c15 = new Candidatura();
         c15.setNomeEmpresa("Candidatura15");
-        Candidatura c16=new Candidatura();
+        Candidatura c16 = new Candidatura();
         c16.setNomeEmpresa("Candidatura16");
-        Candidatura c17=new Candidatura();
+        Candidatura c17 = new Candidatura();
         c17.setNomeEmpresa("Candidatura17");
-        Candidatura c18=new Candidatura();
+        Candidatura c18 = new Candidatura();
         c18.setNomeEmpresa("Candidatura18");
-        Candidatura c19=new Candidatura();
+        Candidatura c19 = new Candidatura();
         c19.setNomeEmpresa("Candidatura19");
-        Candidatura c20=new Candidatura();
+        Candidatura c20 = new Candidatura();
         c20.setNomeEmpresa("Candidatura20");
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);
@@ -184,7 +183,7 @@ public class TesteDiana {
         c18.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c18));
         c19.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c19));
         c20.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c20));
-        
+
         e.getListaCandidaturas().addCandidatura(c1);
         e.getListaCandidaturas().addCandidatura(c2);
         e.getListaCandidaturas().addCandidatura(c3);
@@ -192,12 +191,12 @@ public class TesteDiana {
         e.getListaCandidaturas().addCandidatura(c5);
         e.getListaCandidaturas().addCandidatura(c6);
         e.getListaCandidaturas().addCandidatura(c7);
-        e.getListaCandidaturas().addCandidatura(c8);   
+        e.getListaCandidaturas().addCandidatura(c8);
         e.getListaCandidaturas().addCandidatura(c9);
         e.getListaCandidaturas().addCandidatura(c10);
         e.getListaCandidaturas().addCandidatura(c11);
         e.getListaCandidaturas().addCandidatura(c12);
-        e.getListaCandidaturas().addCandidatura(c13);   
+        e.getListaCandidaturas().addCandidatura(c13);
         e.getListaCandidaturas().addCandidatura(c14);
         e.getListaCandidaturas().addCandidatura(c15);
         e.getListaCandidaturas().addCandidatura(c16);
@@ -205,7 +204,7 @@ public class TesteDiana {
         e.getListaCandidaturas().addCandidatura(c18);
         e.getListaCandidaturas().addCandidatura(c19);
         e.getListaCandidaturas().addCandidatura(c20);
-        
+
         Exposicao e1 = ce.getRegistoExposicoes().novaExposicao();
 
         e1.setListaOrganizadores(lo);
@@ -214,14 +213,19 @@ public class TesteDiana {
         e1.setDadosData(d5, d6, d7, d8, d9, d10);
         e1.setCriada();
         ce.getRegistoExposicoes().adicionarExposicao(e1);
-        
-        
+
+        ListaDemonstracoes lista = e.getListaDemonstracoes();
+        Demonstracao demo=new Demonstracao();
+        demo.setDados("Teste", "teste");
+        lista.adicionarDemonstracao(demo);
+
         //new DefinirFAEUI(ce, user);
         //new GerarEstatisticasCandidaturaUI(ce);
         //new DefinirRecursoUI(ce);
-        new Login(ce,ficheiro);
-        new Janela(ce,ficheiro,user);
-        //AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
+//        new Login(ce, ficheiro);
+//        new Janela(ce, ficheiro, user);
+       // AtribuirCandidaturaUI a=new AtribuirCandidaturaUI(ce,ut1);
+       DefinirDemonstracaoUI d=new DefinirDemonstracaoUI(ce, user);
     }
 
     private static void formarDatas() {
@@ -236,7 +240,5 @@ public class TesteDiana {
         d9 = Utils.converterStringParaData(s9);
         d10 = Utils.converterStringParaData(s10);
     }
-    
-    
 
 }
