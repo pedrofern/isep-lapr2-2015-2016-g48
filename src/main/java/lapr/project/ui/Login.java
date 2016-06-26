@@ -247,6 +247,6 @@ public class Login extends JFrame {
     
     private void terminar() {
         this.fichCentroExposicoes.guardarFichBinario(this.ce);
-        System.exit(0);
+        dispose();
     }
 }

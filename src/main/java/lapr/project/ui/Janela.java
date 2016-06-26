@@ -22,7 +22,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.filechooser.FileFilter;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;

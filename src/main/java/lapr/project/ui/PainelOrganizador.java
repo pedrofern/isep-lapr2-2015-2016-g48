@@ -33,8 +33,8 @@ import lapr.project.ui.ucs.GerarEstatisticasCandidaturaUI;
  */
 public class PainelOrganizador extends JPanel {
  
-    private static JPanel pPrincipal;
-    private static JPanel pInfo;
+    private JPanel pPrincipal;
+    private JPanel pInfo;
     private static Utilizador mUt;
     private CentroExposicoes mCe;
 

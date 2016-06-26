@@ -179,7 +179,7 @@ public class AlterarUtilizadorUI extends JPanel{
             norte.getTxtUsername().setText("");
     }
 
-    private static void setLabels(String nome, String email) {
+    public static void setLabels(String nome, String email) {
         PainelInfoUser.setLabels(nome, email);
     }
 

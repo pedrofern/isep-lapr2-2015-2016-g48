@@ -22,8 +22,8 @@ import lapr.project.ui.ucs.AvaliarCandidaturaUI;
  */
 public class PainelFae extends JPanel{
 
-    private static JPanel pPrincipal;
-    private static JPanel pInfo;
+    private JPanel pPrincipal;
+    private JPanel pInfo;
     private static Utilizador m_ut;
     private CentroExposicoes m_ce;
     
@@ -110,11 +110,7 @@ public class PainelFae extends JPanel{
            
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                try{
-               }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-               }
             }   
         }
             

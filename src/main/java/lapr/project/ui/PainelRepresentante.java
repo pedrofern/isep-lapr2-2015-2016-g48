@@ -21,8 +21,8 @@ import lapr.project.ui.ucs.*;
  */
 public class PainelRepresentante extends JPanel{
 
-    private static JPanel pPrincipal;
-    private static JPanel pInfo;
+    private JPanel pPrincipal;
+    private JPanel pInfo;
     private static Utilizador m_ut;
     private CentroExposicoes m_ce;
     

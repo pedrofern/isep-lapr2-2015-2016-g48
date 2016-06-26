@@ -16,7 +16,7 @@ public class PainelInfoUser extends JPanel {
     
     private Utilizador m_user;
     private String tipo_utilizador;
-    private  static JLabel lblNome, lblEmail;
+    private static JLabel lblNome, lblEmail;
     
     public PainelInfoUser(Utilizador user){
         super();

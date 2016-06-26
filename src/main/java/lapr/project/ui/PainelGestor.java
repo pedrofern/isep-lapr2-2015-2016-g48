@@ -27,8 +27,8 @@ import lapr.project.ui.ucs.DefinirTipoConflitoUI;
  */
 public class PainelGestor extends JPanel {
 
-    private static JPanel pPrincipal;
-    private static JPanel pInfo;
+    private JPanel pPrincipal;
+    private JPanel pInfo;
     private static Utilizador mUt;
     private CentroExposicoes mCe;
     
