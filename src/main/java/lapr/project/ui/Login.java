@@ -10,6 +10,7 @@ import lapr.project.model.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import lapr.project.utils.Utils;
 
 
 /**
@@ -204,12 +205,14 @@ public class Login extends JFrame {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                              
                 if (username.getText().isEmpty() || password.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Tem de preencher todos os campos.");
                 } else {
+                    String pass = password.getText();
+                    pass = Utils.encriptar(pass);  
                     for (Utilizador u : ce.getRegistoUtilizadores().getListaUtilizadores()) {
-                        if (username.getText().equals(u.getUsername()) && password.getText().equals(u.getPassword())) {
+                        if (username.getText().equals(u.getUsername()) && pass.equals(u.getPassword())) {
                             if (u.getRegistado()) {
                                 user = u;                                
                             }

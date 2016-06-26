@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -72,5 +73,12 @@ public class Representante implements Comparable<Utilizador>, Serializable{
         Utilizador outroUtilizador = (Utilizador) outroObjeto;
 
         return utilizador.getNome().equalsIgnoreCase(outroUtilizador.getNome());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.utilizador);
+        return hash;
     }
 }

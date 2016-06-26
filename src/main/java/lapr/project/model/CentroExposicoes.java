@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -110,6 +111,18 @@ public class CentroExposicoes implements Serializable{
 
         CentroExposicoes ce = (CentroExposicoes) outroCentro;
         return this.getDescricao().equalsIgnoreCase(ce.getDescricao());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.regRecursos);
+        hash = 47 * hash + Objects.hashCode(this.regExposicoes);
+        hash = 47 * hash + Objects.hashCode(this.regUtilizadores);
+        hash = 47 * hash + Objects.hashCode(this.regStands);
+        hash = 47 * hash + Objects.hashCode(this.regMecAtribuicoes);
+        hash = 47 * hash + Objects.hashCode(this.regTiposConflitos);
+        return hash;
     }
 
 

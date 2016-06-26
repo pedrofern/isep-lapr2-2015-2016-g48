@@ -10,13 +10,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import lapr.project.model.CentroExposicoes;
 
 /**
  *
  * @author Pedro Fernandes
  */
-public class FichCentroExposicoes {
+public class FichCentroExposicoes implements Serializable {
 /**
  * Caminho em que o ficheiro binario se encontra
  */

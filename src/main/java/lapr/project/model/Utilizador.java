@@ -163,7 +163,7 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
  * @return password
  */
     public String getPassword() {
-        return Utils.desencriptar(password);
+        return password;
     }
 /**
  * Altera a password
