@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,17 +16,14 @@ import lapr.project.model.lists.ListaCandidaturas;
  *
  * @author DianaSilva
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 
 /**
  * Classe para objetos do tipo EstatisticaCandidatura que permite gerar e guardar as estatísticas
  * relativas às candidaturas de uma exposição
  */
-
-
-
-public class EstatisticaCandidatura {
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class EstatisticaCandidatura implements Serializable{
     /**
      * Número de candidaturas aceites da lista de candidaturas
      */

@@ -43,7 +43,7 @@ public class ListaAtribuicoesTest {
     }
 
     /**
-     * Test of createAtribuicao method, of class ListaAtribuicoes.
+     * Test of createAtribuicaoFAECand method, of class ListaAtribuicoes.
      */
     @Test
     public void testCreateAtribuicao() {
@@ -52,7 +52,7 @@ public class ListaAtribuicoesTest {
         Candidatura c = new Candidatura("Teste", "Teste", 123456789, 123, 123);
         ListaAtribuicoes instance = new ListaAtribuicoes();
         boolean expResult = true;
-        boolean result = instance.createAtribuicao(f, c);
+        boolean result = instance.createAtribuicaoFAECand(f, c);
         assertEquals(expResult, result);
 
     }

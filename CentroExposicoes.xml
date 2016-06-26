@@ -1,46 +1,147 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <centroExposicoes>
     <regRecursos/>
-    <regExposicoes/>
+    <regExposicoes>
+        <listaExposicoes>
+            <titulo>Exposicao teste</titulo>
+            <textoDescritivo>descricao</textoDescritivo>
+            <dataInicio>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>29</dia>
+            </dataInicio>
+            <dataFim>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>30</dia>
+            </dataFim>
+            <local>
+                <local>local</local>
+            </local>
+            <dataInicioSubmissao>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>1</dia>
+            </dataInicioSubmissao>
+            <dataFimSubmissao>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>2</dia>
+            </dataFimSubmissao>
+            <dataInicioAvaliacao>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>5</dia>
+            </dataInicioAvaliacao>
+            <dataFimAvaliacao>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>6</dia>
+            </dataFimAvaliacao>
+            <dataAlteracaoConflitos>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>4</dia>
+            </dataAlteracaoConflitos>
+            <dataInicioStands>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>7</dia>
+            </dataInicioStands>
+            <dataFimStands>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>8</dia>
+            </dataFimStands>
+            <dataDeteccaoConflitos>
+                <ano>2016</ano>
+                <mes>7</mes>
+                <dia>4</dia>
+            </dataDeteccaoConflitos>
+            <listaCandidaturas/>
+            <listaFaes/>
+            <listaOrganizadores>
+                <listaOrganizadores>
+                    <utilizador>
+                        <nome>Nuno Bettencourt</nome>
+                        <email>nmb@isep.ipp.pt</email>
+                        <password>{~)%*</password>
+                        <username>Admin</username>
+                        <bRegistado>true</bRegistado>
+                        <tempoServico>15</tempoServico>
+                    </utilizador>
+                </listaOrganizadores>
+                <listaOrganizadores>
+                    <utilizador>
+                        <nome>Diana Silva</nome>
+                        <email>1151088@isep.ipp.pt</email>
+                        <password>+.#{*%6{~+.</password>
+                        <username>Organizador</username>
+                        <bRegistado>true</bRegistado>
+                        <tempoServico>8</tempoServico>
+                    </utilizador>
+                </listaOrganizadores>
+            </listaOrganizadores>
+            <listaDemonstracoes/>
+            <listaAtribuicoes/>
+            <estatisticaFAE>
+                <mediaAmostral>0.0</mediaAmostral>
+                <desvioFae>0.0</desvioFae>
+                <desvioAmostral>0.0</desvioAmostral>
+                <varianciaFaes>0.0</varianciaFaes>
+                <desvioPadrao>0.0</desvioPadrao>
+                <nivelSignificancia>0.0</nivelSignificancia>
+                <intervaloConfianca>0.0</intervaloConfianca>
+                <z0>0.0</z0>
+                <listaFAE/>
+            </estatisticaFAE>
+            <estatisticaCandidatura>
+                <numeroCandidaturasAceites>0</numeroCandidaturasAceites>
+                <numeroCandidaturasRecusadas>0</numeroCandidaturasRecusadas>
+                <taxaAceitacao>0.0</taxaAceitacao>
+                <valorMedioSubmissao>0.0</valorMedioSubmissao>
+            </estatisticaCandidatura>
+        </listaExposicoes>
+    </regExposicoes>
     <regUtilizadores>
         <m_listaUtilizadores>
             <nome>Nuno Bettencourt</nome>
             <email>nmb@isep.ipp.pt</email>
-            <password>admin</password>
+            <password>{~)%*</password>
             <username>Admin</username>
-            <m_bRegistado>true</m_bRegistado>
+            <bRegistado>true</bRegistado>
             <tempoServico>15</tempoServico>
         </m_listaUtilizadores>
         <m_listaUtilizadores>
             <nome>Ana Silva</nome>
             <email>1130155@isep.ipp.pt</email>
-            <password>gestor</password>
+            <password>#!/0+.</password>
             <username>Gestor</username>
-            <m_bRegistado>true</m_bRegistado>
+            <bRegistado>true</bRegistado>
             <tempoServico>10</tempoServico>
         </m_listaUtilizadores>
         <m_listaUtilizadores>
             <nome>Diana Silva</nome>
             <email>1151088@isep.ipp.pt</email>
-            <password>organizador</password>
+            <password>+.#{*%6{~+.</password>
             <username>Organizador</username>
-            <m_bRegistado>true</m_bRegistado>
+            <bRegistado>true</bRegistado>
             <tempoServico>8</tempoServico>
         </m_listaUtilizadores>
         <m_listaUtilizadores>
             <nome>Eduângelo Ferreira</nome>
             <email>1151094@isep.ipp.pt</email>
-            <password>orgfae</password>
+            <password>+.#"{!</password>
             <username>Organizador+Fae</username>
-            <m_bRegistado>true</m_bRegistado>
+            <bRegistado>true</bRegistado>
             <tempoServico>6</tempoServico>
         </m_listaUtilizadores>
         <m_listaUtilizadores>
             <nome>Pedro Fernandes</nome>
             <email>1060503@isep.ipp.pt</email>
-            <password>fae</password>
+            <password>"{!</password>
             <username>Fae</username>
-            <m_bRegistado>true</m_bRegistado>
+            <bRegistado>true</bRegistado>
             <tempoServico>3</tempoServico>
         </m_listaUtilizadores>
     </regUtilizadores>

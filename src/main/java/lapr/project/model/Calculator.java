@@ -2,12 +2,17 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
  * 
  * alterado por Diana Silva <1151088@isep.ipp.pt> on 11/06/16.
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Calculator implements Serializable{
 
         /**

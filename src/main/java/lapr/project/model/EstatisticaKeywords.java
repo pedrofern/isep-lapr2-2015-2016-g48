@@ -5,10 +5,17 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author DianaSilva
  */
-public class EstatisticaKeywords {
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class EstatisticaKeywords implements Serializable{
     
 }

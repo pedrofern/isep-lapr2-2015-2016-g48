@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,15 +15,14 @@ import lapr.project.model.lists.ListaFAE;
  *
  * @author DianaSilva
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-
 
 /**
  * Classe para objetos do tipo EstatisticaFAE que permite gerar e guardar as estatísticas
  * relativas aos FAE de uma exposição
  */
-public class EstatisticaFAE {
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class EstatisticaFAE implements Serializable{
     
     /**
      * Lista de FAE que se pretende analisar na estatística

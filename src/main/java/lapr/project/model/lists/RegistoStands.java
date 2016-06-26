@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +18,7 @@ import lapr.project.model.*;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RegistoStands {
+public class RegistoStands implements Serializable{
     
     private ArrayList<Stand> listaStands;
     private Stand mStand;

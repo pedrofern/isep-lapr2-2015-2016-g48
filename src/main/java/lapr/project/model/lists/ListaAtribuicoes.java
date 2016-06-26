@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
+import lapr.project.model.Stand;
 import lapr.project.model.Utilizador;
 
 /**
@@ -23,7 +24,13 @@ public class ListaAtribuicoes implements Serializable{
         this.listaAtribuicoes = new ArrayList<>();
     }
 
-    public boolean createAtribuicao(FAE f, Candidatura c){
+    public boolean createAtribuicaoFAECand(FAE f, Candidatura c){
+        Atribuicao atrib=new Atribuicao(f,c);
+        this.listaAtribuicoes.add(atrib);
+        return true;
+    }
+    
+    public boolean createAtribuicaoStandCand(FAE f, Candidatura c){
         Atribuicao atrib=new Atribuicao(f,c);
         this.listaAtribuicoes.add(atrib);
         return true;
@@ -77,6 +84,4 @@ public class ListaAtribuicoes implements Serializable{
         }
         return lc;
     }
-    
-    
 }
