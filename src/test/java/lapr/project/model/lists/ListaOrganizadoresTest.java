@@ -47,8 +47,8 @@ public class ListaOrganizadoresTest {
     public void testGetListaOrganizadores() {
         System.out.println("getListaOrganizadores");
         ListaOrganizadores instance = new ListaOrganizadores();
-        List<Organizador> expResult = instance.getListaOrganizadores();
-        List<Organizador> result = instance.getListaOrganizadores();
+        boolean expResult = true;
+        boolean result = instance.getListaOrganizadores().isEmpty();
         assertEquals(expResult, result);
 
     }
@@ -59,7 +59,8 @@ public class ListaOrganizadoresTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("addOrganizador");
-        Organizador o = new Organizador(new Utilizador("teste", "teste", "teste", "teste"));
+        Utilizador ut=new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5);
+        Organizador o = new Organizador(ut);
         ListaOrganizadores instance = new ListaOrganizadores();
         boolean expResult = true;
         boolean result = instance.addOrganizador(o);
@@ -75,9 +76,9 @@ public class ListaOrganizadoresTest {
     public void testHasUtilizador() {
         System.out.println("hasUtilizador");
         ListaOrganizadores instance = new ListaOrganizadores();
-        instance.addOrganizador(new Organizador(new Utilizador("teste", "teste", "teste", "teste")));
+        instance.addOrganizador(new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5)));
         boolean expResult = true;
-        boolean result = instance.hasUtilizador(new Utilizador("teste", "teste", "teste", "teste"));
+        boolean result = instance.hasUtilizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5));
         assertEquals(expResult, result);
 
     }
@@ -89,7 +90,7 @@ public class ListaOrganizadoresTest {
     public void testRemoverUtilizador() {
         System.out.println("removerUtilizador");
         ListaOrganizadores instance = new ListaOrganizadores();
-        Organizador o = new Organizador(new Utilizador("teste", "teste", "teste", "teste"));
+        Organizador o = new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5));
         instance.addOrganizador(o);
         boolean expResult = true;
         boolean result = instance.removerUtilizador(o);
