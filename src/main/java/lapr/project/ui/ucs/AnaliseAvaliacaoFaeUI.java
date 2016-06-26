@@ -10,8 +10,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,8 +22,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import lapr.project.controller.AnaliseAvaliacaoFaeController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
+import lapr.project.model.FAE;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.Utils;
 
@@ -36,16 +37,21 @@ import lapr.project.utils.Utils;
 public class AnaliseAvaliacaoFaeUI extends JFrame {
 
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
-    private Exposicao exposicao;
-    private CentroExposicoes centro;
-    private Utilizador utilizador;
+    private final CentroExposicoes centro;
+    private final Utilizador utilizador;
     private static JComboBox comboBoxExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Valor observado da estatistica de teste").getPreferredSize();
-
+    private final AnaliseAvaliacaoFaeController controller;
+    private JTable table;
+    private DefaultTableModel modeloEstatistica;
+    
+    
     public AnaliseAvaliacaoFaeUI(CentroExposicoes centro, Utilizador utilizador) throws FileNotFoundException {
 
         this.centro = centro;
         this.utilizador = utilizador;
+        
+        controller=new AnaliseAvaliacaoFaeController(centro, utilizador);
 
         criarComponentes();
         pack();
@@ -89,8 +95,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
 
     private JComboBox getListaExposicao() {
 
-//        comboBoxExposicao = Utils.criarComboExpo(); para utilizar com controller
-        comboBoxExposicao = new JComboBox(); //teste
+       comboBoxExposicao = Utils.criarComboExpo(controller.getExposicoes()); 
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
@@ -99,6 +104,23 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 comboBoxExposicao.setEnabled(false);
+                controller.setExposicao((Exposicao)comboBoxExposicao.getSelectedItem());
+                
+               String[] columnNames = {"FAE",
+                                        "Média das classificações do FAE",
+                                        "Média dos desvios",
+                                        "Valor observado da estatistica de teste",
+                                        "Decisão Alerta:Sim/Não",};
+                for (String columnName : columnNames) {
+                    modeloEstatistica.addColumn(columnName);
+                }
+                
+               
+               for(FAE f: controller.getListaFAE().getListaFAE()){
+                        modeloEstatistica.addRow(controller.toStringEstatistica(f));
+  
+                }   
+
             }
         });
         return comboBoxExposicao;
@@ -114,44 +136,21 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
             "Valor observado da estatistica de teste",
             "Decisão Alerta:Sim/Não",};
 
-        Object[][] data = {
-            {new Integer(1), new String(" "), new String(" "), new String(" "), new String(" ")},
-            {new Integer(2), new String(" "), new String(" "), new String(" "), new String(" ")},
-            {new Integer(3), new String(" "), new String(" "), new String(" "), new String(" ")},};
+        Object[][] data ={{"sem FAE","seleccione a exposição",""}}; 
 
-        final JTable table = new JTable(data, columnNames);
+        table = new JTable(data, columnNames);
+        modeloEstatistica=new DefaultTableModel();
+        
+        table.setModel(modeloEstatistica);
         table.setPreferredScrollableViewportSize(new Dimension(1000, 80));
         table.setFillsViewportHeight(true);
 
-        //table.getTableHeader().setReorderingAllowed(false);
-        table.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                imprimirDadosTabela(table);
-
-            }
-        });
 
         JScrollPane scrollPane = new JScrollPane(table);
 
         painel.add(scrollPane);
 
         return painel;
-    }
-
-    private void imprimirDadosTabela(JTable table) {
-        int numRows = table.getRowCount();
-        int numCols = table.getColumnCount();
-        javax.swing.table.TableModel model = table.getModel();
-
-        System.out.println("Dados: ");
-        for (int i = 0; i < numRows; i++) {
-            System.out.print("    row " + i + ":");
-            for (int j = 0; j < numCols; j++) {
-                System.out.print("  " + model.getValueAt(i, j));
-            }
-            System.out.println();
-        }
-        System.out.println("--------------------------");
     }
 
     private JButton criarBotaoCancelar() {

@@ -76,6 +76,11 @@ public class EstatisticaFAE {
     private double z0;
     
     /**
+     * Lista de FAE a considerar na amostra
+     */
+    private ListaFAE listaFAE;
+    
+    /**
      * Construtor EstatisticaFAE inicializando as variáveis estatísticas com 0
      */
     public EstatisticaFAE(){
@@ -87,6 +92,7 @@ public class EstatisticaFAE {
         nivelSignificancia=0;
         intervaloConfianca=0;
         z0=0;  
+        listaFAE=new ListaFAE();
     }
 
     /**
@@ -94,15 +100,16 @@ public class EstatisticaFAE {
      * @return the mediaAmostral
      */
     public double getMediaAmostral() {
+        calcularMediaAmostral();
         return mediaAmostral;
     }
 
     /**
      * Calcula a média amostral
-     * @return a média amostral calculada
      */
-    public double calcularMediaAmostral() {
-        return 0;
+    private void calcularMediaAmostral() {
+
+     
     }
 
     /**
@@ -120,7 +127,7 @@ public class EstatisticaFAE {
      */
     public double calcularDesvioFae(double mediaFae) {
  
-        return 0;
+        return mediaAmostral-mediaFae;
     }
 
     /**

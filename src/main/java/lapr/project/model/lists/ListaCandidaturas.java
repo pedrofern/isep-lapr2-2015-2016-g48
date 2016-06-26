@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Candidatura;
+import lapr.project.model.states.candidaturasExpo.CandidaturaAceite;
 import lapr.project.model.states.candidaturasExpo.CandidaturaEmAtribuicao;
+import lapr.project.model.states.candidaturasExpo.CandidaturaRejeitada;
 
 /**
  *
@@ -58,6 +60,22 @@ public class ListaCandidaturas implements Serializable{
         for(Candidatura c: listaCandidaturas){
    
             if (c.getEstadoAtualCandidatura() instanceof CandidaturaEmAtribuicao) {
+                listCandidaturas.addCandidatura(c);
+            }
+        }
+
+        return listCandidaturas;
+    }
+    
+    public ListaCandidaturas getListaCandidaturasDecididas(){
+        
+        ListaCandidaturas listCandidaturas=new ListaCandidaturas();
+        for(Candidatura c: listaCandidaturas){
+   
+            if (c.getEstadoAtualCandidatura() instanceof CandidaturaAceite) {
+                listCandidaturas.addCandidatura(c);
+            }
+            if(c.getEstadoAtualCandidatura() instanceof CandidaturaRejeitada){
                 listCandidaturas.addCandidatura(c);
             }
         }

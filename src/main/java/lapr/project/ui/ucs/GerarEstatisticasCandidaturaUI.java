@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,9 +8,9 @@ package lapr.project.ui.ucs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -39,8 +40,10 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     private List<Candidatura> lst;
     private static Utilizador user;
     private Exposicao expo;
-    private JLabel lblValorMedioExposicao, lblValorMedioGlobal;
+    private JLabel lblValorMedioExposicao, lblValorMedioGlobal, lblTaxaExposicao, lblTaxaGlobal;
+    private String[][] data;
     private JTable table;
+    private ListaCandidaturas listaCandidaturas;
     private DefaultTableModel modeloEstatistica;
    
    
@@ -50,6 +53,7 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         this.ce=ce;
         this.user=user;
         controller= new GerarEstatisticasCandidaturaController(ce,user);
+        listaCandidaturas=new ListaCandidaturas();
         
         criarComponentes();
         
@@ -101,15 +105,24 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     
     private JPanel criarPainelLabels(){
         JPanel p=new JPanel();
-        p.setLayout(new BorderLayout());
+        GridLayout gl=new GridLayout(2,2);
+        p.setLayout(gl);
         lblValorMedioExposicao=new JLabel();
         lblValorMedioExposicao.setText("Valor médio submissão (Exposição): seleccione a exposição");
         
         lblValorMedioGlobal=new JLabel();
         lblValorMedioGlobal.setText("Valor médio submissão (CentroExposições): "+  controller.getValorMedioSubmissaoGlobal());
         
-        p.add(lblValorMedioExposicao, BorderLayout.WEST);
-        p.add(lblValorMedioGlobal, BorderLayout.EAST);
+        lblTaxaExposicao=new JLabel();
+        lblTaxaExposicao.setText("Taxa de aceitação (Exposição): seleccione a exposição");
+        
+        lblTaxaGlobal=new JLabel();
+        lblTaxaGlobal.setText("Taxa de aceitação (CentroExposições): "+  controller.getTaxaAceitacaoGlobal());
+        
+        p.add(lblValorMedioExposicao);
+        p.add(lblValorMedioGlobal);
+        p.add(lblTaxaExposicao);
+        p.add(lblTaxaGlobal);
         
         return p;
     }
@@ -150,8 +163,7 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
 
                lblValorMedioExposicao.setText("Valor médio submissão (Exposição): " + controller.getValorMedioSubmissaoExposicao());
 
-               lblValorMedioGlobal.setText("Valor médio submissão (CentroExposições): " + controller.getValorMedioSubmissaoGlobal());
-           
+               lblTaxaExposicao.setText("Taxa de aceitação (Exposição): " + controller.getTaxaAceitacaoExposicao());
                 combolistaExposicoes.setEnabled(false);
             }
             
@@ -191,3 +203,5 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     
     
 }
+
+

@@ -52,12 +52,12 @@ public class Calculator implements Serializable{
         
         /**
          * Calculator the rate receiving the number to calculate the rate and the total
-         * @param number
-         * @param totalNumber
+     * @param number the divisor
+     * @param totalNumber the total
          * @return rate
          */
         public static double calculateRate(int number, int totalNumber){
-            return number/totalNumber;
+            return (double)number/totalNumber;
         }
         
         /**

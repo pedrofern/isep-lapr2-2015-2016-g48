@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Classificacao implements Serializable{
+public class Classificacao {
     
     /**
      * numero de submissões avaliadas pelo FAE
@@ -39,10 +38,16 @@ public class Classificacao implements Serializable{
     private boolean decisaoAlerta;
     
     /**
+     * Soma de todas as médias dadas pelo FAE
+     */
+    private int sumSubmissoes;
+    
+    /**
      * Construtor Classificação sem argumento inicializando as variáveis de instância com zero ou booleano false.
      */
     public Classificacao(){
         numeroSubmissoes=0;
+        sumSubmissoes=0;
         mediaClassificacoes=0;
         mediaDesvios=0;
         decisaoAlerta=false;
@@ -61,6 +66,7 @@ public class Classificacao implements Serializable{
      * @return a média das classificações dadas pelo FAE
      */
     public double getMediaClassificacoes() {
+        calcularMediaFAE();
         return mediaClassificacoes;
     }
 
@@ -85,16 +91,21 @@ public class Classificacao implements Serializable{
      * 
      * @param numeroSubmissoes o numero de submissoes avaliadas pelo FAE
      */
-    public void setNumeroSubmissoes(int numeroSubmissoes) {
-        this.numeroSubmissoes = numeroSubmissoes;
+    public void incrementaNumeroSubmissoes() {
+        numeroSubmissoes++;
+    }
+    
+    
+    public void incrementaValorÀSoma(double media){
+        sumSubmissoes+=media;
     }
 
     /**
      * Altera a media das classificações dadas pelo FAE
      * @param mediaClassificacoes média a alterar
      */
-    public void setMediaClassificacoes(double mediaClassificacoes) {
-        this.mediaClassificacoes = mediaClassificacoes;
+    public void setMediaClassificacoes(double media) {
+        this.mediaClassificacoes = media;
     }
 
     /**
@@ -111,5 +122,9 @@ public class Classificacao implements Serializable{
      */
     public void setDecisaoAlerta(boolean decisaoAlerta) {
         this.decisaoAlerta = decisaoAlerta;
+    }
+    
+    public void calcularMediaFAE(){
+        mediaClassificacoes= Calculator.average(sumSubmissoes, numeroSubmissoes);
     }
 }

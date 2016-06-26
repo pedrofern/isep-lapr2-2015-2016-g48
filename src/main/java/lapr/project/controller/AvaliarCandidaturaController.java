@@ -15,13 +15,15 @@ public class AvaliarCandidaturaController implements Serializable {
     private Avaliacao avaliacao;
     private Exposicao exposicao;
     private Questao questao;
+    private Utilizador user;
 
     /**
      * Cria uma nova instancia da classe
      * @param centroExposicoes 
      */
-    public AvaliarCandidaturaController(CentroExposicoes centroExposicoes) {
+    public AvaliarCandidaturaController(CentroExposicoes centroExposicoes, Utilizador user) {
         ce = centroExposicoes;
+        this.user=user;
     }
 /**
  * Devolve a lista de exposicoes atribuidas ao fae
@@ -34,7 +36,8 @@ public class AvaliarCandidaturaController implements Serializable {
  * Devolve a lista de candidaturas
  * @return a lista de candidaturas
  */
-    public ListaCandidaturas getListaCandidaturas() {
+    public ListaCandidaturas getListaCandidaturasAtribuidasFAE(Utilizador fae) {
+//        return exposicao.getListaAtribuicoes().getCandidaturasAtribuidasFAE(fae);
         return exposicao.getListaCandidaturas();
     }
 /**
@@ -208,5 +211,19 @@ public class AvaliarCandidaturaController implements Serializable {
  */
     public String getInfoAvaliacao() {
         return avaliacao.toString();
+    }
+
+    
+    public void adicionarMediaFAE(Utilizador user){
+        for(FAE f:exposicao.getListaFAE().getListaFAE()){
+            if(f.getEmail().equalsIgnoreCase(user.getUsername())){
+                f.getClassificacao().incrementaNumeroSubmissoes();
+                f.getClassificacao().incrementaValorÀSoma(calcularMedia());
+            }
+        }
+    }
+    
+    public Utilizador getUser(){
+        return user;
     }
 }

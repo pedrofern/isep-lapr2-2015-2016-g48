@@ -48,7 +48,7 @@ public class AvaliarSubPainelCands extends JPanel implements Serializable{
         JPanel p=new JPanel();
         p.setLayout(new FlowLayout());
         
-        comboCands=Utils.criarComboCand(controllerAC.getListaCandidaturas());
+        comboCands=Utils.criarComboCand(controllerAC.getListaCandidaturasAtribuidasFAE(controllerAC.getUser()));
         
         p.add(comboCands, BorderLayout.NORTH);
         p.add(criarBtSelect());

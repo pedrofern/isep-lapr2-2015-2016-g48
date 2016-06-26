@@ -29,6 +29,7 @@ public class AvaliarCandidaturaUI extends JFrame{
     
     private static CentroExposicoes ce;
     private static AvaliarCandidaturaController controllerAC;
+    private static Utilizador user;
     
      /**
      * Guarda a largura mínima da janela em píxeis.
@@ -54,8 +55,9 @@ public class AvaliarCandidaturaUI extends JFrame{
         super("Avaliar Candidatura");
         
         ce = centroExposicoes;
-        controllerAC = new AvaliarCandidaturaController(ce);
-   
+        user=utilizador;
+        controllerAC = new AvaliarCandidaturaController(ce, utilizador);
+        
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -165,14 +167,6 @@ public class AvaliarCandidaturaUI extends JFrame{
         btGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                    norte.getTxtEmail().getText().isEmpty()==true||
-//                    norte.getTxtPassword().getText().isEmpty()==true||
-//                        JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Registar Utilizador",
-//                            JOptionPane.ERROR_MESSAGE);                        
-//                }else{
                    guardar();
 
             }
@@ -184,7 +178,9 @@ public class AvaliarCandidaturaUI extends JFrame{
     private void guardar() {
             
             if(controllerAC.registarDecisao())
-                 JOptionPane.showMessageDialog( null,
+                controllerAC.adicionarMediaFAE(user);
+            
+                JOptionPane.showMessageDialog( null,
                         controllerAC.getInfoAvaliacao(),
                         "Avaliação registada",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -207,8 +203,7 @@ public class AvaliarCandidaturaUI extends JFrame{
     }
         
         private void fecharJanela(String pergunta){
-//                norte.getTxtEmail().getText()!=""||
-//                norte.getTxtPassword().getText()!=""||
+
             String[] opcoes = {"Sim", "Não"};
             
             int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,

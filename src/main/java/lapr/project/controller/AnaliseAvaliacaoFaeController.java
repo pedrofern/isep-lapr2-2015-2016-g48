@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import lapr.project.model.Calculator;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.EstatisticaFAE;
 import lapr.project.model.Exposicao;
@@ -37,6 +38,9 @@ public class AnaliseAvaliacaoFaeController {
      */
     private EstatisticaFAE estatistica;
     
+    private double totalMedias;
+    private int numeroSubmissoes;
+    
     /**
      * Cria uma instancia desta classe e recebe como parametros o centro de exposicoes e o utilizador
      * @param centroExposicoes
@@ -45,34 +49,32 @@ public class AnaliseAvaliacaoFaeController {
     public AnaliseAvaliacaoFaeController(CentroExposicoes centroExposicoes, Utilizador user){
         this.ce=centroExposicoes;
         this.user=user;
+        totalMedias=0;
+        numeroSubmissoes=0;
     }
        /**
-        * Devolve a lista de exposicoes do organizador
+        * Devolve a lista de exposicoes do organizador que já foram avaliadas
         * @return a lista
         */ 
-    public RegistoExposicoes getExposicoesOrganizador(){
-        return ce.getRegistoExposicoes().getExposicoesOrganizador(user);
-    }
-    /**
-     * Devolve a lista de exposicoes do organizador que ja foram avaliadas
-     * @return a lista
-     */
-    public RegistoExposicoes getExposicoesOrganizadorAvaliadas(){
+    public RegistoExposicoes getExposicoes(){
         RegistoExposicoes leca=new RegistoExposicoes();
-        for(Exposicao e: getExposicoesOrganizador().getExposicoes()){
+        for(Exposicao e: ce.getRegistoExposicoes().getExposicoesOrganizador(user).getExposicoes()){
             if(e.getEstadoAtualExposicao() instanceof ExposicaoCandidaturasAvaliadas){
                 leca.adicionarExposicao(e);
             }
         }
+        
         return leca;
     }
+
     /**
      * Altera a exposicao
      * @param exposicao 
      */
     public void setExposicao(Exposicao exposicao){
-        this.listaFaes=exposicao.getListaFAE();
         this.estatistica=exposicao.getEstatisticaFAE();
+        estatistica.setListaFaes(exposicao.getListaFAE());
+        
     }
     /**
      * Altera o intervalo de confianca
@@ -93,7 +95,8 @@ public class AnaliseAvaliacaoFaeController {
      * @return a media
      */
     public double calcularMediaAmostral(){
-        return estatistica.calcularMediaAmostral();
+
+        return Calculator.average(totalMedias, numeroSubmissoes);
     }
     /**
      * Calcula a media de faes
@@ -101,6 +104,8 @@ public class AnaliseAvaliacaoFaeController {
      * @return a media
      */
     public double getMediaFae(FAE fae){
+        totalMedias+=fae.getClassificacao().getMediaClassificacoes();
+        numeroSubmissoes++;
         return fae.getClassificacao().getMediaClassificacoes();
     }
     /**
@@ -118,10 +123,10 @@ public class AnaliseAvaliacaoFaeController {
      * Calcula o desvio amostral
      * @return o desvio calculado
      */
-    public double calcularDesvioAmostral(){
-        listaFaes.getListaFAE().size();
-        return estatistica.calcularDesvioAmostral();
-    }
+//    public double calcularDesvioAmostral(){
+//        listaFaes.getListaFAE().size();
+//        return estatistica.calcularDesvioAmostral();
+//    }
     
     /**
      * Calcula a variancia
@@ -160,5 +165,17 @@ public class AnaliseAvaliacaoFaeController {
     public boolean removerFAE(FAE fae){
         return listaFaes.removerFAE(fae);
     }
+    
+    public ListaFAE getListaFAE(){
+        return estatistica.getListaFaes();
+    }
+    
+    public String[] toStringEstatistica(FAE f){
+
+          String[] data={f.getNome(), String.format("%.2f", getMediaFae(f)),String.format("%.2f", calcularMediaAmostral())};
+//          String.format("%.2f", calcularDesvioFAE(f, calcularMediaAmostral())
+                  
+                  return data;
+      }
     
 }

@@ -40,6 +40,7 @@ public class FAE implements Comparable<FAE>,Serializable {
         email = u.getEmail();
         this.setUtilizador(u);
         nCand=0;
+        classificacao=new Classificacao();
     }
 
     public FAE() {
@@ -47,6 +48,7 @@ public class FAE implements Comparable<FAE>,Serializable {
         username =USER_POR_OMISSAO;
         email = EMAIL_POR_OMISSAO;
         nCand=0;
+        classificacao=new Classificacao();
     }
 
     public void setUtilizador(Utilizador u) {

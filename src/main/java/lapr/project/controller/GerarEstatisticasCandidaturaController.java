@@ -63,7 +63,7 @@ public class GerarEstatisticasCandidaturaController {
     }
     
     public String getTaxaAceitacaoExposicao(){
-        estatistica.calcularValorMedioSubmissao();
+        estatistica.calcularTaxaAceitacao();
         return estatistica.getTaxaAceitacao();
     }
     
@@ -74,8 +74,12 @@ public class GerarEstatisticasCandidaturaController {
         return df.format(valorMedioSubmissao);
     }
     
-    public double getTaxaAceitacaoGlobal(){
-        return taxaAceitacao;
+    public String getTaxaAceitacaoGlobal(){
+        calcularTaxaAceitacaoGlobal();
+        
+        DecimalFormat df= new DecimalFormat("###, ##0.00");
+        
+        return df.format(taxaAceitacao);
     }
     
     public double calcularValorMedioSubmissaoGlobal(){
@@ -94,7 +98,7 @@ public class GerarEstatisticasCandidaturaController {
         return valorMedioSubmissao;
     }
     
-    public String calcularTaxaAceitacaoGlobal(){
+    public double calcularTaxaAceitacaoGlobal(){
         int numeroExposicoes=0;
         double sum=0;
         for(Exposicao e: ce.getRegistoExposicoes().getExposicoes()){
@@ -105,8 +109,6 @@ public class GerarEstatisticasCandidaturaController {
             
         }
         taxaAceitacao=Calculator.average(sum, numeroExposicoes);
-        DecimalFormat df= new DecimalFormat("###, ##0.00");
-        
-        return df.format(taxaAceitacao);
+        return taxaAceitacao;
     }
 }

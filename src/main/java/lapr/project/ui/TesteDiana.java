@@ -6,6 +6,7 @@
 package lapr.project.ui;
 
 import java.io.FileNotFoundException;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.Avaliacao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
@@ -17,6 +18,7 @@ import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.model.lists.*;
 import lapr.project.model.lists.*;
+import lapr.project.model.states.exposicao.ExposicaoCandidaturasAvaliadas;
 import lapr.project.model.states.exposicao.ExposicaoCandidaturasDecididas;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
 import lapr.project.ui.ucs.AnaliseAvaliacaoFaeUI;
@@ -78,40 +80,21 @@ public class TesteDiana {
         lo.addOrganizador(o1);
         e.setListaOrganizadores(lo);
 
-        FAE f1 = new FAE();
-        FAE f2 = new FAE();
-        FAE f3 = new FAE();
-        FAE f4 = new FAE();
-        FAE f5 = new FAE();
-        FAE f6 = new FAE();
-        FAE f7 = new FAE();
-        FAE f8 = new FAE();
-        FAE f9 = new FAE();
-        FAE f10 = new FAE();
-
-        f1.setUtilizador(ut1);
-        f2.setUtilizador(ut2);
-        f3.setUtilizador(ut3);
-        f4.setUtilizador(ut4);
-        f5.setUtilizador(ut5);
-        f6.setUtilizador(ut6);
-        f7.setUtilizador(ut7);
-        f8.setUtilizador(ut8);
-        f9.setUtilizador(ut9);
-        f10.setUtilizador(ut10);
-
+        FAE f1 = new FAE(ut1);
+        FAE f2 = new FAE(ut2);
+        FAE f3 = new FAE(ut3);
+        FAE f4 = new FAE(ut4);
+        FAE f5 = new FAE(ut5);
+        FAE f6 = new FAE(ut6);
+        FAE f7 = new FAE(ut7);
+        FAE f8 = new FAE(ut8);
+        FAE f9 = new FAE(ut9);
+        FAE f10 = new FAE(ut10);
+ 
         ListaFAE lf = new ListaFAE();
 
         lf.addFAE(f1);
         lf.addFAE(f2);
-        lf.addFAE(f3);
-        lf.addFAE(f4);
-        lf.addFAE(f5);
-        lf.addFAE(f6);
-        lf.addFAE(f7);
-        lf.addFAE(f8);
-        lf.addFAE(f9);
-        lf.addFAE(f10);
 
         formarDatas();
 
@@ -181,6 +164,68 @@ public class TesteDiana {
         Candidatura c30 = new Candidatura();
         c30.setNomeEmpresa("Candidatura30");
         
+        Atribuicao atrib1=new Atribuicao(f1, c9);
+        Atribuicao atrib2=new Atribuicao(f1, c1);
+        Atribuicao atrib3=new Atribuicao(f1, c2);
+        
+        e.getListaAtribuicoes().adicionarAtribuicao(atrib1);
+        e.getListaAtribuicoes().adicionarAtribuicao(atrib2);
+        e.getListaAtribuicoes().adicionarAtribuicao(atrib3);
+        
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(5);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(4);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(2);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(5);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(4);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(2);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(5);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(4);
+        f1.getClassificacao().incrementaNumeroSubmissoes();
+        f1.getClassificacao().incrementaValorÀSoma(2);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        f2.getClassificacao().incrementaNumeroSubmissoes();
+        f2.getClassificacao().incrementaValorÀSoma(3);
+        
+  
 //        c1.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c1));
 //        c2.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c2));
 //        c3.setEstadoCandidatura(new CandidaturaEmAtribuicaoFAE(c3));
@@ -272,7 +317,13 @@ public class TesteDiana {
         e.getListaCandidaturas().addCandidatura(c28);
         e.getListaCandidaturas().addCandidatura(c29);
         e.getListaCandidaturas().addCandidatura(c30);
-        e.alterarEstado(new ExposicaoCandidaturasDecididas());
+        
+//        //para o GerarCandidaturas
+//        e.alterarEstado(new ExposicaoCandidaturasDecididas());
+        
+         e.alterarEstado(new ExposicaoCandidaturasAvaliadas());
+        
+        
         Exposicao e1 = ce.getRegistoExposicoes().novaExposicao();
 
         e1.setListaOrganizadores(lo);
@@ -280,6 +331,7 @@ public class TesteDiana {
         e1.setDadosPrincipais("teste1", "teste1", d1, d2, "teste", d3, d4);
         e1.setDadosData(d5, d6, d7, d8, d9, d10);
         e1.setCriada();
+        
         e1.getListaCandidaturas().registaCandidaturas(c9);
         c9.getListaAvaliacoes().add(a1);
         c9.getListaAvaliacoes().add(a3);
@@ -292,11 +344,15 @@ public class TesteDiana {
         demo.setDados("Teste", "teste");
         lista.adicionarDemonstracao(demo);
 
+
 //       FichCentroExposicoes fichCentroExposicoes = new FichCentroExposicoes();
 //       
 //       Login log = new Login(ce, fichCentroExposicoes);
 
-        GerarEstatisticasCandidaturaUI gec=new GerarEstatisticasCandidaturaUI(ce, ut1);
+        AnaliseAvaliacaoFaeUI gec=new AnaliseAvaliacaoFaeUI(ce, ut1);
+//        GerarEstatisticasCandidaturaUI ui=new GerarEstatisticasCandidaturaUI(ce, ut1);
+//
+//        AvaliarCandidaturaUI a=new AvaliarCandidaturaUI(ce, ut1);
     }
 
     private static void formarDatas() {

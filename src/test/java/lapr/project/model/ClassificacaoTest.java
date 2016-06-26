@@ -44,8 +44,8 @@ public class ClassificacaoTest {
     public void testGetNumeroSubmissoes() {
         System.out.println("getNumeroSubmissoes");
         Classificacao instance = new Classificacao();
-        instance.setNumeroSubmissoes(4);
-        int expResult = 4;
+        instance.incrementaNumeroSubmissoes();
+        int expResult = 1;
         int result = instance.getNumeroSubmissoes();
         assertEquals(expResult, result);
         
@@ -58,7 +58,9 @@ public class ClassificacaoTest {
     public void testGetMediaClassificacoes() {
         System.out.println("getMediaClassificacoes");
         Classificacao instance = new Classificacao();
-        instance.setNumeroSubmissoes(5);
+        for(int i=0; i<5; i++){
+            instance.incrementaNumeroSubmissoes();
+        }
         instance.setDecisaoAlerta(true);
         instance.setMediaDesvios(5);
         instance.setMediaClassificacoes(18);
@@ -102,26 +104,27 @@ public class ClassificacaoTest {
     @Test
     public void testSetNumeroSubmissoes() {
         System.out.println("setNumeroSubmissoes");
-        int result = 1;
+        int result = 2;
         Classificacao instance = new Classificacao();
-        instance.setNumeroSubmissoes(result);
+        instance.incrementaNumeroSubmissoes();
+        instance.incrementaNumeroSubmissoes();
         int expResult = instance.getNumeroSubmissoes();
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of setMediaClassificacoes method, of class Classificacao.
-     */
-    @Test
-    public void testSetMediaClassificacoes() {
-        System.out.println("setMediaClassificacoes");
-        double result = 5.0;
-        Classificacao instance = new Classificacao();
-        instance.setMediaClassificacoes(result);
-        double expResult = instance.getMediaClassificacoes();
-        assertEquals(expResult, result, 5.0);
-        
-    }
+//
+//    /**
+//     * Test of setMediaClassificacoes method, of class Classificacao.
+//     */
+//    @Test
+//    public void testSetMediaClassificacoes() {
+//        System.out.println("setMediaClassificacoes");
+//        double result = 5.0;
+//        Classificacao instance = new Classificacao();
+//        instance.setMediaClassificacoes(result);
+//        double expResult = instance.getMediaClassificacoes();
+//        assertEquals(expResult, result, 5.0);
+//        
+//    }
 
     /**
      * Test of setMediaDesvios method, of class Classificacao.

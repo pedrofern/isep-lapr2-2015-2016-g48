@@ -5,7 +5,7 @@
  */
 package lapr.project.controller;
 
-import lapr.project.model.Avaliacao;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -62,7 +62,7 @@ public class AvaliarCandidaturaControllerTest {
     public void testSetResposta() {
         System.out.println("Teste setResposta");
         int resposta = 4;
-        AvaliarCandidaturaController m_controller_teste = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController m_controller_teste = new AvaliarCandidaturaController(m_ce,user);
 
         Candidatura m_candidatura = new Candidatura();
 
@@ -89,7 +89,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetExposicoesAtribuidasFAE() throws Exception {
         System.out.println("getExposicoesAtribuidasFAE");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce,user);
         Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
         ListaFAE lista = exp.getListaFAE();
@@ -108,14 +108,23 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetListaCandidaturas() throws Exception {
         System.out.println("getListaCandidaturas");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce,user);
         Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
-        ListaFAE lista = exp.getListaFAE();
-        lista.addFAE(new FAE(user));
+        
+        ListaFAE lista=exp.getListaFAE();
+        FAE f=new FAE(user);
+        exp.getListaFAE().addFAE(f);
+        
+        Candidatura c=new Candidatura();
+        Atribuicao a=new Atribuicao(f,c);
+        
+        exp.getListaAtribuicoes().adicionarAtribuicao(a);
+        
         instance.selectExposicao(exp);
-        ListaCandidaturas expResult = instance.getListaCandidaturas();
-        ListaCandidaturas result = instance.getListaCandidaturas();
+        
+        RegistoExposicoes expResult = instance.getExposicoesAtribuidasFAE();
+        RegistoExposicoes result = instance.getExposicoesAtribuidasFAE();
         assertEquals(expResult, result);
 
     }
@@ -127,7 +136,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetListaCandidaturaAvaliacoes() throws Exception {
         System.out.println("getListaCandidaturaAvaliacoes");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce,user);
         Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
         ListaFAE lista = exp.getListaFAE();
@@ -148,7 +157,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetResposta() throws Exception {
         System.out.println("getResposta");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce,user);
         Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
         ListaFAE lista = exp.getListaFAE();
@@ -170,7 +179,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetPergunta() throws Exception {
         System.out.println("getPergunta");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce,user);
         Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
         ListaFAE lista = exp.getListaFAE();
@@ -192,7 +201,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testRegistarDecisao() throws Exception {
         System.out.println("registarDecisao");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce,user);
         Exposicao exp = new Exposicao();
         exp.setDadosPrincipais("Titulo", "Descrição", d1, d2, "Local", d3, d4);
         ListaFAE lista = exp.getListaFAE();
@@ -213,7 +222,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetInfoResumo() throws Exception {
         System.out.println("getInfoResumo");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce, user);
         instance.criarAvaliacao();
         instance.criarQuestao();
         Exposicao exp = new Exposicao();
@@ -235,7 +244,7 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testGetInfoAvaliacao() throws Exception {
         System.out.println("getInfoAvaliacao");
-        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce);
+        AvaliarCandidaturaController instance = new AvaliarCandidaturaController(m_ce, user);
         instance.criarAvaliacao();
         instance.criarQuestao();
         Exposicao exp = new Exposicao();

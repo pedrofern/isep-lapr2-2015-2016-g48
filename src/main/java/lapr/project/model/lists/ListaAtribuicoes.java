@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.FAE;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -65,6 +66,16 @@ public class ListaAtribuicoes implements Serializable{
 
     public boolean adicionharListaAtribuicoes(ListaAtribuicoes listaAtribuicoesNovas) {
         return this.listaAtribuicoes.addAll(listaAtribuicoesNovas.getListaAtribuicoes());
+    }
+    
+    public ListaCandidaturas getCandidaturasAtribuidasFAE(Utilizador u){
+        ListaCandidaturas lc=new ListaCandidaturas();
+        for(Atribuicao a: listaAtribuicoes){
+            if(a.getFae().getEmail().equalsIgnoreCase(u.getEmail())){
+                lc.addCandidatura(a.getCandidatura());
+            }
+        }
+        return lc;
     }
     
     
