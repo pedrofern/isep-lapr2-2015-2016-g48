@@ -138,13 +138,6 @@ public class AlterarUtilizadorUI extends JPanel{
         JButton botao = new JButton("Cancelar");
         botao.setMnemonic(KeyEvent.VK_S);
         botao.setToolTipText("Cancela o registo de utilizador e volta ao menu anterior");
-        botao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String[] opcoes = {"Sim", "Não"};
-                Janela.getTabPane().setSelectedIndex(0);
-            }
-        });
 
         return botao;
     }

@@ -151,7 +151,7 @@ public class CriarStandUI extends JFrame{
         botaoAdicionarStand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DialogoCriarStand(CriarStandUI.this);
+                DialogoCriarStand dcs = new DialogoCriarStand(CriarStandUI.this);
             }
         });
 

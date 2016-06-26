@@ -37,7 +37,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private static Utilizador ut;
     private String tipo_utilizador;
     private JFileChooser fileChooser;
-    private static JTabbedPane tabPane;
+    private JTabbedPane tabPane;
     private PainelInfoUser pUser;
     private JMenuItem itemExp;
     private JMenuItem itemImp;
@@ -308,7 +308,7 @@ public class Janela extends JFrame /** implements Serializable**/{
         dispose();
     }
     
-    public static JTabbedPane getTabPane(){
+    public JTabbedPane getTabPane(){
         return tabPane;
     }
     private static void personalizarFileChooserEmPortugues() {

@@ -149,7 +149,7 @@ public class DefinirRecursoUI extends JFrame {
         botaoAdicionarRecurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DialogoNovoRecurso(DefinirRecursoUI.this);
+                DialogoNovoRecurso dnr=new DialogoNovoRecurso(DefinirRecursoUI.this);
             }
         });
 
