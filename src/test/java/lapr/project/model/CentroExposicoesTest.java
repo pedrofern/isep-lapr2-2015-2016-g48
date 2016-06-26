@@ -110,22 +110,6 @@ public class CentroExposicoesTest {
 
     }
 
-  
-    
-    /**
-     * Test of getDescricao method, of class CentroExposicoes.
-     */
-    @Test
-    public void getDescricao() {
-        System.out.println("getRegistoTipoConflitos");
-        CentroExposicoes instance = new CentroExposicoes();
-        instance.getDescricao();
-        String expResult = "CentroExposicões1";
-        String result = instance.getDescricao();
-        assertEquals(expResult, result);
-
-    }
-
  
     /**
      * Test of toString method, of class CentroExposicoes.

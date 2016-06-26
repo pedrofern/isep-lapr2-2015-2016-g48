@@ -112,19 +112,6 @@ public class ClassificacaoTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setMediaClassificacoes method, of class Classificacao.
-     */
-    @Test
-    public void testSetMediaClassificacoes() {
-        System.out.println("setMediaClassificacoes");
-        double result = 5.0;
-        Classificacao instance = new Classificacao();
-        instance.setMediaClassificacoes(result);
-        double expResult = instance.getMediaClassificacoes();
-        assertEquals(expResult, result, 5.0);
-        
-    }
 
     /**
      * Test of setMediaDesvios method, of class Classificacao.
