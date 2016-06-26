@@ -148,7 +148,8 @@ public class RegistarCandidaturaUI extends JFrame{
 
     private JPanel criarPainelNorte() {
         JPanel p = new JPanel(new BorderLayout());
-        
+        System.out.println("Devido ao problema dos timers, devia ocorrer:\n"+
+                "controllerRCC.getExposicoesEstadoCandidaturasAbertas()");
 //        p.add(criarPainelExposicao(controllerRCC.getExposicoesEstadoCandidaturasAbertas()),BorderLayout.WEST);
         p.add(criarPainelExposicao(controllerRCC.getExposicoes()),BorderLayout.WEST);
         p.add(criarPainelDados(),BorderLayout.CENTER);

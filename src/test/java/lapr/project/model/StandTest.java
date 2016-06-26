@@ -71,10 +71,10 @@ public class StandTest {
     @Test
     public void testSetArea() {
         System.out.println("setArea");
-        String result = "85";
+        int result = 85;
         Stand instance = new Stand();
         instance.setArea(result);
-        String expResult = instance.getArea();
+        int expResult = instance.getArea();
         assertEquals(expResult, result);
 
     }
@@ -86,9 +86,9 @@ public class StandTest {
     public void testGetArea() {
         System.out.println("getArea");
         Stand instance = new Stand();
-        String expResult = "85";
+        int expResult = 85;
         instance.setArea(expResult);
-        String result = instance.getArea();
+        int result = instance.getArea();
         assertEquals(expResult, result);
 
     }
@@ -100,10 +100,24 @@ public class StandTest {
     public void testValida() {
         System.out.println("valida");
         Stand instance = new Stand();
-        instance.setArea("85");
+        instance.setArea(85);
         instance.setDescricao("teste");
         boolean expResult = true;
         boolean result = instance.valida();
+        assertEquals(expResult, result);
+
+    }
+    
+    /**
+     * Test of valida method, of class Stand.
+     */
+    @Test
+    public void testValidaArea() {
+        System.out.println("valida");
+        Stand instance = new Stand();
+        instance.setArea(85);
+        boolean expResult = true;
+        boolean result = instance.validaArea();
         assertEquals(expResult, result);
 
     }
@@ -115,7 +129,7 @@ public class StandTest {
     public void testToString() {
         System.out.println("toString");
         Stand instance = new Stand();
-        instance.setArea("85");
+        instance.setArea(85);
         instance.setDescricao("teste");
         String expResult = instance.toString();
         String result = instance.toString();
@@ -130,10 +144,10 @@ public class StandTest {
     public void testEquals() {
         System.out.println("equals");
         Stand stand = new Stand();
-       stand.setArea("85");
+       stand.setArea(85);
         stand.setDescricao("teste");
         Stand instance = new Stand();
-        instance.setArea("85");
+        instance.setArea(85);
         instance.setDescricao("teste");
         boolean expResult = true;
         boolean result = instance.equals(stand);
@@ -148,7 +162,7 @@ public class StandTest {
     public void testHashCode() {
         System.out.println("hashCode");
         Stand instance = new Stand();
-        instance.setArea("85");
+        instance.setArea(85);
         instance.setDescricao("teste");
         int expResult = 110252050;
         int result = instance.hashCode();
@@ -163,10 +177,10 @@ public class StandTest {
     public void testCompareTo() {
         System.out.println("compareTo");
         Stand stand = new Stand();
-       stand.setArea("85");
+       stand.setArea(85);
         stand.setDescricao("teste");
         Stand instance = new Stand();
-        instance.setArea("85");
+        instance.setArea(85);
         instance.setDescricao("teste");
         int expResult = 0;
         int result = instance.compareTo(stand);

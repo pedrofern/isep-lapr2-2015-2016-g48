@@ -21,7 +21,7 @@ public class Stand implements Serializable{
     /**
      * Descricao da area
      */
-    private String area;
+    private int area;
     
     /**
      * ID do stand
@@ -34,7 +34,7 @@ public class Stand implements Serializable{
      * @param descricao
      * @param area 
      */
-    public Stand(String descricao,String area) {
+    public Stand(String descricao,int area) {
         ID = ID + totalDemonstracao++;
         this.descricao = descricao;
         this.area=area;
@@ -65,14 +65,14 @@ public class Stand implements Serializable{
      * Altera a area do stand
      * @param novaArea 
      */
-    public void setArea(String novaArea) {
+    public void setArea(int novaArea) {
         this.area = novaArea;
     }
     /**
      * Devolve a area do Stand
      * @return 
      */
-    public String getArea(){
+    public int getArea(){
         return area;
     }
     
@@ -81,10 +81,14 @@ public class Stand implements Serializable{
  * @return true se forem validos e false se nao forem
  */
     public boolean valida() {
-        if (descricao == null || descricao.trim().isEmpty() || area==null || area.trim().isEmpty()) {
+        if (descricao == null || descricao.trim().isEmpty() || !validaArea()) {
             return false;
         }
         return true;
+    }
+    
+    public boolean validaArea() {
+        return !(area<1 || area>999);
     }
 
     @Override
@@ -131,7 +135,7 @@ public class Stand implements Serializable{
  * @return 0 se forem iguais ou maior que 0 ou menor que 0, caso contrario 
  */
     public int compareTo(Stand stand) {
-        return descricao.compareTo(stand.descricao)+area.compareTo(stand.area);
+        return descricao.compareTo(stand.descricao);
     }
 
 }

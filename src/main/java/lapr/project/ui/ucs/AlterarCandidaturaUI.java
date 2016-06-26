@@ -187,9 +187,10 @@ public class AlterarCandidaturaUI extends JFrame{
                     comboExp.setEnabled(false);  
                     
                     controllerAC.selectExposicao((Exposicao) comboExp.getSelectedItem());
-
-                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
-//                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturas()));
+                    System.out.println("Devido ao problema dos timers, devia ocorrer:\n"+
+                        "controllerAC.getListaCandidaturasRepresentante(utilizador)");
+//                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
+                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturas()));
                     
                     selCand.setEnabled(true);
                     comboCand.setEnabled(true);

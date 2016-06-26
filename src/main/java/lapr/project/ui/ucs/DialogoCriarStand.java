@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -31,6 +32,7 @@ public class DialogoCriarStand extends JDialog{
      * Guarda o texto introduzido do stand
      */
     private JTextField txtDescricao,txtArea;
+    private String validaFormatDadosNum = "[^0-9]";
     /**
      * Guarda a janela anterior
      */
@@ -76,12 +78,35 @@ public class DialogoCriarStand extends JDialog{
     private JPanel criarPainelNome() {
         JLabel lbl = new JLabel("Stand: ", JLabel.RIGHT);
         lbl.setPreferredSize(LABEL_TAMANHO);
+        JLabel lbl2 = new JLabel("Area: ", JLabel.RIGHT);
+        lbl2.setPreferredSize(LABEL_TAMANHO);
 
         final int CAMPO_LARGURA = 10;
         txtDescricao = new JTextField(CAMPO_LARGURA);
+        txtDescricao.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtArea.getText().length() > 20) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        });
         txtDescricao.requestFocusInWindow();
-        txtArea = new JTextField(CAMPO_LARGURA);
-        txtArea.requestFocusInWindow();
+        txtArea = new JTextField(2);
+        txtArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ev){
+                txtArea.setText(txtArea.getText().replaceAll(validaFormatDadosNum, ""));
+            }
+        });
+        txtArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent ev) {
+                if (txtArea.getText().length() > 2) {
+                    ev.setKeyChar((char) KeyEvent.VK_CLEAR);
+                } 
+            }
+        });
 
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
         final int MARGEM_SUPERIOR = 10, MARGEM_INFERIOR = 0;
@@ -91,6 +116,7 @@ public class DialogoCriarStand extends JDialog{
 
         p.add(lbl);
         p.add(txtDescricao);
+        p.add(lbl2);
         p.add(txtArea);
 
         return p;
@@ -122,11 +148,12 @@ public class DialogoCriarStand extends JDialog{
     private JButton criarBotaoOK() {
         JButton btn = new JButton("OK");
         btn.setMnemonic(KeyEvent.VK_O);
-        btn.setToolTipText("Confirma adição recurso");
+        btn.setToolTipText("Confirma adição stand");
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Stand novoStand = new Stand(txtDescricao.getText(),txtArea.getText());
+                try{
+                Stand novoStand = new Stand(txtDescricao.getText(), Integer.parseInt(txtArea.getText()));
                 JList lista = framePai.getListaStands();
                 ModeloListaStands modeloListaStands = (ModeloListaStands) lista.getModel();
                 boolean standAdicionado = modeloListaStands.addElement(novoStand);
@@ -145,6 +172,13 @@ public class DialogoCriarStand extends JDialog{
                                 JOptionPane.ERROR_MESSAGE);
                     }
                 dispose();
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(
+                                framePai,
+                                "Tem de preencher os campos todos!",
+                                "Novo Stand",
+                                JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         return btn;

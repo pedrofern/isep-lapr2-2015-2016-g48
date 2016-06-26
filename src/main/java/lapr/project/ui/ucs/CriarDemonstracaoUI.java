@@ -46,7 +46,7 @@ public class CriarDemonstracaoUI extends JFrame {
         mdemonstracaoController = new CriarDemonstracaoController(user, ce);
 
         criarComponentes();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);

@@ -905,6 +905,17 @@
             <tempoServico>3</tempoServico>
         </m_listaUtilizadores>
     </regUtilizadores>
-    <regStands/>
+    <regStands>
+        <listaStands>
+            <descricao>stand1</descricao>
+            <area>23</area>
+            <ID>Stand-0</ID>
+        </listaStands>
+        <listaStands>
+            <descricao>stand2</descricao>
+            <area>25</area>
+            <ID>Stand-0</ID>
+        </listaStands>
+    </regStands>
     <regTiposConflitos/>
 </centroExposicoes>

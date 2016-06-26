@@ -48,7 +48,7 @@ public class RegistoStandsTest {
         int indice = 0;
         Stand st = new Stand();
         st.setDescricao("Descricao");
-        st.setArea("45");
+        st.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(st);
         Stand expResult = instance.getListaStands().get(0);
@@ -65,7 +65,7 @@ public class RegistoStandsTest {
         System.out.println("getArray");
         Stand st = new Stand();
         st.setDescricao("Descricao");
-        st.setArea("45");
+        st.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(st);
         Stand[] expResult = instance.getListaStands().toArray(new Stand[instance.getListaStands().size()]);
@@ -82,7 +82,7 @@ public class RegistoStandsTest {
         System.out.println("getListaStands");
         Stand st = new Stand();
         st.setDescricao("Descricao");
-        st.setArea("45");
+        st.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(st);
         ArrayList<Stand> expResult = instance.getListaStands();
@@ -99,7 +99,7 @@ public class RegistoStandsTest {
         System.out.println("adicionarStand");
         Stand stand = new Stand();
         stand.setDescricao("Descricao");
-        stand.setArea("45");
+        stand.setArea(45);
         RegistoStands instance = new RegistoStands();
         boolean expResult = true;
         boolean result = instance.adicionarStand(stand);
@@ -115,7 +115,7 @@ public class RegistoStandsTest {
         System.out.println("removerStand");
         Stand stand = new Stand();
         stand.setDescricao("Descricao");
-        stand.setArea("45");
+        stand.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(stand);
         boolean expResult = true;
@@ -132,7 +132,7 @@ public class RegistoStandsTest {
         System.out.println("tamanho");
         Stand stand = new Stand();
         stand.setDescricao("Descricao");
-        stand.setArea("45");
+        stand.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(stand);
         int expResult = 1;
@@ -149,7 +149,7 @@ public class RegistoStandsTest {
         System.out.println("indiceDeStand");
         Stand stand = new Stand();
         stand.setDescricao("Descricao");
-        stand.setArea("45");
+        stand.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(stand);
         int expResult = 0;
@@ -167,9 +167,9 @@ public class RegistoStandsTest {
         Stand stand = new Stand();
         Stand stand1 = new Stand();
         stand.setDescricao("Descricao");
-        stand.setArea("45");
+        stand.setArea(45);
         stand1.setDescricao("Descricao");
-        stand1.setArea("45");
+        stand1.setArea(45);
         RegistoStands instance = new RegistoStands();
         instance.adicionarStand(stand);
         boolean expResult = true;

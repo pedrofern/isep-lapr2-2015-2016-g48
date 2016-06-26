@@ -162,9 +162,9 @@ public class CriarStandUI extends JFrame{
      * @return botão eliminar produto
      */
     public JButton criarBotaoRemoverStand(){
-        botaoRemoverStand = new JButton("Eliminar Recurso");
+        botaoRemoverStand = new JButton("Eliminar Stand");
         botaoRemoverStand.setMnemonic(KeyEvent.VK_E);
-        botaoRemoverStand.setToolTipText("Elimina recursos");
+        botaoRemoverStand.setToolTipText("Elimina Stand");
         botaoRemoverStand.setEnabled(true);
         botaoRemoverStand.addActionListener(new ActionListener() {
             @Override
