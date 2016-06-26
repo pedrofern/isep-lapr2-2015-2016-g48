@@ -41,13 +41,13 @@ public class RegistarUtilizadorUI extends JFrame{
         super("Registar Utilizador");
         this.fichCentroExposicoes = fichCentroExposicoes;
         this.ce = centroExposicoes;
-        this.controllerRU = new RegistarUtilizadorController(ce);
+        controllerRU = new RegistarUtilizadorController(ce);
         this.framePai=framePai;
         
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                fecharJanelaRegistoUtilizador("Pretende voltar ao menu principal?");
+                fecharJanelaRegistoUtilizador(pergunta);
             }
         });
         
@@ -160,43 +160,43 @@ public class RegistarUtilizadorUI extends JFrame{
         return botao;
     }
     
-     private void guardar() {
-            String nome,email,pass,user;
-            nome = norte.getTxtNome().getText();
-            email = norte.getTxtEmail().getText();
-            pass = norte.getTxtPassword().getText();
-            user = norte.getTxtUsername().getText();
-            controllerRU.novoUtilizador();
+    private void guardar() {
+        String nome,email,pass,user;
+        nome = norte.getTxtNome().getText();
+        email = norte.getTxtEmail().getText();
+        pass = norte.getTxtPassword().getText();
+        user = norte.getTxtUsername().getText();
+        controllerRU.novoUtilizador();
 
-            controllerRU.criaUtilizador(nome, email, user, pass);
-                JOptionPane.showMessageDialog(
-                            null,
-                            "Dados novo utilizador registado: \n"
-                                    +"\nUsername: "+user
-                                    +"\nPassword: "+pass
-                                    +"\nNome: "+nome
-                                    +"\nEmail: "+email,
-                            "Registar Utilizador",
-                            JOptionPane.INFORMATION_MESSAGE);  
-            Janela j = new Janela(ce, fichCentroExposicoes, controllerRU.getUtilizador());
-            dispose();
-    }
+        Utilizador u = controllerRU.criaUtilizador(nome, email, user, pass);
+        if (u==null){
+            JOptionPane.showMessageDialog(null,"Dados inseridos inválidos!\n"
+                + "Corrigir se quer continuar o registo de utilizador",
+                "Registar Utilizador", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(
+                        null,
+                        "Dados novo utilizador registado: \n"
+                                +"\nUsername: "+user
+                                +"\nPassword: "+pass
+                                +"\nNome: "+nome
+                                +"\nEmail: "+email,
+                        "Registar Utilizador",
+                        JOptionPane.INFORMATION_MESSAGE);  
+        dispose();
+        }
+        }
+    
      
     private void fecharJanelaRegistoUtilizador(String pergunta){
-        if (norte.getTxtNome().getText()!=""||
-                norte.getTxtEmail().getText()!=""||
-                norte.getTxtPassword().getText()!=""||
-                norte.getTxtUsername().getText()!=""){
-            String[] opcoes = {"Sim", "Não"};
-            
-            int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,
-                    "Registar utilizador", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-            if (opcao == JOptionPane.YES_OPTION) {                        
-                dispose();
-            } else {
-                 setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
-            }
+        String[] opcoes = {"Sim", "Não"};
+        int opcao = JOptionPane.showOptionDialog(framePai, pergunta,
+                "Registar utilizador", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+        if (opcao == JOptionPane.YES_OPTION) {                        
+            dispose();
+        } else {
+             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                       
         }
     }
 }

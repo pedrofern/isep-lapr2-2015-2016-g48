@@ -153,33 +153,6 @@ public class RegistoUtilizadoresTest {
     }
 
     /**
-     * Test of getUtilizadoresNaoRegistados method, of class
-     * RegistoUtilizadores.
-     */
-    @Test
-    public void testGetUtilizadoresNaoRegistados() {
-        System.out.println("getUtilizadoresNaoRegistados");
-        Utilizador ut2 = new Utilizador("Ana Silva", "1130155@isep.ipp.pt", "Gestor", "admin", false, 10);
-        Utilizador ut3 = new Utilizador("Diana Silva", "1151088@isep.ipp.pt", "Organizador", "admin", false, 8);
-        Utilizador ut4 = new Utilizador("Eduângelo Ferreira", "1151094@isep.ipp.pt", "Organizador+Fae",  "admin",false, 6);
-        Utilizador ut5 = new Utilizador("Pedro Fernandes", "1060503@isep.ipp.pt", "Fae",  "admin",false, 3);
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        instance.addUtilizador(ut2);
-        instance.addUtilizador(ut3);
-        instance.addUtilizador(ut4);
-        instance.addUtilizador(ut5);
-
-        List<Utilizador> expResult = new ArrayList<>();
-        expResult.add(ut2);
-        expResult.add(ut3);
-        expResult.add(ut4);
-        expResult.add(ut5);
-        List<Utilizador> result = instance.getUtilizadoresNaoRegistados();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
      * Test of hasUtilizador method, of class RegistoUtilizadores.
      */
     @Test

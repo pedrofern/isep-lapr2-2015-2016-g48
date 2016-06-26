@@ -55,6 +55,7 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
         setSize(JANELA_LARGURA, JANELA_ALTURA);
         setLocationRelativeTo(null);
         setVisible(true);
+        System.out.println(controller.getRegistoUtilizadoresNaoRegistados());
     }
     
     public void criarComponentes(){
@@ -95,7 +96,7 @@ public class ConfirmarRegistoUtilizadorUI extends JFrame{
     private JComboBox getComboUtilizadores() {
         
         
-        comboUtilizadores = Utils.criarComboUser(controller.getRegistoUtilizadores().getUtilizadoresPend());
+        comboUtilizadores = Utils.criarComboUser(controller.getRegistoUtilizadoresNaoRegistados());
         return comboUtilizadores;
     }
     

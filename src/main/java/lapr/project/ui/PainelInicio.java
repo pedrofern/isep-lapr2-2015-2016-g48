@@ -46,13 +46,8 @@ public class PainelInicio extends JPanel {
         
         JPanel pInfo2=new JPanel();
         JLabel info2=new JLabel("Nº Exposiçoes: " + m_ce.getRegistoExposicoes().getExposicoes().size());
-        pInfo1.add(info2);
-//
-//        JPanel pInfo3=new JPanel();
-//        JLabel info3=new JLabel("Nº candidaturas: ");
-//        pInfo1.add(info3);        
-        
-    
+        pInfo1.add(info2);   
+
         pAcerca.add(pInfo1);
         pAcerca.add(pInfo2); 
         

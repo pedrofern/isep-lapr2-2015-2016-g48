@@ -127,7 +127,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
-
+                   ConfirmarRegistoUtilizadorUI cru=new ConfirmarRegistoUtilizadorUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -150,6 +150,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    DefinirRecursoUI dr = new DefinirRecursoUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -172,6 +173,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    DefinirTipoConflitoUI dtc = new DefinirTipoConflitoUI(mCe);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -194,6 +196,7 @@ public class PainelGestor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
+                   CriarStandUI cs = new CriarStandUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelGestor.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -204,9 +207,5 @@ public class PainelGestor extends JPanel {
         
         return bt;
     }
-    
-    
-    
-    
-    
+
 }

@@ -32,14 +32,6 @@ public class ConfirmarRegistoUtilizadorController {
     }
 
     /**
-     * Devolve uma lista de utilizadores que nao estao registados
-     * @return 
-     */
-    public List<Utilizador> iniciaConfirmacaoUtilizador() {
-        return registoUtilizadores.getUtilizadoresNaoRegistados();
-    }
-
-    /**
      * Devolve a informacao do utilizador, passando como parametro o id do utilizador
      * @param uId
      * @return o utilizador a confirmar
@@ -60,8 +52,8 @@ public class ConfirmarRegistoUtilizadorController {
      * Devolve um objecto RegistoUtilizadores, que contem a lista de utilizadores pendentes
      * @return a lista de utilizadores ainda por confirmar
      */
-    public RegistoUtilizadores getRegistoUtilizadores(){
-        return registoUtilizadores=ce.getRegistoUtilizadoresNaoRegistados().getUtilizadoresPend();
+    public RegistoUtilizadores getRegistoUtilizadoresNaoRegistados(){
+        return registoUtilizadores=ce.getRegistoUtilizadoresNaoRegistados();
     }
     
 }

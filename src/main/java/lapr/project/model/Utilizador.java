@@ -51,7 +51,7 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
     /**
      * Utilizador registado
      */
-    private Boolean m_bRegistado;
+    private Boolean bRegistado;
     /**
      * Tempo de serviço 
      */
@@ -65,6 +65,7 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
         email = EMAIL_POR_OMISSAO;
         username = USER_POR_OMISSAO;
         password = PASS_POR_OMISSAO;
+        bRegistado = false;        
     }
 /**
  * Constroi uma instancia de utilizador, com os dados do utilizador, passados como parametro
@@ -80,7 +81,7 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
         this.email = email;
         this.username = username;
         setPassword(password);
-        this.m_bRegistado = bRegistado;
+        this.bRegistado = bRegistado;
         this.tempoServico=experiencia;
     }
     /**
@@ -95,6 +96,7 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
         setUsername(strUsername);
         setPassword(strPwd);
         setEmail(strEmail);
+        bRegistado = true;
     }
 
     /**
@@ -191,14 +193,14 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
  * @return true se verdadeiro, false se falso
  */
     public Boolean getRegistado() {
-        return m_bRegistado;
+        return bRegistado;
     }
 /**
  * Altera o estado de registado ou nao do utilizador
  * @param registado 
  */
     public void setRegistado(Boolean registado) {
-        this.m_bRegistado = registado;
+        this.bRegistado = registado;
     }
 /**
  * Valida os daods de login

@@ -7,25 +7,21 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import lapr.project.controller.AtribuirCandidaturaController;
-import lapr.project.controller.DecidirCandidaturaController;
-import lapr.project.controller.GerarEstatisticasCandidaturaController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.AnaliseAvaliacaoFaeUI;
 import lapr.project.ui.ucs.AtribuirCandidaturaUI;
+import lapr.project.ui.ucs.AtribuirStandCandidaturaUI;
 import lapr.project.ui.ucs.CriarDemonstracaoUI;
 import lapr.project.ui.ucs.DecidirCandidaturaUI;
 import lapr.project.ui.ucs.DefinirDemonstracaoUI;
 import lapr.project.ui.ucs.DefinirFAEUI;
 import lapr.project.ui.ucs.GerarEstatisticasCandidaturaUI;
+import lapr.project.ui.ucs.ListarCandidaturaRetiradaUI;
 
 /**
  *
@@ -40,7 +36,6 @@ public class PainelOrganizador extends JPanel {
 
     private static final int LINHAS=5, COLUNAS=2,HGAP=20, VGAP=20;
     private static final Dimension DIM_BOTOES=new Dimension(200,35);
-    private static final int TAM_LETRA_BOTAO=9;
 
     PainelOrganizador(CentroExposicoes ce, Utilizador ut) {
         super();
@@ -81,7 +76,7 @@ public class PainelOrganizador extends JPanel {
         pBotoes.add(criarBotaoDefinirDemo());
         pBotoes.add(criarBotaoListarCandRemovidas());
         pBotoes.add(criarBotaoGerarEstatisticasCandidatura());
-        pBotoes.add(criarBotaoRemoverDemo());
+        pBotoes.add(criarBotaoGerarEstFAE());
 
         return pBotoes;
     } 
@@ -195,7 +190,7 @@ public class PainelOrganizador extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{  
-                    
+                    AtribuirStandCandidaturaUI asc = new AtribuirStandCandidaturaUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -236,15 +231,15 @@ public class PainelOrganizador extends JPanel {
         bt.setToolTipText("Listagem de Candidaturas Removidas");
         bt.setPreferredSize(DIM_BOTOES);
 
-        bt.addActionListener(new ActionListener(){
-           
+        bt.addActionListener(new ActionListener(){           
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }     
+                try{
+                    ListarCandidaturaRetiradaUI lcr=new ListarCandidaturaRetiradaUI(mCe, mUt);
+               }catch(Exception ex){
+                   JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+               }}     
         }
-            
         );
         
         return bt;
@@ -274,7 +269,7 @@ public class PainelOrganizador extends JPanel {
         return bt;
     }
 
-    private JButton criarBotaoRemoverDemo() {
+    private JButton criarBotaoGerarEstFAE() {
         JButton bt=new JButton("Gerar estatísticas FAE");
         bt.setMnemonic(KeyEvent.VK_E);
         bt.setToolTipText("Geração de estatísticas relativas às avaliações dos FAE");
@@ -284,13 +279,12 @@ public class PainelOrganizador extends JPanel {
            
             @Override
             public void actionPerformed(ActionEvent e) {
- try{  
+                try{  
                     AnaliseAvaliacaoFaeUI ui=new AnaliseAvaliacaoFaeUI(mCe, mUt);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelOrganizador.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }}     
-        }
-            
+        }  
         );
         
         return bt;

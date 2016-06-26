@@ -39,6 +39,8 @@ public class Janela extends JFrame /** implements Serializable**/{
     private JFileChooser fileChooser;
     private static JTabbedPane tabPane;
     private static PainelInfoUser pUser;
+    private JMenuItem itemExp;
+    private JMenuItem itemImp;
     /**
      * Guarda objectos do tipo FichCentroExposicoes
      */
@@ -80,11 +82,11 @@ public class Janela extends JFrame /** implements Serializable**/{
         JMenuBar menuBar= criarBarraMenus();
         setJMenuBar(menuBar);
 
-           pUser=new PainelInfoUser(ut);
-           pUser.criarPainel();
+        pUser=new PainelInfoUser(ut);
+        pUser.criarPainel();
         
         tabPane=criarSeparadores();
-        
+
         add(pUser,BorderLayout.NORTH);
         add(tabPane,BorderLayout.CENTER);
     }
@@ -137,9 +139,10 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private JMenuItem criarItemImportar(){
-          JMenuItem item= new JMenuItem("Importar", KeyEvent.VK_I);
-          item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
-          item.addActionListener(new ActionListener() {
+          itemImp= new JMenuItem("Importar", KeyEvent.VK_I);
+          itemImp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
+          itemImp.setEnabled(false);
+          itemImp.addActionListener(new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent e) {
                   try{
@@ -155,13 +158,14 @@ public class Janela extends JFrame /** implements Serializable**/{
                 }
               }
           });       
-          return item; 
+          return itemImp; 
     }
     
     private JMenuItem criarItemExportar(){
-        JMenuItem item = new JMenuItem("Exportar", KeyEvent.VK_X);
-        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
-        item.addActionListener(new ActionListener() {
+        itemExp = new JMenuItem("Exportar", KeyEvent.VK_X);
+        itemExp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
+        itemExp.setEnabled(false);
+        itemExp.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
               XML export = new XML();
@@ -173,7 +177,7 @@ public class Janela extends JFrame /** implements Serializable**/{
                     JOptionPane.PLAIN_MESSAGE);
           }
       });       
-      return item; 
+      return itemExp; 
     }
     
     private JMenuItem criarItemAcerca(){
@@ -243,55 +247,45 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private JTabbedPane criarSeparadores() {
-        tipo_utilizador=ut.getUsername();
-        
         tabPane = new JTabbedPane(); 
-        
-//        if("Fae".equals(tipo_utilizador)){
-//            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
-//       }
-//        
-//       if("Organizador".equals(tipo_utilizador)){
-//           tabPane.addTab("Home", new PainelInicio(ce));
-//           tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
-//
-//       }
-//       if("Representante".equals(tipo_utilizador)){
-//
-//            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
-//       }
-//       
-//      if("Organizador+Fae".equals(tipo_utilizador)){
-//          
-//            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
-//            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
-//            
-//       }
-        
-      if(ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null){
-            tabPane.addTab("MenuFae", new PainelFae(ce, ut));
-            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-      }else if(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)!=null){
-            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
-            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-      }else if(!(ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null) && !(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)!=null)){
-            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
-            tabPane.addTab("MenuFae", new PainelFae(ce, ut)); 
-            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-      }else if(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)==null && ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null){
-            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
-            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-      }else if("Gestor".equals(tipo_utilizador)){
-            tabPane.addTab("MenuGestor", new PainelGestor(ce, ut));
-            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-      }else if("Admin".equals(tipo_utilizador)){
-            tabPane.add("Menu Gestor", new PainelGestor(ce,ut));
+        tipo_utilizador=ut.getUsername();
+        if(tipo_utilizador.equals("Admin")){
+            tabPane.addTab("Menu Gestor", new PainelGestor(ce,ut));
             tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce, ut));
             tabPane.addTab("MenuFae", new PainelFae(ce, ut));
             tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
             tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
-        
-      }  
+            itemImp.setEnabled(true);
+            itemExp.setEnabled(true);
+        }else{
+            if(tipo_utilizador.equals("Gestor")){
+                tabPane.addTab("MenuGestor", new PainelGestor(ce, ut));
+                tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+                itemImp.setEnabled(true);
+                itemExp.setEnabled(true);
+            }
+            else{
+                if(ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null &&
+                        ce.getRegistoExposicoes().getExposicoesOrganizador(ut)!= null ){
+                    tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
+                    tabPane.addTab("MenuFae", new PainelFae(ce, ut)); 
+                    tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+                }else{
+                    if(ce.getRegistoExposicoes().getExposicoesDoFAE(ut)!=null){
+                        tabPane.addTab("MenuFae", new PainelFae(ce, ut));
+                        tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+                    }else{
+                        if(ce.getRegistoExposicoes().getExposicoesOrganizador(ut)!= null){
+                            tabPane.addTab("MenuOrganizador", new PainelOrganizador(ce,ut));
+                            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+                        }else{
+                            tabPane.addTab("MenuRepresentante", new PainelRepresentante(ce, ut));
+                            tabPane.addTab("Alterar Utilizador", new AlterarUtilizadorUI(ce, ut));
+                        }
+                    }
+                }
+            }
+        }
    
       return tabPane; 
     }

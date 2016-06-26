@@ -131,12 +131,12 @@ public class RegistoUtilizadores implements Serializable{
  * Devolve a lista de utilizadores nao registados
  * @return a lista de utilizadores nao registados
  */
-    public List<Utilizador> getUtilizadoresNaoRegistados() {
-        List<Utilizador> lUsers = new ArrayList<Utilizador>();
+    public RegistoUtilizadores getUtilizadoresNaoRegistados() {
+        RegistoUtilizadores lUsers = new RegistoUtilizadores();
 
         for (Utilizador u : m_listaUtilizadores) {
             if (!u.getRegistado()) {
-                lUsers.add(u);
+                lUsers.addUtilizador(u);
             }
         }
         return lUsers;
@@ -228,8 +228,7 @@ public class RegistoUtilizadores implements Serializable{
     * @return a lista de utilizadores pendentes
     */
     public RegistoUtilizadores getUtilizadoresPend(){
-        RegistoUtilizadores m_listaUtilizadoresPend;
-        m_listaUtilizadoresPend= new RegistoUtilizadores();
+        RegistoUtilizadores m_listaUtilizadoresPend= new RegistoUtilizadores();
         for (Utilizador u:m_listaUtilizadores){
             if (u.getRegistado()==false){
                 m_listaUtilizadoresPend.addUtilizador(u);

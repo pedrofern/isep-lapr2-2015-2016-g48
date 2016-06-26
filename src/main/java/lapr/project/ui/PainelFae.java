@@ -24,8 +24,8 @@ public class PainelFae extends JPanel{
 
     private JPanel pPrincipal;
     private JPanel pInfo;
-    private static Utilizador m_ut;
-    private CentroExposicoes m_ce;
+    private static Utilizador mut;
+    private CentroExposicoes mce;
     
     private static final int LINHAS=2, COLUNAS=1,HGAP=20, VGAP=20;
     private static final Dimension DIM_BOTOES=new Dimension(150,35);
@@ -35,8 +35,8 @@ public class PainelFae extends JPanel{
         
         super();
         
-        this.m_ce=ce;
-        this.m_ut=ut;
+        this.mce=ce;
+        this.mut=ut;
 
         setLayout(new BorderLayout());
          
@@ -60,7 +60,7 @@ public class PainelFae extends JPanel{
         pInfo=new JPanel();
         pInfo.setLayout(new BorderLayout());
 
-        PainelInicio p=new PainelInicio(m_ce);
+        PainelInicio p=new PainelInicio(mce);
         
         pInfo.add(p);         
     }
@@ -71,16 +71,16 @@ public class PainelFae extends JPanel{
         GridLayout gl=new GridLayout(LINHAS,COLUNAS);
         
         pBotoes.setLayout(gl);
-        //gl.setHgap(HGAP);
+        gl.setHgap(HGAP);
         gl.setVgap(VGAP);
         
-        pBotoes.add(criarBotaoDefinirCand());
+        pBotoes.add(criarBotaoAvaliarCand());
         pBotoes.add(criarBotaoAtualizarConflitos());
 
         return pBotoes;
     } 
 
-   private JButton criarBotaoDefinirCand(){
+   private JButton criarBotaoAvaliarCand(){
         JButton bt=new JButton("Avaliar candidatura");
         bt.setMnemonic(KeyEvent.VK_D);
         bt.setToolTipText("Avaliação de uma candidatura");
@@ -90,6 +90,7 @@ public class PainelFae extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                try{
+                   AvaliarCandidaturaUI av = new AvaliarCandidaturaUI(mce, mut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
                }
@@ -109,9 +110,11 @@ public class PainelFae extends JPanel{
         bt.addActionListener(new ActionListener(){
            
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {try{
+                   AtualizarConflitosUI ac = new AtualizarConflitosUI(mce, mut);
+               }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelFae.this, "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }   
+               }}   
         }
             
         );

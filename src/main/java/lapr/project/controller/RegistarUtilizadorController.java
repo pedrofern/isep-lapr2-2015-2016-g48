@@ -20,8 +20,7 @@ public class RegistarUtilizadorController {
  */
     public RegistarUtilizadorController(CentroExposicoes centroExposicoes) {
         ce= centroExposicoes;
-        registoUtilizadores = ce.getRegistoUtilizadoresRegistados();
-
+        registoUtilizadores = ce.getRegistoUtilizadores();
     }
 /**
  * Cria um novo utilizador
@@ -41,9 +40,8 @@ public class RegistarUtilizadorController {
         utilizador.setUsername(user);
         utilizador.setPassword(pass);
         utilizador.setNome(nome);
-        utilizador.setEmail(email);
-        
-        utilizador.setRegistado(Boolean.TRUE);
+        utilizador.setEmail(email);        
+        utilizador.setRegistado(false);
 
         if (registoUtilizadores.registaUtilizador(utilizador)) {
             return utilizador;
