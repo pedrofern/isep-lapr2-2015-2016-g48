@@ -199,22 +199,19 @@ public class EstatisticaFAE implements Serializable{
      * @return o nivel de significância calculado
      */
     public double calcularNivelSignificancia(double intervaloConfianca) {
-        double ns90=1.645;
-        double ns95=1.96;
-        double ns99=2.58;
-        
+        double ns=0;
+
         if(intervaloConfianca==90.00){
-           return ns90;
+           ns=1.645;
        }
        if(intervaloConfianca==95.00){
-           return ns95;
+           ns=1.96;
        }
        if(intervaloConfianca==99.00){
-           return ns99;
+           ns=2.58;
        }
-       
-        
-        return nivelSignificancia;
+       nivelSignificancia=ns;
+        return ns;
     }
 
     /**

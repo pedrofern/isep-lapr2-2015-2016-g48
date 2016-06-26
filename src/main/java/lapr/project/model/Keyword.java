@@ -87,7 +87,7 @@ public class Keyword implements Serializable{
      * Incrementa um valor no contador de utilizações da password
      * @param utilizacoes número de vezes que a keyword foi utilizada
      */
-    public void setUtilizacoes(int utilizacoes) {
+    public void setUtilizacoes() {
         utilizacoes++;
     }
     

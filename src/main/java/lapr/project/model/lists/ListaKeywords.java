@@ -80,6 +80,12 @@ public class ListaKeywords implements Serializable {
     public boolean removerKeyword(Keyword keyword) {
         return listaKeyword.remove(keyword);
     }
+    
+    public void setUtilizacao(Keyword k){
+        listaKeyword.stream().filter((kw) -> (kw.equals(k))).forEach((kw) -> {
+            kw.setUtilizacoes();
+        });
+    }
 
     /**
      * Metodo que vai retorna o tamanho da lista

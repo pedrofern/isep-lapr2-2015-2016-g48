@@ -116,7 +116,7 @@ public class Classificacao implements Serializable{
 
     /**
      * Altera a media das classificações dadas pelo FAE
-     * @param mediaClassificacoes média a alterar
+     * @param media media das classificações
      */
     public void setMediaClassificacoes(double media) {
         this.mediaClassificacoes = media;

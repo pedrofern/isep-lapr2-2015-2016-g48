@@ -195,38 +195,23 @@ public class Candidatura implements Serializable{
                 validaArea() && validaContives();
     }
     public boolean validaNomeEmpresa() {
-        if (nomeEmpresa == null || nomeEmpresa.isEmpty() || nomeEmpresa.matches(".*\\d+.*")) {
-            return false;
-        }
-        return true;
+        return !(nomeEmpresa == null || nomeEmpresa.isEmpty() || nomeEmpresa.matches(".*\\d+.*"));
     }
 
     public boolean validaMorada() {
-        if (morada == null || morada.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !(morada == null || morada.isEmpty());
     }
 
     public boolean validaTelemovel() {  
-        if (telemovel<900000000 || telemovel>999999999){
-            return false;
-        }
-        return true;
+        return !(telemovel<900000000 || telemovel>999999999);
     }
 
     public boolean validaArea() {
-        if (areaExposicao<1 || areaExposicao>999){
-            return false;
-        }
-        return true;
+        return !(areaExposicao<1 || areaExposicao>999);
     }
     
     public boolean validaContives() {
-        if (quantidadeConvites<1 || quantidadeConvites>999){
-            return false;
-        }
-        return true;
+        return !(quantidadeConvites<1 || quantidadeConvites>999);
     }
 
     @Override
@@ -255,11 +240,13 @@ public class Candidatura implements Serializable{
     }
       
       public String getDecisaoString(){
+          String decision;
           if(decisao==true){
-              return "aceite";
+              decision="aceite";
           }else{
-              return "recusada";
+              decision="recusada";
           }
+          return decision;
       }
 
       public String[] toStringEstatistica(){

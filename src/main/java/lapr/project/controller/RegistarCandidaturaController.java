@@ -13,7 +13,6 @@ public class RegistarCandidaturaController {
     private CandidaturaDemonstracao candidaturaDemonstracao;
     private Demonstracao demonstracao;
     private ListaCandidaturas listaCandidaturas;
-    private Exposicao exposicao;
     private RegistoExposicoes registoExposicoes;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaDemonstracoes listaTemp;
@@ -104,8 +103,7 @@ public class RegistarCandidaturaController {
      * Seleciona uma exposicao de uma lista
      * @param exposicao 
      */
-    public void selectExposicao(Exposicao exposicao){
-        this.exposicao=exposicao;   
+    public void selectExposicao(Exposicao exposicao){  
         listaCandidaturas = exposicao.getListaCandidaturas();
         listaDemonstracoes = exposicao.getListaDemonstracoes();
     }

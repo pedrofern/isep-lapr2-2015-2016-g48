@@ -174,8 +174,12 @@ public class Avaliacao implements Serializable{
      * @return avaliação dada pelo FAE
      */
     public String getAvaliacaoString(){
-        if (avaliacaoDada==true) return "Aceite";
-        else return "Recusada";
+        String avaliacao;
+        if (avaliacaoDada==true) 
+            avaliacao="Aceite";
+        else 
+            avaliacao="Recusada";
+        return avaliacao;
     }
 
     /**
@@ -184,13 +188,10 @@ public class Avaliacao implements Serializable{
      */
     @Override
     public String toString() {
-        String avaliacaoDada = "Avaliação: " + getAvaliacaoString() + "\nJustificação: " + this.justificacao + "\n";
-        for (Questao q : listaQuestoes.getListaQuestoes()) {
-            avaliacaoDada += q.getPergunta() + ":" + q.getResposta() + "\n";
-
-        }
-        avaliacaoDada += "Média: " + listaQuestoes.calcularMedia();
-        return avaliacaoDada;
+        String avaliacaoString = "Avaliação: " + getAvaliacaoString() + "\nJustificação: " + this.justificacao + "\n";
+        avaliacaoString = listaQuestoes.getListaQuestoes().stream().map((q) -> q.getPergunta() + ":" + q.getResposta() + "\n").reduce(avaliacaoString, String::concat);
+        avaliacaoString += "Média: " + listaQuestoes.calcularMedia();
+        return avaliacaoString;
     }
 }
 

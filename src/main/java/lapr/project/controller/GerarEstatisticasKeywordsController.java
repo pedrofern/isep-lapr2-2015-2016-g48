@@ -5,10 +5,10 @@
  */
 package lapr.project.controller;
 
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
-import lapr.project.model.EstatisticaFAE;
 import lapr.project.model.Exposicao;
-import lapr.project.model.Utilizador;
+import lapr.project.model.Keyword;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaKeywords;
 import lapr.project.model.lists.RegistoExposicoes;
@@ -20,7 +20,8 @@ import lapr.project.model.lists.RegistoExposicoes;
 public class GerarEstatisticasKeywordsController {
     
     private CentroExposicoes ce;
-    private ListaKeywords rankingAceites, rankingRecusadas;
+    private ListaKeywords rankingAceites;
+    private ListaKeywords rankingRecusadas;
     private ListaCandidaturas listaCandidaturas;
     
     /**
@@ -61,27 +62,26 @@ public class GerarEstatisticasKeywordsController {
         listaCandidaturas=exposicao.getListaCandidaturas();
     }
     
-//    public void gerarEstatisticasAceites(){
-//        for(Candidatura c: listaCandidaturas.getListaCandidaturasAceites){
-//            for(Keyword k: c.getListaKeywords().getListaKeyword()){
-//                if(!rankingAceites.temKeyword(k)){
-//                    Keyword keywordRanking=new Keyword();
-//                    keywordRanking=k;
-//                    keywordRanking.setUtilizacao();
-//                    
-//                    rankingAceites.adicionarKeyword(k));
-//                } else{
-//                    rankingAceites.setUtilizacao(k);
-//                }
-//            }
-//        }
+    public void gerarEstatisticasAceites(){
+        for(Candidatura c: listaCandidaturas.getListaCandidaturas()){
+            if(c.getDecisao()==true){
+                
+           
+                for(Keyword k: c.getListaKeywords().getListaKeyword()){
+                    if(!rankingAceites.contem(k)){
+                        Keyword keywordRanking=new Keyword();
+                        keywordRanking=k;
+                        keywordRanking.setUtilizacoes();
+
+                        rankingAceites.adicionarKeyword(k);
+                    } else{
+                        rankingAceites.setUtilizacao(k);
+                    }
+                }
+            }
+        }
     
 //        sort(rankingAceites);
 //        sort(rankingRecusadas);
-//    }
-//    
-//   
-//    public void gerarFicheiro(){
-//        
-//    }
+    }
 }

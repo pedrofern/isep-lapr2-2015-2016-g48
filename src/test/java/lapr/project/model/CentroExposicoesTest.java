@@ -110,15 +110,18 @@ public class CentroExposicoesTest {
 
     }
 
+  
+    
     /**
-     * Test of getRegistoTipoConflitos method, of class CentroExposicoes.
+     * Test of getDescricao method, of class CentroExposicoes.
      */
     @Test
-    public void testGetRegistoTipoConflitos() {
+    public void getDescricao() {
         System.out.println("getRegistoTipoConflitos");
         CentroExposicoes instance = new CentroExposicoes();
-        RegistoTipoConflitos expResult = instance.getRegistoTipoConflitos();
-        RegistoTipoConflitos result = instance.getRegistoTipoConflitos();
+        instance.getDescricao();
+        String expResult = "CentroExposicões1";
+        String result = instance.getDescricao();
         assertEquals(expResult, result);
 
     }

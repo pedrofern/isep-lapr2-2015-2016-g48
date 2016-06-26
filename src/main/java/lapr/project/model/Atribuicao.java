@@ -13,8 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Atribuicao implements Serializable{
 
-   
-    private Avaliacao avaliacao;
     private FAE fae;
     private Stand stand;
     private Candidatura candidatura;
@@ -25,13 +23,11 @@ public class Atribuicao implements Serializable{
     }
     
     public Atribuicao(FAE fae, Candidatura c){
-        this.avaliacao=new Avaliacao();
         this.fae=fae;
         candidatura=c;            
     }
     
     public Atribuicao(Stand stand, Candidatura c){
-        this.avaliacao=new Avaliacao();
         this.stand=stand;
         candidatura=c;            
     }

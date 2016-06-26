@@ -15,6 +15,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Calculator implements Serializable{
 
+        public Calculator(){
+            
+        }
         /**
          * Calculate the sum of five int numbers.
          * 
@@ -39,9 +42,9 @@ public class Calculator implements Serializable{
          * @param v5 Fifth number to be added
          * @return Return the sum of all operands
          */
-	public static int sum(int v1, int v2, int v3, int v4, int v5)
+	public static int sum(int valor1, int valor2, int valor3, int valor4, int valor5)
 	{
-		return v1+v2+v3+v4+v5;
+		return valor1+valor2+valor3+valor4+valor5;
 	}
         
         /**
@@ -51,8 +54,8 @@ public class Calculator implements Serializable{
          * @return Return the average
          */
         
-        public static double average(double sum, double number_of_values){
-            return (double)sum/number_of_values;
+        public static double average(double sum, double numberOfValues){
+            return (double)sum/numberOfValues;
         }
         
         /**
@@ -74,8 +77,8 @@ public class Calculator implements Serializable{
         
         public static int sum(List<Integer> array){
             int soma=0;
-            int n_values=countRespostas(array);
-            for(int i=0; i<n_values; i++){
+            int nValues=countRespostas(array);
+            for(int i=0; i<nValues; i++){
                 soma+=array.get(i);
             }
             
@@ -88,8 +91,8 @@ public class Calculator implements Serializable{
          * @return number of questions in the list
          */
         
-        public static int countQuestions(List<Questao> array_questoes){
-            return array_questoes.size();
+        public static int countQuestions(List<Questao> arrayQuestoes){
+            return arrayQuestoes.size();
         }
         
         /**

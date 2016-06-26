@@ -68,21 +68,17 @@ public class CentroExposicoes implements Serializable{
     
     public RegistoUtilizadores getRegistoUtilizadoresRegistados() {
         RegistoUtilizadores ru=new RegistoUtilizadores();
-        for (Utilizador u: regUtilizadores.getListaUtilizadores()){
-            if(u.getRegistado()==true){
-                ru.registaUtilizador(u);
-            }
-        }
+        regUtilizadores.getListaUtilizadores().stream().filter((u) -> (u.getRegistado()==true)).forEach((u) -> {
+            ru.registaUtilizador(u);
+        });
         return ru;
     }
     
     public RegistoUtilizadores getRegistoUtilizadoresNaoRegistados() {
         RegistoUtilizadores ru=new RegistoUtilizadores();
-        for (Utilizador u: regUtilizadores.getListaUtilizadores()){
-            if(!u.getRegistado()==true){
-                ru.registaUtilizador(u);
-            }
-        }
+        regUtilizadores.getListaUtilizadores().stream().filter((u) -> (!u.getRegistado()==true)).forEach((u) -> {
+            ru.registaUtilizador(u);
+        });
         return ru;
     }
     

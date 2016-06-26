@@ -17,7 +17,7 @@ public class DetetarConflitosController extends TimerTask {
 
     @Override
     public void run() {
-        
+        System.out.println("-");
     }
 
     
