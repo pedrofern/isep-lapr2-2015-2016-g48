@@ -39,7 +39,7 @@ public class GerarEstatisticasCandidaturaController {
         
         for(Exposicao e: ce.getRegistoExposicoes().getExposicoesOrganizador(user).getExposicoes()){
             for(Exposicao e1: ce.getRegistoExposicoes().getExposicoesCandidaturasDecididas().getExposicoes()){
-                if(e.equals(e1)){
+                if(e.equals(e1) && lecd.valida(e1)){
                     lecd.adicionarExposicao(e1);
                 }
             }

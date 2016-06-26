@@ -38,11 +38,21 @@ public class AnaliseAvaliacaoFaeController {
      */
     private EstatisticaFAE estatistica;
     
+    /**
+     * Total de médias da amostra
+     */
     private double totalMedias;
+    
+    /**
+     * Número de submissões da amostra
+     */
     private int numeroSubmissoes;
+    
+    /**
+     * Intervalo de Confiança 
+     */    
     private double ic;
-    private double teste;
-    private double nivelSignificancia;
+
     
     /**
      * Cria uma instancia desta classe e recebe como parametros o centro de exposicoes e o utilizador
@@ -161,7 +171,6 @@ public class AnaliseAvaliacaoFaeController {
     }   
     
     public double calcularNivelSignificancia(){
-        nivelSignificancia=estatistica.calcularNivelSignificancia(ic);
         return estatistica.calcularNivelSignificancia(ic);
     }
     
@@ -172,7 +181,6 @@ public class AnaliseAvaliacaoFaeController {
      * @return o Z0
      */
     public double calcularZ0(FAE f){
-        teste= estatistica.calcularZ0(getDesvioFAE(f));
         return estatistica.calcularZ0(getDesvioFAE(f));
     }
     
@@ -181,14 +189,22 @@ public class AnaliseAvaliacaoFaeController {
      * Gera estatisticas do fae
      * @return  resultado do teste
      */
-    public String iniciarTesteEstatistico(){
-        if(EstatisticaFAE.testarHipoteseControlo()==false){
-            return "Sim";
+    public String iniciarTesteEstatistico(FAE f){
+        String resultado="";
+        if(f.getClassificacao().getNumeroSubmissoes()<30){
+            resultado="n<30";
+        }else{
+            if(EstatisticaFAE.testarHipoteseControlo()==false){
+                    resultado="Sim";
+                }
+
+                if(estatistica.testarHipoteseAlternativa(f, calcularZ0(f), calcularNivelSignificancia())==true)
+                    resultado="Sim";
+                else{
+                    resultado= "Não";
+                }
         }
-        if( estatistica.testarHipoteseAlternativa(teste, nivelSignificancia)==true)
-            return "Sim";
-        else
-            return "Não";
+        return resultado;
     }
     /**
      * Remove um fae
@@ -206,7 +222,7 @@ public class AnaliseAvaliacaoFaeController {
     public String[] toStringEstatistica(FAE f){
 
         String[] data={f.getNome(), String.format("%.2f", getMediaFae(f)),String.format("%.2f", getDesvioFAE(f)), String.format("%.2f", calcularMediaAmostral()),
-        String.format("%.2f", calcularZ0(f)), iniciarTesteEstatistico()};
+        String.format("%.2f", calcularZ0(f)), iniciarTesteEstatistico(f)};
 //         
                   
                   return data;

@@ -1,14 +1,12 @@
 package lapr.project.ui;
 
 import lapr.project.model.*;
-import lapr.project.model.lists.*;
-import lapr.project.model.states.exposicao.*;
-import lapr.project.utils.*;
 
 /**
  * @author Pedro Fernandes
  */
 public class Main {
+        
         /**
 	 * Private constructor to hide implicit public one.
 	 */
@@ -27,12 +25,9 @@ public class Main {
             if (ce == null) {
                 ce = new CentroExposicoes();
             }
-
-            
-                Login log = new Login(ce, fichCentroExposicoes);
-  
-            
+    
+            Login log = new Login(ce, fichCentroExposicoes);
 
         }
-
+ 
 }

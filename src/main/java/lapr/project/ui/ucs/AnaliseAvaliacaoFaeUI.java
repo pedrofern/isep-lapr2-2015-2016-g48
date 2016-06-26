@@ -83,7 +83,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
 
     private JPanel criarPainelExposicao() {
         JPanel p = new JPanel(new FlowLayout());
-        JLabel lbl = new JLabel("Exposição", SwingConstants.RIGHT);
+        JLabel lbl = new JLabel("Intervalo de Confiança-Exposição", SwingConstants.RIGHT);
 
         lbl.setPreferredSize(LABEL_TAMANHO);
 
@@ -110,6 +110,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 controller.setIntervaloConfianca((double)comboIC.getSelectedItem());
                 comboIC.setEnabled(false);
+                comboBoxExposicao.setEnabled(true);
             }
             
         });
@@ -121,6 +122,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
         comboBoxExposicao = Utils.criarComboExpo(controller.getExposicoes()); 
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
+        comboBoxExposicao.setEnabled(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
         comboBoxExposicao.addActionListener(new ActionListener() {
 

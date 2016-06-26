@@ -98,6 +98,26 @@
                             <media>1.0</media>
                             <desvio>0.0</desvio>
                         </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>1.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
                     </listaAvaliacoes>
                     <decisao>true</decisao>
                 </listaCandidaturas>
@@ -130,6 +150,26 @@
                             <media>3.0</media>
                             <desvio>0.0</desvio>
                         </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>1.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
                     </listaAvaliacoes>
                     <decisao>false</decisao>
                 </listaCandidaturas>
@@ -142,6 +182,26 @@
                     <listaFAE/>
                     <listaKeywords/>
                     <listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>false</avaliacaoDada>
+                            <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
                         <listaAvaliacoes>
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
@@ -501,8 +561,8 @@
                     <nCand>0</nCand>
                     <classificacao>
                         <numeroSubmissoes>15</numeroSubmissoes>
-                        <mediaClassificacoes>0.0</mediaClassificacoes>
-                        <mediaDesvios>0.0</mediaDesvios>
+                        <mediaClassificacoes>3.7333333333333334</mediaClassificacoes>
+                        <mediaDesvios>0.3666666666666667</mediaDesvios>
                         <decisaoAlerta>false</decisaoAlerta>
                         <sumSubmissoes>56</sumSubmissoes>
                     </classificacao>
@@ -523,8 +583,8 @@
                     <nCand>0</nCand>
                     <classificacao>
                         <numeroSubmissoes>11</numeroSubmissoes>
-                        <mediaClassificacoes>0.0</mediaClassificacoes>
-                        <mediaDesvios>0.0</mediaDesvios>
+                        <mediaClassificacoes>3.0</mediaClassificacoes>
+                        <mediaDesvios>0.36666666666666714</mediaDesvios>
                         <decisaoAlerta>false</decisaoAlerta>
                         <sumSubmissoes>33</sumSubmissoes>
                     </classificacao>
@@ -589,8 +649,8 @@
                         <nCand>0</nCand>
                         <classificacao>
                             <numeroSubmissoes>15</numeroSubmissoes>
-                            <mediaClassificacoes>0.0</mediaClassificacoes>
-                            <mediaDesvios>0.0</mediaDesvios>
+                            <mediaClassificacoes>3.7333333333333334</mediaClassificacoes>
+                            <mediaDesvios>0.3666666666666667</mediaDesvios>
                             <decisaoAlerta>false</decisaoAlerta>
                             <sumSubmissoes>56</sumSubmissoes>
                         </classificacao>
@@ -646,8 +706,8 @@
                         <nCand>0</nCand>
                         <classificacao>
                             <numeroSubmissoes>15</numeroSubmissoes>
-                            <mediaClassificacoes>0.0</mediaClassificacoes>
-                            <mediaDesvios>0.0</mediaDesvios>
+                            <mediaClassificacoes>3.7333333333333334</mediaClassificacoes>
+                            <mediaDesvios>0.3666666666666667</mediaDesvios>
                             <decisaoAlerta>false</decisaoAlerta>
                             <sumSubmissoes>56</sumSubmissoes>
                         </classificacao>
@@ -661,6 +721,26 @@
                         <listaFAE/>
                         <listaKeywords/>
                         <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
                             <listaAvaliacoes>
                                 <avaliacaoDada>true</avaliacaoDada>
                                 <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
@@ -703,8 +783,8 @@
                         <nCand>0</nCand>
                         <classificacao>
                             <numeroSubmissoes>15</numeroSubmissoes>
-                            <mediaClassificacoes>0.0</mediaClassificacoes>
-                            <mediaDesvios>0.0</mediaDesvios>
+                            <mediaClassificacoes>3.7333333333333334</mediaClassificacoes>
+                            <mediaDesvios>0.3666666666666667</mediaDesvios>
                             <decisaoAlerta>false</decisaoAlerta>
                             <sumSubmissoes>56</sumSubmissoes>
                         </classificacao>
@@ -738,6 +818,26 @@
                                 <media>3.0</media>
                                 <desvio>0.0</desvio>
                             </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
                         </listaAvaliacoes>
                         <decisao>false</decisao>
                     </candidatura>
@@ -745,7 +845,53 @@
                 </listaAtribuicoes>
             </listaAtribuicoes>
             <estatisticaFAE>
-                <mediaAmostral>0.0</mediaAmostral>
+                <listaFaes>
+                    <listaFAE>
+                        <nome>Nuno Bettencourt</nome>
+                        <email>nmb@isep.ipp.pt</email>
+                        <username>Admin</username>
+                        <o_utilizador>
+                            <nome>Nuno Bettencourt</nome>
+                            <email>nmb@isep.ipp.pt</email>
+                            <password>{~)%*</password>
+                            <username>Admin</username>
+                            <bRegistado>true</bRegistado>
+                            <tempoServico>15</tempoServico>
+                        </o_utilizador>
+                        <NOME_POR_OMISSAO>sem nome</NOME_POR_OMISSAO>
+                        <nCand>0</nCand>
+                        <classificacao>
+                            <numeroSubmissoes>15</numeroSubmissoes>
+                            <mediaClassificacoes>3.7333333333333334</mediaClassificacoes>
+                            <mediaDesvios>0.3666666666666667</mediaDesvios>
+                            <decisaoAlerta>false</decisaoAlerta>
+                            <sumSubmissoes>56</sumSubmissoes>
+                        </classificacao>
+                    </listaFAE>
+                    <listaFAE>
+                        <nome>Ana Silva</nome>
+                        <email>1130155@isep.ipp.pt</email>
+                        <username>Gestor</username>
+                        <o_utilizador>
+                            <nome>Ana Silva</nome>
+                            <email>1130155@isep.ipp.pt</email>
+                            <password>#!/0+.</password>
+                            <username>Gestor</username>
+                            <bRegistado>true</bRegistado>
+                            <tempoServico>10</tempoServico>
+                        </o_utilizador>
+                        <NOME_POR_OMISSAO>sem nome</NOME_POR_OMISSAO>
+                        <nCand>0</nCand>
+                        <classificacao>
+                            <numeroSubmissoes>11</numeroSubmissoes>
+                            <mediaClassificacoes>3.0</mediaClassificacoes>
+                            <mediaDesvios>0.36666666666666714</mediaDesvios>
+                            <decisaoAlerta>false</decisaoAlerta>
+                            <sumSubmissoes>33</sumSubmissoes>
+                        </classificacao>
+                    </listaFAE>
+                </listaFaes>
+                <mediaAmostral>3.366666666666667</mediaAmostral>
                 <desvioFae>0.0</desvioFae>
                 <desvioAmostral>0.0</desvioAmostral>
                 <varianciaFaes>0.0</varianciaFaes>
@@ -756,10 +902,486 @@
                 <listaFAE/>
             </estatisticaFAE>
             <estatisticaCandidatura>
-                <numeroCandidaturasAceites>0</numeroCandidaturasAceites>
-                <numeroCandidaturasRecusadas>0</numeroCandidaturasRecusadas>
-                <taxaAceitacao>0.0</taxaAceitacao>
+                <numeroCandidaturasAceites>3</numeroCandidaturasAceites>
+                <numeroCandidaturasRecusadas>27</numeroCandidaturasRecusadas>
+                <taxaAceitacao>1.0</taxaAceitacao>
                 <valorMedioSubmissao>0.0</valorMedioSubmissao>
+                <listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura1</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>true</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura2</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura3</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>false</avaliacaoDada>
+                                <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>false</avaliacaoDada>
+                                <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>true</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura4</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura5</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura6</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura7</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura8</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura9</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>false</avaliacaoDada>
+                                <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>true</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura10</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura11</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura12</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura13</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura14</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura15</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura16</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura17</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura18</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura19</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura20</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura21</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura22</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura23</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura24</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura25</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura26</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura27</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura28</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura29</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura30</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                </listaCandidaturas>
             </estatisticaCandidatura>
         </listaExposicoes>
         <listaExposicoes>
@@ -818,7 +1440,186 @@
                 <mes>11</mes>
                 <dia>13</dia>
             </dataDeteccaoConflitos>
-            <listaCandidaturas/>
+            <listaCandidaturas>
+                <listaCandidaturas>
+                    <nomeEmpresa>Candidatura1</nomeEmpresa>
+                    <telemovel>0</telemovel>
+                    <areaExposicao>0</areaExposicao>
+                    <quantidadeConvites>0</quantidadeConvites>
+                    <listaProdutos/>
+                    <listaFAE/>
+                    <listaKeywords/>
+                    <listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>1.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>1.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                    </listaAvaliacoes>
+                    <decisao>true</decisao>
+                </listaCandidaturas>
+                <listaCandidaturas>
+                    <nomeEmpresa>Candidatura2</nomeEmpresa>
+                    <telemovel>0</telemovel>
+                    <areaExposicao>0</areaExposicao>
+                    <quantidadeConvites>0</quantidadeConvites>
+                    <listaProdutos/>
+                    <listaFAE/>
+                    <listaKeywords/>
+                    <listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>1.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>1.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                    </listaAvaliacoes>
+                    <decisao>false</decisao>
+                </listaCandidaturas>
+                <listaCandidaturas>
+                    <nomeEmpresa>Candidatura3</nomeEmpresa>
+                    <telemovel>0</telemovel>
+                    <areaExposicao>0</areaExposicao>
+                    <quantidadeConvites>0</quantidadeConvites>
+                    <listaProdutos/>
+                    <listaFAE/>
+                    <listaKeywords/>
+                    <listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>false</avaliacaoDada>
+                            <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>true</avaliacaoDada>
+                            <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                        <listaAvaliacoes>
+                            <avaliacaoDada>false</avaliacaoDada>
+                            <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                            <listaQuestoes>
+                                <media>0.0</media>
+                            </listaQuestoes>
+                            <estado>true</estado>
+                            <media>3.0</media>
+                            <desvio>0.0</desvio>
+                        </listaAvaliacoes>
+                    </listaAvaliacoes>
+                    <decisao>true</decisao>
+                </listaCandidaturas>
+                <listaCandidaturas>
+                    <nomeEmpresa>Candidatura4</nomeEmpresa>
+                    <telemovel>0</telemovel>
+                    <areaExposicao>0</areaExposicao>
+                    <quantidadeConvites>0</quantidadeConvites>
+                    <listaProdutos/>
+                    <listaFAE/>
+                    <listaKeywords/>
+                    <listaAvaliacoes/>
+                    <decisao>false</decisao>
+                </listaCandidaturas>
+                <listaCandidaturas>
+                    <nomeEmpresa>Candidatura5</nomeEmpresa>
+                    <telemovel>0</telemovel>
+                    <areaExposicao>0</areaExposicao>
+                    <quantidadeConvites>0</quantidadeConvites>
+                    <listaProdutos/>
+                    <listaFAE/>
+                    <listaKeywords/>
+                    <listaAvaliacoes/>
+                    <decisao>false</decisao>
+                </listaCandidaturas>
+            </listaCandidaturas>
             <listaFaes/>
             <listaOrganizadores>
                 <listaOrganizadores>
@@ -856,10 +1657,190 @@
                 <listaFAE/>
             </estatisticaFAE>
             <estatisticaCandidatura>
-                <numeroCandidaturasAceites>0</numeroCandidaturasAceites>
-                <numeroCandidaturasRecusadas>0</numeroCandidaturasRecusadas>
-                <taxaAceitacao>0.0</taxaAceitacao>
-                <valorMedioSubmissao>0.0</valorMedioSubmissao>
+                <numeroCandidaturasAceites>4</numeroCandidaturasAceites>
+                <numeroCandidaturasRecusadas>6</numeroCandidaturasRecusadas>
+                <taxaAceitacao>1.0</taxaAceitacao>
+                <valorMedioSubmissao>2.3333333333333335</valorMedioSubmissao>
+                <listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura1</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>true</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura2</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>1.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura3</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>false</avaliacaoDada>
+                                <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>true</avaliacaoDada>
+                                <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                            <listaAvaliacoes>
+                                <avaliacaoDada>false</avaliacaoDada>
+                                <justificacao>Poderia enquadrar melhor os produtos apresentados e verificar a quantidade de convites</justificacao>
+                                <listaQuestoes>
+                                    <media>0.0</media>
+                                </listaQuestoes>
+                                <estado>true</estado>
+                                <media>3.0</media>
+                                <desvio>0.0</desvio>
+                            </listaAvaliacoes>
+                        </listaAvaliacoes>
+                        <decisao>true</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura4</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                    <listaCandidaturas>
+                        <nomeEmpresa>Candidatura5</nomeEmpresa>
+                        <telemovel>0</telemovel>
+                        <areaExposicao>0</areaExposicao>
+                        <quantidadeConvites>0</quantidadeConvites>
+                        <listaProdutos/>
+                        <listaFAE/>
+                        <listaKeywords/>
+                        <listaAvaliacoes/>
+                        <decisao>false</decisao>
+                    </listaCandidaturas>
+                </listaCandidaturas>
             </estatisticaCandidatura>
         </listaExposicoes>
     </regExposicoes>
@@ -905,17 +1886,6 @@
             <tempoServico>3</tempoServico>
         </m_listaUtilizadores>
     </regUtilizadores>
-    <regStands>
-        <listaStands>
-            <descricao>stand1</descricao>
-            <area>23</area>
-            <ID>Stand-0</ID>
-        </listaStands>
-        <listaStands>
-            <descricao>stand2</descricao>
-            <area>25</area>
-            <ID>Stand-0</ID>
-        </listaStands>
-    </regStands>
+    <regStands/>
     <regTiposConflitos/>
 </centroExposicoes>

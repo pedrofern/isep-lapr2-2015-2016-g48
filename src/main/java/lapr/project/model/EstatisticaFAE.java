@@ -273,13 +273,14 @@ public class EstatisticaFAE implements Serializable{
      * @return o resultado no teste da hipótese alternativa
      */
     
-    public boolean testarHipoteseAlternativa(double zTeste, double nivelSignificancia){
+    public boolean testarHipoteseAlternativa(FAE fae, double zTeste, double nivelSignificancia){
         if(zTeste>nivelSignificancia){
-            return true;
+            fae.getClassificacao().setDecisaoAlerta(true);
         }
         else{
-            return false;
+           fae.getClassificacao().setDecisaoAlerta(false);
         }
+        return fae.getClassificacao().estaDecisaoAlerta();
     }
  
 
