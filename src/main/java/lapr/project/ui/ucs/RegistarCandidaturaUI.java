@@ -110,7 +110,7 @@ public class RegistarCandidaturaUI extends JFrame{
     private String validaFormatoDadosNum = "[^0-9]";
     private String validaFormatoDadosKey = "[^a-z||^A-Z||^0-9]";
 
-    private RegistarCandidaturaController controllerRCC;
+    private transient RegistarCandidaturaController controllerRCC;
 
     public RegistarCandidaturaUI(CentroExposicoes ce, Utilizador utilizador) {
         

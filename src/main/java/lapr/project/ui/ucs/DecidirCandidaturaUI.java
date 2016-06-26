@@ -52,7 +52,7 @@ public class DecidirCandidaturaUI extends JFrame{
     private static final int JANELA_ALTURA = 500;
     private static final int JANELA_LARGURA = 900;
     
-    private DecidirCandidaturaController controllerDCC;
+    private transient DecidirCandidaturaController controllerDCC;
 
     
     public DecidirCandidaturaUI(CentroExposicoes ce, Utilizador utilizador){

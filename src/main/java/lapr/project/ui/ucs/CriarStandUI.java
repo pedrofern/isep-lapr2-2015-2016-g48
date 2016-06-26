@@ -31,7 +31,7 @@ import lapr.project.controller.*;
 public class CriarStandUI extends JFrame{
     
     private static CentroExposicoes ce;
-    private CriarStandController controller;
+    private transient CriarStandController controller;
     private static JTextArea descricao,area;
     private static Stand s;
     private Utilizador user;

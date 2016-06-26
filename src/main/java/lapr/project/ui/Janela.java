@@ -38,7 +38,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private String tipo_utilizador;
     private JFileChooser fileChooser;
     private static JTabbedPane tabPane;
-    private static PainelInfoUser pUser;
+    private PainelInfoUser pUser;
     private JMenuItem itemExp;
     private JMenuItem itemImp;
     /**

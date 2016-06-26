@@ -177,14 +177,13 @@ public class AvaliarCandidaturaUI extends JFrame{
     
     private void guardar() {
             
-            if(controllerAC.registarDecisao())
-                controllerAC.adicionarMediaFAE(user);
-            
-                JOptionPane.showMessageDialog( null,
-                        controllerAC.getInfoAvaliacao(),
+            if(controllerAC.registarDecisao()){
+                controllerAC.adicionarMediaFAE(user);            
+                JOptionPane.showMessageDialog(null, controllerAC.getInfoAvaliacao(),
                         "Avaliação registada",
                         JOptionPane.INFORMATION_MESSAGE);
             dispose();
+            }
     }
     
     /**

@@ -32,7 +32,7 @@ public class CriarDemonstracaoUI extends JFrame {
     private static CentroExposicoes ce;
     private static Utilizador user;
     private Exposicao exposicao, exposicaoseleccionada;
-    private CriarDemonstracaoController m_demonstracaoController;
+    private transient CriarDemonstracaoController mdemonstracaoController;
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
@@ -43,7 +43,7 @@ public class CriarDemonstracaoUI extends JFrame {
         user = utilizador;
         ce = centroExposicoes;
 
-        m_demonstracaoController = new CriarDemonstracaoController(user, ce);
+        mdemonstracaoController = new CriarDemonstracaoController(user, ce);
 
         criarComponentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,7 +71,7 @@ public class CriarDemonstracaoUI extends JFrame {
 
     private JComboBox criarPainelExposicao() {
 
-        comboBoxExposicao = Utils.criarComboExpo(m_demonstracaoController.getRegistoExposicoes());
+        comboBoxExposicao = Utils.criarComboExpo(mdemonstracaoController.getRegistoExposicoes());
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));
@@ -79,9 +79,9 @@ public class CriarDemonstracaoUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                m_demonstracaoController.selectExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
+                mdemonstracaoController.selectExposicao((Exposicao) comboBoxExposicao.getSelectedItem());
                 try {
-                    m_demonstracaoController.novaDemonstracao();
+                    mdemonstracaoController.novaDemonstracao();
                 } catch (Exception ex) {
                     Logger.getLogger(CriarDemonstracaoUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -190,9 +190,9 @@ public class CriarDemonstracaoUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Recurso[] opcoes = new Recurso[m_demonstracaoController.getListaRecursos().getArray().length];
+                Recurso[] opcoes = new Recurso[mdemonstracaoController.getListaRecursos().getArray().length];
                 for (int i = 0; i < opcoes.length; i++) {
-                    opcoes[i] = m_demonstracaoController.getListaRecursos().getListaRecursos().get(i);
+                    opcoes[i] = mdemonstracaoController.getListaRecursos().getListaRecursos().get(i);
                 }
                 Recurso recurso = (Recurso) JOptionPane.showInputDialog(CriarDemonstracaoUI.this,
                         "Escolha um recurso", null,
@@ -215,7 +215,7 @@ public class CriarDemonstracaoUI extends JFrame {
                     if (resposta == SIM) {
                         if (!modeloListaRecurso.contains(recurso)) {
                             modeloListaRecurso.addElement(recurso);
-                            m_demonstracaoController.getListaRecursosDemonstracao().valida(recurso);
+                            mdemonstracaoController.getListaRecursosDemonstracao().valida(recurso);
 
                         } else {
                             JOptionPane.showMessageDialog(
@@ -249,22 +249,21 @@ public class CriarDemonstracaoUI extends JFrame {
                                 "Criar Demonstração",
                                 JOptionPane.ERROR_MESSAGE);
                     }
-                    m_demonstracaoController.registaDemonstracao(txtDescricao.getText(), ((Exposicao)comboBoxExposicao.getSelectedItem()).getTitulo());
+                    mdemonstracaoController.registaDemonstracao(txtDescricao.getText(), ((Exposicao)comboBoxExposicao.getSelectedItem()).getTitulo());
                     //m_demonstracaoController.setListaRecursoDemonstracao((ListaRecursoDemonstracao)listaCompletaRecurso.getSelectedValue());
 
-                    boolean adicionarNovaDemonstracao = m_demonstracaoController.valida();
+                    boolean adicionarNovaDemonstracao = mdemonstracaoController.valida();
                     if (adicionarNovaDemonstracao == true) {
-                        if (m_demonstracaoController.registaEstado()) {
+                        if (mdemonstracaoController.registaEstado()) {
                             JOptionPane.showMessageDialog(
                                     null,
                                     "Demonstração já criada",
                                     "Nova Demonstração",
                                     JOptionPane.ERROR_MESSAGE);
                         }
-                        JOptionPane.showMessageDialog(
-                                null,
+                        JOptionPane.showMessageDialog(null,
                                 "Demonstração adicionada: \n"
-                                + m_demonstracaoController.getDemonstracao().toString(),
+                                + mdemonstracaoController.getDemonstracao().toString(),
                                 "Nova Demonstração",
                                 JOptionPane.INFORMATION_MESSAGE);
                         dispose();
@@ -330,7 +329,7 @@ public class CriarDemonstracaoUI extends JFrame {
                     int var = JOptionPane.showConfirmDialog(null, "Deseja realmente eliminar ?", "Deseja realmente eliminar ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
                     if (var == 0) {
-                        m_demonstracaoController.removerRecurso((Recurso) listaCompletaRecurso.getSelectedValue());
+                        mdemonstracaoController.removerRecurso((Recurso) listaCompletaRecurso.getSelectedValue());
                         modeloListaRecurso.remove(listaCompletaRecurso.getSelectedIndex());
                         int index = listaCompletaRecurso.getSelectedIndex();
                         if (modeloListaRecurso.getSize() == 0) {

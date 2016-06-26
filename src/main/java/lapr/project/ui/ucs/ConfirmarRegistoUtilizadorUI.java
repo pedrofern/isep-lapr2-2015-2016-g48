@@ -30,7 +30,7 @@ import lapr.project.utils.*;
  */
 public class ConfirmarRegistoUtilizadorUI extends JFrame{
 
-   private final ConfirmarRegistoUtilizadorController controller;
+    private transient ConfirmarRegistoUtilizadorController controller;
     private static CentroExposicoes ce;
     private Utilizador user;
     private JComboBox comboUtilizadores;

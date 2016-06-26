@@ -29,7 +29,7 @@ import lapr.project.model.*;
 public class DefinirRecursoUI extends JFrame {
 
     private static CentroExposicoes ce;
-    private DefinirRecursoController controller;
+    private transient DefinirRecursoController controller;
     private static JTextArea text;
     private static Recurso r;
     private Utilizador user;

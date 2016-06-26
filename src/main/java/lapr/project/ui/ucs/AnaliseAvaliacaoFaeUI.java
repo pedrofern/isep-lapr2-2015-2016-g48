@@ -39,9 +39,9 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private final CentroExposicoes centro;
     private final Utilizador utilizador;
-    private static JComboBox comboBoxExposicao;
+    private JComboBox comboBoxExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Valor observado da estatistica de teste").getPreferredSize();
-    private final AnaliseAvaliacaoFaeController controller;
+    private transient AnaliseAvaliacaoFaeController controller;
     private JTable table;
     private DefaultTableModel modeloEstatistica;
     
@@ -95,7 +95,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
 
     private JComboBox getListaExposicao() {
 
-       comboBoxExposicao = Utils.criarComboExpo(controller.getExposicoes()); 
+        comboBoxExposicao = Utils.criarComboExpo(controller.getExposicoes()); 
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
         comboBoxExposicao.setPreferredSize(new Dimension(200, 20));

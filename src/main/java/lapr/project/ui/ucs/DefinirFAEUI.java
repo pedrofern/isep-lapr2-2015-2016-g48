@@ -25,7 +25,7 @@ public class DefinirFAEUI extends JFrame {
     private DefinirFAEUI framePai;
     private static CentroExposicoes ce;
     private static Utilizador user;
-    private DefinirFAEController controller;
+    private transient DefinirFAEController controller;
     private JList lstCompletaUtilizadores, lstUtilizadoresFAE;
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private JComboBox comboBoxExposicao;

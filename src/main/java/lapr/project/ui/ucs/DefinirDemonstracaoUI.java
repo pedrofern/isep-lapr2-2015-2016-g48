@@ -43,7 +43,7 @@ public class DefinirDemonstracaoUI extends JFrame {
     private static final Dimension LABEL_TAMANHO = new JLabel("Descrição").getPreferredSize();
     private static final int JANELA_LARGURA = 900;
     private static final int JANELA_ALTURA = 400;
-    private DefinirDemonstracaoController controller;
+    private transient DefinirDemonstracaoController controller;
 
     public DefinirDemonstracaoUI(CentroExposicoes centroExposicoes, Utilizador utilizador) throws FileNotFoundException {
 

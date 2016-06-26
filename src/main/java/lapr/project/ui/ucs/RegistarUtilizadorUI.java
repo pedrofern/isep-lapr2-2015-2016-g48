@@ -32,7 +32,7 @@ public class RegistarUtilizadorUI extends JFrame{
     
     private String pergunta="Pretende cancelar o registo do utilizador?";
       
-    private RegistarUtilizadorController controllerRU;
+    private transient RegistarUtilizadorController controllerRU;
     
     private PainelDadosUtilizador norte;
     

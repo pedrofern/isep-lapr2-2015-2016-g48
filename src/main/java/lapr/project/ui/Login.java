@@ -144,7 +144,7 @@ public class Login extends JFrame {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {  
-                new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
+                RegistarUtilizadorUI ru = new RegistarUtilizadorUI(ce,fichCentroExposicoes);  
             }
         });
         return btn;

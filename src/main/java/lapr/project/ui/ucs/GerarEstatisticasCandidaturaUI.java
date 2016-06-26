@@ -35,7 +35,7 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     
     private static CentroExposicoes ce;
     private JComboBox combolistaExposicoes;
-    private final GerarEstatisticasCandidaturaController controller;
+    private transient GerarEstatisticasCandidaturaController controller;
     private JPanel painel,pExpo;
     private List<Candidatura> lst;
     private static Utilizador user;

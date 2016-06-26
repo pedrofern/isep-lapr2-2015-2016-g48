@@ -37,7 +37,7 @@ public class CriarExposicaoUI extends JFrame {
     private ListaOrganizadores listaOrganizadores;
     private JFormattedTextField campoDataInicial, campoDataFinal, campoSubCandDataInicial, campoSubCandDataFinal, campoSubStandsDatainicial, campoSubStandsDataFinal, campoDataConflito, campoDataAlterarConflito, campoDataAvInicio, campoDataAvFim;
     private final CentroExposicoes ce;
-    private final CriarExposicaoController controller;
+    private transient CriarExposicaoController controller;
     private static final int JANELA_LARGURA = 700;
     private static final int JANELA_ALTURA = 300;
     private JFrame framePai;

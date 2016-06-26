@@ -24,7 +24,7 @@ import lapr.project.ui.PainelInfoUser;
 public class AlterarUtilizadorUI extends JPanel{
     private static CentroExposicoes ce;
     private static Utilizador user;
-    private AlterarUtilizadorController controller;
+    private transient AlterarUtilizadorController controller;
     private PainelDadosUtilizador norte;
     private static final String pergunta="Pretende cancelar a alteração do registo de utilizador?";
       
@@ -142,11 +142,7 @@ public class AlterarUtilizadorUI extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] opcoes = {"Sim", "Não"};
-                
-                int opcao=JOptionPane.showOptionDialog(new Frame(),pergunta,"Alterar Utilizador", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
-                        
-               Janela.getTabPane().setSelectedIndex(0);
-            
+                Janela.getTabPane().setSelectedIndex(0);
             }
         });
 
