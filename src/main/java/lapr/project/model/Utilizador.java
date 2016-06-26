@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import lapr.project.utils.*;
+import lapr.project.utils.Utils;
 
 /**
  *
@@ -78,7 +79,7 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
         this.nome=nome;
         this.email = email;
         this.username = username;
-        this.password=password;
+        setPassword(password);
         this.m_bRegistado = bRegistado;
         this.tempoServico=experiencia;
     }
@@ -162,14 +163,14 @@ public class Utilizador implements Comparable<Utilizador>, Serializable  {
  * @return password
  */
     public String getPassword() {
-        return password;
+        return Utils.desencriptar(password);
     }
 /**
  * Altera a password
  * @param newPassword 
  */
     public void setPassword(String newPassword) {
-        this.password = newPassword;
+        this.password = Utils.encriptar(newPassword);
     }
 /**
  * Devolve o username

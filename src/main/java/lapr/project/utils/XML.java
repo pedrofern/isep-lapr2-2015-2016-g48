@@ -51,8 +51,7 @@ public class XML {
         }
     }
     
-    public CentroExposicoes importFromXML() throws FileNotFoundException {
-        File file = new File("CentroExposicoes.xml");
+    public CentroExposicoes importFromXML(File file) throws FileNotFoundException {
         JAXBContext jaxbContext;
         try {
             jaxbContext = JAXBContext.newInstance(CentroExposicoes.class);
@@ -60,7 +59,7 @@ public class XML {
             CentroExposicoes ce = (CentroExposicoes) jaxbUnmarshaller.unmarshal(file);
             return ce;
         } catch (JAXBException ex) { 
-            System.out.println(ex.getMessage());
+            System.out.println(ex);
             return null;
         }
     }

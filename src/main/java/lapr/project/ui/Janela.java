@@ -10,6 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -20,9 +23,11 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.filechooser.FileFilter;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 import lapr.project.ui.ucs.AlterarUtilizadorUI;
+import lapr.project.utils.XML;
 
 /**
  *
@@ -32,7 +37,7 @@ public class Janela extends JFrame /** implements Serializable**/{
     private static CentroExposicoes ce;
     private static Utilizador ut;
     private String tipo_utilizador;
-    
+    private JFileChooser fileChooser;
     private static JTabbedPane tabPane;
     private static PainelInfoUser pUser;
     /**
@@ -50,6 +55,11 @@ public class Janela extends JFrame /** implements Serializable**/{
         this.ut=id_utilizador;
         
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        
+        fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        definirFiltroExtensaoXML(fileChooser);
+        personalizarFileChooserEmPortugues();
                
         criarComponentes();
         
@@ -129,23 +139,47 @@ public class Janela extends JFrame /** implements Serializable**/{
         JMenuItem item=new JMenuItem("Novo CE", KeyEvent.VK_N);
         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
 
-        //item.setEnabled(registoExposicoes.tamanho() != 0);
         return item; 
     }
     
     private JMenuItem criarItemImportar(){
           JMenuItem item= new JMenuItem("Importar", KeyEvent.VK_I);
           item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
-        
+          item.addActionListener(new ActionListener() {
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                  try{
+                    int resposta = fileChooser.showOpenDialog(Janela.this);
+
+                    if (resposta == JFileChooser.APPROVE_OPTION) {
+                        File file = fileChooser.getSelectedFile();                        
+                        XML imp = new XML();
+                        imp.importFromXML(file);                        
+                    }
+                }catch (FileNotFoundException ex){
+                        JOptionPane.showMessageDialog(Janela.this, ex.getMessage());
+                }
+              }
+          });       
           return item; 
     }
     
     private JMenuItem criarItemExportar(){
         JMenuItem item = new JMenuItem("Exportar", KeyEvent.VK_X);
         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
-        item.setEnabled(false);
-
-        return item;
+        item.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              XML export = new XML();
+              export.exportToXML(ce);
+                JOptionPane.showMessageDialog(Janela.this, 
+                    "Exportado com sucesso!\n\nLocalização: "
+                            + "'Pasta do projecto'\\CentroExposicoes.xml",
+                    "Exportar XML",
+                    JOptionPane.PLAIN_MESSAGE);
+          }
+      });       
+      return item; 
     }
     
     private JMenuItem criarItemAcerca(){
@@ -282,8 +316,6 @@ public class Janela extends JFrame /** implements Serializable**/{
     }
     
     private void terminar() {
-        System.out.println(ce.getRegistoUtilizadores());
-        System.out.println(ce.getRegistoExposicoes());
         this.fichCentroExposicoes.guardarFichBinario(this.ce);
         dispose();
     }
@@ -291,5 +323,108 @@ public class Janela extends JFrame /** implements Serializable**/{
     public static JTabbedPane getTabPane(){
         return tabPane;
     }
-  
+    private static void personalizarFileChooserEmPortugues() {
+
+        // Títulos das Caixas de Diálogo
+        UIManager.put("FileChooser.openDialogTitleText", "Importar Ficheiro");
+        UIManager.put("FileChooser.saveDialogTitleText", "Exportar Ficheiro");
+
+        // Botão "Importar"
+        UIManager.put("FileChooser.openButtonText", "Importar");
+        UIManager.put("FileChooser.openButtonMnemonic", "I");
+        UIManager.put("FileChooser.openButtonToolTipText", "Importar Ficheiro");
+
+        // Botão "Exportar"
+        UIManager.put("FileChooser.saveButtonText", "Exportar");
+        UIManager.put("FileChooser.saveButtonMnemonic", "E");
+        UIManager.put("FileChooser.saveButtonToolTipText", "Exportar Ficheiro");
+
+        // Botão "Cancelar"
+        UIManager.put("FileChooser.cancelButtonText", "Cancelar");
+        UIManager.put("FileChooser.cancelButtonMnemonic", "C");
+        UIManager.put("FileChooser.cancelButtonToolTipText", "Cancelar");
+
+        // Botão "Ajuda"
+        UIManager.put("FileChooser.helpButtonText", "Ajuda");
+        UIManager.put("FileChooser.helpButtonMnemonic", "A");
+        UIManager.put("FileChooser.helpButtonToolTipText", "Ajuda");
+
+        // Legenda "Procurar em:"
+        UIManager.put("FileChooser.lookInLabelMnemonic", "E");
+        UIManager.put("FileChooser.lookInLabelText", "Procurar em:");
+
+        // Legenda "Guardar em:"
+        UIManager.put("FileChooser.saveInLabelText", "Guardar em:");
+        UIManager.put("FileChooser.saveInLabelMnemonic", "G");
+
+        // Legenda "Tipo de ficheiros:"
+        UIManager.put("FileChooser.filesOfTypeLabelText", "Ficheiros do tipo:");
+        UIManager.put("FileChooser.filesOfTypeLabelMnemonic", "F");
+
+        // Legenda "Nome do ficheiro:"
+        UIManager.put("FileChooser.fileNameLabelMnemonic", "N");
+        UIManager.put("FileChooser.fileNameLabelText", "Nome do ficheiro:");
+
+        // Filtro "Todos os Ficheiros"
+        UIManager.put("FileChooser.acceptAllFileFilterText", "Todos os Ficheiros");
+
+        // Botão "Um nível acima"
+        UIManager.put("FileChooser.upFolderToolTipText", "Um nível acima");
+        UIManager.put("FileChooser.upFolderAccessibleName", "Um nível acima");
+
+        // Botão "Ambiente de Trabalho"
+        UIManager.put("FileChooser.homeFolderToolTipText", "Ambiente");
+        UIManager.put("FileChooser.homeFolderToolTipText", "Ambiente de Trabalho");
+        UIManager.put("FileChooser.homeFolderAccessibleName", "Ambiente de Trabalho");
+
+        // Botão "Nova Pasta"
+        UIManager.put("FileChooser.newFolderToolTipText", "Criar nova pasta");
+        UIManager.put("FileChooser.newFolderAccessibleName", "Criar nova pasta");
+
+        // Botão "Vista Lista"
+        UIManager.put("FileChooser.listViewButtonToolTipText", "Lista");
+        UIManager.put("FileChooser.listViewButtonAccessibleName", "Lista");
+
+        // Botão "Vista Detalhada"
+        UIManager.put("FileChooser.detailsViewButtonToolTipText", "Detalhes");
+        UIManager.put("FileChooser.detailsViewButtonAccessibleName", "Detalhes");
+
+        // Cabeçalhos da "Vista Lista Detalhada"
+        UIManager.put("FileChooser.fileNameHeaderText", "Nome");
+        UIManager.put("FileChooser.fileSizeHeaderText", "Tamanho");
+        UIManager.put("FileChooser.fileTypeHeaderText", "Tipo");
+        UIManager.put("FileChooser.fileDateHeaderText", "Data");
+        UIManager.put("FileChooser.fileAttrHeaderText", "Atributos");
+    }
+    
+    private void definirFiltroExtensaoXML(JFileChooser fileChooser) {
+        fileChooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                String extensao = extensao(f);
+                if (extensao != null) {
+                    return extensao.equals("xml");
+                }
+                return false;
+            }
+
+            @Override
+            public String getDescription() {
+                return "*.xml";
+            }
+
+            private String extensao(File f) {
+                String ext = null;
+                String s = f.getName();
+                int i = s.lastIndexOf(".");
+                if (i != -1) {
+                    ext = s.substring(i + 1).toLowerCase();
+                }
+                return ext;
+            }
+        });
+    }
 }
