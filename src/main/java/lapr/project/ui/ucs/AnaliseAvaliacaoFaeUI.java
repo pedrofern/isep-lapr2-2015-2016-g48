@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,18 +33,19 @@ import lapr.project.utils.Utils;
 
 /**
  *
- * @author Edu
+ * @author Edu e Diana
  */
 public class AnaliseAvaliacaoFaeUI extends JFrame {
 
     private JButton btnEliminarFAE, btnAdicionarUtilizador, btnConfirmar, btnCancelar;
     private final CentroExposicoes centro;
     private final Utilizador utilizador;
-    private JComboBox comboBoxExposicao;
+    private static JComboBox comboBoxExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Valor observado da estatistica de teste").getPreferredSize();
-    private transient AnaliseAvaliacaoFaeController controller;
+    private final AnaliseAvaliacaoFaeController controller;
     private JTable table;
     private DefaultTableModel modeloEstatistica;
+    private JComboBox<Double> comboIC;
     
     
     public AnaliseAvaliacaoFaeUI(CentroExposicoes centro, Utilizador utilizador) throws FileNotFoundException {
@@ -88,13 +90,33 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
                 0, 0));
 
         p.add(lbl);
+        p.add(getComboIC());
         p.add(getListaExposicao());
+        
+        
+        
 
         return p;
     }
+    
+    private JComboBox getComboIC(){
+        comboIC= new JComboBox<>();
+        comboIC.addItem(90.00);
+        comboIC.addItem(95.00);
+        comboIC.addItem(99.00);
+        comboIC.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.setIntervaloConfianca((double)comboIC.getSelectedItem());
+                comboIC.setEnabled(false);
+            }
+            
+        });
+        return comboIC;
+    }
 
     private JComboBox getListaExposicao() {
-
+ 
         comboBoxExposicao = Utils.criarComboExpo(controller.getExposicoes()); 
         comboBoxExposicao.setSelectedIndex(-1);
         comboBoxExposicao.setEditable(false);
@@ -105,6 +127,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 comboBoxExposicao.setEnabled(false);
                 controller.setExposicao((Exposicao)comboBoxExposicao.getSelectedItem());
+                controller.setIntervaloConfianca((double)comboIC.getSelectedItem());
                 
                String[] columnNames = {"FAE",
                                         "Média das classificações do FAE",
@@ -169,3 +192,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
     }
 
 }
+
+
+
+

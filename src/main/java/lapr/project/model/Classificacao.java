@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Classificacao implements Serializable{
     
-    /**
+   /**
      * numero de submissões avaliadas pelo FAE
      */
     private int numeroSubmissoes;
@@ -68,6 +68,7 @@ public class Classificacao implements Serializable{
      */
     public double getMediaClassificacoes() {
         calcularMediaFAE();
+        setMediaClassificacoes(mediaClassificacoes);
         return mediaClassificacoes;
     }
 
@@ -85,6 +86,18 @@ public class Classificacao implements Serializable{
      */
     public boolean estaDecisaoAlerta() {
         return decisaoAlerta;
+    }
+    
+    /**
+     * Método que retorna a decisão (true se o desvio medio é superior a 1)
+     * @return a decisão de alerta
+     */
+    public String estaDecisaoAlertaString() {
+        if(decisaoAlerta==true){
+            return "Sim";
+        }else{
+            return "Não";
+        }
     }
     
     /**

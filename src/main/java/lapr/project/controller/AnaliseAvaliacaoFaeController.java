@@ -40,6 +40,9 @@ public class AnaliseAvaliacaoFaeController {
     
     private double totalMedias;
     private int numeroSubmissoes;
+    private double ic;
+    private double teste;
+    private double nivelSignificancia;
     
     /**
      * Cria uma instancia desta classe e recebe como parametros o centro de exposicoes e o utilizador
@@ -51,6 +54,7 @@ public class AnaliseAvaliacaoFaeController {
         this.user=user;
         totalMedias=0;
         numeroSubmissoes=0;
+        ic=0;
     }
        /**
         * Devolve a lista de exposicoes do organizador que já foram avaliadas
@@ -80,8 +84,8 @@ public class AnaliseAvaliacaoFaeController {
      * Altera o intervalo de confianca
      * @param ic 
      */
-    public void setIntervaloConfianca(int ic){
-        estatistica.calcularNivelSignificancia(ic);
+    public void setIntervaloConfianca(double ic){
+        this.ic=ic;
     }
     /**
      * Altera a lista de faes
@@ -95,8 +99,14 @@ public class AnaliseAvaliacaoFaeController {
      * @return a media
      */
     public double calcularMediaAmostral(){
+        for(FAE f: estatistica.getListaFaes().getListaFAE()){
+             totalMedias+=f.getClassificacao().getMediaClassificacoes();
+            numeroSubmissoes++;
+        }
 
-        return Calculator.average(totalMedias, numeroSubmissoes);
+        double mediaAmostral=Calculator.average(totalMedias, numeroSubmissoes);
+        estatistica.setMediaAmostral(mediaAmostral);
+        return mediaAmostral;
     }
     /**
      * Calcula a media de faes
@@ -104,8 +114,7 @@ public class AnaliseAvaliacaoFaeController {
      * @return a media
      */
     public double getMediaFae(FAE fae){
-        totalMedias+=fae.getClassificacao().getMediaClassificacoes();
-        numeroSubmissoes++;
+        
         return fae.getClassificacao().getMediaClassificacoes();
     }
     /**
@@ -114,48 +123,68 @@ public class AnaliseAvaliacaoFaeController {
      * @param mediaFae
      * @return o desvio calculado
      */
-    public double calcularDesvioFAE(FAE fae, double mediaFae){
+    public void calcularDesvioFAE(FAE fae, double mediaFae){
+        calcularMediaAmostral();
         double desvioFAE =estatistica.calcularDesvioFae(mediaFae);
         fae.getClassificacao().setMediaDesvios(desvioFAE);
-        return desvioFAE;
+    }
+    
+    
+    public double getDesvioFAE(FAE fae){
+        calcularDesvioFAE(fae, fae.getClassificacao().getMediaClassificacoes());
+        return fae.getClassificacao().getMediaDesvios();
     }
     /**
      * Calcula o desvio amostral
      * @return o desvio calculado
      */
-//    public double calcularDesvioAmostral(){
-//        listaFaes.getListaFAE().size();
-//        return estatistica.calcularDesvioAmostral();
-//    }
+    public double calcularDesvioAmostral(){
+        listaFaes.getListaFAE().size();
+        return estatistica.calcularDesvioAmostral();
+    }
     
     /**
      * Calcula a variancia
      * @return a variancia
      */
     public double calcularVariancia(){
-        return estatistica.calcularVarianciaFaes();
+        estatistica.calcularVarianciaFaes();
+        return estatistica.getVarianciaFaes();
     }
     /**
      * Calcula o desvio padrao
      * @return o desvio padrao
      */
     public double calcularDesvioPadrao(){
-        return estatistica.calcularDesvioPadrao();
+        estatistica.calcularDesvioPadrao();
+        return estatistica.getDesvioPadrao();
     }   
+    
+    public double calcularNivelSignificancia(){
+        nivelSignificancia=estatistica.calcularNivelSignificancia(ic);
+        return estatistica.calcularNivelSignificancia(ic);
+    }
+    
+    
     /**
      * Calcula o Z0
      * @return o Z0
      */
-    public double calcularZ0(){
-        return estatistica.calcularZ0();
+    public double calcularZ0(FAE f){
+        teste= estatistica.calcularZ0(getDesvioFAE(f));
+        return estatistica.calcularZ0(getDesvioFAE(f));
     }
     /**
      * Gera estatisticas do fae
      * @param fae 
+     * @return  resultado do teste
      */
-    public void iniciarTesteEstatistico(FAE fae){
-        EstatisticaFAE.testarHipoteseControlo();
-        estatistica.testarHipoteseAlternativa(fae);
+    public String iniciarTesteEstatistico(FAE fae){
+//        EstatisticaFAE.testarHipoteseControlo();
+        if( estatistica.testarHipoteseAlternativa(teste, nivelSignificancia)==true)
+            return "Sim";
+        else
+            return "Não";
     }
     /**
      * Remove um fae
@@ -172,8 +201,9 @@ public class AnaliseAvaliacaoFaeController {
     
     public String[] toStringEstatistica(FAE f){
 
-          String[] data={f.getNome(), String.format("%.2f", getMediaFae(f)),String.format("%.2f", calcularMediaAmostral())};
-//          String.format("%.2f", calcularDesvioFAE(f, calcularMediaAmostral())
+        String[] data={f.getNome(), String.format("%.2f", getMediaFae(f)),String.format("%.2f", getDesvioFAE(f)), String.format("%.2f", calcularMediaAmostral()),
+        String.format("%.2f", calcularZ0(f)), iniciarTesteEstatistico(f)};
+//         
                   
                   return data;
       }

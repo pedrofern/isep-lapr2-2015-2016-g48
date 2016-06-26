@@ -80,6 +80,8 @@ public class EstatisticaFAE implements Serializable{
      */
     private ListaFAE listaFAE;
     
+    private String teste;
+    
     /**
      * Construtor EstatisticaFAE inicializando as variáveis estatísticas com 0
      */
@@ -100,15 +102,14 @@ public class EstatisticaFAE implements Serializable{
      * @return the mediaAmostral
      */
     public double getMediaAmostral() {
-        calcularMediaAmostral();
         return mediaAmostral;
     }
 
     /**
      * Calcula a média amostral
      */
-    private void calcularMediaAmostral() {
-
+    public void setMediaAmostral(double mediaAmostral) {
+        this.mediaAmostral=mediaAmostral;
      
     }
 
@@ -127,7 +128,7 @@ public class EstatisticaFAE implements Serializable{
      */
     public double calcularDesvioFae(double mediaFae) {
  
-        return mediaAmostral-mediaFae;
+        return Math.abs(mediaAmostral-mediaFae);
     }
 
     /**
@@ -158,8 +159,14 @@ public class EstatisticaFAE implements Serializable{
      * Calcula a variância
      * @return a variancia da amostra calculada
      */
-    public double calcularVarianciaFaes() {
-        return 0;
+    public void calcularVarianciaFaes() {
+        int n=listaFAE.getListaFAE().size();
+        double sum=0;
+        for(FAE f: listaFAE.getListaFAE()){
+            sum+=Math.pow(f.getClassificacao().getMediaDesvios(),2);
+        }
+        double p=1/(n-1);
+        varianciaFaes=p*sum;
     }
 
     /**
@@ -174,8 +181,8 @@ public class EstatisticaFAE implements Serializable{
      * Calcula o desvio padrão 
      * @return o desvio padrão calculado
      */
-    public double calcularDesvioPadrao() {
-        return 0;
+    public void calcularDesvioPadrao() {
+        desvioPadrao= Math.pow(Math.pow(varianciaFaes,2), 0.5);
     }
 
     /**
@@ -192,6 +199,17 @@ public class EstatisticaFAE implements Serializable{
      * @return o nivel de significância calculado
      */
     public double calcularNivelSignificancia(double intervaloConfianca) {
+       if(intervaloConfianca==90.00){
+           return 1.645;
+       }
+       if(intervaloConfianca==95.00){
+           return 1.96;
+       }
+       if(intervaloConfianca==99.00){
+           return 2.58;
+       }
+       
+        
         return nivelSignificancia;
     }
 
@@ -207,8 +225,13 @@ public class EstatisticaFAE implements Serializable{
      * Calcula o valor para teste
      * @return o  valor da zona para teste calculada
      */
-    public double calcularZ0() {
-        return 0;
+    public double calcularZ0(double desvio) {
+        double d=desvio-1;
+        int n= listaFAE.getListaFAE().size();
+        double dentroRaiz=Math.pow(varianciaFaes, 2)/n;
+        double divisor= Math.pow(dentroRaiz, 0.5);
+        double z= d/divisor;
+        return z;
     }
 
     /**
@@ -245,8 +268,15 @@ public class EstatisticaFAE implements Serializable{
      * @return o resultado no teste da hipótese alternativa
      */
     
-    public boolean testarHipoteseAlternativa(FAE fae){
-        return fae.getClassificacao().estaDecisaoAlerta();
+    public boolean testarHipoteseAlternativa(double zTeste, double nivelSignificancia){
+        if(zTeste>nivelSignificancia){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
+ 
+
 
 }

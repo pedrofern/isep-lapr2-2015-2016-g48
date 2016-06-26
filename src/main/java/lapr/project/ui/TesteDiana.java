@@ -189,9 +189,9 @@ public class TesteDiana {
         f1.getClassificacao().incrementaNumeroSubmissoes();
         f1.getClassificacao().incrementaValorÀSoma(4);
         f1.getClassificacao().incrementaNumeroSubmissoes();
-        f1.getClassificacao().incrementaValorÀSoma(2);
+        f1.getClassificacao().incrementaValorÀSoma(5);
         f1.getClassificacao().incrementaNumeroSubmissoes();
-        f1.getClassificacao().incrementaValorÀSoma(3);
+        f1.getClassificacao().incrementaValorÀSoma(5);
         f1.getClassificacao().incrementaNumeroSubmissoes();
         f1.getClassificacao().incrementaValorÀSoma(3);
         f1.getClassificacao().incrementaNumeroSubmissoes();
