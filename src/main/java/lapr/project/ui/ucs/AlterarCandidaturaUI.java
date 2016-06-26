@@ -188,8 +188,8 @@ public class AlterarCandidaturaUI extends JFrame{
                     
                     controllerAC.selectExposicao((Exposicao) comboExp.getSelectedItem());
 
-//                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
-                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturas()));
+                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturasRepresentante(utilizador)));
+//                    painelWest.add(criarPainelCandidatura(controllerAC.getListaCandidaturas()));
                     
                     selCand.setEnabled(true);
                     comboCand.setEnabled(true);
@@ -564,7 +564,8 @@ public class AlterarCandidaturaUI extends JFrame{
         botaoAdicionarProduto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DialogoProdutoAlterarCandidatura(AlterarCandidaturaUI.this);
+                DialogoProdutoAlterarCandidatura d =
+                        new DialogoProdutoAlterarCandidatura(AlterarCandidaturaUI.this);
             }
         });
 
@@ -631,76 +632,72 @@ public class AlterarCandidaturaUI extends JFrame{
     private JButton criarBotaoAlterarCandidatura() {
         JButton botao = new JButton("Alterar Candidatura");
         botao.setMnemonic(KeyEvent.VK_R);
-        botao.setToolTipText("Registar Candidatura");
-//        botao.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try{      
+        botao.setToolTipText("Alterar Candidatura");
+        botao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{      
                     
-//                    int area = Integer.parseInt(txtAreaA.getText());
-//                    int convites = Integer.parseInt(txtConvitesA.getText());                    
-//                    String morada = txtMoradaA.getText();
-//                    String nome = txtNomeA.getText();
-//                    int telemovel = Integer.parseInt(txtTelemovelA.getText());
-//                    if (txtKey1A.getText().isEmpty()||txtKey2A.getText().isEmpty()){
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Keyword obrigatória por preencher!",
-//                                "Alterar Candidatura",
-//                                JOptionPane.ERROR_MESSAGE);                        
-//                    }else{                    
-//                    listaKeywords = controllerAC.getCandidatura(candidatura).getListaKeywords();
-//                    Keyword k1 = new Keyword(""+txtKey1A.getText());
-//                    Keyword k2 = new Keyword(""+txtKey2A.getText());
-//                    Keyword k3 = new Keyword(""+txtKey3A.getText());
-//                    Keyword k4 = new Keyword(""+txtKey4A.getText());
-//                    Keyword k5 = new Keyword(""+txtKey5A.getText());
-//                    listaKeywords.adicionarKeyword(k1);
-//                    listaKeywords.adicionarKeyword(k2);
-//                    listaKeywords.adicionarKeyword(k3);
-//                    listaKeywords.adicionarKeyword(k4);
-//                    listaKeywords.adicionarKeyword(k5);
-//                    
-//                    candidatura = controllerAC.setDadosCandidatura(
-//                            nome, morada, telemovel, area, convites,
-//                            listaProdutos,listaKeywords);
-//                    
-//                    boolean adicionarNovaCandidatura = controllerAC.valida();
-//                    if (adicionarNovaCandidatura == true) {                        
-//                        if (candidatura == null){
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Candidatura já registada",
-//                                "Nova Candidatura",
-//                                JOptionPane.ERROR_MESSAGE);
-//                        }
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "Candidatura adicionada: \n"
-//                                +candidatura.toStringCompleto(),
-//                                "Nova Candidatura",
-//                                JOptionPane.INFORMATION_MESSAGE);
-//                        dispose();
-//                    }
-//                     
-//                    else {
-//                        JOptionPane.showMessageDialog(
-//                                null,
-//                                "O registo não é válido!\nVerifique todos os campos",
-//                                "Nova Candidatura",
-//                                JOptionPane.ERROR_MESSAGE);
-//                    }    
-//                    }
-//                }
-//                catch (NumberFormatException ex){
-//                    JOptionPane.showMessageDialog(
-//                            null,
-//                            "Tem de preencher todos os campos!",
-//                            "Registar Candidatura",
-//                            JOptionPane.ERROR_MESSAGE);                        
-//                }
-//            }
-//        });
+                    int area = Integer.parseInt(txtAreaA.getText());
+                    int convites = Integer.parseInt(txtConvitesA.getText());                    
+                    String morada = txtMoradaA.getText();
+                    String nome = txtNomeA.getText();
+                    int telemovel = Integer.parseInt(txtTelemovelA.getText());
+                    if (txtKey1A.getText().isEmpty()||txtKey2A.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Keyword obrigatória por preencher!",
+                                "Alterar Candidatura",
+                                JOptionPane.ERROR_MESSAGE);                        
+                    }else{                      
+                    Keyword k1 = new Keyword(""+txtKey1A.getText());
+                    Keyword k2 = new Keyword(""+txtKey2A.getText());
+                    Keyword k3 = new Keyword(""+txtKey3A.getText());
+                    Keyword k4 = new Keyword(""+txtKey4A.getText());
+                    Keyword k5 = new Keyword(""+txtKey5A.getText());
+                    controllerAC.getInfoCandidatura().getListaKeywords().adicionarKeyword(k1);
+                    controllerAC.getInfoCandidatura().getListaKeywords().adicionarKeyword(k2);
+                    controllerAC.getInfoCandidatura().getListaKeywords().adicionarKeyword(k3);
+                    controllerAC.getInfoCandidatura().getListaKeywords().adicionarKeyword(k4);
+                    controllerAC.getInfoCandidatura().getListaKeywords().adicionarKeyword(k5);
+
+                    boolean alteraCandidatura = controllerAC.alteraDados(
+                            nome, morada, telemovel, area, convites,
+                            controllerAC.getInfoCandidatura().getListaProdutos(),
+                            controllerAC.getInfoCandidatura().getListaKeywords());
+                    if (alteraCandidatura) {
+                            controllerAC.getSelectedDemonstacao();
+                            controllerAC.registCandidaturaDemonstracao();
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Candidatura alterada: \n"
+                                +controllerAC.getInfoCandidatura().toStringCompleto()
+                                +"\nDemonstracoes em interesse: \n"
+                                +controllerAC.getSelectedDemonstacao().toStringCompleto(),
+                                "Alterar Candidatura",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                        }
+                 
+                     
+                    else {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "O registo não é válido!\nVerifique todos os campos",
+                                "Alterar Candidatura",
+                                JOptionPane.ERROR_MESSAGE);
+                    }    
+                    }
+                }
+                catch (NumberFormatException ex){
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Tem de preencher todos os campos!",
+                            "Alterar Candidatura",
+                            JOptionPane.ERROR_MESSAGE);                        
+                }
+            }
+        });
 
         return botao;
     }

@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import lapr.project.utils.Utils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -147,7 +148,7 @@ public class UtilizadorTest {
     public void testGetPassword() {
         System.out.println("getPassword");
         Utilizador instance = new Utilizador();
-        String expResult = "Password do utilizador não registado";
+        String expResult ="Password do utilizador não registado";
         String result = instance.getPassword();
         assertEquals(expResult, result);
          
@@ -162,7 +163,7 @@ public class UtilizadorTest {
         String result = "Password";
         Utilizador instance = new Utilizador();
         instance.setPassword(result);
-         String expResult = instance.getPassword();
+        String expResult = Utils.desencriptar(instance.getPassword());
         assertEquals(expResult, result);
     }
 
