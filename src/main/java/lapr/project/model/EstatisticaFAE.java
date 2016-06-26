@@ -165,7 +165,7 @@ public class EstatisticaFAE implements Serializable{
         for(FAE f: listaFAE.getListaFAE()){
             sum+=Math.pow(f.getClassificacao().getMediaDesvios(),2);
         }
-        double p=1/(n-1);
+        double p=1/(double)(n-1);
         varianciaFaes=p*sum;
     }
 
@@ -199,14 +199,18 @@ public class EstatisticaFAE implements Serializable{
      * @return o nivel de significância calculado
      */
     public double calcularNivelSignificancia(double intervaloConfianca) {
-       if(intervaloConfianca==90.00){
-           return 1.645;
+        double ns90=1.645;
+        double ns95=1.96;
+        double ns99=2.58;
+        
+        if(intervaloConfianca==90.00){
+           return ns90;
        }
        if(intervaloConfianca==95.00){
-           return 1.96;
+           return ns95;
        }
        if(intervaloConfianca==99.00){
-           return 2.58;
+           return ns99;
        }
        
         

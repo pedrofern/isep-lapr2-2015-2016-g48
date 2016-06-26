@@ -168,19 +168,23 @@ public class AnaliseAvaliacaoFaeController {
     
     /**
      * Calcula o Z0
+     * @param f fae a avaliar
      * @return o Z0
      */
     public double calcularZ0(FAE f){
         teste= estatistica.calcularZ0(getDesvioFAE(f));
         return estatistica.calcularZ0(getDesvioFAE(f));
     }
+    
+    
     /**
      * Gera estatisticas do fae
-     * @param fae 
      * @return  resultado do teste
      */
-    public String iniciarTesteEstatistico(FAE fae){
-//        EstatisticaFAE.testarHipoteseControlo();
+    public String iniciarTesteEstatistico(){
+        if(EstatisticaFAE.testarHipoteseControlo()==false){
+            return "Sim";
+        }
         if( estatistica.testarHipoteseAlternativa(teste, nivelSignificancia)==true)
             return "Sim";
         else
@@ -202,7 +206,7 @@ public class AnaliseAvaliacaoFaeController {
     public String[] toStringEstatistica(FAE f){
 
         String[] data={f.getNome(), String.format("%.2f", getMediaFae(f)),String.format("%.2f", getDesvioFAE(f)), String.format("%.2f", calcularMediaAmostral()),
-        String.format("%.2f", calcularZ0(f)), iniciarTesteEstatistico(f)};
+        String.format("%.2f", calcularZ0(f)), iniciarTesteEstatistico()};
 //         
                   
                   return data;
