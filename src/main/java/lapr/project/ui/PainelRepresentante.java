@@ -97,6 +97,7 @@ public class PainelRepresentante extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
                try{
+                   RegistarCandidaturaUI ui= new RegistarCandidaturaUI(m_ce, m_ut);
                }catch(Exception ex){
                    JOptionPane.showMessageDialog(PainelRepresentante.this, 
                            "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -117,18 +118,14 @@ public class PainelRepresentante extends JPanel{
         bt.setToolTipText("Alteração de candidatura");
         bt.setPreferredSize(DIM_BOTOES);
         
-        bt.addActionListener(new ActionListener(){
-           
-            @Override
-            public void actionPerformed(ActionEvent e) {try{
-                  AlterarCandidaturaUI a= new AlterarCandidaturaUI(m_ce, m_ut);
-               }catch(Exception ex){
-                   JOptionPane.showMessageDialog(PainelRepresentante.this, 
-                           "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-               }}   
-        }
-            
-        );
+        bt.addActionListener((ActionEvent e) -> {
+            try{
+                AlterarCandidaturaUI a= new AlterarCandidaturaUI(m_ce, m_ut);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(PainelRepresentante.this,
+                        "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        });
         
         return bt;
     }
@@ -140,16 +137,10 @@ public class PainelRepresentante extends JPanel{
         bt.setToolTipText("Confirmação de interesse a stand atribuído");
         bt.setPreferredSize(DIM_BOTOES);
         
-        bt.addActionListener(new ActionListener(){
-           
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(PainelRepresentante.this, 
-                        "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }   
-        }
-            
-        );
+        bt.addActionListener((ActionEvent e) -> {
+            JOptionPane.showMessageDialog(PainelRepresentante.this,
+                    "Em construção", "Aviso", JOptionPane.WARNING_MESSAGE);
+        });
         
         return bt;
     }

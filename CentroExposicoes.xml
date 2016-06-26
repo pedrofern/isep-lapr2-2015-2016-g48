@@ -82,7 +82,7 @@
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                             <listaQuestoes>
-                                <media>NaN</media>
+                                <media>0.0</media>
                             </listaQuestoes>
                             <estado>true</estado>
                             <media>3.0</media>
@@ -92,7 +92,7 @@
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
                             <listaQuestoes>
-                                <media>NaN</media>
+                                <media>0.0</media>
                             </listaQuestoes>
                             <estado>true</estado>
                             <media>1.0</media>
@@ -114,7 +114,7 @@
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
                             <listaQuestoes>
-                                <media>NaN</media>
+                                <media>0.0</media>
                             </listaQuestoes>
                             <estado>true</estado>
                             <media>1.0</media>
@@ -124,7 +124,7 @@
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                             <listaQuestoes>
-                                <media>NaN</media>
+                                <media>0.0</media>
                             </listaQuestoes>
                             <estado>true</estado>
                             <media>3.0</media>
@@ -146,7 +146,7 @@
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                             <listaQuestoes>
-                                <media>NaN</media>
+                                <media>0.0</media>
                             </listaQuestoes>
                             <estado>true</estado>
                             <media>3.0</media>
@@ -233,7 +233,7 @@
                             <avaliacaoDada>true</avaliacaoDada>
                             <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                             <listaQuestoes>
-                                <media>NaN</media>
+                                <media>0.0</media>
                             </listaQuestoes>
                             <estado>true</estado>
                             <media>3.0</media>
@@ -573,15 +573,6 @@
             </listaDemonstracoes>
             <listaAtribuicoes>
                 <listaAtribuicoes>
-                    <avaliacao>
-                        <avaliacaoDada>false</avaliacaoDada>
-                        <listaQuestoes>
-                            <media>0.0</media>
-                        </listaQuestoes>
-                        <estado>false</estado>
-                        <media>0.0</media>
-                        <desvio>0.0</desvio>
-                    </avaliacao>
                     <fae>
                         <nome>Nuno Bettencourt</nome>
                         <email>nmb@isep.ipp.pt</email>
@@ -617,7 +608,7 @@
                                 <avaliacaoDada>true</avaliacaoDada>
                                 <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                                 <listaQuestoes>
-                                    <media>NaN</media>
+                                    <media>0.0</media>
                                 </listaQuestoes>
                                 <estado>true</estado>
                                 <media>3.0</media>
@@ -639,15 +630,6 @@
                     <atribuida>false</atribuida>
                 </listaAtribuicoes>
                 <listaAtribuicoes>
-                    <avaliacao>
-                        <avaliacaoDada>false</avaliacaoDada>
-                        <listaQuestoes>
-                            <media>0.0</media>
-                        </listaQuestoes>
-                        <estado>false</estado>
-                        <media>0.0</media>
-                        <desvio>0.0</desvio>
-                    </avaliacao>
                     <fae>
                         <nome>Nuno Bettencourt</nome>
                         <email>nmb@isep.ipp.pt</email>
@@ -683,7 +665,7 @@
                                 <avaliacaoDada>true</avaliacaoDada>
                                 <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                                 <listaQuestoes>
-                                    <media>NaN</media>
+                                    <media>0.0</media>
                                 </listaQuestoes>
                                 <estado>true</estado>
                                 <media>3.0</media>
@@ -693,7 +675,7 @@
                                 <avaliacaoDada>true</avaliacaoDada>
                                 <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
                                 <listaQuestoes>
-                                    <media>NaN</media>
+                                    <media>0.0</media>
                                 </listaQuestoes>
                                 <estado>true</estado>
                                 <media>1.0</media>
@@ -705,15 +687,6 @@
                     <atribuida>false</atribuida>
                 </listaAtribuicoes>
                 <listaAtribuicoes>
-                    <avaliacao>
-                        <avaliacaoDada>false</avaliacaoDada>
-                        <listaQuestoes>
-                            <media>0.0</media>
-                        </listaQuestoes>
-                        <estado>false</estado>
-                        <media>0.0</media>
-                        <desvio>0.0</desvio>
-                    </avaliacao>
                     <fae>
                         <nome>Nuno Bettencourt</nome>
                         <email>nmb@isep.ipp.pt</email>
@@ -749,7 +722,7 @@
                                 <avaliacaoDada>true</avaliacaoDada>
                                 <justificacao>Uma mais-valia para a exposição, sendo que o prestígio e a competência da empresa são pontos marcantes</justificacao>
                                 <listaQuestoes>
-                                    <media>NaN</media>
+                                    <media>0.0</media>
                                 </listaQuestoes>
                                 <estado>true</estado>
                                 <media>1.0</media>
@@ -759,7 +732,7 @@
                                 <avaliacaoDada>true</avaliacaoDada>
                                 <justificacao>Empresa de renome que revela enquadrar-se ao tema, apresentando produtos adequados.</justificacao>
                                 <listaQuestoes>
-                                    <media>NaN</media>
+                                    <media>0.0</media>
                                 </listaQuestoes>
                                 <estado>true</estado>
                                 <media>3.0</media>

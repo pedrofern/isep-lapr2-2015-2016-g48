@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -127,6 +128,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 comboBoxExposicao.setEnabled(false);
                 controller.setExposicao((Exposicao)comboBoxExposicao.getSelectedItem());
+                try{
                 controller.setIntervaloConfianca((double)comboIC.getSelectedItem());
                 
                String[] columnNames = {"FAE",
@@ -144,6 +146,11 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
   
                 }   
 
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Não existem FAE com candidaturas avaliadas",
+                        "Análise FAE",
+                        JOptionPane.ERROR_MESSAGE);
+            }
             }
         });
         return comboBoxExposicao;
