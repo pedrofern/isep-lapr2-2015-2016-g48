@@ -6,6 +6,8 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -200,15 +202,17 @@ public class EstatisticaFAE implements Serializable{
      */
     public double calcularNivelSignificancia(double intervaloConfianca) {
         double ns=0;
-
-        if(intervaloConfianca==90.00f){
+        DecimalFormat df= new DecimalFormat("###, ##0.00");
+        String novaString=df.format(intervaloConfianca);
+        
+        if(novaString.equals("90.00")){
            ns=1.645;
        }
-       if(intervaloConfianca==95.00f){
-           ns=1.96;
+       if(novaString.equals("95.00")){
+           ns=1.960;
        }
-       if(intervaloConfianca==99.00f){
-           ns=2.58;
+       if(novaString.equals("99.00")){
+           ns=2.580;
        }
        nivelSignificancia=ns;
         return ns;
