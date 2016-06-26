@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -41,9 +40,7 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
     private static Utilizador user;
     private Exposicao expo;
     private JLabel lblValorMedioExposicao, lblValorMedioGlobal;
-    private String[][] data;
     private JTable table;
-    private ListaCandidaturas listaCandidaturas;
     private DefaultTableModel modeloEstatistica;
    
    
@@ -53,7 +50,6 @@ public class GerarEstatisticasCandidaturaUI extends JFrame{
         this.ce=ce;
         this.user=user;
         controller= new GerarEstatisticasCandidaturaController(ce,user);
-        listaCandidaturas=new ListaCandidaturas();
         
         criarComponentes();
         

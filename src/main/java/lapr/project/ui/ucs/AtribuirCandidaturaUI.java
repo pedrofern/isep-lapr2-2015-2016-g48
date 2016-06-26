@@ -36,14 +36,12 @@ public class AtribuirCandidaturaUI extends JFrame{
     private static final int JANELA_LARGURA = 788;
     private static final int JANELA_ALTURA = 450;
     private JFrame framePai;
-    private static final Dimension LABEL_TAMANHO = new JLabel("Area de Stand").getPreferredSize();
     private JPanel pExpo, pMecs,pAtrib;
-    private JComboBox comboExposicao, comboMec, comboFae;
     private JList jListAtribuicoes;
     private ModeloListaAtribuicoes modeloAtribuicoes;
     private ListaAtribuicoes listaAtribuicoes;
-    private final int NUMERO_LINHAS=1, NUMERO_COLUNAS=2, H_GAP=20, V_GAP=0,
-            MARGEM_SUPERIOR=20, MARGEM_INFERIOR=20, MARGEM_ESQ=20, MARGEM_DIR=20;  
+    private static final int MARGEM_SUPERIOR=20, MARGEM_INFERIOR=20, MARGEM_ESQ=20, MARGEM_DIR=20;
+    private JComboBox comboExposicoes, comboMec;
       
     public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes, Utilizador utilizador)  {
         super("Atribuição de Candidaturas");
@@ -104,7 +102,6 @@ public class AtribuirCandidaturaUI extends JFrame{
         
         JLabel lblTitulo=new JLabel(titulo);
         jlist.setModel(modelo);
-        //jlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         JScrollPane jscroll=new JScrollPane(jlist);
         JPanel p=new JPanel(new BorderLayout());
@@ -177,9 +174,8 @@ public class AtribuirCandidaturaUI extends JFrame{
     }
 
     private JComboBox getComboExposicao() {
-        
-        comboExposicao = Utils.criarComboExpo(ce.getRegistoExposicoes());
-        return comboExposicao;
+        comboExposicoes=Utils.criarComboExpo(ce.getRegistoExposicoes());
+        return  comboExposicoes;
     }
     
 
@@ -221,7 +217,7 @@ public class AtribuirCandidaturaUI extends JFrame{
         btnSel1.addActionListener((ActionEvent e) -> {
            
             btnSel2.setEnabled(true);
-            controllerAC.setExposicao((Exposicao)comboExposicao.getSelectedItem());
+            controllerAC.setExposicao((Exposicao)comboExposicoes.getSelectedItem());
             if(controllerAC.getListaCandidaturas().getListaCandidaturas().size()==0){
                 JOptionPane.showMessageDialog(
                                             new JFrame(),
@@ -230,10 +226,9 @@ public class AtribuirCandidaturaUI extends JFrame{
                                             JOptionPane.ERROR_MESSAGE);
             }else{
             
-            comboExposicao.setEnabled(false);
+            comboExposicoes.setEnabled(false);
             btnSel1.setEnabled(false);
-            comboFae = Utils.criarComboFaes(controllerAC.getListaFaes());
-
+            
             pMecs.setVisible(true);
             }     
         });

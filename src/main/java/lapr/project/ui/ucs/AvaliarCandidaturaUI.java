@@ -29,9 +29,6 @@ public class AvaliarCandidaturaUI extends JFrame{
     
     private static CentroExposicoes ce;
     private static AvaliarCandidaturaController controllerAC;
-    private static Utilizador user;
-    private static Exposicao exposicao;
-    private static Candidatura candidatura;
     
      /**
      * Guarda a largura mínima da janela em píxeis.
@@ -58,7 +55,7 @@ public class AvaliarCandidaturaUI extends JFrame{
         
         ce = centroExposicoes;
         controllerAC = new AvaliarCandidaturaController(ce);
-        user=utilizador;
+   
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -168,10 +165,8 @@ public class AvaliarCandidaturaUI extends JFrame{
         btGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(norte.getTxtNome().getText().isEmpty()==true||
 //                    norte.getTxtEmail().getText().isEmpty()==true||
 //                    norte.getTxtPassword().getText().isEmpty()==true||
-//                    norte.getTxtUsername().getText().isEmpty()==true){
 //                        JOptionPane.showMessageDialog(
 //                            null,
 //                            "Tem de preencher todos os campos!",
@@ -212,10 +207,8 @@ public class AvaliarCandidaturaUI extends JFrame{
     }
         
         private void fecharJanela(String pergunta){
-//        if (norte.getTxtNome().getText()!=""||
 //                norte.getTxtEmail().getText()!=""||
 //                norte.getTxtPassword().getText()!=""||
-//                norte.getTxtUsername().getText()!=""){
             String[] opcoes = {"Sim", "Não"};
             
             int opcao = JOptionPane.showOptionDialog(new Frame(), pergunta,

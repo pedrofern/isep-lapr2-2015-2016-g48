@@ -7,7 +7,6 @@ package lapr.project.ui.ucs;
 
 import javax.swing.AbstractListModel;
 import lapr.project.model.Organizador;
-import lapr.project.model.Utilizador;
 import lapr.project.model.lists.ListaOrganizadores;
 
 /**

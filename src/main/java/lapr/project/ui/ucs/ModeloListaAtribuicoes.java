@@ -9,7 +9,6 @@ import javax.swing.AbstractListModel;
 import lapr.project.model.Exposicao;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.Atribuicao;
-import lapr.project.model.Candidatura;
 import lapr.project.model.mechanisms.MecanismoAtribuicao;
 import lapr.project.model.mechanisms.MecanismoCarga;
 import lapr.project.model.mechanisms.MecanismoRanking;
@@ -21,9 +20,6 @@ import lapr.project.model.mechanisms.MecanismoTempoServico;
 public class ModeloListaAtribuicoes extends AbstractListModel {
 
     private static ListaAtribuicoes listaAtribuicoes;
-    private static MecanismoCarga mecCarga;
-    private static MecanismoTempoServico mecServico;
-    private static MecanismoRanking mecRanking;
     
     public ModeloListaAtribuicoes(ListaAtribuicoes listaAtribuicoes){
         this.listaAtribuicoes=listaAtribuicoes;
