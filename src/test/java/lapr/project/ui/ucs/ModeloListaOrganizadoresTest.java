@@ -72,7 +72,7 @@ public class ModeloListaOrganizadoresTest {
         System.out.println("addElement ModeloListaOrganizadores");
 
         String expResult = "Diana";
-        Utilizador u = new Utilizador();
+        Utilizador u = new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5);
         u.setNome("Diana");
         Organizador o = new Organizador(u);
 
@@ -94,7 +94,7 @@ public class ModeloListaOrganizadoresTest {
         System.out.println("getElement ModeloListaOrganizadores");
 
         String expResult = "Diana";
-        Utilizador u = new Utilizador();
+        Utilizador u = new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5);
         u.setNome("Diana");
         Organizador o = new Organizador(u);
 
@@ -116,7 +116,7 @@ public class ModeloListaOrganizadoresTest {
     public void testGetSize() {
         System.out.println("getSize");
         ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());
-        instance.addElement(new Organizador(new Utilizador("teste", "tese", "teste", "teste")));
+        instance.addElement(new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5)));
         int expResult = 1;
         int result = instance.getSize();
         assertEquals(expResult, result);
@@ -130,7 +130,7 @@ public class ModeloListaOrganizadoresTest {
     public void testGetRowCount() {
         System.out.println("getRowCount");
         ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());
-        instance.addElement(new Organizador(new Utilizador("teste", "tese", "teste", "teste")));
+        instance.addElement(new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5)));
         int expResult = 1;
         int result = instance.getRowCount();
         assertEquals(expResult, result);
@@ -144,7 +144,7 @@ public class ModeloListaOrganizadoresTest {
     public void testRemoveElement() {
         System.out.println("removeElement");
         ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());
-        Organizador o =new Organizador(new Utilizador("teste", "tese", "teste", "teste"));
+        Organizador o =new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5));
         instance.addElement(o);
         boolean expResult = false;
         boolean result = instance.removeElement(o);
@@ -158,7 +158,7 @@ public class ModeloListaOrganizadoresTest {
     public void testContains() {
         System.out.println("contains");
          ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());
-        Organizador o =new Organizador(new Utilizador("teste", "tese", "teste", "teste"));
+        Organizador o =new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5));
         instance.addElement(o);
         boolean expResult = true;
         boolean result = instance.contains(o);
@@ -173,7 +173,7 @@ public class ModeloListaOrganizadoresTest {
     public void testGetListaOrganizadores() {
         System.out.println("getListaOrganizadores");
          ModeloListaOrganizadores instance = new ModeloListaOrganizadores(e.getListaOrganizadores());
-        Organizador o =new Organizador(new Utilizador("teste", "tese", "teste", "teste"));
+        Organizador o =new Organizador(new Utilizador("teste", "teste@isep.ipp.pt", "teste", "teste", true, 5));
         instance.addElement(o);
         ListaOrganizadores expResult = instance.getListaOrganizadores();
         ListaOrganizadores result = instance.getListaOrganizadores();
