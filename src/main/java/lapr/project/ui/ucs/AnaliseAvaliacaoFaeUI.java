@@ -42,7 +42,7 @@ public class AnaliseAvaliacaoFaeUI extends JFrame {
     private final Utilizador utilizador;
     private static JComboBox comboBoxExposicao;
     private static final Dimension LABEL_TAMANHO = new JLabel("Valor observado da estatistica de teste").getPreferredSize();
-    private final AnaliseAvaliacaoFaeController controller;
+    private transient AnaliseAvaliacaoFaeController controller;
     private JTable table;
     private DefaultTableModel modeloEstatistica;
     private JComboBox<Double> comboIC;
