@@ -26,6 +26,7 @@ public class ListaOrganizadores implements Serializable{
      */
     public ListaOrganizadores() {
         listaOrganizadores = new ArrayList<Organizador>();
+   
     }
     
     public List<Organizador> getListaOrganizadores(){
@@ -42,10 +43,13 @@ public class ListaOrganizadores implements Serializable{
        if (o == null) 
             return false;
  
-        if (!o.valida() && !validaOrganizador(o))
+        if (!o.valida() || !validaOrganizador(o))
             return false;
-
-        return listaOrganizadores.add(o);
+  
+        else{
+            return listaOrganizadores.add(o);
+        }
+        
     }
 
     /**
