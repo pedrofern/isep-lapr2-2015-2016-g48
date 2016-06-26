@@ -201,13 +201,13 @@ public class EstatisticaFAE implements Serializable{
     public double calcularNivelSignificancia(double intervaloConfianca) {
         double ns=0;
 
-        if(intervaloConfianca==90.00){
+        if(intervaloConfianca==90.00f){
            ns=1.645;
        }
-       if(intervaloConfianca==95.00){
+       if(intervaloConfianca==95.00f){
            ns=1.96;
        }
-       if(intervaloConfianca==99.00){
+       if(intervaloConfianca==99.00f){
            ns=2.58;
        }
        nivelSignificancia=ns;
