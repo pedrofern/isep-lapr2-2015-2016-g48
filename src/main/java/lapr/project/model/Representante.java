@@ -55,4 +55,22 @@ public class Representante implements Comparable<Utilizador>, Serializable{
     public int compareTo(Utilizador u) {
          return utilizador.getEmail().compareTo(u.getEmail());
     }
+    
+    /**
+ * Compara o Utilizador com outro objecto
+ * @param outroObjeto
+ * @return true se o objecto recebido é equivalente  e false caso contrario 
+ */
+    @Override
+    public boolean equals(Object outroObjeto) {
+        if (this == outroObjeto) {
+            return true;
+        }
+        if (outroObjeto == null || getClass() != outroObjeto.getClass()) {
+            return false;
+        }
+        Utilizador outroUtilizador = (Utilizador) outroObjeto;
+
+        return utilizador.getNome().equalsIgnoreCase(outroUtilizador.getNome());
+    }
 }

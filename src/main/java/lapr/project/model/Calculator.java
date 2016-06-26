@@ -52,8 +52,8 @@ public class Calculator implements Serializable{
         
         /**
          * Calculator the rate receiving the number to calculate the rate and the total
-         * @param numeroVariavel
-         * @param numeroTotal
+         * @param number
+         * @param totalNumber
          * @return rate
          */
         public static double calculateRate(int number, int totalNumber){

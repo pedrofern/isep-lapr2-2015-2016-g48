@@ -96,14 +96,20 @@ public class CentroExposicoes implements Serializable{
     /**
      * Verifica se a empresa é igual a um objeto passado por parâmetro
      *
-     * @param o O objeto que vai ser comparado com a empresa.
+     * @param outroCentro
      * @return True se forem iguais, false se não forem.
      */
     @Override
-    public boolean equals(Object o) {
-       
-        CentroExposicoes outroCentro = (CentroExposicoes) o;
-        return this.getDescricao().equalsIgnoreCase(outroCentro.getDescricao());
+    public boolean equals(Object outroCentro) {
+        if (this == outroCentro) {
+            return true;
+        }
+        if (outroCentro == null || getClass() != outroCentro.getClass()) {
+            return false;
+        }
+
+        CentroExposicoes ce = (CentroExposicoes) outroCentro;
+        return this.getDescricao().equalsIgnoreCase(ce.getDescricao());
     }
 
 

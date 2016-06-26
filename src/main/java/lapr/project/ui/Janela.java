@@ -45,7 +45,7 @@ public class Janela extends JFrame /** implements Serializable**/{
      */
     private FichCentroExposicoes fichCentroExposicoes;
  
-    private static int WIDTH=625, HEIGHT=500, MINWIDTH=625, MINHEIGHT=480;
+    private static int WIDTH=650, HEIGHT=500, MINWIDTH=650, MINHEIGHT=500;
  
     public Janela(CentroExposicoes ce,FichCentroExposicoes fichCentroExposicoes, Utilizador id_utilizador) {
         
@@ -74,8 +74,6 @@ public class Janela extends JFrame /** implements Serializable**/{
         pack();
         setMinimumSize(new Dimension(MINWIDTH, MINHEIGHT));
         setLocationRelativeTo(null);
-        
-//        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true); 
     }   
  
@@ -83,8 +81,8 @@ public class Janela extends JFrame /** implements Serializable**/{
         JMenuBar menuBar= criarBarraMenus();
         setJMenuBar(menuBar);
 
-       pUser=new PainelInfoUser(ut);
-       pUser.criarPainel();
+           pUser=new PainelInfoUser(ut);
+           pUser.criarPainel();
         
         tabPane=criarSeparadores();
         
@@ -106,10 +104,7 @@ public class Janela extends JFrame /** implements Serializable**/{
         menu.setMnemonic(KeyEvent.VK_F);
         
         menu.addMouseListener(new MouseAdapter() {
-           
-            
             //criarItemNovo.setEnabled(registoExposicoes.tamanho()!=0);
-  
         });
         
         menu.add(criarItemNovo());

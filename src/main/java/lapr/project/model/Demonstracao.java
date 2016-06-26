@@ -33,7 +33,7 @@ public class Demonstracao implements Serializable {
     private Demonstracao demonstracao;
     @XmlTransient
     private DemonstracaoEstado estado;
-    private TimerTask task1, task2;
+//    private TimerTask task1, task2;
     /**
      * Metodo que constroi objetos demonstração
      *
@@ -229,7 +229,7 @@ public class Demonstracao implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("%s\n %s%d", desc, codigoDesc, contador);
+        return String.format("%s%n %s%d", desc, codigoDesc, contador);
     }
 
     public String toStringCompleto() {

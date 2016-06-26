@@ -55,7 +55,7 @@ public class Login extends JFrame {
             }
         });
         
-        setMinimumSize(new Dimension(350,300));
+        setMinimumSize(new Dimension(350,250));
         setLocationRelativeTo(null);
         setVisible(true);
 

@@ -113,8 +113,6 @@ public class Stand implements Serializable{
         Stand stand = (Stand) outroObjeto;
 
         return descricao.equalsIgnoreCase(stand.descricao);
-        
-        
     }
 /**
  * Calcula o hashcode de descricao
